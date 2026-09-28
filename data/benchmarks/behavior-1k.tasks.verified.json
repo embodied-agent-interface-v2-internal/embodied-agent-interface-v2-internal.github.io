@@ -1,0 +1,3769 @@
+{
+  "extracted": "2026-09-21",
+  "source": "BDDL activity definitions + 2026-challenge-task-instances (licensed download)",
+  "stack": "BEHAVIOR-1K v3.9.2 / OmniGibson 3.9.2 / Isaac Sim 5.1",
+  "tasks": {
+    "assembling_gift_baskets": {
+      "demo_distance_m": 79.71,
+      "demo_eef_m": [
+        40.25,
+        38.59
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 869,
+      "demo_mean_steps": 26060.1,
+      "goal_categories": [
+        "bow.n.08",
+        "butter_cookie.n.01",
+        "candle.n.01",
+        "swiss_cheese.n.01",
+        "wicker_basket.n.01"
+      ],
+      "goal_clauses": 4,
+      "goal_predicates": [
+        "inside"
+      ],
+      "goal_quantifiers": [
+        "forpairs"
+      ],
+      "object_categories": 8,
+      "objects": 23,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "attach_a_camera_to_a_tripod": {
+      "demo_distance_m": 11.3,
+      "demo_eef_m": [
+        7.92,
+        5.83
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 130,
+      "demo_mean_steps": 3911.6,
+      "goal_categories": [
+        "camera_tripod.n.01",
+        "digital_camera.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "attached"
+      ],
+      "object_categories": 4,
+      "objects": 4,
+      "rooms_loaded": [
+        "bedroom_0",
+        "bedroom_1",
+        "bedroom_2"
+      ],
+      "scene_model": "house_double_floor_upper",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "boxing_books_up_for_storage": {
+      "demo_distance_m": 72.27,
+      "demo_eef_m": [
+        26.05,
+        24.47
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 808,
+      "demo_mean_steps": 24227.5,
+      "goal_categories": [
+        "book.n.02",
+        "box.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "inside"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 5,
+      "objects": 13,
+      "rooms_loaded": [
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_upper",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "boxing_food_after_dinner": {
+      "demo_distance_m": 16.11,
+      "demo_eef_m": [
+        11.16,
+        17.7
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 223,
+      "demo_mean_steps": 6697.7,
+      "goal_categories": [
+        "electric_refrigerator.n.01",
+        "plate.n.04",
+        "sink.n.01",
+        "taco.n.02",
+        "tupperware.n.01"
+      ],
+      "goal_clauses": 5,
+      "goal_predicates": [
+        "inside",
+        "ontop",
+        "open"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 9,
+      "objects": 11,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "bringing_in_wood": {
+      "demo_distance_m": 36.38,
+      "demo_eef_m": [
+        14.55,
+        16.97
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 451,
+      "demo_mean_steps": 13535.7,
+      "goal_categories": [
+        "floor.n.01",
+        "plywood.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "ontop"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 3,
+      "objects": 6,
+      "rooms_loaded": [
+        "corridor_0",
+        "garage_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "bringing_paper_to_recycling": {
+      "demo_distance_m": 35.24,
+      "demo_eef_m": [
+        23.57,
+        25.06
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 374,
+      "demo_mean_steps": 11214.3,
+      "goal_categories": [
+        "newspaper.n.03",
+        "recycling_bin.n.01",
+        "sack.n.01"
+      ],
+      "goal_clauses": 3,
+      "goal_predicates": [
+        "inside",
+        "open"
+      ],
+      "object_categories": 6,
+      "objects": 7,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "bringing_water": {
+      "demo_distance_m": 26.25,
+      "demo_eef_m": [
+        9.36,
+        11.05
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 315,
+      "demo_mean_steps": 9438.5,
+      "goal_categories": [
+        "bottle.n.01",
+        "coffee_table.n.01",
+        "electric_refrigerator.n.01"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "ontop",
+        "open"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 5,
+      "objects": 6,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "can_meat": {
+      "demo_distance_m": 31.66,
+      "demo_eef_m": [
+        26.06,
+        28.46
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 395,
+      "demo_mean_steps": 11847.1,
+      "goal_categories": [
+        "bratwurst.n.01",
+        "cabinet.n.01",
+        "hinged_jar.n.01"
+      ],
+      "goal_clauses": 4,
+      "goal_counts": [
+        2
+      ],
+      "goal_predicates": [
+        "inside",
+        "open"
+      ],
+      "goal_quantifiers": [
+        "forall",
+        "forn"
+      ],
+      "object_categories": 7,
+      "objects": 11,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "canning_food": {
+      "demo_distance_m": 64.49,
+      "demo_eef_m": [
+        45.97,
+        45.99
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 766,
+      "demo_mean_steps": 22975.5,
+      "goal_categories": [
+        "bowl.n.01",
+        "cabinet.n.01",
+        "diced__pineapple.n.01",
+        "diced__steak.n.01",
+        "electric_refrigerator.n.01"
+      ],
+      "goal_clauses": 7,
+      "goal_predicates": [
+        "contains",
+        "filled",
+        "inside",
+        "open",
+        "real"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forall"
+      ],
+      "object_categories": 12,
+      "objects": 13,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "carrying_in_groceries": {
+      "demo_distance_m": 37.1,
+      "demo_eef_m": [
+        20.06,
+        19.41
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 476,
+      "demo_mean_steps": 14274.8,
+      "goal_categories": [
+        "beefsteak_tomato.n.01",
+        "car.n.01",
+        "carton__of__milk.n.01",
+        "electric_refrigerator.n.01"
+      ],
+      "goal_clauses": 3,
+      "goal_predicates": [
+        "inside",
+        "open"
+      ],
+      "goal_quantifiers": [
+        "exists"
+      ],
+      "object_categories": 7,
+      "objects": 8,
+      "rooms_loaded": [
+        "corridor_0",
+        "garage_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "carrying_out_garden_furniture": {
+      "demo_distance_m": 61.16,
+      "demo_eef_m": [
+        11.46,
+        13.78
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 369,
+      "demo_mean_steps": 11058.8,
+      "goal_categories": [
+        "barrow.n.03",
+        "floor.n.01",
+        "lawn.n.01",
+        "lawn_chair.n.01"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "ontop"
+      ],
+      "goal_quantifiers": [
+        "exists"
+      ],
+      "object_categories": 5,
+      "objects": 6,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "chop_an_onion": {
+      "demo_distance_m": 17.0,
+      "demo_eef_m": [
+        6.37,
+        11.05
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 213,
+      "demo_mean_steps": 6399.8,
+      "goal_categories": [
+        "bowl.n.01",
+        "chopping_board.n.01",
+        "diced__vidalia_onion.n.01",
+        "parer.n.02",
+        "sink.n.01"
+      ],
+      "goal_clauses": 4,
+      "goal_predicates": [
+        "contains",
+        "inside",
+        "real"
+      ],
+      "object_categories": 9,
+      "objects": 9,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "chopping_wood": {
+      "demo_distance_m": 37.83,
+      "demo_eef_m": [
+        18.53,
+        16.58
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 358,
+      "demo_mean_steps": 10752.0,
+      "goal_categories": [
+        "half__log.n.01"
+      ],
+      "goal_clauses": 8,
+      "goal_predicates": [
+        "real"
+      ],
+      "object_categories": 6,
+      "objects": 16,
+      "rooms_loaded": [
+        "corridor_0",
+        "garage_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "clean_a_keyboard": {
+      "demo_distance_m": 4.46,
+      "demo_eef_m": [
+        3.2,
+        9.73
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 129,
+      "demo_mean_steps": 3876.1,
+      "goal_categories": [
+        "dust.n.01",
+        "keyboard.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "covered"
+      ],
+      "object_categories": 6,
+      "objects": 6,
+      "rooms_loaded": [
+        "private_office_0",
+        "private_office_1",
+        "private_office_2",
+        "private_office_3",
+        "shared_office_0",
+        "corridor_0"
+      ],
+      "scene_model": "office_cubicles_right",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "clean_a_patio": {
+      "demo_distance_m": 37.21,
+      "demo_eef_m": [
+        11.73,
+        11.25
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 402,
+      "demo_mean_steps": 12070.8,
+      "goal_categories": [
+        "floor.n.01",
+        "mud.n.03"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "covered"
+      ],
+      "object_categories": 4,
+      "objects": 4,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "clean_a_trumpet": {
+      "demo_distance_m": 12.39,
+      "demo_eef_m": [
+        7.66,
+        11.5
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 177,
+      "demo_mean_steps": 5307.2,
+      "goal_categories": [
+        "cornet.n.01",
+        "dust.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "covered"
+      ],
+      "object_categories": 6,
+      "objects": 6,
+      "rooms_loaded": [
+        "bedroom_0",
+        "bedroom_1",
+        "bedroom_2"
+      ],
+      "scene_model": "house_double_floor_upper",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "clean_boxing_gloves": {
+      "demo_distance_m": 28.58,
+      "demo_eef_m": [
+        10.65,
+        11.17
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 275,
+      "demo_mean_steps": 8235.4,
+      "goal_categories": [
+        "boxing_glove.n.01",
+        "dust.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "covered"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 6,
+      "objects": 7,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "utility_room_0"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "clean_up_broken_glass": {
+      "demo_distance_m": 29.12,
+      "demo_eef_m": [
+        14.65,
+        13.51
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 290,
+      "demo_mean_steps": 8691.4,
+      "goal_categories": [
+        "ashcan.n.01",
+        "broken__glass.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "inside"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 4,
+      "objects": 7,
+      "rooms_loaded": [
+        "dining_room_0",
+        "corridor_0",
+        "bar_0",
+        "kitchen_0",
+        "bathroom_0"
+      ],
+      "scene_model": "restaurant_diner",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "clean_up_your_desk": {
+      "demo_distance_m": 60.51,
+      "demo_eef_m": [
+        38.18,
+        35.57
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 714,
+      "demo_mean_steps": 21417.9,
+      "goal_categories": [
+        "bookcase.n.01",
+        "desk.n.01",
+        "folder.n.02",
+        "laptop.n.01",
+        "paperback_book.n.01",
+        "pen.n.01",
+        "pencil.n.01",
+        "pencil_box.n.01",
+        "stapler.n.01"
+      ],
+      "goal_clauses": 8,
+      "goal_predicates": [
+        "inside",
+        "ontop",
+        "open"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 13,
+      "objects": 16,
+      "rooms_loaded": [
+        "childs_room_0",
+        "childs_room_1",
+        "childs_room_2",
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "clean_your_rusty_garden_tools": {
+      "demo_distance_m": 68.58,
+      "demo_eef_m": [
+        23.26,
+        24.94
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 505,
+      "demo_mean_steps": 15157.9,
+      "goal_categories": [
+        "rust.n.01",
+        "scraper.n.01",
+        "toolbox.n.01",
+        "trowel.n.01"
+      ],
+      "goal_clauses": 5,
+      "goal_predicates": [
+        "covered",
+        "inside",
+        "open"
+      ],
+      "object_categories": 7,
+      "objects": 7,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "garage_0"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "cleaning_up_branches_and_twigs": {
+      "demo_distance_m": 40.86,
+      "demo_eef_m": [
+        24.82,
+        25.26
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 418,
+      "demo_mean_steps": 12527.1,
+      "goal_categories": [
+        "branch.n.02",
+        "floor.n.01",
+        "recycling_bin.n.01"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "inside",
+        "ontop"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 4,
+      "objects": 7,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "garage_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "cleaning_up_plates_and_food": {
+      "demo_distance_m": 35.97,
+      "demo_eef_m": [
+        14.59,
+        19.94
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 457,
+      "demo_mean_steps": 13696.2,
+      "goal_categories": [
+        "bowl.n.01",
+        "electric_refrigerator.n.01",
+        "pizza.n.01",
+        "plate.n.04",
+        "sink.n.01"
+      ],
+      "goal_clauses": 4,
+      "goal_predicates": [
+        "inside",
+        "ontop",
+        "open"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forall",
+        "forpairs"
+      ],
+      "object_categories": 8,
+      "objects": 13,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "clearing_food_from_table_into_fridge": {
+      "demo_distance_m": 31.83,
+      "demo_eef_m": [
+        15.75,
+        16.91
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 436,
+      "demo_mean_steps": 13068.2,
+      "goal_categories": [
+        "electric_refrigerator.n.01",
+        "half__apple_pie.n.01",
+        "half__chicken.n.01",
+        "tupperware.n.01"
+      ],
+      "goal_clauses": 4,
+      "goal_predicates": [
+        "inside",
+        "open"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forall"
+      ],
+      "object_categories": 9,
+      "objects": 11,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "collecting_aluminum_cans": {
+      "demo_distance_m": 18.51,
+      "demo_eef_m": [
+        21.31,
+        20.34
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 340,
+      "demo_mean_steps": 10202.9,
+      "goal_categories": [
+        "bucket.n.01",
+        "can__of__soda.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "inside"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 5,
+      "objects": 10,
+      "rooms_loaded": [
+        "bathroom_0",
+        "bedroom_0"
+      ],
+      "scene_model": "hotel_suite_large",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "collecting_childrens_toys": {
+      "demo_distance_m": 58.4,
+      "demo_eef_m": [
+        24.15,
+        25.81
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 640,
+      "demo_mean_steps": 19186.3,
+      "goal_categories": [
+        "board_game.n.01",
+        "bookcase.n.01",
+        "die.n.01",
+        "teddy.n.01",
+        "train_set.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "inside"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forall"
+      ],
+      "object_categories": 9,
+      "objects": 13,
+      "rooms_loaded": [
+        "childs_room_0",
+        "childs_room_1",
+        "childs_room_2",
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "composting_waste": {
+      "demo_distance_m": 6.44,
+      "demo_eef_m": [
+        10.55,
+        4.44
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 121,
+      "demo_mean_steps": 3638.6,
+      "goal_categories": [
+        "ashcan.n.01",
+        "half__banana.n.01",
+        "half__pomegranate.n.01"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "inside"
+      ],
+      "object_categories": 6,
+      "objects": 8,
+      "rooms_loaded": [
+        "entryway_0",
+        "kitchen_0",
+        "bedroom_0",
+        "living_room_0"
+      ],
+      "scene_model": "Rs_int",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "cook_a_brisket": {
+      "demo_distance_m": 14.2,
+      "demo_eef_m": [
+        11.97,
+        16.51
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 244,
+      "demo_mean_steps": 7335.0,
+      "goal_categories": [
+        "brisket.n.01",
+        "chopping_board.n.01",
+        "countertop.n.01",
+        "frying_pan.n.01"
+      ],
+      "goal_clauses": 3,
+      "goal_predicates": [
+        "cooked",
+        "ontop"
+      ],
+      "object_categories": 8,
+      "objects": 8,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "cook_a_frozen_pie": {
+      "demo_distance_m": 18.99,
+      "demo_eef_m": [
+        14.49,
+        19.44
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 289,
+      "demo_mean_steps": 8668.0,
+      "goal_categories": [
+        "apple_pie.n.01",
+        "tray.n.01"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "cooked",
+        "ontop"
+      ],
+      "object_categories": 7,
+      "objects": 7,
+      "rooms_loaded": [
+        "kitchen_0"
+      ],
+      "scene_model": "restaurant_diner",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "cook_bacon": {
+      "demo_distance_m": 20.92,
+      "demo_eef_m": [
+        8.2,
+        11.26
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 256,
+      "demo_mean_steps": 7679.5,
+      "goal_categories": [
+        "bacon.n.01",
+        "electric_refrigerator.n.01"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "cooked",
+        "open"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 7,
+      "objects": 12,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "cook_broccolini": {
+      "demo_distance_m": 10.87,
+      "demo_eef_m": [
+        5.91,
+        6.31
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 154,
+      "demo_mean_steps": 4617.8,
+      "goal_categories": [
+        "broccolini.n.01",
+        "clove.n.03",
+        "frying_pan.n.01",
+        "stove.n.01"
+      ],
+      "goal_clauses": 3,
+      "goal_predicates": [
+        "cooked",
+        "ontop"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 8,
+      "objects": 11,
+      "rooms_loaded": [
+        "kitchen_0"
+      ],
+      "scene_model": "restaurant_diner",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "cook_brussels_sprouts": {
+      "demo_distance_m": 34.87,
+      "demo_eef_m": [
+        36.13,
+        26.99
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 522,
+      "demo_mean_steps": 15661.8,
+      "goal_categories": [
+        "electric_refrigerator.n.01",
+        "half__brussels_sprouts.n.01",
+        "oven.n.01"
+      ],
+      "goal_clauses": 3,
+      "goal_predicates": [
+        "cooked",
+        "inside",
+        "open",
+        "real"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 11,
+      "objects": 21,
+      "rooms_loaded": [
+        "bar_0",
+        "corridor_0",
+        "kitchen_0"
+      ],
+      "scene_model": "restaurant_diner",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "cook_cabbage": {
+      "demo_distance_m": 39.31,
+      "demo_eef_m": [
+        20.87,
+        22.86
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 471,
+      "demo_mean_steps": 14144.8,
+      "goal_categories": [
+        "cooked__diced__chili.n.01",
+        "cooked__diced__head_cabbage.n.01",
+        "frying_pan.n.01"
+      ],
+      "goal_clauses": 4,
+      "goal_predicates": [
+        "contains",
+        "real"
+      ],
+      "object_categories": 13,
+      "objects": 13,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "cook_hot_dogs": {
+      "demo_distance_m": 25.78,
+      "demo_eef_m": [
+        14.84,
+        16.54
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 305,
+      "demo_mean_steps": 9144.9,
+      "goal_categories": [
+        "hotdog.n.02"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "cooked"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 5,
+      "objects": 6,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "dispose_of_batteries": {
+      "demo_distance_m": 46.62,
+      "demo_eef_m": [
+        19.64,
+        13.12
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 481,
+      "demo_mean_steps": 14428.4,
+      "goal_categories": [
+        "ashcan.n.01",
+        "battery.n.02",
+        "floor.n.01"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "inside",
+        "ontop"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 6,
+      "objects": 8,
+      "rooms_loaded": [
+        "copy_room_0",
+        "corridor_0",
+        "private_office_0",
+        "private_office_1",
+        "private_office_2",
+        "private_office_3",
+        "shared_office_0"
+      ],
+      "scene_model": "office_cubicles_right",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "dispose_of_glass": {
+      "demo_distance_m": 18.13,
+      "demo_eef_m": [
+        16.0,
+        15.78
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 307,
+      "demo_mean_steps": 9195.3,
+      "goal_categories": [
+        "ashcan.n.01",
+        "water_glass.n.02"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "inside"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 5,
+      "objects": 9,
+      "rooms_loaded": [
+        "bathroom_0",
+        "bedroom_0"
+      ],
+      "scene_model": "hotel_suite_large",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "freeze_fruit": {
+      "demo_distance_m": 25.4,
+      "demo_eef_m": [
+        28.65,
+        38.64
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 421,
+      "demo_mean_steps": 12618.8,
+      "goal_categories": [
+        "apple.n.01",
+        "electric_refrigerator.n.01",
+        "strawberry.n.01",
+        "tupperware.n.01"
+      ],
+      "goal_clauses": 4,
+      "goal_predicates": [
+        "inside",
+        "open"
+      ],
+      "goal_quantifiers": [
+        "forall",
+        "forpairs"
+      ],
+      "object_categories": 10,
+      "objects": 13,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "freeze_pies": {
+      "demo_distance_m": 35.44,
+      "demo_eef_m": [
+        26.41,
+        31.14
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 415,
+      "demo_mean_steps": 12455.2,
+      "goal_categories": [
+        "apple_pie.n.01",
+        "electric_refrigerator.n.01",
+        "tupperware.n.01"
+      ],
+      "goal_clauses": 4,
+      "goal_predicates": [
+        "frozen",
+        "inside",
+        "open"
+      ],
+      "goal_quantifiers": [
+        "forall",
+        "forpairs"
+      ],
+      "object_categories": 8,
+      "objects": 11,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "getting_organized_for_work": {
+      "demo_distance_m": 47.34,
+      "demo_eef_m": [
+        17.27,
+        26.59
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 522,
+      "demo_mean_steps": 15671.0,
+      "goal_categories": [
+        "computer.n.01",
+        "desk.n.01",
+        "folder.n.02",
+        "keyboard.n.01",
+        "monitor.n.04",
+        "mouse.n.04",
+        "notebook.n.01",
+        "pen.n.01",
+        "swivel_chair.n.01"
+      ],
+      "goal_clauses": 10,
+      "goal_predicates": [
+        "nextto",
+        "ontop",
+        "under"
+      ],
+      "object_categories": 11,
+      "objects": 11,
+      "rooms_loaded": [
+        "bedroom_0",
+        "bedroom_1",
+        "bedroom_2"
+      ],
+      "scene_model": "house_double_floor_upper",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "halve_an_egg": {
+      "demo_distance_m": 14.06,
+      "demo_eef_m": [
+        16.55,
+        15.63
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 213,
+      "demo_mean_steps": 6377.0,
+      "goal_categories": [
+        "boiled_egg.n.01",
+        "carving_knife.n.01",
+        "plate.n.04",
+        "sink.n.01"
+      ],
+      "goal_clauses": 5,
+      "goal_predicates": [
+        "inside",
+        "ontop",
+        "real"
+      ],
+      "object_categories": 8,
+      "objects": 13,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "hanging_pictures": {
+      "demo_distance_m": 6.63,
+      "demo_eef_m": [
+        2.37,
+        3.94
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 80,
+      "demo_mean_steps": 2387.4,
+      "goal_categories": [
+        "poster.n.01",
+        "wall_nail.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "attached"
+      ],
+      "goal_quantifiers": [
+        "exists"
+      ],
+      "object_categories": 5,
+      "objects": 6,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "hiding_Easter_eggs": {
+      "demo_distance_m": 21.9,
+      "demo_eef_m": [
+        10.72,
+        12.23
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 254,
+      "demo_mean_steps": 7619.7,
+      "goal_categories": [
+        "easter_egg.n.01",
+        "lawn.n.01",
+        "tree.n.01",
+        "wicker_basket.n.01"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "inside",
+        "nextto",
+        "ontop"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forall"
+      ],
+      "object_categories": 5,
+      "objects": 8,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "installing_a_fax_machine": {
+      "demo_distance_m": 10.23,
+      "demo_eef_m": [
+        5.89,
+        7.4
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 136,
+      "demo_mean_steps": 4076.9,
+      "goal_categories": [
+        "carrel.n.02",
+        "facsimile.n.02"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "ontop",
+        "toggled_on"
+      ],
+      "goal_quantifiers": [
+        "exists"
+      ],
+      "object_categories": 4,
+      "objects": 6,
+      "rooms_loaded": [
+        "corridor_0",
+        "private_office_0",
+        "private_office_1",
+        "private_office_2",
+        "private_office_3",
+        "copy_room_0",
+        "shared_office_0"
+      ],
+      "scene_model": "office_cubicles_right",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "installing_a_modem": {
+      "demo_distance_m": 2.66,
+      "demo_eef_m": [
+        5.06,
+        3.21
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 80,
+      "demo_mean_steps": 2413.0,
+      "goal_categories": [
+        "cabinet.n.01",
+        "modem.n.01",
+        "television_receiver.n.01"
+      ],
+      "goal_clauses": 3,
+      "goal_predicates": [
+        "nextto",
+        "ontop",
+        "toggled_on"
+      ],
+      "goal_quantifiers": [
+        "exists"
+      ],
+      "object_categories": 6,
+      "objects": 7,
+      "rooms_loaded": [
+        "bedroom_0",
+        "entryway_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "Rs_int",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "installing_a_scanner": {
+      "demo_distance_m": 6.41,
+      "demo_eef_m": [
+        7.07,
+        7.89
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 142,
+      "demo_mean_steps": 4258.5,
+      "goal_categories": [
+        "laptop.n.01",
+        "scanner.n.02"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "nextto",
+        "toggled_on"
+      ],
+      "object_categories": 5,
+      "objects": 5,
+      "rooms_loaded": [
+        "corridor_0",
+        "private_office_0",
+        "private_office_1",
+        "private_office_2",
+        "private_office_3",
+        "copy_room_0",
+        "shared_office_0"
+      ],
+      "scene_model": "office_cubicles_right",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "installing_smoke_detectors": {
+      "demo_distance_m": 8.61,
+      "demo_eef_m": [
+        6.79,
+        3.25
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 86,
+      "demo_mean_steps": 2568.8,
+      "goal_categories": [
+        "fire_alarm.n.02",
+        "wall_nail.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "attached"
+      ],
+      "object_categories": 5,
+      "objects": 5,
+      "rooms_loaded": [
+        "corridor_0",
+        "kitchen_0",
+        "living_room_0",
+        "garden_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "laying_tile_floors": {
+      "demo_distance_m": 64.84,
+      "demo_eef_m": [
+        22.52,
+        21.34
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 478,
+      "demo_mean_steps": 14351.0,
+      "goal_categories": [
+        "floor.n.01",
+        "tile.n.01"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "nextto",
+        "ontop"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 3,
+      "objects": 7,
+      "rooms_loaded": [
+        "bathroom_0",
+        "corridor_0",
+        "empty_room_0",
+        "private_office_0",
+        "private_office_1",
+        "private_office_2",
+        "private_office_3",
+        "copy_room_0",
+        "shared_office_0",
+        "conference_hall_0",
+        "meeting_room_0"
+      ],
+      "scene_model": "office_cubicles_right",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "loading_the_car": {
+      "demo_distance_m": 48.32,
+      "demo_eef_m": [
+        18.59,
+        22.1
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 641,
+      "demo_mean_steps": 19226.4,
+      "goal_categories": [
+        "car.n.01",
+        "container.n.01",
+        "digital_camera.n.01",
+        "tennis_racket.n.01"
+      ],
+      "goal_clauses": 3,
+      "goal_predicates": [
+        "inside"
+      ],
+      "object_categories": 7,
+      "objects": 8,
+      "rooms_loaded": [
+        "corridor_0",
+        "garage_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "make_cabinet_doors": {
+      "demo_distance_m": 4.47,
+      "demo_eef_m": [
+        5.71,
+        4.28
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 115,
+      "demo_mean_steps": 3442.5,
+      "goal_categories": [
+        "cabinet_base.n.01",
+        "cabinet_door.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "attached"
+      ],
+      "object_categories": 4,
+      "objects": 4,
+      "rooms_loaded": [
+        "bedroom_0",
+        "entryway_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "Rs_int",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "make_gift_bags_for_baby_showers": {
+      "demo_distance_m": 16.79,
+      "demo_eef_m": [
+        18.32,
+        21.56
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 322,
+      "demo_mean_steps": 9650.9,
+      "goal_categories": [
+        "coffee_table.n.01",
+        "sack.n.01",
+        "toy_dice.n.01",
+        "wafer.n.02"
+      ],
+      "goal_clauses": 3,
+      "goal_predicates": [
+        "inside",
+        "ontop"
+      ],
+      "goal_quantifiers": [
+        "forall",
+        "forpairs"
+      ],
+      "object_categories": 8,
+      "objects": 11,
+      "rooms_loaded": [
+        "bedroom_0",
+        "entryway_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "Rs_int",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "make_microwave_popcorn": {
+      "demo_distance_m": 8.6,
+      "demo_eef_m": [
+        2.83,
+        8.69
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 108,
+      "demo_mean_steps": 3237.8,
+      "goal_categories": [
+        "cooked__popcorn.n.01",
+        "popcorn__bag.n.01"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "contains",
+        "real"
+      ],
+      "object_categories": 7,
+      "objects": 7,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "make_pizza": {
+      "demo_distance_m": 56.87,
+      "demo_eef_m": [
+        33.52,
+        44.07
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 640,
+      "demo_mean_steps": 19186.9,
+      "goal_categories": [
+        "cookie_sheet.n.01",
+        "pizza.n.01"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "ontop",
+        "real"
+      ],
+      "object_categories": 17,
+      "objects": 23,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "make_rose_centerpieces": {
+      "demo_distance_m": 9.05,
+      "demo_eef_m": [
+        9.87,
+        9.74
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 151,
+      "demo_mean_steps": 4532.2,
+      "goal_categories": [
+        "coffee_table.n.01",
+        "rose.n.01",
+        "vase.n.01"
+      ],
+      "goal_clauses": 4,
+      "goal_predicates": [
+        "inside",
+        "ontop"
+      ],
+      "object_categories": 6,
+      "objects": 8,
+      "rooms_loaded": [
+        "bathroom_0",
+        "corridor_0",
+        "garage_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "moving_boxes_to_storage": {
+      "demo_distance_m": 36.81,
+      "demo_eef_m": [
+        8.36,
+        10.79
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 487,
+      "demo_mean_steps": 14596.2,
+      "goal_categories": [
+        "floor.n.01",
+        "storage_container.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "ontop"
+      ],
+      "object_categories": 3,
+      "objects": 5,
+      "rooms_loaded": [
+        "corridor_0",
+        "garage_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "organizing_art_supplies": {
+      "demo_distance_m": 11.51,
+      "demo_eef_m": [
+        12.29,
+        12.36
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 206,
+      "demo_mean_steps": 6194.4,
+      "goal_categories": [
+        "carryall.n.01",
+        "desk.n.01",
+        "glue_stick.n.01",
+        "marker.n.03",
+        "paintbrush.n.01",
+        "rubber_eraser.n.01"
+      ],
+      "goal_clauses": 5,
+      "goal_predicates": [
+        "inside",
+        "ontop"
+      ],
+      "object_categories": 8,
+      "objects": 8,
+      "rooms_loaded": [
+        "bathroom_0",
+        "bedroom_0",
+        "bedroom_1",
+        "bedroom_2",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_upper",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "organizing_school_stuff": {
+      "demo_distance_m": 26.16,
+      "demo_eef_m": [
+        24.24,
+        27.61
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 486,
+      "demo_mean_steps": 14591.9,
+      "goal_categories": [
+        "bed.n.01",
+        "book.n.02",
+        "calculator.n.02",
+        "carryall.n.01",
+        "folder.n.02",
+        "pen.n.01",
+        "pencil.n.01"
+      ],
+      "goal_clauses": 6,
+      "goal_predicates": [
+        "inside",
+        "ontop"
+      ],
+      "object_categories": 10,
+      "objects": 10,
+      "rooms_loaded": [
+        "bedroom_0",
+        "closet_0",
+        "closet_1",
+        "garden_0",
+        "corridor_0",
+        "bathroom_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "outfit_a_basic_toolbox": {
+      "demo_distance_m": 31.68,
+      "demo_eef_m": [
+        18.18,
+        20.07
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 355,
+      "demo_mean_steps": 10638.0,
+      "goal_categories": [
+        "allen_wrench.n.01",
+        "drill.n.01",
+        "flashlight.n.01",
+        "pliers.n.01",
+        "screwdriver.n.01",
+        "tabletop.n.01",
+        "toolbox.n.01"
+      ],
+      "goal_clauses": 7,
+      "goal_predicates": [
+        "inside",
+        "ontop",
+        "open"
+      ],
+      "object_categories": 9,
+      "objects": 9,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "utility_room_0"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "packing_meal_for_delivery": {
+      "demo_distance_m": 19.61,
+      "demo_eef_m": [
+        21.67,
+        16.52
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 295,
+      "demo_mean_steps": 8859.9,
+      "goal_categories": [
+        "sack.n.01",
+        "storage_container.n.01",
+        "wrapped_hamburger.n.01"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "inside",
+        "ontop"
+      ],
+      "goal_quantifiers": [
+        "forall",
+        "forpairs"
+      ],
+      "object_categories": 7,
+      "objects": 11,
+      "rooms_loaded": [
+        "kitchen_0",
+        "bar_0"
+      ],
+      "scene_model": "restaurant_diner",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "picking_up_toys": {
+      "demo_distance_m": 47.05,
+      "demo_eef_m": [
+        20.41,
+        21.55
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 630,
+      "demo_mean_steps": 18890.5,
+      "goal_categories": [
+        "board_game.n.01",
+        "jigsaw_puzzle.n.01",
+        "tennis_ball.n.01",
+        "toy_box.n.01"
+      ],
+      "goal_clauses": 3,
+      "goal_predicates": [
+        "inside"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forall"
+      ],
+      "object_categories": 8,
+      "objects": 11,
+      "rooms_loaded": [
+        "childs_room_0",
+        "childs_room_1",
+        "childs_room_2",
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "picking_up_trash": {
+      "demo_distance_m": 16.2,
+      "demo_eef_m": [
+        10.56,
+        9.2
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 176,
+      "demo_mean_steps": 5267.8,
+      "goal_categories": [
+        "ashcan.n.01",
+        "can__of__soda.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "inside"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 4,
+      "objects": 7,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "polishing_shoes": {
+      "demo_distance_m": 17.16,
+      "demo_eef_m": [
+        20.1,
+        21.11
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 358,
+      "demo_mean_steps": 10738.0,
+      "goal_categories": [
+        "dust.n.01",
+        "footstool.n.01",
+        "scrub_brush.n.01",
+        "shoe.n.01",
+        "stand.n.04"
+      ],
+      "goal_clauses": 5,
+      "goal_predicates": [
+        "covered",
+        "nextto",
+        "ontop"
+      ],
+      "goal_quantifiers": [
+        "exists"
+      ],
+      "object_categories": 7,
+      "objects": 9,
+      "rooms_loaded": [
+        "bedroom_0",
+        "bathroom_0"
+      ],
+      "scene_model": "hotel_suite_large",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "preparing_lunch_box": {
+      "demo_distance_m": 21.4,
+      "demo_eef_m": [
+        14.09,
+        17.24
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 275,
+      "demo_mean_steps": 8245.3,
+      "goal_categories": [
+        "bottle__of__tea.n.01",
+        "chocolate_chip_cookie.n.01",
+        "club_sandwich.n.01",
+        "electric_refrigerator.n.01",
+        "half__apple.n.01",
+        "packing_box.n.02"
+      ],
+      "goal_clauses": 5,
+      "goal_predicates": [
+        "inside",
+        "open"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 10,
+      "objects": 11,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "put_together_a_basic_pruning_kit": {
+      "demo_distance_m": 19.44,
+      "demo_eef_m": [
+        18.07,
+        18.69
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 375,
+      "demo_mean_steps": 11264.5,
+      "goal_categories": [
+        "floor.n.01",
+        "pruner.n.02",
+        "shears.n.01",
+        "toolbox.n.01"
+      ],
+      "goal_clauses": 4,
+      "goal_predicates": [
+        "inside",
+        "ontop",
+        "open"
+      ],
+      "object_categories": 5,
+      "objects": 5,
+      "rooms_loaded": [
+        "garage_0",
+        "corridor_0",
+        "garden_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "putting_away_Halloween_decorations": {
+      "demo_distance_m": 47.14,
+      "demo_eef_m": [
+        19.87,
+        20.3
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 460,
+      "demo_mean_steps": 13788.1,
+      "goal_categories": [
+        "cabinet.n.01",
+        "caldron.n.01",
+        "candle.n.01",
+        "pumpkin.n.02",
+        "table.n.02"
+      ],
+      "goal_clauses": 4,
+      "goal_predicates": [
+        "inside",
+        "nextto",
+        "open"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forall"
+      ],
+      "object_categories": 7,
+      "objects": 12,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "putting_away_toys": {
+      "demo_distance_m": 35.15,
+      "demo_eef_m": [
+        28.67,
+        28.4
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 377,
+      "demo_mean_steps": 11296.8,
+      "goal_categories": [
+        "toy_box.n.01",
+        "toy_figure.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "inside"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forall"
+      ],
+      "object_categories": 5,
+      "objects": 14,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "putting_dirty_dishes_in_sink": {
+      "demo_distance_m": 57.4,
+      "demo_eef_m": [
+        18.02,
+        25.65
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 405,
+      "demo_mean_steps": 12148.6,
+      "goal_categories": [
+        "bowl.n.01",
+        "plate.n.04",
+        "sink.n.01"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "inside"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 8,
+      "objects": 10,
+      "rooms_loaded": [
+        "kitchen_0",
+        "bar_0",
+        "dining_room_0",
+        "corridor_0"
+      ],
+      "scene_model": "restaurant_diner",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "putting_dishes_away_after_cleaning": {
+      "demo_distance_m": 33.05,
+      "demo_eef_m": [
+        28.34,
+        31.51
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 365,
+      "demo_mean_steps": 10953.4,
+      "goal_categories": [
+        "cabinet.n.01",
+        "plate.n.04"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "inside",
+        "open"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forall"
+      ],
+      "object_categories": 5,
+      "objects": 14,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "putting_shoes_on_rack": {
+      "demo_distance_m": 27.02,
+      "demo_eef_m": [
+        8.85,
+        9.75
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 258,
+      "demo_mean_steps": 7726.1,
+      "goal_categories": [
+        "floor.n.01",
+        "gym_shoe.n.01",
+        "hallstand.n.01",
+        "sandal.n.01"
+      ],
+      "goal_clauses": 4,
+      "goal_predicates": [
+        "nextto",
+        "touching"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 5,
+      "objects": 7,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "putting_up_Christmas_decorations_inside": {
+      "demo_distance_m": 41.33,
+      "demo_eef_m": [
+        16.75,
+        22.54
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 457,
+      "demo_mean_steps": 13718.8,
+      "goal_categories": [
+        "candy_cane.n.01",
+        "christmas_tree.n.05",
+        "gift_box.n.01",
+        "pillar_candle.n.01",
+        "sofa.n.01",
+        "table.n.02",
+        "wreath.n.01"
+      ],
+      "goal_clauses": 5,
+      "goal_counts": [
+        1,
+        2
+      ],
+      "goal_predicates": [
+        "nextto",
+        "ontop",
+        "touching",
+        "under"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forall",
+        "forn"
+      ],
+      "object_categories": 10,
+      "objects": 17,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "re_shelving_library_books": {
+      "demo_distance_m": 19.62,
+      "demo_eef_m": [
+        18.94,
+        16.56
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 318,
+      "demo_mean_steps": 9528.4,
+      "goal_categories": [
+        "book.n.02",
+        "bookcase.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "inside"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forall"
+      ],
+      "object_categories": 5,
+      "objects": 7,
+      "rooms_loaded": [
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_upper",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "rearrange_your_room": {
+      "demo_distance_m": 24.03,
+      "demo_eef_m": [
+        18.58,
+        18.76
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 428,
+      "demo_mean_steps": 12855.0,
+      "goal_categories": [
+        "bed.n.01",
+        "pillow.n.01",
+        "stand.n.04",
+        "tissue_dispenser.n.01"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "ontop"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forpairs"
+      ],
+      "object_categories": 7,
+      "objects": 10,
+      "rooms_loaded": [
+        "bedroom_0",
+        "bathroom_0"
+      ],
+      "scene_model": "hotel_suite_large",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "rearranging_kitchen_furniture": {
+      "demo_distance_m": 25.89,
+      "demo_eef_m": [
+        14.53,
+        16.37
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 298,
+      "demo_mean_steps": 8943.0,
+      "goal_categories": [
+        "cabinet.n.01",
+        "food_processor.n.01",
+        "french_press.n.01",
+        "toaster.n.02"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "inside",
+        "open"
+      ],
+      "goal_quantifiers": [
+        "exists"
+      ],
+      "object_categories": 7,
+      "objects": 8,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "scrubbing_bathroom_floor": {
+      "demo_distance_m": 5.38,
+      "demo_eef_m": [
+        7.8,
+        7.84
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 105,
+      "demo_mean_steps": 3153.8,
+      "goal_categories": [
+        "dirt.n.02",
+        "floor.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "covered"
+      ],
+      "object_categories": 4,
+      "objects": 4,
+      "rooms_loaded": [
+        "bathroom_0",
+        "bathroom_1",
+        "garden_0"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "set_up_a_coffee_station_in_your_kitchen": {
+      "demo_distance_m": 17.36,
+      "demo_eef_m": [
+        9.57,
+        10.72
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 209,
+      "demo_mean_steps": 6266.2,
+      "goal_categories": [
+        "bottle__of__coffee.n.01",
+        "coffee_cup.n.01",
+        "coffee_maker.n.01",
+        "countertop.n.01",
+        "electric_kettle.n.01",
+        "paper_coffee_filter.n.01",
+        "saucer.n.02"
+      ],
+      "goal_clauses": 6,
+      "goal_predicates": [
+        "nextto",
+        "ontop"
+      ],
+      "object_categories": 11,
+      "objects": 11,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "setting_mousetraps": {
+      "demo_distance_m": 31.6,
+      "demo_eef_m": [
+        13.15,
+        12.38
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 340,
+      "demo_mean_steps": 10196.1,
+      "goal_categories": [
+        "floor.n.01",
+        "mousetrap.n.01",
+        "sink.n.01"
+      ],
+      "goal_clauses": 2,
+      "goal_counts": [
+        2
+      ],
+      "goal_predicates": [
+        "nextto",
+        "ontop",
+        "under"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forall",
+        "forn"
+      ],
+      "object_categories": 5,
+      "objects": 10,
+      "rooms_loaded": [
+        "bathroom_0"
+      ],
+      "scene_model": "house_double_floor_upper",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "setting_the_fire": {
+      "demo_distance_m": 31.8,
+      "demo_eef_m": [
+        11.4,
+        12.95
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 304,
+      "demo_mean_steps": 9118.1,
+      "goal_categories": [
+        "cigar_lighter.n.01",
+        "firewood.n.01",
+        "newspaper.n.03",
+        "wood_fireplace.n.01"
+      ],
+      "goal_clauses": 3,
+      "goal_predicates": [
+        "inside",
+        "on_fire",
+        "ontop",
+        "toggled_on"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 7,
+      "objects": 8,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "setting_the_table": {
+      "demo_distance_m": 55.46,
+      "demo_eef_m": [
+        38.13,
+        46.91
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 594,
+      "demo_mean_steps": 17808.5,
+      "goal_categories": [
+        "breakfast_table.n.01",
+        "cupcake.n.01",
+        "plate.n.04",
+        "table_knife.n.01",
+        "tablefork.n.01"
+      ],
+      "goal_clauses": 4,
+      "goal_predicates": [
+        "nextto",
+        "ontop"
+      ],
+      "goal_quantifiers": [
+        "forall",
+        "forpairs"
+      ],
+      "object_categories": 10,
+      "objects": 14,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "setup_a_bar_for_a_cocktail_party": {
+      "demo_distance_m": 22.81,
+      "demo_eef_m": [
+        20.58,
+        29.49
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 447,
+      "demo_mean_steps": 13418.9,
+      "goal_categories": [
+        "bucket.n.01",
+        "can__of__soda.n.01",
+        "corkscrew.n.01",
+        "countertop.n.01",
+        "ice_cube.n.01",
+        "wine_bottle.n.01",
+        "wineglass.n.01"
+      ],
+      "goal_clauses": 9,
+      "goal_predicates": [
+        "inside",
+        "nextto",
+        "ontop"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forall"
+      ],
+      "object_categories": 12,
+      "objects": 20,
+      "rooms_loaded": [
+        "bar_0",
+        "corridor_0",
+        "kitchen_0",
+        "dining_room_0"
+      ],
+      "scene_model": "restaurant_diner",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "slicing_vegetables": {
+      "demo_distance_m": 40.63,
+      "demo_eef_m": [
+        17.75,
+        22.47
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 495,
+      "demo_mean_steps": 14844.9,
+      "goal_categories": [
+        "beet.n.02",
+        "bell_pepper.n.02",
+        "diced__beet.n.01",
+        "diced__bell_pepper.n.01",
+        "diced__zucchini.n.01",
+        "electric_refrigerator.n.01",
+        "zucchini.n.02"
+      ],
+      "goal_clauses": 7,
+      "goal_predicates": [
+        "open",
+        "real"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 12,
+      "objects": 15,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "sorting_books_on_shelf": {
+      "demo_distance_m": 10.23,
+      "demo_eef_m": [
+        10.27,
+        13.84
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 258,
+      "demo_mean_steps": 7739.4,
+      "goal_categories": [
+        "bookcase.n.01",
+        "comic_book.n.01",
+        "hardback.n.01",
+        "notebook.n.01"
+      ],
+      "goal_clauses": 6,
+      "goal_counts": [
+        2
+      ],
+      "goal_predicates": [
+        "inside",
+        "ontop"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forall",
+        "forn"
+      ],
+      "object_categories": 6,
+      "objects": 10,
+      "rooms_loaded": [
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_upper",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "sorting_bottles_cans_and_paper": {
+      "demo_distance_m": 26.76,
+      "demo_eef_m": [
+        22.37,
+        23.46
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 342,
+      "demo_mean_steps": 10263.8,
+      "goal_categories": [
+        "bucket.n.01",
+        "can__of__soda.n.01",
+        "magazine.n.02",
+        "newspaper.n.03",
+        "wine_bottle.n.01"
+      ],
+      "goal_clauses": 3,
+      "goal_predicates": [
+        "inside"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forall"
+      ],
+      "object_categories": 8,
+      "objects": 12,
+      "rooms_loaded": [
+        "kitchen_0",
+        "corridor_0",
+        "garden_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "sorting_household_items": {
+      "demo_distance_m": 50.91,
+      "demo_eef_m": [
+        25.34,
+        28.24
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 527,
+      "demo_mean_steps": 15807.8,
+      "goal_categories": [
+        "bottle__of__detergent.n.01",
+        "box__of__sanitary_napkin.n.01",
+        "cup.n.01",
+        "shelf.n.01",
+        "sink.n.01",
+        "soap_dispenser.n.01",
+        "toothbrush.n.01",
+        "tube__of__toothpaste.n.01"
+      ],
+      "goal_clauses": 7,
+      "goal_predicates": [
+        "inside",
+        "nextto",
+        "ontop",
+        "under"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 11,
+      "objects": 13,
+      "rooms_loaded": [
+        "bathroom_0",
+        "bathroom_1",
+        "bedroom_0",
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "sorting_vegetables": {
+      "demo_distance_m": 33.95,
+      "demo_eef_m": [
+        46.3,
+        22.88
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 397,
+      "demo_mean_steps": 11903.7,
+      "goal_categories": [
+        "bok_choy.n.02",
+        "broccoli.n.02",
+        "leek.n.02",
+        "mixing_bowl.n.01",
+        "sweet_corn.n.02",
+        "vidalia_onion.n.01"
+      ],
+      "goal_clauses": 3,
+      "goal_predicates": [
+        "inside"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forall"
+      ],
+      "object_categories": 10,
+      "objects": 21,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "spraying_for_bugs": {
+      "demo_distance_m": 21.98,
+      "demo_eef_m": [
+        12.23,
+        7.07
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 216,
+      "demo_mean_steps": 6479.5,
+      "goal_categories": [
+        "insectifuge.n.01",
+        "pot_plant.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "covered"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 5,
+      "objects": 6,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "spraying_fruit_trees": {
+      "demo_distance_m": 23.5,
+      "demo_eef_m": [
+        21.59,
+        7.56
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 278,
+      "demo_mean_steps": 8345.9,
+      "goal_categories": [
+        "pesticide.n.01",
+        "tree.n.01"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "covered"
+      ],
+      "object_categories": 5,
+      "objects": 6,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "stacking_wood": {
+      "demo_distance_m": 85.96,
+      "demo_eef_m": [
+        21.45,
+        21.72
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 531,
+      "demo_mean_steps": 15939.3,
+      "goal_categories": [
+        "log.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "touching"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 3,
+      "objects": 8,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "store_batteries": {
+      "demo_distance_m": 14.16,
+      "demo_eef_m": [
+        12.88,
+        16.49
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 257,
+      "demo_mean_steps": 7704.2,
+      "goal_categories": [
+        "battery.n.02",
+        "cabinet.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "inside"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forall"
+      ],
+      "object_categories": 6,
+      "objects": 9,
+      "rooms_loaded": [
+        "bedroom_0",
+        "entryway_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "Rs_int",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "store_honey": {
+      "demo_distance_m": 12.07,
+      "demo_eef_m": [
+        7.56,
+        15.32
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 226,
+      "demo_mean_steps": 6766.8,
+      "goal_categories": [
+        "cabinet.n.01",
+        "jar__of__honey.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "inside"
+      ],
+      "object_categories": 5,
+      "objects": 5,
+      "rooms_loaded": [
+        "bedroom_0",
+        "entryway_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "Rs_int",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "store_produce": {
+      "demo_distance_m": 26.53,
+      "demo_eef_m": [
+        18.96,
+        22.6
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 317,
+      "demo_mean_steps": 9522.4,
+      "goal_categories": [
+        "electric_refrigerator.n.01",
+        "mango.n.02",
+        "pomegranate.n.02"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "inside"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forall"
+      ],
+      "object_categories": 6,
+      "objects": 9,
+      "rooms_loaded": [
+        "kitchen_0"
+      ],
+      "scene_model": "restaurant_diner",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "storing_food": {
+      "demo_distance_m": 55.64,
+      "demo_eef_m": [
+        30.69,
+        27.52
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 662,
+      "demo_mean_steps": 19869.1,
+      "goal_categories": [
+        "bag__of__chips.n.01",
+        "bottle__of__olive_oil.n.01",
+        "box__of__oatmeal.n.01",
+        "cabinet.n.01",
+        "jar__of__sugar.n.01"
+      ],
+      "goal_clauses": 4,
+      "goal_predicates": [
+        "inside"
+      ],
+      "goal_quantifiers": [
+        "exists",
+        "forall"
+      ],
+      "object_categories": 8,
+      "objects": 13,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "sweeping_garage": {
+      "demo_distance_m": 19.08,
+      "demo_eef_m": [
+        4.33,
+        4.44
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 149,
+      "demo_mean_steps": 4473.0,
+      "goal_categories": [
+        "dust.n.01",
+        "floor.n.01",
+        "sand.n.04"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "covered"
+      ],
+      "object_categories": 6,
+      "objects": 6,
+      "rooms_loaded": [
+        "garage_0",
+        "corridor_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "thawing_frozen_food": {
+      "demo_distance_m": 17.45,
+      "demo_eef_m": [
+        7.3,
+        23.03
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 274,
+      "demo_mean_steps": 8229.6,
+      "goal_categories": [
+        "bread_slice.n.01",
+        "chicken_breast.n.02",
+        "countertop.n.01",
+        "electric_refrigerator.n.01",
+        "microwave.n.02",
+        "plate.n.04"
+      ],
+      "goal_clauses": 7,
+      "goal_predicates": [
+        "frozen",
+        "inside",
+        "ontop",
+        "open",
+        "toggled_on"
+      ],
+      "goal_quantifiers": [
+        "exists"
+      ],
+      "object_categories": 8,
+      "objects": 9,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "tidying_bathroom": {
+      "demo_distance_m": 19.01,
+      "demo_eef_m": [
+        19.42,
+        20.55
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 433,
+      "demo_mean_steps": 13003.1,
+      "goal_categories": [
+        "ashcan.n.01",
+        "bar_soap.n.01",
+        "cork.n.04",
+        "sink.n.01",
+        "soap_dish.n.01",
+        "tissue_dispenser.n.01",
+        "toilet.n.02",
+        "toilet_tissue.n.01"
+      ],
+      "goal_clauses": 4,
+      "goal_predicates": [
+        "inside",
+        "ontop"
+      ],
+      "object_categories": 11,
+      "objects": 11,
+      "rooms_loaded": [
+        "bathroom_0",
+        "bedroom_0"
+      ],
+      "scene_model": "hotel_suite_large",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "tidying_bedroom": {
+      "demo_distance_m": 33.4,
+      "demo_eef_m": [
+        12.65,
+        12.59
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 368,
+      "demo_mean_steps": 11037.4,
+      "goal_categories": [
+        "bed.n.01",
+        "book.n.02",
+        "sandal.n.01",
+        "table.n.02"
+      ],
+      "goal_clauses": 3,
+      "goal_predicates": [
+        "nextto",
+        "ontop"
+      ],
+      "goal_quantifiers": [
+        "exists"
+      ],
+      "object_categories": 6,
+      "objects": 8,
+      "rooms_loaded": [
+        "bathroom_1",
+        "bedroom_0",
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "tidying_living_room": {
+      "demo_distance_m": 20.65,
+      "demo_eef_m": [
+        18.47,
+        18.56
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 419,
+      "demo_mean_steps": 12565.9,
+      "goal_categories": [
+        "bookcase.n.01",
+        "coffee_table.n.01",
+        "desk.n.01",
+        "hardback.n.01",
+        "newspaper.n.03",
+        "notebook.n.01",
+        "pot_plant.n.01"
+      ],
+      "goal_clauses": 4,
+      "goal_predicates": [
+        "inside",
+        "ontop"
+      ],
+      "goal_quantifiers": [
+        "exists"
+      ],
+      "object_categories": 9,
+      "objects": 9,
+      "rooms_loaded": [
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_upper",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "turning_on_radio": {
+      "demo_distance_m": 5.7,
+      "demo_eef_m": [
+        3.26,
+        4.07
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 72,
+      "demo_mean_steps": 2149.6,
+      "goal_categories": [
+        "radio_receiver.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "toggled_on"
+      ],
+      "object_categories": 4,
+      "objects": 4,
+      "rooms_loaded": [
+        "corridor_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "turning_out_all_lights_before_sleep": {
+      "demo_distance_m": 40.25,
+      "demo_eef_m": [
+        16.56,
+        16.98
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 334,
+      "demo_mean_steps": 10006.1,
+      "goal_categories": [
+        "switch.n.01",
+        "table_lamp.n.01"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "toggled_on"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 6,
+      "objects": 9,
+      "rooms_loaded": [
+        "corridor_0",
+        "utility_room_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "kitchen_0",
+        "living_room_0",
+        "living_room_1"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "unloading_the_car": {
+      "demo_distance_m": 33.71,
+      "demo_eef_m": [
+        18.29,
+        20.69
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 377,
+      "demo_mean_steps": 11323.4,
+      "goal_categories": [
+        "briefcase.n.01",
+        "satchel.n.01",
+        "sofa.n.01"
+      ],
+      "goal_clauses": 2,
+      "goal_predicates": [
+        "nextto"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 6,
+      "objects": 6,
+      "rooms_loaded": [
+        "garage_0",
+        "corridor_0",
+        "living_room_0",
+        "kitchen_0",
+        "garden_0"
+      ],
+      "scene_model": "house_double_floor_lower",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "vacuuming_floors": {
+      "demo_distance_m": 4.96,
+      "demo_eef_m": [
+        2.44,
+        3.73
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 80,
+      "demo_mean_steps": 2411.8,
+      "goal_categories": [
+        "dust.n.01",
+        "floor.n.01"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "covered"
+      ],
+      "object_categories": 4,
+      "objects": 4,
+      "rooms_loaded": [
+        "bedroom_0",
+        "bedroom_1",
+        "bedroom_2",
+        "living_room_0"
+      ],
+      "scene_model": "house_double_floor_upper",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "wash_a_baseball_cap": {
+      "demo_distance_m": 28.94,
+      "demo_eef_m": [
+        10.71,
+        11.49
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 278,
+      "demo_mean_steps": 8349.4,
+      "goal_categories": [
+        "baseball_cap.n.01",
+        "dirt.n.02"
+      ],
+      "goal_clauses": 1,
+      "goal_predicates": [
+        "covered"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 6,
+      "objects": 7,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "utility_room_0"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    },
+    "wash_dog_toys": {
+      "demo_distance_m": 46.58,
+      "demo_eef_m": [
+        16.0,
+        15.88
+      ],
+      "demo_episodes": 200,
+      "demo_mean_s": 374,
+      "demo_mean_steps": 11222.8,
+      "goal_categories": [
+        "debris.n.01",
+        "dirt.n.02",
+        "dust.n.01",
+        "softball.n.01",
+        "teddy.n.01",
+        "tennis_ball.n.01"
+      ],
+      "goal_clauses": 3,
+      "goal_predicates": [
+        "covered"
+      ],
+      "goal_quantifiers": [
+        "forall"
+      ],
+      "object_categories": 10,
+      "objects": 11,
+      "rooms_loaded": [
+        "corridor_0",
+        "dining_room_0",
+        "entryway_0",
+        "garden_0",
+        "utility_room_0"
+      ],
+      "scene_model": "house_single_floor",
+      "test_instance_ids": [
+        301,
+        320
+      ],
+      "test_instances": 20
+    }
+  }
+}

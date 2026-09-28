@@ -1,0 +1,94 @@
+id: behavior-1k
+name: BEHAVIOR-1K
+edition: 2026 BEHAVIOR Challenge
+status: active
+simulator: OmniGibson (NVIDIA Isaac Sim)
+description: >-
+  100 full-length household activities in house-scale scenes. Agents must combine
+  high-level reasoning, long-horizon navigation, and dexterous bimanual manipulation.
+  Scored by average task success with BDDL partial credit.
+
+links:
+  challenge: https://behavior.stanford.edu/challenge/index.html
+  task_gallery: https://behavior.stanford.edu/challenge/tasks/index.html
+  dataset_docs: https://behavior.stanford.edu/challenge/dataset.html
+  call_for_participation: https://behavior.stanford.edu/challenge/call_for_participation.html
+  leaderboard: https://huggingface.co/spaces/behavior-1k/2026-challenge-leaderboard
+  submission: https://behavior-1k-2026-challenge-leaderboard.hf.space/submit
+  repository: https://github.com/StanfordVL/BEHAVIOR-1K
+
+embodiment:
+  robot: R1 Pro
+  teleop_interface: JoyLo
+  observations: [rgb, depth, proprioception]
+  cameras:
+    head: 720x720
+    wrist_left: 480x480
+    wrist_right: 480x480
+  notes: Onboard sensing only at evaluation time. No privileged simulator state.
+
+dataset:
+  format: LeRobot v3 (customized)
+  trajectories: 20000
+  tasks: 100
+  hours: 1950
+  avg_trajectory_seconds: 351.54
+  raw_hdf5: https://huggingface.co/datasets/behavior-1k/2026-challenge-rawdata
+  lerobot: https://huggingface.co/datasets/behavior-1k/2026-challenge-demos
+  sizes:
+    raw_hdf5: 1.44 TB
+    lerobot: 3.27 TB
+
+# The benchmark's own annotation vocabulary. `skills:` in a task page must come
+# from this list. Descriptive, not normative — see data/taxonomy.yml.
+skill_vocabulary:
+  - attach
+  - chop
+  - close door
+  - close drawer
+  - close lid
+  - hand over
+  - hang
+  - hold
+  - ignite
+  - insert
+  - move to
+  - open door
+  - open drawer
+  - open lid
+  - pick up from
+  - place in
+  - place in next to
+  - place on
+  - place on next to
+  - place under
+  - pour
+  - press
+  - push to
+  - release
+  - spray
+  - sweep surface
+  - tip over
+  - turn off switch
+  - turn on switch
+  - turn to
+  - wipe hard
+
+scenes:
+  - house_single_floor
+  - house_double_floor_lower
+  - house_double_floor_upper
+  - restaurant_diner
+  - Rs_int
+  - hotel_suite_large
+  - office_cubicles_right
+
+baselines:
+  - name: "pi-0.5"
+    kind: vision-language-action
+  - name: "GR00T N1.7"
+    kind: vision-language-action
+
+key_dates:
+  launch: 2026-07-02
+  submission_deadline: 2026-10-16

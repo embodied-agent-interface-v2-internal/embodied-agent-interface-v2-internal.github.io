@@ -1,0 +1,193 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Robotic Coding-Agent Benchmark Hub
+#
+# Published by .github/workflows/deploy.yml on every push to main, to
+# https://embodied-agent-interface-v2-internal.github.io/ (an <org>.github.io
+# repository, so the site sits at the domain root). See HANDOFF.md, "Publishing".
+# ─────────────────────────────────────────────────────────────────────────────
+
+site_name: Benchmark Task Reference
+site_description: >-
+  Every task in our benchmarks: its oracle demonstration, the capabilities it
+  requires, and whether we are keeping it.
+site_author: Benchmark Working Group
+
+# site_url is env-overridable: `make serve` / `make edit` set it to their local
+# address, and the deploy workflow to the address GitHub Pages reports (the same
+# root, unless a custom domain is set up later).
+site_url: !ENV [SITE_URL, "https://embodied-agent-interface-v2-internal.github.io/"]
+repo_url: https://github.com/embodied-agent-interface-v2-internal/embodied-agent-interface-v2-internal.github.io
+repo_name: embodied-agent-interface-v2-internal.github.io
+edit_uri: edit/main/docs/
+
+copyright: Benchmark documentation for our robotic coding-agent work. Not an official BEHAVIOR Challenge resource.
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: en
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle: { icon: material/brightness-auto, name: Follow system theme }
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle: { icon: material/brightness-7, name: Switch to dark mode }
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle: { icon: material/brightness-4, name: Switch to light mode }
+  features:
+    # navigation.instant is deliberately OFF. It swaps page content over XHR,
+    # and the task list's data block (<script type="application/json">) does
+    # not survive that reliably — the list renders empty until a manual
+    # reload. A full page load costs a few hundred ms on a local server and
+    # makes every navigation correct.
+    - navigation.tracking
+    - navigation.tabs
+    # A section header is a link to its own index page, so clicking
+    # "BEHAVIOR-1K" lands on the task list instead of only expanding a menu.
+    - navigation.indexes
+    - navigation.top
+    # No navigation.sections: subsections stay collapsed until opened.
+    # No navigation.footer: the prev/next bar is noise here.
+    # No toc.integrate: it silently disables navigation.indexes. The
+    # right-hand TOC is hidden in extra.css instead, which keeps the width.
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.action.edit
+    - content.code.copy
+    - content.tooltips
+
+plugins:
+  - search
+  # Index pages are generated from task frontmatter at build time. Nothing
+  # generated is committed, so nobody ever resolves a conflict in a shared file.
+  - gen-files:
+      scripts:
+        - scripts/gen_pages.py
+  - minify:
+      minify_html: true
+
+hooks:
+  - scripts/hooks.py
+
+# `mkdocs serve` only watches docs/ and mkdocs.yml by default. Most of this
+# site is built from state/ and scripts/, so without this a live server keeps
+# serving a stale build — including after the Edit button writes to state/.
+watch:
+  - scripts
+  - state
+  - data
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/runs.css
+  - stylesheets/runlog.css
+
+extra_javascript:
+  - javascripts/tasklist.js
+  - javascripts/runs.js
+  - javascripts/runlog.js
+
+extra:
+  # Per-task discussion threads. Leave `repo` empty to disable comments entirely.
+  # TODO(handoff): fill these in from https://giscus.app after enabling
+  # Discussions on the repo. See docs/contributing/review-workflow.md.
+  giscus:
+    repo: ""
+    repo_id: ""
+    category: "Task discussions"
+    category_id: ""
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/embodied-agent-interface-v2-internal/embodied-agent-interface-v2-internal.github.io
+
+# The 250 task pages are reachable through the gallery and search rather than
+# the sidebar; listing them individually would bury every other page. So are the
+# log pages of the agent runs (runs/<benchmark>/<run>/<task>/<mode>.md), and
+# runs/index.md only redirects to the overview.
+not_in_nav: |
+  /benchmarks/*/tasks/*.md
+  /runs/index.md
+  /runs/*/*/*/*.md
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+
+nav:
+  - Home: index.md
+  # The agent runs, second in the bar (owner, 2026-09-28: "agent runs要公开，而且要特别公开"). One page per
+  # registered benchmark follows the overview: scripts/hooks.py appends them from data/benchmarks/, so a new
+  # benchmark needs no line here.
+  - Agent runs:
+      - Overview: runs/overview.md
+  # A benchmark's landing page IS its task list — you arrive on the videos,
+  # not on a page that links to them.
+  - Benchmarks:
+      - benchmarks/index.md
+      - BEHAVIOR-1K:
+          - benchmarks/behavior-1k/index.md
+          - Capability coverage: benchmarks/behavior-1k/coverage.md
+          - About the benchmark: benchmarks/behavior-1k/about.md
+      - RoboWits:
+          - benchmarks/robowits/index.md
+          - Capability coverage: benchmarks/robowits/coverage.md
+          - About the benchmark: benchmarks/robowits/about.md
+      - RoboLab:
+          - benchmarks/robolab/index.md
+          - Capability coverage: benchmarks/robolab/coverage.md
+          - About the benchmark: benchmarks/robolab/about.md
+      - RoboPaint:
+          - benchmarks/robopaint/index.md
+          - Capability coverage: benchmarks/robopaint/coverage.md
+          - About the benchmark: benchmarks/robopaint/about.md
+      - RoboTwin 2.0:
+          - benchmarks/robotwin-2/index.md
+          - Capability coverage: benchmarks/robotwin-2/coverage.md
+          - About the benchmark: benchmarks/robotwin-2/about.md
+  - Contributing:
+      - contributing/index.md
+      - Task page guide: contributing/task-page-guide.md
+      - Labelling tasks: contributing/capability-tagging.md
+      - Adding a benchmark: contributing/adding-a-benchmark.md
+      - Registering runs: contributing/registering-runs.md
+  - Label taxonomy: reference/capabilities.md
+  - Benchmark landscape: reference/benchmark-landscape.md

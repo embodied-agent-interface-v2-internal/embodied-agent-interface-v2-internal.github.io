@@ -1,0 +1,54 @@
+name: Upstream drift check
+
+# The official BEHAVIOR demo gallery is the source of the `upstream:` block on
+# every BEHAVIOR-1K task page. This job re-runs the importer against it weekly
+# and fails (with the diff as an artifact) when the gallery has changed, so we
+# find out from a CI run rather than from a confusing review comment months
+# later. It never writes to the repository: re-syncing stays a local
+# `make sync-behavior` and a pull request. The other benchmarks sync from
+# checkouts (RoboWits, RoboLab, RoboTwin) or from our private repository
+# (RoboPaint), which CI cannot read, so only BEHAVIOR is watched here.
+on:
+  schedule:
+    - cron: "17 6 * * 1" # Mondays, 06:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  drift:
+    name: Check the official gallery for changes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - run: pip install PyYAML==6.0.3
+
+      - name: Re-sync from upstream
+        run: python scripts/import_behavior_tasks.py
+
+      - name: Report drift
+        run: |
+          if git diff --quiet; then
+            echo "No upstream changes."
+            exit 0
+          fi
+          echo "::warning::The official gallery has changed. Run 'make sync-behavior' and open a PR."
+          git diff --stat
+          git diff > upstream-drift.patch
+          exit 1
+
+      - name: Upload the patch
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: upstream-drift-patch
+          path: upstream-drift.patch
+          retention-days: 30

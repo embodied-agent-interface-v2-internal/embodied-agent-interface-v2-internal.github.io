@@ -1,0 +1,52 @@
+name: CI
+
+# `make check` (schema and registries, strict build, internal links) on every pull
+# request and push, exactly as it runs locally; then `make public`, the build the
+# deploy workflow publishes, so a change that breaks only the public site shows up
+# before it is merged. No artifact is kept: the site is 0.3 GB and Deploy
+# publishes it anyway.
+on:
+  pull_request:
+  push:
+
+permissions:
+  contents: read
+
+# Cancel superseded runs on the same branch; docs PRs get pushed to often.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Silence the MkDocs 2.0 advisories; the two packages that print them
+  # read different variables. Informational only — see HANDOFF.md.
+  NO_MKDOCS_2_WARNING: "true"
+  DISABLE_MKDOCS_2_WARNING: "true"
+
+jobs:
+  check:
+    name: make check, then make public
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      # The same .venv that `make install` creates, so the Makefile runs unchanged.
+      - name: Install toolchain
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install -r requirements.txt
+
+      # Errors fail; warnings (a task page that is merely incomplete) are reported and allowed.
+      - name: make check
+        run: make check
+
+      - name: make public (the deployed build)
+        run: make public

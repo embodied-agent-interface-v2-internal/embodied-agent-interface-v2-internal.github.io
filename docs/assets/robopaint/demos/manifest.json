@@ -1,0 +1,730 @@
+{
+  "acrylic_applesoranges": {
+    "bytes": 1700329,
+    "height": 480,
+    "poster": true,
+    "seconds": 59,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "acrylic_bedroom": {
+    "bytes": 1809869,
+    "height": 480,
+    "poster": true,
+    "seconds": 60,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "acrylic_bluehorses": {
+    "bytes": 1722504,
+    "height": 480,
+    "poster": true,
+    "seconds": 60,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "acrylic_greatwave": {
+    "bytes": 1577395,
+    "height": 480,
+    "poster": true,
+    "seconds": 60,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "acrylic_kajikazawa": {
+    "bytes": 1608964,
+    "height": 480,
+    "poster": true,
+    "seconds": 59,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "acrylic_plumpark": {
+    "bytes": 1652029,
+    "height": 480,
+    "poster": true,
+    "seconds": 59,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "acrylic_redfuji": {
+    "bytes": 1624800,
+    "height": 480,
+    "poster": true,
+    "seconds": 60,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "acrylic_suddenshower": {
+    "bytes": 1514942,
+    "height": 480,
+    "poster": true,
+    "seconds": 59,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "acrylic_sunflowers": {
+    "bytes": 1711402,
+    "height": 480,
+    "poster": true,
+    "seconds": 59,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "acrylic_vision": {
+    "bytes": 1744336,
+    "height": 480,
+    "poster": true,
+    "seconds": 60,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_ai": {
+    "bytes": 738313,
+    "height": 480,
+    "poster": true,
+    "seconds": 52,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_chun": {
+    "bytes": 683128,
+    "height": 480,
+    "poster": true,
+    "seconds": 51,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_da": {
+    "bytes": 468633,
+    "height": 480,
+    "poster": true,
+    "seconds": 44,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_dao": {
+    "bytes": 693533,
+    "height": 480,
+    "poster": true,
+    "seconds": 49,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_de": {
+    "bytes": 853648,
+    "height": 480,
+    "poster": true,
+    "seconds": 59,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_feng": {
+    "bytes": 799861,
+    "height": 480,
+    "poster": true,
+    "seconds": 57,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_fu": {
+    "bytes": 775345,
+    "height": 480,
+    "poster": true,
+    "seconds": 53,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_guo": {
+    "bytes": 693515,
+    "height": 480,
+    "poster": true,
+    "seconds": 49,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_he": {
+    "bytes": 701198,
+    "height": 480,
+    "poster": true,
+    "seconds": 58,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_houdezaiwu": {
+    "bytes": 1012099,
+    "height": 480,
+    "poster": true,
+    "seconds": 59,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_hua": {
+    "bytes": 692870,
+    "height": 480,
+    "poster": true,
+    "seconds": 55,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_jia": {
+    "bytes": 704311,
+    "height": 480,
+    "poster": true,
+    "seconds": 52,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_jiang": {
+    "bytes": 494343,
+    "height": 480,
+    "poster": true,
+    "seconds": 42,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_jing": {
+    "bytes": 816081,
+    "height": 480,
+    "poster": true,
+    "seconds": 53,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_kou": {
+    "bytes": 427307,
+    "height": 480,
+    "poster": true,
+    "seconds": 39,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_le": {
+    "bytes": 778176,
+    "height": 480,
+    "poster": true,
+    "seconds": 51,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_lin": {
+    "bytes": 598211,
+    "height": 480,
+    "poster": true,
+    "seconds": 45,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_long": {
+    "bytes": 784940,
+    "height": 480,
+    "poster": true,
+    "seconds": 52,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_ma": {
+    "bytes": 675166,
+    "height": 480,
+    "poster": true,
+    "seconds": 51,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_ming": {
+    "bytes": 592146,
+    "height": 480,
+    "poster": true,
+    "seconds": 45,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_ningjingzhiyuan": {
+    "bytes": 1051653,
+    "height": 480,
+    "poster": true,
+    "seconds": 59,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_qing": {
+    "bytes": 765272,
+    "height": 480,
+    "poster": true,
+    "seconds": 56,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_ran": {
+    "bytes": 760668,
+    "height": 480,
+    "poster": true,
+    "seconds": 57,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_ren": {
+    "bytes": 331900,
+    "height": 480,
+    "poster": true,
+    "seconds": 30,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_shan": {
+    "bytes": 457232,
+    "height": 480,
+    "poster": true,
+    "seconds": 43,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_shu": {
+    "bytes": 759404,
+    "height": 480,
+    "poster": true,
+    "seconds": 58,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_shui": {
+    "bytes": 612530,
+    "height": 480,
+    "poster": true,
+    "seconds": 55,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_tian": {
+    "bytes": 587207,
+    "height": 480,
+    "poster": true,
+    "seconds": 52,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_tiandaochouqin": {
+    "bytes": 922945,
+    "height": 480,
+    "poster": true,
+    "seconds": 58,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_xin": {
+    "bytes": 484519,
+    "height": 480,
+    "poster": true,
+    "seconds": 45,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_yong": {
+    "bytes": 509975,
+    "height": 480,
+    "poster": true,
+    "seconds": 42,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_yongzibafa": {
+    "bytes": 836115,
+    "height": 480,
+    "poster": true,
+    "seconds": 59,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_yue": {
+    "bytes": 578364,
+    "height": 480,
+    "poster": true,
+    "seconds": 52,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_zhong": {
+    "bytes": 576223,
+    "height": 480,
+    "poster": true,
+    "seconds": 53,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "kaishu_zi": {
+    "bytes": 579934,
+    "height": 480,
+    "poster": true,
+    "seconds": 48,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "lettering_donum": {
+    "bytes": 492679,
+    "height": 480,
+    "poster": true,
+    "seconds": 48,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "lettering_inunum": {
+    "bytes": 487862,
+    "height": 480,
+    "poster": true,
+    "seconds": 47,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "lettering_minim": {
+    "bytes": 443774,
+    "height": 480,
+    "poster": true,
+    "seconds": 40,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "lettering_minimum": {
+    "bytes": 466844,
+    "height": 480,
+    "poster": true,
+    "seconds": 49,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "lettering_minium": {
+    "bytes": 506312,
+    "height": 480,
+    "poster": true,
+    "seconds": 47,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "lettering_moon": {
+    "bytes": 399633,
+    "height": 480,
+    "poster": true,
+    "seconds": 38,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "lettering_nimium": {
+    "bytes": 550414,
+    "height": 480,
+    "poster": true,
+    "seconds": 51,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "lettering_nun": {
+    "bytes": 313362,
+    "height": 480,
+    "poster": true,
+    "seconds": 30,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "lettering_omnium": {
+    "bytes": 532962,
+    "height": 480,
+    "poster": true,
+    "seconds": 52,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "lettering_unpin": {
+    "bytes": 438338,
+    "height": 480,
+    "poster": true,
+    "seconds": 40,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "line_butterfly": {
+    "bytes": 3142339,
+    "height": 480,
+    "poster": true,
+    "seconds": 289,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "line_city": {
+    "bytes": 2711530,
+    "height": 480,
+    "poster": true,
+    "seconds": 231,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "line_cottage": {
+    "bytes": 2198308,
+    "height": 480,
+    "poster": true,
+    "seconds": 210,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "line_fish": {
+    "bytes": 1018705,
+    "height": 480,
+    "poster": true,
+    "seconds": 86,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "line_flower": {
+    "bytes": 1249543,
+    "height": 480,
+    "poster": true,
+    "seconds": 106,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "line_landscape": {
+    "bytes": 1605187,
+    "height": 480,
+    "poster": true,
+    "seconds": 156,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "line_rainbow": {
+    "bytes": 2800506,
+    "height": 480,
+    "poster": true,
+    "seconds": 289,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "line_rocket": {
+    "bytes": 1611919,
+    "height": 480,
+    "poster": true,
+    "seconds": 148,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "line_sailboat": {
+    "bytes": 1115008,
+    "height": 480,
+    "poster": true,
+    "seconds": 113,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "oil_bathers": {
+    "bytes": 1258981,
+    "height": 480,
+    "poster": true,
+    "seconds": 59,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "oil_cafeterrace": {
+    "bytes": 1527251,
+    "height": 480,
+    "poster": true,
+    "seconds": 59,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "oil_cypresses": {
+    "bytes": 1470112,
+    "height": 480,
+    "poster": true,
+    "seconds": 60,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "oil_irises": {
+    "bytes": 1722940,
+    "height": 480,
+    "poster": true,
+    "seconds": 59,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "oil_milkmaid": {
+    "bytes": 1491782,
+    "height": 480,
+    "poster": true,
+    "seconds": 59,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "oil_monalisa": {
+    "bytes": 1601802,
+    "height": 480,
+    "poster": true,
+    "seconds": 59,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "oil_pearlearring": {
+    "bytes": 1522573,
+    "height": 480,
+    "poster": true,
+    "seconds": 59,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "oil_saintevictoire": {
+    "bytes": 1603161,
+    "height": 480,
+    "poster": true,
+    "seconds": 59,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "oil_starrynight": {
+    "bytes": 1727248,
+    "height": 480,
+    "poster": true,
+    "seconds": 60,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "oil_temeraire": {
+    "bytes": 1255582,
+    "height": 480,
+    "poster": true,
+    "seconds": 59,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "oil_wanderer": {
+    "bytes": 1348606,
+    "height": 480,
+    "poster": true,
+    "seconds": 59,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "xingshu_chun": {
+    "bytes": 693649,
+    "height": 480,
+    "poster": true,
+    "seconds": 58,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "xingshu_feng": {
+    "bytes": 668073,
+    "height": 480,
+    "poster": true,
+    "seconds": 56,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "xingshu_he": {
+    "bytes": 678558,
+    "height": 480,
+    "poster": true,
+    "seconds": 54,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "xingshu_huifenghechang": {
+    "bytes": 879045,
+    "height": 480,
+    "poster": true,
+    "seconds": 56,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "xingshu_jian": {
+    "bytes": 694066,
+    "height": 480,
+    "poster": true,
+    "seconds": 52,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "xingshu_maolinxiuzhu": {
+    "bytes": 857582,
+    "height": 480,
+    "poster": true,
+    "seconds": 59,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "xingshu_nian": {
+    "bytes": 709140,
+    "height": 480,
+    "poster": true,
+    "seconds": 56,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "xingshu_ren": {
+    "bytes": 266553,
+    "height": 480,
+    "poster": true,
+    "seconds": 25,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "xingshu_shan": {
+    "bytes": 593688,
+    "height": 480,
+    "poster": true,
+    "seconds": 53,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "xingshu_tianlangqiqing": {
+    "bytes": 848142,
+    "height": 480,
+    "poster": true,
+    "seconds": 57,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "xingshu_tong": {
+    "bytes": 509857,
+    "height": 480,
+    "poster": true,
+    "seconds": 42,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "xingshu_xian": {
+    "bytes": 654791,
+    "height": 480,
+    "poster": true,
+    "seconds": 50,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "xingshu_xin": {
+    "bytes": 644727,
+    "height": 480,
+    "poster": true,
+    "seconds": 49,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "xingshu_yong": {
+    "bytes": 550355,
+    "height": 480,
+    "poster": true,
+    "seconds": 47,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "xingshu_yu": {
+    "bytes": 682034,
+    "height": 480,
+    "poster": true,
+    "seconds": 54,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  },
+  "xingshu_zhi": {
+    "bytes": 504679,
+    "height": 480,
+    "poster": true,
+    "seconds": 48,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (canvas camera, scene camera, side camera, exact canvas).",
+    "width": 640
+  }
+}

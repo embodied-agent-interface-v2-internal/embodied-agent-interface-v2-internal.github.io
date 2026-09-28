@@ -1,0 +1,145 @@
+# RoboLab's agent runs. Owned by the benchmark's owner, curated by hand like everything in state/.
+# Format and field meanings: docs/contributing/registering-runs.md (and the header of state/runs/behavior-1k.yml).
+
+default: codex-0.157-gpt6luna-xhigh-cgpt
+task_dir: "robolab-{task_dashed}-i00"
+
+runs:
+  codex-0.157-gpt6luna-xhigh-cgpt:
+    batch: robolab-lunacx-0925-2038
+    followups:  # arranged for one trial each; the note goes away once another trial replaces it
+    - {task: clean_up_toys, mode: unlimited, trial: robolab-clean-up-toys-i00__3b6KY3P, note: "regrade queued on ws3: the replay
+        timed out while another user's jobs filled the GPU; it replays again once 8 GiB are free"}
+    # Trials our own stop cut short (the 01:55 RoboLab pause cut them at 01:53:22, after 44, 23, 17 and 79 of their
+    # 90 minutes) or kept from starting: they keep their pages and count in no statistic (2026-09-28 07:05, user:
+    # "RoboLab 那四个 trial 就不计入统计，我非常同意").
+    stopped:
+    - {task: larger_object_raisin_box_in_bin, mode: limited, note: "stopped by us at 01:53 when RoboLab was paused; not an agent failure"}
+    - {task: mustard_in_right_bin, mode: limited, note: "stopped by us at 01:53 when RoboLab was paused; not an agent failure"}
+    - {task: pick_glasses, mode: limited, note: "stopped by us at 01:53 when RoboLab was paused; not an agent failure"}
+    - {task: tools_picking_hammer, mode: limited, note: "stopped by us at 01:53 when RoboLab was paused; not an agent failure"}
+    - {task: pick_orange_object, mode: limited, note: "never started: stopped by us at 01:53 when RoboLab was paused"}
+    tasks:
+    - animals_in_bin
+    - apple_and_yogurt_in_bowl
+    - bagels_on_plate
+    - banana_then_rubiks_cube
+    - bananas_out_of_bin
+    - bbq_sauce_in_bin
+    - black_items_in_bin
+    - block_stacking_order_agnostic
+    - block_stacking_specified_order
+    - blocks_in_bin
+    - clean_up_toys
+    - clear_organic_objects
+    - clutter_plastic
+    - clutter_pumpkin
+    - condiments_in_bin
+    - cooking_clear_plate
+    - cubes_and_blocks_in_bin
+    - dishes_in_bin
+    - electronics_in_bin
+    - food_packing2_boxes
+    - food_packing2_cans
+    - food_packing3_boxes
+    - food_packing3_cans
+    - food_packing_by_color
+    - fruits_green_limes_on_plate
+    - fruits_on_plate
+    - fruits_on_plate3
+    - green_spoons_in_pot
+    - hammers_in_left_bin
+    - jugs_on_shelf
+    - move_banana_to_bagel_plate
+    - non_hammer_tools_in_right_bin
+    - plastic_bottles_in_square_pail
+    - put_mugs_on_shelf
+    - put_two_mugs_on_shelf
+    - recycle_carton
+    - recycle_cartons_on_box
+    - recycle_cartons_vertical_crate
+    - red_dishes_in_bin
+    - reorient_all_mugs
+    - reorient_jug
+    - reorient_red_mug
+    - reorient_white_mugs
+    - rubiks_cube_and_banana
+    - rubiks_cube_then_banana
+    - rubiks_cubes_in_bin
+    - spoons_in_pot
+    - stack3_rubiks_cube
+    - take_mugs_off_of_shelf
+    - throw_away_snacks
+    - tool_organization_both
+    - tools_picking_all_hammers
+    - unstack_rubiks_cube
+    - utensils_in_mug
+    - white_mugs_in_bin
+    - yellow_and_white_objects_in_bin
+    # 2026-09-27: 12 more one-step tasks (user: "再给它配上个 12 个 tasks 吧，让它和 laptop 分一下")
+    - banana_in_bowl
+    - keyboard_out_of_bin
+    - larger_object_raisin_box_in_bin
+    - mustard_above_raisin
+    - mustard_in_left_bin
+    - mustard_in_right_bin
+    - pick_glasses
+    - pick_orange_object
+    - pick_up_green_object
+    - take_measuring_spoon_out
+    - tools_picking_drill
+    - tools_picking_hammer
+    # 2026-09-27: 20 harder one-step pick-and-place tasks (user: "再选 20 个比较难的 pick-and-place 的 tasks 去跑一下")
+    - rubiks_cube_behind_bowl
+    - stack_white_mugs
+    - pick_up_blue_pitcher
+    - bananas_in_bin_one_more
+    - marker_in_mug
+    - take_spatula_off_shelf
+    - rubiks_cube_in_front_of_bowl
+    - bowl_stacking_left_on_right
+    - butter_above_raisin
+    - cooking_pick_pasta_tool
+    - put_bowl_on_shelf_top
+    - rubiks_cube_right_of_bowl
+    - white_mug_in_center_of_table
+    - bananas_in_bin_three_total
+    - spoon_in_mug
+    - clamp_in_right_bin
+    - rubiks_cube_left_of_bowl
+    - stack_yellow_on_red
+    - pink_spoon_in_pot
+    - bowl_stacking_right_on_left
+    removed:
+      banana_on_plate: 'one-step pick-and-place: 1 object(s) onto plate_large'
+      bananas_in_crate: one move left in the frozen start state (1 of its 5 target objects already satisfies the predicate)
+      big_pumpkin_in_bin: 'one-step pick-and-place: 1 object(s) into right_bin'
+      bowl_in_bin: 'one-step pick-and-place: 1 object(s) into grey_bin'
+      canned_food_in_bin: 'one-step pick-and-place: 1 object(s) into grey_bin'
+      coffee_pot_in_bin: 'one-step pick-and-place: 1 object(s) into grey_bin'
+      food_packing1_boxes: 'one-step pick-and-place: 1 object(s) into bin_a06'
+      food_packing1_cans: 'one-step pick-and-place: 1 object(s) into bin_a06'
+      fruits_moving: 'one-step pick-and-place: any 1 of 2 objects into serving_bowl'
+      fruits_moving_orange_or_lime: 'one-step pick-and-place: any 1 of 4 objects into wooden_bowl'
+      fruits_onion: 'one-step pick-and-place: 1 object(s) into wooden_bowl'
+      fruits_onion_to_plate: 'one-step pick-and-place: 1 object(s) onto clay_plates'
+      fruits_oranges_on_plate: one move left in the frozen start state (1 of its 2 target objects already satisfies the predicate)
+      grab_a_bagel: 'one-step pick-and-place: pick up any one object (several success_<obj> terms, no single `success` term)'
+      grab_a_fruit: 'one-step pick-and-place: pick up any one object (several success_<obj> terms, no single `success` term)'
+      mouse_on_keyboard: 'one-step pick-and-place: 1 object(s) onto keyboard'
+      one_bottle_in_square_pail: 'one-step pick-and-place: any 1 of 3 objects into squarepail_a01'
+      one_bottle_on_shelf: 'one-step pick-and-place: any 1 of 3 objects into large_storage_rack'
+      phone_or_remote_in_bin: 'one-step pick-and-place: any 1 of 2 objects into grey_bin'
+      pick_drill: 'one-step pick-and-place: pick up one object'
+      red_items_in_bin: 'exact duplicate of red_dishes_in_bin: same scene and success predicate'
+      rubiks_cube: 'one-step pick-and-place: 1 object(s) into bowl'
+      rubiks_cube_or_banana: 'one-step pick-and-place: any 1 of 2 objects into bowl'
+      sauce_bottles_crate: 'one-step pick-and-place: 1 object(s) into purple_crate'
+      small_pumpkin_in_bin: 'one-step pick-and-place: 1 object(s) into right_bin'
+      smaller_object_butter_in_bin: 'one-step pick-and-place: 1 object(s) into grey_bin'
+      smartphone_in_bin: 'one-step pick-and-place: 1 object(s) into grey_bin'
+      throw_away_apple: 'one-step pick-and-place: 1 object(s) into plasticpail_a02'
+      tool_organization: 'exact duplicate of hammers_in_left_bin: same scene and success predicate'
+      toy_in_bin: 'one-step pick-and-place: 1 object(s) into grey_bin'
+      wood_spatula_to_bowl: 'one-step pick-and-place: 1 object(s) into wooden_bowl'
+      yogurt_in_bowl: 'one-step pick-and-place: 1 object(s) into bowl'

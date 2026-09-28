@@ -1,0 +1,163 @@
+{
+  "align_blocks": {
+    "bytes": 1156105,
+    "height": 1080,
+    "poster": true,
+    "seconds": 12,
+    "width": 1920
+  },
+  "align_chopsticks": {
+    "bytes": 2160868,
+    "height": 1080,
+    "poster": true,
+    "seconds": 29,
+    "width": 1920
+  },
+  "balance_board": {
+    "bytes": 2435574,
+    "height": 1080,
+    "poster": true,
+    "seconds": 24,
+    "width": 1920
+  },
+  "ball_into_bottle": {
+    "bytes": 2859673,
+    "height": 1080,
+    "poster": true,
+    "seconds": 40,
+    "width": 1920
+  },
+  "ball_onto_tower": {
+    "bytes": 1313626,
+    "height": 1080,
+    "poster": true,
+    "seconds": 18,
+    "width": 1920
+  },
+  "collect_screws": {
+    "bytes": 1339452,
+    "height": 1080,
+    "poster": true,
+    "seconds": 20,
+    "width": 1920
+  },
+  "cover_with_lid": {
+    "bytes": 627867,
+    "height": 1080,
+    "poster": true,
+    "seconds": 7,
+    "width": 1920
+  },
+  "cylinder_through_hole": {
+    "bytes": 1296280,
+    "height": 1080,
+    "poster": true,
+    "seconds": 16,
+    "width": 1920
+  },
+  "dominos": {
+    "bytes": 1430797,
+    "height": 1080,
+    "poster": true,
+    "seconds": 12,
+    "width": 1920
+  },
+  "gap_retrieve": {
+    "bytes": 1460815,
+    "height": 1080,
+    "poster": true,
+    "seconds": 11,
+    "width": 1920
+  },
+  "hold_cup": {
+    "bytes": 2073347,
+    "height": 1080,
+    "poster": true,
+    "seconds": 28,
+    "width": 1920
+  },
+  "move_cube": {
+    "bytes": 874708,
+    "height": 1080,
+    "poster": true,
+    "seconds": 10,
+    "width": 1920
+  },
+  "pinch_card": {
+    "bytes": 1597004,
+    "height": 1080,
+    "poster": true,
+    "seconds": 25,
+    "width": 1920
+  },
+  "place_book": {
+    "bytes": 1406070,
+    "height": 1080,
+    "poster": true,
+    "seconds": 19,
+    "width": 1920
+  },
+  "place_tall_box": {
+    "bytes": 1132435,
+    "height": 1080,
+    "poster": true,
+    "seconds": 11,
+    "width": 1920
+  },
+  "raise_platform": {
+    "bytes": 2086846,
+    "height": 1080,
+    "poster": true,
+    "seconds": 24,
+    "width": 1920
+  },
+  "retrieve_cube": {
+    "bytes": 1444779,
+    "height": 1080,
+    "poster": true,
+    "seconds": 18,
+    "width": 1920
+  },
+  "retrieve_roll": {
+    "bytes": 1570590,
+    "height": 1080,
+    "poster": true,
+    "seconds": 15,
+    "width": 1920
+  },
+  "roll_up_ball": {
+    "bytes": 2834652,
+    "height": 1080,
+    "poster": true,
+    "seconds": 34,
+    "width": 1920
+  },
+  "stack_bowls": {
+    "bytes": 836193,
+    "height": 1080,
+    "poster": true,
+    "seconds": 7,
+    "width": 1920
+  },
+  "stack_cubes": {
+    "bytes": 2344038,
+    "height": 1080,
+    "poster": true,
+    "seconds": 31,
+    "width": 1920
+  },
+  "stand_bulb": {
+    "bytes": 2015729,
+    "height": 1080,
+    "poster": true,
+    "seconds": 24,
+    "width": 1920
+  },
+  "stand_pages": {
+    "bytes": 1621623,
+    "height": 1080,
+    "poster": true,
+    "seconds": 24,
+    "width": 1920
+  }
+}

@@ -1,0 +1,82 @@
+id: robotwin-2
+name: RoboTwin 2.0
+edition: ICML 2026 paper (arXiv 2506.18088); code `main` @ 6dde571 (2026-09-14); assets HF revision 981c92a
+status: active
+simulator: SAPIEN 3 (PhysX) + CuRobo
+description: >-
+  Fifty bimanual tabletop manipulation tasks on a dual-arm ALOHA-AgileX (four other embodiments
+  supported), each defined as one Python class: a scene builder, a success predicate and a scripted
+  expert that RoboTwin uses to generate its public 100k-episode dataset. Domain randomisation
+  (clutter, textures, lighting, table height) is a switch we leave off. Success is the task's own
+  `check_success()` at the end of the episode, all-or-nothing.
+
+links:
+  paper: https://arxiv.org/abs/2506.18088
+  project_page: https://robotwin-platform.github.io/
+  documentation: https://robotwin-platform.github.io/doc/
+  tasks_doc: https://robotwin-platform.github.io/doc/tasks/index.html
+  repository: https://github.com/RoboTwin-Platform/RoboTwin
+  dataset: https://huggingface.co/datasets/TianxingChen/RoboTwin2.0
+  leaderboard: https://robotwin-platform.github.io/leaderboard
+
+embodiment:
+  robot: ALOHA-AgileX (two 6-DoF arms + parallel grippers on a fixed mobile base; default). Also Piper, Franka Panda, ARX-X5, UR5-WSG, and mixed pairs.
+  action_space: >-
+    RoboTwin's policy evaluator takes either `qpos` (14-D: six joint targets + gripper per arm; the
+    env interpolates time-optimally) or `ee` (16-D: end-effector pose as xyz + wxyz quaternion + gripper
+    per arm, planned by CuRobo against the table). Our harness records the per-physics-step drive targets
+    of the 16 driven joints (34-D rows at 250 Hz) as the trajectory.
+  control_rate_hz: 250
+  observations: [rgb, depth, proprioception]
+  cameras:
+    head_camera: D435, 320x240 (640x480 in our renders), static above the table
+    front_camera: D435, static, facing the robot
+    left_camera / right_camera: wrist-mounted D435
+    observer / world_camera1: free third-person cameras RoboTwin adds to every scene (we use them for the six-view videos)
+  notes: >-
+    Fixed base; no navigation. Ground-truth object poses, contact points and functional points are
+    available from the simulator, so a task can be run privileged (RoboTwin's own expert does) or from
+    pixels. One table scene; everything is tabletop.
+
+dataset:
+  format: HDF5 episodes (encoded JPEG cameras + qpos + endpose) per task/config/embodiment, collected by running the scripted expert on sequential seeds
+  demonstrations: >-
+    over 100,000 expert episodes on Hugging Face across 50 tasks, clean and randomised configs, five embodiments.
+    No human teleoperation: every episode is play_once() on a seed where it succeeded.
+  tasks: 50, each with a clean and a domain-randomised configuration
+
+# RoboTwin publishes no per-task skill annotation; its own per-task facts are the objects list,
+# the demo length and the data-generation success rate. `skills:` is therefore unchecked here.
+skill_vocabulary: []
+
+scenes:
+  - tabletop
+
+# What we run it on, and what that costs — measured in robot_coding_bench, not quoted.
+integration:
+  image: nvidia/cuda 12.4 devel + SAPIEN 3.0.0b1 + mplib 0.2.1 + CuRobo 0.7.8 + RoboTwin assets (embodiments + objects), 21.6 GB; tag rcb-robotwin:0.1.1
+  gpu: required (CuRobo on CUDA, SAPIEN rendering on Vulkan); passed through with a compose device reservation
+  determinism: >-
+    PhysX on the CPU replays a recorded drive-target trajectory bit-exactly across processes; CuRobo's
+    planning is NOT deterministic run to run, so the expert itself can fail a plan on a retry. Instances are
+    (task, seed) rebuilt from the seed with an initial-state hash check.
+  scene_build: ~19 s for the first scene (CuRobo warm-up), ~0.1 s per rebuild afterwards
+  oracle_scrub: >-
+    the agent image strips every expert method (play_once and helpers) from all 50 task classes and the
+    code_gen prompts; only load_actors and check_success remain visible to the agent.
+  integrated_tasks:
+    - stack_blocks_two (seed 60417) -> robot_coding_bench tasks/robotwin_2_0_stack_blocks_two (oracle 1 / nop 0) and tasks/robotwin_2_0_stack_blocks_two-limited (robot-as-a-service, oracle 1 / nop 0)
+    - put_bottles_dustbin (seed 28831) -> tasks/robotwin_2_0_put_bottles_dustbin (oracle 1 / nop 0)
+    - open_microwave (seed 28831) -> tasks/robotwin_2_0_open_microwave (oracle 1 / nop 0)
+    - place_can_basket (seed 60417) -> tasks/robotwin_2_0_place_can_basket (oracle 1 / nop 0)
+    - scan_object (seed 60417) -> tasks/robotwin_2_0_scan_object (oracle 1 / nop 0)
+
+baselines:
+  - name: ACT, DP, DP3, RDT, pi-0, TinyVLA, OpenVLA-OFT, LLaVA-VLA (leaderboard)
+    kind: imitation / vision-language-action
+
+key_dates:
+  robotwin_1_paper: 2025-04-11
+  robotwin_2_release: 2025-06-21
+  xpolicylab_eval: 2026-08-03
+  code_commit_we_pin: 2026-09-14

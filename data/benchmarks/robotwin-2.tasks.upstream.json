@@ -1,0 +1,3099 @@
+{
+  "source": "https://github.com/RoboTwin-Platform/RoboTwin",
+  "ref": "6dde571",
+  "docs": "https://robotwin-platform.github.io/doc/tasks/",
+  "read": "2026-09-22",
+  "tasks": [
+    {
+      "id": "adjust_bottle",
+      "title": "Adjust bottle",
+      "source_file": "envs/adjust_bottle.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        target_hight = 0.9\n        bottle_pose = self.bottle.get_functional_point(0)\n        return ((self.qpose_tag == 0 and bottle_pose[0] < -0.15) or\n                (self.qpose_tag == 1 and bottle_pose[0] > 0.15)) and bottle_pose[2] > target_hight",
+      "asset_models": [
+        "001_bottle"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Pick up the bottle on the table headup with the correct arm.",
+      "objects": [
+        "001_bottle"
+      ],
+      "average_steps": 147,
+      "average_steps_note": "147 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "93%",
+        "ARX-X5": "94%",
+        "Franka-Panda": "34%",
+        "Piper": "0%",
+        "UR5-Wsg": "12%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/adjust_bottle/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/adjust_bottle/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/adjust_bottle/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/adjust_bottle/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/adjust_bottle/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/adjust_bottle/franka-panda_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/adjust_bottle/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/adjust_bottle/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/adjust_bottle/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/adjust_bottle/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/adjust_bottle.html",
+      "scene_image": "adjust_bottle.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 1857,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "beat_block_hammer",
+      "title": "Beat block hammer",
+      "source_file": "envs/beat_block_hammer.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        hammer_target_pose = self.hammer.get_functional_point(0, \"pose\").p\n        block_pose = self.block.get_functional_point(1, \"pose\").p\n        eps = np.array([0.02, 0.02])\n        return np.all(abs(hammer_target_pose[:2] - block_pose[:2]) < eps) and self.check_actors_contact(\n            self.hammer.get_name(), self.block.get_name())",
+      "asset_models": [
+        "020_hammer"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "There is a hammer and a block on the table, use the arm to grab the hammer and beat the block.",
+      "objects": [
+        "020_hammer",
+        "block"
+      ],
+      "average_steps": 113,
+      "average_steps_note": "113 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "64%",
+        "ARX-X5": "93%",
+        "Franka-Panda": "98%",
+        "Piper": "15%",
+        "UR5-Wsg": "90%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/beat_block_hammer/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/beat_block_hammer/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/beat_block_hammer/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/beat_block_hammer/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/beat_block_hammer/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/beat_block_hammer/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/beat_block_hammer/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/beat_block_hammer/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/beat_block_hammer/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/beat_block_hammer/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/beat_block_hammer/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/beat_block_hammer/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/beat_block_hammer.html",
+      "scene_image": "beat_block_hammer.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 28831, attempt 2 of 2",
+        "physics_steps": 1560,
+        "scene_image": "initial scene, head camera, 640x480, before any motion",
+        "expert_pass_rate": "4/6 uncommon seeds, one attempt each, replay bit-exact required"
+      }
+    },
+    {
+      "id": "blocks_ranking_rgb",
+      "title": "Blocks ranking rgb",
+      "source_file": "envs/blocks_ranking_rgb.py",
+      "eval_step_limit": 1200,
+      "expert_planned_motions": 5,
+      "expert_methods": [
+        "play_once",
+        "pick_and_place_block"
+      ],
+      "success_check": "def check_success(self):\n        block1_pose = self.block1.get_pose().p\n        block2_pose = self.block2.get_pose().p\n        block3_pose = self.block3.get_pose().p\n\n        eps = [0.13, 0.03]\n\n        return (np.all(abs(block1_pose[:2] - block2_pose[:2]) < eps)\n                and np.all(abs(block2_pose[:2] - block3_pose[:2]) < eps) and block1_pose[0] < block2_pose[0]\n                and block2_pose[0] < block3_pose[0] and self.is_left_gripper_open() and self.is_right_gripper_open())",
+      "asset_models": [],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "Place the red block, green block, and blue block in the order of red, green, and blue from left to right, placing in a row.",
+      "objects": [
+        "block"
+      ],
+      "average_steps": 466,
+      "average_steps_note": "466 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "96%",
+        "ARX-X5": "97%",
+        "Franka-Panda": "99%",
+        "Piper": "13%",
+        "UR5-Wsg": "53%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_rgb/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_rgb/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_rgb/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_rgb/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_rgb/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_rgb/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_rgb/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_rgb/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_rgb/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_rgb/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_rgb/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_rgb/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/blocks_ranking_rgb.html",
+      "scene_image": "blocks_ranking_rgb.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 5764,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "blocks_ranking_size",
+      "title": "Blocks ranking size",
+      "source_file": "envs/blocks_ranking_size.py",
+      "eval_step_limit": 1200,
+      "expert_planned_motions": 5,
+      "expert_methods": [
+        "play_once",
+        "pick_and_place_block"
+      ],
+      "success_check": "def check_success(self):\n        block1_pose = self.block1.get_pose().p\n        block2_pose = self.block2.get_pose().p\n        block3_pose = self.block3.get_pose().p\n\n        eps = [0.13, 0.03]\n\n        return (np.all(abs(block1_pose[:2] - block2_pose[:2]) < eps)\n                and np.all(abs(block2_pose[:2] - block3_pose[:2]) < eps) and block1_pose[0] < block2_pose[0]\n                and block2_pose[0] < block3_pose[0] and self.is_left_gripper_open() and self.is_right_gripper_open())",
+      "asset_models": [],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "There are three blocks on the table, the color of the blocks is random, move the blocks to the center of the table, and arrange them from largest to smallest, from left to right.",
+      "objects": [
+        "block"
+      ],
+      "average_steps": 466,
+      "average_steps_note": "466 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "96%",
+        "ARX-X5": "97%",
+        "Franka-Panda": "89%",
+        "Piper": "7%",
+        "UR5-Wsg": "38%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_size/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_size/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_size/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_size/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_size/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_size/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_size/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_size/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_size/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_size/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_size/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/blocks_ranking_size/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/blocks_ranking_size.html",
+      "scene_image": "blocks_ranking_size.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 5869,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "click_alarmclock",
+      "title": "Click alarm clock",
+      "source_file": "envs/click_alarmclock.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        if self.stage_success_tag:\n            return True\n        if not self.check_arm_function():\n            return False\n        alarm_pose = self.alarm.get_contact_point(0)[:3]\n        positions = self.get_gripper_actor_contact_position(\"046_alarm-clock\")\n        eps = [0.03, 0.03]\n        for position in positions:\n            if (np.all(np.abs(position[:2] - alarm_pose[:2]) < eps) and abs(position[2] - alarm_pose[2]) < 0.03):\n                self.stage_success_tag = True\n                return True\n        return False",
+      "asset_models": [
+        "046_alarm-clock"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Click the alarm clock's center of the top side button on the table.",
+      "objects": [
+        "046_alarm-clock"
+      ],
+      "average_steps": 85,
+      "average_steps_note": "85 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "92%",
+        "ARX-X5": "99%",
+        "Franka-Panda": "100%",
+        "Piper": "0%",
+        "UR5-Wsg": "95%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_alarmclock/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_alarmclock/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_alarmclock/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_alarmclock/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_alarmclock/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_alarmclock/franka-panda_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_alarmclock/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_alarmclock/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_alarmclock/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_alarmclock/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/click_alarmclock.html",
+      "scene_image": "click_alarmclock.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 1462,
+        "scene_image": "initial scene, head camera, 640x480, before any motion",
+        "expert_pass_rate": "0/6 uncommon seeds, one attempt each, replay bit-exact required"
+      }
+    },
+    {
+      "id": "click_bell",
+      "title": "Click bell",
+      "source_file": "envs/click_bell.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        if self.stage_success_tag:\n            return True\n        if not self.check_arm_function():\n            return False\n        bell_pose = self.bell.get_contact_point(0)[:3]\n        positions = self.get_gripper_actor_contact_position(\"050_bell\")\n        eps = [0.025, 0.025]\n        for position in positions:\n            if (np.all(np.abs(position[:2] - bell_pose[:2]) < eps) and abs(position[2] - bell_pose[2]) < 0.03):\n                self.stage_success_tag = True\n                return True\n        return False",
+      "asset_models": [
+        "050_bell"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Click the bell's top center on the table.",
+      "objects": [
+        "050_bell"
+      ],
+      "average_steps": 85,
+      "average_steps_note": "85 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "100%",
+        "ARX-X5": "100%",
+        "Franka-Panda": "100%",
+        "Piper": "91%",
+        "UR5-Wsg": "100%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_bell/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_bell/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_bell/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_bell/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_bell/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_bell/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_bell/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_bell/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_bell/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_bell/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_bell/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/click_bell/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/click_bell.html",
+      "scene_image": "click_bell.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 1051,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "dump_bin_bigbin",
+      "title": "Dump bin big bin",
+      "source_file": "envs/dump_bin_bigbin.py",
+      "eval_step_limit": 600,
+      "expert_planned_motions": 8,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        deskbin_pose = self.deskbin.get_pose().p\n        if deskbin_pose[2] < 1:\n            return False\n        for i in range(self.garbage_num):\n            pose = self.sphere_lst[i].get_pose().p\n            if pose[2] >= 0.13 and pose[2] <= 0.25:\n                continue\n            return False\n        return True",
+      "asset_models": [
+        "011_dustbin",
+        "063_tabletrashbin"
+      ],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "Grab the small bin and pour the balls into the big bin.",
+      "objects": [
+        "011_dustbin",
+        "063_tabletrashbin"
+      ],
+      "average_steps": 265,
+      "average_steps_note": "265 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "84%",
+        "ARX-X5": "100%",
+        "Franka-Panda": "84%",
+        "Piper": "9%",
+        "UR5-Wsg": "80%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/dump_bin_bigbin/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/dump_bin_bigbin/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/dump_bin_bigbin/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/dump_bin_bigbin/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/dump_bin_bigbin/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/dump_bin_bigbin/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/dump_bin_bigbin/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/dump_bin_bigbin/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/dump_bin_bigbin/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/dump_bin_bigbin/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/dump_bin_bigbin/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/dump_bin_bigbin/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/dump_bin_bigbin.html",
+      "scene_image": "dump_bin_bigbin.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 3928,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "grab_roller",
+      "title": "Grab roller",
+      "source_file": "envs/grab_roller.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 2,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        roller_pose = self.roller.get_pose().p\n        return (self.is_left_gripper_close() and self.is_right_gripper_close() and roller_pose[2] > 0.8)",
+      "asset_models": [
+        "102_roller"
+      ],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "Use both arms to grab the roller on the table.",
+      "objects": [
+        "102_roller"
+      ],
+      "average_steps": 94,
+      "average_steps_note": "94 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "95%",
+        "ARX-X5": "69%",
+        "Franka-Panda": "99%",
+        "Piper": "7%",
+        "UR5-Wsg": "81%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/grab_roller/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/grab_roller/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/grab_roller/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/grab_roller/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/grab_roller/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/grab_roller/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/grab_roller/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/grab_roller/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/grab_roller/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/grab_roller/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/grab_roller/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/grab_roller/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/grab_roller.html",
+      "scene_image": "grab_roller.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 1284,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "handover_block",
+      "title": "Handover block",
+      "source_file": "envs/handover_block.py",
+      "eval_step_limit": 800,
+      "expert_planned_motions": 7,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        box_pos = self.box.get_functional_point(0, \"pose\").p\n        target_pose = self.target_box.get_functional_point(1, \"pose\").p\n        eps = [0.03, 0.03]\n        return (np.all(np.abs(box_pos[:2] - target_pose[:2]) < eps) and abs(box_pos[2] - target_pose[2]) < 0.01\n                and self.is_right_gripper_open())",
+      "asset_models": [],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "Use the left arm to grasp the red block on the table, handover it to the right arm and place it on the blue pad.",
+      "objects": [
+        "block"
+      ],
+      "average_steps": 283,
+      "average_steps_note": "283 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "83%",
+        "ARX-X5": "81%",
+        "Franka-Panda": "0%",
+        "Piper": "44%",
+        "UR5-Wsg": "0%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_block/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_block/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_block/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_block/aloha-agilex_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_block/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_block/piper_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_block/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_block/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/handover_block.html",
+      "scene_image": "handover_block.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 3803,
+        "scene_image": "initial scene, head camera, 640x480, before any motion",
+        "expert_pass_rate": "6/6 uncommon seeds, one attempt each, replay bit-exact required"
+      }
+    },
+    {
+      "id": "handover_mic",
+      "title": "Handover microphone",
+      "source_file": "envs/handover_mic.py",
+      "eval_step_limit": 600,
+      "expert_planned_motions": 6,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        microphone_pose = self.microphone.get_functional_point(0)\n        contact = self.get_gripper_actor_contact_position(\"018_microphone\")\n        if len(contact) == 0:\n            return False\n        close_gripper_func = self.is_left_gripper_close if self.handover_arm_tag == \"left\" else self.is_right_gripper_close\n        open_gripper_func = self.is_left_gripper_open if self.grasp_arm_tag == \"left\" else self.is_right_gripper_open\n        tag = microphone_pose[0] < 0 if self.handover_arm_tag == \"left\" else microphone_pose[0] > 0\n        return (close_gripper_func() and open_gripper_func() and microphone_pose[2] > 0.92 and tag)",
+      "asset_models": [
+        "018_microphone"
+      ],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "Use one arm to grasp the microphone on the table and handover it to the other arm.",
+      "objects": [
+        "018_microphone"
+      ],
+      "average_steps": 223,
+      "average_steps_note": "223 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "87%",
+        "ARX-X5": "98%",
+        "Franka-Panda": "84%",
+        "Piper": "65%",
+        "UR5-Wsg": "14%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_mic/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_mic/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_mic/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_mic/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_mic/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_mic/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_mic/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_mic/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_mic/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_mic/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_mic/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/handover_mic/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/handover_mic.html",
+      "scene_image": "handover_mic.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 28831, attempt 2 of 2",
+        "physics_steps": 2942,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "hanging_mug",
+      "title": "Hanging mug",
+      "source_file": "envs/hanging_mug.py",
+      "eval_step_limit": 900,
+      "expert_planned_motions": 8,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        mug_function_pose = self.mug.get_functional_point(0)[:3]\n        rack_pose = self.rack.get_pose().p\n        rack_function_pose = self.rack.get_functional_point(0)[:3]\n        rack_middle_pose = (rack_pose + rack_function_pose) / 2\n        eps = 0.02\n        return (np.all(abs((mug_function_pose - rack_middle_pose)[:2]) < eps) and self.is_right_gripper_open()\n                and mug_function_pose[2] > 0.86)",
+      "asset_models": [
+        "039_mug",
+        "040_rack"
+      ],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "Use left arm to pick the mug on the table, rotate the mug and put the mug down in the middle of the table, use the right arm to pick the mug and hang it onto the rack.",
+      "objects": [
+        "039_mug",
+        "040_rack"
+      ],
+      "average_steps": 340,
+      "average_steps_note": "340 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "63%",
+        "ARX-X5": "73%",
+        "Franka-Panda": "11%",
+        "Piper": "0%",
+        "UR5-Wsg": "11%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/hanging_mug/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/hanging_mug/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/hanging_mug/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/hanging_mug/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/hanging_mug/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/hanging_mug/franka-panda_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/hanging_mug/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/hanging_mug/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/hanging_mug/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/hanging_mug/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/hanging_mug.html",
+      "scene_image": "hanging_mug.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 4484,
+        "scene_image": "initial scene, head camera, 640x480, before any motion",
+        "expert_pass_rate": "5/6 uncommon seeds, one attempt each, replay bit-exact required"
+      }
+    },
+    {
+      "id": "lift_pot",
+      "title": "Lift pot",
+      "source_file": "envs/lift_pot.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        pot_pose = self.pot.get_pose()\n        left_end = np.array(self.robot.get_left_tcp_pose()[:3])\n        right_end = np.array(self.robot.get_right_tcp_pose()[:3])\n        left_grasp = np.array(self.pot.get_contact_point(0)[:3])\n        right_grasp = np.array(self.pot.get_contact_point(1)[:3])\n        pot_dir = get_face_prod(pot_pose.q, [0, 0, 1], [0, 0, 1])\n        return (pot_pose.p[2] > 0.82 and np.sqrt(np.sum((left_end - left_grasp)**2)) < 0.03\n                and np.sqrt(np.sum((right_end - right_grasp)**2)) < 0.03 and pot_dir > 0.8)",
+      "asset_models": [
+        "060_kitchenpot"
+      ],
+      "articulated": true,
+      "uses_both_arms": true,
+      "instruction": "Use arms to lift the pot.",
+      "objects": [
+        "060_kitchenpot"
+      ],
+      "average_steps": 112,
+      "average_steps_note": "112 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "27%",
+        "ARX-X5": "50%",
+        "Franka-Panda": "36%",
+        "Piper": "31%",
+        "UR5-Wsg": "40%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/lift_pot/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/lift_pot/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/lift_pot/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/lift_pot/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/lift_pot/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/lift_pot/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/lift_pot/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/lift_pot/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/lift_pot/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/lift_pot/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/lift_pot/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/lift_pot/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/lift_pot.html",
+      "scene_image": "lift_pot.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 28831, attempt 2 of 2",
+        "physics_steps": 1504,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "move_can_pot",
+      "title": "Move can pot",
+      "source_file": "envs/move_can_pot.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        pot_pose = self.pot.get_pose().p\n        can_pose = self.can.get_pose().p\n        can_pose_rpy = t3d.euler.quat2euler(self.can.get_pose().q)\n        x_rotate = can_pose_rpy[0] * 180 / np.pi\n        y_rotate = can_pose_rpy[1] * 180 / np.pi\n        eps = np.array([0.2, 0.035, 15, 15])\n        dis = (pot_pose[0] - can_pose[0] if self.arm_tag == \"left\" else can_pose[0] - pot_pose[0])\n        check = True if dis > 0 else False\n        return (np.all(np.array([\n            abs(dis),\n            np.abs(pot_pose[1] - can_pose[1]),\n            abs(x_rotate - 90),\n            abs(y_rotate),\n        ]) < eps) and check and can_pose[2] <= self.orig_z + 0.001 and self.robot.is_left_gripper_open()\n                and self.robot.is_right_gripper_open())",
+      "asset_models": [
+        "060_kitchenpot",
+        "105_sauce-can"
+      ],
+      "articulated": true,
+      "uses_both_arms": false,
+      "instruction": "There is a can and a pot on the table, use one arm to pick up the can and move it to beside the pot.",
+      "objects": [
+        "060_kitchenpot",
+        "105_sauce-can"
+      ],
+      "average_steps": 151,
+      "average_steps_note": "151 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "93%",
+        "ARX-X5": "65%",
+        "Franka-Panda": "92%",
+        "Piper": "96%",
+        "UR5-Wsg": "99%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_can_pot/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_can_pot/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_can_pot/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_can_pot/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_can_pot/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_can_pot/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_can_pot/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_can_pot/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_can_pot/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_can_pot/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_can_pot/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_can_pot/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/move_can_pot.html",
+      "scene_image": "move_can_pot.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 2045,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "move_pillbottle_pad",
+      "title": "Move pill bottle pad",
+      "source_file": "envs/move_pillbottle_pad.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        pillbottle_pos = self.pillbottle.get_pose().p\n        target_pos = self.pad.get_pose().p\n        eps1 = 0.03\n        return (np.all(abs(pillbottle_pos[:2] - target_pos[:2]) < np.array([eps1, eps1]))\n                and np.abs(self.pillbottle.get_pose().p[2] - (0.741 + self.table_z_bias)) < 0.005\n                and self.robot.is_left_gripper_open() and self.robot.is_right_gripper_open())",
+      "asset_models": [
+        "080_pillbottle"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Use one arm to pick the pillbottle and place it onto the pad.",
+      "objects": [
+        "080_pillbottle",
+        "block"
+      ],
+      "average_steps": 147,
+      "average_steps_note": "147 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "67%",
+        "ARX-X5": "90%",
+        "Franka-Panda": "69%",
+        "Piper": "47%",
+        "UR5-Wsg": "86%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_pillbottle_pad/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_pillbottle_pad/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_pillbottle_pad/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_pillbottle_pad/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_pillbottle_pad/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_pillbottle_pad/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_pillbottle_pad/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_pillbottle_pad/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_pillbottle_pad/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_pillbottle_pad/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_pillbottle_pad/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_pillbottle_pad/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/move_pillbottle_pad.html",
+      "scene_image": "move_pillbottle_pad.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 2113,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "move_playingcard_away",
+      "title": "Move playing card away",
+      "source_file": "envs/move_playingcard_away.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        playingcards_pose = self.playingcards.get_pose().p\n        edge_x = 0.23\n\n        return (np.all(abs(playingcards_pose[0]) > abs(edge_x)) and self.robot.is_left_gripper_open()\n                and self.robot.is_right_gripper_open())",
+      "asset_models": [
+        "081_playingcards"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Use the arm to pick up the playing card and move it away from the table. For example, if the playing card is on the outward side of the table, you should move it further outward side of the table.",
+      "objects": [
+        "081_playingcards"
+      ],
+      "average_steps": 120,
+      "average_steps_note": "120 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "99%",
+        "ARX-X5": "100%",
+        "Franka-Panda": "100%",
+        "Piper": "63%",
+        "UR5-Wsg": "66%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_playingcard_away/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_playingcard_away/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_playingcard_away/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_playingcard_away/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_playingcard_away/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_playingcard_away/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_playingcard_away/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_playingcard_away/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_playingcard_away/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_playingcard_away/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_playingcard_away/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_playingcard_away/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/move_playingcard_away.html",
+      "scene_image": "move_playingcard_away.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 1647,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "move_stapler_pad",
+      "title": "Move stapler pad",
+      "source_file": "envs/move_stapler_pad.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        stapler_pose = self.stapler.get_pose().p\n        stapler_qpose = np.abs(self.stapler.get_pose().q)\n        target_pos = self.pad.get_pose().p\n        eps = [0.02, 0.02, 0.01]\n        return (np.all(abs(stapler_pose - target_pos) < np.array(eps))\n                and (stapler_qpose.max() - stapler_qpose.min()) < 0.02 and self.robot.is_left_gripper_open()\n                and self.robot.is_right_gripper_open())",
+      "asset_models": [
+        "048_stapler"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Use appropriate arm to move the stapler to a colored mat.",
+      "objects": [
+        "048_stapler"
+      ],
+      "average_steps": 152,
+      "average_steps_note": "152 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "92%",
+        "ARX-X5": "96%",
+        "Franka-Panda": "89%",
+        "Piper": "13%",
+        "UR5-Wsg": "75%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_stapler_pad/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_stapler_pad/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_stapler_pad/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_stapler_pad/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_stapler_pad/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_stapler_pad/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_stapler_pad/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_stapler_pad/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_stapler_pad/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_stapler_pad/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_stapler_pad/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/move_stapler_pad/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/move_stapler_pad.html",
+      "scene_image": "move_stapler_pad.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 2261,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "open_laptop",
+      "title": "Open laptop",
+      "source_file": "envs/open_laptop.py",
+      "eval_step_limit": 700,
+      "expert_planned_motions": 2,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self, target=0.4):\n        limit = self.laptop.get_qlimits()[0]\n        qpos = self.laptop.get_qpos()\n        rotate_pose = self.laptop.get_contact_point(1)\n        tip_pose = (self.robot.get_left_tcp_pose() if self.arm_tag == \"left\" else self.robot.get_right_tcp_pose())\n        dis = np.sqrt(np.sum((np.array(tip_pose[:3]) - np.array(rotate_pose[:3]))**2))\n        return qpos[0] >= limit[0] + (limit[1] - limit[0]) * target and dis < 0.1",
+      "asset_models": [
+        "015_laptop"
+      ],
+      "articulated": true,
+      "uses_both_arms": false,
+      "instruction": "Use one arm to open the laptop.",
+      "objects": [
+        "015_laptop"
+      ],
+      "average_steps": 258,
+      "average_steps_note": "258 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "82%",
+        "ARX-X5": "92%",
+        "Franka-Panda": "77%",
+        "Piper": "23%",
+        "UR5-Wsg": "51%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_laptop/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_laptop/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_laptop/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_laptop/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_laptop/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_laptop/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_laptop/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_laptop/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_laptop/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_laptop/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_laptop/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_laptop/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/open_laptop.html",
+      "scene_image": "open_laptop.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 2055,
+        "scene_image": "initial scene, head camera, 640x480, before any motion",
+        "expert_pass_rate": "6/6 uncommon seeds, one attempt each, replay bit-exact required"
+      }
+    },
+    {
+      "id": "open_microwave",
+      "title": "Open microwave",
+      "source_file": "envs/open_microwave.py",
+      "eval_step_limit": 1500,
+      "expert_planned_motions": 7,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self, target=0.6):\n        limits = self.microwave.get_qlimits()\n        qpos = self.microwave.get_qpos()\n        return qpos[0] >= limits[0][1] * target",
+      "asset_models": [
+        "044_microwave"
+      ],
+      "articulated": true,
+      "uses_both_arms": false,
+      "instruction": "Use one arm to open the microwave.",
+      "objects": [
+        "044_microwave"
+      ],
+      "average_steps": 537,
+      "average_steps_note": "537 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "96%",
+        "ARX-X5": "80%",
+        "Franka-Panda": "59%",
+        "Piper": "2%",
+        "UR5-Wsg": "23%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_microwave/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_microwave/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_microwave/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_microwave/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_microwave/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_microwave/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_microwave/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_microwave/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_microwave/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_microwave/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_microwave/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/open_microwave/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/open_microwave.html",
+      "scene_image": "open_microwave.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 17710,
+        "scene_image": "initial scene, head camera, 640x480, before any motion",
+        "expert_pass_rate": "3/6 uncommon seeds, one attempt each, replay bit-exact required"
+      }
+    },
+    {
+      "id": "pick_diverse_bottles",
+      "title": "Pick diverse bottles",
+      "source_file": "envs/pick_diverse_bottles.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        bottle1_target = self.left_target_pose[:2]\n        bottle2_target = self.right_target_pose[:2]\n        eps = 0.1\n        bottle1_pose = self.bottle1.get_functional_point(0)\n        bottle2_pose = self.bottle2.get_functional_point(0)\n        if bottle1_pose[2] < 0.78 or bottle2_pose[2] < 0.78:\n            self.actor_pose = False\n        return (abs(bottle1_pose[0] - bottle1_target[0]) < eps and abs(bottle1_pose[1] - bottle1_target[1]) < eps\n                and bottle1_pose[2] > 0.89 and abs(bottle2_pose[0] - bottle2_target[0]) < eps\n                and abs(bottle2_pose[1] - bottle2_target[1]) < eps and bottle2_pose[2] > 0.89)",
+      "asset_models": [
+        "001_bottle"
+      ],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "Pick up one bottle with one arm, and pick up another bottle with the other arm.",
+      "objects": [
+        "001_bottle"
+      ],
+      "average_steps": 122,
+      "average_steps_note": "122 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "51%",
+        "ARX-X5": "2%",
+        "Franka-Panda": "0%",
+        "Piper": "27%",
+        "UR5-Wsg": "4%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_diverse_bottles/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_diverse_bottles/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_diverse_bottles/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_diverse_bottles/aloha-agilex_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_diverse_bottles/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_diverse_bottles/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_diverse_bottles/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_diverse_bottles/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_diverse_bottles/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_diverse_bottles/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/pick_diverse_bottles.html",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "failed on all 6 attempts (UnStableError)",
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "pick_dual_bottles",
+      "title": "Pick dual bottles",
+      "source_file": "envs/pick_dual_bottles.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        bottle1_target = self.left_target_pose[:2]\n        bottle2_target = self.right_target_pose[:2]\n        eps = 0.1\n        bottle1_pose = self.bottle1.get_functional_point(0)\n        bottle2_pose = self.bottle2.get_functional_point(0)\n        if bottle1_pose[2] < 0.78 or bottle2_pose[2] < 0.78:\n            self.actor_pose = False\n        return (abs(bottle1_pose[0] - bottle1_target[0]) < eps and abs(bottle1_pose[1] - bottle1_target[1]) < eps\n                and bottle1_pose[2] > 0.89 and abs(bottle2_pose[0] - bottle2_target[0]) < eps\n                and abs(bottle2_pose[1] - bottle2_target[1]) < eps and bottle2_pose[2] > 0.89)",
+      "asset_models": [
+        "001_bottle"
+      ],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "Pick up one bottle with one arm, and pick up another bottle with the other arm.",
+      "objects": [
+        "001_bottle"
+      ],
+      "average_steps": 127,
+      "average_steps_note": "127 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "92%",
+        "ARX-X5": "6%",
+        "Franka-Panda": "0%",
+        "Piper": "81%",
+        "UR5-Wsg": "7%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_dual_bottles/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_dual_bottles/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_dual_bottles/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_dual_bottles/aloha-agilex_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_dual_bottles/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_dual_bottles/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_dual_bottles/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_dual_bottles/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_dual_bottles/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/pick_dual_bottles/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/pick_dual_bottles.html",
+      "scene_image": "pick_dual_bottles.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 1683,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "place_a2b_left",
+      "title": "Place a to b left",
+      "source_file": "envs/place_a2b_left.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        object_pose = self.object.get_pose().p\n        target_pos = self.target_object.get_pose().p\n        distance = np.sqrt(np.sum((object_pose[:2] - target_pos[:2])**2))\n        return np.all(distance < 0.2 and distance > 0.08 and object_pose[0] < target_pos[0]\n                      and abs(object_pose[1] - target_pos[1]) < 0.05 and self.robot.is_left_gripper_open()\n                      and self.robot.is_right_gripper_open())",
+      "asset_models": [
+        "047_mouse",
+        "048_stapler",
+        "050_bell",
+        "057_toycar",
+        "073_rubikscube",
+        "075_bread",
+        "077_phone",
+        "081_playingcards",
+        "086_woodenblock",
+        "107_soap",
+        "112_tea-box",
+        "113_coffee-box"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Use appropriate arm to place object A on the left of object B.",
+      "objects": [
+        "047_mouse",
+        "048_stapler",
+        "050_bell",
+        "057_toycar",
+        "073_rubikscube",
+        "075_bread",
+        "077_phone",
+        "081_playingcards",
+        "086_woodenblock",
+        "107_soap",
+        "112_tea-box",
+        "113_coffee-box"
+      ],
+      "average_steps": 155,
+      "average_steps_note": "155 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "80%",
+        "ARX-X5": "88%",
+        "Franka-Panda": "64%",
+        "Piper": "28%",
+        "UR5-Wsg": "76%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_left/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_left/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_left/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_left/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_left/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_left/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_left/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_left/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_left/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_left/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_left/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_left/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/place_a2b_left.html",
+      "scene_image": "place_a2b_left.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 28831, attempt 2 of 2",
+        "physics_steps": 2167,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "place_a2b_right",
+      "title": "Place a to b right",
+      "source_file": "envs/place_a2b_right.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        object_pose = self.object.get_pose().p\n        target_pos = self.target_object.get_pose().p\n        distance = np.sqrt(np.sum((object_pose[:2] - target_pos[:2])**2))\n        return np.all(distance < 0.2 and distance > 0.08 and object_pose[0] > target_pos[0]\n                      and abs(object_pose[1] - target_pos[1]) < 0.05 and self.robot.is_left_gripper_open()\n                      and self.robot.is_right_gripper_open())",
+      "asset_models": [
+        "047_mouse",
+        "048_stapler",
+        "050_bell",
+        "057_toycar",
+        "073_rubikscube",
+        "075_bread",
+        "077_phone",
+        "081_playingcards",
+        "086_woodenblock",
+        "107_soap",
+        "112_tea-box",
+        "113_coffee-box"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Use appropriate arm to place object A on the right of object B.",
+      "objects": [
+        "047_mouse",
+        "048_stapler",
+        "050_bell",
+        "057_toycar",
+        "073_rubikscube",
+        "075_bread",
+        "077_phone",
+        "081_playingcards",
+        "086_woodenblock",
+        "107_soap",
+        "112_tea-box",
+        "113_coffee-box"
+      ],
+      "average_steps": 145,
+      "average_steps_note": "145 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "81%",
+        "ARX-X5": "82%",
+        "Franka-Panda": "64%",
+        "Piper": "31%",
+        "UR5-Wsg": "66%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_right/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_right/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_right/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_right/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_right/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_right/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_right/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_right/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_right/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_right/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_right/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_a2b_right/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/place_a2b_right.html",
+      "scene_image": "place_a2b_right.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 28831, attempt 2 of 2",
+        "physics_steps": 2010,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "place_bread_basket",
+      "title": "Place bread basket",
+      "source_file": "envs/place_bread_basket.py",
+      "eval_step_limit": 700,
+      "expert_planned_motions": 10,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        breadbasket_pose = self.breadbasket.get_pose().p\n        eps1 = 0.05\n        check = True\n        for i in range(len(self.bread)):\n            pose = self.bread[i].get_pose().p\n            if np.all(abs(pose[:2] - breadbasket_pose[:2]) < np.array([eps1, eps1])) and (pose[2]\n                                                                                          > 0.73 + self.table_z_bias):\n                continue\n            else:\n                check = False\n\n        return (check and self.robot.is_left_gripper_open() and self.robot.is_right_gripper_open())",
+      "asset_models": [
+        "075_bread",
+        "076_breadbasket"
+      ],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "If there is one bread on the table, use one arm to grab the bread and put it in the basket, if there are two breads on the table, use two arms to simultaneously grab up two breads and put them in the basket.",
+      "objects": [
+        "075_bread",
+        "076_breadbasket"
+      ],
+      "average_steps": 231,
+      "average_steps_note": "231 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "89%",
+        "ARX-X5": "88%",
+        "Franka-Panda": "62%",
+        "Piper": "1%",
+        "UR5-Wsg": "67%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_basket/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_basket/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_basket/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_basket/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_basket/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_basket/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_basket/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_basket/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_basket/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_basket/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_basket/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_basket/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/place_bread_basket.html",
+      "scene_image": "place_bread_basket.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 3030,
+        "scene_image": "initial scene, head camera, 640x480, before any motion",
+        "expert_pass_rate": "6/6 uncommon seeds, one attempt each, replay bit-exact required"
+      }
+    },
+    {
+      "id": "place_bread_skillet",
+      "title": "Place bread skillet",
+      "source_file": "envs/place_bread_skillet.py",
+      "eval_step_limit": 500,
+      "expert_planned_motions": 4,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        target_pose = self.skillet.get_functional_point(0)\n        bread_pose = self.bread.get_pose().p\n        return (np.all(abs(target_pose[:2] - bread_pose[:2]) < [0.035, 0.035])\n                and target_pose[2] > 0.76 + self.table_z_bias and bread_pose[2] > 0.76 + self.table_z_bias)",
+      "asset_models": [
+        "075_bread",
+        "106_skillet"
+      ],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "If there is one bread on the table, use one arm to grab the bread and put it into the skillet.",
+      "objects": [
+        "075_bread",
+        "106_skillet"
+      ],
+      "average_steps": 162,
+      "average_steps_note": "162 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "34%",
+        "ARX-X5": "26%",
+        "Franka-Panda": "42%",
+        "Piper": "0%",
+        "UR5-Wsg": "37%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_skillet/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_skillet/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_skillet/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_skillet/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_skillet/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_skillet/franka-panda_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_skillet/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_skillet/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_skillet/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_bread_skillet/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/place_bread_skillet.html",
+      "scene_image": "place_bread_skillet.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 91573, attempt 3 of 3",
+        "physics_steps": 2089,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "place_burger_fries",
+      "title": "Place burger fries",
+      "source_file": "envs/place_burger_fries.py",
+      "eval_step_limit": 500,
+      "expert_planned_motions": 6,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        dis1 = np.linalg.norm(\n            self.tray.get_functional_point(0, \"pose\").p[0:2] - self.hamburg.get_functional_point(0, \"pose\").p[0:2])\n        dis2 = np.linalg.norm(\n            self.tray.get_functional_point(1, \"pose\").p[0:2] - self.frenchfries.get_functional_point(0, \"pose\").p[0:2])\n        threshold = 0.08\n        return dis1 < threshold and dis2 < threshold and self.is_left_gripper_open() and self.is_right_gripper_open()",
+      "asset_models": [
+        "005_french-fries",
+        "006_hamburg",
+        "008_tray"
+      ],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "Use dual arm to pick the hamburg and frenchfries and put them onto the tray.",
+      "objects": [
+        "005_french-fries",
+        "006_hamburg",
+        "008_tray"
+      ],
+      "average_steps": 242,
+      "average_steps_note": "242 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "97%",
+        "ARX-X5": "98%",
+        "Franka-Panda": "80%",
+        "Piper": "36%",
+        "UR5-Wsg": "74%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_burger_fries/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_burger_fries/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_burger_fries/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_burger_fries/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_burger_fries/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_burger_fries/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_burger_fries/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_burger_fries/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_burger_fries/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_burger_fries/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_burger_fries/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_burger_fries/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/place_burger_fries.html",
+      "scene_image": "place_burger_fries.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 3191,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "place_can_basket",
+      "title": "Place can basket",
+      "source_file": "envs/place_can_basket.py",
+      "eval_step_limit": 700,
+      "expert_planned_motions": 11,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        can_p = self.can.get_pose().p\n        basket_p = self.basket.get_pose().p\n        basket_axis = (self.basket.get_pose().to_transformation_matrix()[:3, :3] @ np.array([[0, 1, 0]]).T)\n        can_contact_table = not self.check_actors_contact(\"071_can\", \"table\")\n        can_contact_basket = self.check_actors_contact(\"071_can\", \"110_basket\")\n        return (basket_p[2] - self.start_height > 0.02 and \\\n                can_p[2] - self.object_start_height > 0.02 and \\\n                np.dot(basket_axis.reshape(3), [0, 0, 1]) > 0.5 and \\\n                np.sum(np.sqrt(np.power(can_p - basket_p, 2))) < 0.15 and \\\n                can_contact_table and can_contact_basket)",
+      "asset_models": [
+        "071_can",
+        "110_basket"
+      ],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "Use one arm to pick up the can, put it into the basket, and use another arm to lift the basket",
+      "objects": [
+        "071_can",
+        "110_basket"
+      ],
+      "average_steps": 255,
+      "average_steps_note": "255 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "70%",
+        "ARX-X5": "28%",
+        "Franka-Panda": "61%",
+        "Piper": "0%",
+        "UR5-Wsg": "3%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_can_basket/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_can_basket/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_can_basket/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_can_basket/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_can_basket/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_can_basket/franka-panda_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_can_basket/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_can_basket/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_can_basket/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_can_basket/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/place_can_basket.html",
+      "scene_image": "place_can_basket.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 91573, attempt 3 of 3",
+        "physics_steps": 3343,
+        "scene_image": "initial scene, head camera, 640x480, before any motion",
+        "expert_pass_rate": "6/6 uncommon seeds, one attempt each, replay bit-exact required"
+      }
+    },
+    {
+      "id": "place_cans_plasticbox",
+      "title": "Place cans plastic box",
+      "source_file": "envs/place_cans_plasticbox.py",
+      "eval_step_limit": 800,
+      "expert_planned_motions": 7,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        plasticbox_functional_points_0 = self.plasticbox.get_functional_point(0)[0:2]\n        plasticbox_functional_points_1 = self.plasticbox.get_functional_point(1)[0:2]\n        dis1 = min(np.linalg.norm(self.object1.get_pose().p[0:2] - plasticbox_functional_points_0),\n                   np.linalg.norm(self.object1.get_pose().p[0:2] - plasticbox_functional_points_1))\n        dis2 = min(np.linalg.norm(self.object2.get_pose().p[0:2] - plasticbox_functional_points_0),\n                   np.linalg.norm(self.object2.get_pose().p[0:2] - plasticbox_functional_points_1))\n        threshold = 0.04\n        return dis1 < threshold and dis2 < threshold and self.is_left_gripper_open() and self.is_right_gripper_open()",
+      "asset_models": [
+        "062_plasticbox",
+        "071_can"
+      ],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "Use dual arm to pick and place cans into plasticbox.",
+      "objects": [
+        "062_plasticbox",
+        "071_can"
+      ],
+      "average_steps": 289,
+      "average_steps_note": "289 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "100%",
+        "ARX-X5": "96%",
+        "Franka-Panda": "85%",
+        "Piper": "0%",
+        "UR5-Wsg": "82%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_cans_plasticbox/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_cans_plasticbox/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_cans_plasticbox/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_cans_plasticbox/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_cans_plasticbox/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_cans_plasticbox/franka-panda_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_cans_plasticbox/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_cans_plasticbox/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_cans_plasticbox/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_cans_plasticbox/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/place_cans_plasticbox.html",
+      "scene_image": "place_cans_plasticbox.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 3860,
+        "scene_image": "initial scene, head camera, 640x480, before any motion",
+        "expert_pass_rate": "6/6 uncommon seeds, one attempt each, replay bit-exact required"
+      }
+    },
+    {
+      "id": "place_container_plate",
+      "title": "Place container plate",
+      "source_file": "envs/place_container_plate.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 4,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        container_pose = self.container.get_pose().p\n        target_pose = self.plate.get_pose().p\n        eps = np.array([0.05, 0.05, 0.03])\n        return (np.all(abs(container_pose[:3] - target_pose) < eps) and self.is_left_gripper_open()\n                and self.is_right_gripper_open())",
+      "asset_models": [
+        "002_bowl",
+        "003_plate",
+        "021_cup"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Place the container onto the plate.",
+      "objects": [
+        "002_bowl",
+        "003_plate",
+        "021_cup"
+      ],
+      "average_steps": 156,
+      "average_steps_note": "156 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "89%",
+        "ARX-X5": "86%",
+        "Franka-Panda": "86%",
+        "Piper": "37%",
+        "UR5-Wsg": "81%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_container_plate/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_container_plate/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_container_plate/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_container_plate/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_container_plate/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_container_plate/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_container_plate/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_container_plate/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_container_plate/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_container_plate/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_container_plate/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_container_plate/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/place_container_plate.html",
+      "scene_image": "place_container_plate.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 2221,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "place_dual_shoes",
+      "title": "Place dual shoes",
+      "source_file": "envs/place_dual_shoes.py",
+      "eval_step_limit": 600,
+      "expert_planned_motions": 4,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        left_shoe_pose_p = np.array(self.left_shoe.get_pose().p)\n        left_shoe_pose_q = np.array(self.left_shoe.get_pose().q)\n        right_shoe_pose_p = np.array(self.right_shoe.get_pose().p)\n        right_shoe_pose_q = np.array(self.right_shoe.get_pose().q)\n        if left_shoe_pose_q[0] < 0:\n            left_shoe_pose_q *= -1\n        if right_shoe_pose_q[0] < 0:\n            right_shoe_pose_q *= -1\n        target_pose_p = np.array([0, -0.13])\n        target_pose_q = np.array([0.5, 0.5, -0.5, -0.5])\n        eps = np.array([0.05, 0.05, 0.07, 0.07, 0.07, 0.07])\n        return (np.all(abs(left_shoe_pose_p[:2] - (target_pose_p - [0, 0.04])) < eps[:2])\n                and np.all(abs(left_shoe_pose_q - target_pose_q) < eps[-4:])\n                and np.all(abs(right_shoe_pose_p[:2] - (target_pose_p + [0, 0.04])) < eps[:2])\n                and np.all(abs(right_shoe_pose_q - target_pose_q) < eps[-4:])\n                and abs(left_shoe_pose_p[2] - (self.shoe_box.get_pose().p[2] + 0.01)) < 0.03\n                and abs(right_shoe_pose_p[2] - (self.shoe_box.get_pose().p[2] + 0.01)) < 0.03\n                and self.is_left_gripper_open() and self.is_right_gripper_open())",
+      "asset_models": [
+        "007_shoe-box",
+        "041_shoe"
+      ],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "Use both arms to pick up the two shoes on the table and put them in the shoebox, with the shoe tip pointing to the left.",
+      "objects": [
+        "007_shoe-box",
+        "041_shoe"
+      ],
+      "average_steps": 228,
+      "average_steps_note": "228 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "77%",
+        "ARX-X5": "31%",
+        "Franka-Panda": "41%",
+        "Piper": "1%",
+        "UR5-Wsg": "32%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_dual_shoes/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_dual_shoes/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_dual_shoes/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_dual_shoes/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_dual_shoes/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_dual_shoes/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_dual_shoes/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_dual_shoes/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_dual_shoes/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_dual_shoes/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_dual_shoes/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_dual_shoes/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/place_dual_shoes.html",
+      "scene_image": "place_dual_shoes.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 3806,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "place_empty_cup",
+      "title": "Place empty cup",
+      "source_file": "envs/place_empty_cup.py",
+      "eval_step_limit": 500,
+      "expert_planned_motions": 5,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        eps = 0.035\n        cup_pose = self.cup.get_functional_point(0, \"pose\").p\n        coaster_pose = self.coaster.get_functional_point(0, \"pose\").p\n        return (\n            np.sum(pow(cup_pose[:2] - coaster_pose[:2], 2)) < eps**2 and abs(cup_pose[2] - coaster_pose[2]) < 0.015\n            and self.is_left_gripper_open() and self.is_right_gripper_open())",
+      "asset_models": [
+        "019_coaster",
+        "021_cup"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Use an arm to place the empty cup on the coaster.",
+      "objects": [
+        "019_coaster",
+        "021_cup"
+      ],
+      "average_steps": 174,
+      "average_steps_note": "174 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "92%",
+        "ARX-X5": "100%",
+        "Franka-Panda": "100%",
+        "Piper": "4%",
+        "UR5-Wsg": "100%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_empty_cup/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_empty_cup/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_empty_cup/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_empty_cup/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_empty_cup/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_empty_cup/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_empty_cup/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_empty_cup/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_empty_cup/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_empty_cup/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_empty_cup/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_empty_cup/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/place_empty_cup.html",
+      "scene_image": "place_empty_cup.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 2274,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "place_fan",
+      "title": "Place fan",
+      "source_file": "envs/place_fan.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        fan_qpose = self.fan.get_pose().q\n        fan_pose = self.fan.get_pose().p\n\n        target_pose = self.target_pose[:3]\n        target_qpose = np.array([0.707, 0.707, 0.0, 0.0])\n\n        if fan_qpose[0] < 0:\n            fan_qpose *= -1\n\n        eps = np.array([0.05, 0.05, 0.05, 0.05])\n\n        return (np.all(abs(fan_qpose - target_qpose) < eps[-4:]) and self.robot.is_left_gripper_open()\n                and self.robot.is_right_gripper_open()) and (np.all(abs(fan_pose - target_pose) < np.array([0.04, 0.04, 0.04])))",
+      "asset_models": [
+        "099_fan"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Grab the fan and place it on a colored mat, and make sure the fan is facing the robot.",
+      "objects": [
+        "099_fan",
+        "block"
+      ],
+      "average_steps": 148,
+      "average_steps_note": "148 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "95%",
+        "ARX-X5": "93%",
+        "Franka-Panda": "83%",
+        "Piper": "0%",
+        "UR5-Wsg": "65%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_fan/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_fan/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_fan/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_fan/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_fan/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_fan/franka-panda_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_fan/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_fan/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_fan/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_fan/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/place_fan.html",
+      "scene_image": "place_fan.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 2211,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "place_mouse_pad",
+      "title": "Place mouse pad",
+      "source_file": "envs/place_mouse_pad.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        mouse_pose = self.mouse.get_pose().p\n        mouse_qpose = np.abs(self.mouse.get_pose().q)\n        target_pos = self.target.get_pose().p\n        eps1 = 0.015\n        eps2 = 0.012\n\n        return (np.all(abs(mouse_pose[:2] - target_pos[:2]) < np.array([eps1, eps2]))\n                and (np.abs(mouse_qpose[2] * mouse_qpose[3] - 0.49) < eps1\n                     or np.abs(mouse_qpose[0] * mouse_qpose[1] - 0.49) < eps1) and self.robot.is_left_gripper_open()\n                and self.robot.is_right_gripper_open())",
+      "asset_models": [
+        "047_mouse"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Grab the mouse and place it on a colored mat.",
+      "objects": [
+        "047_mouse",
+        "block"
+      ],
+      "average_steps": 149,
+      "average_steps_note": "149 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "99%",
+        "ARX-X5": "89%",
+        "Franka-Panda": "100%",
+        "Piper": "23%",
+        "UR5-Wsg": "73%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_mouse_pad/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_mouse_pad/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_mouse_pad/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_mouse_pad/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_mouse_pad/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_mouse_pad/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_mouse_pad/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_mouse_pad/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_mouse_pad/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_mouse_pad/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_mouse_pad/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_mouse_pad/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/place_mouse_pad.html",
+      "scene_image": "place_mouse_pad.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 2034,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "place_object_basket",
+      "title": "Place object basket",
+      "source_file": "envs/place_object_basket.py",
+      "eval_step_limit": 700,
+      "expert_planned_motions": 11,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        toy_p = self.object.get_pose().p\n        basket_p = self.basket.get_pose().p\n        basket_axis = (self.basket.get_pose().to_transformation_matrix()[:3, :3] @ np.array([[0, 1, 0]]).T)\n        obj_contact_table = not self.check_actors_contact(self.object_name, \"table\")\n        obj_contact_basket = self.check_actors_contact(self.object_name, self.basket_name)\n        return (basket_p[2] - self.start_height > 0.02 and \\\n                toy_p[2] - self.object_start_height > 0.02 and \\\n                np.dot(basket_axis.reshape(3), [0, 0, 1]) > 0.5 and \\\n                np.sum(np.sqrt((toy_p - basket_p)**2)) < 0.15 and \\\n                obj_contact_table and obj_contact_basket)",
+      "asset_models": [
+        "057_toycar",
+        "081_playingcards",
+        "110_basket"
+      ],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "Use one arm to grab the target object and put it in the basket, then use the other arm to grab the basket, and finally move the basket slightly away.",
+      "objects": [
+        "057_toycar",
+        "081_playingcards",
+        "110_basket"
+      ],
+      "average_steps": 252,
+      "average_steps_note": "252 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "74%",
+        "ARX-X5": "14%",
+        "Franka-Panda": "61%",
+        "Piper": "0%",
+        "UR5-Wsg": "7%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_basket/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_basket/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_basket/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_basket/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_basket/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_basket/franka-panda_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_basket/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_basket/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_basket/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_basket/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/place_object_basket.html",
+      "scene_image": "place_object_basket.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 3259,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "place_object_scale",
+      "title": "Place object scale",
+      "source_file": "envs/place_object_scale.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        object_pose = self.object.get_pose().p\n        scale_pose = self.scale.get_functional_point(0)\n        distance_threshold = 0.035\n        distance = np.linalg.norm(np.array(scale_pose[:2]) - np.array(object_pose[:2]))\n        check_arm = (self.is_left_gripper_open if self.arm_tag == \"left\" else self.is_right_gripper_open)\n        return (distance < distance_threshold and object_pose[2] > (scale_pose[2] - 0.01) and check_arm())",
+      "asset_models": [
+        "047_mouse",
+        "048_stapler",
+        "050_bell",
+        "072_electronicscale"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Use one arm to grab the object and put it on the scale.",
+      "objects": [
+        "047_mouse",
+        "048_stapler",
+        "050_bell",
+        "072_electronicscale"
+      ],
+      "average_steps": 146,
+      "average_steps_note": "146 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "78%",
+        "ARX-X5": "92%",
+        "Franka-Panda": "82%",
+        "Piper": "2%",
+        "UR5-Wsg": "76%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_scale/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_scale/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_scale/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_scale/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_scale/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_scale/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_scale/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_scale/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_scale/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_scale/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_scale/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_scale/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/place_object_scale.html",
+      "scene_image": "place_object_scale.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 2221,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "place_object_stand",
+      "title": "Place object stand",
+      "source_file": "envs/place_object_stand.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        object_pose = self.object.get_pose().p\n        displaystand_pose = self.displaystand.get_pose().p\n        eps1 = 0.03\n        return (np.all(abs(object_pose[:2] - displaystand_pose[:2]) < np.array([eps1, eps1]))\n                and self.robot.is_left_gripper_open() and self.robot.is_right_gripper_open())",
+      "asset_models": [
+        "047_mouse",
+        "048_stapler",
+        "050_bell",
+        "057_toycar",
+        "073_rubikscube",
+        "074_displaystand",
+        "079_remotecontrol"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Use appropriate arm to place the object on the stand.",
+      "objects": [
+        "047_mouse",
+        "048_stapler",
+        "050_bell",
+        "057_toycar",
+        "073_rubikscube",
+        "074_displaystand",
+        "079_remotecontrol"
+      ],
+      "average_steps": 138,
+      "average_steps_note": "138 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "97%",
+        "ARX-X5": "99%",
+        "Franka-Panda": "81%",
+        "Piper": "9%",
+        "UR5-Wsg": "92%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_stand/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_stand/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_stand/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_stand/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_stand/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_stand/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_stand/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_stand/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_stand/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_stand/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_stand/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_object_stand/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/place_object_stand.html",
+      "scene_image": "place_object_stand.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 1833,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "place_phone_stand",
+      "title": "Place phone stand",
+      "source_file": "envs/place_phone_stand.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 2,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        phone_func_pose = np.array(self.phone.get_functional_point(0))\n        stand_func_pose = np.array(self.stand.get_functional_point(0))\n        eps = np.array([0.045, 0.04, 0.04])\n        return (np.all(np.abs(phone_func_pose - stand_func_pose)[:3] < eps) and self.is_left_gripper_open()\n                and self.is_right_gripper_open())",
+      "asset_models": [
+        "077_phone",
+        "078_phonestand"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Pick up the phone and put it on the phone stand.",
+      "objects": [
+        "077_phone",
+        "078_phonestand"
+      ],
+      "average_steps": 130,
+      "average_steps_note": "130 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "66%",
+        "ARX-X5": "78%",
+        "Franka-Panda": "45%",
+        "Piper": "53%",
+        "UR5-Wsg": "49%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_phone_stand/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_phone_stand/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_phone_stand/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_phone_stand/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_phone_stand/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_phone_stand/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_phone_stand/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_phone_stand/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_phone_stand/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_phone_stand/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_phone_stand/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_phone_stand/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/place_phone_stand.html",
+      "scene_image": "place_phone_stand.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 1669,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "place_shoe",
+      "title": "Place shoe",
+      "source_file": "envs/place_shoe.py",
+      "eval_step_limit": 500,
+      "expert_planned_motions": 4,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        shoe_pose_p = np.array(self.shoe.get_pose().p)\n        shoe_pose_q = np.array(self.shoe.get_pose().q)\n        if shoe_pose_q[0] < 0:\n            shoe_pose_q *= -1\n        target_pose_p = np.array([0, -0.08])\n        target_pose_q = np.array([0.5, 0.5, -0.5, -0.5])\n        eps = np.array([0.05, 0.02, 0.07, 0.07, 0.07, 0.07])\n        return (np.all(abs(shoe_pose_p[:2] - target_pose_p) < eps[:2])\n                and np.all(abs(shoe_pose_q - target_pose_q) < eps[-4:]) and self.is_left_gripper_open()\n                and self.is_right_gripper_open())",
+      "asset_models": [
+        "041_shoe"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Use one arm to grab the shoe from the table and place it on the mat.",
+      "objects": [
+        "041_shoe",
+        "block"
+      ],
+      "average_steps": 178,
+      "average_steps_note": "178 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "84%",
+        "ARX-X5": "85%",
+        "Franka-Panda": "74%",
+        "Piper": "7%",
+        "UR5-Wsg": "91%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_shoe/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_shoe/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_shoe/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_shoe/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_shoe/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_shoe/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_shoe/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_shoe/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_shoe/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_shoe/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_shoe/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/place_shoe/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/place_shoe.html",
+      "scene_image": "place_shoe.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 28831, attempt 2 of 2",
+        "physics_steps": 2373,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "press_stapler",
+      "title": "Press stapler",
+      "source_file": "envs/press_stapler.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        if self.stage_success_tag:\n            return True\n        stapler_pose = self.stapler.get_contact_point(2)[:3]\n        positions = self.get_gripper_actor_contact_position(\"048_stapler\")\n        eps = [0.03, 0.03]\n        for position in positions:\n            if (np.all(np.abs(position[:2] - stapler_pose[:2]) < eps) and abs(position[2] - stapler_pose[2]) < 0.03):\n                self.stage_success_tag = True\n                return True\n        return False",
+      "asset_models": [
+        "048_stapler"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Use one arm to press the stapler.",
+      "objects": [
+        "048_stapler"
+      ],
+      "average_steps": 141,
+      "average_steps_note": "141 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "98%",
+        "ARX-X5": "96%",
+        "Franka-Panda": "100%",
+        "Piper": "59%",
+        "UR5-Wsg": "72%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/press_stapler/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/press_stapler/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/press_stapler/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/press_stapler/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/press_stapler/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/press_stapler/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/press_stapler/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/press_stapler/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/press_stapler/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/press_stapler/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/press_stapler/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/press_stapler/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/press_stapler.html",
+      "scene_image": "press_stapler.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 1611,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "put_bottles_dustbin",
+      "title": "Put bottles dustbin",
+      "source_file": "envs/put_bottles_dustbin.py",
+      "eval_step_limit": 1700,
+      "expert_planned_motions": 10,
+      "expert_methods": [
+        "play_once",
+        "stage_reward"
+      ],
+      "success_check": "def check_success(self):\n        taget_pose = [-0.45, 0]\n        eps = np.array([0.221, 0.325])\n        for i in range(self.bottle_num):\n            bottle_pose = self.bottles[i].get_pose().p\n            if (np.all(np.abs(bottle_pose[:2] - taget_pose) < eps) and bottle_pose[2] > 0.2 and bottle_pose[2] < 0.7):\n                continue\n            return False\n        return True",
+      "asset_models": [
+        "011_dustbin",
+        "114_bottle"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Use arms to grab the bottles and put them into the dustbin to the left of the table.",
+      "objects": [
+        "011_dustbin",
+        "114_bottle"
+      ],
+      "average_steps": 637,
+      "average_steps_note": "637 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "71%",
+        "ARX-X5": "1%",
+        "Franka-Panda": "0%",
+        "Piper": "56%",
+        "UR5-Wsg": "0%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/put_bottles_dustbin/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/put_bottles_dustbin/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/put_bottles_dustbin/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/put_bottles_dustbin/aloha-agilex_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/put_bottles_dustbin/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/put_bottles_dustbin/piper_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/put_bottles_dustbin/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/put_bottles_dustbin/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/put_bottles_dustbin.html",
+      "scene_image": "put_bottles_dustbin.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 28831, attempt 2 of 2",
+        "physics_steps": 8849,
+        "scene_image": "initial scene, head camera, 640x480, before any motion",
+        "expert_pass_rate": "5/6 uncommon seeds, one attempt each, replay bit-exact required"
+      }
+    },
+    {
+      "id": "put_object_cabinet",
+      "title": "Put object cabinet",
+      "source_file": "envs/put_object_cabinet.py",
+      "eval_step_limit": 700,
+      "expert_planned_motions": 5,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        object_pose = self.object.get_pose().p\n        target_pose = self.cabinet.get_functional_point(0)\n        tag = np.all(abs(object_pose[:2] - target_pose[:2]) < np.array([0.05, 0.05]))\n        return ((object_pose[2] - self.origin_z) > 0.007 and (object_pose[2] - self.origin_z) < 0.12 and tag\n                and (self.robot.is_left_gripper_open() if self.arm_tag == \"left\" else self.robot.is_right_gripper_open()))",
+      "asset_models": [
+        "036_cabinet",
+        "047_mouse",
+        "048_stapler",
+        "057_toycar",
+        "073_rubikscube",
+        "075_bread",
+        "077_phone",
+        "081_playingcards",
+        "107_soap",
+        "112_tea-box",
+        "113_coffee-box"
+      ],
+      "articulated": true,
+      "uses_both_arms": true,
+      "instruction": "Use one arm to open the cabinet's drawer, and use another arm to put the object on the table to the drawer.",
+      "objects": [
+        "036_cabinet",
+        "047_mouse",
+        "048_stapler",
+        "057_toycar",
+        "073_rubikscube",
+        "075_bread",
+        "077_phone",
+        "081_playingcards",
+        "107_soap",
+        "112_tea-box",
+        "113_coffee-box"
+      ],
+      "average_steps": 274,
+      "average_steps_note": "274 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "14%",
+        "ARX-X5": "24%",
+        "Franka-Panda": "55%",
+        "Piper": "0%",
+        "UR5-Wsg": "0%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/put_object_cabinet/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/put_object_cabinet/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/put_object_cabinet/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/put_object_cabinet/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/put_object_cabinet/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/put_object_cabinet/franka-panda_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/put_object_cabinet/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/put_object_cabinet/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/put_object_cabinet.html",
+      "scene_image": "put_object_cabinet.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "failed on all 6 attempts (check_success false)",
+        "scene_image": "initial scene, head camera, 640x480, before any motion",
+        "expert_pass_rate": "0/6 uncommon seeds, one attempt each, replay bit-exact required"
+      }
+    },
+    {
+      "id": "rotate_qrcode",
+      "title": "Rotate QR code",
+      "source_file": "envs/rotate_qrcode.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        qrcode_quat = self.qrcode.get_pose().q\n        qrcode_pos = self.qrcode.get_pose().p\n        target_quat = [0.707, 0.707, 0, 0]\n        if qrcode_quat[0] < 0:\n            qrcode_quat = qrcode_quat * -1\n        eps = 0.05\n        return (np.all(np.abs(qrcode_quat - target_quat) < eps) and qrcode_pos[2] < 0.75 + self.table_z_bias\n                and self.is_left_gripper_open() and self.is_right_gripper_open())",
+      "asset_models": [
+        "070_paymentsign"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Use arm to catch the qrcode board on the table, pick it up and rotate to let the qrcode face towards the robot.",
+      "objects": [
+        "070_paymentsign"
+      ],
+      "average_steps": 155,
+      "average_steps_note": "155 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "75%",
+        "ARX-X5": "74%",
+        "Franka-Panda": "94%",
+        "Piper": "0%",
+        "UR5-Wsg": "67%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/rotate_qrcode/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/rotate_qrcode/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/rotate_qrcode/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/rotate_qrcode/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/rotate_qrcode/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/rotate_qrcode/franka-panda_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/rotate_qrcode/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/rotate_qrcode/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/rotate_qrcode/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/rotate_qrcode/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/rotate_qrcode.html",
+      "scene_image": "rotate_qrcode.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 28831, attempt 2 of 2",
+        "physics_steps": 2067,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "scan_object",
+      "title": "Scan object",
+      "source_file": "envs/scan_object.py",
+      "eval_step_limit": 500,
+      "expert_planned_motions": 4,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        object_pose = self.object.get_pose().p\n        scanner_func_pose = self.scanner.get_functional_point(0)\n        target_vec = t3d.quaternions.quat2mat(scanner_func_pose[-4:]) @ np.array([0, 0, -1])\n        obj2scanner_vec = scanner_func_pose[:3] - object_pose\n        dis = np.sum(target_vec * obj2scanner_vec)\n        object_pose1 = object_pose + dis * target_vec\n        eps = 0.025\n        return (np.all(np.abs(object_pose1 - scanner_func_pose[:3]) < eps) and dis > 0 and dis < 0.07\n                and self.is_left_gripper_close() and self.is_right_gripper_close())",
+      "asset_models": [
+        "024_scanner",
+        "112_tea-box"
+      ],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "Use one arm to pick the scanner and use the other arm to pick the object, and use the scanner to scan the object.",
+      "objects": [
+        "024_scanner",
+        "112_tea-box"
+      ],
+      "average_steps": 170,
+      "average_steps_note": "170 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "4%",
+        "ARX-X5": "45%",
+        "Franka-Panda": "26%",
+        "Piper": "0%",
+        "UR5-Wsg": "19%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/scan_object/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/scan_object/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/scan_object/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/scan_object/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/scan_object/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/scan_object/franka-panda_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/scan_object/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/scan_object/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/scan_object/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/scan_object/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/scan_object.html",
+      "scene_image": "scan_object.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 2286,
+        "scene_image": "initial scene, head camera, 640x480, before any motion",
+        "expert_pass_rate": "3/6 uncommon seeds, one attempt each, replay bit-exact required"
+      }
+    },
+    {
+      "id": "shake_bottle",
+      "title": "Shake bottle",
+      "source_file": "envs/shake_bottle.py",
+      "eval_step_limit": 700,
+      "expert_planned_motions": 5,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        bottle_pose = self.bottle.get_pose().p\n        return bottle_pose[2] > 0.8 + self.table_z_bias",
+      "asset_models": [
+        "001_bottle"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Shake the bottle with proper arm.",
+      "objects": [
+        "001_bottle"
+      ],
+      "average_steps": 246,
+      "average_steps_note": "246 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "89%",
+        "ARX-X5": "94%",
+        "Franka-Panda": "85%",
+        "Piper": "74%",
+        "UR5-Wsg": "97%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/shake_bottle.html",
+      "scene_image": "shake_bottle.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 3276,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "shake_bottle_horizontally",
+      "title": "Shake bottle horizontally",
+      "source_file": "envs/shake_bottle_horizontally.py",
+      "eval_step_limit": 700,
+      "expert_planned_motions": 8,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        bottle_pose = self.bottle.get_pose().p\n        return bottle_pose[2] > 0.8 + self.table_z_bias",
+      "asset_models": [
+        "001_bottle"
+      ],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "Shake the bottle horizontally with proper arm.",
+      "objects": [
+        "001_bottle"
+      ],
+      "average_steps": 276,
+      "average_steps_note": "276 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "90%",
+        "ARX-X5": "94%",
+        "Franka-Panda": "85%",
+        "Piper": "74%",
+        "UR5-Wsg": "98%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle_horizontally/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle_horizontally/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle_horizontally/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle_horizontally/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle_horizontally/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle_horizontally/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle_horizontally/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle_horizontally/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle_horizontally/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle_horizontally/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle_horizontally/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/shake_bottle_horizontally/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/shake_bottle_horizontally.html",
+      "scene_image": "shake_bottle_horizontally.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 3690,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "stack_blocks_three",
+      "title": "Stack blocks three",
+      "source_file": "envs/stack_blocks_three.py",
+      "eval_step_limit": 1200,
+      "expert_planned_motions": 5,
+      "expert_methods": [
+        "play_once",
+        "pick_and_place_block"
+      ],
+      "success_check": "def check_success(self):\n        block1_pose = self.block1.get_pose().p\n        block2_pose = self.block2.get_pose().p\n        block3_pose = self.block3.get_pose().p\n        eps = [0.025, 0.025, 0.012]\n\n        return (np.all(abs(block2_pose - np.array(block1_pose[:2].tolist() + [block1_pose[2] + 0.05])) < eps)\n                and np.all(abs(block3_pose - np.array(block2_pose[:2].tolist() + [block2_pose[2] + 0.05])) < eps)\n                and self.is_left_gripper_open() and self.is_right_gripper_open())",
+      "asset_models": [],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "There are three blocks on the table, the color of the blocks is red, green and blue. Move the blocks to the center of the table, and stack the blue block on the green block, and the green block on the red block.",
+      "objects": [
+        "block"
+      ],
+      "average_steps": 481,
+      "average_steps_note": "481 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "94%",
+        "ARX-X5": "96%",
+        "Franka-Panda": "80%",
+        "Piper": "0%",
+        "UR5-Wsg": "51%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_three/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_three/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_three/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_three/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_three/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_three/franka-panda_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_three/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_three/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_three/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_three/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/stack_blocks_three.html",
+      "scene_image": "stack_blocks_three.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 6311,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "stack_blocks_two",
+      "title": "Stack blocks two",
+      "source_file": "envs/stack_blocks_two.py",
+      "eval_step_limit": 800,
+      "expert_planned_motions": 5,
+      "expert_methods": [
+        "play_once",
+        "pick_and_place_block"
+      ],
+      "success_check": "def check_success(self):\n        block1_pose = self.block1.get_pose().p\n        block2_pose = self.block2.get_pose().p\n        eps = [0.025, 0.025, 0.012]\n\n        return (np.all(abs(block2_pose - np.array(block1_pose[:2].tolist() + [block1_pose[2] + 0.05])) < eps)\n                and self.is_left_gripper_open() and self.is_right_gripper_open())",
+      "asset_models": [],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "There are two blocks on the table, the color of the blocks is red, green. Move the blocks to the center of the table, and stack the geen block on the red block.",
+      "objects": [
+        "block"
+      ],
+      "average_steps": 316,
+      "average_steps_note": "316 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "98%",
+        "ARX-X5": "99%",
+        "Franka-Panda": "96%",
+        "Piper": "2%",
+        "UR5-Wsg": "68%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_two/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_two/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_two/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_two/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_two/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_two/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_two/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_two/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_two/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_two/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_two/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_blocks_two/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/stack_blocks_two.html",
+      "scene_image": "stack_blocks_two.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 4308,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "stack_bowls_three",
+      "title": "Stack bowls three",
+      "source_file": "envs/stack_bowls_three.py",
+      "eval_step_limit": 1200,
+      "expert_planned_motions": 5,
+      "expert_methods": [
+        "move_bowl",
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        bowl1_pose = self.bowl1.get_pose().p\n        bowl2_pose = self.bowl2.get_pose().p\n        bowl3_pose = self.bowl3.get_pose().p\n        bowl1_pose, bowl2_pose, bowl3_pose = sorted([bowl1_pose, bowl2_pose, bowl3_pose], key=lambda x: x[2])\n        target_height = [\n            0.74 + self.table_z_bias,\n            0.77 + self.table_z_bias,\n            0.81 + self.table_z_bias,\n        ]\n        eps = 0.02\n        eps2 = 0.04\n        return (np.all(abs(bowl1_pose[:2] - bowl2_pose[:2]) < eps2)\n                and np.all(abs(bowl2_pose[:2] - bowl3_pose[:2]) < eps2)\n                and np.all(np.array([bowl1_pose[2], bowl2_pose[2], bowl3_pose[2]]) - target_height < eps)\n                and self.is_left_gripper_open() and self.is_right_gripper_open())",
+      "asset_models": [
+        "002_bowl"
+      ],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "Stack the three bowls on top of each other.",
+      "objects": [
+        "002_bowl"
+      ],
+      "average_steps": 476,
+      "average_steps_note": "476 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "43%",
+        "ARX-X5": "57%",
+        "Franka-Panda": "82%",
+        "Piper": "0%",
+        "UR5-Wsg": "81%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_three/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_three/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_three/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_three/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_three/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_three/franka-panda_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_three/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_three/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_three/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_three/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/stack_bowls_three.html",
+      "scene_image": "stack_bowls_three.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 6425,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "stack_bowls_two",
+      "title": "Stack bowls two",
+      "source_file": "envs/stack_bowls_two.py",
+      "eval_step_limit": 900,
+      "expert_planned_motions": 5,
+      "expert_methods": [
+        "move_bowl",
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        bowl1_pose = self.bowl1.get_pose().p\n        bowl2_pose = self.bowl2.get_pose().p\n        bowl1_pose, bowl2_pose = sorted([bowl1_pose, bowl2_pose], key=lambda x: x[2])\n        target_height = [\n            0.74 + self.table_z_bias,\n            0.77 + self.table_z_bias,\n        ]\n        eps = 0.02\n        eps2 = 0.04\n        return (np.all(abs(bowl1_pose[:2] - bowl2_pose[:2]) < eps2)\n                and np.all(np.array([bowl1_pose[2], bowl2_pose[2]]) - target_height < eps)\n                and self.is_left_gripper_open() and self.is_right_gripper_open())",
+      "asset_models": [
+        "002_bowl"
+      ],
+      "articulated": false,
+      "uses_both_arms": true,
+      "instruction": "Stack the two bowls on top of each other.",
+      "objects": [
+        "002_bowl"
+      ],
+      "average_steps": 313,
+      "average_steps_note": "313 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "78%",
+        "ARX-X5": "82%",
+        "Franka-Panda": "88%",
+        "Piper": "4%",
+        "UR5-Wsg": "94%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_two/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_two/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_two/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_two/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_two/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_two/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_two/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_two/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_two/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_two/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_two/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stack_bowls_two/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/stack_bowls_two.html",
+      "scene_image": "stack_bowls_two.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 60417, attempt 1 of 1",
+        "physics_steps": 3967,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    },
+    {
+      "id": "stamp_seal",
+      "title": "Stamp seal",
+      "source_file": "envs/stamp_seal.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 3,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        seal_pose = self.seal.get_pose().p\n        target_pos = self.target.get_pose().p\n        eps1 = 0.01\n\n        return (np.all(abs(seal_pose[:2] - target_pos[:2]) < np.array([eps1, eps1]))\n                and self.robot.is_left_gripper_open() and self.robot.is_right_gripper_open())",
+      "asset_models": [
+        "100_seal"
+      ],
+      "articulated": false,
+      "uses_both_arms": false,
+      "instruction": "Grab the stamp and stamp onto the specific color mat.",
+      "objects": [
+        "100_seal",
+        "block"
+      ],
+      "average_steps": 151,
+      "average_steps_note": "151 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "56%",
+        "ARX-X5": "91%",
+        "Franka-Panda": "4%",
+        "Piper": "37%",
+        "UR5-Wsg": "100%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stamp_seal/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stamp_seal/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stamp_seal/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stamp_seal/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stamp_seal/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stamp_seal/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stamp_seal/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stamp_seal/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stamp_seal/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stamp_seal/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stamp_seal/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/stamp_seal/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/stamp_seal.html",
+      "scene_image": "stamp_seal.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 91573, attempt 3 of 3",
+        "physics_steps": 1879,
+        "scene_image": "initial scene, head camera, 640x480, before any motion",
+        "expert_pass_rate": "3/6 uncommon seeds, one attempt each, replay bit-exact required"
+      }
+    },
+    {
+      "id": "turn_switch",
+      "title": "Turn switch",
+      "source_file": "envs/turn_switch.py",
+      "eval_step_limit": 400,
+      "expert_planned_motions": 2,
+      "expert_methods": [
+        "play_once"
+      ],
+      "success_check": "def check_success(self):\n        limit = self.switch.get_qlimits()[0]\n        return self.switch.get_qpos()[0] >= limit[1] - 0.05",
+      "asset_models": [
+        "056_switch"
+      ],
+      "articulated": true,
+      "uses_both_arms": false,
+      "instruction": "Use the robotic arm to click the switch.",
+      "objects": [
+        "056_switch"
+      ],
+      "average_steps": 95,
+      "average_steps_note": "95 (Aloha-AgileX, save_freq=15)",
+      "data_gen_success": {
+        "Aloha-AgileX": "74%",
+        "ARX-X5": "3%",
+        "Franka-Panda": "36%",
+        "Piper": "81%",
+        "UR5-Wsg": "10%"
+      },
+      "embodiments": [
+        "Aloha-AgileX",
+        "ARX-X5",
+        "Franka-Panda",
+        "Piper",
+        "UR5-Wsg"
+      ],
+      "videos": {
+        "ARX-X5_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/turn_switch/ARX-X5_head.mp4",
+        "ARX-X5_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/turn_switch/ARX-X5_world.mp4",
+        "aloha-agilex_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/turn_switch/aloha-agilex_head.mp4",
+        "aloha-agilex_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/turn_switch/aloha-agilex_world.mp4",
+        "franka-panda_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/turn_switch/franka-panda_head.mp4",
+        "franka-panda_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/turn_switch/franka-panda_world.mp4",
+        "piper_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/turn_switch/piper_head.mp4",
+        "piper_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/turn_switch/piper_world.mp4",
+        "ur5-wsg_head": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/turn_switch/ur5-wsg_head.mp4",
+        "ur5-wsg_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/turn_switch/ur5-wsg_world.mp4"
+      },
+      "oracle_video": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/turn_switch/aloha-agilex_head.mp4",
+      "oracle_video_world": "https://robotwin-platform.github.io/doc/tasks/task_video_clean/turn_switch/aloha-agilex_world.mp4",
+      "doc_url": "https://robotwin-platform.github.io/doc/tasks/turn_switch.html",
+      "scene_image": "turn_switch.jpg",
+      "_verified": {
+        "source": "rendered and run in our rcb-robotwin image (robot_coding_bench images/robotwin)",
+        "stack": "RoboTwin 2.0 @ 6dde571, SAPIEN 3.0.0b1 (PhysX), CuRobo 0.7.8, ALOHA-AgileX, clean scene",
+        "checked": "2026-09-22",
+        "expert_run": "succeeded on seed 91573, attempt 3 of 3",
+        "physics_steps": 1348,
+        "scene_image": "initial scene, head camera, 640x480, before any motion"
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+# The public build's settings: `make public`, which .github/workflows/deploy.yml publishes (scripts/sitemode.py).
+
+# Benchmarks whose demos the public site links to the official video instead of carrying our copies. GitHub Pages
+# publishes at most 1 GB, and BEHAVIOR-1K's 98 copies alone are 1.1 GB (owners' decision, 2026-09-28: option A).
+link_demos: [behavior-1k]
+
+# Where the agent runs' replays and images are hosted, outside GitHub Pages (4.6 GB of video and 3 GB of images).
+# `make export-run-media` writes them, with a manifest, ready to upload (for instance to a Hugging Face dataset, whose
+# files are then at https://huggingface.co/datasets/<org>/<name>/resolve/main/). Put that address here, ending in
+# "/"; a log page then loads <run_media_base><benchmark>/<run>/<task>/<slot>/<file>. Empty: the log pages say
+# "media not yet published".
+run_media_base: ""

@@ -1,0 +1,63 @@
+id: robowits
+name: RoboWits
+edition: code release 2026-06-04 (commit 9cc30ae)
+status: active
+simulator: Genesis 0.4.7 (gs_gym)
+description: >-
+  30 seed tabletop tasks for a fixed bimanual robot, each requiring a physical insight
+  rather than a longer motion: use a ruler to align, a dustpan to sweep, a funnel to pour,
+  an inclined plane to move a box. 163 published mutations vary the scene while keeping
+  the parent task's success predicate. Scored by the task's own success check.
+
+links:
+  paper: https://arxiv.org/abs/2605.30326
+  project_page: https://umass-embodied-agi.github.io/RoboWits/
+  repository: https://github.com/UMass-Embodied-AGI/RoboWits
+  dataset: https://huggingface.co/datasets/XHRlyb2001/RoboWits_lerobot_dataset
+  assets: https://huggingface.co/datasets/XHRlyb2001/RoboWits_assets
+
+embodiment:
+  robot: Marvin (bimanual)
+  dof: 18 — two 7-DoF arms, two 2-finger Pika grippers
+  control_modes: [EE_ABS, EE_DELTA, JOINT_ABS, JOINT_DELTA]
+  control_rate_hz: 30
+  observations: [rgb, proprioception]
+  cameras:
+    ego: 848x480
+    wrist_left: 848x480
+    wrist_right: 848x480
+  notes: >-
+    Fixed base at a table; no navigation. State-based observation is available in
+    simulation, so a task can be run privileged or from pixels.
+
+dataset:
+  format: LeRobot
+  demonstrations: ~50 per task on 24 of the 30 seed tasks
+  evaluation_scenes: 50 per task, shipped in the repository as dataset/robowits/eval_dataset_50/<NN>.json
+
+# RoboWits publishes no annotated skill vocabulary, so `skills:` on a task page
+# cannot be validated against one. What it does publish per task is an explicit
+# success-criteria list, mirrored into `upstream.success_criteria`.
+skill_vocabulary: []
+
+scenes:
+  - robowits_table
+
+# What we run it on, and what that costs — measured, not quoted.
+# See robot_coding_bench: images/robowits, tasks/robowits-stack-cubes-i00.
+integration:
+  image: nvidia/cuda 12.9 + RoboWits @ 9cc30ae installed from its own uv.lock (~20 GB)
+  physics_backend: CPU — Genesis' GPU backend settles contacts differently run to run
+  determinism: bit-exact across processes on the CPU backend (measured over 13 builds)
+  throughput: ~700 control steps/s without rendering, ~30 with three 848x480 cameras
+  scene_build: ~60 s per process (offline kernel cache disabled so every process compiles alike)
+  assets: >-
+    27 of the 30 seed tasks load BlenderKit meshes that may not be redistributed; the host
+    owner downloads them with a personal API key. Only 06 dominos, 07 stand pages and
+    14 stack cubes run from the Apache-2.0 asset bundle alone.
+
+baselines:
+  - name: ACT
+    kind: imitation learning
+  - name: "pi-0 / pi-0.5"
+    kind: vision-language-action

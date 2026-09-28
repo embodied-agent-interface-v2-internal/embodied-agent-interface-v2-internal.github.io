@@ -1,0 +1,31 @@
+{#-
+  Per-task discussion threads via giscus, which stores each thread as a GitHub
+  Discussion. Rendered only when `extra.giscus.repo` is configured, so the site
+  builds cleanly before anyone sets up Discussions.
+
+  Enabled on task pages automatically; any other page can opt in with
+  `comments: true` in its frontmatter.
+-#}
+{% set giscus = config.extra.giscus | default({}) %}
+{% if giscus.repo and (page.meta.task_id or page.meta.comments) %}
+  <h2 id="discussion-thread">Discussion thread</h2>
+  <p class="rb-gallery__count">
+    Backed by GitHub Discussions. Decisions that come out of a thread belong in
+    the page itself — the thread is the argument, the page is the conclusion.
+  </p>
+  <script src="https://giscus.app/client.js"
+          data-repo="{{ giscus.repo }}"
+          data-repo-id="{{ giscus.repo_id }}"
+          data-category="{{ giscus.category }}"
+          data-category-id="{{ giscus.category_id }}"
+          data-mapping="pathname"
+          data-strict="1"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="top"
+          data-theme="preferred_color_scheme"
+          data-lang="en"
+          crossorigin="anonymous"
+          async>
+  </script>
+{% endif %}

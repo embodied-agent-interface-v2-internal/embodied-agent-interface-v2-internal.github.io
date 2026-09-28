@@ -1,0 +1,84 @@
+# BEHAVIOR-1K's agent runs. Owned by the benchmark's owner, curated by hand like everything in state/.
+# Format: docs/contributing/registering-runs.md. scripts/import_runs.py reads it to know which Harbor batches hold
+# which run of which task; the site greys out every task that is removed from a run and says why.
+#
+#   default    the run the task list, the task pages and data/runs/status.json show first
+#   task_dir   the task's directory in robot_coding_bench: Harbor names a job <batch>-<mode>-<task dir>
+#   runs       run id (data/agents/<id>.yml) -> this benchmark's part in it:
+#     batch          the Harbor batch (robot_coding_bench scripts/run_agent_batch.sh)
+#     rerun_batches  later batches; for a task and mode the last batch that has the job wins, the earlier one
+#                    stays as history (its log page moves to <mode>-prev)
+#     rerun_all      true: the last rerun batch reruns every task and mode; until it starts a job, that job reads
+#                    "rerun queued" and the earlier result stays as history
+#     tasks          task ids in the run; each runs once per mode
+#     removed        task id -> why it is not in the run (shown grey)
+#     others         why every task in neither list is not in it (shown in colour: merely not built for it)
+#     followups      {task, mode, trial, note}: what is arranged for one trial; the note goes away by itself once
+#                    another trial replaces that one
+#     closed         why the run is over; its never-started jobs then read "not run" instead of "queued"
+
+default: codex-0.157-gpt6luna-xhigh-cgpt
+task_dir: "behavior-{task_dashed}-i00"
+# the partial credit beside success: the 2026 challenge's q_score (every other benchmark: the grader's final_reward)
+progress: q_score
+
+runs:
+  codex-0.157-gpt6luna-xhigh-cgpt:
+    batch: behavior-lunaxh-0925-2057
+    # 2026-09-27 01:00: every job reruns with the 8-thread cap (commit 912567f); the old batch's runs stay as history
+    rerun_batches: [behavior-lunaxh-t8-0927]
+    rerun_all: true
+    tasks:
+    - picking_up_trash
+    - putting_shoes_on_rack
+    - composting_waste
+    - make_rose_centerpieces
+    - organizing_art_supplies
+    - set_up_a_coffee_station_in_your_kitchen
+    - hiding_Easter_eggs
+    - sorting_books_on_shelf
+    - clean_up_broken_glass
+    - packing_meal_for_delivery
+    - dispose_of_glass
+    - setting_mousetraps
+    - carrying_out_garden_furniture
+    - putting_up_Christmas_decorations_inside
+    - stacking_wood
+    - setting_the_table
+    - boxing_food_after_dinner
+    - rearranging_kitchen_furniture
+    - bringing_paper_to_recycling
+    - put_together_a_basic_pruning_kit
+    - clearing_food_from_table_into_fridge
+    - carrying_in_groceries
+    - turning_on_radio
+    - installing_a_scanner
+    - cook_broccolini
+    - cook_a_brisket
+    - thawing_frozen_food
+    - setting_the_fire
+    - hanging_pictures
+    - vacuuming_floors
+    # 2026-09-27 01:45, user: 12 more (GPU 0 and GPU 4 on lab), run only in behavior-lunaxh-t8-0927
+    - store_honey
+    - make_gift_bags_for_baby_showers
+    - preparing_lunch_box
+    - bringing_water
+    - outfit_a_basic_toolbox
+    - store_produce
+    - putting_dirty_dishes_in_sink
+    - unloading_the_car
+    - tidying_living_room
+    - collecting_aluminum_cans
+    - rearrange_your_room
+    - laying_tile_floors
+    # 2026-09-27 14:00: 7 more for lab GPU 4's relay (user: "再选 7 个任务采样出来，然后跑起来…给他一个接力")
+    - putting_dishes_away_after_cleaning
+    - tidying_bedroom
+    - can_meat
+    - cleaning_up_branches_and_twigs
+    - tidying_bathroom
+    - setup_a_bar_for_a_cocktail_party
+    - dispose_of_batteries
+    others: 'not among the 30 chosen for the first round (2026-09-26): mostly particles, cutting and liquids, or long tidy-ups
+      like chosen ones'

@@ -1,0 +1,46 @@
+# Build output — the gallery, triage board and coverage pages are generated
+# here at build time and must never be committed.
+site/
+
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.cache/
+.DS_Store
+.idea/
+.vscode/
+
+# The oracle demos under docs/assets/<benchmark>/demos/ ARE committed — they are
+# the content of this site. Video is ignored everywhere else, because contributed
+# screenshots and rollouts belong on an external host, referenced by URL.
+*.mp4
+*.webm
+!docs/assets/*/demos/*.mp4
+
+# Simulator data is terabytes; never commit it.
+*.hdf5
+data/behavior/
+
+# Scratch space. Anything here is working material — surveys of upstream, notes,
+# one-off extracts — and is deliberately never tracked or published.
+/tmp/
+
+tmp/*
+# What scripts/import_runs.py collects about the agent runs, and the machines it reads: local only.
+# (data/runs/<benchmark>/<run>.json, status.json, hosts*.local.yml; the registry itself is committed:
+# data/agents/, data/prices.yml, state/runs/.)
+data/runs/status.json
+data/runs/*.tmp
+data/runs/*.local.yml
+data/runs/*/
+data/runs/logs_cache.json
+# The log pages' data (scripts/runlog.py): every trial's model exchanges, images and replay, local only.
+docs/assets/*/runs/
+
+# Machine-specific make settings (e.g. ROBOPAINT_DEMOS=host:dir): local only.
+Makefile.local
+
+# Registry files only this machine has (runs kept out of git), read by scripts/runsdb.py.
+data/agents/*.local.yml
+state/runs/*.local.yml

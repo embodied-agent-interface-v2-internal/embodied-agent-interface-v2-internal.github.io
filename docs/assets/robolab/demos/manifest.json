@@ -1,0 +1,101 @@
+{
+  "banana_in_bowl": {
+    "bytes": 298457,
+    "height": 480,
+    "poster": true,
+    "seconds": 11,
+    "source": "Recorded by us: the reference solution in robot_coding_bench (tasks/robolab-banana-in-bowl-i00), replayed by the verifier.",
+    "width": 854
+  },
+  "bananas_out_of_bin": {
+    "bytes": 954229,
+    "height": 480,
+    "poster": true,
+    "seconds": 20,
+    "width": 864
+  },
+  "block_stacking_specified_order": {
+    "bytes": 1577917,
+    "height": 480,
+    "poster": true,
+    "seconds": 30,
+    "width": 864
+  },
+  "clutter_plastic": {
+    "bytes": 5042627,
+    "height": 480,
+    "poster": true,
+    "seconds": 21,
+    "width": 2570
+  },
+  "cooking_clear_plate": {
+    "bytes": 1788459,
+    "height": 480,
+    "poster": true,
+    "seconds": 9,
+    "width": 2570
+  },
+  "food_packing1_cans": {
+    "bytes": 2394864,
+    "height": 480,
+    "poster": true,
+    "seconds": 38,
+    "width": 864
+  },
+  "fruits_green_limes_on_plate": {
+    "bytes": 1904980,
+    "height": 480,
+    "poster": true,
+    "seconds": 30,
+    "width": 864
+  },
+  "fruits_moving": {
+    "bytes": 1169780,
+    "height": 480,
+    "poster": true,
+    "seconds": 20,
+    "width": 864
+  },
+  "fruits_onion": {
+    "bytes": 824207,
+    "height": 480,
+    "poster": true,
+    "seconds": 11,
+    "width": 864
+  },
+  "hammers_in_left_bin": {
+    "bytes": 3626351,
+    "height": 480,
+    "poster": true,
+    "seconds": 60,
+    "width": 864
+  },
+  "reorient_white_mugs": {
+    "bytes": 2159912,
+    "height": 480,
+    "poster": true,
+    "seconds": 9,
+    "width": 2570
+  },
+  "unstack_rubiks_cube": {
+    "bytes": 1530588,
+    "height": 480,
+    "poster": true,
+    "seconds": 30,
+    "width": 864
+  },
+  "white_mug_in_center_of_table": {
+    "bytes": 285384,
+    "height": 480,
+    "poster": true,
+    "seconds": 5,
+    "width": 864
+  },
+  "yogurt_in_bowl": {
+    "bytes": 325052,
+    "height": 480,
+    "poster": true,
+    "seconds": 4,
+    "width": 864
+  }
+}

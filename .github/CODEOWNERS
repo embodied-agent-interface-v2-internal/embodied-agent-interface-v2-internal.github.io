@@ -1,0 +1,19 @@
+# Review routing.
+#
+# Task pages are intentionally NOT owned by anyone: the point of one-file-per-task
+# is that contributors merge their own work without a bottleneck.
+#
+# The shared surfaces below do need review, because a bad change there affects
+# everybody at once. The rules are commented out until the organisation has these
+# teams (or name people instead, e.g. @handle): GitHub flags owners that do not
+# exist, and requests no review from them.
+
+# /state/taxonomy.yml       @embodied-agent-interface-v2-internal/benchmark-maintainers
+# /data/benchmarks/         @embodied-agent-interface-v2-internal/benchmark-maintainers
+# /state/runs/              @embodied-agent-interface-v2-internal/benchmark-maintainers
+
+# /scripts/                 @embodied-agent-interface-v2-internal/tooling
+# /mkdocs.yml               @embodied-agent-interface-v2-internal/tooling
+# /overrides/               @embodied-agent-interface-v2-internal/tooling
+# /.github/                 @embodied-agent-interface-v2-internal/tooling
+# /requirements.txt         @embodied-agent-interface-v2-internal/tooling

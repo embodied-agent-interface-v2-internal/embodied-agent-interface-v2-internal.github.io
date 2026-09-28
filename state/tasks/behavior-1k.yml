@@ -1,0 +1,1009 @@
+# Curated task state for behavior-1k.
+#
+# One block per task. Written by the site's Edit button and by hand; both are
+# fine. Task ids match docs/benchmarks/behavior-1k/tasks/<id>.md.
+#
+#   status      keep | drop | needs-review | pending
+#   difficulty  unrated | easy | medium | hard | extreme
+#   labels      tier-2 ids from state/taxonomy.yml
+#   owner       bare GitHub handle
+#   note        free text; why you decided what you decided
+
+assembling_gift_baskets:
+  difficulty: hard
+  labels:
+  - scale-room
+  - transport
+  - quantified-goal
+  - geometric-constraint
+  - horizon-activity
+  - gen-layout
+attach_a_camera_to_a_tripod:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - precision-fit
+  - horizon-composite
+  - gen-layout
+boxing_books_up_for_storage:
+  difficulty: hard
+  labels:
+  - scale-room
+  - transport
+  - horizon-activity
+  - gen-layout
+boxing_food_after_dinner:
+  difficulty: medium
+  labels:
+  - scale-building
+  - transport
+  - articulated
+  - horizon-composite
+  - ordered
+  - partial-observability
+  - gen-layout
+bringing_in_wood:
+  difficulty: medium
+  labels:
+  - scale-outdoor
+  - bimanual
+  - transport
+  - horizon-composite
+  - gen-layout
+bringing_paper_to_recycling:
+  difficulty: hard
+  labels:
+  - scale-outdoor
+  - transport
+  - articulated
+  - horizon-composite
+  - ordered
+  - partial-observability
+  - gen-layout
+bringing_water:
+  difficulty: hard
+  labels:
+  - scale-building
+  - transport
+  - articulated
+  - horizon-composite
+  - ordered
+  - partial-observability
+  - gen-layout
+can_meat:
+  difficulty: hard
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - precision-fit
+  - quantified-goal
+  - horizon-composite
+  - ordered
+  - partial-observability
+  - gen-layout
+  note: 'Dense multi-constraint goal: ordering, exact counts, a distribution constraint
+    across two containers, and low-clearance insertion. High discriminative value
+    per episode.'
+  skills:
+  - open door
+  - open lid
+  - pick up from
+  - place in
+  - close lid
+  - close door
+  tags:
+  - reference-example
+canning_food:
+  difficulty: extreme
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - fluid-granular
+  - tool-use
+  - cutting
+  - quantified-goal
+  - horizon-activity
+  - irreversible
+  - ordered
+  - partial-observability
+  - gen-layout
+carrying_in_groceries:
+  difficulty: hard
+  labels:
+  - scale-building
+  - transport
+  - articulated
+  - horizon-composite
+  - ordered
+  - partial-observability
+  - gen-layout
+carrying_out_garden_furniture:
+  difficulty: medium
+  labels:
+  - scale-outdoor
+  - bimanual
+  - transport
+  - horizon-composite
+  - gen-layout
+chop_an_onion:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - fluid-granular
+  - tool-use
+  - cutting
+  - horizon-composite
+  - irreversible
+  - gen-layout
+chopping_wood:
+  difficulty: hard
+  labels:
+  - scale-outdoor
+  - transport
+  - tool-use
+  - cutting
+  - horizon-activity
+  - irreversible
+  - gen-layout
+clean_a_keyboard:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - force
+  - tool-use
+  - surface-treatment
+  - horizon-composite
+  - gen-layout
+clean_a_patio:
+  difficulty: medium
+  labels:
+  - scale-outdoor
+  - transport
+  - nonprehensile
+  - tool-use
+  - surface-treatment
+  - horizon-composite
+  - gen-layout
+clean_a_trumpet:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - force
+  - tool-use
+  - surface-treatment
+  - horizon-composite
+  - gen-layout
+clean_boxing_gloves:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - device-operation
+  - surface-treatment
+  - horizon-composite
+  - gen-layout
+clean_up_broken_glass:
+  difficulty: medium
+  labels:
+  - scale-building
+  - transport
+  - horizon-composite
+  - partial-observability
+  - gen-layout
+clean_up_your_desk:
+  difficulty: hard
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - horizon-activity
+  - ordered
+  - gen-layout
+clean_your_rusty_garden_tools:
+  difficulty: hard
+  labels:
+  - scale-outdoor
+  - transport
+  - articulated
+  - force
+  - tool-use
+  - surface-treatment
+  - horizon-composite
+  - ordered
+  - partial-observability
+  - gen-layout
+cleaning_up_branches_and_twigs:
+  difficulty: medium
+  labels:
+  - scale-outdoor
+  - transport
+  - articulated
+  - horizon-composite
+  - gen-layout
+cleaning_up_plates_and_food:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - quantified-goal
+  - horizon-composite
+  - ordered
+  - gen-layout
+clearing_food_from_table_into_fridge:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - quantified-goal
+  - horizon-composite
+  - ordered
+  - gen-layout
+collecting_aluminum_cans:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - horizon-activity
+  - gen-layout
+collecting_childrens_toys:
+  difficulty: hard
+  labels:
+  - scale-room
+  - transport
+  - quantified-goal
+  - horizon-activity
+  - gen-layout
+composting_waste:
+  difficulty: medium
+  labels:
+  - scale-building
+  - transport
+  - horizon-composite
+  - partial-observability
+  - gen-layout
+cook_a_brisket:
+  difficulty: hard
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - device-operation
+  - thermal
+  - horizon-composite
+  - irreversible
+  - partial-observability
+  - gen-layout
+cook_a_frozen_pie:
+  difficulty: hard
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - device-operation
+  - thermal
+  - horizon-composite
+  - irreversible
+  - partial-observability
+  - gen-layout
+cook_bacon:
+  difficulty: hard
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - device-operation
+  - thermal
+  - horizon-activity
+  - irreversible
+  - ordered
+  - partial-observability
+  - gen-layout
+cook_broccolini:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - device-operation
+  - thermal
+  - horizon-composite
+  - irreversible
+  - gen-layout
+cook_brussels_sprouts:
+  difficulty: extreme
+  labels:
+  - scale-building
+  - transport
+  - articulated
+  - precision-fit
+  - tool-use
+  - device-operation
+  - thermal
+  - cutting
+  - horizon-activity
+  - irreversible
+  - ordered
+  - partial-observability
+  - gen-layout
+cook_cabbage:
+  difficulty: hard
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - fluid-granular
+  - tool-use
+  - device-operation
+  - thermal
+  - cutting
+  - horizon-composite
+  - irreversible
+  - partial-observability
+  - gen-layout
+cook_hot_dogs:
+  difficulty: hard
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - device-operation
+  - thermal
+  - horizon-composite
+  - irreversible
+  - partial-observability
+  - gen-layout
+dispose_of_batteries:
+  difficulty: medium
+  labels:
+  - scale-building
+  - transport
+  - horizon-composite
+  - partial-observability
+  - gen-layout
+dispose_of_glass:
+  difficulty: medium
+  labels:
+  - scale-building
+  - transport
+  - horizon-composite
+  - partial-observability
+  - gen-layout
+freeze_fruit:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - quantified-goal
+  - horizon-composite
+  - ordered
+  - partial-observability
+  - gen-layout
+freeze_pies:
+  difficulty: hard
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - thermal
+  - quantified-goal
+  - horizon-composite
+  - ordered
+  - partial-observability
+  - gen-layout
+getting_organized_for_work:
+  difficulty: hard
+  labels:
+  - scale-room
+  - whole-body
+  - transport
+  - relational-goal
+  - geometric-constraint
+  - horizon-activity
+  - gen-layout
+halve_an_egg:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - tool-use
+  - cutting
+  - horizon-composite
+  - irreversible
+  - partial-observability
+  - gen-layout
+hanging_pictures:
+  difficulty: easy
+  labels:
+  - scale-room
+  - transport
+  - precision-fit
+  - horizon-atomic
+  - gen-layout
+hiding_Easter_eggs:
+  difficulty: medium
+  labels:
+  - scale-outdoor
+  - transport
+  - relational-goal
+  - quantified-goal
+  - horizon-composite
+  - gen-layout
+installing_a_fax_machine:
+  difficulty: medium
+  labels:
+  - scale-building
+  - transport
+  - device-operation
+  - horizon-composite
+  - gen-layout
+installing_a_modem:
+  difficulty: medium
+  labels:
+  - scale-building
+  - transport
+  - articulated
+  - device-operation
+  - relational-goal
+  - horizon-composite
+  - gen-layout
+installing_a_scanner:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - device-operation
+  - relational-goal
+  - horizon-composite
+  - gen-layout
+installing_smoke_detectors:
+  difficulty: medium
+  labels:
+  - scale-outdoor
+  - transport
+  - precision-fit
+  - horizon-composite
+  - gen-layout
+laying_tile_floors:
+  difficulty: medium
+  labels:
+  - scale-building
+  - transport
+  - relational-goal
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+loading_the_car:
+  difficulty: hard
+  labels:
+  - scale-building
+  - transport
+  - articulated
+  - horizon-activity
+  - ordered
+  - partial-observability
+  - gen-layout
+make_cabinet_doors:
+  difficulty: medium
+  labels:
+  - scale-building
+  - transport
+  - precision-fit
+  - horizon-composite
+  - gen-layout
+make_gift_bags_for_baby_showers:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - quantified-goal
+  - horizon-composite
+  - partial-observability
+  - gen-layout
+make_microwave_popcorn:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - fluid-granular
+  - device-operation
+  - thermal
+  - horizon-composite
+  - gen-layout
+make_pizza:
+  difficulty: extreme
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - device-operation
+  - thermal
+  - horizon-activity
+  - irreversible
+  - partial-observability
+  - gen-layout
+make_rose_centerpieces:
+  difficulty: easy
+  labels:
+  - scale-room
+  - transport
+  - horizon-composite
+  - gen-layout
+moving_boxes_to_storage:
+  difficulty: hard
+  labels:
+  - scale-building
+  - bimanual
+  - transport
+  - stability
+  - geometric-constraint
+  - horizon-composite
+  - partial-observability
+  - gen-layout
+organizing_art_supplies:
+  difficulty: easy
+  labels:
+  - scale-room
+  - transport
+  - horizon-composite
+  - gen-layout
+organizing_school_stuff:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - horizon-activity
+  - gen-layout
+outfit_a_basic_toolbox:
+  difficulty: hard
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - horizon-activity
+  - ordered
+  - gen-layout
+packing_meal_for_delivery:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - quantified-goal
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+picking_up_toys:
+  difficulty: hard
+  labels:
+  - scale-room
+  - transport
+  - quantified-goal
+  - horizon-activity
+  - gen-layout
+picking_up_trash:
+  difficulty: medium
+  labels:
+  - scale-building
+  - transport
+  - horizon-composite
+  - partial-observability
+  - gen-layout
+polishing_shoes:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - force
+  - tool-use
+  - surface-treatment
+  - relational-goal
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+preparing_lunch_box:
+  difficulty: hard
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - horizon-activity
+  - ordered
+  - partial-observability
+  - gen-layout
+put_together_a_basic_pruning_kit:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - horizon-composite
+  - ordered
+  - gen-layout
+putting_away_Halloween_decorations:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - relational-goal
+  - quantified-goal
+  - geometric-constraint
+  - horizon-composite
+  - ordered
+  - gen-layout
+putting_away_toys:
+  difficulty: hard
+  labels:
+  - scale-building
+  - transport
+  - quantified-goal
+  - horizon-activity
+  - partial-observability
+  - gen-layout
+putting_dirty_dishes_in_sink:
+  difficulty: medium
+  labels:
+  - scale-building
+  - transport
+  - horizon-composite
+  - gen-layout
+putting_dishes_away_after_cleaning:
+  difficulty: hard
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - quantified-goal
+  - geometric-constraint
+  - horizon-activity
+  - ordered
+  - gen-layout
+putting_shoes_on_rack:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - relational-goal
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+putting_up_Christmas_decorations_inside:
+  difficulty: hard
+  labels:
+  - scale-building
+  - transport
+  - relational-goal
+  - quantified-goal
+  - geometric-constraint
+  - horizon-activity
+  - gen-layout
+re_shelving_library_books:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - quantified-goal
+  - horizon-composite
+  - gen-layout
+rearrange_your_room:
+  difficulty: medium
+  labels:
+  - scale-building
+  - transport
+  - quantified-goal
+  - horizon-composite
+  - gen-layout
+rearranging_kitchen_furniture:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - geometric-constraint
+  - horizon-composite
+  - ordered
+  - gen-layout
+scrubbing_bathroom_floor:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - force
+  - tool-use
+  - surface-treatment
+  - horizon-composite
+  - gen-layout
+set_up_a_coffee_station_in_your_kitchen:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - relational-goal
+  - geometric-constraint
+  - horizon-activity
+  - gen-layout
+setting_mousetraps:
+  difficulty: medium
+  labels:
+  - scale-room
+  - whole-body
+  - transport
+  - relational-goal
+  - quantified-goal
+  - horizon-composite
+  - gen-layout
+setting_the_fire:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - tool-use
+  - device-operation
+  - thermal
+  - horizon-composite
+  - irreversible
+  - ordered
+  - gen-layout
+setting_the_table:
+  difficulty: extreme
+  labels:
+  - scale-building
+  - transport
+  - articulated
+  - relational-goal
+  - quantified-goal
+  - geometric-constraint
+  - horizon-activity
+  - partial-observability
+  - gen-layout
+setup_a_bar_for_a_cocktail_party:
+  difficulty: hard
+  labels:
+  - scale-room
+  - transport
+  - relational-goal
+  - quantified-goal
+  - geometric-constraint
+  - horizon-activity
+  - gen-layout
+slicing_vegetables:
+  difficulty: extreme
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - tool-use
+  - cutting
+  - horizon-activity
+  - irreversible
+  - ordered
+  - partial-observability
+  - gen-layout
+sorting_books_on_shelf:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - stability
+  - attribute-goal
+  - quantified-goal
+  - geometric-constraint
+  - horizon-activity
+  - ordered
+  - fine-detail
+  - gen-layout
+sorting_bottles_cans_and_paper:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - attribute-goal
+  - quantified-goal
+  - horizon-activity
+  - gen-layout
+sorting_household_items:
+  difficulty: hard
+  labels:
+  - scale-building
+  - whole-body
+  - transport
+  - relational-goal
+  - attribute-goal
+  - geometric-constraint
+  - horizon-activity
+  - partial-observability
+  - gen-layout
+sorting_vegetables:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - attribute-goal
+  - quantified-goal
+  - horizon-activity
+  - gen-layout
+spraying_for_bugs:
+  difficulty: medium
+  labels:
+  - scale-outdoor
+  - transport
+  - tool-use
+  - surface-treatment
+  - horizon-composite
+  - gen-layout
+spraying_fruit_trees:
+  difficulty: medium
+  labels:
+  - scale-outdoor
+  - transport
+  - tool-use
+  - surface-treatment
+  - horizon-composite
+  - gen-layout
+stacking_wood:
+  difficulty: medium
+  labels:
+  - scale-outdoor
+  - transport
+  - stability
+  - relational-goal
+  - horizon-composite
+  - gen-layout
+store_batteries:
+  difficulty: medium
+  labels:
+  - scale-building
+  - transport
+  - articulated
+  - quantified-goal
+  - horizon-composite
+  - partial-observability
+  - gen-layout
+store_honey:
+  difficulty: medium
+  labels:
+  - scale-building
+  - transport
+  - articulated
+  - horizon-atomic
+  - partial-observability
+  - gen-layout
+store_produce:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - quantified-goal
+  - horizon-composite
+  - gen-layout
+storing_food:
+  difficulty: hard
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - quantified-goal
+  - geometric-constraint
+  - horizon-activity
+  - gen-layout
+sweeping_garage:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - nonprehensile
+  - tool-use
+  - surface-treatment
+  - horizon-composite
+  - gen-layout
+thawing_frozen_food:
+  difficulty: hard
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - precision-fit
+  - device-operation
+  - thermal
+  - horizon-activity
+  - ordered
+  - partial-observability
+  - gen-layout
+tidying_bathroom:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - horizon-composite
+  - gen-layout
+tidying_bedroom:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - relational-goal
+  - horizon-composite
+  - gen-layout
+tidying_living_room:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - horizon-composite
+  - gen-layout
+turning_on_radio:
+  difficulty: easy
+  labels:
+  - scale-room
+  - device-operation
+  - horizon-atomic
+  - gen-layout
+  note: 'Shortest demo in the suite and a clean minimal case: navigate, then actuate
+    one small control. Useful as a smoke test for the harness.'
+  skills:
+  - move to
+  - turn on switch
+  tags:
+  - reference-example
+  - smoke-test-candidate
+turning_out_all_lights_before_sleep:
+  difficulty: medium
+  labels:
+  - scale-building
+  - device-operation
+  - horizon-composite
+  - partial-observability
+  - gen-layout
+unloading_the_car:
+  difficulty: hard
+  labels:
+  - scale-building
+  - transport
+  - articulated
+  - relational-goal
+  - horizon-composite
+  - partial-observability
+  - gen-layout
+vacuuming_floors:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - tool-use
+  - surface-treatment
+  - horizon-composite
+  - gen-layout
+wash_a_baseball_cap:
+  difficulty: medium
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - device-operation
+  - surface-treatment
+  - horizon-composite
+  - gen-layout
+wash_dog_toys:
+  difficulty: hard
+  labels:
+  - scale-room
+  - transport
+  - articulated
+  - device-operation
+  - surface-treatment
+  - horizon-activity
+  - partial-observability
+  - gen-layout

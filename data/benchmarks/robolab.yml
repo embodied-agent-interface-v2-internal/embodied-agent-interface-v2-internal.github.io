@@ -1,0 +1,124 @@
+id: robolab
+name: RoboLab
+edition: v0.3.1 (2026-08-11)
+status: active
+simulator: Isaac Lab 2.3.2 / Isaac Sim 5.1 (NVIDIA)
+description: >-
+  120 tabletop manipulation tasks for a fixed-base arm, built to test language grounding
+  and goal specification rather than locomotion: colour and size references, counting,
+  spatial relations, sorting, ordered stacking, reorientation. Success is a composable
+  predicate over object state, with partial credit from scored subtasks.
+
+links:
+  paper: https://arxiv.org/abs/2604.09860
+  project_page: https://research.nvidia.com/labs/srl/projects/robolab
+  leaderboard: https://research.nvidia.com/labs/srl/projects/robolab/leaderboard.html
+  repository: https://github.com/NVlabs/RoboLab
+  task_table: https://github.com/NVlabs/RoboLab/blob/main/robolab/tasks/README.md
+
+embodiment:
+  robot: Franka Panda + Robotiq 2F-85 (RoboLab's "DROID" configuration)
+  action_space: 7 absolute joint-position targets + 1 binary gripper command
+  control_rate_hz: 15
+  observations: [rgb, proprioception]
+  cameras:
+    wrist: 1280x720
+    viewport: egocentric mirrored (recording only)
+  notes: >-
+    Tasks are not tied to an embodiment: any Isaac Lab robot can be plugged in. Ground-truth
+    state is available (`--enable-gt-state`), so a task can be run privileged or from pixels.
+
+dataset:
+  format: HDF5 per episode (recorded rollouts), LeRobot not used
+  demonstrations: none shipped — RoboLab evaluates policies, it does not distribute teleoperation data
+  bundled_example: examples/recorded_data/RubiksCubeAndBananaTask/data.hdf5
+  assets: 298 USD objects, 61 scenes, curated HDRI backgrounds, Apache-2.0 with the code
+
+# RoboLab's own per-task annotation vocabulary: the attribute tags it assigns to
+# every task and uses to compute its difficulty label. Descriptive of the task,
+# in the benchmark's own words — the same role BEHAVIOR's 31 skill primitives
+# play there, which is what `skills:` on a task page records.
+skill_vocabulary:
+  - affordance
+  - color
+  - conjunction
+  - counting
+  - reorientation
+  - semantics
+  - size
+  - sorting
+  - spatial
+  - stacking
+  - vague
+
+# What we run it on, and what that costs — measured, not quoted.
+# See robot_coding_bench: images/robolab, tasks/robolab-banana-in-bowl-i00.
+integration:
+  image: nvidia/cuda 12.8 + RoboLab v0.3.1 from our uv.lock + its asset library (14.5 GB)
+  physics_backend: CPU PhysX — bit-exact live, in-process and across processes
+  determinism: >-
+    GPU PhysX reproduces a live run in a fresh process but drifts ~1 mm across in-process
+    replays after reset_to; enable_enhanced_determinism does not change that.
+  throughput: ~15 control steps/s with the wrist and viewport cameras rendering
+  scene_build: ~70 s Isaac Sim launch + ~30 s scene build per process, ~5 GB VRAM
+
+baselines:
+  - name: "pi-0.5 (OpenPI)"
+    kind: vision-language-action
+  - name: GR00T N1.7
+    kind: vision-language-action
+  - name: VoLo
+    kind: vision-language-action
+
+key_dates:
+  release: 2026-07-07
+  latest_tag: 2026-08-11
+
+scenes:
+  - bagel_plate_banana_bowl
+  - banana_bowl
+  - bananas_5_grey_bin
+  - bananas_5_in_crate
+  - bin_condiments
+  - bin_mug_mustard_marker_bowl
+  - blue
+  - bottles_crate
+  - bowls_2_table
+  - breakfast_table
+  - butter_raisin_box
+  - butter_raisin_box_grey_bin
+  - cartons_in_crate
+  - cartons_in_vertical_crate
+  - cartons_on_box
+  - clutter_fruit_bottle_bluebin
+  - colored_blocks
+  - cooking_table
+  - food_packing
+  - foodpacking_1bin_1box_1can
+  - foodpacking_1bin_2box_2can
+  - foodpacking_1bin_3box_3can
+  - fruits_in_basket
+  - fruits_out_of_basket
+  - green
+  - ladle_pot
+  - mug_banana_ketchup_bowl_rubiks3_bin
+  - mugs2_bananas2_ketchup_rubiks3_bin
+  - mugs4_measuringcup_drill_bowl
+  - mugs4_measuringcup_drill_bowl_v2
+  - mugs_on_shelf
+  - mustard_raisin_box
+  - objects_around_table
+  - rubiks_cube_3
+  - rubiks_cube_banana_bowl
+  - rubiks_cube_banana_bowl_mug_bin
+  - rubiks_cube_bowl
+  - shelf_mugs_jug_bowl
+  - shelf_with_cleaning_products
+  - tools_container
+  - tools_picking
+  - toys_cleanup
+  - two_bin
+  - wire_shelf_mugs_plate_spatula
+  - workdesk
+  - workdesk_bin
+  - workdesk_snacks

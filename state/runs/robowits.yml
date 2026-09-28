@@ -1,0 +1,50 @@
+# RoboWits' agent runs. Owned by the benchmark's owner, curated by hand like everything in state/.
+# Format and field meanings: docs/contributing/registering-runs.md (and the header of state/runs/behavior-1k.yml).
+
+default: codex-0.157-gpt6luna-xhigh-cgpt
+task_dir: "robowits-{task_dashed}-i00"
+
+runs:
+  codex-0.157-gpt6luna-xhigh-cgpt:
+    batch: robowits-lunaxh-0925-2042
+    # 2026-09-26, user: the particle-heavy tasks rerun on Genesis' GPU backend (their CPU-backend runs stay in the batch above)
+    # 2026-09-27: robowits-lunaxh-rerun-0927 = the four limited runs that collected no result, rerun on the laptop
+    rerun_batches: [robowits-lunaxh-gpu-0926, robowits-lunaxh-rerun-0927]
+    followups:  # arranged for one trial each; the note goes away once another trial replaces it
+    - {task: ball_into_jar, mode: limited, trial: robowits-ball-into-jar-i00-limit__6Bu2BRV, note: "rerun on the laptop, CPU backend as in its unlimited run, with collect waits set from a measured scene build: the old waits (10 / 9 / 20 min) ran out, so no result was collected"}
+    - {task: differentiate_cubes, mode: limited, trial: robowits-differentiate-cubes-i00__auecEhM, note: "rerun on the laptop, CPU backend as in its unlimited run, with collect waits set from a measured scene build: the old waits (10 / 9 / 20 min) ran out, so no result was collected"}
+    - {task: seal_colander, mode: limited, trial: robowits-seal-colander-i00-limit__DKhVfQk, note: "rerun on the laptop, CPU backend as in its unlimited run, with collect waits set from a measured scene build: the old waits (10 / 9 / 20 min) ran out, so no result was collected"}
+    - {task: separate_marbles_and_sand, mode: limited, trial: robowits-separate-marbles-and-sa__HJEPaGs, note: "rerun on the
+        laptop GPU (running since 01:22): on ws the robot service died while its 4090 also held two BEHAVIOR sims, so no
+        result was collected"}
+    tasks:
+    - align_blocks
+    - align_chopsticks
+    - balance_board
+    - ball_into_bottle
+    - ball_into_jar
+    - ball_onto_tower
+    - collect_screws
+    - cover_with_lid
+    - cylinder_through_hole
+    - differentiate_cubes
+    - dominos
+    - gap_retrieve
+    - hold_cup
+    - move_cube
+    - pinch_card
+    - place_book
+    - place_tall_box
+    - raise_platform
+    - retrieve_cube
+    - retrieve_roll
+    - roll_up_ball
+    - round_dough_sheet
+    - seal_colander
+    - separate_marbles_and_sand
+    - stabilize_bottle
+    - stack_bowls
+    - stack_cubes
+    - stand_bulb
+    - stand_pages
+    - water_into_mug

@@ -1,0 +1,1011 @@
+{
+  "source": "https://github.com/UMass-Embodied-AGI/RoboWits",
+  "commit": "9cc30ae",
+  "site": "https://umass-embodied-agi.github.io/RoboWits/",
+  "read": "2026-09-21",
+  "tasks": [
+    {
+      "id": "align_blocks",
+      "number": 1,
+      "title": "Align Blocks",
+      "source_file": "gs_gym/envs/robowits/01_align_blocks.py",
+      "eval_scenes": 50,
+      "objects": [
+        "first target cube",
+        "long rigid ruler",
+        "second target cube",
+        "third target cube"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 6,
+      "class": "AlignBlocksEnv",
+      "registry_id": "robowits/01-align-blocks-v0",
+      "summary": "Align 3 cubes in a straight line using a ruler.",
+      "success_criteria": [
+        "All objects still on table (not fallen)",
+        "All cubes at table surface height",
+        "Three cubes are collinear within 1cm tolerance",
+        "Minimum 3cm separation between furthest cubes"
+      ],
+      "instruction": "Align the three cubes perfectly in a straight line.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 1,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/01.mp4"
+    },
+    {
+      "id": "retrieve_cube",
+      "number": 2,
+      "title": "Retrieve Cube",
+      "source_file": "gs_gym/envs/robowits/02_retrieve_cube.py",
+      "eval_scenes": 50,
+      "objects": [
+        "cube",
+        "deep narrow container",
+        "target area"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 5,
+      "class": "RetrieveCubeEnv",
+      "registry_id": "robowits/02-retrieve-cube-v0",
+      "summary": "Retrieve a cube from a deep narrow container and place it on a target area.",
+      "success_criteria": [
+        "Cube is on the table surface (z within tolerance of TABLE_Z)",
+        "Cube is outside the container (2D footprint overlap with container < 50%)",
+        "Cube's 2D footprint overlaps target area by at least 50%",
+        "Objects remain within table bounds"
+      ],
+      "instruction": "Retrieve the cube from the container and place it on the green target area.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 1,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/02.mp4"
+    },
+    {
+      "id": "gap_retrieve",
+      "number": 3,
+      "title": "Gap Retrieve",
+      "source_file": "gs_gym/envs/robowits/03_gap_retrieve.py",
+      "eval_scenes": 50,
+      "objects": [
+        "left boundary block",
+        "lemon",
+        "right boundary block",
+        "target area"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 5,
+      "class": "GapRetrieveEnv",
+      "registry_id": "robowits/03-gap-retrieve-v0",
+      "summary": "Retrieve a lemon from a narrow gap and place it on a target area.",
+      "success_criteria": [
+        "Lemon is on the table surface (z within tolerance of TABLE_Z)",
+        "Lemon's 2D footprint overlaps target area by at least 80%",
+        "Objects remain within table bounds"
+      ],
+      "instruction": "Place the lemon on the green target area.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 1,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/03.mp4"
+    },
+    {
+      "id": "pinch_card",
+      "number": 4,
+      "title": "Pinch Card",
+      "source_file": "gs_gym/envs/robowits/04_pinch_card.py",
+      "eval_scenes": 50,
+      "objects": [
+        "bank card",
+        "eraser",
+        "small table",
+        "target area",
+        "target cube"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 5,
+      "class": "PinchCardEnv",
+      "registry_id": "robowits/04-pinch-card-v0",
+      "summary": "Pick up a bank card from a small table surface using an eraser.",
+      "success_criteria": [
+        "Bank card's 2D footprint overlaps target area by at least 50%",
+        "Bank card is resting on the target surface (not floating)",
+        "Bank card is not being held by either gripper"
+      ],
+      "instruction": "Pick the bank card up from the 'small table' surface.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 3,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/04.mp4"
+    },
+    {
+      "id": "roll_up_ball",
+      "number": 5,
+      "title": "Roll Up Ball",
+      "source_file": "gs_gym/envs/robowits/05_roll_up_ball.py",
+      "eval_scenes": 50,
+      "objects": [
+        "box",
+        "high basket",
+        "long board"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 8,
+      "class": "RollUpBallEnv",
+      "registry_id": "robowits/05-roll-up-ball-v0",
+      "summary": "Move a box into a basket using an inclined plane.",
+      "success_criteria": [
+        "Box is completely inside the basket's bounding box",
+        "Box and basket are on the table"
+      ],
+      "instruction": "Move the box into the basket.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 2,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/05.mp4"
+    },
+    {
+      "id": "dominos",
+      "number": 6,
+      "title": "Dominos",
+      "source_file": "gs_gym/envs/robowits/06_dominos.py",
+      "eval_scenes": 50,
+      "objects": [
+        "red block",
+        "target area",
+        "white block 1",
+        "white block 2",
+        "white block 3",
+        "white block 4"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 6,
+      "class": "DominosEnv",
+      "registry_id": "robowits/06-dominos-v0",
+      "summary": "Push the red block onto the target area using a domino chain effect.",
+      "success_criteria": [
+        "Red block's 2D footprint overlaps target area by at least 50%"
+      ],
+      "instruction": "Push the red block onto the green target area.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 0,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/06.mp4"
+    },
+    {
+      "id": "stand_pages",
+      "number": 7,
+      "title": "Stand Pages",
+      "source_file": "gs_gym/envs/robowits/07_stand_pages.py",
+      "eval_scenes": 50,
+      "objects": [
+        "nope",
+        "page A with eyelets",
+        "page B with eyelets",
+        "stabilizing bar"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 1,
+      "class": "StandPagesEnv",
+      "registry_id": "robowits/07-stand-pages-v0",
+      "summary": "Assemble two pages using a stabilizing bar to create a standing hinge structure.",
+      "success_criteria": [
+        "Both pages are standing upright (rotation about x or y close to 90 degrees)",
+        "Both pages are on the table surface",
+        "Both pages are within table bounds"
+      ],
+      "instruction": "Assemble the two pages using the stabilizing bar to create a standing hinge structure.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 0,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/07.mp4"
+    },
+    {
+      "id": "round_dough_sheet",
+      "number": 8,
+      "title": "Round Dough Sheet",
+      "source_file": "gs_gym/envs/robowits/08_round_dough_sheet.py",
+      "eval_scenes": 50,
+      "objects": [
+        "large flat board",
+        "round cutter"
+      ],
+      "object_materials": [
+        "mpm",
+        "rigid"
+      ],
+      "mutations": 6,
+      "class": "RoundDoughSheetEnv",
+      "registry_id": "robowits/08-round-dough-sheet-v0",
+      "summary": "Flatten a dough ball and make a perfect round sheet.",
+      "success_criteria": [
+        "At least 95% of particles are within table bounds",
+        "Dough height (z_95 - z_5) \u2264 0.035m (must be genuinely flattened, not just gravity-settled ~4.4cm)",
+        "At least 70% of particles within the target cylinder (radius ~0.053m, height 0.03m)",
+        "XY convex hull circularity \u2265 0.85 (4\u03c0\u00b7Area/Perimeter\u00b2 == 1 for perfect circle)"
+      ],
+      "instruction": "Flattern the dough ball and make a perfect round sheet",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 2,
+      "materials": [
+        "MPM",
+        "Rigid"
+      ]
+    },
+    {
+      "id": "hold_cup",
+      "number": 9,
+      "title": "Hold Cup",
+      "source_file": "gs_gym/envs/robowits/09_hold_cup.py",
+      "eval_scenes": 50,
+      "objects": [
+        "coaster",
+        "cup",
+        "slope",
+        "target area"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 5,
+      "class": "HoldCupEnv",
+      "registry_id": "robowits/09-hold-cup-v0",
+      "summary": "Put a cup on a sloped target area without it sliding down.",
+      "success_criteria": [
+        "Cup's 2D footprint overlaps target area by at least 50%",
+        "Cup is stable with near-zero linear velocity",
+        "Cup is upright (tilt from vertical <= 20 degrees)",
+        "Cup remains within table bounds",
+        "Cup is not being held by either gripper"
+      ],
+      "instruction": "Put the cup on the green target area on the slope without sliding down.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 2,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/09.mp4"
+    },
+    {
+      "id": "collect_screws",
+      "number": 10,
+      "title": "Collect Screws",
+      "source_file": "gs_gym/envs/robowits/10_collect_screws.py",
+      "eval_scenes": 50,
+      "objects": [
+        "container",
+        "dustpan",
+        "screw"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 5,
+      "class": "CollectScrewsEnv",
+      "registry_id": "robowits/10-collect-screws-v0",
+      "summary": "Collect a screw into a container using a dustpan.",
+      "success_criteria": [
+        "Screw is within the container's bounding box",
+        "Screw is still on the table (not fallen off)"
+      ],
+      "instruction": "Collect the screw into the container",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 2,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/10.mp4"
+    },
+    {
+      "id": "place_tall_box",
+      "number": 11,
+      "title": "Place Tall Box",
+      "source_file": "gs_gym/envs/robowits/11_place_tall_box.py",
+      "eval_scenes": 50,
+      "objects": [
+        "beam plank",
+        "support block left",
+        "support block right",
+        "tall cardboard box",
+        "target area"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 5,
+      "class": "PlaceTallBoxEnv",
+      "registry_id": "robowits/11-place-tall-box-v0",
+      "summary": "Move a tall box onto a target area under a beam obstacle.",
+      "success_criteria": [
+        "Tall box overlaps target area by at least 80%",
+        "Both objects remain within table bounds"
+      ],
+      "instruction": "Move the rectangular box onto the green target area.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 1,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/11.mp4"
+    },
+    {
+      "id": "ball_into_bottle",
+      "number": 12,
+      "title": "Ball Into Bottle",
+      "source_file": "gs_gym/envs/robowits/12_ball_into_bottle.py",
+      "eval_scenes": 50,
+      "objects": [
+        "ball container",
+        "funnel",
+        "red bottle",
+        "small ball"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 6,
+      "class": "BallIntoBottleEnv",
+      "registry_id": "robowits/12-ball-into-bottle-v0",
+      "summary": "Transfer a ball from a container into a bottle using a funnel.",
+      "success_criteria": [
+        "Ball is fully inside the bottle's bounding box",
+        "Ball is not touching the table"
+      ],
+      "instruction": "Transfer the ball from the blue container into the red bottle.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 2,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/12.mp4"
+    },
+    {
+      "id": "cover_with_lid",
+      "number": 13,
+      "title": "Cover With Lid",
+      "source_file": "gs_gym/envs/robowits/13_cover_with_lid.py",
+      "eval_scenes": 50,
+      "objects": [
+        "lid large",
+        "lid medium",
+        "pot without lid",
+        "small lid"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 5,
+      "class": "CoverWithLidEnv",
+      "registry_id": "robowits/13-cover-with-lid-v0",
+      "summary": "Cover a pot precisely using the correct sized lid.",
+      "success_criteria": [
+        "Exactly one lid is above the pot",
+        "Lid overlaps pot by at least 80%",
+        "Lid size is appropriate (85%-140% of pot area)"
+      ],
+      "instruction": "Cover the pot precisely using one lid.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 2,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/13.mp4"
+    },
+    {
+      "id": "stack_cubes",
+      "number": 14,
+      "title": "Stack Cubes",
+      "source_file": "gs_gym/envs/robowits/14_stack_cubes.py",
+      "eval_scenes": 50,
+      "objects": [
+        "apex cube",
+        "apex target",
+        "base cube 1",
+        "base cube 2"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 5,
+      "class": "StackCubesEnv",
+      "registry_id": "robowits/14-stack-cubes-v0",
+      "summary": "Build a stable two-layer stack so the red cube is above the green marker.",
+      "success_criteria": [
+        "Base cubes are on the table and touching with >= 50% face overlap",
+        "Apex cube sits on top of base cubes",
+        "Apex cube center is within tolerance of target marker",
+        "Apex-target overlap >= 20%"
+      ],
+      "instruction": "Build a stable two-layer stack so the red cube's center is above the green colored dot.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 0,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/14.mp4"
+    },
+    {
+      "id": "separate_marbles_and_sand",
+      "number": 15,
+      "title": "Separate Marbles And Sand",
+      "source_file": "gs_gym/envs/robowits/15_separate_marbles_and_sand.py",
+      "eval_scenes": 50,
+      "objects": [
+        "bowl",
+        "colander",
+        "jar",
+        "marble 1",
+        "marble 2",
+        "marble 3",
+        "marble 4",
+        "marble 5"
+      ],
+      "object_materials": [
+        "mpm",
+        "rigid"
+      ],
+      "mutations": 4,
+      "class": "SeparateMarblesAndSandEnv",
+      "registry_id": "robowits/15-separate-marbles-and-sand-v0",
+      "summary": "Separate marbles from sand using a colander over a bowl.",
+      "success_criteria": [
+        "All five marbles are inside the jar's 3D AABB",
+        "At least 80% of sand particles are outside the jar's 3D AABB"
+      ],
+      "instruction": "Remove sand from the jar and keep the marbles in the jar.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 3,
+      "materials": [
+        "MPM",
+        "Rigid"
+      ]
+    },
+    {
+      "id": "stand_bulb",
+      "number": 16,
+      "title": "Stand Bulb",
+      "source_file": "gs_gym/envs/robowits/16_stand_bulb.py",
+      "eval_scenes": 50,
+      "objects": [
+        "stabilizing ring",
+        "tall object with curved bottom",
+        "target patch"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 7,
+      "class": "StandBulbEnv",
+      "registry_id": "robowits/16-stand-bulb-v0",
+      "summary": "Stand a tall object with curved bottom stably within a target area.",
+      "success_criteria": [
+        "Tall object overlaps target patch by at least 80%",
+        "Tall object is upright (Z extent dominates XY extents)",
+        "Tall object is stable (low velocity)",
+        "Objects remain within table bounds",
+        "Tall object is not being held"
+      ],
+      "instruction": "Stand the tall object with curved bottom stably within the green target area.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 2,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/16.mp4"
+    },
+    {
+      "id": "ball_onto_tower",
+      "number": 17,
+      "title": "Ball Onto Tower",
+      "source_file": "gs_gym/envs/robowits/17_ball_onto_tower.py",
+      "eval_scenes": 50,
+      "objects": [
+        "ball",
+        "large ring",
+        "medium ring",
+        "small ring",
+        "tower base"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 8,
+      "class": "BallOntoTowerEnv",
+      "registry_id": "robowits/17-ball-onto-tower-v0",
+      "summary": "Place the ball stably on top of the tower.",
+      "success_criteria": [
+        "Ball is stable (low velocity)",
+        "Ball is on top of the tower base (XY projection over base footprint)",
+        "Ball center is above the top of the tower base",
+        "Ball is not being held by either gripper"
+      ],
+      "instruction": "Place the ball stably on top of the tower.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 1,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/17.mp4"
+    },
+    {
+      "id": "cylinder_through_hole",
+      "number": 18,
+      "title": "Cylinder Through Hole",
+      "source_file": "gs_gym/envs/robowits/18_cylinder_through_hole.py",
+      "eval_scenes": 50,
+      "objects": [
+        "collection_zone",
+        "cylindrical_peg",
+        "hole_plate"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 6,
+      "class": "CylinderThroughHoleEnv",
+      "registry_id": "robowits/18-cylinder-through-hole-v0",
+      "summary": "Insert a cylindrical peg through a matching hole plate.",
+      "success_criteria": [
+        "At least half the peg length has passed through the hole plate",
+        "Peg straddles the plate thickness (part above, part below)",
+        "Peg lies over the collection zone",
+        "Peg remains within table bounds"
+      ],
+      "instruction": "Insert the long rod through the opening so it rests over the green colored patch.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 1,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/18.mp4"
+    },
+    {
+      "id": "stack_bowls",
+      "number": 19,
+      "title": "Stack Bowls",
+      "source_file": "gs_gym/envs/robowits/19_stack_bowls.py",
+      "eval_scenes": 50,
+      "objects": [
+        "large bowl",
+        "medium bowl"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 6,
+      "class": "StackBowlsEnv",
+      "registry_id": "robowits/19-stack-bowls-v0",
+      "summary": "Nest the smaller bowl concentrically inside the larger one.",
+      "success_criteria": [
+        "Medium bowl's 2D center is within 1cm of large bowl's center",
+        "Both bowls remain within table bounds"
+      ],
+      "instruction": "Nest the smaller bowl concentrically inside the larger one.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 1,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/19.mp4"
+    },
+    {
+      "id": "ball_into_jar",
+      "number": 20,
+      "title": "Ball Into Jar",
+      "source_file": "gs_gym/envs/robowits/20_ball_into_jar.py",
+      "eval_scenes": 50,
+      "objects": [
+        "glass jar"
+      ],
+      "object_materials": [
+        "mpm",
+        "rigid"
+      ],
+      "mutations": 5,
+      "class": "BallIntoJarEnv",
+      "registry_id": "robowits/20-ball-into-jar-v0",
+      "summary": "Put the foam ball fully into the jar.",
+      "success_criteria": [
+        "At least 90% of foam ball particles lie inside the glass jar's axis-aligned bounding box (rigid fallback: the ball's AABB is fully contained in the jar's)",
+        "Objects haven't fallen off the table"
+      ],
+      "instruction": "Put the foam ball fully into the jar.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 1,
+      "materials": [
+        "MPM",
+        "Rigid"
+      ]
+    },
+    {
+      "id": "seal_colander",
+      "number": 21,
+      "title": "Seal Colander",
+      "source_file": "gs_gym/envs/robowits/21_seal_colander.py",
+      "eval_scenes": 50,
+      "objects": [
+        "curved holder",
+        "perforated container",
+        "pitcher"
+      ],
+      "object_materials": [
+        "rigid",
+        "sph"
+      ],
+      "mutations": 3,
+      "class": "SealColanderEnv",
+      "registry_id": "robowits/21-seal-colander-v0",
+      "summary": "Make a perforated container hold water.",
+      "success_criteria": [
+        "Over 10% of water particles are inside the perforated container",
+        "Container hasn't fallen off the table"
+      ],
+      "instruction": "Make the container hold water for a short time.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 1,
+      "materials": [
+        "Rigid",
+        "SPH"
+      ]
+    },
+    {
+      "id": "stabilize_bottle",
+      "number": 22,
+      "title": "Stabilize Bottle",
+      "source_file": "gs_gym/envs/robowits/22_stabilize_bottle.py",
+      "eval_scenes": 50,
+      "objects": [
+        "bowl",
+        "sand_container",
+        "tube"
+      ],
+      "object_materials": [
+        "mpm",
+        "rigid"
+      ],
+      "mutations": 5,
+      "class": "StabilizeBottleEnv",
+      "registry_id": "robowits/22-stabilize-bottle-v0",
+      "summary": "Stabilize a tube using dry sand in a bowl.",
+      "success_criteria": [
+        "Tube's base is inside the bowl's footprint",
+        "Tube is upright (tilt <= 5 degrees from vertical)",
+        "Tube is stationary (low velocity)",
+        "Objects remain within table bounds"
+      ],
+      "instruction": "Make the tube stand upright in the bowl without falling for a short time.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 3,
+      "materials": [
+        "MPM",
+        "Rigid"
+      ]
+    },
+    {
+      "id": "place_book",
+      "number": 23,
+      "title": "Place Book",
+      "source_file": "gs_gym/envs/robowits/23_place_book.py",
+      "eval_scenes": 50,
+      "objects": [
+        "board",
+        "book",
+        "book on shelf 1",
+        "book on shelf 2",
+        "book on shelf 3",
+        "book on shelf 4",
+        "book on shelf 5",
+        "shelf back",
+        "shelf left",
+        "shelf right",
+        "shelf top"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 5,
+      "class": "PlaceBookEnv",
+      "registry_id": "robowits/23-place-book-v0",
+      "summary": "Move the thin book onto the blue target mat without disturbing the heavy block.",
+      "success_criteria": [
+        "Thin book is on the blue target mat (95% overlap)",
+        "Heavy block remains in place (displacement <= 10mm)",
+        "Book is free of heavy block (no overlap)",
+        "Objects remain within table bounds"
+      ],
+      "instruction": "Move the 'thin book' onto the 'blue target mat' without moving the heavy block from its place.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 2,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/23.mp4"
+    },
+    {
+      "id": "raise_platform",
+      "number": 24,
+      "title": "Raise Platform",
+      "source_file": "gs_gym/envs/robowits/24_raise_platform.py",
+      "eval_scenes": 50,
+      "objects": [
+        "cup support 1",
+        "cup support 2",
+        "heavy book",
+        "support cube 1",
+        "support cube 2"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 4,
+      "class": "RaisePlatformEnv",
+      "registry_id": "robowits/24-raise-platform-v0",
+      "summary": "Place the heavy book on top of the cup supports.",
+      "success_criteria": [
+        "Book is resting on both cup supports",
+        "Book is elevated above the table surface",
+        "Involved objects haven't fallen below the table"
+      ],
+      "instruction": "Place the book on the cup supports.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 2,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/24.mp4"
+    },
+    {
+      "id": "water_into_mug",
+      "number": 25,
+      "title": "Water Into Mug",
+      "source_file": "gs_gym/envs/robowits/25_water_into_mug.py",
+      "eval_scenes": 50,
+      "objects": [
+        "heavy_large_object",
+        "mug",
+        "pitcher"
+      ],
+      "object_materials": [
+        "rigid",
+        "sph"
+      ],
+      "mutations": 7,
+      "class": "WaterIntoMugEnv",
+      "registry_id": "robowits/25-water-into-mug-v0",
+      "summary": "Collect water in the mug using displacement.",
+      "success_criteria": [
+        "At least 1 water particle is inside the mug's interior (circular proxy, z within mug bounds)",
+        "Mug remains within table XY bounds",
+        "Mug is resting on the table (not floating)",
+        "At least 70% of water particles remain over the table"
+      ],
+      "instruction": "Collect water in the mug without moving the pitcher.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 1,
+      "materials": [
+        "Rigid",
+        "SPH"
+      ]
+    },
+    {
+      "id": "align_chopsticks",
+      "number": 26,
+      "title": "Align Chopsticks",
+      "source_file": "gs_gym/envs/robowits/26_align_chopsticks.py",
+      "eval_scenes": 50,
+      "objects": [
+        "board",
+        "fifth chopstick",
+        "first chopstick",
+        "fourth chopstick",
+        "ruler",
+        "second chopstick",
+        "sixth chopstick",
+        "third chopstick"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 5,
+      "class": "AlignChopsticksEnv",
+      "registry_id": "robowits/26-align-chopsticks-v0",
+      "summary": "Align six chopsticks so they all point in the same direction.",
+      "success_criteria": [
+        "All six chopsticks have their thin ends pointing in the same direction",
+        "Chopsticks remain within table bounds"
+      ],
+      "instruction": "Make all six chopsticks point in the same direction, with their small thin ends all facing the same way.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 1,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/26.mp4"
+    },
+    {
+      "id": "retrieve_roll",
+      "number": 27,
+      "title": "Retrieve Roll",
+      "source_file": "gs_gym/envs/robowits/27_retrieve_roll.py",
+      "eval_scenes": 50,
+      "objects": [
+        "green target area",
+        "hollow roll",
+        "long rod"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 7,
+      "class": "RetrieveRollEnv",
+      "registry_id": "robowits/27-retrieve-roll-v0",
+      "summary": "Retrieve an out-of-reach roll using a long rod.",
+      "success_criteria": [
+        "Roll overlaps target area by at least 50%",
+        "Roll remains within table bounds"
+      ],
+      "instruction": "Use the long rod to retrieve the out-of-reach roll and move it to the green target area.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 1,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/27.mp4"
+    },
+    {
+      "id": "move_cube",
+      "number": 28,
+      "title": "Move Cube",
+      "source_file": "gs_gym/envs/robowits/28_move_cube.py",
+      "eval_scenes": 50,
+      "objects": [
+        "cube 1",
+        "cube 2",
+        "cube 3",
+        "goal line",
+        "rough slope",
+        "smooth slope"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 7,
+      "class": "MoveCubeEnv",
+      "registry_id": "robowits/28-move-cube-v0",
+      "summary": "Move a cube past the goal line using slopes with different friction.",
+      "success_criteria": [
+        "At least one cube has x > 0.9 (passes the goal line)"
+      ],
+      "instruction": "Move any of the three cubes to the left of the goal line.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 1,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/28.mp4"
+    },
+    {
+      "id": "balance_board",
+      "number": 29,
+      "title": "Balance Board",
+      "source_file": "gs_gym/envs/robowits/29_balance_board.py",
+      "eval_scenes": 50,
+      "objects": [
+        "board",
+        "small wall",
+        "support cube"
+      ],
+      "object_materials": [
+        "rigid"
+      ],
+      "mutations": 6,
+      "class": "BalanceBoardEnv",
+      "registry_id": "robowits/29-balance-board-v0",
+      "summary": "Balance a board on a narrow wall support.",
+      "success_criteria": [
+        "Board is resting on top of the wall near its center",
+        "Board is balanced (nearly horizontal, not tipping/moving)",
+        "Objects remain within table bounds"
+      ],
+      "instruction": "Place the board onto the wall and keep it balanced.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 1,
+      "materials": [
+        "Rigid"
+      ],
+      "oracle_video": "https://umass-embodied-agi.github.io/RoboWits/static/videos/29.mp4"
+    },
+    {
+      "id": "differentiate_cubes",
+      "number": 30,
+      "title": "Differentiate Cubes",
+      "source_file": "gs_gym/envs/robowits/30_differentiate_cubes.py",
+      "eval_scenes": 50,
+      "objects": [
+        "metal cube",
+        "mug",
+        "target area",
+        "water pitcher",
+        "wooden cube"
+      ],
+      "object_materials": [
+        "rigid",
+        "sph"
+      ],
+      "mutations": 5,
+      "class": "DifferentiateCubesEnv",
+      "registry_id": "robowits/30-differentiate-cubes-v0",
+      "summary": "Differentiate wooden and metal cubes using buoyancy.",
+      "success_criteria": [
+        "Wooden cube overlaps target area by at least 50%",
+        "Metal cube remains inside the mug",
+        "Cubes remain within table bounds"
+      ],
+      "instruction": "Place the wooden cube to the green target area. Keep the metal cube inside the mug.",
+      "episode_steps_default": 200,
+      "control_mode_default": "EE_ABS",
+      "blenderkit_assets": 1,
+      "materials": [
+        "Rigid",
+        "SPH"
+      ]
+    }
+  ]
+}

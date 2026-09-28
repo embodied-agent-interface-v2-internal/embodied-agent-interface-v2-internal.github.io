@@ -1,0 +1,314 @@
+# Curated task state for robowits.
+#
+# One block per task. Written by the site's Edit button and by hand; both are
+# fine. Task ids match docs/benchmarks/robowits/tasks/<id>.md.
+#
+#   status      keep | drop | needs-review | pending
+#   difficulty  unrated | easy | medium | hard | extreme
+#   labels      tier-2 ids from state/taxonomy.yml
+#   owner       bare GitHub handle
+#   note        free text; why you decided what you decided
+
+align_blocks:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - nonprehensile
+  - tool-use
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+align_chopsticks:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - nonprehensile
+  - dynamics
+  - tool-use
+  - geometric-constraint
+  - fine-detail
+  - horizon-composite
+  - gen-layout
+balance_board:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - stability
+  - geometric-constraint
+  - horizon-atomic
+  - gen-layout
+ball_into_bottle:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - tool-use
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+ball_into_jar:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - force
+  - deformable
+  - geometric-constraint
+  - horizon-atomic
+  - gen-layout
+ball_onto_tower:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - stability
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+collect_screws:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - nonprehensile
+  - tool-use
+  - horizon-composite
+  - gen-layout
+cover_with_lid:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - attribute-goal
+  - geometric-constraint
+  - horizon-atomic
+  - gen-layout
+cylinder_through_hole:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - geometric-constraint
+  - horizon-atomic
+  - gen-layout
+differentiate_cubes:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - fluid-granular
+  - tool-use
+  - active-perception
+  - horizon-composite
+  - gen-layout
+dominos:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - nonprehensile
+  - dynamics
+  - tool-use
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+gap_retrieve:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+hold_cup:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - stability
+  - tool-use
+  - horizon-composite
+  - gen-layout
+move_cube:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - nonprehensile
+  - dynamics
+  - tool-use
+  - fine-detail
+  - horizon-composite
+  - gen-layout
+pinch_card:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - nonprehensile
+  - force
+  - tool-use
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+place_book:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - nonprehensile
+  - force
+  - tool-use
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+place_tall_box:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+raise_platform:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - stability
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+retrieve_cube:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - nonprehensile
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+retrieve_roll:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - tool-use
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+roll_up_ball:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - nonprehensile
+  - force
+  - tool-use
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+round_dough_sheet:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - force
+  - deformable
+  - tool-use
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+seal_colander:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - fluid-granular
+  - tool-use
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+separate_marbles_and_sand:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - fluid-granular
+  - tool-use
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+stabilize_bottle:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - fluid-granular
+  - stability
+  - tool-use
+  - horizon-composite
+  - gen-layout
+stack_bowls:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - geometric-constraint
+  - horizon-atomic
+  - gen-layout
+stack_cubes:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - stability
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+  note: 'Integrated in robot_coding_bench (tasks/robowits-stack-cubes-i00 / -p00)
+    and validated end to end: Harbor oracle 1 / nop 0 on evaluation scene 0 (468 actions),
+    and the policy task solves 3 of the first 10 held-out scenes. The gap between
+    those two numbers is the interesting part: the fixed scene is a scripted pick-and-place,
+    generalising over placements is not.'
+  tags:
+  - rcb-integrated
+stand_bulb:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - stability
+  - tool-use
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+stand_pages:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - precision-fit
+  - stability
+  - geometric-constraint
+  - horizon-composite
+  - gen-layout
+water_into_mug:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - fluid-granular
+  - tool-use
+  - horizon-composite
+  - gen-layout

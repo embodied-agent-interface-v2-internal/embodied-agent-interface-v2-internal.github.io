@@ -1,0 +1,38 @@
+name: Task question or disagreement
+description: Raise a question about a specific task's triage, tagging or demo
+title: "[task] <task_id>: "
+labels: ["task", "needs-discussion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For a discussion about one task, prefer the comment thread on that
+        task's page — it stays attached to the task. Use an issue when the
+        question needs tracking to a decision, or affects several tasks.
+  - type: input
+    id: task_id
+    attributes:
+      label: Task id
+      placeholder: can_meat
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of question
+      options:
+        - Capability tagging looks wrong
+        - Keep/drop decision is contested
+        - Oracle demo does not match the goal
+        - Instruction is missing or ambiguous
+        - Harness or simulator problem
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: The question
+      description: State the position you are contesting and why. Be specific enough to be wrong.
+    validations:
+      required: true

@@ -1,0 +1,386 @@
+{
+  "adjust_bottle": {
+    "bytes": 492520,
+    "height": 480,
+    "poster": true,
+    "seconds": 9,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "beat_block_hammer": {
+    "bytes": 425062,
+    "height": 480,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 28831, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "blocks_ranking_rgb": {
+    "bytes": 1370378,
+    "height": 480,
+    "poster": true,
+    "seconds": 29,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "blocks_ranking_size": {
+    "bytes": 1386203,
+    "height": 480,
+    "poster": true,
+    "seconds": 29,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "click_alarmclock": {
+    "bytes": 324618,
+    "height": 480,
+    "poster": true,
+    "seconds": 7,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "click_bell": {
+    "bytes": 233104,
+    "height": 480,
+    "poster": true,
+    "seconds": 5,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "dump_bin_bigbin": {
+    "bytes": 630259,
+    "height": 480,
+    "poster": true,
+    "seconds": 20,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "grab_roller": {
+    "bytes": 452858,
+    "height": 480,
+    "poster": true,
+    "seconds": 6,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "handover_block": {
+    "bytes": 838360,
+    "height": 480,
+    "poster": true,
+    "seconds": 19,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "handover_mic": {
+    "bytes": 646884,
+    "height": 480,
+    "poster": true,
+    "seconds": 15,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 28831, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "hanging_mug": {
+    "bytes": 1163760,
+    "height": 480,
+    "poster": true,
+    "seconds": 22,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "lift_pot": {
+    "bytes": 496651,
+    "height": 480,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 28831, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "move_can_pot": {
+    "bytes": 472944,
+    "height": 480,
+    "poster": true,
+    "seconds": 10,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "move_pillbottle_pad": {
+    "bytes": 483178,
+    "height": 480,
+    "poster": true,
+    "seconds": 11,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "move_playingcard_away": {
+    "bytes": 458015,
+    "height": 480,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "move_stapler_pad": {
+    "bytes": 558725,
+    "height": 480,
+    "poster": true,
+    "seconds": 11,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "open_laptop": {
+    "bytes": 386355,
+    "height": 480,
+    "poster": true,
+    "seconds": 10,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "open_microwave": {
+    "bytes": 1929279,
+    "height": 480,
+    "poster": true,
+    "seconds": 89,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "pick_dual_bottles": {
+    "bytes": 675468,
+    "height": 480,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "place_a2b_left": {
+    "bytes": 598102,
+    "height": 480,
+    "poster": true,
+    "seconds": 11,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 28831, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "place_a2b_right": {
+    "bytes": 466756,
+    "height": 480,
+    "poster": true,
+    "seconds": 10,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 28831, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "place_bread_basket": {
+    "bytes": 1175043,
+    "height": 480,
+    "poster": true,
+    "seconds": 15,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "place_bread_skillet": {
+    "bytes": 716918,
+    "height": 480,
+    "poster": true,
+    "seconds": 11,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 91573, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "place_burger_fries": {
+    "bytes": 1287494,
+    "height": 480,
+    "poster": true,
+    "seconds": 16,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "place_can_basket": {
+    "bytes": 1047704,
+    "height": 480,
+    "poster": true,
+    "seconds": 17,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 91573, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "place_cans_plasticbox": {
+    "bytes": 1530017,
+    "height": 480,
+    "poster": true,
+    "seconds": 19,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "place_container_plate": {
+    "bytes": 530611,
+    "height": 480,
+    "poster": true,
+    "seconds": 11,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "place_dual_shoes": {
+    "bytes": 1187918,
+    "height": 480,
+    "poster": true,
+    "seconds": 19,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "place_empty_cup": {
+    "bytes": 429357,
+    "height": 480,
+    "poster": true,
+    "seconds": 11,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "place_fan": {
+    "bytes": 661037,
+    "height": 480,
+    "poster": true,
+    "seconds": 11,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "place_mouse_pad": {
+    "bytes": 473763,
+    "height": 480,
+    "poster": true,
+    "seconds": 10,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "place_object_basket": {
+    "bytes": 917387,
+    "height": 480,
+    "poster": true,
+    "seconds": 16,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "place_object_scale": {
+    "bytes": 555617,
+    "height": 480,
+    "poster": true,
+    "seconds": 11,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "place_object_stand": {
+    "bytes": 372328,
+    "height": 480,
+    "poster": true,
+    "seconds": 9,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "place_phone_stand": {
+    "bytes": 325657,
+    "height": 480,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "place_shoe": {
+    "bytes": 572379,
+    "height": 480,
+    "poster": true,
+    "seconds": 12,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 28831, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "press_stapler": {
+    "bytes": 266786,
+    "height": 480,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "put_bottles_dustbin": {
+    "bytes": 3009841,
+    "height": 480,
+    "poster": true,
+    "seconds": 44,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 28831, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "rotate_qrcode": {
+    "bytes": 506202,
+    "height": 480,
+    "poster": true,
+    "seconds": 10,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 28831, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "scan_object": {
+    "bytes": 922645,
+    "height": 480,
+    "poster": true,
+    "seconds": 11,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "shake_bottle": {
+    "bytes": 680945,
+    "height": 480,
+    "poster": true,
+    "seconds": 16,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "shake_bottle_horizontally": {
+    "bytes": 755521,
+    "height": 480,
+    "poster": true,
+    "seconds": 19,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "stack_blocks_three": {
+    "bytes": 1531841,
+    "height": 480,
+    "poster": true,
+    "seconds": 32,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "stack_blocks_two": {
+    "bytes": 1052093,
+    "height": 480,
+    "poster": true,
+    "seconds": 22,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "stack_bowls_three": {
+    "bytes": 1721384,
+    "height": 480,
+    "poster": true,
+    "seconds": 32,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "stack_bowls_two": {
+    "bytes": 948598,
+    "height": 480,
+    "poster": true,
+    "seconds": 20,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 60417, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "stamp_seal": {
+    "bytes": 432141,
+    "height": 480,
+    "poster": true,
+    "seconds": 9,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 91573, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  },
+  "turn_switch": {
+    "bytes": 253142,
+    "height": 480,
+    "poster": true,
+    "seconds": 7,
+    "source": "Recorded by us: RoboTwin's scripted expert (play_once) run in our rcb-robotwin image on seed 91573, six-camera grid \u2014 world / observer / head // front / left wrist / right wrist. The official ALOHA clip is linked in the facts table.",
+    "width": 960
+  }
+}

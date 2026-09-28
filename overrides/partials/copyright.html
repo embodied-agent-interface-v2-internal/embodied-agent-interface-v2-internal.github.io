@@ -1,0 +1,10 @@
+{#-
+  Replaces Material's default footer, which advertises the theme and the
+  generator. This is an internal document; the only thing worth saying in the
+  footer is what it is.
+-#}
+<div class="md-copyright">
+  {% if config.copyright %}
+    <div class="md-copyright__highlight">{{ config.copyright }}</div>
+  {% endif %}
+</div>

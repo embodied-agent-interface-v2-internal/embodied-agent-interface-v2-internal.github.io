@@ -1,0 +1,1426 @@
+# Curated task state for robolab.
+#
+# One block per task. Written by the site's Edit button and by hand; both are
+# fine. Task ids match docs/benchmarks/robolab/tasks/<id>.md.
+#
+#   status      keep | drop | needs-review | pending
+#   difficulty  unrated | easy | medium | hard | extreme
+#   labels      tier-2 ids from state/taxonomy.yml
+#   owner       bare GitHub handle
+#   note        free text; why you decided what you decided
+
+animals_in_bin:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+apple_and_yogurt_in_bowl:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - affordance
+bagels_on_plate:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+banana_in_bowl:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  note: 'Integrated in robot_coding_bench (tasks/robolab-banana-in-bowl-i00) and validated
+    end to end: Harbor oracle 1 / nop 0, 177 actions, four independent processes agree
+    on the final state. The demo on this page is that reference solution, not an upstream
+    clip. Harder than it looks for a scripted agent: the banana''s pose centre lies
+    in the concavity of the curve, so a grasp planned from the bounding box closes
+    on air, and the Robotiq pads reach only 5.7 cm back from the fingertips.'
+  skills:
+  - semantics
+  tags:
+  - rcb-integrated
+banana_on_plate:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+banana_then_rubiks_cube:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  - gen-language
+  skills:
+  - conjunction
+bananas_in_bin_one_more:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - quantified-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - counting
+  - semantics
+bananas_in_bin_three_total:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - quantified-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - counting
+  - semantics
+bananas_in_crate:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - quantified-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - counting
+bananas_out_of_bin:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  media:
+  - caption: Same task, the `vague` wording — 'Take all the bananas out of the grey
+      bin and put it on the table'
+    credit: RoboLab project page
+    kind: video
+    url: https://research.nvidia.com/labs/srl/projects/robolab/static/videos/Take_all_the_bananas_out_of_the_grey_bin_and_put_it_on_the_table_3_viewport_3X.mp4
+  - caption: Same task, the `specific` wording — 'Empty the grey bin'
+    credit: RoboLab project page
+    kind: video
+    url: https://research.nvidia.com/labs/srl/projects/robolab/static/videos/Empty_the_grey_bin_1_viewport_3X.mp4
+  note: RoboLab publishes three rollouts of this task, one per instruction wording;
+    the row plays the default one.
+  skills:
+  - semantics
+  - spatial
+bbq_sauce_in_bin:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+  - semantics
+big_pumpkin_in_bin:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - size
+black_items_in_bin:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+  - sorting
+block_stacking_order_agnostic:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - stability
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - stacking
+block_stacking_specified_order:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - stability
+  - attribute-goal
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+  - stacking
+blocks_in_bin:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - sorting
+bowl_in_bin:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+bowl_stacking_left_on_right:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - spatial
+bowl_stacking_right_on_left:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - spatial
+butter_above_raisin:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - spatial
+canned_food_in_bin:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+clamp_in_right_bin:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+  - spatial
+clean_up_toys:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-activity
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+  - sorting
+clear_organic_objects:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - knowledge-goal
+  - horizon-activity
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+clutter_plastic:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+clutter_pumpkin:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+coffee_pot_in_bin:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+condiments_in_bin:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+  - sorting
+cooking_clear_plate:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+  - sorting
+cooking_pick_pasta_tool:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - attribute-goal
+  - implicit-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+  - spatial
+  - vague
+cubes_and_blocks_in_bin:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-activity
+  - gen-fixed
+  - gen-language
+  skills:
+  - conjunction
+  - sorting
+dishes_in_bin:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - implicit-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+  - vague
+electronics_in_bin:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+  - sorting
+food_packing1_boxes:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+food_packing1_cans:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+food_packing2_boxes:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+food_packing2_cans:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+food_packing3_boxes:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - geometric-constraint
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+food_packing3_cans:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - geometric-constraint
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+food_packing_by_color:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - attribute-goal
+  - geometric-constraint
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+  - sorting
+  - spatial
+fruits_green_limes_on_plate:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+fruits_moving:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - quantified-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+fruits_moving_orange_or_lime:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - quantified-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - conjunction
+fruits_on_plate:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - implicit-goal
+  - horizon-activity
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+  - vague
+fruits_on_plate3:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - quantified-goal
+  - implicit-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - counting
+  - semantics
+  - vague
+fruits_onion:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+fruits_onion_to_plate:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - implicit-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+  - vague
+fruits_oranges_on_plate:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - quantified-goal
+  - implicit-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - counting
+  - semantics
+  - vague
+grab_a_bagel:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+grab_a_fruit:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+green_spoons_in_pot:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+  - reorientation
+hammers_in_left_bin:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+  - semantics
+  - spatial
+jugs_on_shelf:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - geometric-constraint
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+keyboard_out_of_bin:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - spatial
+larger_object_raisin_box_in_bin:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - size
+marker_in_mug:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - affordance
+mouse_on_keyboard:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+move_banana_to_bagel_plate:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+mustard_above_raisin:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - spatial
+mustard_in_left_bin:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - spatial
+mustard_in_right_bin:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - spatial
+non_hammer_tools_in_right_bin:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+  - sorting
+  - spatial
+one_bottle_in_square_pail:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - quantified-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+one_bottle_on_shelf:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - quantified-goal
+  - geometric-constraint
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+phone_or_remote_in_bin:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - quantified-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - conjunction
+pick_drill:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+pick_glasses:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+pick_orange_object:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+pick_up_blue_pitcher:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - affordance
+  - color
+pick_up_green_object:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+pink_spoon_in_pot:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - attribute-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - affordance
+  - color
+plastic_bottles_in_square_pail:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+  - size
+  - sorting
+put_bowl_on_shelf_top:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - geometric-constraint
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - spatial
+put_mugs_on_shelf:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - quantified-goal
+  - geometric-constraint
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - affordance
+  - counting
+  - spatial
+put_two_mugs_on_shelf:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - quantified-goal
+  - geometric-constraint
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - affordance
+  - counting
+  - spatial
+recycle_carton:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - implicit-goal
+  - knowledge-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+  - vague
+recycle_cartons_on_box:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - knowledge-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+recycle_cartons_vertical_crate:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - attribute-goal
+  - knowledge-goal
+  - geometric-constraint
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+  - spatial
+red_dishes_in_bin:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+  - semantics
+red_items_in_bin:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+  - sorting
+reorient_all_mugs:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - stability
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - reorientation
+reorient_jug:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - stability
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - affordance
+  - reorientation
+  - semantics
+reorient_red_mug:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - stability
+  - attribute-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+  - reorientation
+reorient_white_mugs:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - stability
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+  - reorientation
+rubiks_cube:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+rubiks_cube_and_banana:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - conjunction
+rubiks_cube_behind_bowl:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - spatial
+rubiks_cube_in_front_of_bowl:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - spatial
+rubiks_cube_left_of_bowl:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - spatial
+rubiks_cube_or_banana:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - quantified-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - conjunction
+rubiks_cube_right_of_bowl:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - spatial
+rubiks_cube_then_banana:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  - gen-language
+  skills:
+  - conjunction
+rubiks_cubes_in_bin:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - sorting
+sauce_bottles_crate:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+  - semantics
+small_pumpkin_in_bin:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - size
+smaller_object_butter_in_bin:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - size
+smartphone_in_bin:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+spoon_in_mug:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - affordance
+  - spatial
+spoons_in_pot:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - attribute-goal
+  - fine-detail
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - affordance
+  - reorientation
+  - semantics
+stack3_rubiks_cube:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - stability
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - stacking
+stack_white_mugs:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - stability
+  - precision-fit
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+  - stacking
+stack_yellow_on_red:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - stability
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  - gen-language
+  skills:
+  - stacking
+take_measuring_spoon_out:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+take_mugs_off_of_shelf:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - geometric-constraint
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - affordance
+  - semantics
+take_spatula_off_shelf:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - geometric-constraint
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - affordance
+  - spatial
+throw_away_apple:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+throw_away_snacks:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+tool_organization:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+  - semantics
+  - spatial
+tool_organization_both:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+  - spatial
+tools_picking_all_hammers:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+  - spatial
+tools_picking_drill:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+  - spatial
+tools_picking_hammer:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - attribute-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+  - semantics
+  - spatial
+toy_in_bin:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+unstack_rubiks_cube:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - stacking
+utensils_in_mug:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - affordance
+  - semantics
+white_mug_in_center_of_table:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - attribute-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+  - spatial
+white_mugs_in_bin:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+wood_spatula_to_bowl:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - semantics
+yellow_and_white_objects_in_bin:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+  - conjunction
+yogurt_in_bowl:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-atomic
+  - gen-fixed
+  - gen-language
+  skills:
+  - color
+  - size

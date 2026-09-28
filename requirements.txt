@@ -1,0 +1,29 @@
+# Documentation toolchain. Pinned exactly on purpose.
+#
+# MkDocs is mid-way through a contested v2 transition (Material prints a
+# warning about it on every build). Exact pins mean a contributor who clones
+# this repo next month gets the same site you do. Bump them deliberately, in
+# their own PR, with a build to prove it still works.
+
+mkdocs==1.6.1
+mkdocs-material==9.7.7
+
+# Generates the gallery, triage board and coverage pages at build time.
+mkdocs-gen-files==0.6.1
+
+# Smaller HTML; also keeps the gallery's embedded JSON payload compact.
+mkdocs-minify-plugin==0.8.0
+
+pymdown-extensions==12.0.1
+PyYAML==6.0.3
+
+# `make demos` downloads the oracle demos to local MP4 so the site can use a
+# <video> element (and therefore playback-speed control). curl-cffi provides
+# the browser impersonation Vimeo requires.
+yt-dlp[default,curl-cffi]==2026.8.19
+
+# Note: mkdocs-gen-files pulls in `properdocs` (a MkDocs 1.x fork) transitively.
+# Both it and Material print an advisory about the MkDocs 2.0 transition during
+# a build, via different environment variables. Harmless; the Makefile and CI
+# set NO_MKDOCS_2_WARNING=true and DISABLE_MKDOCS_2_WARNING=true to keep logs
+# readable. Do not add properdocs as a direct dependency.

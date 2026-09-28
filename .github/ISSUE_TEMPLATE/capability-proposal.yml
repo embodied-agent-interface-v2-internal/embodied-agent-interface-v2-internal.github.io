@@ -1,0 +1,36 @@
+name: New capability proposal
+description: Propose adding a capability to the shared taxonomy
+title: "[taxonomy] "
+labels: ["taxonomy"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The taxonomy is deliberately small. A near-duplicate capability quietly
+        corrupts the coverage numbers, so new entries need task evidence.
+  - type: input
+    id: proposed_id
+    attributes:
+      label: Proposed id
+      description: "Family prefix plus a short slug, e.g. per.reflective-surface"
+    validations:
+      required: true
+  - type: textarea
+    id: definition
+    attributes:
+      label: One-sentence definition
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Tasks that need it
+      description: Link at least two task pages, and say which existing tags fall short.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Why no existing capability fits
+    validations:
+      required: true

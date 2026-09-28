@@ -1,0 +1,43 @@
+# RoboPaint's agent runs. Owned by the benchmark's owner, curated by hand like everything in state/.
+# Format and field meanings: docs/contributing/registering-runs.md (and the header of state/runs/behavior-1k.yml).
+
+default: codex-0.157-gpt6luna-xhigh-cgpt
+# task id <family>_<target> -> our task directory robopaint-<family>-<target>-i00
+task_dir: "robopaint-{task_dashed}-i00"
+
+# The grader's continuous scores beside success (user 2026-09-28: "IoU 也可以作为一个 metric，不一定非要用 success"):
+# reward.json keys, shown as columns, sorts and run summaries on the Runs pages. final_reward is the F1 of the
+# painted strokes against the target; the two chamfer distances are in millimetres, lower is better.
+metrics:
+- {key: final_reward, label: F1, format: ".3f"}
+- {key: iou, label: IoU, format: ".3f"}
+- {key: precision, label: Precision, format: ".3f"}
+- {key: recall, label: Recall, format: ".3f"}
+- {key: min_color_recall, label: Min colour recall, format: ".3f"}
+- {key: chamfer_paint_to_target_mm, label: "Chamfer paint→target", format: ".2f", unit: mm, better: lower, summary: median}
+- {key: chamfer_target_to_paint_mm, label: "Chamfer target→paint", format: ".2f", unit: mm, better: lower, summary: median}
+- {key: ssim_blur, label: SSIM (blurred), format: ".3f"}
+
+runs:
+  codex-0.157-gpt6luna-xhigh-cgpt:
+    # 2026-09-28 ~02:00: the renamed benchmark's first sweep (picture-only agent side, the scoring sidecar), the 9
+    # line drawings x both modes on our RoboPaint workstation. The batches of the
+    # benchmark's maniskill-paint days (paint-lunaxh-0927 with vector targets, paint-rgb-lunaxh-0927) are dropped from
+    # the site (user: only this run); their Harbor jobs stay on that machine as the record.
+    batch: robopaint-lunaxh-0928
+    # RoboPaint's pages name no source repository (owner, 2026-09-28: "robopaint上不要写那个仓库"), so its Run details
+    # word the harness without the repository and commit that data/agents/ names.
+    harness: >-
+      Codex CLI 0.157.0 as our Harbor agent CodexChatGPT: Codex with our model gateway pointed at ChatGPT's backend
+    tasks:
+    - line_butterfly
+    - line_city
+    - line_cottage
+    - line_fish
+    - line_flower
+    - line_landscape
+    - line_rainbow
+    - line_rocket
+    - line_sailboat
+    # A family's tasks join `tasks` when its sweep starts (lettering, kaishu, acrylic and oil land after 02:00).
+    others: not in this sweep (a family that landed after it started)

@@ -1,0 +1,679 @@
+# Curated task state for robotwin-2.
+#
+# One block per task. Written by the site's Edit button and by hand; both are
+# fine. Task ids match docs/benchmarks/robotwin-2/tasks/<id>.md.
+#
+#   status      keep | drop | needs-review | pending
+#   difficulty  unrated | easy | medium | hard | extreme
+#   labels      tier-2 ids from state/taxonomy.yml
+#   owner       bare GitHub handle
+#   note        free text; why you decided what you decided
+
+adjust_bottle:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-layout
+  note: 'Dropped as `easy` (2026-09-22 triage: every easy-rated task is out). Single-arm or trivially
+    bimanual pick-and-place / press that RoboTwin''s primitives solve in one or two planned motions; not
+    discriminative for a coding agent.'
+  owner: JamesKrW
+  status: drop
+beat_block_hammer:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - dynamics
+  - tool-use
+  - horizon-composite
+  - gen-layout
+  note: Hammer head must land on the block's functional point and stay in contact; the hammer is a mesh
+    with contact-point grasps. Expert 4/6 on our seeds.
+  status: drop
+blocks_ranking_rgb:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - attribute-goal
+  - horizon-composite
+  - ordered
+  - gen-layout
+  status: drop
+blocks_ranking_size:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - relational-goal
+  - attribute-goal
+  - horizon-composite
+  - ordered
+  - gen-layout
+  note: Three blocks ordered by size, each picked with the nearer arm; the expert parks the other arm
+    between picks.
+  status: drop
+click_alarmclock:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - device-operation
+  - horizon-atomic
+  - gen-layout
+  note: 'Dropped as `easy` (2026-09-22 triage: every easy-rated task is out). Single-arm or trivially
+    bimanual pick-and-place / press that RoboTwin''s primitives solve in one or two planned motions; not
+    discriminative for a coding agent.
+
+
+    RoboTwin''s own expert failed on all 6 uncommon seeds we tried (check_success false after the press),
+    and the official ALOHA data-generation rate is low; the predicate needs a contact at the button centre
+    that the scripted press rarely produces. Not usable as a bench task until the predicate or the expert
+    is fixed.'
+  owner: JamesKrW
+  status: drop
+click_bell:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - device-operation
+  - horizon-atomic
+  - gen-layout
+  note: 'Dropped as `easy` (2026-09-22 triage: every easy-rated task is out). Single-arm or trivially
+    bimanual pick-and-place / press that RoboTwin''s primitives solve in one or two planned motions; not
+    discriminative for a coding agent.'
+  owner: JamesKrW
+  status: drop
+dump_bin_bigbin:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - fluid-granular
+  - horizon-composite
+  - ordered
+  - irreversible
+  - gen-layout
+  note: Pouring is a hand-coded rotation sequence in the expert (no primitive); the predicate checks every
+    sphere landed in the big bin. Dynamics-dependent.
+  status: keep
+grab_roller:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - horizon-atomic
+  - gen-layout
+  note: 'Dropped as `easy` (2026-09-22 triage: every easy-rated task is out). Single-arm or trivially
+    bimanual pick-and-place / press that RoboTwin''s primitives solve in one or two planned motions; not
+    discriminative for a coding agent.'
+  owner: JamesKrW
+  status: drop
+handover_block:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - relational-goal
+  - horizon-composite
+  - ordered
+  - gen-layout
+  note: 'In-air handover: grasp on contact points 0-3, the other arm takes contact points 4-7 while the
+    first still holds, then release and place aligned on the pad.'
+  status: drop
+handover_mic:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-layout
+  status: drop
+hanging_mug:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - precision-fit
+  - horizon-composite
+  - ordered
+  - gen-layout
+  note: 'Regrasp with orientation: left arm sets the mug down mid-table, right arm re-grasps with a specific
+    yaw and hangs the handle on the rack (negative approach distance). 2 cm predicate on the functional
+    point. Expert 5/6.'
+  status: keep
+lift_pot:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - horizon-atomic
+  - gen-layout
+  note: Both arms lift the pot by its handles simultaneously; official ALOHA data-generation rate 27%,
+    the lowest of the suite.
+  status: drop
+move_can_pot:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-layout
+  note: 'Dropped as `easy` (2026-09-22 triage: every easy-rated task is out). Single-arm or trivially
+    bimanual pick-and-place / press that RoboTwin''s primitives solve in one or two planned motions; not
+    discriminative for a coding agent.'
+  owner: JamesKrW
+  status: drop
+move_pillbottle_pad:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-layout
+  note: 'Dropped as `easy` (2026-09-22 triage: every easy-rated task is out). Single-arm or trivially
+    bimanual pick-and-place / press that RoboTwin''s primitives solve in one or two planned motions; not
+    discriminative for a coding agent.'
+  owner: JamesKrW
+  status: drop
+move_playingcard_away:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-layout
+  note: 'Dropped as `easy` (2026-09-22 triage: every easy-rated task is out). Single-arm or trivially
+    bimanual pick-and-place / press that RoboTwin''s primitives solve in one or two planned motions; not
+    discriminative for a coding agent.'
+  owner: JamesKrW
+  status: drop
+move_stapler_pad:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-atomic
+  - gen-layout
+  note: 'Dropped as `easy` (2026-09-22 triage: every easy-rated task is out). Single-arm or trivially
+    bimanual pick-and-place / press that RoboTwin''s primitives solve in one or two planned motions; not
+    discriminative for a coding agent.'
+  owner: JamesKrW
+  status: drop
+open_laptop:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - articulated
+  - horizon-atomic
+  - gen-layout
+  note: Lid must be lifted along its hinge arc; predicate on the lid joint angle plus contact. Expert
+    6/6.
+  status: keep
+open_microwave:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - articulated
+  - force
+  - horizon-composite
+  - gen-layout
+  note: 'Integrated in robot_coding_bench (tasks/robotwin_2_0_open_microwave, seed 28831) and validated:
+    Harbor oracle 1 / nop 0, replay bit-exact. Keep — core. The one task where RoboTwin''s own expert
+    needs a loop: it re-grasps along contact points on the door up to 50 times, has a fallback strategy
+    when the door stalls, and still fails on 3 of 6 uncommon seeds (7k-10k physics steps when it succeeds).
+    Predicate is the hinge joint at >= 60% of its range, so the agent must reason about the door''s kinematics
+    (get_qpos / get_qlimits) rather than a pose. No model run yet.'
+  owner: JamesKrW
+  status: keep
+  tags:
+  - rcb-integrated
+pick_diverse_bottles:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - attribute-goal
+  - horizon-atomic
+  - gen-layout
+  note: 'Cannot be built on any of our seeds: RoboTwin raises UnStableError for 001_bottle during scene
+    settling on all 6 seeds tried (the bottle never comes to rest), before any motion. No scene still,
+    no expert run. Retry after an upstream asset fix.'
+  owner: JamesKrW
+  status: drop
+pick_dual_bottles:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - horizon-atomic
+  - gen-layout
+  note: 'Dropped as `easy` (2026-09-22 triage: every easy-rated task is out). Single-arm or trivially
+    bimanual pick-and-place / press that RoboTwin''s primitives solve in one or two planned motions; not
+    discriminative for a coding agent.'
+  owner: JamesKrW
+  status: drop
+place_a2b_left:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - attribute-goal
+  - horizon-atomic
+  - gen-layout
+  note: Object A and B are drawn from a pool of ~10 asset categories; the goal is a left-of relation.
+  status: drop
+place_a2b_right:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - attribute-goal
+  - horizon-atomic
+  - gen-layout
+  status: drop
+place_bread_basket:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - quantified-goal
+  - horizon-composite
+  - gen-layout
+  note: 'One bread: one arm; two breads: both arms simultaneously (the expert''s move() with two action
+    lists). 10 planned motions.'
+  status: drop
+place_bread_skillet:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-layout
+  note: 'Dropped as `easy` (2026-09-22 triage: every easy-rated task is out). Single-arm or trivially
+    bimanual pick-and-place / press that RoboTwin''s primitives solve in one or two planned motions; not
+    discriminative for a coding agent.
+
+
+    Expert flaky on our seeds (2 of 3 attempts failed before one passed) despite an official 6/6-style
+    rate; the skillet''s rim makes the place plan fail.'
+  owner: JamesKrW
+  status: drop
+place_burger_fries:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - horizon-composite
+  - gen-layout
+  status: drop
+place_can_basket:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - precision-fit
+  - horizon-composite
+  - ordered
+  - gen-layout
+  note: 'Integrated in robot_coding_bench (tasks/robotwin_2_0_place_can_basket, seed 60417) and validated:
+    Harbor oracle 1 / nop 0, replay bit-exact. Keep — core. Two objects and both arms in sequence: one
+    arm places the can inside the basket at one of its functional points without tipping it, the other
+    grasps the rim and lifts while the can stays inside. The predicate combines heights, the basket''s
+    up-axis, can-basket distance and physical contacts (can touches basket, not table). Expert 6/6 with
+    a fallback path, 11 planned motions; difficulty is coordination and contact reasoning. No model run
+    yet.'
+  owner: JamesKrW
+  status: keep
+  tags:
+  - rcb-integrated
+place_cans_plasticbox:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - quantified-goal
+  - horizon-composite
+  - gen-layout
+  status: drop
+place_container_plate:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-layout
+  note: 'Dropped as `easy` (2026-09-22 triage: every easy-rated task is out). Single-arm or trivially
+    bimanual pick-and-place / press that RoboTwin''s primitives solve in one or two planned motions; not
+    discriminative for a coding agent.'
+  owner: JamesKrW
+  status: drop
+place_dual_shoes:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - relational-goal
+  - horizon-composite
+  - gen-layout
+  note: 'Keep (2026-09-22 triage). Both shoes into the shoebox with the tips pointing left: a bimanual
+    place with an orientation constraint on each object, and the shoebox is a tight container.
+
+
+    Both shoes into the box with the tip pointing left: an orientation constraint on top of a bimanual
+    place.'
+  owner: JamesKrW
+  status: keep
+place_empty_cup:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-atomic
+  - gen-layout
+  note: 'Dropped as `easy` (2026-09-22 triage: every easy-rated task is out). Single-arm or trivially
+    bimanual pick-and-place / press that RoboTwin''s primitives solve in one or two planned motions; not
+    discriminative for a coding agent.'
+  owner: JamesKrW
+  status: drop
+place_fan:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - attribute-goal
+  - horizon-atomic
+  - gen-layout
+  note: 'Dropped (2026-09-22 triage: everything not explicitly kept is out; the suite holds the five hard
+    core tasks plus a few keeps).
+
+
+    Must end facing the robot: orientation predicate.'
+  owner: JamesKrW
+  status: drop
+place_mouse_pad:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-atomic
+  - gen-layout
+  note: 'Dropped as `easy` (2026-09-22 triage: every easy-rated task is out). Single-arm or trivially
+    bimanual pick-and-place / press that RoboTwin''s primitives solve in one or two planned motions; not
+    discriminative for a coding agent.'
+  owner: JamesKrW
+  status: drop
+place_object_basket:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-layout
+  note: 'Dropped (2026-09-22 triage: everything not explicitly kept is out; the suite holds the five hard
+    core tasks plus a few keeps).
+
+
+    Same shape as place_can_basket with a random target object from a pool; 11 planned motions.'
+  owner: JamesKrW
+  status: drop
+place_object_scale:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-layout
+  note: 'Dropped as `easy` (2026-09-22 triage: every easy-rated task is out). Single-arm or trivially
+    bimanual pick-and-place / press that RoboTwin''s primitives solve in one or two planned motions; not
+    discriminative for a coding agent.'
+  owner: JamesKrW
+  status: drop
+place_object_stand:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - horizon-atomic
+  - gen-layout
+  note: 'Dropped as `easy` (2026-09-22 triage: every easy-rated task is out). Single-arm or trivially
+    bimanual pick-and-place / press that RoboTwin''s primitives solve in one or two planned motions; not
+    discriminative for a coding agent.'
+  owner: JamesKrW
+  status: drop
+place_phone_stand:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - horizon-atomic
+  - gen-layout
+  status: keep
+place_shoe:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-layout
+  note: 'Dropped as `easy` (2026-09-22 triage: every easy-rated task is out). Single-arm or trivially
+    bimanual pick-and-place / press that RoboTwin''s primitives solve in one or two planned motions; not
+    discriminative for a coding agent.'
+  owner: JamesKrW
+  status: drop
+press_stapler:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - device-operation
+  - force
+  - horizon-atomic
+  - gen-layout
+  note: 'Dropped as `easy` (2026-09-22 triage: every easy-rated task is out). Single-arm or trivially
+    bimanual pick-and-place / press that RoboTwin''s primitives solve in one or two planned motions; not
+    discriminative for a coding agent.'
+  owner: JamesKrW
+  status: drop
+put_bottles_dustbin:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - horizon-activity
+  - ordered
+  - gen-layout
+  note: 'Integrated in robot_coding_bench (tasks/robotwin_2_0_put_bottles_dustbin, seed 28831) and validated:
+    Harbor oracle 1 / nop 0, replay bit-exact. Keep — core. Three bottles into a dustbin on the floor
+    at the robot''s left, which only the left arm reaches: right-side bottles need an in-air handover
+    with the grippers offset in height so they do not collide, then a drop over the bin. RoboTwin''s longest
+    evaluation budget (1700) and about 8.8k physics steps in the expert''s solution; expert 5/6 on our
+    seeds. No model run yet.'
+  owner: JamesKrW
+  status: keep
+  tags:
+  - rcb-integrated
+put_object_cabinet:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - articulated
+  - horizon-composite
+  - ordered
+  - gen-layout
+  note: RoboTwin's own expert fails to plan on every one of 6 uncommon seeds (plan_success false at the
+    drawer pull), so we cannot produce a reference solution or a demo. Official ALOHA data-generation
+    rate is also low. Re-check after an upstream fix; the task itself (open a drawer with one arm, place
+    with the other) would be the only drawer task in the suite.
+  owner: JamesKrW
+  status: drop
+rotate_qrcode:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - fine-detail
+  - horizon-atomic
+  - gen-layout
+  note: 'Keep (2026-09-22 triage). Pick up the board and rotate it until the QR code faces the robot:
+    an orientation goal that needs the code''s face to be recognised, not just the board''s pose.
+
+
+    Pick the board and rotate it so the QR code faces the robot: an orientation goal.'
+  owner: JamesKrW
+  status: keep
+scan_object:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - bimanual
+  - tool-use
+  - relational-goal
+  - horizon-composite
+  - gen-layout
+  note: 'Integrated in robot_coding_bench (tasks/robotwin_2_0_scan_object, seed 60417) and validated:
+    Harbor oracle 1 / nop 0, replay bit-exact. Keep — core. Both arms grasp and lift simultaneously, then
+    the scanner''s head must point at the held tea box within 2.5 cm laterally and 0-7 cm along its axis,
+    with both grippers still closed (nothing is put down). Orientation-sensitive predicate on randomly
+    rotated meshes; RoboTwin''s expert fails on 3 of 6 uncommon seeds and is flaky across retries on the
+    same seed (CuRobo). No model run yet.'
+  owner: JamesKrW
+  status: keep
+  tags:
+  - rcb-integrated
+shake_bottle:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - dynamics
+  - horizon-atomic
+  - gen-layout
+  note: Shaking is a scripted oscillation after the grasp; the predicate checks the bottle was lifted
+    and moved. No label fits the shake itself.
+  status: keep
+shake_bottle_horizontally:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - dynamics
+  - horizon-atomic
+  - gen-layout
+  status: drop
+stack_blocks_three:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - stability
+  - horizon-composite
+  - ordered
+  - gen-layout
+  note: Three-block tower, each block picked with the nearer arm; the 5 cm tolerance stacks up.
+  status: drop
+stack_blocks_two:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - stability
+  - horizon-composite
+  - ordered
+  - gen-layout
+  note: "Dropped as `easy` (2026-09-22 triage: every easy-rated task is out) — GPT-6 solved it in minutes\
+    \ in both modes. It stays integrated in robot_coding_bench as the unlimited-vs-limited calibration\
+    \ instance; see the note above for the runs. \n\nIntegrated in robot_coding_bench in BOTH modes (tasks/robotwin_2_0_stack_blocks_two\
+    \ and ...-limited, seed 60417: red block right, green left, so a single arm cannot do it) and validated:\
+    \ Harbor oracle 1 / nop 0 in each. Keep — as the calibration task, not for difficulty. Model runs\
+    \ (Codex + GPT-6 Astra, 2026-09-21/22): unlimited mode 1 in 145 s / 20 tool steps (wrote its own displacement-based\
+    \ plan; left arm could not reach the red block, moved it to the centre with the right arm first);\
+    \ limited mode (RGB + proprioception only, no reset, ee actions through the service) 1 in 261 s /\
+    \ 17 actions (estimated block positions from the head camera + calibration, top-down grasps, same\
+    \ right-arm-first recovery). Too easy to separate models; useful as the unlimited-vs-limited baseline."
+  owner: JamesKrW
+  status: drop
+  tags:
+  - rcb-integrated
+stack_bowls_three:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - stability
+  - horizon-composite
+  - ordered
+  - gen-layout
+  status: drop
+stack_bowls_two:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - stability
+  - horizon-composite
+  - gen-layout
+  note: 'Dropped as `easy` (2026-09-22 triage: every easy-rated task is out). Single-arm or trivially
+    bimanual pick-and-place / press that RoboTwin''s primitives solve in one or two planned motions; not
+    discriminative for a coding agent.'
+  owner: JamesKrW
+  status: drop
+stamp_seal:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - force
+  - tool-use
+  - attribute-goal
+  - horizon-atomic
+  - gen-layout
+  note: Stamp onto the mat of the named colour; expert 3/6 on our seeds.
+  status: drop
+turn_switch:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - device-operation
+  - horizon-atomic
+  - gen-layout
+  note: 'Dropped as `easy` (2026-09-22 triage: every easy-rated task is out). Single-arm or trivially
+    bimanual pick-and-place / press that RoboTwin''s primitives solve in one or two planned motions; not
+    discriminative for a coding agent.'
+  owner: JamesKrW
+  status: drop

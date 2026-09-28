@@ -1,0 +1,554 @@
+# Label taxonomy — eight questions about a task.
+#
+#   capabilities      tier 1: a facet — one question you ask about a task
+#     subcapabilities tier 2: the label a task is actually tagged with
+#
+# Tasks carry tier-2 ids only; tier 1 is derived, so coverage reads at either
+# level without anyone maintaining two lists.
+#
+# ── The rule every label had to pass ───────────────────────────────────────
+# A label earns its place only if knowing it changes what you predict about the
+# task. Three tests, applied to a corpus of ~1,150 tasks across fourteen suites
+# (docs/reference/benchmark-landscape.md):
+#
+#   Discriminating  It splits that corpus. A label true of everything, or of
+#                   three tasks in one suite, is a word, not information.
+#   Independent     It is not implied by another label. `multi-room` implied
+#                   `navigate`, and `judge a state` implied whichever state
+#                   label was already there — both were dropped rather than
+#                   counted twice.
+#   Decidable       A reviewer can answer yes or no from the video and the
+#                   published goal, without arguing about wording.
+#
+# Three facets are GRADED (`graded: true`): their labels are rungs on one
+# ladder and a task takes the highest rung that applies, not several. That is
+# where most of the information density comes from — "this is an activity-scale
+# task with appearance randomisation" says far more than eight binary flags.
+#
+# ── The eight questions ────────────────────────────────────────────────────
+#   1 scale         How far does the robot have to go?                (graded)
+#   2 body          What must the body do beyond moving one arm?
+#   3 contact       What must the contact do?
+#   4 state         What must change about an object, beyond its pose?
+#   5 goal          What makes the goal hard to satisfy or to read?
+#   6 structure     How much has to go right, and can you undo it?    (graded)
+#   7 perception    What must be perceived that is not geometry?
+#   8 generalise    What changes between episodes?                    (graded)
+#
+# Every label is a test about the TASK, not the robot: `bimanual` means the task
+# cannot be done one-handed, not that the robot has two arms; `in-hand` means a
+# parallel jaw could not do it. The robot is a fact about the benchmark and
+# lives in data/benchmarks/<id>.yml.
+#
+# ── Provenance ─────────────────────────────────────────────────────────────
+# `from_skills` rolls up BEHAVIOR's official 31-primitive skill vocabulary.
+# `derived_from` records which official annotation implies the label, so
+# scripts/suggest_labels.py can propose it for a human to confirm.
+# `evidence` names the suites and tasks that forced the label to exist.
+# scripts/task_skill_digest.py prints what all 250 tasks we hold actually
+# demand — that digest is what this vocabulary was fitted to.
+#
+# A starting point to argue with, not a standard. Edit it here, or from the
+# Labels page in the site (which writes back to this file).
+
+version: 7
+
+capabilities:
+  - id: scale
+    name: Scale
+    description: >-
+      How far the robot has to go. Navigation is not a separate label because
+      every rung above tabletop already implies it.
+    graded: true
+    subcapabilities:
+      - id: scale-tabletop
+        name: Tabletop
+        description: >-
+          Everything is inside one workspace and the base never moves. The floor
+          of the ladder, and a real finding when a whole suite sits here.
+        derived_from:
+          robolab: {all_tasks: true}
+          robowits: {all_tasks: true}
+        evidence: >-
+          LIBERO, Meta-World+, RoboLab, RoboWits, RoboCasa-GR1, VLABench and most
+          of RoboTwin 2.0 never move a base — about half the surveyed corpus.
+      - id: scale-room
+        name: Room
+        description: The base must move within one room or workspace to reach what the task needs.
+        from_skills: [move to]
+        derived_from:
+          behavior-1k: {rooms_min: 1}
+        evidence: RoboCasa's kitchens; RoboCasa365's NavigateKitchen; HumanoidBench maze.
+      - id: scale-building
+        name: Building
+        description: The task spans rooms or floors, so the layout has to be traversed.
+        derived_from:
+          behavior-1k: {rooms_min: 2}
+        evidence: >-
+          BEHAVIOR picking_up_trash — cans in the living room, bin in the kitchen;
+          29 of its 100 tasks span rooms.
+      - id: scale-outdoor
+        name: Outdoor
+        description: Part of the task happens outdoors or in unstructured space.
+        derived_from:
+          behavior-1k: {rooms_any: [garden, yard, patio, porch, lawn]}
+        evidence: BEHAVIOR's garden and patio activities; the legged suites' outdoor terrain.
+
+  - id: body
+    name: Body
+    description: >-
+      What the body must do beyond moving a single arm. Tag only what the task
+      cannot be solved without.
+    subcapabilities:
+      - id: legged-locomotion
+        name: Legged locomotion
+        description: >-
+          Moving is itself the control problem — a gait to maintain, a commanded
+          velocity to track, balance to keep while moving. A wheeled base on a
+          flat floor does not qualify.
+        derived_from: {}
+        evidence: >-
+          MuJoCo Playground's joystick suites on Go1, Spot, Barkour, G1, H1, T1,
+          Apollo, Op3 and Berkeley Humanoid; HumanoidBench walk, stand, run.
+      - id: rough-terrain
+        name: Rough terrain
+        description: >-
+          Getting there can fail, not just take time — stairs, slopes, gaps, low
+          passages, obstacles that must be climbed or crawled under.
+        derived_from: {}
+        evidence: Playground's RoughTerrain variants; HumanoidBench stair, hurdle, crawl, slide, pole.
+      - id: dynamic-balance
+        name: Dynamic balance
+        description: >-
+          Staying upright is at risk, or getting back up is the task — recovery
+          from a fall, a seat or a slip, and acrobatics where momentum has to be
+          managed.
+        derived_from: {}
+        evidence: >-
+          Playground Go1Getup, SpotGetup, Go1Handstand, Go1Footstand;
+          HumanoidBench balance, sit, stand, highbar.
+      - id: whole-body
+        name: Whole-body coordination
+        description: >-
+          Legs or base, torso and arms must act as one — to reach past the arm's
+          workspace, brace against a load, lift something heavy, lean or squat.
+        derived_from: {}
+        evidence: >-
+          HumanoidBench's fifteen whole-body manipulation tasks (truck unloading,
+          powerlift, door, bookshelf); RoboCasa365's mobile manipulation.
+      - id: bimanual
+        name: Bimanual
+        description: >-
+          Two end effectors must cooperate on the same object or motion — hold and
+          open, hand over, lift together, carry what one hand cannot.
+        from_skills: [hand over]
+        derived_from: {}
+        evidence: >-
+          RoboTwin 2.0 Handover Block, Handover Mic, Lift Pot, Pick Dual Bottles;
+          Playground AlohaHandOver and AlohaSinglePegInsertion. Not RoboWits by
+          default: our own reference solution for stack_cubes used one arm.
+      - id: in-hand
+        name: In-hand manipulation
+        description: >-
+          Multi-finger control a parallel jaw cannot do — reorient in hand,
+          regrasp a tool into the pose its use needs, move fingers independently.
+          A five-finger hand picking up a cup does not qualify.
+        derived_from: {}
+        evidence: >-
+          DexToolBench's 24 tool tasks, where the tool must be rotated in-hand into
+          a functional grasp; Playground LeapCubeReorient, LeapCubeRotateZAxis;
+          HumanoidBench cube.
+
+  - id: contact
+    name: Contact
+    description: What the manipulation physics demands.
+    subcapabilities:
+      - id: transport
+        name: Grasp and transport
+        description: >-
+          Pick something up and put it somewhere. The floor of this facet: tag it
+          even when richer labels apply, so a task whose *only* contact label is
+          this one is exactly "plain pick-and-place".
+        from_skills: [pick up from, place in, place on, place under, place in next to,
+                      place on next to, hold, release]
+        derived_from:
+          behavior-1k: {goal_predicates: [inside, ontop, under, nextto, touching]}
+          robolab: {success_predicate: [object_in_container, object_on_top, object_inside,
+                                        object_picked_up, object_outside_of,
+                                        object_outside_of_and_on_surface,
+                                        object_groups_in_containers,
+                                        objects_placed_in_container_in_order]}
+        evidence: >-
+          94 of BEHAVIOR's 100 goals, 105 of RoboLab's 120, 18 of RoboCasa-GR1's 24,
+          most of LIBERO. Roughly 70% of the surveyed corpus — kept because its
+          absence is what marks out the locomotion and in-hand suites.
+      - id: nonprehensile
+        name: Push, slide, sweep
+        description: >-
+          Move something without holding it. Tag when the solution does not go
+          through a grasp.
+        from_skills: [push to, sweep surface]
+        derived_from:
+          robowits: {paper_insight_keywords: [push, slide, sweep]}
+        evidence: >-
+          Meta-World push, plate-slide, sweep; Playground PandaRobotiqPushCube;
+          HumanoidBench push and package; RoboWits move_cube.
+      - id: dynamics
+        name: Momentum and timing
+        description: >-
+          The object leaves contact, or keeps moving after it, and timing or
+          momentum decides the outcome — throw, catch, hit, topple, roll a chain
+          reaction. A slower, more careful version fails.
+        from_skills: [tip over]
+        derived_from:
+          robowits: {paper_insight_keywords: [momentum, domino, chain, swing, roll, topple]}
+        evidence: >-
+          HumanoidBench basketball, which its authors class as dynamic manipulation;
+          Meta-World basketball and soccer; RoboWits dominos and roll_up_ball.
+      - id: articulated
+        name: Open and close
+        description: >-
+          A hinge, drawer, lid or slider dictates the path, so the trajectory is
+          set by the object rather than chosen by the planner.
+        from_skills: [open door, open drawer, open lid, close door, close drawer, close lid]
+        derived_from:
+          behavior-1k: {goal_predicates: [open], object_abilities: [openable]}
+        evidence: >-
+          RoboCasa365's doors, drawers, lids and racks; Meta-World's door, drawer,
+          window and box tasks; 22 BEHAVIOR goals; RoboTwin Open Laptop, Open Microwave.
+      - id: precision-fit
+        name: Insert and assemble
+        description: >-
+          Make one object hold onto another with little clearance — insert, thread,
+          hang, fasten, nest. The tolerance is the work, not the transport.
+        from_skills: [insert, attach, hang]
+        derived_from:
+          behavior-1k: {goal_predicates: [attached]}
+          robowits: {paper_category: [assembly]}
+        evidence: >-
+          Playground AlohaSinglePegInsertion; Meta-World peg-insert-side, assembly,
+          disassemble; HumanoidBench insert; RoboCasa's coffee-pod insertion;
+          RoboWits cylinder_through_hole.
+      - id: stability
+        name: Stack and balance
+        description: >-
+          The result must stay standing once released. The difficulty is the
+          settling, not the reach.
+        derived_from:
+          robolab: {attributes: [stacking], success_predicate: [stacked, object_upright]}
+          robowits: {paper_insight_keywords: [balanc, center of mass, stabil, support polygon]}
+        evidence: >-
+          RoboTwin Stack Blocks/Bowls; RoboWits stack_cubes, ball_onto_tower,
+          balance_board; RoboLab's stacking tasks; 8 of RoboWits' 30 insights are
+          about the centre of mass.
+      - id: force
+        name: Regulated force
+        description: >-
+          Sustained or controlled force against resistance — press, pry, hold a
+          load, keep a tool on a surface. Position control alone fails.
+        from_skills: [press, wipe hard]
+        derived_from:
+          robowits: {paper_insight_keywords: [flatten, press, squeeze]}
+        evidence: >-
+          HumanoidBench powerlift and window; Meta-World handle-press and lever-pull;
+          BEHAVIOR's wiping activities.
+      - id: deformable
+        name: Deformable
+        description: Cloth, rope, dough, foam, paper — the shape is part of the state.
+        derived_from:
+          behavior-1k: {object_abilities: [deformable, softBody]}
+          robowits: {physics_materials: [mpm], paper_insight_keywords: [dough, elasticity, compress, foam]}
+        evidence: >-
+          RoboWits round_dough_sheet and ball_into_jar; BEHAVIOR's soft bodies. Rare
+          across the field — no surveyed suite does cloth or rope, which is itself
+          worth being able to see.
+      - id: fluid-granular
+        name: Fluids and granular media
+        description: Liquid, powder, sand or many small particles must be moved, contained or kept in place.
+        from_skills: [pour]
+        derived_from:
+          behavior-1k: {goal_predicates: [filled, contains]}
+          robowits: {physics_materials: [sph], paper_insight_keywords: [water, liquid, pour, sand, leak, seal]}
+        evidence: RoboWits water_into_mug, seal_colander; VLABench MakeJuice; BEHAVIOR's filled goals.
+      - id: tool-use
+        name: Use a tool
+        description: >-
+          An object must be used on another to do what the hand cannot — including
+          grasping it in the pose its use requires.
+        derived_from:
+          robolab: {attributes: [affordance]}
+          robowits: {paper_insight_keywords: [as a tool, tool extension, use the rod, use the dustpan,
+                                              spatula, chopsticks, tongs, funnel, ruler, lever]}
+        evidence: >-
+          DexToolBench in full (hammer, marker, eraser, brush, spatula, screwdriver);
+          Meta-World hammer, stick-push, stick-pull; HumanoidBench window and spoon;
+          VLABench's Tool Use skill; RoboLab's affordance tag.
+
+  - id: state
+    name: Object state
+    description: What must change about an object beyond its pose. Success is not a position.
+    subcapabilities:
+      - id: device-operation
+        name: Operate a device
+        description: A switch, button, knob, lever, handle or faucet must be operated.
+        from_skills: [press, turn on switch, turn off switch, turn to, ignite]
+        derived_from:
+          behavior-1k: {goal_predicates: [toggled_on], object_abilities: [toggleable]}
+        evidence: >-
+          RoboCasa365's knobs, levers and buttons; Meta-World's four button-press
+          tasks, dial-turn and lever-pull; RoboTwin Click Alarmclock, Turn Switch.
+      - id: thermal
+        name: Heat, cook, freeze
+        description: Cooking, heating, freezing, melting, boiling or igniting.
+        from_skills: [ignite]
+        derived_from:
+          behavior-1k: {goal_predicates: [cooked, frozen, on_fire]}
+        evidence: 9 BEHAVIOR goals; RoboCasa365's boiling, toasting and steaming; VLABench HeatFoodWithMicrowave.
+      - id: cutting
+        name: Cut
+        description: Tool-mediated division — slice, dice, chop, halve.
+        from_skills: [chop]
+        derived_from:
+          behavior-1k: {goal_predicates: [real], object_abilities: [slicer]}
+        evidence: 9 BEHAVIOR goals, built from half__* synsets; RoboCasa's chopping activities.
+      - id: surface-treatment
+        name: Treat a surface
+        description: Particles must be put onto or taken off a surface — wipe, sweep, spray, soak, erase.
+        from_skills: [wipe hard, sweep surface, spray]
+        derived_from:
+          behavior-1k: {goal_predicates: [covered], object_abilities: [particleRemover, particleApplier]}
+        evidence: 13 BEHAVIOR goals; HumanoidBench window; DexToolBench eraser and brush.
+
+  - id: goal
+    name: Goal
+    description: What makes the goal hard to satisfy, or hard to read.
+    subcapabilities:
+      - id: geometric-constraint
+        name: Geometric constraint
+        description: >-
+          Success is a constraint over a whole configuration rather than a place to
+          put one thing — fit through, pack into, route around, thread between,
+          keep clear of. The work is finding a feasible arrangement, not finding
+          the target. Distinct from `relational-goal`, which names *which* object.
+        derived_from:
+          robowits: {paper_insight_keywords: [geometr, clearance, narrow, fit through, aperture,
+                                              restriction, reachab, out of reach, align]}
+        evidence: >-
+          TopoGym, our own suite, is built entirely on this axis. It is also the
+          largest cluster in RoboWits — 15 of its 30 published insights are about
+          geometry and clearance — and it is what Meta-World's peg and assembly
+          tasks and RoboCasa's packing really test. No suite annotates it.
+      - id: relational-goal
+        name: Spatial reference
+        description: >-
+          The goal names its target by a relation — left of, behind, between, second
+          from the right, centred on — so it needs a frame of reference to ground.
+        derived_from:
+          behavior-1k: {goal_predicates: [nextto, under, touching]}
+          robolab: {attributes: [spatial],
+                    success_predicate: [object_left_of, object_right_of, object_behind,
+                                        object_in_front_of, object_on_center]}
+        evidence: >-
+          LIBERO-Spatial, where position is the only thing telling two identical bowls
+          apart; VLABench's nth-from-left tasks; 29 RoboLab tasks.
+      - id: attribute-goal
+        name: Attribute reference
+        description: >-
+          Objects are named by colour, size or a category that several objects share —
+          "the black items", "all green fruit", "the smaller toys" — so the right one
+          has to be picked out.
+        derived_from:
+          robolab: {attributes: [color, size]}
+        evidence: >-
+          LIBERO-Object; RoboLab's colour and size tags; RoboTwin Blocks Ranking RGB.
+          RoboLab's `semantics` tag (60 tasks) is deliberately not mapped: naming an
+          object by its category is how instructions normally read.
+      - id: quantified-goal
+        name: Counting and quantifiers
+        description: >-
+          "Exactly two", "all three", "one more", "any shelf". Miscounting, or failing
+          to commit to one choice consistently, fails outright.
+        derived_from:
+          behavior-1k: {goal_quantifiers: [forn, forpairs]}
+          robolab: {attributes: [counting]}
+        evidence: BEHAVIOR's forn goals; RoboLab bananas_in_bin_three_total; RoboTwin Stack Blocks Three.
+      - id: implicit-goal
+        name: Implicit intent
+        description: >-
+          The instruction states a need rather than an action, or is vague enough to
+          admit several readings — "tidy this up", "I'm thirsty". The agent must choose
+          a reading and commit.
+        derived_from:
+          robolab: {attributes: [vague]}
+        evidence: >-
+          VLABench's Semantic Instruction track, built on implicit needs in dialogue;
+          RoboLab ships a vague wording for every task.
+      - id: knowledge-goal
+        name: World knowledge
+        description: >-
+          Facts that are not in the scene are needed — which fruit has vitamin C, the
+          rules of the game, which tube holds the acid, what a latte is. Perception
+          and planning cannot get there.
+        derived_from: {}
+        evidence: >-
+          VLABench's Common Sense & World Knowledge track and its composites
+          (PlayTexasHoldem, GetLatteCoffee, SelectChemistryTube) — the only suite in
+          the survey testing this, which is why the label exists.
+
+  - id: structure
+    name: Structure and risk
+    description: >-
+      How much has to go right, and whether a mistake can be undone. The two
+      flags below apply at any horizon.
+    graded: true
+    subcapabilities:
+      - id: horizon-atomic
+        name: Atomic
+        description: One skill on one object; seconds of motion. Failure means retry.
+        derived_from:
+          behavior-1k: {goal_clauses_min: 1}
+          robolab: {subtasks_min: 0}
+        evidence: Meta-World, LIBERO's three short suites, most of RoboLab and RoboTwin.
+      - id: horizon-composite
+        name: Composite
+        description: Two to five dependent steps; an early mistake can strand the later ones.
+        derived_from:
+          behavior-1k: {goal_clauses_min: 3}
+          robolab: {subtasks_min: 2}
+          robowits: {all_tasks: true}
+        evidence: LIBERO-Long's 3–4 subgoals; RoboWits, where a tool must be fetched before it is used.
+      - id: horizon-activity
+        name: Activity
+        description: >-
+          Six or more dependent steps, often minutes of motion and several rooms or
+          fixtures. Recovery matters more than any single skill.
+        derived_from:
+          behavior-1k: {goal_clauses_min: 6}
+          robolab: {subtasks_min: 4}
+        evidence: >-
+          BEHAVIOR goals running to 10 clauses and 869 s; RoboCasa365's composites
+          at up to 15 subtasks; VLABench's 500+ step composites.
+      - id: ordered
+        name: Required order
+        flag: true
+        description: The goal fixes the order of the steps, not just the end state.
+        derived_from:
+          robolab: {success_predicate: [objects_placed_in_container_in_order]}
+        evidence: HumanoidBench bookshelf ("in a given order"); RoboTwin Blocks Ranking.
+      - id: irreversible
+        name: Irreversible
+        flag: true
+        description: >-
+          A wrong action cannot be undone — cut, cooked, spilled, burnt, dropped
+          somewhere unreachable. The episode is lost rather than delayed, so an agent
+          that explores by trying things is penalised in a way retries do not show.
+        derived_from:
+          behavior-1k: {goal_predicates: [real, cooked, on_fire]}
+        evidence: >-
+          Cutting and cooking in BEHAVIOR and RoboCasa; DexToolBench's marker tasks.
+          Named for the coding agent's failure mode, not the robot's.
+
+  - id: perception
+    name: Perception
+    description: >-
+      What has to be perceived that is not the geometry in front of the camera.
+      Judging a state the goal already names is not listed here — the state facet
+      covers it, and counting it twice is how a taxonomy stops being informative.
+    subcapabilities:
+      - id: partial-observability
+        name: Partial observability
+        description: >-
+          What the task needs is not visible from the start pose — inside a cabinet,
+          behind something, in another room. The robot must move or open something
+          before it can even see the problem.
+        derived_from: {}
+        evidence: >-
+          BEHAVIOR exposes no simulator state at evaluation, so anything outside the
+          opening view has to be found; RoboCasa's objects inside appliances;
+          VLABench's Explore skill.
+      - id: active-perception
+        name: Act to find out
+        description: >-
+          The information needed cannot be seen at all, only produced — weigh it,
+          float it, push it to see if it is fixed, open it to check. Perception
+          requires a physical experiment.
+        derived_from:
+          robowits: {paper_insight_keywords: [differentiat, buoyan, float, sink, appear similar, identical]}
+        evidence: >-
+          RoboWits differentiate_cubes, where wood and metal look the same and the
+          robot has to float them. The rarest thing in the survey and the one closest
+          to what a coding agent does when it probes an unfamiliar API.
+      - id: fine-detail
+        name: Fine visual detail
+        description: >-
+          Recognition turns on print, texture or small geometry rather than shape or
+          colour — a card's face, a book's title, a code, a painting.
+        derived_from: {}
+        evidence: >-
+          VLABench's whole Mesh & Texture dimension (SelectPainting, SelectBook, poker);
+          RoboTwin Rotate QRcode and Scan Object.
+
+  - id: generalise
+    name: Generalisation
+    description: >-
+      What the benchmark varies between episodes, plus one flag for language,
+      which does not nest with the rest. This is the facet that separates a
+      capability test from a replay test, and four of the surveyed suites exist
+      mainly to measure it.
+    graded: true
+    subcapabilities:
+      - id: gen-fixed
+        name: Nothing varies
+        description: >-
+          One fixed initial state. A recorded trajectory replays; the task measures
+          execution, not capability. Worth recording plainly rather than politely.
+        derived_from:
+          robolab: {all_tasks: true}
+        evidence: RoboLab ships one initial state per task and randomises nothing.
+      - id: gen-layout
+        name: Layout varies
+        description: Object placements or initial states differ between episodes.
+        derived_from:
+          robowits: {all_tasks: true}
+        evidence: >-
+          Meta-World's parametric variation; LIBERO-Spatial; RoboWits, whose paper
+          states objects are randomly placed per trial; VLABench's ±5 cm noise.
+      - id: gen-appearance
+        name: Appearance varies
+        description: Lighting, textures, background or camera pose change while the task does not.
+        derived_from: {}
+        evidence: >-
+          THE COLOSSEUM, which found distractor count, target colour and lighting the
+          three most damaging factors; RoboTwin 2.0's five randomisation axes;
+          VLABench's Unseen Texture track.
+      - id: gen-objects
+        name: Objects vary
+        description: Instances or categories at test time were not in the training set.
+        derived_from: {}
+        evidence: >-
+          LIBERO-Object; VLABench's Cross-Category track over 2,000+ objects;
+          RoboTwin's 731 objects; RoboCasa365's 3,200.
+      - id: gen-scenes
+        name: Scenes vary
+        description: The same task is posed in different rooms or buildings — different geometry, not just textures.
+        derived_from: {}
+        evidence: RoboCasa's 120 kitchens and RoboCasa365's 2,500; BEHAVIOR's 50 scenes.
+      - id: gen-embodiment
+        name: Robots vary
+        description: The same task is posed on more than one robot, so no kinematic chain can be assumed.
+        derived_from: {}
+        evidence: >-
+          RoboTwin 2.0's five embodiments; Playground's joystick task across eight
+          robots; VLABench's arms, dual arms, humanoids and quadrupeds.
+      - id: gen-language
+        name: Wording varies
+        flag: true
+        description: >-
+          The instruction is paraphrased, pitched at another level of detail, or
+          corrupted, while the task stays the same. A flag, not a rung: it does not
+          nest with the visual ladder.
+        derived_from:
+          robolab: {all_tasks: true}
+        evidence: >-
+          LIBERO-PRO, where corrupted instructions left policies producing identical
+          trajectories; RoboTwin's language axis; RoboLab's three wordings per task.

@@ -1,0 +1,212 @@
+# Curated task state for robopaint.
+#
+# One block per task. Written by the site's Edit button and by hand; both are
+# fine. Task ids match docs/benchmarks/robopaint/tasks/<id>.md.
+#
+#   status      keep | drop | needs-review | pending
+#   difficulty  unrated | easy | medium | hard | extreme
+#   labels      tier-2 ids from state/taxonomy.yml
+#   owner       bare GitHub handle
+#   note        free text; why you decided what you decided
+#
+# Task id = <family>_<target> (our task directory robopaint-<family>-<target>-i00, since 2026-09-28; before
+# that the benchmark was maniskill-paint and a task was only its target, e.g. `butterfly`).
+# difficulty: from each task's task.toml; scripts/import_robopaint_tasks.py adds it for a NEW task and never changes
+# an existing one. Line drawings are all easy (user 2026-09-27 21:10: "简笔画应该全部归类为 easy"; the drawing's
+# own level stays in the page's upstream block as `line_complexity`). No labels yet (user 2026-09-27: "taxonomy 先不管").
+# excluded: why a task is not part of the final benchmark; the task stays on the site, greyed and last in every list,
+# its runs in Runs (not the review `status`, which other benchmarks use for drop). All 9 line drawings are excluded
+# since 2026-09-28 04:30, the owner: "放到展示的最下面，同时在 benchmark 里面都灰掉. 最终的 benchmark 我们可能不会 include
+# 简笔画" and "我们仍然可以在 runs…去展示它，毕竟我们跑过…不需要丢掉". Keep notes in this block: the Edit button keeps it.
+
+line_butterfly:
+  difficulty: easy
+  excluded: "too easy for the final benchmark (line drawings; kept for the record, results in Runs)"
+line_city:
+  difficulty: easy
+  excluded: "too easy for the final benchmark (line drawings; kept for the record, results in Runs)"
+line_cottage:
+  difficulty: easy
+  excluded: "too easy for the final benchmark (line drawings; kept for the record, results in Runs)"
+line_fish:
+  difficulty: easy
+  excluded: "too easy for the final benchmark (line drawings; kept for the record, results in Runs)"
+line_flower:
+  difficulty: easy
+  excluded: "too easy for the final benchmark (line drawings; kept for the record, results in Runs)"
+line_landscape:
+  difficulty: easy
+  excluded: "too easy for the final benchmark (line drawings; kept for the record, results in Runs)"
+line_rainbow:
+  difficulty: easy
+  excluded: "too easy for the final benchmark (line drawings; kept for the record, results in Runs)"
+line_rocket:
+  difficulty: easy
+  excluded: "too easy for the final benchmark (line drawings; kept for the record, results in Runs)"
+line_sailboat:
+  difficulty: easy
+  excluded: "too easy for the final benchmark (line drawings; kept for the record, results in Runs)"
+lettering_donum:
+  difficulty: hard
+lettering_inunum:
+  difficulty: hard
+lettering_minim:
+  difficulty: medium
+lettering_minimum:
+  difficulty: extreme
+lettering_minium:
+  difficulty: hard
+lettering_moon:
+  difficulty: medium
+lettering_nimium:
+  difficulty: hard
+lettering_nun:
+  difficulty: hard
+lettering_omnium:
+  difficulty: hard
+lettering_unpin:
+  difficulty: hard
+kaishu_ai:
+  difficulty: hard
+kaishu_chun:
+  difficulty: hard
+kaishu_da:
+  difficulty: medium
+kaishu_dao:
+  difficulty: hard
+kaishu_de:
+  difficulty: hard
+kaishu_feng:
+  difficulty: hard
+kaishu_fu:
+  difficulty: hard
+kaishu_guo:
+  difficulty: hard
+kaishu_he:
+  difficulty: hard
+kaishu_houdezaiwu:
+  difficulty: extreme
+kaishu_hua:
+  difficulty: hard
+kaishu_jia:
+  difficulty: hard
+kaishu_jiang:
+  difficulty: hard
+kaishu_jing:
+  difficulty: hard
+kaishu_kou:
+  difficulty: medium
+kaishu_le:
+  difficulty: hard
+kaishu_lin:
+  difficulty: hard
+kaishu_long:
+  difficulty: hard
+kaishu_ma:
+  difficulty: hard
+kaishu_ming:
+  difficulty: hard
+kaishu_ningjingzhiyuan:
+  difficulty: extreme
+kaishu_qing:
+  difficulty: hard
+kaishu_ran:
+  difficulty: hard
+kaishu_ren:
+  difficulty: medium
+kaishu_shan:
+  difficulty: medium
+kaishu_shu:
+  difficulty: hard
+kaishu_shui:
+  difficulty: medium
+kaishu_tian:
+  difficulty: medium
+kaishu_tiandaochouqin:
+  difficulty: extreme
+kaishu_xin:
+  difficulty: medium
+kaishu_yong:
+  difficulty: medium
+kaishu_yongzibafa:
+  difficulty: extreme
+kaishu_yue:
+  difficulty: medium
+kaishu_zhong:
+  difficulty: medium
+kaishu_zi:
+  difficulty: hard
+acrylic_applesoranges:
+  difficulty: hard
+acrylic_bedroom:
+  difficulty: hard
+acrylic_bluehorses:
+  difficulty: hard
+acrylic_greatwave:
+  difficulty: hard
+acrylic_kajikazawa:
+  difficulty: hard
+acrylic_plumpark:
+  difficulty: hard
+acrylic_redfuji:
+  difficulty: hard
+acrylic_suddenshower:
+  difficulty: hard
+acrylic_sunflowers:
+  difficulty: hard
+acrylic_vision:
+  difficulty: hard
+oil_bathers:
+  difficulty: extreme
+oil_cafeterrace:
+  difficulty: extreme
+oil_cypresses:
+  difficulty: extreme
+oil_irises:
+  difficulty: extreme
+oil_milkmaid:
+  difficulty: extreme
+oil_monalisa:
+  difficulty: extreme
+oil_pearlearring:
+  difficulty: extreme
+oil_saintevictoire:
+  difficulty: extreme
+oil_starrynight:
+  difficulty: extreme
+oil_temeraire:
+  difficulty: extreme
+oil_wanderer:
+  difficulty: extreme
+xingshu_chun:
+  difficulty: hard
+xingshu_feng:
+  difficulty: hard
+xingshu_he:
+  difficulty: hard
+xingshu_huifenghechang:
+  difficulty: extreme
+xingshu_jian:
+  difficulty: hard
+xingshu_maolinxiuzhu:
+  difficulty: extreme
+xingshu_nian:
+  difficulty: hard
+xingshu_ren:
+  difficulty: hard
+xingshu_shan:
+  difficulty: hard
+xingshu_tianlangqiqing:
+  difficulty: extreme
+xingshu_tong:
+  difficulty: hard
+xingshu_xian:
+  difficulty: hard
+xingshu_xin:
+  difficulty: hard
+xingshu_yong:
+  difficulty: hard
+xingshu_yu:
+  difficulty: hard
+xingshu_zhi:
+  difficulty: hard

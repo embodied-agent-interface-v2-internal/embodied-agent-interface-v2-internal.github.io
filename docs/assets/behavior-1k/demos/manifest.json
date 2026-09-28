@@ -1,0 +1,688 @@
+{
+  "assembling_gift_baskets": {
+    "bytes": 36954785,
+    "height": 360,
+    "poster": true,
+    "seconds": 638,
+    "width": 360
+  },
+  "attach_a_camera_to_a_tripod": {
+    "bytes": 2464601,
+    "height": 360,
+    "poster": true,
+    "seconds": 61,
+    "width": 360
+  },
+  "boxing_books_up_for_storage": {
+    "bytes": 17412990,
+    "height": 360,
+    "poster": true,
+    "seconds": 470,
+    "width": 360
+  },
+  "boxing_food_after_dinner": {
+    "bytes": 9298441,
+    "height": 360,
+    "poster": true,
+    "seconds": 239,
+    "width": 360
+  },
+  "bringing_in_wood": {
+    "bytes": 18626376,
+    "height": 360,
+    "poster": true,
+    "seconds": 310,
+    "width": 360
+  },
+  "bringing_paper_to_recycling": {
+    "bytes": 13083674,
+    "height": 360,
+    "poster": true,
+    "seconds": 317,
+    "width": 360
+  },
+  "bringing_water": {
+    "bytes": 9333662,
+    "height": 360,
+    "poster": true,
+    "seconds": 195,
+    "width": 360
+  },
+  "can_meat": {
+    "bytes": 14556695,
+    "height": 360,
+    "poster": true,
+    "seconds": 267,
+    "width": 360
+  },
+  "canning_food": {
+    "bytes": 34742739,
+    "height": 360,
+    "poster": true,
+    "seconds": 507,
+    "width": 360
+  },
+  "carrying_in_groceries": {
+    "bytes": 18556480,
+    "height": 360,
+    "poster": true,
+    "seconds": 413,
+    "width": 360
+  },
+  "carrying_out_garden_furniture": {
+    "bytes": 14428637,
+    "height": 360,
+    "poster": true,
+    "seconds": 357,
+    "width": 360
+  },
+  "chop_an_onion": {
+    "bytes": 5095676,
+    "height": 360,
+    "poster": true,
+    "seconds": 138,
+    "width": 360
+  },
+  "chopping_wood": {
+    "bytes": 14362440,
+    "height": 360,
+    "poster": true,
+    "seconds": 190,
+    "width": 360
+  },
+  "clean_a_keyboard": {
+    "bytes": 5989816,
+    "height": 480,
+    "poster": true,
+    "seconds": 141,
+    "width": 480
+  },
+  "clean_a_patio": {
+    "bytes": 24044359,
+    "height": 360,
+    "poster": true,
+    "seconds": 290,
+    "width": 360
+  },
+  "clean_a_trumpet": {
+    "bytes": 2784819,
+    "height": 360,
+    "poster": true,
+    "seconds": 102,
+    "width": 360
+  },
+  "clean_boxing_gloves": {
+    "bytes": 6903532,
+    "height": 360,
+    "poster": true,
+    "seconds": 144,
+    "width": 360
+  },
+  "clean_up_broken_glass": {
+    "bytes": 9394663,
+    "height": 360,
+    "poster": true,
+    "seconds": 286,
+    "width": 360
+  },
+  "clean_up_your_desk": {
+    "bytes": 22604963,
+    "height": 360,
+    "poster": true,
+    "seconds": 457,
+    "width": 360
+  },
+  "clean_your_rusty_garden_tools": {
+    "bytes": 15209782,
+    "height": 360,
+    "poster": true,
+    "seconds": 483,
+    "width": 360
+  },
+  "cleaning_up_branches_and_twigs": {
+    "bytes": 17398391,
+    "height": 360,
+    "poster": true,
+    "seconds": 433,
+    "width": 360
+  },
+  "cleaning_up_plates_and_food": {
+    "bytes": 16160334,
+    "height": 360,
+    "poster": true,
+    "seconds": 264,
+    "width": 360
+  },
+  "clearing_food_from_table_into_fridge": {
+    "bytes": 19580450,
+    "height": 360,
+    "poster": true,
+    "seconds": 329,
+    "width": 360
+  },
+  "collecting_aluminum_cans": {
+    "bytes": 12185075,
+    "height": 360,
+    "poster": true,
+    "seconds": 324,
+    "width": 360
+  },
+  "collecting_childrens_toys": {
+    "bytes": 20154022,
+    "height": 360,
+    "poster": true,
+    "seconds": 429,
+    "width": 360
+  },
+  "composting_waste": {
+    "bytes": 5663317,
+    "height": 480,
+    "poster": true,
+    "seconds": 114,
+    "width": 480
+  },
+  "cook_a_brisket": {
+    "bytes": 8328417,
+    "height": 360,
+    "poster": true,
+    "seconds": 250,
+    "width": 360
+  },
+  "cook_a_frozen_pie": {
+    "bytes": 9228656,
+    "height": 360,
+    "poster": true,
+    "seconds": 322,
+    "width": 360
+  },
+  "cook_bacon": {
+    "bytes": 9230194,
+    "height": 360,
+    "poster": true,
+    "seconds": 205,
+    "width": 360
+  },
+  "cook_broccolini": {
+    "bytes": 7594813,
+    "height": 480,
+    "poster": true,
+    "seconds": 136,
+    "width": 480
+  },
+  "cook_brussels_sprouts": {
+    "bytes": 24254225,
+    "height": 360,
+    "poster": true,
+    "seconds": 686,
+    "width": 360
+  },
+  "cook_cabbage": {
+    "bytes": 13073775,
+    "height": 360,
+    "poster": true,
+    "seconds": 254,
+    "width": 360
+  },
+  "cook_hot_dogs": {
+    "bytes": 8567724,
+    "height": 360,
+    "poster": true,
+    "seconds": 217,
+    "width": 360
+  },
+  "dispose_of_batteries": {
+    "bytes": 11488679,
+    "height": 360,
+    "poster": true,
+    "seconds": 440,
+    "width": 360
+  },
+  "dispose_of_glass": {
+    "bytes": 8276616,
+    "height": 360,
+    "poster": true,
+    "seconds": 239,
+    "width": 360
+  },
+  "freeze_fruit": {
+    "bytes": 11394484,
+    "height": 360,
+    "poster": true,
+    "seconds": 338,
+    "width": 360
+  },
+  "freeze_pies": {
+    "bytes": 17631683,
+    "height": 360,
+    "poster": true,
+    "seconds": 320,
+    "width": 360
+  },
+  "getting_organized_for_work": {
+    "bytes": 10715372,
+    "height": 360,
+    "poster": true,
+    "seconds": 335,
+    "width": 360
+  },
+  "halve_an_egg": {
+    "bytes": 7677285,
+    "height": 360,
+    "poster": true,
+    "seconds": 211,
+    "width": 360
+  },
+  "hanging_pictures": {
+    "bytes": 2915773,
+    "height": 360,
+    "poster": true,
+    "seconds": 60,
+    "width": 360
+  },
+  "hiding_Easter_eggs": {
+    "bytes": 7885575,
+    "height": 360,
+    "poster": true,
+    "seconds": 110,
+    "width": 360
+  },
+  "installing_a_fax_machine": {
+    "bytes": 6484586,
+    "height": 480,
+    "poster": true,
+    "seconds": 147,
+    "width": 480
+  },
+  "installing_a_modem": {
+    "bytes": 3117796,
+    "height": 480,
+    "poster": true,
+    "seconds": 62,
+    "width": 480
+  },
+  "installing_a_scanner": {
+    "bytes": 4577001,
+    "height": 480,
+    "poster": true,
+    "seconds": 121,
+    "width": 480
+  },
+  "installing_smoke_detectors": {
+    "bytes": 3464042,
+    "height": 480,
+    "poster": true,
+    "seconds": 67,
+    "width": 480
+  },
+  "laying_tile_floors": {
+    "bytes": 13495871,
+    "height": 360,
+    "poster": true,
+    "seconds": 519,
+    "width": 360
+  },
+  "loading_the_car": {
+    "bytes": 14077363,
+    "height": 360,
+    "poster": true,
+    "seconds": 309,
+    "width": 360
+  },
+  "make_cabinet_doors": {
+    "bytes": 5843111,
+    "height": 480,
+    "poster": true,
+    "seconds": 119,
+    "width": 480
+  },
+  "make_gift_bags_for_baby_showers": {
+    "bytes": 7431344,
+    "height": 360,
+    "poster": true,
+    "seconds": 241,
+    "width": 360
+  },
+  "make_microwave_popcorn": {
+    "bytes": 2363137,
+    "height": 360,
+    "poster": true,
+    "seconds": 52,
+    "width": 360
+  },
+  "make_pizza": {
+    "bytes": 18826587,
+    "height": 360,
+    "poster": true,
+    "seconds": 362,
+    "width": 360
+  },
+  "make_rose_centerpieces": {
+    "bytes": 5158276,
+    "height": 480,
+    "poster": true,
+    "seconds": 110,
+    "width": 480
+  },
+  "moving_boxes_to_storage": {
+    "bytes": 12580789,
+    "height": 360,
+    "poster": true,
+    "seconds": 312,
+    "width": 360
+  },
+  "organizing_art_supplies": {
+    "bytes": 6914292,
+    "height": 360,
+    "poster": true,
+    "seconds": 227,
+    "width": 360
+  },
+  "organizing_school_stuff": {
+    "bytes": 13146276,
+    "height": 360,
+    "poster": true,
+    "seconds": 425,
+    "width": 360
+  },
+  "outfit_a_basic_toolbox": {
+    "bytes": 6544284,
+    "height": 360,
+    "poster": true,
+    "seconds": 202,
+    "width": 360
+  },
+  "packing_meal_for_delivery": {
+    "bytes": 10383042,
+    "height": 360,
+    "poster": true,
+    "seconds": 299,
+    "width": 360
+  },
+  "picking_up_toys": {
+    "bytes": 10868358,
+    "height": 360,
+    "poster": true,
+    "seconds": 275,
+    "width": 360
+  },
+  "picking_up_trash": {
+    "bytes": 7941404,
+    "height": 360,
+    "poster": true,
+    "seconds": 161,
+    "width": 360
+  },
+  "polishing_shoes": {
+    "bytes": 11953879,
+    "height": 360,
+    "poster": true,
+    "seconds": 362,
+    "width": 360
+  },
+  "preparing_lunch_box": {
+    "bytes": 9701846,
+    "height": 360,
+    "poster": true,
+    "seconds": 212,
+    "width": 360
+  },
+  "put_together_a_basic_pruning_kit": {
+    "bytes": 10349937,
+    "height": 360,
+    "poster": true,
+    "seconds": 447,
+    "width": 360
+  },
+  "putting_away_Halloween_decorations": {
+    "bytes": 20869894,
+    "height": 360,
+    "poster": true,
+    "seconds": 464,
+    "width": 360
+  },
+  "putting_away_toys": {
+    "bytes": 15122572,
+    "height": 360,
+    "poster": true,
+    "seconds": 437,
+    "width": 360
+  },
+  "putting_dirty_dishes_in_sink": {
+    "bytes": 11183944,
+    "height": 360,
+    "poster": true,
+    "seconds": 336,
+    "width": 360
+  },
+  "putting_dishes_away_after_cleaning": {
+    "bytes": 17183057,
+    "height": 360,
+    "poster": true,
+    "seconds": 262,
+    "width": 360
+  },
+  "putting_up_Christmas_decorations_inside": {
+    "bytes": 23501461,
+    "height": 360,
+    "poster": true,
+    "seconds": 368,
+    "width": 360
+  },
+  "re_shelving_library_books": {
+    "bytes": 8700486,
+    "height": 360,
+    "poster": true,
+    "seconds": 281,
+    "width": 360
+  },
+  "rearrange_your_room": {
+    "bytes": 16677333,
+    "height": 360,
+    "poster": true,
+    "seconds": 514,
+    "width": 360
+  },
+  "rearranging_kitchen_furniture": {
+    "bytes": 8861661,
+    "height": 360,
+    "poster": true,
+    "seconds": 179,
+    "width": 360
+  },
+  "scrubbing_bathroom_floor": {
+    "bytes": 4899343,
+    "height": 480,
+    "poster": true,
+    "seconds": 122,
+    "width": 480
+  },
+  "set_up_a_coffee_station_in_your_kitchen": {
+    "bytes": 6872056,
+    "height": 360,
+    "poster": true,
+    "seconds": 119,
+    "width": 360
+  },
+  "setting_mousetraps": {
+    "bytes": 10964403,
+    "height": 360,
+    "poster": true,
+    "seconds": 289,
+    "width": 360
+  },
+  "setting_the_fire": {
+    "bytes": 10210169,
+    "height": 360,
+    "poster": true,
+    "seconds": 210,
+    "width": 360
+  },
+  "setting_the_table": {
+    "bytes": 26619979,
+    "height": 360,
+    "poster": true,
+    "seconds": 726,
+    "width": 360
+  },
+  "setup_a_bar_for_a_cocktail_party": {
+    "bytes": 11336356,
+    "height": 360,
+    "poster": true,
+    "seconds": 349,
+    "width": 360
+  },
+  "slicing_vegetables": {
+    "bytes": 15001921,
+    "height": 360,
+    "poster": true,
+    "seconds": 245,
+    "width": 360
+  },
+  "sorting_books_on_shelf": {
+    "bytes": 5920278,
+    "height": 360,
+    "poster": true,
+    "seconds": 199,
+    "width": 360
+  },
+  "sorting_bottles_cans_and_paper": {
+    "bytes": 10587975,
+    "height": 360,
+    "poster": true,
+    "seconds": 311,
+    "width": 360
+  },
+  "sorting_household_items": {
+    "bytes": 18681092,
+    "height": 360,
+    "poster": true,
+    "seconds": 407,
+    "width": 360
+  },
+  "sorting_vegetables": {
+    "bytes": 16948655,
+    "height": 360,
+    "poster": true,
+    "seconds": 207,
+    "width": 360
+  },
+  "spraying_for_bugs": {
+    "bytes": 10583769,
+    "height": 360,
+    "poster": true,
+    "seconds": 136,
+    "width": 360
+  },
+  "spraying_fruit_trees": {
+    "bytes": 15331839,
+    "height": 360,
+    "poster": true,
+    "seconds": 219,
+    "width": 360
+  },
+  "stacking_wood": {
+    "bytes": 17790463,
+    "height": 360,
+    "poster": true,
+    "seconds": 446,
+    "width": 360
+  },
+  "store_batteries": {
+    "bytes": 9933829,
+    "height": 360,
+    "poster": true,
+    "seconds": 327,
+    "width": 360
+  },
+  "store_honey": {
+    "bytes": 5531865,
+    "height": 360,
+    "poster": true,
+    "seconds": 192,
+    "width": 360
+  },
+  "store_produce": {
+    "bytes": 9661089,
+    "height": 360,
+    "poster": true,
+    "seconds": 316,
+    "width": 360
+  },
+  "storing_food": {
+    "bytes": 30877393,
+    "height": 360,
+    "poster": true,
+    "seconds": 559,
+    "width": 360
+  },
+  "sweeping_garage": {
+    "bytes": 4847449,
+    "height": 480,
+    "poster": true,
+    "seconds": 125,
+    "width": 480
+  },
+  "thawing_frozen_food": {
+    "bytes": 10549119,
+    "height": 360,
+    "poster": true,
+    "seconds": 347,
+    "width": 360
+  },
+  "tidying_bathroom": {
+    "bytes": 16219657,
+    "height": 360,
+    "poster": true,
+    "seconds": 541,
+    "width": 360
+  },
+  "tidying_bedroom": {
+    "bytes": 7682063,
+    "height": 360,
+    "poster": true,
+    "seconds": 154,
+    "width": 360
+  },
+  "tidying_living_room": {
+    "bytes": 9561301,
+    "height": 360,
+    "poster": true,
+    "seconds": 315,
+    "width": 360
+  },
+  "turning_on_radio": {
+    "bytes": 2564431,
+    "height": 360,
+    "poster": true,
+    "seconds": 57,
+    "width": 360
+  },
+  "turning_out_all_lights_before_sleep": {
+    "bytes": 10899637,
+    "height": 360,
+    "poster": true,
+    "seconds": 337,
+    "width": 360
+  },
+  "unloading_the_car": {
+    "bytes": 9865742,
+    "height": 360,
+    "poster": true,
+    "seconds": 377,
+    "width": 360
+  },
+  "vacuuming_floors": {
+    "bytes": 3205020,
+    "height": 480,
+    "poster": true,
+    "seconds": 65,
+    "width": 480
+  },
+  "wash_dog_toys": {
+    "bytes": 12202130,
+    "height": 360,
+    "poster": true,
+    "seconds": 292,
+    "width": 360
+  }
+}

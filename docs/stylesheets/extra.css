@@ -1,0 +1,810 @@
+/* ==========================================================================
+   Task review UI.
+
+   Priorities, in order: see the demo without clicking, read the decision at a
+   glance, read the labels at a glance. Everything else is subordinate.
+   ========================================================================== */
+
+:root {
+  --r: 10px;
+  --line: color-mix(in srgb, var(--md-default-fg-color) 12%, transparent);
+  --line-soft: color-mix(in srgb, var(--md-default-fg-color) 7%, transparent);
+  --dim: var(--md-default-fg-color--light);
+  --surface: color-mix(in srgb, var(--md-default-fg-color) 2.5%, transparent);
+
+  --keep: #2f855a;
+  --drop: #c53030;
+  --review: #c05621;
+  --pending: #718096;
+}
+
+[data-md-color-scheme="slate"] {
+  --keep: #68d391;
+  --drop: #fc8181;
+  --review: #f6ad55;
+  --pending: #a0aec0;
+  --surface: color-mix(in srgb, var(--md-default-fg-color) 5%, transparent);
+}
+
+/* No right-hand TOC, so give the width to the video. */
+/* Hide the right-hand table of contents rather than using toc.integrate:
+   that feature silently disables navigation.indexes, which is what makes a
+   section header link to its own page. Hiding it here gets both. */
+.md-sidebar--secondary { display: none !important; }
+
+@media screen and (min-width: 76.25em) {
+  .md-grid { max-width: 88rem; }
+}
+
+.md-typeset { font-size: 0.78rem; }
+
+.md-typeset h1 {
+  margin: 0 0 0.4rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--md-default-fg-color);
+}
+
+/* The lead paragraph under an h1 is orientation, not content. */
+.md-typeset h1 + p { margin: 0 0 0.6rem; font-size: 0.74rem; color: var(--dim); }
+.md-typeset h2 { font-weight: 650; letter-spacing: -0.015em; margin-top: 1.8em; }
+
+/* ── pills and chips ──────────────────────────────────────────────────── */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  height: 1.15rem;
+  padding: 0 0.5rem;
+  border-radius: 999px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.pill--keep         { background: var(--keep); }
+.pill--drop         { background: var(--drop); }
+.pill--needs-review { background: var(--review); }
+.pill--pending      { background: transparent; color: var(--pending); border: 1px solid var(--line); }
+
+[data-md-color-scheme="slate"] .pill--keep,
+[data-md-color-scheme="slate"] .pill--drop,
+[data-md-color-scheme="slate"] .pill--needs-review { color: #10151c; }
+
+/* Excluded from the final benchmark (state `excluded:`): an outline, like "pending", never a decision colour. */
+.pill--excluded { background: transparent; color: var(--dim); border: 1px dashed var(--dim); }
+
+.pill--d-easy    { background: #4a7c59; }
+.pill--d-medium  { background: #b7791f; }
+.pill--d-hard    { background: #9b2c2c; }
+.pill--d-extreme { background: #6b46c1; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 1.1rem;
+  padding: 0 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-size: 0.6rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--md-default-fg-color);
+  text-decoration: none;
+}
+
+a.chip:hover { border-color: var(--md-accent-fg-color); color: var(--md-accent-fg-color); }
+
+.chip--gap {
+  border-style: dashed;
+  border-color: color-mix(in srgb, var(--drop) 45%, transparent);
+  background: transparent;
+  color: var(--drop);
+}
+
+/* ── toolbar ──────────────────────────────────────────────────────────── */
+
+.tl__bar { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 1rem 0 0.5rem; }
+
+.tl__bar input,
+.tl__bar select,
+.tl__reset {
+  height: 1.85rem;
+  padding: 0 0.6rem;
+  font: inherit;
+  font-size: 0.7rem;
+  color: var(--md-default-fg-color);
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  transition: border-color 120ms;
+}
+
+.tl__bar input:focus,
+.tl__bar select:focus { outline: none; border-color: var(--md-accent-fg-color); }
+.tl__searchwrap { display: flex; flex: 1 1 18rem; min-width: 11rem; }
+
+.tl__search {
+  flex: 1;
+  min-width: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.tl__searchgo {
+  height: 1.85rem;
+  padding: 0 0.7rem;
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--dim);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 0;
+  border-radius: 0 7px 7px 0;
+  cursor: pointer;
+}
+
+.tl__searchgo:hover { color: var(--md-accent-fg-color); border-color: var(--md-accent-fg-color); }
+.tl__reset { cursor: pointer; color: var(--dim); }
+.tl__reset:hover { border-color: var(--md-accent-fg-color); color: var(--md-accent-fg-color); }
+
+.tl__sub {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding-bottom: 0.55rem;
+  margin-bottom: 0.7rem;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 0.68rem;
+  color: var(--dim);
+}
+
+.tl__speed { display: inline-flex; align-items: center; gap: 0.45rem; }
+
+.tl__speedbtns,
+.demo__speed .btns {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.tl__speedbtns button,
+.demo__speed button {
+  min-width: 2rem;
+  padding: 0.18rem 0.4rem;
+  font: inherit;
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: var(--dim);
+  background: transparent;
+  border: 0;
+  border-right: 1px solid var(--line);
+  cursor: pointer;
+  transition: background 100ms, color 100ms;
+}
+
+.tl__speedbtns button:last-child,
+.demo__speed button:last-child { border-right: 0; }
+.tl__speedbtns button:hover,
+.demo__speed button:hover { background: var(--surface); color: var(--md-default-fg-color); }
+
+.tl__speedbtns button.is-on,
+.demo__speed button.is-on {
+  background: var(--md-accent-fg-color);
+  color: var(--md-default-bg-color);
+}
+
+.tl__rows { display: flex; flex-direction: column; gap: 0.55rem; }
+
+.tl__empty {
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--dim);
+  border: 1px dashed var(--line);
+  border-radius: var(--r);
+}
+
+/* ── one task row: text left, demo right ──────────────────────────────── */
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 11rem;
+  gap: 1.1rem;
+  align-items: stretch;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r);
+  background: var(--md-default-bg-color);
+  transition: border-color 140ms, box-shadow 140ms;
+}
+
+.row:hover {
+  border-color: var(--line);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 5%), 0 6px 18px rgb(0 0 0 / 5%);
+}
+
+/* The triage decision reads as a colour band before you read anything. */
+.row { border-left: 3px solid var(--pending); }
+.row--keep         { border-left-color: var(--keep); }
+.row--drop         { border-left-color: var(--drop); }
+.row--needs-review { border-left-color: var(--review); }
+.row--drop .row__main { opacity: 0.55; }
+
+/* Removed tasks read as grey at a glance: dropped in review, or removed from the run on show (tasks merely not
+   built for the run keep their colour). */
+.row--drop, .row--out, .row--excluded { filter: grayscale(1); }
+.row--out, .row--excluded { border-left-color: var(--line); }
+.row--out .row__main, .row--out .row__media { opacity: 0.5; }
+.row__out { margin: 0; font-size: 0.64rem; font-style: italic; color: var(--dim); }
+/* Excluded from the final benchmark (state `excluded:`, the owner's call): greyed and listed last, a dashed band;
+   still readable, since its demo and its agent runs stay for the record. */
+.row--excluded { border-left-style: dashed; }
+.row--excluded .row__main, .row--excluded .row__media { opacity: 0.55; transition: opacity 140ms; }
+.row--excluded:hover .row__main, .row--excluded:hover .row__media { opacity: 0.85; }
+.row__excl { font-style: normal; }
+
+.row__main { display: flex; flex-direction: column; justify-content: center; gap: 0.35rem; min-width: 0; }
+
+.row__head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem; }
+
+.row__title {
+  font-size: 0.86rem;
+  font-weight: 680;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  text-decoration: none;
+}
+
+/* `.md-typeset a` would otherwise paint every title link-blue, which makes the
+   list read as a wall of links instead of a list of tasks. */
+.md-typeset .row__title { color: var(--md-default-fg-color); }
+.md-typeset .row__title:hover { color: var(--md-accent-fg-color); }
+.md-typeset .row__more { color: var(--md-accent-fg-color); }
+
+.row__text {
+  margin: 0;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: var(--dim);
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.row__labels { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+
+.row__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.15rem;
+  font-size: 0.63rem;
+  color: var(--dim);
+}
+
+.row__more { margin-left: auto; font-weight: 650; white-space: nowrap; text-decoration: none; }
+
+.row__media {
+  position: relative;
+  /* aspect-ratio is set inline per task from the real file dimensions. */
+  aspect-ratio: 1 / 1;
+  align-self: center;
+  justify-self: end;
+  width: 100%;
+}
+
+.row__video,
+.row__missing {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 6px;
+  background: #000;
+}
+
+.row__missing {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px dashed var(--line);
+}
+
+.row__missing img { width: 100%; height: 100%; object-fit: cover; opacity: 0.25; }
+
+.row__missing span {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  font-size: 0.66rem;
+  color: var(--dim);
+}
+
+/* A scene still stands in for a demo the benchmark never published: keep the
+   picture legible and put the caption on a strip instead of over it. */
+.row__missing--scene { border-style: solid; }
+.row__missing--scene img { opacity: 1; }
+.row__missing--scene span {
+  inset: auto 0 0 0;
+  flex-direction: row;
+  gap: 0.4rem;
+  padding: 0.3rem 0.5rem;
+  background: var(--md-default-bg-color);
+  border-top: 1px solid var(--line);
+}
+
+/* The public site links some benchmarks' demos to the official video (scripts/sitemode.py): our poster, full
+   strength, with the link on a strip, like a scene still. */
+.row__missing--watch { border-style: solid; }
+.row__missing--watch img { opacity: 1; }
+.row__missing--watch a {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 0.3rem 0.5rem;
+  background: var(--md-default-bg-color);
+  border-top: 1px solid var(--line);
+  font-size: 0.66rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+@media screen and (max-width: 66em) {
+  .row { grid-template-columns: 1fr; }
+  .row__media { order: -1; max-width: 20rem; justify-self: start; }
+}
+
+/* ── task page ────────────────────────────────────────────────────────── */
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.75rem;
+  margin: 0.4rem 0 1.2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 0.7rem;
+  color: var(--dim);
+}
+
+.meta .missing { color: var(--drop); font-weight: 600; }
+
+.demo { margin: 1rem 0 1.6rem; }
+
+.demo video {
+  width: 100%;
+  max-width: 30rem;
+  display: block;
+  background: #000;
+  border-radius: var(--r);
+}
+
+.demo__speed {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.55rem;
+  font-size: 0.68rem;
+  color: var(--dim);
+}
+
+.demo__credit {
+  margin: 0.4rem 0 0;
+  font-size: 0.68rem;
+  color: var(--dim);
+}
+
+.demo__none {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  aspect-ratio: 1 / 1;
+  max-width: 30rem;
+  border: 1px dashed var(--line);
+  border-radius: var(--r);
+  font-size: 0.74rem;
+  color: var(--dim);
+}
+
+/* No oracle video upstream: show the scene the task starts from, labelled as
+   what it is. A still is not a demonstration, but it beats a grey box.
+   Must sit after `.demo__none`: same specificity, and it overrides the square
+   aspect ratio and the dashed frame. */
+.md-typeset .demo__scene {
+  display: block;
+  width: 100%;
+  max-width: 30rem;
+  height: auto;
+  border-radius: var(--r);
+  border: 1px solid var(--line);
+}
+
+.demo__none--tight {
+  aspect-ratio: auto;
+  max-width: 30rem;
+  border: 0;
+  padding: 0.35rem 0 0;
+  text-align: center;
+}
+
+/* The public site's link to the official demo, under our poster (scripts/sitemode.py). */
+.md-typeset .demo__watch { max-width: 30rem; margin: 0.4rem 0 0; text-align: center; font-size: 0.74rem; font-weight: 600; }
+
+/* ── stats ────────────────────────────────────────────────────────────── */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(5.5rem, 1fr));
+  gap: 0.45rem;
+  margin: 1rem 0;
+}
+
+.stat {
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.stat b {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.stat span {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--dim);
+}
+
+/* Tasks excluded from the benchmark: counted apart, next to the task count. */
+.stat--excluded { border-style: dashed; background: transparent; }
+.stat--excluded b { color: var(--dim); }
+
+/* The banner on an excluded task's page (scripts/hooks.py): grey, not a warning. */
+.md-typeset .admonition.excluded {
+  border-color: color-mix(in srgb, var(--md-default-fg-color) 45%, transparent);
+  border-style: dashed;
+}
+.md-typeset .admonition.excluded > .admonition-title {
+  background-color: color-mix(in srgb, var(--md-default-fg-color) 7%, transparent);
+}
+.md-typeset .admonition.excluded > .admonition-title::before {
+  background-color: var(--dim);
+  -webkit-mask-image: var(--md-admonition-icon--abstract);
+          mask-image: var(--md-admonition-icon--abstract);
+}
+
+/* ── contributed media ────────────────────────────────────────────────── */
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.media-card { margin: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.media-card img, .media-card video { display: block; width: 100%; height: auto; }
+.media-card figcaption { padding: 0.5rem 0.65rem; font-size: 0.66rem; color: var(--dim); }
+
+/* ── lazy media: poster until the row is near the viewport ────────────── */
+
+.row__poster {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #0d0d0d;
+}
+
+.row__play {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border-radius: 6px;
+  transition: background 120ms;
+}
+
+.row__play::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2.6rem;
+  height: 2.6rem;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgb(0 0 0 / 55%) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") no-repeat 54% 50% / 1.3rem;
+  transition: background-color 120ms, transform 120ms;
+}
+
+.row__play:hover::after { background-color: rgb(0 0 0 / 78%); transform: translate(-50%, -50%) scale(1.07); }
+.row__play:focus-visible { outline: 2px solid var(--md-accent-fg-color); outline-offset: 2px; }
+
+.tl__sentinel { height: 1px; }
+
+/* ── inline editor (local edit daemon only) ───────────────────────────── */
+
+.row__actions { display: inline-flex; align-items: center; gap: 0.6rem; margin-left: auto; }
+.row__actions .row__more { margin-left: 0; }
+
+.row__edit {
+  padding: 0.1rem 0.5rem;
+  font: inherit;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--dim);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.row__edit:hover { border-color: var(--md-accent-fg-color); color: var(--md-accent-fg-color); }
+.row__edit--live { border-color: var(--md-accent-fg-color); color: var(--md-accent-fg-color); }
+
+.ed {
+  margin-top: 0.6rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  font-size: 0.68rem;
+}
+
+.ed__row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+.ed__row > span:first-child { min-width: 4.5rem; color: var(--dim); font-size: 0.63rem; }
+
+.ed__seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+
+.ed__seg button {
+  padding: 0.18rem 0.55rem;
+  font: inherit;
+  font-size: 0.63rem;
+  color: var(--dim);
+  background: var(--md-default-bg-color);
+  border: 0;
+  border-right: 1px solid var(--line);
+  cursor: pointer;
+}
+
+.ed__seg button:last-child { border-right: 0; }
+.ed__seg button:hover { color: var(--md-default-fg-color); }
+.ed__seg button.is-on { background: var(--md-accent-fg-color); color: var(--md-default-bg-color); font-weight: 600; }
+
+.ed__caps {
+  margin: 0.6rem 0;
+  padding: 0.6rem 0;
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.ed__grp + .ed__grp { margin-top: 0.6rem; }
+
+.ed__grp b {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--dim);
+}
+
+.ed__tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+
+/* Labels are toggle buttons, not checkboxes: bigger targets, and the selected
+   set is readable at a glance instead of scanning for ticks. */
+.ed__tag {
+  padding: 0.22rem 0.6rem;
+  font: inherit;
+  font-size: 0.65rem;
+  color: var(--md-default-fg-color);
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 100ms, border-color 100ms, color 100ms;
+}
+
+.ed__tag:hover { border-color: var(--md-accent-fg-color); }
+
+.ed__tag.is-on {
+  background: var(--md-accent-fg-color);
+  border-color: var(--md-accent-fg-color);
+  color: var(--md-default-bg-color);
+  font-weight: 600;
+}
+
+/* Implied by the task's annotated BEHAVIOR skills but not yet chosen. */
+.ed__tag--sug { border-style: dashed; border-color: var(--md-accent-fg-color); }
+.ed__tag i { font-style: normal; margin-left: 0.2rem; opacity: 0.7; }
+
+.ed__new {
+  flex: 1 1 12rem;
+  padding: 0.2rem 0.45rem;
+  font: inherit;
+  font-size: 0.65rem;
+  color: var(--md-default-fg-color);
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+.ed__add, .ed__save, .ed__cancel {
+  padding: 0.2rem 0.6rem;
+  font: inherit;
+  font-size: 0.64rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  cursor: pointer;
+}
+
+.ed__save { background: var(--md-accent-fg-color); border-color: var(--md-accent-fg-color); color: var(--md-default-bg-color); }
+.ed__foot { display: flex; align-items: center; gap: 0.5rem; }
+.ed__msg { flex: 1; font-size: 0.62rem; color: var(--dim); }
+
+/* ── taxonomy editor (Labels page) ────────────────────────────────────── */
+
+.tax { margin: 1rem 0 1.6rem; }
+
+.tax__hint {
+  padding: 0.7rem 0.9rem;
+  border: 1px dashed var(--line);
+  border-radius: var(--r);
+  font-size: 0.7rem;
+  color: var(--dim);
+}
+
+.tax__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r) var(--r) 0 0;
+  background: var(--surface);
+  font-size: 0.7rem;
+}
+
+.tax__msg { flex: 1; color: var(--dim); font-size: 0.65rem; }
+.tax__err { color: var(--drop); }
+
+.tax__save, .tax__add, .tax__addsub {
+  padding: 0.22rem 0.6rem;
+  font: inherit;
+  font-size: 0.65rem;
+  font-weight: 600;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  cursor: pointer;
+}
+
+.tax__save { background: var(--md-accent-fg-color); border-color: var(--md-accent-fg-color); color: var(--md-default-bg-color); }
+.tax__addsub { margin-top: 0.3rem; font-size: 0.62rem; color: var(--dim); }
+
+.tax__cap {
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--line);
+  border-top: 0;
+  background: var(--md-default-bg-color);
+}
+
+.tax__cap:last-of-type { border-radius: 0 0 var(--r) var(--r); }
+.tax__caphead { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem; }
+.tax__sub { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0.25rem 0 0.25rem 1rem; }
+
+.tax__capname, .tax__name, .tax__desc {
+  padding: 0.22rem 0.5rem;
+  font: inherit;
+  font-size: 0.68rem;
+  color: var(--md-default-fg-color);
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+.tax__capname { flex: 0 0 11rem; font-weight: 700; }
+.tax__name { flex: 0 0 10rem; }
+.tax__desc { flex: 1 1 16rem; min-width: 8rem; font-size: 0.65rem; color: var(--dim); }
+
+.tax__from {
+  flex: 0 0 auto;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 0.58rem;
+  color: var(--dim);
+}
+
+.tax__from--ours { border-style: dashed; }
+
+.tax__del {
+  padding: 0 0.4rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--dim);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.tax__del:hover { color: var(--drop); border-color: var(--drop); }
+
+/* ── benchmark cards (home) ───────────────────────────────────────────── */
+
+.bcards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 0.7rem;
+  margin: 1rem 0 1.4rem;
+}
+
+.bcard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--md-accent-fg-color);
+  border-radius: var(--r);
+  background: var(--md-default-bg-color);
+  text-decoration: none;
+  transition: border-color 140ms, box-shadow 140ms;
+}
+
+.bcard:hover { box-shadow: 0 1px 3px rgb(0 0 0 / 6%), 0 6px 18px rgb(0 0 0 / 6%); }
+
+.md-typeset .bcard { color: var(--md-default-fg-color); }
+.bcard__name { font-size: 1rem; font-weight: 700; letter-spacing: -0.015em; }
+.bcard__sim { font-size: 0.66rem; color: var(--dim); }
+.bcard__nums { margin-top: 0.35rem; font-size: 0.7rem; color: var(--dim); }
+.bcard__nums b { color: var(--md-default-fg-color); font-weight: 700; }
+
+.bcard__go {
+  margin-top: 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 650;
+  color: var(--md-accent-fg-color);
+}
+
+/* Why editing is off, said on the page rather than on a scrolled-away stderr. */
+.tax__offline {
+  color: var(--md-typeset-color);
+  opacity: 0.75;
+}

@@ -1,0 +1,599 @@
+/* Agent runs: the pills (task list, task pages, Runs pages) and the Runs pages (scripts/runpages.py).
+   The log pages have their own stylesheet, runlog.css.
+
+   One colour per trial state, shared by the pills, the stacked bars and the legends, a little brighter on the
+   dark (slate) scheme so it keeps its contrast there. */
+:root {
+  --st-success: #2f855a;
+  --st-failed: #c53030;
+  --st-error: #dd6b20;
+  --st-running: #3182ce;
+  --st-grading: #805ad5;
+  --st-queued: #a0aec0;
+  --st-notrun: #cbd5e0;
+  --rs-sub: color-mix(in srgb, var(--md-default-fg-color) 68%, transparent);   /* secondary text, readable in both */
+  --rs-card: color-mix(in srgb, var(--md-default-fg-color) 3%, var(--md-default-bg-color));
+}
+[data-md-color-scheme="slate"] {
+  --st-success: #48bb78;
+  --st-failed: #f56565;
+  --st-error: #ed8936;
+  --st-running: #4299e1;
+  --st-grading: #9f7aea;
+  --st-queued: #718096;
+  --st-notrun: #4a5568;
+  --rs-sub: color-mix(in srgb, var(--md-default-fg-color) 76%, transparent);
+  --rs-card: color-mix(in srgb, var(--md-default-fg-color) 5%, var(--md-default-bg-color));
+}
+.st-success { background: var(--st-success); }
+.st-failed  { background: var(--st-failed); }
+.st-error   { background: var(--st-error); }
+.st-running { background: var(--st-running); }
+.st-grading { background: var(--st-grading); }
+.st-queued  { background: var(--st-queued); }
+.st-notrun  { background: repeating-linear-gradient(135deg, var(--st-notrun) 0 3px, transparent 3px 6px); }
+.st-logs, .st-stale { background: var(--st-error); }
+.st-followup { background: var(--md-accent-fg-color); }
+.st-excluded { background: transparent; box-shadow: inset 0 0 0 1px var(--rs-sub); }
+.st-stopped { background: repeating-linear-gradient(90deg, var(--st-queued) 0 2px, transparent 2px 4px); }
+
+/* ── one pill per mode of a run (scripts/runview.py pill_html, javascripts/tasklist.js runHtml) ──────── */
+.rpill {
+  --c: var(--pending);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  height: 1.15rem;
+  padding: 0 0.45rem 0 0;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--c) 55%, transparent);
+  background: color-mix(in srgb, var(--c) 12%, transparent);
+  color: var(--md-default-fg-color);
+  font-size: 0.6rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.rpill b {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 0.35rem;
+  border-radius: 999px 0 0 999px;
+  background: var(--c);
+  color: #fff;
+  font-weight: 800;
+}
+.rpill--queued   { --c: var(--st-queued); }
+.rpill--notrun   { --c: var(--st-queued); background: transparent; border-style: dashed; }
+.rpill--nodata   { --c: var(--st-queued); background: transparent; border-style: dotted; color: var(--rs-sub); }
+.rpill--stopped  { --c: var(--st-queued); background: transparent; border-style: dashed; color: var(--rs-sub); }
+.rpill--setup    { --c: var(--st-running); }
+.rpill--running  { --c: var(--st-running); }
+.rpill--grading  { --c: var(--st-grading); }
+.rpill--success  { --c: var(--st-success); }
+.rpill--failed   { --c: var(--st-failed); }
+.rpill--error    { --c: var(--st-error); }
+.rpill--stalled  { --c: var(--st-error); }
+.rpill--removed  { --c: var(--st-queued); padding: 0 0.45rem; }
+.rpill--outside  { --c: var(--st-queued); padding: 0 0.45rem; background: transparent; border-style: dashed; }
+.rpill--running b::after, .rpill--setup b::after {
+  content: "";
+  width: 0.35rem;
+  height: 0.35rem;
+  margin-left: 0.25rem;
+  border-radius: 50%;
+  background: #fff;
+  animation: rpill-pulse 1.4s ease-in-out infinite;
+}
+@keyframes rpill-pulse { 50% { opacity: 0.25; } }
+.rpill__logs { font-style: normal; font-weight: 700; opacity: 0.8; }
+.rpill__logs--missing { color: var(--st-failed); opacity: 1; }
+[data-md-color-scheme="slate"] .rpill b { color: #10151c; }
+a.rpill:hover { border-color: var(--c); }
+
+/* default / closed next to a run's name */
+.runtag {
+  display: inline-block;
+  margin-left: 0.45rem;
+  padding: 0 0.45rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 0.56rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  vertical-align: middle;
+  color: var(--rs-sub);
+  white-space: nowrap;
+}
+.runtag--default { border-color: color-mix(in srgb, var(--md-accent-fg-color) 55%, transparent); color: var(--md-accent-fg-color); }
+.runtag--closed { border-style: dashed; }
+
+/* ── the task list's Run menu ─────────────────────────────────────────────────────────────────────── */
+.tl__bar select.tl__run { font-weight: 600; max-width: 22rem; border-color: color-mix(in srgb, var(--md-accent-fg-color) 45%, var(--line)); }
+
+/* ── task pages: one block per run ────────────────────────────────────────────────────────────────── */
+.runs-task .runblock { margin: 0.6rem 0 0.2rem; }
+.runs-task .runblock + .runblock { padding-top: 0.5rem; border-top: 1px solid var(--line-soft); }
+.runs-task .runblock__head { margin: 0 0 0.3rem !important; font-weight: 650; }
+.runs-task .runblock--out p { margin: 0.1rem 0 !important; }
+.runs-task .runblock--out { color: var(--rs-sub); }
+.runs-task table { font-size: 0.62rem; }
+.runs-task details.runblock-more { margin-top: 0.8rem; }
+.runs-hosts { font-size: 0.66rem; color: var(--rs-sub); }
+
+/* ── Runs pages ───────────────────────────────────────────────────────────────────────────────────── */
+.md-typeset .rlead { margin: -0.1rem 0 0.4rem !important; font-size: 0.74rem; color: var(--rs-sub); }
+.md-typeset .rlead a { color: inherit; text-decoration: underline; text-decoration-color: var(--line); }
+.rstatus { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem; font-size: 0.64rem; color: var(--rs-sub); }
+
+/* quiet disclosures: How to read this page, Run details, the lists at the end */
+.md-typeset details.rhelp, .md-typeset details.rdetails, .md-typeset details.rlist {
+  margin: 0.5rem 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  font-size: inherit;
+}
+.md-typeset details.rhelp > summary, .md-typeset details.rdetails > summary, .md-typeset details.rlist > summary {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 0.15rem 0.65rem 0.15rem 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 22%, transparent);
+  border-radius: 999px;
+  background: transparent;
+  font-size: 0.64rem;
+  font-weight: 600;
+  color: var(--rs-sub);
+  cursor: pointer;
+}
+.md-typeset details.rhelp > summary::before, .md-typeset details.rdetails > summary::before,
+.md-typeset details.rlist > summary::before { display: none; }
+.md-typeset details.rhelp > summary::after, .md-typeset details.rdetails > summary::after,
+.md-typeset details.rlist > summary::after { top: 50%; left: 0.45rem; right: auto; width: 0.8rem; height: 0.8rem; transform: translateY(-50%) rotate(0); }
+.md-typeset details.rhelp[open] > summary::after, .md-typeset details.rdetails[open] > summary::after,
+.md-typeset details.rlist[open] > summary::after { transform: translateY(-50%) rotate(90deg); }
+.md-typeset details.rhelp > summary:hover, .md-typeset details.rdetails > summary:hover,
+.md-typeset details.rlist > summary:hover { color: var(--md-accent-fg-color); border-color: var(--md-accent-fg-color); }
+.md-typeset details.rhelp[open] { padding: 0 0 0.2rem; }
+.md-typeset details.rhelp > p { margin: 0.5rem 0 0 !important; max-width: 52rem; font-size: 0.68rem; line-height: 1.55; }
+.md-typeset details.rlist table { display: table; margin: 0.5rem 0 0; font-size: 0.64rem; }
+.runs-out, .runs-out a { color: var(--rs-sub); }
+
+/* the "Agent run" picker: a control, not a card. A labelled row of segmented buttons, the chosen run in the primary
+   colour with a filled radio dot; the parts of the setting that differ between runs are emphasised. */
+.rpick { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.7rem; margin: 0.9rem 0 0.2rem; }
+.rpick__label {
+  font-size: 0.62rem;
+  font-weight: 750;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color);
+}
+.rpick__label::after { content: " ›"; color: var(--rs-sub); }
+.rpick__seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid color-mix(in srgb, var(--md-primary-fg-color) 45%, transparent);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--md-primary-fg-color) 6%, var(--md-default-bg-color));
+}
+.md-typeset a.rpick__opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.32rem 0.75rem 0.32rem 0.6rem;
+  border-radius: 7px;
+  color: var(--md-default-fg-color);
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.3;
+  cursor: pointer;
+  transition: background-color 120ms, color 120ms;
+}
+.md-typeset a.rpick__opt:hover { background: color-mix(in srgb, var(--md-primary-fg-color) 14%, transparent); color: var(--md-default-fg-color); }
+.md-typeset a.rpick__opt:focus-visible { outline: 2px solid var(--md-accent-fg-color); outline-offset: 1px; }
+.md-typeset a.rpick__opt.is-on, .md-typeset a.rpick__opt.is-on:hover {
+  background: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 22%);
+}
+.rpick__dot { flex: none; width: 0.62rem; height: 0.62rem; border: 2px solid currentColor; border-radius: 50%; opacity: 0.55; }
+.rpick__opt.is-on .rpick__dot { opacity: 1; background: currentColor; box-shadow: inset 0 0 0 2px var(--md-primary-fg-color); }
+.rpick__text em {                     /* a part of the setting in which the runs differ */
+  padding: 0.02rem 0.3rem;
+  border-radius: 4px;
+  background: color-mix(in srgb, currentColor 13%, transparent);
+  font-style: normal;
+  font-weight: 800;
+}
+.rpick__tag {
+  padding: 0 0.35rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.5rem;
+  font-weight: 750;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  white-space: nowrap;
+}
+.rpick__hint { font-size: 0.62rem; color: var(--rs-sub); }
+.rpick--single .md-typeset a.rpick__opt, .rpick--single a.rpick__opt { cursor: default; }
+.rpanel[hidden], .rcard2[hidden] { display: none; }
+.rpick:not(.runsel--js) ~ .rpanel + .rpanel { margin-top: 2.5rem; padding-top: 1rem; border-top: 2px solid var(--line); }
+
+/* The "Count" switch of a run with tasks excluded from the benchmark (state `excluded:`): which tasks the numbers below
+   count, the benchmark's own (the default) or those and the excluded ones. Quieter than the run picker above it. */
+.rscope { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.6rem; margin: 0 0 0.6rem; }
+.rscope__label { font-size: 0.6rem; font-weight: 750; letter-spacing: 0.05em; text-transform: uppercase; color: var(--rs-sub); }
+.rscope__seg { display: inline-flex; gap: 2px; padding: 2px; border: 1px solid var(--line); border-radius: 999px; background: var(--rs-card); }
+.rscope__opt {
+  padding: 0.14rem 0.7rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--rs-sub);
+  font: inherit;
+  font-size: 0.62rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+.rscope__opt b { font-variant-numeric: tabular-nums; }
+.rscope__opt:hover { color: var(--md-default-fg-color); }
+.rscope__opt:focus-visible { outline: 2px solid var(--md-accent-fg-color); outline-offset: 1px; }
+.rscope__opt.is-on { background: var(--md-default-fg-color); color: var(--md-default-bg-color); }
+.rscope__hint { font-size: 0.6rem; color: var(--rs-sub); }
+.rscope-block[hidden] { display: none; }
+.rempty__go {
+  margin-left: 0.3rem;
+  padding: 0.05rem 0.55rem;
+  border: 1px solid var(--md-accent-fg-color);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--md-accent-fg-color);
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+/* A run without results on this site (the public build): its tasks as a list of links. */
+.md-typeset .rscope__tasks { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0.5rem 0 0 !important; }
+.md-typeset a.rscope__task {
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.62rem;
+  color: var(--md-default-fg-color);
+}
+.md-typeset a.rscope__task:hover { border-color: var(--md-accent-fg-color); color: var(--md-accent-fg-color); }
+.md-typeset a.rscope__task--x { border-style: dashed; color: var(--rs-sub); }
+
+.rbench__x, .rcell__x {
+  margin-left: 0.4rem;
+  padding: 0 0.35rem;
+  border: 1px dashed var(--rs-sub);
+  border-radius: 999px;
+  font-size: 0.54rem;
+  color: var(--rs-sub);
+  white-space: nowrap;
+}
+.rcell__x { margin-left: 0; }
+
+/* a run's name and its one line of facts */
+.rhead { margin: 0.9rem 0 0.6rem; }
+.md-typeset h2.rhead__title { margin: 0 !important; font-size: 0.95rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.35; }
+.md-typeset .rhead__meta { margin: 0.1rem 0 0 !important; font-size: 0.64rem; color: var(--rs-sub); }
+.rhead__meta code { font-size: 0.58rem; }
+
+/* the few numbers: a stacked bar per mode, mean progress, agent time */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(var(--modes, 2), minmax(0, 1.45fr)) repeat(2, minmax(8.5rem, 0.75fr));
+  gap: 0.6rem;
+  margin: 0.4rem 0 0.6rem;
+}
+.kpi-side { display: contents; }
+.kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+  padding: 0.6rem 0.75rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--rs-card);
+}
+.kpi__top { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; }
+.kpi--num .kpi__top { flex-direction: column; align-items: flex-start; gap: 0.15rem; }
+.kpi__name { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--rs-sub); }
+.kpi__value { font-size: 1.25rem; font-weight: 750; font-variant-numeric: tabular-nums; line-height: 1.1; white-space: nowrap; }
+.kpi__of { font-size: 0.66rem; font-weight: 600; color: var(--rs-sub); }
+.kpi__sub { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.2rem 0.6rem; font-size: 0.6rem; color: var(--rs-sub); }
+.kpi__rate { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.sbar {
+  display: flex;
+  gap: 2px;
+  height: 0.7rem;
+  border-radius: 999px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--md-default-fg-color) 8%, transparent);
+}
+.sbar i { display: block; min-width: 3px; height: 100%; }
+.sbar--sm { height: 0.4rem; gap: 1px; }
+.sbar--sm i { min-width: 2px; }
+.pbar { height: 0.7rem; border-radius: 999px; overflow: hidden; background: color-mix(in srgb, var(--md-default-fg-color) 8%, transparent); }
+.pbar i { display: block; height: 100%; border-radius: 999px; background: var(--st-success); }
+
+.slegend { display: inline-flex; flex-wrap: wrap; gap: 0.15rem 0.6rem; }
+.slegend span { display: inline-flex; align-items: center; gap: 0.25rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.slegend i { display: inline-block; width: 0.55rem; height: 0.55rem; border-radius: 3px; }
+.md-typeset .slegend--key { margin: 0.5rem 0 0 !important; font-size: 0.64rem; }
+
+/* tokens and cost, one line */
+.md-typeset .costline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1.3rem;
+  margin: 0 0 0.5rem !important;
+  padding: 0.35rem 0.75rem;
+  border-radius: 10px;
+  background: var(--rs-card);
+  font-size: 0.68rem;
+  font-variant-numeric: tabular-nums;
+}
+.costline small { font-size: 0.6rem; color: var(--rs-sub); }
+.costline__est { font-weight: 700; }
+
+/* what needs a look: only there when there is something */
+.ichips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0 0 0.5rem; }
+.ichip {
+  --c: var(--st-error);
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1rem 0.55rem;
+  border: 1px solid color-mix(in srgb, var(--c) 60%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--c) 12%, transparent);
+  color: var(--md-default-fg-color);
+  font: inherit;
+  font-size: 0.62rem;
+  font-weight: 650;
+}
+button.ichip { cursor: pointer; }
+button.ichip:hover { border-color: var(--c); }
+.ichip--info { --c: var(--md-accent-fg-color); }
+.ichip--down { --c: var(--st-failed); }
+
+/* host chips */
+.hchip {
+  display: inline-block;
+  margin: 0 0.1rem;
+  padding: 0 0.4rem;
+  border-radius: 999px;
+  font-size: 0.58rem;
+  font-weight: 650;
+  line-height: 1.5;
+  color: var(--md-default-fg-color);
+  background: color-mix(in srgb, var(--st-success) 16%, transparent);
+}
+.hchip::before { content: "✓ "; color: var(--st-success); }
+.hchip--down { background: color-mix(in srgb, var(--st-failed) 18%, transparent); }
+.hchip--down::before { content: "✗ "; color: var(--st-failed); }
+
+/* Run details: a two-column list */
+.md-typeset dl.rdl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.25rem 1rem;
+  margin: 0.5rem 0 0.2rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--rs-card);
+  font-size: 0.64rem;
+}
+.md-typeset dl.rdl dt { margin: 0; font-weight: 700; color: var(--rs-sub); }
+.md-typeset dl.rdl dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.md-typeset dl.rdl code { font-size: 0.58rem; }
+
+.rfollow { margin: 0.5rem 0; padding: 0.4rem 0.7rem; border-left: 3px solid var(--md-accent-fg-color); border-radius: 0 8px 8px 0;
+           background: color-mix(in srgb, var(--md-accent-fg-color) 6%, transparent); font-size: 0.64rem; }
+.md-typeset .rfollow ul { margin: 0.2rem 0 0 1rem !important; }
+.md-typeset .rfollow li { margin: 0.1rem 0 !important; }
+.rfollow__mode { font-size: 0.56rem; font-weight: 700; text-transform: uppercase; color: var(--rs-sub); }
+
+/* the table: filter chips, sort, then one group of rows per task */
+.rt-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.8rem; margin: 1rem 0 0.4rem; scroll-margin-top: 3.2rem; }
+.rt-bar:not(.rt-bar--js) .rt-chips, .rt-bar:not(.rt-bar--js) .rt-sort { display: none; }
+.rt-chips { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.rt-chips button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.12rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  font: inherit;
+  font-size: 0.62rem;
+  cursor: pointer;
+}
+.rt-chips button i { display: inline-block; width: 0.5rem; height: 0.5rem; border-radius: 2px; }
+.rt-chips button b { font-variant-numeric: tabular-nums; }
+.rt-chips button:hover { border-color: var(--md-accent-fg-color); }
+.rt-chips button.is-on { border-color: var(--md-accent-fg-color); background: color-mix(in srgb, var(--md-accent-fg-color) 12%, transparent); }
+.rt-sort { font-size: 0.62rem; color: var(--rs-sub); }
+.rt-sort select {
+  margin-left: 0.25rem;
+  padding: 0.1rem 0.3rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  font: inherit;
+}
+.rt-count { font-size: 0.62rem; color: var(--rs-sub); }
+
+/* The table scrolls sideways unless javascripts/runs.js finds that it fits its column (.rt-wrap--fit): then the page
+   scrolls it and its header stays in view under Material's fixed header. */
+.rt-wrap { margin: 0 0 1rem; overflow-x: auto; }
+.rt-wrap--fit { overflow: visible; }
+.md-typeset .rt-wrap--fit .rt thead th { position: sticky; top: 2.4rem; }
+.md-typeset .rt td.rt-metric { font-variant-numeric: tabular-nums; }
+.md-typeset table.rt {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.64rem;
+  font-variant-numeric: tabular-nums;
+}
+.md-typeset .rt thead th {
+  position: static;
+  z-index: 2;
+  padding: 0.4rem 0.4rem;
+  border-bottom: 2px solid var(--line);
+  background: var(--md-default-bg-color);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-align: left;
+  text-transform: uppercase;
+  vertical-align: bottom;
+  line-height: 1.3;
+  color: var(--rs-sub);
+}
+.md-typeset .rt td { padding: 0.18rem 0.4rem; white-space: nowrap; vertical-align: middle; }
+.md-typeset .rt thead th small { font-size: 0.52rem; font-weight: 600; letter-spacing: 0; text-transform: none; }
+.md-typeset .rt a.rt-prev { margin-left: 0.2rem; font-size: 0.56rem; font-weight: 700; text-transform: uppercase; color: var(--rs-sub); }
+.md-typeset .rt a.rt-prev:hover { color: var(--md-accent-fg-color); }
+.md-typeset .rt tbody.rt-group > tr:first-child > * { border-top: 1px solid var(--line); }
+/* tasks excluded from the benchmark: last, under a heading of their own, a little grey; their records stay usable */
+.md-typeset .rt tbody.rt-sep th {
+  padding: 1rem 0.55rem 0.35rem;
+  border-top: 2px dashed var(--line);
+  background: transparent;
+  font-size: 0.64rem;
+  font-weight: 700;
+  text-align: left;
+  color: var(--rs-sub);
+}
+.md-typeset .rt tbody.rt-sep small { font-weight: 500; }
+.md-typeset .rt tbody.rt-sep .pill { margin-right: 0.3rem; height: 0.95rem; padding: 0 0.4rem; font-size: 0.5rem; vertical-align: 0.05rem; }
+.md-typeset .rt tbody.rt-group--x > tr > * { opacity: 0.62; transition: opacity 120ms; }
+.md-typeset .rt tbody.rt-group--x:hover > tr > * { opacity: 1; }
+.md-typeset .rt tbody.rt-group:hover { background: color-mix(in srgb, var(--md-default-fg-color) 3%, transparent); }
+.md-typeset .rt th.rt-task {
+  min-width: 8.5rem;
+  max-width: 16rem;
+  padding: 0.35rem 0.4rem 0.35rem 0.55rem;
+  font-size: 0.66rem;
+  font-weight: 600;
+  text-align: left;
+  vertical-align: top;
+  white-space: normal;
+}
+.md-typeset .rt th.rt-task .pill { margin-left: 0.35rem; height: 0.95rem; padding: 0 0.4rem; font-size: 0.5rem; vertical-align: 0.05rem; }
+.md-typeset .rt .rpill { margin: 0.05rem 0; }
+.md-typeset .rt td.rt-cost { position: relative; min-width: 4.4rem; }
+.rt-cost span { position: relative; z-index: 1; }
+.cbar { position: absolute; z-index: 0; left: 0.3rem; top: 24%; bottom: 24%; border-radius: 4px;
+        background: color-mix(in srgb, var(--md-accent-fg-color) 11%, transparent); }
+.pmini { display: inline-block; width: 1.8rem; height: 0.35rem; margin-right: 0.35rem; border-radius: 999px; overflow: hidden;
+         vertical-align: 0.08rem; background: color-mix(in srgb, var(--md-default-fg-color) 10%, transparent); }
+.pmini i { display: block; height: 100%; background: var(--st-success); }
+.rt small, .rt-none { color: var(--rs-sub); }
+
+/* a benchmark's declared grader metrics: one small card each, the run's mean or median */
+.mstrip { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.7rem; margin: 0 0 0.6rem; }
+.mstrip__label { font-size: 0.6rem; font-weight: 750; letter-spacing: 0.05em; text-transform: uppercase; color: var(--rs-sub); }
+.mcards { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.mcard {
+  display: flex;
+  flex-direction: column;
+  min-width: 6.2rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--rs-card);
+}
+.mcard span { font-size: 0.56rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; color: var(--rs-sub); }
+.mcard b { font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+.mcard i { font-size: 0.54rem; font-style: normal; color: var(--rs-sub); }
+
+/* the overview: one card per run, then the benchmark x run matrix */
+.rcard2 { margin: 1rem 0 1.4rem; padding: 0.2rem 1rem 0.8rem; border: 1px solid var(--line); border-radius: 14px; background: var(--md-default-bg-color); }
+.rcard2 .kpi { background: var(--rs-card); }
+.rbenches { display: grid; gap: 0.25rem; margin-top: 0.3rem; }
+.md-typeset a.rbench {
+  display: grid;
+  grid-template-columns: minmax(8rem, 13rem) 1fr auto;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 8px;
+  color: var(--md-default-fg-color);
+  font-size: 0.66rem;
+}
+.md-typeset a.rbench:hover { background: var(--rs-card); }
+.rbench__name { font-weight: 650; white-space: nowrap; }
+.rbench__num, .rbench__none { font-size: 0.62rem; font-variant-numeric: tabular-nums; color: var(--rs-sub); white-space: nowrap; }
+.rbench__none { grid-column: 2 / -1; }
+
+.runs-scroll { overflow-x: auto; margin: 0.5rem 0 1rem; }
+.md-typeset table.rmatrix, .md-typeset table.runs-sum {
+  display: table;
+  border-collapse: collapse;
+  font-size: 0.64rem;
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.md-typeset .rmatrix th, .md-typeset .runs-sum th {
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--rs-card);
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-align: left;
+  white-space: nowrap;
+}
+.md-typeset .rmatrix td, .md-typeset .runs-sum td { padding: 0.35rem 0.6rem; border-top: 1px solid var(--line-soft); white-space: nowrap; vertical-align: middle; }
+.md-typeset .rmatrix td:first-child { font-weight: 650; }
+.md-typeset a.rcell { display: grid; grid-auto-flow: column; grid-template-columns: 7rem; grid-auto-columns: max-content;
+                      align-items: center; gap: 0.5rem; color: var(--md-default-fg-color); }
+.rcell > span:not(.runtag) { font-variant-numeric: tabular-nums; color: var(--rs-sub); }
+.rcell .runtag { margin-left: 0; }
+
+.rempty { margin: 0.6rem 0; padding: 0.55rem 0.8rem; border: 1px dashed var(--line); border-radius: 10px; font-size: 0.68rem; color: var(--rs-sub); }
+.rempty b { color: var(--md-default-fg-color); }
+
+/* log pages: the run a trial belongs to, under its title */
+.runlog__run { margin: -0.2rem 0 0.4rem !important; font-size: 0.68rem; font-weight: 600; color: var(--rs-sub); }
+/* a trial we stopped ourselves (state/runs/ `stopped:`): the reason first, before anything is read as a failure */
+.md-typeset .runlog__stopped { margin: 0.4rem 0 !important; padding: 0.4rem 0.7rem; border-left: 3px solid var(--st-queued);
+  border-radius: 0 8px 8px 0; background: var(--rs-card); font-size: 0.7rem; }
+
+/* phones: one column of numbers; the table scrolls sideways (its header then scrolls with it) */
+@media screen and (max-width: 76.1875em) {
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media screen and (max-width: 44.9375em) {
+  .kpis { grid-template-columns: 1fr; }
+  .kpi-side { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+  .rpick__seg { display: flex; flex-direction: column; width: 100%; }
+  .md-typeset a.rpick__opt { width: 100%; }
+  .md-typeset a.rbench { grid-template-columns: 1fr auto; }
+  .md-typeset a.rbench .sbar { grid-column: 1 / -1; grid-row: 2; }
+  .md-typeset dl.rdl { grid-template-columns: 1fr; }
+}
