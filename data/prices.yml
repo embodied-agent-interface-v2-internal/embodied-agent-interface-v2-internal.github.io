@@ -7,6 +7,7 @@
 # A run points here with `price:` in data/agents/<run>.yml. Add a model once, with where its numbers come from.
 
 openai/gpt-6-luna:
+  id: gpt6_luna          # the model's field in a run id (docs/contributing/registering-runs.md)
   input: 0.10
   cached_input: 0.01
   output: 0.50

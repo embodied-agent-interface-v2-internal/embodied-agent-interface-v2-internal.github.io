@@ -1,11 +1,11 @@
 # RoboWits' agent runs. Owned by the benchmark's owner, curated by hand like everything in state/.
 # Format and field meanings: docs/contributing/registering-runs.md (and the header of state/runs/behavior-1k.yml).
 
-default: codex-0.157-gpt6luna-xhigh-cgpt
+default: codex-gpt6_luna-xhigh
 task_dir: "robowits-{task_dashed}-i00"
 
 runs:
-  codex-0.157-gpt6luna-xhigh-cgpt:
+  codex-gpt6_luna-xhigh:
     batch: robowits-lunaxh-0925-2042
     # 2026-09-26, user: the particle-heavy tasks rerun on Genesis' GPU backend (their CPU-backend runs stay in the batch above)
     # 2026-09-27: robowits-lunaxh-rerun-0927 = the four limited runs that collected no result, rerun on the laptop

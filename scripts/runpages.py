@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import datetime as dt
 import html
+import json
 
 import runsdb
 import runview
@@ -325,7 +326,10 @@ def picker(options: list[tuple[str, str, str, list[str]]], default: str, hint: s
         buttons.append(f'<a class="rpick__opt{on}" href="?run={E(rid)}" data-run="{E(rid)}" role="tab" title="{E(full)}">'
                        f'<span class="rpick__dot" aria-hidden="true"></span><span class="rpick__text">{shown}</span>{badges}</a>')
     single = " rpick--single" if len(options) == 1 else ""
-    return (f'<nav class="rpick{single}" data-runsel data-default="{E(default)}" aria-label="Agent run">'
+    ids = {rid for rid, _, _, _ in options}
+    known = {old: new for old, new in runsdb.aliases().items() if new in ids}
+    alias = f" data-aliases='{E(json.dumps(known, separators=(',', ':')))}'" if known else ""
+    return (f'<nav class="rpick{single}" data-runsel data-default="{E(default)}"{alias} aria-label="Agent run">'
             '<span class="rpick__label">Agent run</span>'
             f'<span class="rpick__seg" role="tablist">{"".join(buttons)}</span>'
             f'<span class="rpick__hint">{hint}</span></nav>')
@@ -382,7 +386,10 @@ def run_details(br: runsdb.BenchRun, bench: taskdb.Benchmark) -> str:
     n_rm = len([t for t in br.removed if t in known])
     # a benchmark may word the harness its own way for its pages (`harness:` on its run in state/runs/<b>.yml)
     rows = [("Harness", E(str(br.spec.get("harness") or a.get("harness") or "—"))),
-            ("Model", f"<code>{E(str(a.get('model') or '—'))}</code>"),
+            ("Model", f"<code>{E(str(a.get('model') or '—'))}</code>")]
+    if a.get("route"):      # the route or login: in the run's file, not in its id
+        rows.append(("Route", E(str(a["route"]))))
+    rows += [
             ("Settings", E(", ".join(f"{k} {v}" for k, v in (a.get("settings") or {}).items()) or "—")),
             ("Modes", E(", ".join(br.modes))),
             ("Batches", " ".join(f"<code>{E(b)}</code>" for b in br.batches) + (
@@ -404,8 +411,10 @@ def run_details(br: runsdb.BenchRun, bench: taskdb.Benchmark) -> str:
         rows.append(("Closed", E(br.closed)))
     if a.get("notes"):
         rows.append(("Notes", E(str(a["notes"]))))
+    formerly = [old for old, new in runsdb.aliases().items() if new == br.run]
     rows.append(("Run id", f"<code>{E(br.run)}</code> · <code>data/agents/{E(br.run)}.yml</code>, "
-                           f"<code>state/runs/{E(bench.id)}.yml</code>"))
+                           f"<code>state/runs/{E(bench.id)}.yml</code>"
+                           + (" · formerly " + ", ".join(f"<code>{E(o)}</code>" for o in formerly) if formerly else "")))
     data = br.data
     if data and sitemode.PUBLIC:
         rows.append(("Results", f"as collected {runview.local(data.get('generated_at'))}, published with "
@@ -923,6 +932,31 @@ def _runlog_div(root: str, benchmark: str, run: str, task: str, slot: str) -> st
     media = f"{sitemode.RUN_MEDIA_BASE}{benchmark}/{run}/{task}/{slot}/" if sitemode.RUN_MEDIA_BASE else ""
     return (f'<div class="runlog" data-runlog="{root}runs-data/{benchmark}/{run}/{task}/{slot}/" '
             f'data-media="{E(media)}"></div>')
+
+
+STUB = ('<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Moved: {title}</title>'
+        '<meta name="robots" content="noindex"><link rel="canonical" href="{to}">'
+        '<meta http-equiv="refresh" content="0; url={to}">'
+        '<script>location.replace("{to}" + location.search + location.hash);</script></head>'
+        '<body><p>This log page moved: <a href="{to}">{title}</a>. The run was renamed from <code>{old}</code> '
+        'to <code>{new}</code>.</p></body></html>\n')
+
+
+def redirect_stubs(pages: list[str]) -> list[tuple[str, str]]:
+    """(path, html) of a static redirect page at every former address of a log page: a run renamed (`formerly:` in
+    data/agents/<run>.yml) keeps its old links working, runs/<b>/<former id>/<task>/<slot>/ -> runs/<b>/<id>/<task>/
+    <slot>/. `pages` are the log pages' source paths, runs/<b>/<run>/<task>/<slot>.md."""
+    formerly: dict[str, list[str]] = {}
+    for old, new in runsdb.aliases().items():
+        formerly.setdefault(new, []).append(old)
+    out = []
+    for page in pages:
+        _, bench, run, task, slot = page[: -len(".md")].split("/")
+        for old in formerly.get(run, []):
+            out.append((f"runs/{bench}/{old}/{task}/{slot}/index.html",
+                        STUB.format(to=E(f"../../../{run}/{task}/{slot}/"), title=E(f"{task} · {slot}"),
+                                    old=E(old), new=E(run))))
+    return out
 
 
 def log_pages() -> list[tuple[str, str]]:

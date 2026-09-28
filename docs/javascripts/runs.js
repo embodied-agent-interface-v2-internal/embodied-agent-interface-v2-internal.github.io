@@ -29,7 +29,12 @@
       var ids = tabs.map(function (t) { return t.getAttribute("data-run"); });
       var fallback = root.hasAttribute("data-default") ? root.getAttribute("data-default") : ids[0];
 
+      // a renamed run's former ids (data-aliases, from `formerly:` in data/agents/) pick the run they name now
+      var aliases = {};
+      try { aliases = JSON.parse(root.getAttribute("data-aliases") || "{}"); } catch (e) { aliases = {}; }
+
       function show(id, remember) {
+        if (Object.prototype.hasOwnProperty.call(aliases, id)) { id = aliases[id]; remember = true; }
         if (ids.indexOf(id) < 0) id = fallback;
         tabs.forEach(function (t) {
           var on = t.getAttribute("data-run") === id;

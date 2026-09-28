@@ -35,7 +35,9 @@ manifest.json                  every file, its size, and the size of the origina
 ```
 
 - **benchmark**: the site's benchmark id (`behavior-1k`, `robolab`, `robowits`, `robopaint`, …).
-- **run**: the agent configuration (harness + model + settings), e.g. `codex-0.157-gpt6luna-xhigh-cgpt`.
+- **run**: the agent configuration as `<harness>-<model>-<effort>[-<tag>]`, e.g. `codex-gpt6_luna-xhigh`: the
+  same id as on the site and in the lab's results folders. The harness version and the route are in the site's
+  run details, not in the id. (Until 2026-09-28 this run's folders were named `codex-0.157-gpt6luna-xhigh-cgpt`.)
 - **slot**: the mode (`unlimited`, `limited`), or `<mode>-prev` for a run that a rerun replaced.
 
 ## Adding your benchmark

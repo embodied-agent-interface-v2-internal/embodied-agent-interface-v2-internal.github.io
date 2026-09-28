@@ -43,23 +43,48 @@ Why this split:
 
 ## 1. Describe the run once: `data/agents/<run>.yml`
 
-The file name is the run id. Build it from the harness and version, the model,
-the settings and the login, for example `codex-0.157-gpt6luna-xhigh-cgpt`. If the
-same configuration is already registered, reuse its id instead of adding a file.
+The file name is the run id: `<harness>-<model>-<effort>[-<tag>]`, for example
+`codex-gpt6_luna-xhigh`. Fields are separated by `-`, and each is `[a-z0-9_]+`,
+so a field never holds a `-` or a `.`. The lab names runs the same way everywhere:
+the runner's results folders (`SLUG` in robot_coding_bench), this site and the
+Hugging Face dataset. Runs can then be grouped by their first three fields.
+
+- **harness**: the agent CLI's short name, e.g. `codex`.
+- **model**: the model's `id` in `data/prices.yml`. It is the vendor's name without
+  any provider or route prefix, with a family and its version number written
+  together and every other separator turned into `_` (`gpt-6-luna` → `gpt6_luna`).
+  A model without a price there takes `model_id:` in this file instead.
+- **effort**: the reasoning effort in effect, `settings.reasoning_effort` (Codex:
+  `none`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max`). Use `default` only
+  where the effort cannot be established.
+- **tag**: only for a run that must stay beside another with the same three
+  fields, e.g. `openrouter` (a route), `persist` (an instruction ablation).
+
+The harness version, the route or login, and the dates belong in the file, not in
+the id. Runs with the same id are one run: a later sweep of it is a batch
+(`rerun_batches` below). If the same configuration is already registered, reuse
+its id instead of adding a file. `make check` fails when the file name and its
+fields (`harness_id`, the model's `id`, `settings.reasoning_effort`, `tag`)
+disagree. A renamed run lists its old ids under `formerly:`. Its old log-page
+addresses then redirect to the new ones, and `?run=<old id>` still picks it.
 
 ```yaml
 label: Codex CLI 0.157.0 + GPT-6 Luna, reasoning xhigh (ChatGPT login)   # the run's name everywhere
 short: Codex CLI 0.157 · GPT-6 Luna · xhigh · ChatGPT login   # the run picker: harness · model · effort · access
+harness_id: codex            # the id's first field
 harness: Codex CLI 0.157.0 as harbor_agents.codex_chatgpt:CodexChatGPT
+route: ChatGPT login (subscription), through our model gateway
 model: chatgpt/openai/gpt-6-luna
 settings: {reasoning_effort: xhigh, version: 0.157.0}
 billing: subscription        # subscription | openrouter | api | none
-price: openai/gpt-6-luna     # a key of data/prices.yml
+price: openai/gpt-6-luna     # a key of data/prices.yml; its `id` is the id's model field
 modes: [unlimited, limited]
+formerly: [codex-0.157-gpt6luna-xhigh-cgpt]   # only for a renamed run
 ```
 
-The tooling reads `label`, `short`, `billing`, `price` and `modes`; `harness`,
-`model` and `settings` are shown on the run's page. Write `short` as four parts
+The tooling reads `label`, `short`, `billing`, `price`, `modes`, `harness_id`,
+`tag` and `formerly`; `harness`, `route`, `model` and `settings` are shown on the
+run's page. Write `short` as four parts
 joined by ` · `: harness and version, model, reasoning effort, access. The run
 picker shows it and highlights the parts in which a benchmark's runs differ. Anything else, such as
 `since`, `notes` or the exact `harbor` command line, is for people.
@@ -69,10 +94,10 @@ picker shows it and highlights the parts in which a benchmark's runs differ. Any
 An excerpt of RoboLab's file:
 
 ```yaml
-default: codex-0.157-gpt6luna-xhigh-cgpt   # shown first: task list, task pages, status.json
+default: codex-gpt6_luna-xhigh             # shown first: task list, task pages, status.json
 task_dir: "robolab-{task_dashed}-i00"      # the task's directory in the harness repo
 runs:
-  codex-0.157-gpt6luna-xhigh-cgpt:
+  codex-gpt6_luna-xhigh:
     batch: robolab-lunacx-0925-2038
     followups:
     - {task: clean_up_toys, mode: unlimited, trial: robolab-clean-up-toys-i00__3b6KY3P, note: "regrade queued on gpu1: ..."}
@@ -164,11 +189,14 @@ files and edits no shared file. The one exception: to estimate the new model's
 cost, add its list price to `data/prices.yml` once.
 
 ```yaml
-# data/agents/claude-code-2.1-opus55-sub.yml
+# data/agents/claude_code-claude_opus_5_5-adaptive.yml
 label: Claude Code 2.1 + Claude Opus 5.5 (subscription)
 short: Claude Code 2.1 · Claude Opus 5.5 · adaptive · subscription
+harness_id: claude_code
 harness: Claude Code 2.1 (Harbor's claude-code agent)
 model: anthropic/claude-opus-5-5
+model_id: claude_opus_5_5      # no price with an `id` in data/prices.yml for it yet
+settings: {reasoning_effort: adaptive}
 billing: subscription
 price: anthropic/claude-opus-5-5     # only if data/prices.yml has it, else leave price out
 modes: [unlimited]
@@ -176,14 +204,14 @@ modes: [unlimited]
 
 ```yaml
 # state/runs/my-bench.yml
-default: codex-0.157-gpt6luna-xhigh-cgpt
+default: codex-gpt6_luna-xhigh
 task_dir: "my-bench-{task_dashed}-i00"
 runs:
-  codex-0.157-gpt6luna-xhigh-cgpt:
+  codex-gpt6_luna-xhigh:
     batch: mybench-lunaxh-1001
     tasks: [pick_cube, open_drawer]
     others: not built for the harness yet
-  claude-code-2.1-opus55-sub:
+  claude_code-claude_opus_5_5-adaptive:
     batch: mybench-cc-opus-1002
     tasks: [pick_cube]
     others: first try on one task

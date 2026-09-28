@@ -1,0 +1,30 @@
+# One agent run: harness + model + settings. The file name is the run id that state/runs/<benchmark>.yml refers to:
+# <harness>-<model>-<effort>[-<tag>], spelled by harness_id, the model's id in data/prices.yml, settings.reasoning_effort
+# and tag (docs/contributing/registering-runs.md). Registered once, reused by every benchmark that runs this configuration.
+#
+# Read by the tooling: label, short, billing, price, modes, harness_id, tag, formerly. Everything else is for people.
+
+label: Codex CLI 0.157.0 + GPT-6 Luna, reasoning xhigh (ChatGPT login)
+# the run picker's text: harness + version · model · reasoning effort · access (billing)
+short: Codex CLI 0.157 · GPT-6 Luna · xhigh · ChatGPT login
+harness_id: codex
+harness: >-
+  Codex CLI 0.157.0 as harbor_agents.codex_chatgpt:CodexChatGPT (robot_coding_bench commit 8cfd5cb): the OpenRouter
+  client with our model gateway pointed at ChatGPT's backend
+route: the owner's ChatGPT login (a Pro subscription), through our model gateway
+model: chatgpt/openai/gpt-6-luna
+settings:
+  reasoning_effort: xhigh
+  version: 0.157.0
+harbor: >-
+  -a harbor_agents.codex_chatgpt:CodexChatGPT -m chatgpt/openai/gpt-6-luna --ak reasoning_effort=xhigh
+  --ak version=0.157.0 (scripts/run_agent_batch.sh, one Harbor job per task and mode)
+billing: subscription           # the owner's ChatGPT Pro login: no per-token bill, so only the list-price estimate
+price: openai/gpt-6-luna         # key in data/prices.yml
+modes: [unlimited, limited]
+since: 2026-09-25
+# Its id until 2026-09-28, when the lab's run ids became <harness>-<model>-<effort>: its old log-page addresses redirect
+# to the new ones, and ?run=<it> still picks this run.
+formerly: [codex-0.157-gpt6luna-xhigh-cgpt]
+# What state/sweep.yml called this run until 2026-09-27, when the site had one sweep.
+sweep: luna-xhigh-2026-09-25

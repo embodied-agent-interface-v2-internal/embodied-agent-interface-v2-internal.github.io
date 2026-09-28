@@ -297,6 +297,11 @@ The public build is set by `RB_PUBLIC=1`; `scripts/sitemode.py` has the rules an
   <https://huggingface.co/datasets/eai-v2-internal/agent-runs>, laid out as `<benchmark>/<run>/<task>/<slot>/`. The
   log pages play them inline from `run_media_base` in `data/public.yml`. `make guard`, part of `make check` and CI,
   fails if run media are ever committed here.
+- **Run ids** are `<harness>-<model>-<effort>[-<tag>]` (e.g. `codex-gpt6_luna-xhigh`), the same on the site, in the
+  Hugging Face dataset and in the runner's results folders (`SLUG`). `docs/contributing/registering-runs.md` has the
+  rule. A renamed run lists its old ids under `formerly:` in `data/agents/`; its old log-page addresses redirect, and
+  `?run=<old id>` still picks it. The first rename (2026-09-28): `codex-0.157-gpt6luna-xhigh-cgpt` became
+  `codex-gpt6_luna-xhigh`, with the Hugging Face folders copied server-side (no re-upload).
 - **Runs marked `hidden: true`** are not shown. Runs kept out of git (`state/runs/<b>.local.yml`,
   `data/agents/<run>.local.yml`) are not even in the repository.
 - **Trials we stopped ourselves** (`stopped:` in `state/runs/`) show with their reason and count in no statistic.

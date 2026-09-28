@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import functools
 import json
+import re
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -65,6 +66,27 @@ def agents() -> dict[str, dict]:
     """run id -> its definition (data/agents/<run>.yml, or <run>.local.yml for one kept out of git), with `id` filled
     in from the file name."""
     return {_run_id(p): {**_yaml(p), "id": _run_id(p)} for p in sorted(AGENTS.glob("*.yml"))}
+
+
+# A run id: <harness>-<model>-<effort>[-<tag>], fields of [a-z0-9_]+ (docs/contributing/registering-runs.md).
+RUN_ID = re.compile(r"^[a-z0-9_]+-[a-z0-9_]+-[a-z0-9_]+(?:-[a-z0-9_]+)?$")
+
+
+def id_of(agent: dict) -> str | None:
+    """The run id an agent definition spells: `harness_id`, the model's `id` in data/prices.yml (via `price`; or
+    `model_id` for a model without a price there), the reasoning effort in `settings`, and the optional `tag`. None
+    when a part is missing."""
+    model = (prices().get(str(agent.get("price") or "")) or {}).get("id") or agent.get("model_id")
+    effort = (agent.get("settings") or {}).get("reasoning_effort")
+    parts = [agent.get("harness_id"), model, effort] + ([agent["tag"]] if agent.get("tag") else [])
+    return "-".join(str(p) for p in parts) if all(parts) else None
+
+
+@functools.lru_cache(maxsize=1)
+def aliases() -> dict[str, str]:
+    """former run id -> run id (`formerly:` in data/agents/<run>.yml): a renamed run's old links keep working (a
+    redirect page at each of its former log pages, ?run=<former id> on a Runs page)."""
+    return {str(old): rid for rid, a in agents().items() for old in (a.get("formerly") or [])}
 
 
 @functools.lru_cache(maxsize=1)
@@ -307,6 +329,6 @@ def estimate_usd(tokens: dict | None, price: dict | None) -> float | None:
 
 def reset_caches() -> None:
     """Drop every memoised view (`mkdocs serve` rebuilds in one long-lived process; see taskdb.reset_caches)."""
-    for fn in (agents, prices, plans, collected):
+    for fn in (agents, aliases, prices, plans, collected):
         fn.cache_clear()
     ERRORS.clear()

@@ -1,7 +1,7 @@
 # RoboPaint's agent runs. Owned by the benchmark's owner, curated by hand like everything in state/.
 # Format and field meanings: docs/contributing/registering-runs.md (and the header of state/runs/behavior-1k.yml).
 
-default: codex-0.157-gpt6luna-xhigh-cgpt
+default: codex-gpt6_luna-xhigh
 # task id <family>_<target> -> our task directory robopaint-<family>-<target>-i00
 task_dir: "robopaint-{task_dashed}-i00"
 
@@ -26,7 +26,7 @@ metrics:
 per_family: {key: final_reward, label: final reward}
 
 runs:
-  codex-0.157-gpt6luna-xhigh-cgpt:
+  codex-gpt6_luna-xhigh:
     # 2026-09-28 ~02:00: the renamed benchmark's first sweep (picture-only agent side, the scoring sidecar), the 9
     # line drawings x both modes on our RoboPaint workstation. The batches of the
     # benchmark's maniskill-paint days (paint-lunaxh-0927 with vector targets, paint-rgb-lunaxh-0927) are dropped from

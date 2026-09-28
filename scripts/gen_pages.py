@@ -200,8 +200,12 @@ def gen_runs() -> None:
     write("runs/index.md", runpages.redirect())
     for bench in taskdb.benchmarks().values():
         write(f"runs/{bench.id}.md", runpages.benchmark_page(bench))
-    for path, text in runpages.log_pages():
+    pages = runpages.log_pages()
+    for path, text in pages:
         write(path, text)
+    # a renamed run's former log-page addresses redirect to the new ones (`formerly:` in data/agents/<run>.yml)
+    for path, html in runpages.redirect_stubs([p for p, _ in pages]):
+        write(path, html)
     if sitemode.PUBLIC:
         # The log pages' data on the public site: the published snapshot (data/published_runs/<b>/<run>/<task>/
         # <slot>.json, scripts/publish_runs.py), served at runs-data/<b>/<run>/<task>/<slot>/log.json.

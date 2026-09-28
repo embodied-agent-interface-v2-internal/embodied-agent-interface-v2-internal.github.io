@@ -18,13 +18,13 @@
 #     notes          {task, mode, trial, note}: a note on one trial that is graded as it is (nothing arranged): ⓘ
 #     closed         why the run is over; its never-started jobs then read "not run" instead of "queued"
 
-default: codex-0.157-gpt6luna-xhigh-cgpt
+default: codex-gpt6_luna-xhigh
 task_dir: "behavior-{task_dashed}-i00"
 # the partial credit beside success: the 2026 challenge's q_score (every other benchmark: the grader's final_reward)
 progress: q_score
 
 runs:
-  codex-0.157-gpt6luna-xhigh-cgpt:
+  codex-gpt6_luna-xhigh:
     batch: behavior-lunaxh-0925-2057
     # 2026-09-27 01:00: every job reruns with the 8-thread cap (commit 912567f); the old batch's runs stay as history
     rerun_batches: [behavior-lunaxh-t8-0927]

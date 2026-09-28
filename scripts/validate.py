@@ -168,6 +168,25 @@ def check_runs(rep: Report) -> None:
         modes = agent.get("modes")
         if modes is not None and not (isinstance(modes, list) and all(isinstance(m, str) for m in modes)):
             rep.error(where, "`modes` must be a list of mode names")
+        # the id is <harness>-<model>-<effort>[-<tag>], and the file's own fields spell it (registering-runs.md)
+        if not runsdb.RUN_ID.match(rid):
+            rep.error(where, "the run id must be <harness>-<model>-<effort>[-<tag>], each field [a-z0-9_]+")
+        elif runsdb.id_of(agent) != rid:
+            rep.error(where, f"the run id does not match its fields: `harness_id`, the model's `id` in data/prices.yml, "
+                             f"settings.reasoning_effort and `tag` spell {runsdb.id_of(agent)!r}")
+        for old in agent.get("formerly") or []:
+            if str(old) in runsdb.agents():
+                rep.error(where, f"formerly {old!r} is a registered run id itself")
+    seen: dict[str, str] = {}
+    for key, price in runsdb.prices().items():     # a model's `id`: its field in a run id, one model per id
+        mid = price.get("id")
+        if mid is None:
+            continue
+        if not re.fullmatch(r"[a-z0-9_]+", str(mid)):
+            rep.error("data/prices.yml", f"{key}: `id` must be [a-z0-9_]+ (the model's field of a run id)")
+        if mid in seen:
+            rep.error("data/prices.yml", f"{key}: `id` {mid!r} is also {seen[mid]}'s")
+        seen[mid] = key
     for key, price in runsdb.prices().items():
         for k in ("input", "output"):
             if not isinstance(price.get(k), (int, float)):

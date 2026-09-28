@@ -1,11 +1,11 @@
 # RoboLab's agent runs. Owned by the benchmark's owner, curated by hand like everything in state/.
 # Format and field meanings: docs/contributing/registering-runs.md (and the header of state/runs/behavior-1k.yml).
 
-default: codex-0.157-gpt6luna-xhigh-cgpt
+default: codex-gpt6_luna-xhigh
 task_dir: "robolab-{task_dashed}-i00"
 
 runs:
-  codex-0.157-gpt6luna-xhigh-cgpt:
+  codex-gpt6_luna-xhigh:
     batch: robolab-lunacx-0925-2038
     followups:  # arranged for one trial each; the note goes away once another trial replaces it
     - {task: clean_up_toys, mode: unlimited, trial: robolab-clean-up-toys-i00__3b6KY3P, note: "regrade queued on ws3: the replay
