@@ -119,8 +119,8 @@ public: ## Build the public site into ./site as deployed (read-only), check its 
 	@size=$$(du -sb site | cut -f1); echo "site/ is $$((size / 1048576)) MiB (GitHub Pages publishes at most 1 GB)"; \
 	if [ "$$size" -gt $(PAGES_LIMIT_BYTES) ]; then echo "site/ is too big for GitHub Pages: see data/public.yml"; exit 1; fi
 
-publish-runs: ## Snapshot the runs for the public site (data/published_runs/: filtered, secret-scanned); review, commit
-	$(BIN)/python scripts/publish_runs.py
+publish-runs: ## Snapshot the runs for the public site (data/published_runs/: filtered, secret-scanned; BENCHMARK=<id>: only its part)
+	$(BIN)/python scripts/publish_runs.py $(foreach b,$(BENCHMARK),--benchmark $(b))
 
 # OUT: where the export goes (default .cache/run-media-export/, gitignored); nothing is uploaded.
 OUT ?=

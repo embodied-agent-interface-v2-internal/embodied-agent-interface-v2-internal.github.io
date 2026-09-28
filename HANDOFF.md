@@ -343,15 +343,19 @@ It never forces a push, and it stops if origin has commits this checkout lacks.
    changes on the site.
 
 **A replay that arrives later** follows the same path. An example is a re-rendered video for a page that now says
-"truncated at the source":
-1. Once the verified video is with the trial's records, `make runs` rebuilds its log page.
-2. `make publish-runs` names the video in the snapshot.
+"truncated at the source" (the four BEHAVIOR re-renders of 2026-09-28):
+1. Put the verified video in the local run data (`data/runs/<id>/`, gitignored). Then edit the trial's entry in
+   `data/runs/<id>/<run>.backfill.yml`: `video:` is the file's path, `note:` says how it was made, and any
+   `video_problem:` goes. `make runs` then rebuilds the log page with that video, and the log checks count it.
+2. `make publish-runs BENCHMARK=<id>` names the video in the snapshot. Only that benchmark's part changes, so
+   another benchmark's unfinished batch stays out.
 3. `make upload-run-media BENCHMARK=<id>` uploads only what is new or changed.
 4. Commit the snapshot and push.
 
 **A new benchmark, from a collaborator:**
 1. Register its runs (`state/runs/<id>.yml`, `data/agents/`) and collect them with `make runs`.
-2. Open a pull request with `make publish-runs`; its snapshot is text only.
+2. Open a pull request with `make publish-runs BENCHMARK=<id>`; its snapshot is text only. Without `BENCHMARK`,
+   a checkout that lacks the other benchmarks' run data would drop them from the snapshot.
 3. Run `make upload-run-media BENCHMARK=<id>` with your own login.
 4. Once the pull request is merged, Deploy publishes the pages and they play the media from the dataset.
 

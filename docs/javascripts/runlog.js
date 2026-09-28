@@ -242,7 +242,8 @@
       return '<section class="rl-panel rl-replay"><h2>Graded replay</h2><video controls preload="metadata" playsinline data-src="' +
         esc(base + media.video) + '"' + (media.last ? ' poster="' + esc(base + media.last) + '"' : "") + "></video>" +
         "<p>The trajectory the agent handed in" + (d.state === "success" ? "" : ", although it did not succeed") +
-        ", replayed by the separate verifier in a fresh process.</p></section>";
+        (media.rerendered ? ", rendered again later in a fresh process, because the graded replay left no video that " +
+          "plays (see the note above).</p></section>" : ", replayed by the separate verifier in a fresh process.</p></section>");
     }
     if (!finished) {
       return '<section class="rl-panel rl-replay rl-replay--none"><h2>Graded replay</h2><p class="rl-why">' +

@@ -29,7 +29,8 @@ Each time it writes a run, it also refreshes the log pages' data (scripts/runlog
 or records changed: `docs/assets/<benchmark>/runs/<run>/<task>/<mode>/`. A page is rebuilt when its state, trial, gateway
 log, replay video or robot call log changes (the files' size and mtime: a --no-sync cycle may build a page from a replay
 that was still being written when it was last copied), or when its entry in the run's local-only
-`data/runs/<benchmark>/<run>.backfill.yml` changes (`<task>/<slot>: {note, episode, video_problem}`, see runlog.py).
+`data/runs/<benchmark>/<run>.backfill.yml` changes (`<task>/<slot>: {note, episode, video, video_problem}`, see
+runlog.py); a trial whose replay was rendered again later (`video`) has it counted in its log checks.
 A remote host's records are first copied with rsync into .cache/runs_remote/<host>/ (gateway log, robot call log,
 graded replay).
 
@@ -570,6 +571,28 @@ def fetch_output(spec: dict, r: dict, src: Path) -> None:
         pass
 
 
+def backfill(br: runsdb.BenchRun) -> dict:
+    """<task>/<slot> -> the local-only notes and recovered records of one run's log pages:
+    data/runs/<benchmark>/<run>.backfill.yml (see runlog.py)."""
+    try:
+        extras = yaml.safe_load((br.out_path.with_suffix(".backfill.yml")).read_text()) or {}
+    except (OSError, yaml.YAMLError):
+        extras = {}
+    return extras if isinstance(extras, dict) else {}
+
+
+def mark_rerendered(tasks: dict, extras: dict) -> None:
+    """A trial whose replay was rendered again later (its backfill entry's `video`, a complete MP4): its record's
+    logs.video_rerendered is that file's size, so the log checks count it instead of the graded replay's own video."""
+    import runlog
+    for key, extra in extras.items():
+        tid, _, slot = str(key).partition("/")
+        rec = (tasks.get(tid) or {}).get(slot)
+        again = Path(extra["video"]) if isinstance(extra, dict) and extra.get("video") else None
+        if isinstance(rec, dict) and isinstance(rec.get("logs"), dict) and again is not None and runlog.mp4_complete(again):
+            rec["logs"] = {**rec["logs"], "video_rerendered": again.stat().st_size}
+
+
 def build_logs(hosts: dict, br: runsdb.BenchRun, tasks: dict) -> int:
     """(Re)build the log-page data of every started trial of one benchmark's run whose state or records changed.
 
@@ -578,11 +601,7 @@ def build_logs(hosts: dict, br: runsdb.BenchRun, tasks: dict) -> int:
     import runlog
     cache_file = LOGS_CACHE / br.benchmark / f"{br.run}.json"
     cache = read_json(cache_file)
-    try:    # local-only notes and recovered records: data/runs/<benchmark>/<run>.backfill.yml (see runlog.py)
-        extras = yaml.safe_load((br.out_path.with_suffix(".backfill.yml")).read_text()) or {}
-    except (OSError, yaml.YAMLError):
-        extras = {}
-    extras = extras if isinstance(extras, dict) else {}
+    extras = backfill(br)
 
     def sig(p: Path):   # a file's size and mtime (rsync -a keeps the source's): None when absent
         try:
@@ -619,6 +638,8 @@ def build_logs(hosts: dict, br: runsdb.BenchRun, tasks: dict) -> int:
                          sig(src / "verifier" / "replay.mp4"), sig(src / "verifier_regrade" / "replay.mp4"),
                          sig(src / "artifacts" / "data" / "episode.jsonl") or sig(src / "artifacts" / "out" / "episode.jsonl"),
                          json.dumps(extra, sort_keys=True) if extra else None]
+                if extra.get("video"):      # a replay rendered again later: rebuilt when it arrives or changes
+                    stamp.append(sig(Path(extra["video"])))
                 out = ROOT / "docs" / "assets" / br.benchmark / "runs" / br.run / tid / slot
                 if cache.get(key) == stamp and (out / "log.json").is_file():
                     continue
@@ -682,6 +703,7 @@ def cycle(a, hosts: dict, polling: bool) -> str:
             continue        # nothing of this run on the machines this checkout can see (a colleague's run)
         try:
             tasks = assemble(br, found, host_state, prev)
+            mark_rerendered(tasks, backfill(br))
         except Exception as exc:  # noqa: BLE001 - one benchmark's broken file must not stop the others
             print(f"  skipped {br.benchmark}/{br.run}: {exc!r} (see make check)", flush=True)
             continue

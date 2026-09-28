@@ -196,6 +196,8 @@ def log_checks(rec: dict, mode: str) -> list[tuple[str, bool | None, str]]:
         out.append(("replay video", None, "no robot action to replay"))
     elif lg.get("episode_end") == "error" and not n("video"):
         out.append(("replay video", None, "the live episode ended with a simulator error: nothing to replay"))
+    elif lg.get("video_rerendered"):     # the graded replay left no video that plays; it was rendered again later
+        out.append(("replay video", True, f"rendered again from the trajectory ({lg['video_rerendered'] / 1e6:.1f} MB)"))
     elif n("video") and lg.get("video_ok") is False:
         out.append(("replay video", False, f"truncated at the source ({n('video') / 1e6:.1f} MB, no MP4 index): cannot play"))
     else:

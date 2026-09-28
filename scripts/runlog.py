@@ -13,7 +13,9 @@ The gateway log is complete while the trial runs (Codex writes its own session o
 gets a live page too. Writes log.json, img/<n>.<ext> (the images the model saw) and replay.mp4 / replay.png.
 Called by scripts/import_runs.py, with `extra` from the run's local-only data/runs/<benchmark>/<run>.backfill.yml:
 `note` (a line shown on the page), `episode` (a robot call log recovered elsewhere, used when the trial kept none),
-`video_problem` (the page shows no replay video, and this reason).
+`video` (a replay rendered again later from the recorded trajectory, shown in place of the graded replay's own video
+where that one is truncated or missing; `note` says how it was made), `video_problem` (the page shows no replay video,
+and this reason).
 """
 
 from __future__ import annotations
@@ -199,8 +201,14 @@ def build(src: Path, out: Path, meta: dict, extra: dict | None = None) -> dict:
     video = src / "verifier_regrade" / "replay.mp4"   # a regrade (after a failed grading) is the verdict
     if not video.is_file():
         video = src / "verifier" / "replay.mp4"
+    again = Path(extra["video"]) if extra.get("video") else None     # rendered again later (see the docstring)
     if extra.get("video_problem"):
         media["problem"] = str(extra["video_problem"])
+    elif again is not None and mp4_complete(again):
+        dst = out / "replay.mp4"
+        if not dst.is_file() or dst.stat().st_size != again.stat().st_size:
+            shutil.copyfile(again, dst)
+        media.update(video="replay.mp4", rerendered=True)
     elif video.is_file() and not mp4_complete(video):
         media["problem"] = ("The replay video is truncated at the source: its render was cut off or crashed before the "
                             "file was finished, so it has no index and cannot be played.")

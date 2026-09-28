@@ -2,6 +2,9 @@
 """Write the committed, filtered snapshot of the agent runs that the public site shows: data/published_runs/.
 
     python scripts/publish_runs.py            (make publish-runs; by hand, then review and commit it)
+    python scripts/publish_runs.py --benchmark ID ...
+                                              (make publish-runs BENCHMARK=<id>) only these benchmarks' part; the
+                                              others stay as they are, even where their local data has moved on
     python scripts/publish_runs.py --scan     only scan the snapshot that is there
 
 It reads the local data scripts/import_runs.py collects, for every registered run that is not hidden:
@@ -186,9 +189,11 @@ def scan(root: Path) -> dict[str, list[str]]:
     return hits
 
 
-def build(tmp: Path) -> dict:
+def build(tmp: Path, only: set[str] | None = None) -> dict:
     runs, n_logs, n_bytes = [], 0, 0
     for br in runsdb.all_runs():            # hidden runs are not listed
+        if only and br.benchmark not in only:
+            continue
         data = runsdb.collected(br.benchmark, br.run)
         if not data:
             continue
@@ -216,9 +221,23 @@ def build(tmp: Path) -> dict:
     return {"runs": runs, "logs": n_logs, "bytes": n_bytes}
 
 
+def keep_others(tmp: Path, only: set[str], info: dict) -> None:
+    """The benchmarks not in `only`: their part of the current snapshot, as it is, and their lines in SNAPSHOT.json."""
+    old = json.loads((OUT / "SNAPSHOT.json").read_text(encoding="utf-8")) if (OUT / "SNAPSHOT.json").is_file() else {}
+    for d in sorted(OUT.iterdir()) if OUT.is_dir() else []:
+        if d.is_dir() and d.name not in only:
+            shutil.copytree(d, tmp / d.name)
+            info["bytes"] += sum(len(f.read_text(encoding="utf-8")) for f in (tmp / d.name).rglob("*.json"))
+    kept = [r for r in old.get("runs") or [] if r.get("benchmark") not in only]
+    order = {(br.benchmark, br.run): n for n, br in enumerate(runsdb.all_runs())}
+    info["runs"] = sorted(info["runs"] + kept, key=lambda r: order.get((r["benchmark"], r["run"]), len(order)))
+    info["logs"] = sum(r.get("logs") or 0 for r in info["runs"])
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--scan", action="store_true", help="only scan the snapshot that is there")
+    ap.add_argument("--benchmark", action="append", help="only this benchmark's part (repeatable); the others stay")
     args = ap.parse_args()
     if args.scan:
         hits = scan(OUT)
@@ -231,7 +250,10 @@ def main() -> int:
     if tmp.exists():
         shutil.rmtree(tmp)        # our own half-written output from an interrupted run
     tmp.mkdir(parents=True)
-    info = build(tmp)
+    only = set(args.benchmark or ())
+    info = build(tmp, only)
+    if only:
+        keep_others(tmp, only, info)
     hits = scan(tmp)
     info.update({"published_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
                  "scan": {"clean": not hits, "patterns": sorted(LEFT), "hits": {k: len(v) for k, v in hits.items()}}})

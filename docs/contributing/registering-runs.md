@@ -220,7 +220,8 @@ benchmarks table. The task list gets a Run menu.
 The public site shows the runs from a committed snapshot, `data/published_runs/`, never from the local data.
 `make publish-runs` writes it by hand. It drops the machine, the job, the paths and the log checks of every trial,
 redacts anything shaped like a credential, e-mail addresses and private IPs, and scans what it wrote before
-switching it in. Hidden runs are left out.
+switching it in. Hidden runs are left out. `make publish-runs BENCHMARK=<id>` rewrites only that benchmark's part and
+keeps the others as they are; use it in a checkout that has only your benchmark's runs.
 
 Replays and images live on the Hugging Face dataset `eai-v2-internal/agent-runs`, one folder per benchmark. To add
 yours:
