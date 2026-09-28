@@ -293,15 +293,33 @@ The public build is set by `RB_PUBLIC=1`; `scripts/sitemode.py` has the rules an
   - each trial's full text log (the model's words, its tool calls and their output, robot calls, token counts).
 - **No machines.** The snapshot names no machine, path, job or host. Notes in `state/runs/` that name a machine
   read "one of our machines" on the public site; a local build shows them as written.
-- **Run media hosted apart.** Replays and images (about 6.6 GB) are not on Pages. Their address is
-  `run_media_base` in `data/public.yml`; while it is empty, the log pages say "media not yet published".
+- **Run media on Hugging Face.** Replays and images are not on Pages. They live in the public dataset
+  <https://huggingface.co/datasets/eai-v2-internal/agent-runs>, laid out as `<benchmark>/<run>/<task>/<slot>/`. The
+  log pages play them inline from `run_media_base` in `data/public.yml`. `make guard`, part of `make check` and CI,
+  fails if run media are ever committed here.
 - **Runs marked `hidden: true`** are not shown. Runs kept out of git (`state/runs/<b>.local.yml`,
   `data/agents/<run>.local.yml`) are not even in the repository.
 - **Trials we stopped ourselves** (`stopped:` in `state/runs/`) show with their reason and count in no statistic.
 - **Some demos.** The benchmarks in `link_demos` (`data/public.yml`, today `behavior-1k`) link to the official
   video instead of our copy. `make public` fails above 1 GB.
 
-### Publishing agent runs (by hand; never automatic)
+### Publishing agent runs
+
+**In one command: `make publish`.** One gated, idempotent run. Run it once a whole batch has finished, never on a
+loop: the owners want few, meaningful commits in the public repository (2026-09-28). If a publish needs a fix, amend
+it before pushing. It logs to `.cache/publish.log`, and on any failure its last line says why and it exits non-zero
+without pushing. It runs these steps:
+
+1. A full import.
+2. The snapshot, with finished trials only. Its secret and privacy scan must be clean.
+3. If nothing changed, it stops here with exit 0.
+4. The new media are exported, compressed (4 videos and 8 images at a time) and uploaded.
+5. `make check` and `make public` must pass.
+6. It commits `data/published_runs/` only, with the counts in the message, and pushes to main as a fast-forward.
+
+It never forces a push, and it stops if origin has commits this checkout lacks.
+
+**By hand**, the same steps:
 
 1. `make runs`: collect the runs from our machines (local only, as always).
 2. `make publish-runs`: write the filtered snapshot to `data/published_runs/`. It drops machines, paths, jobs and
@@ -311,11 +329,31 @@ The public build is set by `RB_PUBLIC=1`; `scripts/sitemode.py` has the rules an
 3. Review: `git diff --stat data/published_runs/`, and `make public` to look at it.
 4. Commit and push. Deploy publishes it.
 
-**Media.** `make export-run-media OUT=<dir>` writes every published trial's replay and images to `<dir>` with a
-`manifest.json` (path, size, SHA-256) and a README. It uploads nothing. Upload `<dir>` as it is, for instance as a
-Hugging Face dataset. Then set `run_media_base` in `data/public.yml` to its file address, e.g.
-`https://huggingface.co/datasets/<org>/<name>/resolve/main/`, commit and push. Re-export and re-upload after each
-`make publish-runs`.
+**Media**, after each `make publish-runs`:
+
+1. Log in with `hf auth login`, using your own account; it must be a member of `eai-v2-internal`.
+2. Run `make upload-run-media BENCHMARK=<id>`. With no `BENCHMARK`, it does every benchmark. It runs three steps:
+   - `make export-run-media` collects the files the published logs name (hard links, in `.cache/run-media-export/`);
+   - `make compress-run-media` converts them into `.cache/run-media-hf/`: videos to H.264 CRF 28 with the index
+     first, at most 720p, no audio (each one checked for duration and a clean decode; where that is not smaller, a
+     faststart remux of the original), and PNG to WebP;
+   - `hf upload-large-folder` uploads only that benchmark's folder, plus the dataset card (`data/run-media-card.md`).
+     It is resumable: run it again after an interruption.
+3. The snapshot names the images as published (`run_media_images: webp` in `data/public.yml`), so nothing else
+   changes on the site.
+
+**A replay that arrives later** follows the same path. An example is a re-rendered video for a page that now says
+"truncated at the source":
+1. Once the verified video is with the trial's records, `make runs` rebuilds its log page.
+2. `make publish-runs` names the video in the snapshot.
+3. `make upload-run-media BENCHMARK=<id>` uploads only what is new or changed.
+4. Commit the snapshot and push.
+
+**A new benchmark, from a collaborator:**
+1. Register its runs (`state/runs/<id>.yml`, `data/agents/`) and collect them with `make runs`.
+2. Open a pull request with `make publish-runs`; its snapshot is text only.
+3. Run `make upload-run-media BENCHMARK=<id>` with your own login.
+4. Once the pull request is merged, Deploy publishes the pages and they play the media from the dataset.
 
 ### Rollback
 

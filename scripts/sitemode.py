@@ -47,6 +47,8 @@ LINK_DEMOS = frozenset(
     (b.strip() for b in _LINK.split(",") if b.strip()) if _LINK is not None
     else (str(b) for b in (_CFG.get("link_demos") or []))) if PUBLIC else frozenset()
 RUN_MEDIA_BASE = str(_CFG.get("run_media_base") or "")
+# the format PNG images are published in ("webp": scripts/compress_run_media.py converts them); "" keeps PNG
+RUN_MEDIA_IMAGES = str(_CFG.get("run_media_images") or "").strip().lower()
 
 
 def links_demos(benchmark: str) -> bool:

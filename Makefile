@@ -17,7 +17,8 @@ VENV   := .venv
 BIN    := $(VENV)/bin
 
 .DEFAULT_GOAL := help
-.PHONY: help venv install serve build validate strict check public publish-runs export-run-media links demos edit \
+.PHONY: help venv install serve build validate strict check guard public publish-runs export-run-media \
+        compress-run-media upload-run-media publish links demos edit \
         runs runs-watch sync \
         sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-verified sync-dry clean
 
@@ -102,7 +103,10 @@ runs-watch: ## Keep collecting them every 3 minutes
 links: ## Verify every internal link in site/ resolves (catches raw-HTML hrefs)
 	$(BIN)/python scripts/check_links.py
 
-check: validate build links ## What CI runs
+check: validate guard build links ## What CI runs
+
+guard: ## Fail if the repository tracks run media or local run data (they go to Hugging Face / stay local)
+	$(BIN)/python scripts/check_no_run_media.py
 
 # The public site (scripts/sitemode.py; its settings: data/public.yml): read-only, and only what is committed. Its
 # agent runs are the published snapshot (make publish-runs), their media hosted apart (make export-run-media). This is
@@ -123,6 +127,26 @@ OUT ?=
 
 export-run-media: ## Export the published runs' replays and images, with a manifest, for an outside host (OUT=dir)
 	$(BIN)/python scripts/export_run_media.py $(if $(OUT),--out $(OUT),)
+
+# The run media on Hugging Face (the public site loads them from data/public.yml's run_media_base). Each contributor
+# uploads with their own `hf auth login` (a member of the organisation), and only their benchmark's folder:
+#   make upload-run-media BENCHMARK=<id>        (all benchmarks when BENCHMARK is empty)
+HF             ?= hf
+RUN_MEDIA_REPO ?= eai-v2-internal/agent-runs
+BENCHMARK      ?=
+
+compress-run-media: ## Compress the exported run media for Hugging Face (H.264 CRF 28, PNG -> WebP): .cache/run-media-hf/
+	$(BIN)/python scripts/compress_run_media.py $(foreach b,$(BENCHMARK),--benchmark $(b))
+
+# Everything above in one unattended, gated run: import, snapshot (finished trials; scanned), media, make check +
+# make public, then a commit of data/published_runs/ pushed as a fast-forward. Idempotent; logs to .cache/publish.log.
+publish: ## Publish the finished runs on the public site (import, snapshot, media, gates, commit, push)
+	HF=$(HF) RUN_MEDIA_REPO=$(RUN_MEDIA_REPO) $(BIN)/python scripts/publish_site.py
+
+upload-run-media: export-run-media compress-run-media ## Export, compress and upload run media (BENCHMARK=<id>; your own hf login)
+	cp data/run-media-card.md .cache/run-media-hf/README.md
+	$(HF) upload-large-folder $(RUN_MEDIA_REPO) .cache/run-media-hf --repo-type dataset \
+	    $(if $(BENCHMARK),--include $(foreach b,$(BENCHMARK),"$(b)/**") README.md,--include "*/**" README.md manifest.json)
 
 # Each benchmark syncs from its own upstream. BEHAVIOR reads a public gallery;
 # RoboWits and RoboLab read a source checkout (pass it in), because their tasks

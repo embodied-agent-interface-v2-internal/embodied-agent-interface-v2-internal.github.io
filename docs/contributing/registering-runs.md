@@ -220,8 +220,16 @@ benchmarks table. The task list gets a Run menu.
 The public site shows the runs from a committed snapshot, `data/published_runs/`, never from the local data.
 `make publish-runs` writes it by hand. It drops the machine, the job, the paths and the log checks of every trial,
 redacts anything shaped like a credential, e-mail addresses and private IPs, and scans what it wrote before
-switching it in. Hidden runs are left out. Replays and images are hosted apart (`make export-run-media`,
-`run_media_base` in `data/public.yml`). HANDOFF.md, "Publishing", has the whole flow.
+switching it in. Hidden runs are left out.
+
+Replays and images live on the Hugging Face dataset `eai-v2-internal/agent-runs`, one folder per benchmark. To add
+yours:
+
+1. Log in with `hf auth login`, using your own account; it must be a member of the organisation.
+2. Run `make upload-run-media BENCHMARK=<your benchmark>`. It exports, compresses and uploads only that folder.
+
+The site repository never holds run media: `make guard`, part of `make check` and CI, fails if any are committed.
+HANDOFF.md, "Publishing", has the whole flow.
 
 ## For scripts that poll: `data/runs/status.json`
 

@@ -99,6 +99,7 @@ LEFT = {
                                  r"|[\"'](?:access_token|refresh_token|id_token)[\"']\s*:\s*[\"'](?!<redacted>)"),
 }
 DROPPED = {"host", "hosts", "job", "where", "scan", "logs"}      # must be gone from every record and log
+FINISHED = {"success", "failed", "error"}                          # the trial states a snapshot publishes
 
 
 def scrub(x):
@@ -123,9 +124,30 @@ def record(rec: dict) -> dict:
     return scrub({k: v for k, v in out.items() if v is not None or k in rec})
 
 
+def media_name(name):
+    """A media file's name as published: a PNG in the format data/public.yml names (`run_media_images: webp`, as
+    scripts/compress_run_media.py writes it); anything else as it is."""
+    if isinstance(name, str) and sitemode.RUN_MEDIA_IMAGES == "webp" and name.lower().endswith(".png"):
+        return name[:-4] + ".webp"
+    return name
+
+
+def rename_media(log: dict) -> dict:
+    media = log.get("media")
+    if isinstance(media, dict):
+        log["media"] = {k: (media_name(v) if k in ("video", "last") else v) for k, v in media.items()}
+    for step in log.get("steps") or []:
+        if isinstance(step, dict) and step.get("img"):
+            step["img"] = [media_name(x) for x in step["img"]]
+    for snap in log.get("snapshots") or []:
+        if isinstance(snap, dict) and snap.get("src"):
+            snap["src"] = media_name(snap["src"])
+    return log
+
+
 def trial_log(path: Path) -> dict:
     data = json.loads(path.read_text(encoding="utf-8"))
-    out = {k: v for k, v in data.items() if k in LOG_KEYS}
+    out = rename_media({k: v for k, v in data.items() if k in LOG_KEYS})
     for k in ("exception", "note"):              # an error, or a note of where a record was recovered from
         if out.get(k):
             out[k] = sitemode.hide_hosts(out[k])
@@ -172,7 +194,10 @@ def build(tmp: Path) -> dict:
             continue
         tasks = {}
         for tid, modes in (data.get("tasks") or {}).items():
-            tasks[tid] = {m: record(r) for m, r in modes.items() if isinstance(r, dict)}
+            # finished trials only: a trial still queued or running is published once it ends
+            done = {m: record(r) for m, r in modes.items() if isinstance(r, dict) and r.get("state") in FINISHED}
+            if done:
+                tasks[tid] = done
         run = {k: v for k, v in data.items() if k in RUN_KEYS}
         run["tasks"] = tasks
         n_bytes += dump(tmp / br.benchmark / f"{br.run}.json", scrub(run))

@@ -98,8 +98,13 @@ def main() -> int:
         slot = log_path.stem
         log = json.loads(log_path.read_text(encoding="utf-8"))
         for name in media_of(log):
-            rel = f"{bench}/{run}/{task}/{slot}/{name}"
             src = LOCAL / bench / "runs" / run / task / slot / name
+            if not src.is_file() and name.endswith(".webp"):
+                # the snapshot names a PNG as the WebP it is published as (run_media_images: webp); the export keeps
+                # the original, and scripts/compress_run_media.py converts it
+                name = name[: -len(".webp")] + ".png"
+                src = src.with_name(Path(name).name)
+            rel = f"{bench}/{run}/{task}/{slot}/{name}"
             if not src.is_file():
                 missing.append(rel)
                 continue

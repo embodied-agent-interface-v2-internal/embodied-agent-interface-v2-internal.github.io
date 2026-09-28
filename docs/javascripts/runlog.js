@@ -276,6 +276,11 @@
     root.querySelectorAll(".rl-replay video[data-src]").forEach(function (v) {
       var src = v.getAttribute("data-src");
       if (!window.fetch || !window.URL || !URL.createObjectURL) { v.src = src; return; }
+      // A replay on the media host (the public site: data/public.yml run_media_base) is served with Range requests
+      // and its index first: the video plays and seeks as it streams, so it is never read whole first.
+      try {
+        if (new URL(src, window.location.href).origin !== window.location.origin) { v.src = src; return; }
+      } catch (e) { v.src = src; return; }
       var note = document.createElement("p");
       note.className = "rl-loading";
       note.textContent = "Loading the video so that it can be scrubbed…";

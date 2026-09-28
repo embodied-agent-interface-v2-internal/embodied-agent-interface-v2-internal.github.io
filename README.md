@@ -133,7 +133,7 @@ Run `make check` before pushing; CI runs the same thing.
 | `make check` | What CI runs: validate + strict build + links |
 | `make public` | The public site as deployed (read-only, runs from the published snapshot), links and size checked |
 | `make publish-runs` | Snapshot the agent runs for the public site (`data/published_runs/`: filtered, secret-scanned) |
-| `make export-run-media` | Export the published runs' replays and images, with a manifest, for an outside host |
+| `make upload-run-media` | Export, compress and upload the runs' replays and images to the Hugging Face dataset (`BENCHMARK=<id>`, your own `hf auth login`) |
 | `make sync` | Re-sync every benchmark's task pages from its upstream |
 
 ## Layout
