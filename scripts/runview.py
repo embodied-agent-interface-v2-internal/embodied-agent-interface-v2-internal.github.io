@@ -218,9 +218,10 @@ def logs_state(rec: dict, mode: str) -> tuple[str, list[str]]:
 
 
 def result_label(rec: dict) -> str:
-    """A few characters for a pill: ✓ 15m, ✗ 1h 02m, running 23m, queued, rerun queued; ↻ = a follow-up is arranged."""
+    """A few characters for a pill: ✓ 15m, ✗ 1h 02m, running 23m, queued, rerun queued; ↻ = a follow-up is arranged,
+    ⓘ = a note on the trial (graded as it is)."""
     state = rec.get("state", "queued")
-    mark = " ↻" if rec.get("followup") else ""
+    mark = (" ↻" if rec.get("followup") else "") + (" ⓘ" if rec.get("note") else "")
     if state == "success":
         return "✓ " + minutes(rec.get("agent_wall_s")) + mark
     if state == "failed":
@@ -273,12 +274,15 @@ def title(rec: dict, mode: str, br: runsdb.BenchRun | None = None) -> str:
         # the published records (the public site) name no machine and no job, only the trial
         on = f" on {sup['host']}" if sup.get("host") else ""
         ref = sup.get("job") or sup.get("trial") or "an earlier batch"
+        because = f": {sup['followup']}" if sup.get("followup") else ""     # the follow-up that arranged the rerun
         if state == "queued":
-            bits.append(f"previous run: {sup.get('state')}{on}{why} ({ref}), kept as history")
+            bits.append(f"previous run: {sup.get('state')}{on}{why} ({ref}), kept as history{because}")
         else:
-            bits.append(f"rerun of {ref} ({sup.get('state')}{on}{why})")
+            bits.append(f"rerun of {ref} ({sup.get('state')}{on}{why}){because}")
     if rec.get("followup"):
         bits.append(f"follow-up: {rec['followup']}")
+    if rec.get("note"):
+        bits.append(f"note: {rec['note']}")
     if rec.get("stopped"):
         bits.append(f"stopped by us: {rec['stopped']} (counted in no statistic)")
     return " · ".join(bits)

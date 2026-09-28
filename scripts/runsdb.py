@@ -151,6 +151,13 @@ class BenchRun:
                 for f in (self.spec.get("followups") or []) if isinstance(f, dict)]
 
     @property
+    def notes(self) -> dict[tuple[str, str, str], str]:
+        """(task, mode, trial) -> a note on that trial (`notes:` in state/runs/<b>.yml), which is graded as it is:
+        nothing is arranged for it, unlike a follow-up. It shows while that trial is the task's record."""
+        return {(f.get("task"), f.get("mode"), f.get("trial")): sitemode.scrub_hosts(str(f.get("note")))
+                for f in (self.spec.get("notes") or []) if isinstance(f, dict) and f.get("note")}
+
+    @property
     def closed(self) -> str:
         """Why the run is over (empty while it is still going). A closed run's never-started jobs read "not run"."""
         return sitemode.scrub_hosts(str(self.spec.get("closed") or ""))
@@ -177,7 +184,7 @@ class BenchRun:
     @property
     def metrics(self) -> list[dict]:
         """The continuous grader outputs this benchmark shows beside success (`metrics:` in state/runs/<benchmark>.yml):
-        [{key, label, format, unit, better, summary}], in the file's order; [] when it declares none."""
+        [{key, label, format, unit, better, summary, help}], in the file's order; [] when it declares none."""
         raw = self.spec.get("metrics") or (plans().get(self.benchmark) or {}).get("metrics") or []
         out = []
         for m in raw if isinstance(raw, list) else []:
@@ -185,8 +192,20 @@ class BenchRun:
                 out.append({"key": str(m["key"]), "label": str(m.get("label") or m["key"]),
                             "format": str(m.get("format") or ".2f"), "unit": str(m.get("unit") or ""),
                             "better": "lower" if m.get("better") == "lower" else "higher",
-                            "summary": "median" if m.get("summary") == "median" else "mean"})
+                            "summary": "median" if m.get("summary") == "median" else "mean",
+                            "help": str(m.get("help") or "")})
         return out
+
+    @property
+    def per_family(self) -> dict | None:
+        """A grader output whose meaning depends on the task's family (`per_family: {key, label}` in
+        state/runs/<benchmark>.yml; RoboPaint's final_reward): the Runs page shows success and its plain mean per family
+        and mode, naming each family's metric by its tasks' upstream `continuous_score`, and the home table's aggregate
+        is its plain mean, "mean <label>". None when the benchmark declares none."""
+        raw = self.spec.get("per_family") or (plans().get(self.benchmark) or {}).get("per_family")
+        if not isinstance(raw, dict) or not raw.get("key"):
+            return None
+        return {"key": str(raw["key"]), "label": str(raw.get("label") or raw["key"])}
 
     def task_dir(self, task: str) -> str:
         """The harness's task directory for a task id: Harbor names a job <batch>-<mode>-<task dir>."""
@@ -213,7 +232,8 @@ class BenchRun:
             if not self.data:
                 return {"in": True, "modes": {m: {"state": "nodata"} for m in self.modes}}
             got = (self.data.get("tasks") or {}).get(task) or {}
-            stopped = self.stopped
+            stopped, notes = self.stopped, self.notes
+            rerun_for = {(f.get("task"), f.get("mode"), f.get("trial")): f.get("note") for f in self.followups if f.get("note")}
             modes = {}
             for m in self.modes:
                 rec = got.get(m) or {"state": "queued"}
@@ -221,6 +241,11 @@ class BenchRun:
                     rec = {**rec, "state": "notrun"}
                 if (task, m) in stopped:     # the importer's state stays in data/runs/ (and status.json) as it was
                     rec = {**rec, "state": "stopped", "stopped": stopped[(task, m)], "state_was": rec.get("state")}
+                if rec.get("trial") and (task, m, rec["trial"]) in notes:     # likewise only here, never collected
+                    rec = {**rec, "note": notes[(task, m, rec["trial"])]}
+                sup = rec.get("supersedes")
+                if isinstance(sup, dict) and (task, m, sup.get("trial")) in rerun_for:   # why a rerun replaced it
+                    rec = {**rec, "supersedes": {**sup, "followup": rerun_for[(task, m, sup.get("trial"))]}}
                 modes[m] = rec
             return {"in": True, "modes": modes}
         why = self.removed.get(task)

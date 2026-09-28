@@ -241,6 +241,14 @@ def check_runs(rep: Report) -> None:
                     rep.error(here, f"follow-up mode {f.get('mode')!r} is not one of {br.modes}")
                 if not f.get("trial"):
                     rep.warn(here, f"follow-up for {f.get('task')} has no `trial`, so it never shows")
+            for f in spec.get("notes") or []:
+                if not isinstance(f, dict) or not f.get("note") or not f.get("trial"):
+                    rep.error(here, f"note {f!r} needs task, mode, trial and note")
+                    continue
+                if f.get("task") not in tasks:
+                    rep.error(here, f"note on {f.get('task')!r}, which is not in the run")
+                if br and f.get("mode") not in br.modes:
+                    rep.error(here, f"note mode {f.get('mode')!r} is not one of {br.modes}")
 
 
 def main() -> int:

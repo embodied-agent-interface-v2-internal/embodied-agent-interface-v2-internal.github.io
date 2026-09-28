@@ -410,6 +410,8 @@ button.ichip:hover { border-color: var(--c); }
 .md-typeset .rfollow ul { margin: 0.2rem 0 0 1rem !important; }
 .md-typeset .rfollow li { margin: 0.1rem 0 !important; }
 .rfollow__mode { font-size: 0.56rem; font-weight: 700; text-transform: uppercase; color: var(--rs-sub); }
+/* notes on trials graded as they are (state/runs/ `notes:`): neutral, nothing is arranged */
+.rnote { border-left-color: var(--rs-sub); background: var(--rs-card); }
 
 /* the table: filter chips, sort, then one group of rows per task */
 .rt-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.8rem; margin: 1rem 0 0.4rem; scroll-margin-top: 3.2rem; }
@@ -517,6 +519,9 @@ button.ichip:hover { border-color: var(--c); }
 /* a benchmark's declared grader metrics: one small card each, the run's mean or median */
 .mstrip { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.7rem; margin: 0 0 0.6rem; }
 .mstrip__label { font-size: 0.6rem; font-weight: 750; letter-spacing: 0.05em; text-transform: uppercase; color: var(--rs-sub); }
+/* a score whose metric depends on the task family (state/runs/ `per_family:`): its table, and the notes that explain it */
+.md-typeset .rnote-lead { margin: 0.1rem 0 0.3rem !important; font-size: 0.64rem; color: var(--rs-sub); }
+.md-typeset .runs-family { margin-bottom: 0.2rem; }
 .mcards { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .mcard {
   display: flex;
@@ -581,7 +586,7 @@ button.ichip:hover { border-color: var(--c); }
 /* log pages: the run a trial belongs to, under its title */
 .runlog__run { margin: -0.2rem 0 0.4rem !important; font-size: 0.68rem; font-weight: 600; color: var(--rs-sub); }
 /* a trial we stopped ourselves (state/runs/ `stopped:`): the reason first, before anything is read as a failure */
-.md-typeset .runlog__stopped { margin: 0.4rem 0 !important; padding: 0.4rem 0.7rem; border-left: 3px solid var(--st-queued);
+.md-typeset .runlog__stopped, .md-typeset .runlog__note { margin: 0.4rem 0 !important; padding: 0.4rem 0.7rem; border-left: 3px solid var(--st-queued);
   border-radius: 0 8px 8px 0; background: var(--rs-card); font-size: 0.7rem; }
 
 /* phones: one column of numbers; the table scrolls sideways (its header then scrolls with it) */

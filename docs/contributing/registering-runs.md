@@ -90,7 +90,8 @@ runs:
 | `default` | The run the task list, the task pages and `data/runs/status.json` show first. Without it, the first run listed. |
 | `task_dir` | The task's directory in the harness repo: Harbor names a job `<batch>-<mode>-<task dir>`. `{task}` is the task id, `{task_dashed}` the same with dashes. The default is `{benchmark}-{task_dashed}-i00`. |
 | `progress` | Which reward key holds the partial credit beside success. The default is `final_reward`; BEHAVIOR uses `q_score`, the 2026 challenge's score. A success always counts as progress 1.0. |
-| `metrics` | Optional. Continuous scores the grader writes to `reward.json`, beside success: a list of `{key, label, format, unit, better, summary}`. Each gets a column and a sort in the task table, and a run figure (the mean of the graded trials, or the median with `summary: median`). `format` is a Python format spec (default `.2f`); `better: lower` marks a distance. A benchmark that declares none looks as before. |
+| `metrics` | Optional. Continuous scores the grader writes to `reward.json`, beside success: a list of `{key, label, format, unit, better, summary, help}`. Each gets a column and a sort in the task table, and a run figure (the mean of the graded trials, or the median with `summary: median`). `format` is a Python format spec (default `.2f`); `better: lower` marks a distance; `help` is the column's and the figure's tooltip. A benchmark that declares none looks as before. |
+| `per_family` | Optional, `{key, label}`: a `reward.json` key whose metric depends on the task's family (RoboPaint's `final_reward`: F1, IoU or 1 − mean ΔE / 20). The Runs page shows success and the key's plain mean per family and mode, naming each family's metric from its tasks' upstream `continuous_score`. The home table shows its plain mean as *mean* `label`, with a note that the metric depends on the family. |
 | `runs.<id>.batch` | The Harbor batch, as named for `robot_coding_bench/scripts/run_agent_batch.sh`. |
 | `rerun_batches` | Later batches. For each task and mode, the last batch that has the job wins. The earlier result stays as history: in the pill's tooltip, and on a log page named `<mode>-prev`. |
 | `rerun_all` | `true`: the last rerun batch reruns every task and mode. Until it starts a job, that job reads *rerun queued*, and the earlier result stays as history. |
@@ -98,6 +99,7 @@ runs:
 | `removed` | Task id → why it is not in the run. These rows show grey. |
 | `others` | Why every task in neither list is not in it. These rows keep their colour: the task was simply not built for the run. |
 | `followups` | `{task, mode, trial, note}`: what is already arranged for one trial (a regrade, a rerun). The pill gets ↻. The note disappears by itself once another trial replaces that one. |
+| `notes` | `{task, mode, trial, note}`: a note on one trial that is graded as it is, with nothing arranged (e.g. the agent ended itself). The pill gets ⓘ; the note shows under *ⓘ Notes* on the Runs page and on the trial's log page, never among the follow-ups. Like a follow-up, it is tied to that trial. |
 | `closed` | Why the run is over. Its jobs that never started read *not run* instead of *queued*. |
 | `harness` | Optional: how this benchmark's pages word the run's harness, in place of the `harness` of `data/agents/<run>.yml`. |
 | `stopped` | `{task, mode, note}`: a trial we stopped ourselves before it finished, or kept from starting. It reads *stopped by us* with the note, keeps its log page, and counts in no statistic (no rate, mean, time, token or cost total). What the importer recorded stays as it was in `data/runs/`. |
@@ -247,7 +249,7 @@ per-benchmark files carry the same records for every run.
 - Every run a benchmark names is registered in `data/agents/`.
 - Its default is one of its runs.
 - Every task named in a run exists, and none is both in the run and removed.
-- Follow-ups name a task in the run and a mode it has.
+- Follow-ups and notes name a task in the run and a mode it has; a note also names its trial.
 - Prices are numbers, and every `price:` key exists in `data/prices.yml`.
 - `task_dir` fills in only `{benchmark}`, `{task}` and `{task_dashed}`.
 - The build creates a Runs page for every benchmark in the registry, even one

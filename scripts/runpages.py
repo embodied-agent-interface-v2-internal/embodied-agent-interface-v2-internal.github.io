@@ -194,12 +194,73 @@ def metric_strip(pairs: list, metrics: list[dict]) -> str:
             f"{mode} {runview.metric_text(runview.metric_summary(mv, m), m)}"
             for mode in dict.fromkeys(r.get("_mode") for r in graded)
             if (mv := [v for v in (runview.metric_value(r, m) for r in graded if r.get("_mode") == mode) if v is not None]))
+        tip = (m["help"] + " · " if m["help"] else "") + per_mode
         cards.append(
-            f'<div class="mcard" title="{E(per_mode)}{" · lower is better" if m["better"] == "lower" else ""}">'
+            f'<div class="mcard" title="{E(tip)}{" · lower is better" if m["better"] == "lower" else ""}">'
             f'<span>{E(m["label"])}</span><b>{E(runview.metric_text(main, m))}</b>'
             f'<i>{m["summary"]}{f" · {"mean" if m["summary"] == "median" else "median"} {runview.metric_text(other, m)}" if vals else ""}'
             f' · {len(vals)} graded</i></div>')
     return '<div class="mstrip"><span class="mstrip__label">Grader metrics</span><div class="mcards">' + "".join(cards) + "</div></div>"
+
+
+def family_scores(br: runsdb.BenchRun, bench: taskdb.Benchmark, scope: str = "bench") -> dict[str, dict]:
+    """family -> {tasks, metric: [continuous_score, ...], excluded, modes: {mode: {done, success, values}}} for a
+    benchmark whose score depends on the task family (`per_family:`); the family and its metric are the tasks' upstream
+    `family` and `continuous_score`. Graded trials only; a trial we stopped counts in none of it."""
+    pf = br.per_family
+    excl = {t.task_id for t in bench.excluded}
+    fams: dict[str, dict] = {}
+    for t in bench.tasks:
+        if not pf or t.task_id not in br.tasks:
+            continue
+        if scope != "all" and (t.task_id in excl) != (scope == "excluded"):
+            continue
+        f = fams.setdefault(str(t.upstream.get("family") or "other"),
+                            {"tasks": 0, "metric": [], "excluded": t.task_id in excl, "modes": {}, "scene": t.scene})
+        f["tasks"] += 1
+        cs = str(t.upstream.get("continuous_score") or "")
+        if cs and cs not in f["metric"]:
+            f["metric"].append(cs)
+        for mode, rec in runview.mode_records(br, t.task_id):
+            md = f["modes"].setdefault(mode, {"done": 0, "success": 0, "values": []})
+            if rec.get("state") not in runview.DONE:
+                continue
+            md["done"] += 1
+            md["success"] += rec.get("state") == "success"
+            v = runview.metric_value(rec, {"key": pf["key"]})
+            if v is not None:
+                md["values"].append(v)
+    # the excluded families last; else in the order of the benchmark's scenes (data/benchmarks/<b>.yml; RoboPaint has
+    # one per family), then by name
+    scenes = list(bench.meta.get("scenes") or [])
+    rank = lambda kv: (kv[1]["excluded"], scenes.index(kv[1]["scene"]) if kv[1]["scene"] in scenes else len(scenes), kv[0])
+    return dict(sorted(fams.items(), key=rank))
+
+
+def family_table(br: runsdb.BenchRun, bench: taskdb.Benchmark, scope: str) -> str:
+    """Success and the plain mean of the family-specific score (`per_family:`), per task family and mode, with the
+    metric that score is in each family. "" when the benchmark declares no such score."""
+    pf = br.per_family
+    fams = family_scores(br, bench, scope) if pf else {}
+    if not fams:
+        return ""
+    rows = []
+    for fam, f in fams.items():
+        cells = [f"{E(fam.capitalize())}" + (' <span class="pill pill--excluded">excluded</span>' if f["excluded"] else ""),
+                 str(f["tasks"]), E(" / ".join(f["metric"]) or "—")]
+        for mode in br.modes:
+            md = f["modes"].get(mode) or {}
+            vals = md.get("values") or []
+            cells.append(f'<b>{md["success"]}/{md["done"]}</b> <small>{_pct(md["success"], md["done"])}</small>'
+                         if md.get("done") else "—")
+            cells.append(f"{sum(vals) / len(vals):.3f}" if vals else "—")
+        rows.append(cells)
+    head = ["Family", "Tasks", f"Its {E(pf['label'])} is"] + [
+        h for mode in br.modes for h in (f"{E(mode.capitalize())}: success", f"mean {E(pf['label'])}")]
+    return ('<div class="mstrip"><span class="mstrip__label">By family</span></div>'
+            f'<p class="rnote-lead">The grader\'s {E(pf["label"])} depends on the task family: the metric in the third '
+            f"column. Each mean is the plain mean over the graded trials, a success at its own value.</p>"
+            + _table(head, rows, "runs-sum runs-family"))
 
 
 def issue_chips(tot: dict, pairs: list, hosts: dict, filterable: bool, followups: bool = True) -> str:
@@ -370,7 +431,8 @@ def task_table(br: runsdb.BenchRun, bench: taskdb.Benchmark, now: dt.datetime, r
     top = max(costs, default=0) or 1
     metrics = br.metrics
     head = ["Task", "Trial <small>(its log page)</small>", "Progress"] + \
-           [E(m["label"]) + (f' <small>({E(m["unit"])})</small>' if m["unit"] else "") for m in metrics] + \
+           [(f'<span title="{E(m["help"])}">{E(m["label"])}</span>' if m["help"] else E(m["label"]))
+            + (f' <small>({E(m["unit"])})</small>' if m["unit"] else "") for m in metrics] + \
            ["Agent time", "Requests", "Tokens in / out", "Est. cost"] + (["Billed"] if billed else []) + \
            ([] if sitemode.PUBLIC else ["Host"])         # the published records name no machine
     groups, chips = [], {}
@@ -583,6 +645,7 @@ def benchmark_page(bench: taskdb.Benchmark) -> str:
                     return _only_excluded(n_x)
                 tot = runview.totals(pairs, now)
                 return "".join([kpis(pairs, br.modes, note, now), cost_line(tot, br, pnote), metric_strip(pairs, br.metrics),
+                                family_table(br, bench, scope),
                                 issue_chips(tot, pairs, data.get("hosts") or {}, filterable=True, followups=False)])
 
             panel.append(scoped({"bench": numbers("bench"), "all": numbers("all") if n_x else ""}, n_own, n_x,
@@ -595,6 +658,13 @@ def benchmark_page(bench: taskdb.Benchmark) -> str:
             panel.append('<div class="rfollow"><b>↻ Follow-ups arranged</b><ul>' + "".join(
                 f'<li><a href="{url(f"benchmarks/{bench.id}/tasks/{t.task_id}.md", root)}">{E(t.title)}</a> '
                 f'<span class="rfollow__mode">{E(m)}</span> {E(n)}</li>' for t, m, n in follow) + "</ul></div>")
+        # notes on trials graded as they are (`notes:`): nothing is arranged for them
+        noted = [(t, m, r["note"]) for t in bench.tasks if t.task_id in br.tasks
+                 for m, r in runview.mode_records(br, t.task_id) if r.get("note")]
+        if noted:
+            panel.append('<div class="rfollow rnote"><b>ⓘ Notes</b><ul>' + "".join(
+                f'<li><a href="{url(f"benchmarks/{bench.id}/tasks/{t.task_id}.md", root)}">{E(t.title)}</a> '
+                f'<span class="rfollow__mode">{E(m)}</span> {E(n)}</li>' for t, m, n in noted) + "</ul></div>")
         # without results, the public site lists the run's tasks instead of a table of empty rows
         panel.append(scope_list(br, bench, root) if sitemode.PUBLIC and not data else task_table(br, bench, now, root))
         panel.append(out_lists(br, bench, root))
@@ -773,7 +843,7 @@ def home_summary(root: str) -> str:
     """The home page's Agent runs section: each benchmark's default run in one row (its own tasks: the excluded ones
     and the trials we stopped count in none of these numbers), linking to its Runs page. "" without any run data."""
     now = dt.datetime.now(dt.timezone.utc)
-    rows, runs = [], []
+    rows, runs, notes = [], [], []
     for bid, bench in taskdb.benchmarks().items():
         br = runsdb.default_run(bid)
         if br is None or not br.data:
@@ -792,7 +862,16 @@ def home_summary(root: str) -> str:
             cells.append(f'<b>{_pct(md["success"], md["done"])}</b> <small>{md["success"]}/{md["done"]}</small>' if md and md["done"] else "—")
         mean = tot["progress_sum"] / tot["progress_n"] if tot["progress_n"] else None
         key = "q_score" if br.progress_key == "q_score" else br.progress_key
-        cells.append(f'{mean:.2f} <small>{E(key)}</small>' if mean is not None else "—")
+        pf = br.per_family
+        if pf:      # a score whose metric depends on the task family: its plain mean, explained under the table
+            vals = [v for f in family_scores(br, bench).values() for md in f["modes"].values() for v in md["values"]]
+            fams = {fam: f["metric"] for fam, f in family_scores(br, bench).items()}
+            notes.append(f'<sup>*</sup> {E(bench.name)}: the plain mean of the grader\'s {E(pf["label"])} over the graded '
+                         "trials, a success at its own value. Its metric depends on the task family: "
+                         + "; ".join(f"{E(' / '.join(ms) or '—')} for {E(_and(fs))}" for ms, fs in _group(fams)) + ".")
+            cells.append(f'{sum(vals) / len(vals):.2f} <small>mean {E(pf["label"])}<sup>*</sup></small>' if vals else "—")
+        else:
+            cells.append(f'{mean:.2f} <small>{E(key)}</small>' if mean is not None else "—")
         cells.append(runview.usd(tot["est"]) if tot["est_n"] else "—")
         cells.append(f'{runview.tok(tot["input"])} / {runview.tok(tot["output"])}' if tot["tokens_n"] else "—")
         rows.append(cells)
@@ -804,7 +883,20 @@ def home_summary(root: str) -> str:
     return (f'<p class="rlead">{E(" · ".join(agents))}, on every benchmark: success among graded trials, the mean '
             "score (partial credit, a success counts as 1.0), and what the model use would cost at list price. "
             f'<a href="{url("runs/overview.md", root)}">All runs, tasks and trial logs &rarr;</a></p>'
-            + _table(head, rows, "runs-sum runs-home"))
+            + _table(head, rows, "runs-sum runs-home")
+            + "".join(f'<p class="rnote-lead">{n}</p>' for n in notes))
+
+
+def _and(items: list[str]) -> str:
+    return items[0] if len(items) == 1 else ", ".join(items[:-1]) + " and " + items[-1]
+
+
+def _group(fams: dict[str, list[str]]) -> list[tuple[list[str], list[str]]]:
+    """(metric names, families) with the families that share their metric together, in first-seen order."""
+    out: dict[tuple[str, ...], list[str]] = {}
+    for fam, ms in fams.items():
+        out.setdefault(tuple(ms), []).append(fam)
+    return [(list(ms), fs) for ms, fs in out.items()]
 
 
 def _table(head: list[str], rows: list[list[str]], cls: str) -> str:
@@ -871,6 +963,13 @@ def log_pages() -> list[tuple[str, str]]:
                         # a trial we stopped ourselves says so first (state/runs/ `stopped:`)
                         stop = (f'<p class="runlog__stopped">&#9209; <b>Stopped by us:</b> {E(rec["stopped"])}. '
                                 "This trial counts in no statistic.</p>") if slot == mode and rec.get("stopped") else ""
+                        # a trial a rerun replaced: why (the follow-up that arranged the rerun, state/runs/ `followups:`)
+                        if slot == prev and rec.get("followup"):
+                            stop += (f'<p class="runlog__note">↻ <b>Replaced by a rerun:</b> '
+                                     f'{E(str(rec["followup"]).rstrip("."))}.</p>')
+                        # a note on this trial, graded as it is (state/runs/ `notes:`)
+                        if slot == mode and rec.get("note"):
+                            stop += f'<p class="runlog__note">ⓘ <b>Note:</b> {E(rec["note"].rstrip("."))}.</p>'
                         out.append((runview.log_page(bench.id, br.run, tid, slot), "\n".join([
                             "---", f"title: {t.title} · {label} run", "hide:", "  - toc", "---", "",
                             f"# {E(t.title)} <span class=\"runlog__mode\">{E(label)}</span>", "",

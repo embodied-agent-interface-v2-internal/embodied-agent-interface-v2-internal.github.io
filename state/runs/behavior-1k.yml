@@ -15,6 +15,7 @@
 #     others         why every task in neither list is not in it (shown in colour: merely not built for it)
 #     followups      {task, mode, trial, note}: what is arranged for one trial; the note goes away by itself once
 #                    another trial replaces that one
+#     notes          {task, mode, trial, note}: a note on one trial that is graded as it is (nothing arranged): ⓘ
 #     closed         why the run is over; its never-started jobs then read "not run" instead of "queued"
 
 default: codex-0.157-gpt6luna-xhigh-cgpt

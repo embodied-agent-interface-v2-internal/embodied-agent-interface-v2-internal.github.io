@@ -6,10 +6,12 @@ default: codex-0.157-gpt6luna-xhigh-cgpt
 task_dir: "robopaint-{task_dashed}-i00"
 
 # The grader's continuous scores beside success (user 2026-09-28: "IoU 也可以作为一个 metric，不一定非要用 success"):
-# reward.json keys, shown as columns, sorts and run summaries on the Runs pages. final_reward is the F1 of the
-# painted strokes against the target; the two chamfer distances are in millimetres, lower is better.
+# reward.json keys, shown as columns, sorts and run summaries on the Runs pages. final_reward is each task's continuous
+# score (its upstream continuous_score), so what it measures depends on the family: F1 of the painted strokes for a
+# line drawing, IoU for calligraphy and lettering, 1 - mean ΔE / 20 for a painting. The two chamfer distances (line
+# drawings only) are in millimetres, lower is better.
 metrics:
-- {key: final_reward, label: F1, format: ".3f"}
+- {key: final_reward, label: Final reward, format: ".3f", help: "each task's continuous score, which depends on its family: F1 for a line drawing, IoU for calligraphy and lettering, 1 - mean ΔE / 20 for a painting"}
 - {key: iou, label: IoU, format: ".3f"}
 - {key: precision, label: Precision, format: ".3f"}
 - {key: recall, label: Recall, format: ".3f"}
@@ -18,6 +20,11 @@ metrics:
 - {key: chamfer_target_to_paint_mm, label: "Chamfer target→paint", format: ".2f", unit: mm, better: lower, summary: median}
 - {key: ssim_blur, label: SSIM (blurred), format: ".3f"}
 
+# final_reward per family (2026-09-28, before the sweep went public): the Runs page shows success and its plain mean
+# per task family and mode, naming each family's metric from its tasks' continuous_score; the home table shows its plain
+# mean as "mean final reward", with a note that the metric depends on the family.
+per_family: {key: final_reward, label: final reward}
+
 runs:
   codex-0.157-gpt6luna-xhigh-cgpt:
     # 2026-09-28 ~02:00: the renamed benchmark's first sweep (picture-only agent side, the scoring sidecar), the 9
@@ -25,6 +32,26 @@ runs:
     # benchmark's maniskill-paint days (paint-lunaxh-0927 with vector targets, paint-rgb-lunaxh-0927) are dropped from
     # the site (user: only this run); their Harbor jobs stay on that machine as the record.
     batch: robopaint-lunaxh-0928
+    # 2026-09-28 07:45, user: the sweep of the benchmark proper (kaishu, xingshu, lettering, acrylic and oil; no line
+    # drawing), on our workstations. No task is in both batches, so each task's jobs come from the one that has them.
+    # robopaint-lunaxh-rerun-0928 (ws3): one rerun, xingshu_yong unlimited. Its first trial ended at 18 min when the
+    # ChatGPT backend rejected a Codex request, not the agent's doing; the rerun supersedes it, as earlier reruns did.
+    rerun_batches: [robopaint-lunaxh-0928b, robopaint-lunaxh-rerun-0928]
+    followups:  # arranged for one trial each; the note goes away once another trial replaces it
+    - {task: xingshu_yong, mode: unlimited, trial: robopaint-xingshu-yong-i00__GkDcjZc, note: "the ChatGPT backend
+        rejected a Codex request at 18 min (HTTP 400 \"prompt_cache_retention is not supported on this model\"), not the
+        agent's doing; rerun on ws3 in robopaint-lunaxh-rerun-0928"}
+    - {task: xingshu_zhi, mode: unlimited, trial: robopaint-xingshu-zhi-i00__NGSF7kr, note: "never reached the agent: the
+        agent install's apt-get update failed (exit 100) while NVIDIA's CUDA apt repo was mid-sync; rerun in
+        robopaint-lunaxh-rerun-0928"}
+    # Graded as they are, not rerun (2026-09-28): the agent's own kill command also ended the Codex process.
+    notes:  # on one trial each, graded as it is: nothing arranged
+    - {task: kaishu_fu, mode: unlimited, trial: robopaint-kaishu-fu-i00__YTwmo84, note: "the agent's own `pkill -f
+        '/app/output/gen.py'` also matched the Codex process, whose command line carries the instruction, and ended the
+        agent at 17 min"}
+    - {task: xingshu_tong, mode: limited, trial: robopaint-xingshu-tong-i00-limit__JLjVzXW, note: "the agent's own Python
+        kill loop (SIGINT to every process whose command line holds '/app/output/gen.py' and 'python') also hit the Codex
+        process, whose command line carries the instruction, and ended the agent at 45 min"}
     # RoboPaint's pages name no source repository (owner, 2026-09-28: "robopaint上不要写那个仓库"), so its Run details
     # word the harness without the repository and commit that data/agents/ names.
     harness: >-
@@ -39,5 +66,88 @@ runs:
     - line_rainbow
     - line_rocket
     - line_sailboat
-    # A family's tasks join `tasks` when its sweep starts (lettering, kaishu, acrylic and oil land after 02:00).
-    others: not in this sweep (a family that landed after it started)
+    # 2026-09-28 07:45: the benchmark's sweep, batch robopaint-lunaxh-0928b (below), the 82 pairs of the five
+    # families in the benchmark, both modes:
+    - acrylic_applesoranges
+    - acrylic_bedroom
+    - acrylic_bluehorses
+    - acrylic_greatwave
+    - acrylic_kajikazawa
+    - acrylic_plumpark
+    - acrylic_redfuji
+    - acrylic_suddenshower
+    - acrylic_sunflowers
+    - acrylic_vision
+    - kaishu_ai
+    - kaishu_chun
+    - kaishu_da
+    - kaishu_dao
+    - kaishu_de
+    - kaishu_feng
+    - kaishu_fu
+    - kaishu_guo
+    - kaishu_he
+    - kaishu_houdezaiwu
+    - kaishu_hua
+    - kaishu_jia
+    - kaishu_jiang
+    - kaishu_jing
+    - kaishu_kou
+    - kaishu_le
+    - kaishu_lin
+    - kaishu_long
+    - kaishu_ma
+    - kaishu_ming
+    - kaishu_ningjingzhiyuan
+    - kaishu_qing
+    - kaishu_ran
+    - kaishu_ren
+    - kaishu_shan
+    - kaishu_shu
+    - kaishu_shui
+    - kaishu_tian
+    - kaishu_tiandaochouqin
+    - kaishu_xin
+    - kaishu_yong
+    - kaishu_yongzibafa
+    - kaishu_yue
+    - kaishu_zhong
+    - kaishu_zi
+    - lettering_donum
+    - lettering_inunum
+    - lettering_minim
+    - lettering_minimum
+    - lettering_minium
+    - lettering_moon
+    - lettering_nimium
+    - lettering_nun
+    - lettering_omnium
+    - lettering_unpin
+    - oil_bathers
+    - oil_cafeterrace
+    - oil_cypresses
+    - oil_irises
+    - oil_milkmaid
+    - oil_monalisa
+    - oil_pearlearring
+    - oil_saintevictoire
+    - oil_starrynight
+    - oil_temeraire
+    - oil_wanderer
+    - xingshu_chun
+    - xingshu_feng
+    - xingshu_he
+    - xingshu_huifenghechang
+    - xingshu_jian
+    - xingshu_maolinxiuzhu
+    - xingshu_nian
+    - xingshu_ren
+    - xingshu_shan
+    - xingshu_tianlangqiqing
+    - xingshu_tong
+    - xingshu_xian
+    - xingshu_xin
+    - xingshu_yong
+    - xingshu_yu
+    - xingshu_zhi
+    others: not in this run (a task added after its sweep)
