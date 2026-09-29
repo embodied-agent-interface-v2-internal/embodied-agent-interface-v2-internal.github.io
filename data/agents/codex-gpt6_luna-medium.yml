@@ -3,8 +3,8 @@
 #
 # Read by the tooling: label, short, billing, price, modes. Everything else is for people.
 
-label: Codex CLI + GPT-6 Luna, reasoning medium (Harbor's codex agent, ChatGPT login)
-short: Codex CLI 0.156–0.158 (Harbor) · GPT-6 Luna · medium · ChatGPT login
+label: Codex + GPT-6 Luna, reasoning medium (ChatGPT login)
+short: Codex · GPT-6 Luna · medium · ChatGPT login
 harness_id: codex
 harness: >-
   Harbor's built-in codex agent (-a codex) on the owner's ChatGPT login (CODEX_FORCE_AUTH_JSON=1). Harbor installs the
