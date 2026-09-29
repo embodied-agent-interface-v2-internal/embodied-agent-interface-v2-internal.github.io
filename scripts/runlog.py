@@ -10,7 +10,10 @@ Reads only what every trial keeps, never a credential (the model gateway never l
   agent saved there and its gen.py, the closest thing to its last attempt.
 
 The gateway log is complete while the trial runs (Codex writes its own session only at the end), so a running trial
-gets a live page too. Writes log.json, img/<n>.<ext> (the images the model saw) and replay.mp4 / replay.png.
+gets a live page too. A trial with no gateway log (a harness without our model gateway, e.g. HumanoidBench's runs) gets
+the same page from the harness's own session log once the agent has ended: Codex's rollout (agent/sessions/**/*.jsonl)
+or Claude Code's (agent/sessions/projects/**/*.jsonl), which log each response and tool output but no request latency.
+Writes log.json, img/<n>.<ext> (the images the model saw) and replay.mp4 / replay.png.
 Called by scripts/import_runs.py, with `extra` from the run's local-only data/runs/<benchmark>/<run>.backfill.yml:
 `note` (a line shown on the page), `episode` (a robot call log recovered elsewhere, used when the trial kept none),
 `video` (a replay rendered again later from the recorded trajectory, shown in place of the graded replay's own video
@@ -85,6 +88,102 @@ def _save_image(url: str, out: Path, seen: dict) -> str | None:
     return seen[key]
 
 
+def _fill(step: dict, o, te: float, out: Path, images: dict) -> None:
+    """A tool call's output (a string, or content parts with any image the model was shown) into its step."""
+    texts, imgs = [], []
+    for part in ([{"type": "input_text", "text": o}] if isinstance(o, str) else (o or [])):
+        if part.get("type") in ("input_text", "output_text"):
+            texts.append(part.get("text") or "")
+        elif part.get("type") == "input_image":
+            name = _save_image(part.get("image_url"), out, images)
+            if name:
+                imgs.append(name)
+    text = "".join(texts)
+    head = text.split("\n", 1)[0]
+    step["status"] = ("failed" if head.startswith("Script failed") else
+                      "background" if head.startswith("Script running") else "ok")
+    wall = WALL.search(text[:200])
+    step["wall"] = float(wall.group(1)) if wall else None
+    body = re.sub(r"^Script [^\n]*\n(Wall time [^\n]*\n)?(Output:\n)?", "", text, count=1)
+    step["out"], step["n"] = _clip(body)
+    step["te"] = te
+    if imgs:
+        step["img"] = imgs
+
+
+def _sessions(src: Path, out: Path, images: dict) -> tuple[float | None, list, list]:
+    """(t0, calls, steps) from the harness's own session log, for a trial with no gateway log. A request is taken to
+    run from the output it answers (or the previous response) to its response: the session logs no latency."""
+    ev = []
+    for f in sorted((src / "agent" / "sessions").rglob("*.jsonl")):
+        for line in f.open(errors="replace"):
+            try:
+                e = json.loads(line)
+                ev.append((datetime.fromisoformat(e["timestamp"].replace("Z", "+00:00")).timestamp(), e))
+            except (ValueError, KeyError, TypeError, AttributeError):
+                continue
+    if not ev:
+        return None, [], []
+    ev.sort(key=lambda x: x[0])
+    t0 = ev[0][0]
+    rel = lambda t: round(t - t0, 1)
+    calls, steps, pending, seen, last = [], [], {}, set(), t0
+    for t, e in ev:
+        p, kind = e.get("payload") or {}, e.get("type")
+        m = e.get("message") if isinstance(e.get("message"), dict) else {}
+        if kind == "token_usage_record":                                  # Codex: one per model response
+            u = p.get("usage") or {}
+            calls.append([rel(last), rel(t), 200, u.get("input_tokens"), u.get("cached_input_tokens"),
+                          u.get("output_tokens"), u.get("reasoning_output_tokens")])
+            last = t
+        elif kind == "response_item" and p.get("type") == "message" and p.get("role") == "assistant":
+            text = "".join(c.get("text") or "" for c in p.get("content") or [] if c.get("type") == "output_text")
+            if text.strip():
+                steps.append({"k": "say", "t": rel(t), "text": text.strip()})
+        elif kind == "response_item" and p.get("type") in ("custom_tool_call", "function_call"):
+            step = {"k": "run", "t": rel(t), "tool": p.get("name") or "tool"}
+            step.update(_script(p.get("input") if p.get("type") == "custom_tool_call" else p.get("arguments")))
+            steps.append(step)
+            pending[p.get("call_id")] = step
+        elif kind == "response_item" and p.get("type") in ("custom_tool_call_output", "function_call_output"):
+            if (step := pending.pop(p.get("call_id"), None)) is not None:
+                _fill(step, p.get("output"), rel(t), out, images)
+                last = t
+        elif kind == "assistant" and isinstance(m.get("content"), list):     # Claude Code
+            if m.get("id") and m["id"] not in seen:         # the log repeats a message once per content block
+                seen.add(m["id"])
+                u = m.get("usage") or {}
+                cached, write = u.get("cache_read_input_tokens") or 0, u.get("cache_creation_input_tokens") or 0
+                calls.append([rel(last), rel(t), 200, (u.get("input_tokens") or 0) + cached + write, cached,
+                              u.get("output_tokens"), None])
+                last = t
+            for c in m["content"]:
+                if c.get("type") == "text" and (c.get("text") or "").strip():
+                    steps.append({"k": "say", "t": rel(t), "text": c["text"].strip()})
+                elif c.get("type") == "tool_use":
+                    inp = c.get("input") or {}
+                    step = {"k": "run", "t": rel(t), "tool": c.get("name") or "tool",
+                            **({"cmd": inp["command"]} if isinstance(inp.get("command"), str)
+                               else {"code": json.dumps(inp, ensure_ascii=False, indent=1)})}
+                    steps.append(step)
+                    pending[c.get("id")] = step
+        elif kind == "user" and isinstance(m.get("content"), list):
+            for c in m["content"]:
+                if c.get("type") != "tool_result" or (step := pending.pop(c.get("tool_use_id"), None)) is None:
+                    continue
+                body = c.get("content")
+                image = lambda s: f"data:{s.get('media_type')};base64,{s.get('data')}"
+                parts = [{"type": "input_text", "text": body}] if isinstance(body, str) else [
+                    {"type": "input_image", "image_url": image(x["source"])}
+                    if x.get("type") == "image" and isinstance(x.get("source"), dict) else
+                    {"type": "input_text", "text": x.get("text") or ""} for x in body or [] if isinstance(x, dict)]
+                _fill(step, parts, rel(t), out, images)
+                if c.get("is_error"):
+                    step["status"] = "failed"
+                last = t
+    return t0, calls, steps
+
+
 def mp4_complete(path: Path) -> bool:
     """Whether an MP4's top-level boxes span the whole file and include its index (moov). A render that was cut off or
     crashed mid-write leaves the frames (mdat) without the moov, and no player can open the file."""
@@ -137,25 +236,7 @@ def build(src: Path, out: Path, meta: dict, extra: dict | None = None) -> dict:
             step = pending.pop(it.get("call_id"), None)
             if step is None:
                 continue
-            texts, imgs, o = [], [], it.get("output")
-            for part in ([{"type": "input_text", "text": o}] if isinstance(o, str) else (o or [])):
-                if part.get("type") in ("input_text", "output_text"):
-                    texts.append(part.get("text") or "")
-                elif part.get("type") == "input_image":
-                    name = _save_image(part.get("image_url"), out, images)
-                    if name:
-                        imgs.append(name)
-            text = "".join(texts)
-            head = text.split("\n", 1)[0]
-            step["status"] = ("failed" if head.startswith("Script failed") else
-                              "background" if head.startswith("Script running") else "ok")
-            wall = WALL.search(text[:200])
-            step["wall"] = float(wall.group(1)) if wall else None
-            body = re.sub(r"^Script [^\n]*\n(Wall time [^\n]*\n)?(Output:\n)?", "", text, count=1)
-            step["out"], step["n"] = _clip(body)
-            step["te"] = start
-            if imgs:
-                step["img"] = imgs
+            _fill(step, it.get("output"), start, out, images)
         items, usage = _sse(x.get("response") or "")
         det = usage.get("output_tokens_details") or {}
         cached = (usage.get("input_tokens_details") or {}).get("cached_tokens")
@@ -171,6 +252,9 @@ def build(src: Path, out: Path, meta: dict, extra: dict | None = None) -> dict:
                 step.update(_script(it.get("input") if it.get("type") == "custom_tool_call" else it.get("arguments")))
                 steps.append(step)
                 pending[it.get("call_id")] = step
+
+    if t0 is None:          # no gateway log: the harness's own session log (see the module docstring)
+        t0, calls, steps = _sessions(src, out, images)
 
     robot = []
     # the sim service writes /data, or /out where /data is a licensed dataset mount (BEHAVIOR)

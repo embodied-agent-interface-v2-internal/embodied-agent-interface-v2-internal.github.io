@@ -64,7 +64,7 @@ REMOTE = ROOT / ".cache" / "runs_remote"   # not under data/ (watched by `mkdocs
 LOGS_CACHE = ROOT / ".cache" / "runs_logs"  # <benchmark>/<run>.json: which log pages are up to date
 LOCK = ROOT / ".cache" / "import_runs.lock"
 # The files a log page is built from (scripts/runlog.py), as rsync include patterns.
-LOG_FILES = ["agent/gateway.jsonl", "artifacts/data/episode.jsonl", "artifacts/out/episode.jsonl", "verifier/replay.mp4",
+LOG_FILES = ["agent/gateway.jsonl", "agent/sessions/**", "artifacts/data/episode.jsonl", "artifacts/out/episode.jsonl", "verifier/replay.mp4",
              "verifier/replay.last.png", "verifier_regrade/replay.mp4", "verifier_regrade/replay.last.png"]
 # What a later batch's record keeps of the one it replaces.
 SUPERSEDED = ("job", "state", "host", "trial", "reward", "progress", "exception", "started", "finished", "agent_wall_s", "scan")
