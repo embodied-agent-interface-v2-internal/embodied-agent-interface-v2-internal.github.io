@@ -385,10 +385,10 @@
       if (linked) parts.push(linked + " demos link to the official videos");
       if (novideo) parts.push(novideo + " without an upstream video");
       var runs = [];
-      // trials we stopped ourselves (state/runs/ `stopped:`) count in no statistic
+      // trials we stopped ourselves (state/runs/ `stopped:`) or do not count (`not_counted:`) count in no statistic
       visible.forEach(function (t) {
         var r = runOf(t);
-        if (r && r.in) runs = runs.concat(r.modes.filter(function (m) { return m.state !== "stopped"; }));
+        if (r && r.in) runs = runs.concat(r.modes.filter(function (m) { return m.state !== "stopped" && m.state !== "uncounted"; }));
       });
       if (runs.length) {
         var n = function (f) { return runs.filter(f).length; };

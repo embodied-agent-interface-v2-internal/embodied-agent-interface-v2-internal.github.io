@@ -17,6 +17,14 @@ runs:
     - {task: separate_marbles_and_sand, mode: limited, trial: robowits-separate-marbles-and-sa__HJEPaGs, note: "rerun on the
         laptop GPU (running since 01:22): on ws the robot service died while its 4090 also held two BEHAVIOR sims, so no
         result was collected"}
+    # 2026-09-28 20:15, user: two unlimited trials ran on ws, an AMD host where the frozen instance is out of tolerance;
+    # they are not counted (align_chopsticks is excluded from the benchmark instead: state/tasks/robowits.yml).
+    not_counted:
+    - {task: ball_into_jar, mode: unlimited, trial: robowits-ball-into-jar-i00__yezNVvJ, note: "run on an AMD host where
+        the frozen instance is out of tolerance (instance_ok 0), so it could not be won; the instances were frozen on Intel"}
+    - {task: differentiate_cubes, mode: unlimited, trial: robowits-differentiate-cubes-i00__SqEFYKE, note: "run on an AMD
+        host where the frozen instance is out of tolerance (instance_ok 0), so it could not be won; the instances were
+        frozen on Intel"}
     tasks:
     - align_blocks
     - align_chopsticks

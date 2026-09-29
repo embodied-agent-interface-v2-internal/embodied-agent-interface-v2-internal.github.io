@@ -13,17 +13,23 @@ import runsdb
 import sitemode
 
 # Order = how urgently a row wants attention; also the "Run state" sort order.
-STATES = ["stalled", "error", "running", "grading", "setup", "failed", "success", "queued", "notrun", "stopped", "nodata"]
+STATES = ["stalled", "error", "running", "grading", "setup", "failed", "success", "queued", "notrun", "stopped",
+          "uncounted", "nodata"]
+# trials that count in no statistic (no trial count, rate, mean, time, token or cost total): stopped by us
+# (`stopped:` in state/runs/), or run but not counted, with the reason (`not_counted:`)
+UNCOUNTED = ("stopped", "uncounted")
 STATE_LABEL = {
     "stalled": "stalled", "error": "error", "running": "running", "grading": "grading",
     "setup": "setting up", "failed": "failed", "success": "success", "queued": "queued", "notrun": "not run",
-    "stopped": "stopped by us",
+    "stopped": "stopped by us", "uncounted": "not counted",
     "nodata": "no data",
 }
 STATE_HELP = {
     "queued": "not started yet",
     "notrun": "not run: the run was closed before this job started",
     "stopped": "stopped by us before it finished, or kept from starting (state/runs/ `stopped:`): counted in no statistic",
+    "uncounted": "run, but its result does not count, for the reason given (state/runs/ `not_counted:`): counted in no "
+                 "statistic",
     "nodata": "nothing collected for this run on this machine (its owner collects it: make runs)",
     "setup": "Harbor is building the trial's containers",
     "running": "the agent is working",
@@ -285,6 +291,8 @@ def title(rec: dict, mode: str, br: runsdb.BenchRun | None = None) -> str:
         bits.append(f"note: {rec['note']}")
     if rec.get("stopped"):
         bits.append(f"stopped by us: {rec['stopped']} (counted in no statistic)")
+    if rec.get("uncounted"):
+        bits.append(f"not counted: {rec['uncounted']} (its result: {rec.get('state_was') or '—'}; counted in no statistic)")
     return " · ".join(bits)
 
 
@@ -386,8 +394,9 @@ def totals(pairs: list[tuple[runsdb.BenchRun, dict]], now: dt.datetime | None = 
     nodata = sum(1 for _, rec in pairs if rec.get("state") == "nodata")
     # trials we stopped ourselves (`stopped:`) count in no statistic: not in the trials, rates, means, time or cost
     stopped = sum(1 for _, rec in pairs if rec.get("state") == "stopped")
-    pairs = [(br, rec) for br, rec in pairs if rec.get("state") not in ("nodata", "stopped")]
-    out = {"trials": len(pairs), "nodata": nodata, "stopped": stopped, "states": {}, "modes": {}, "done": 0, "success": 0, "progress_sum": 0.0,
+    uncounted = sum(1 for _, rec in pairs if rec.get("state") == "uncounted")
+    pairs = [(br, rec) for br, rec in pairs if rec.get("state") not in ("nodata",) + UNCOUNTED]
+    out = {"trials": len(pairs), "nodata": nodata, "stopped": stopped, "uncounted": uncounted, "states": {}, "modes": {}, "done": 0, "success": 0, "progress_sum": 0.0,
            "progress_n": 0, "agent_s": 0.0, "agent_s_live": 0.0, "calls": 0, "input": 0, "cached": 0, "output": 0,
            "reasoning": 0, "tokens_n": 0, "est": 0.0, "est_n": 0, "billed": 0.0, "billed_n": 0, "reruns": 0,
            "followups": 0, "stale": 0}

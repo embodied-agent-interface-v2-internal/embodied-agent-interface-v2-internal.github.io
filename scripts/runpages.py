@@ -136,7 +136,7 @@ def kpis(pairs: list, modes: list[str], progress_note: str, now: dt.datetime) ->
     tot = runview.totals(pairs, now)
     out = []
     for mode in modes:
-        recs = [r for _, r in pairs if r.get("_mode") == mode and r.get("state") not in ("nodata", "stopped")]
+        recs = [r for _, r in pairs if r.get("_mode") == mode and r.get("state") not in ("nodata",) + runview.UNCOUNTED]
         counts = _segments(recs)
         succ, done = counts.get("success", 0), sum(1 for r in recs if r.get("state") in runview.DONE)
         out.append(
@@ -291,6 +291,10 @@ def issue_chips(tot: dict, pairs: list, hosts: dict, filterable: bool, followups
     if tot.get("stopped"):
         chip("info", f"⏹ {tot['stopped']} stopped by us, not counted", "stopped",
              "trials we stopped before they finished, or kept from starting (state/runs/ `stopped:`): in no statistic")
+    if tot.get("uncounted"):
+        chip("info", f"⊘ {tot['uncounted']} not counted", "uncounted",
+             "trials that ran but whose result does not count, each with its reason (state/runs/ `not_counted:`): "
+             "in no statistic")
     for h, st in sorted((hosts or {}).items()):
         if not st.get("ok"):
             chip("down", f"✗ {E(h)} did not answer", "", st.get("error") or "")
@@ -447,8 +451,8 @@ def task_table(br: runsdb.BenchRun, bench: taskdb.Benchmark, now: dt.datetime, r
     groups, chips = [], {}
     for i, t in enumerate(order):
         recs = recs_of[t.task_id]
-        segs = {SEGMENT_OF.get(r.get("state", "queued"), "nodata") for _, r in recs if r.get("state") != "stopped"}
-        flags = {"stopped"} if any(r.get("state") == "stopped" for _, r in recs) else set()
+        segs = {SEGMENT_OF.get(r.get("state", "queued"), "nodata") for _, r in recs if r.get("state") not in runview.UNCOUNTED}
+        flags = {r.get("state") for _, r in recs if r.get("state") in runview.UNCOUNTED}
         rows = []
         for j, (mode, rec) in enumerate(recs):
             has = runview.has_log(bench.id, br.run, t.task_id, mode)
@@ -520,6 +524,7 @@ def task_table(br: runsdb.BenchRun, bench: taskdb.Benchmark, now: dt.datetime, r
             f'data-tags="{" ".join(sorted(segs | flags))}">' + "".join(rows) + "</tbody>")
     labels = [(k, lab) for k, lab, _ in SEGMENTS] + [("logs", "records missing"), ("followup", "follow-up"),
                                                      ("stale", "host silent"), ("stopped", "stopped by us"),
+                                                     ("uncounted", "not counted"),
                                                      ("excluded", "excluded")]
     chip_html = f'<button type="button" data-f="" class="is-on">All <b>{len(order)}</b></button>' + "".join(
         f'<button type="button" data-f="{k}"><i class="st-{k}"></i>{lab} <b>{chips[k]}</b></button>'
@@ -997,6 +1002,10 @@ def log_pages() -> list[tuple[str, str]]:
                         # a trial we stopped ourselves says so first (state/runs/ `stopped:`)
                         stop = (f'<p class="runlog__stopped">&#9209; <b>Stopped by us:</b> {E(rec["stopped"])}. '
                                 "This trial counts in no statistic.</p>") if slot == mode and rec.get("stopped") else ""
+                        # a trial that ran but does not count (state/runs/ `not_counted:`): the reason first too
+                        if slot == mode and rec.get("uncounted"):
+                            stop += (f'<p class="runlog__stopped">⊘ <b>Not counted:</b> {E(str(rec["uncounted"]).rstrip("."))}. '
+                                     "This trial counts in no statistic.</p>")
                         # a trial a rerun replaced: why (the follow-up that arranged the rerun, state/runs/ `followups:`)
                         if slot == prev and rec.get("followup"):
                             stop += (f'<p class="runlog__note">↻ <b>Replaced by a rerun:</b> '

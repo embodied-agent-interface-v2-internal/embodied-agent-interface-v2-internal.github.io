@@ -52,6 +52,10 @@ runs:
     - {task: xingshu_tong, mode: limited, trial: robopaint-xingshu-tong-i00-limit__JLjVzXW, note: "the agent's own Python
         kill loop (SIGINT to every process whose command line holds '/app/output/gen.py' and 'python') also hit the Codex
         process, whose command line carries the instruction, and ended the agent at 45 min"}
+    # 2026-09-28 20:15, user: counted as it ran, with this note.
+    - {task: lettering_moon, mode: limited, trial: robopaint-lettering-moon-i00-lim__SKuF3U3, note: "the service's
+        time_left_s overstated the remaining time by 30 min (RCB_WALL_CLOCK_S 7200 vs the 5400 s budget); the agent hit
+        the 90-min limit; fixed in the next task version"}
     # RoboPaint's pages name no source repository (owner, 2026-09-28: "robopaint上不要写那个仓库"), so its Run details
     # word the harness without the repository and commit that data/agents/ names.
     harness: >-
