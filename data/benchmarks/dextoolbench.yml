@@ -1,0 +1,50 @@
+id: dextoolbench
+name: DexToolBench
+edition: SimToolReal (arXiv 2602.16863); code `main` @ 313d5ae (2026-08-13)
+status: active
+simulator: MuJoCo 3.3.7 (our port; upstream runs Isaac Sim / Isaac Gym)
+description: >-
+  Twenty-four dexterous tool-use tasks from SimToolReal: 6 tool categories (hammer, marker, eraser, brush, spatula,
+  screwdriver) x 2 real objects x 2 motions. Each task is a start pose and a sequence of goal poses for the tool,
+  extracted from a human RGB-D demo; the score is task progress, the fraction of goals reached in order. Upstream runs
+  it in Isaac Sim / Isaac Gym; we run SimToolReal's own MuJoCo sim2sim scene, rebuilt, with each category's table props.
+
+links:
+  paper: https://arxiv.org/abs/2602.16863
+  project_page: https://simtoolreal.github.io/
+  repository: https://github.com/tylerlum/simtoolreal
+
+embodiment:
+  robot: KUKA iiwa 14 arm + left Sharpa HA4 hand (22 joints); 29 position-controlled joints
+  action_space: >-
+    29 joint position targets per control step (60 Hz), each held for 10 physics steps (600 Hz). Our harness records
+    them as the trajectory, (T, 29), and replays it bit-exactly.
+  control_rate_hz: 60
+  observations: [rgb, depth, proprioception]
+  cameras:
+    front / side / top / oblique: static, around the table (added by us; the sim2sim scene has none)
+  notes: >-
+    The goal pose is part of the task: SimToolReal's deployment gives the policy the current goal and advances it when
+    reached, and so do we (unlimited: in the tooling; limited: in the robot service's `task` field).
+
+evaluation:
+  metric: >-
+    task progress = goals reached / goals. A goal counts when all 8 corners of the tool's grasp box (0.141 x 0.030 x
+    0.027 m, scaled by 1.5) are within 1.5 cm of the same corners at the goal pose (eval_success_tolerance 0.01 x
+    keypoint_scale 1.5); then the next goal becomes current. 10 s per goal; a goal not reached in time ends the attempt.
+
+# SimToolReal publishes no per-task skill annotation.
+skill_vocabulary: []
+
+scenes:
+  - tabletop
+
+integration:
+  image: python 3.12 + MuJoCo 3.3.7 + MuJoCo Menagerie (kuka_iiwa_14) + SimToolReal assets (hand, tools, goal trajectories), no policy; tag rcb-mujoco:0.1.1
+  gpu: optional (MuJoCo physics on the CPU; EGL rendering with an OSMesa fallback)
+  determinism: MuJoCo on the CPU replays a recorded target trajectory bit-exactly; the port's final state for the pretrained policy on claw_hammer/swing_down equals SimToolReal's own MuJoCo scene's (before table props were added)
+  oracle: SimToolReal's pretrained RL policy (publicly downloadable; never shipped to the agent, whose egress is closed), recorded in our scene; it reaches every goal on 6 tasks, some on 15, none on 3
+  integrated_tasks: "21 of 24 (robot_coding_bench tasks/dextoolbench_<category>_<object>_<task>, both modes); not built: blue_brush/sweep_right, flat_eraser/wipe_c, flat_eraser/wipe_smile"
+
+key_dates:
+  simtoolreal_paper: 2026-02-18

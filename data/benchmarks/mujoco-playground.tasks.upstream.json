@@ -1,0 +1,107 @@
+{
+ "source": "https://github.com/google-deepmind/mujoco_playground",
+ "ref": "4057c14",
+ "read": "2026-09-28",
+ "tasks": [
+  {
+   "id": "aloha_hand_over",
+   "title": "Aloha Hand Over",
+   "env": "AlohaHandOver",
+   "robot": "ALOHA 2 (two ViperX 300s arms)",
+   "instruction": "Pick up the box with the left arm, hand it over to the right arm, and hold it at the target.",
+   "source_file": "mujoco_playground/_src/manipulation/aloha/handover.py",
+   "control_hz": 50,
+   "episode_s": 5.0
+  },
+  {
+   "id": "aloha_single_peg_insertion",
+   "title": "Aloha Single Peg Insertion",
+   "env": "AlohaSinglePegInsertion",
+   "robot": "ALOHA 2 (two ViperX 300s arms)",
+   "instruction": "Pick up the socket with one arm and the peg with the other, lift both, and insert the peg into the socket.",
+   "source_file": "mujoco_playground/_src/manipulation/aloha/single_peg_insertion.py",
+   "control_hz": 400,
+   "episode_s": 2.5
+  },
+  {
+   "id": "panda_pick_cube",
+   "title": "Panda Pick Cube",
+   "env": "PandaPickCube",
+   "robot": "Franka Panda",
+   "instruction": "Pick up the box and bring it to the target position.",
+   "source_file": "mujoco_playground/_src/manipulation/franka_emika_panda/pick.py",
+   "control_hz": 50,
+   "episode_s": 3.0
+  },
+  {
+   "id": "panda_pick_cube_orientation",
+   "title": "Panda Pick Cube Orientation",
+   "env": "PandaPickCubeOrientation",
+   "robot": "Franka Panda",
+   "instruction": "Pick up the box and hold it at the target position, in the target orientation.",
+   "source_file": "mujoco_playground/_src/manipulation/franka_emika_panda/pick.py",
+   "control_hz": 50,
+   "episode_s": 3.0
+  },
+  {
+   "id": "panda_pick_cube_cartesian",
+   "title": "Panda Pick Cube Cartesian",
+   "env": "PandaPickCubeCartesian",
+   "robot": "Franka Panda (Cartesian controller)",
+   "instruction": "Pick up the box and lift it to a fixed location, with a Cartesian end-effector controller; built for pixel observations and sim2real.",
+   "source_file": "mujoco_playground/_src/manipulation/franka_emika_panda/pick_cartesian.py",
+   "control_hz": 20,
+   "episode_s": 10.0
+  },
+  {
+   "id": "panda_open_cabinet",
+   "title": "Panda Open Cabinet",
+   "env": "PandaOpenCabinet",
+   "robot": "Franka Panda",
+   "instruction": "Grasp the handle and pull it along its slide to the target.",
+   "source_file": "mujoco_playground/_src/manipulation/franka_emika_panda/open_cabinet.py",
+   "control_hz": 50,
+   "episode_s": 3.0
+  },
+  {
+   "id": "panda_robotiq_push_cube",
+   "title": "Panda Robotiq Push Cube",
+   "env": "PandaRobotiqPushCube",
+   "robot": "Franka Panda + Robotiq 2F-85",
+   "instruction": "Push the cube across the table to the target.",
+   "source_file": "mujoco_playground/_src/manipulation/franka_emika_panda_robotiq/push_cube.py",
+   "control_hz": 200,
+   "episode_s": 15.0
+  },
+  {
+   "id": "leap_cube_reorient",
+   "title": "Leap Cube Reorient",
+   "env": "LeapCubeReorient",
+   "robot": "LEAP hand",
+   "instruction": "Reorient the cube in the hand to match a goal orientation.",
+   "source_file": "mujoco_playground/_src/manipulation/leap_hand/reorient.py",
+   "control_hz": 20,
+   "episode_s": 50.0
+  },
+  {
+   "id": "leap_cube_rotate_z_axis",
+   "title": "Leap Cube Rotate Z Axis",
+   "env": "LeapCubeRotateZAxis",
+   "robot": "LEAP hand",
+   "instruction": "Rotate the cube about the vertical axis as fast as possible without dropping it.",
+   "source_file": "mujoco_playground/_src/manipulation/leap_hand/rotate_z.py",
+   "control_hz": 20,
+   "episode_s": 25.0
+  },
+  {
+   "id": "aero_cube_rotate_z_axis",
+   "title": "Aero Cube Rotate Z Axis",
+   "env": "AeroCubeRotateZAxis",
+   "robot": "TetherIA Aero Hand Open",
+   "instruction": "Rotate the cube about the vertical axis as fast as possible without dropping it.",
+   "source_file": "mujoco_playground/_src/manipulation/aero_hand/rotate_z.py",
+   "control_hz": 20,
+   "episode_s": 25.0
+  }
+ ]
+}

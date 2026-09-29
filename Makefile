@@ -20,7 +20,7 @@ BIN    := $(VENV)/bin
 .PHONY: help venv install serve build validate strict check guard public publish-runs export-run-media \
         compress-run-media upload-run-media publish links demos edit \
         runs runs-watch sync \
-        sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-verified sync-dry clean
+        sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-dextoolbench sync-mujoco-playground sync-verified sync-dry clean
 
 help: ## Show this help
 	@grep -hE '^[a-z-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -151,7 +151,7 @@ upload-run-media: export-run-media compress-run-media ## Export, compress and up
 # Each benchmark syncs from its own upstream. BEHAVIOR reads a public gallery;
 # RoboWits and RoboLab read a source checkout (pass it in), because their tasks
 # are defined in code. All three are idempotent and write only `upstream:`.
-sync: sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint ## Re-sync every benchmark from its upstream
+sync: sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-dextoolbench sync-mujoco-playground ## Re-sync every benchmark from its upstream
 
 sync-behavior: ## Re-sync BEHAVIOR-1K task pages from the official gallery
 	$(BIN)/python scripts/import_behavior_tasks.py
@@ -175,6 +175,23 @@ ROBOTWIN_SWEEP ?= ../robot_coding_bench/exps/robotwin_expert_sweep_2026-09-21.js
 sync-robotwin: ## Re-sync RoboTwin 2.0 from the pinned checkout + docs site (ROBOTWIN_SRC=..., ROBOTWIN_MEDIA=...)
 	$(BIN)/python scripts/import_robotwin_tasks.py $(if $(wildcard $(ROBOTWIN_SRC)),--source $(ROBOTWIN_SRC) --fetch-docs,) \
 	    $(if $(wildcard $(ROBOTWIN_MEDIA)),--media $(ROBOTWIN_MEDIA),) $(if $(wildcard $(ROBOTWIN_SWEEP)),--sweep $(ROBOTWIN_SWEEP),)
+
+# DexToolBench and MuJoCo Playground run in our MuJoCo port (robot_coding_bench tasks/dextoolbench_*, mujoco_playground_*).
+# DTB_SRC: a SimToolReal checkout, or the image's asset dir (images/mujoco/rcb_mj/simtoolreal after prepare_assets.sh);
+# PLAYGROUND_SRC: a mujoco_playground checkout @ 4057c14. MJ_ORACLE_JOBS: the oracle's Harbor job, whose replays are the demos.
+# Without the sources, both re-render from their caches.
+DTB_SRC        ?= ../robot_coding_bench/images/mujoco/rcb_mj/simtoolreal
+PLAYGROUND_SRC ?= ../mujoco_playground
+MJ_HARNESS     ?= ../robot_coding_bench
+MJ_ORACLE_JOBS ?= ../robot_coding_bench/exps/jobs/mj-oracle-all
+
+sync-dextoolbench: ## Re-sync DexToolBench from SimToolReal's trajectories + our oracle replays (DTB_SRC=..., MJ_ORACLE_JOBS=...)
+	$(BIN)/python scripts/import_dextoolbench_tasks.py $(if $(wildcard $(DTB_SRC)),--source $(DTB_SRC),) \
+	    $(if $(wildcard $(MJ_HARNESS)),--harness $(MJ_HARNESS),) $(if $(wildcard $(MJ_ORACLE_JOBS)),--oracle-jobs $(MJ_ORACLE_JOBS),)
+
+sync-mujoco-playground: ## Re-sync MuJoCo Playground's manipulation envs (PLAYGROUND_SRC=..., MJ_ORACLE_JOBS=...)
+	$(BIN)/python scripts/import_mujoco_playground_tasks.py $(if $(wildcard $(PLAYGROUND_SRC)),--source $(PLAYGROUND_SRC),) \
+	    $(if $(wildcard $(MJ_HARNESS)),--harness $(MJ_HARNESS),) $(if $(wildcard $(MJ_ORACLE_JOBS)),--oracle-jobs $(MJ_ORACLE_JOBS),)
 
 # RoboPaint is ours, defined in robot_coding_bench (tasks/robopaint-<family>-<target>-i00): read from a commit of the
 # clone with `git archive` (fetch it first: git -C ../robot_coding_bench fetch origin dev/qineng), never a checkout.
