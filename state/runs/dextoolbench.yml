@@ -1,0 +1,45 @@
+# DexToolBench's agent runs. Owned by the benchmark's owner, curated by hand like everything in state/.
+# Format and field meanings: docs/contributing/registering-runs.md (and the header of state/runs/behavior-1k.yml).
+#
+# The harness repo is robot_coding_bench (branch dev/kangrui): tasks dextoolbench_<task> (unlimited) and
+# dextoolbench_<task>-limited (limited, robot as a service, rcb-limited/2.1). One Harbor job per mode holds the trials of
+# both MuJoCo benchmarks (this one and mujoco-playground); each benchmark picks its own by task_dir.
+# Codex CLI 0.158.0; 60 min per trial; unlimited on image rcb-mujoco 0.1.1, limited on 0.1.2 (GPU EGL; same physics).
+
+default: codex-gpt6_luna-xhigh
+task_dir: "dextoolbench_{task}"
+# task progress (goals reached / goals) beside success, which needs every goal
+progress: progress
+metrics:
+- {key: goals_reached, label: Goals reached, format: ".0f"}
+
+runs:
+  codex-gpt6_luna-xhigh:
+    batch: mj-luna-xh-0928
+    harness: >-
+      Harbor's built-in codex agent (-a codex, Codex CLI 0.158.0) on the owner's ChatGPT login, reasoning effort xhigh
+      with detailed reasoning summaries; not the CodexChatGPT wrapper the other benchmarks used, so Codex applies
+      ChatGPT's metadata for gpt-6-luna (its base instructions, verbosity low); token counts are Harbor's per-trial totals
+    tasks:
+    - brush_blue_brush_sweep_forward
+    - brush_red_brush_sweep_forward
+    - brush_red_brush_sweep_right
+    - eraser_handle_eraser_wipe_c
+    - eraser_handle_eraser_wipe_smile
+    - hammer_claw_hammer_swing_down
+    - hammer_claw_hammer_swing_side
+    - hammer_mallet_hammer_swing_down
+    - hammer_mallet_hammer_swing_side
+    - marker_sharpie_marker_draw_smile
+    - marker_sharpie_marker_write_c
+    - marker_staples_marker_draw_smile
+    - marker_staples_marker_write_c
+    - screwdriver_long_screwdriver_spin_horizontal
+    - screwdriver_long_screwdriver_spin_vertical
+    - screwdriver_short_screwdriver_spin_horizontal
+    - screwdriver_short_screwdriver_spin_vertical
+    - spatula_flat_spatula_flip_over
+    - spatula_flat_spatula_serve_plate
+    - spatula_spoon_spatula_flip_over
+    - spatula_spoon_spatula_serve_plate
+    others: "not built: SimToolReal's pretrained policy reaches no goal on these in our MuJoCo port"

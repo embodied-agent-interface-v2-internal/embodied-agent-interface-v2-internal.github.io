@@ -1,0 +1,26 @@
+# MuJoCo Playground's agent runs. Owned by the benchmark's owner, curated by hand like everything in state/.
+# Format and field meanings: docs/contributing/registering-runs.md (and the header of state/runs/behavior-1k.yml).
+#
+# The harness repo is robot_coding_bench (branch dev/kangrui): tasks mujoco_playground_<env> (unlimited) and
+# mujoco_playground_<env>-limited (limited, rcb-limited/2.1). The Harbor jobs are shared with dextoolbench.
+# Codex CLI 0.158.0; 60 min per trial; unlimited on image rcb-mujoco 0.1.1, limited on 0.1.2 (GPU EGL; same physics).
+
+default: codex-gpt6_luna-xhigh
+task_dir: "mujoco_playground_{task}"
+
+runs:
+  codex-gpt6_luna-xhigh:
+    batch: mj-luna-xh-0928
+    harness: >-
+      Harbor's built-in codex agent (-a codex, Codex CLI 0.158.0) on the owner's ChatGPT login, reasoning effort xhigh
+      with detailed reasoning summaries; not the CodexChatGPT wrapper the other benchmarks used, so Codex applies
+      ChatGPT's metadata for gpt-6-luna (its base instructions, verbosity low); token counts are Harbor's per-trial totals
+    notes:
+    - {task: aloha_hand_over, mode: unlimited, trial: mujoco_playground_aloha_hand_ove__C6yiMhN, note: "Harbor reports a verifier timeout, but the verdict (success) was written first: the grader then spent 20 min rendering videos of the agent's rollouts on software rendering (an image bug, fixed in rcb-mujoco 0.1.2, plus a render budget in the grader)"}
+    - {task: panda_pick_cube_orientation, mode: unlimited, trial: mujoco_playground_panda_pick_cub__V7VoKZT, note: "Harbor reports a verifier timeout, but the verdict (success) was written first: the grader then spent 20 min rendering videos of the agent's rollouts on software rendering (an image bug, fixed in rcb-mujoco 0.1.2, plus a render budget in the grader)"}
+    tasks:
+    - aloha_hand_over
+    - aloha_single_peg_insertion
+    - panda_open_cabinet
+    - panda_pick_cube_orientation
+    others: "not built yet"
