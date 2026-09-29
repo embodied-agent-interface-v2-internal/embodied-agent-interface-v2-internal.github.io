@@ -7,7 +7,7 @@ it requires, and whether we are keeping it.
 **Public site:** <https://embodied-agent-interface-v2-internal.github.io/>. It is
 published from `main` by GitHub Actions; see [HANDOFF.md](HANDOFF.md#publishing).
 
-Five benchmarks, 391 tasks, each synced from its own upstream:
+Six benchmarks, 415 tasks, each synced from its own upstream:
 
 | Benchmark | Simulator | Tasks | Demos | Synced from |
 | --- | --- | --- | --- | --- |
@@ -16,6 +16,7 @@ Five benchmarks, 391 tasks, each synced from its own upstream:
 | **RoboLab** v0.3.1 | Isaac Lab 2.3 / Isaac Sim 5.1 | 120 | 13 + 107 scene stills | the task source at the pinned tag, plus the project page |
 | **RoboTwin 2.0** | SAPIEN 3 / PhysX + CuRobo | 50 | 48 expert clips we recorded (six-camera grid) + 50 scene stills; official ALOHA clips linked | the task source at the pinned commit, plus the documentation site |
 | **RoboPaint** (ours) | ManiSkill 3.0.1 + brush models (Spline-FRIDA, a virtual Chinese brush, MyPaint) | 91 (82 + 9 excluded) | 91 replays of our reference solution | our benchmark repository, at a pinned commit |
+| **HumanoidBench** | MuJoCo 3 | 24 (23 + 1 fixture excluded) | none upstream; 24 starting-scene stills | our selection's task definitions, at a pinned commit |
 
 Each is pinned to the exact version our images build from, so what you review
 here is what we run.

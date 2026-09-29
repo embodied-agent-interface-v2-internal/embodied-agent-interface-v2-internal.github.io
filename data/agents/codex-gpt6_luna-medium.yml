@@ -1,0 +1,25 @@
+# One agent run: harness + model + settings. The file name is the run id that state/runs/<benchmark>.yml refers to:
+# <harness>-<model>-<effort>[-<tag>], spelled by harness_id, the model's id in data/prices.yml, settings.reasoning_effort
+# and tag (docs/contributing/registering-runs.md). Registered once, reused by every benchmark that runs this configuration.
+#
+# Read by the tooling: label, short, billing, price, modes, harness_id, tag, formerly. Everything else is for people.
+
+label: Codex CLI 0.157.0 + GPT-6 Luna, reasoning medium (OpenRouter)
+short: Codex CLI 0.157 · GPT-6 Luna · medium · OpenRouter
+harness_id: codex
+harness: >-
+  Codex CLI 0.157.0 as harbor_agents.codex_openrouter:CodexOpenRouter (robot_coding_bench dev/pingyue, commit c9449ce):
+  Codex over OpenRouter with web search off, without the model gateway; in limited mode the adapter ends the trial when
+  the session ends (harbor_agents/limited.py)
+route: OpenRouter, with the owner's API key (billed per token)
+model: openrouter/openai/gpt-6-luna
+settings:
+  reasoning_effort: medium
+  version: 0.157.0
+harbor: >-
+  RCB_MODEL=openrouter/openai/gpt-6-luna scripts/run_deepseek_openrouter.sh <task dir> --ak reasoning_effort=medium
+  --ak version=0.157.0 (limited: RCB_RESET_BUDGET=50 RCB_OBS_IMU=1 RCB_OBS_ROOM_CAMERA=1), one Harbor job per task and mode
+billing: openrouter
+price: openai/gpt-6-luna         # key in data/prices.yml
+modes: [unlimited, limited]
+since: 2026-09-24
