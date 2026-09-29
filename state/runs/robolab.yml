@@ -7,6 +7,18 @@ task_dir: "robolab-{task_dashed}-i00"
 runs:
   codex-gpt6_luna-xhigh:
     batch: robolab-lunacx-0925-2038
+    # 2026-09-28 21:20, user: "可以把它从网站上直接 take down，就直接删掉，我们全部重跑". The 2.0 RoboLab limited robot
+    # service reported a stale wrist_cam pose (Isaac Lab's TiledCamera caches its initial pose): after the arm moved,
+    # the pose it reported was up to about 16 cm / 23° off. Every limited trial ran with it; all are rerun on the fixed
+    # version. Their records stay in data/runs/ here (a local build shows them, marked); the public snapshot and the
+    # Hugging Face dataset no longer hold them.
+    withdrawn:
+      limited:
+        label: "rerun pending (2.0 wrist-camera pose bug)"
+        note: >-
+          the 2.0 limited robot service reported a stale wrist-camera pose (Isaac Lab's TiledCamera keeps its initial
+          pose): once the arm moved, it was up to about 16 cm / 23° off. Every limited trial ran with it; they are rerun
+          on the fixed version
     followups:  # arranged for one trial each; the note goes away once another trial replaces it
     - {task: clean_up_toys, mode: unlimited, trial: robolab-clean-up-toys-i00__3b6KY3P, note: "regrade queued on ws3: the replay
         timed out while another user's jobs filled the GPU; it replays again once 8 GiB are free"}

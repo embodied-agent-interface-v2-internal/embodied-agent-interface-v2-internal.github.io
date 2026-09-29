@@ -173,6 +173,20 @@ class BenchRun:
                 for f in (self.spec.get("followups") or []) if isinstance(f, dict)]
 
     @property
+    def withdrawn(self) -> dict[str, dict]:
+        """mode -> {label, note}: a mode whose results are taken off the site (`withdrawn:` in state/runs/<b>.yml), e.g.
+        every limited trial of a run, to be rerun after a bug in its robot service. The public snapshot leaves them out
+        (scripts/publish_runs.py) and their old log-page addresses lead to the task's page; every page reads "withdrawn"
+        for them, and they count in no statistic. The local data keeps them, and a local build their log pages."""
+        raw = self.spec.get("withdrawn") or {}
+        out = {}
+        for mode, w in (raw.items() if isinstance(raw, dict) else []):
+            w = w if isinstance(w, dict) else {"label": str(w)}
+            out[str(mode)] = {"label": sitemode.scrub_hosts(str(w.get("label") or "rerun pending")),
+                              "note": sitemode.scrub_hosts(str(w.get("note") or ""))}
+        return out
+
+    @property
     def not_counted(self) -> dict[tuple[str, str, str], str]:
         """(task, mode, trial) -> why: a trial that ran but whose result does not count (`not_counted:` in
         state/runs/<b>.yml), e.g. one that could not be won on its host. It reads "not counted", keeps its page, and
@@ -262,11 +276,15 @@ class BenchRun:
             if not self.data:
                 return {"in": True, "modes": {m: {"state": "nodata"} for m in self.modes}}
             got = (self.data.get("tasks") or {}).get(task) or {}
-            stopped, notes, void = self.stopped, self.notes, self.not_counted
+            stopped, notes, void, gone = self.stopped, self.notes, self.not_counted, self.withdrawn
             rerun_for = {(f.get("task"), f.get("mode"), f.get("trial")): f.get("note") for f in self.followups if f.get("note")}
             modes = {}
             for m in self.modes:
                 rec = got.get(m) or {"state": "queued"}
+                if m in gone:        # the whole mode taken off the site: whatever was collected for it
+                    modes[m] = {**rec, "state": "withdrawn", "withdrawn": gone[m]["label"],
+                                "withdrawn_note": gone[m]["note"], "state_was": rec.get("state")}
+                    continue
                 if self.closed and rec.get("state", "queued") == "queued":
                     rec = {**rec, "state": "notrun"}
                 if (task, m) in stopped:     # the importer's state stays in data/runs/ (and status.json) as it was

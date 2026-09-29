@@ -14,14 +14,14 @@ import sitemode
 
 # Order = how urgently a row wants attention; also the "Run state" sort order.
 STATES = ["stalled", "error", "running", "grading", "setup", "failed", "success", "queued", "notrun", "stopped",
-          "uncounted", "nodata"]
+          "uncounted", "withdrawn", "nodata"]
 # trials that count in no statistic (no trial count, rate, mean, time, token or cost total): stopped by us
 # (`stopped:` in state/runs/), or run but not counted, with the reason (`not_counted:`)
-UNCOUNTED = ("stopped", "uncounted")
+UNCOUNTED = ("stopped", "uncounted", "withdrawn")
 STATE_LABEL = {
     "stalled": "stalled", "error": "error", "running": "running", "grading": "grading",
     "setup": "setting up", "failed": "failed", "success": "success", "queued": "queued", "notrun": "not run",
-    "stopped": "stopped by us", "uncounted": "not counted",
+    "stopped": "stopped by us", "uncounted": "not counted", "withdrawn": "withdrawn",
     "nodata": "no data",
 }
 STATE_HELP = {
@@ -30,6 +30,8 @@ STATE_HELP = {
     "stopped": "stopped by us before it finished, or kept from starting (state/runs/ `stopped:`): counted in no statistic",
     "uncounted": "run, but its result does not count, for the reason given (state/runs/ `not_counted:`): counted in no "
                  "statistic",
+    "withdrawn": "taken off the site with every trial of its mode, for the reason given (state/runs/ `withdrawn:`): "
+                 "counted in no statistic",
     "nodata": "nothing collected for this run on this machine (its owner collects it: make runs)",
     "setup": "Harbor is building the trial's containers",
     "running": "the agent is working",
@@ -291,6 +293,9 @@ def title(rec: dict, mode: str, br: runsdb.BenchRun | None = None) -> str:
         bits.append(f"note: {rec['note']}")
     if rec.get("stopped"):
         bits.append(f"stopped by us: {rec['stopped']} (counted in no statistic)")
+    if rec.get("withdrawn"):
+        bits.append(f"withdrawn: {rec['withdrawn']}" + (f"; {rec['withdrawn_note']}" if rec.get("withdrawn_note") else "")
+                    + " (counted in no statistic)")
     if rec.get("uncounted"):
         bits.append(f"not counted: {rec['uncounted']} (its result: {rec.get('state_was') or '—'}; counted in no statistic)")
     return " · ".join(bits)

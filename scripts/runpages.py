@@ -131,11 +131,20 @@ def legend(counts: dict[str, int]) -> str:
         f'<span><i class="st-{k}"></i>{counts[k]} {lab}</span>' for k, lab, _ in SEGMENTS if counts.get(k)) + "</span>"
 
 
-def kpis(pairs: list, modes: list[str], progress_note: str, now: dt.datetime) -> str:
-    """The glanceable numbers of a set of trials: a stacked bar per mode, mean progress, agent time."""
+def kpis(pairs: list, modes: list[str], progress_note: str, now: dt.datetime, withdrawn: dict | None = None) -> str:
+    """The glanceable numbers of a set of trials: a stacked bar per mode, mean progress, agent time. A mode whose
+    results are withdrawn (`withdrawn:` in state/runs/) says so instead of numbers."""
     tot = runview.totals(pairs, now)
     out = []
     for mode in modes:
+        if withdrawn and mode in withdrawn:
+            w = withdrawn[mode]
+            out.append(
+                f'<div class="kpi kpi--mode kpi--withdrawn" title="{E(w["note"])}">'
+                f'<div class="kpi__top"><span class="kpi__name">{E(mode.capitalize())}</span>'
+                f'<span class="kpi__value kpi__value--off">withdrawn</span></div>'
+                f'<div class="kpi__sub">{E(w["label"])}</div></div>')
+            continue
         recs = [r for _, r in pairs if r.get("_mode") == mode and r.get("state") not in ("nodata",) + runview.UNCOUNTED]
         counts = _segments(recs)
         succ, done = counts.get("success", 0), sum(1 for r in recs if r.get("state") in runview.DONE)
@@ -524,7 +533,7 @@ def task_table(br: runsdb.BenchRun, bench: taskdb.Benchmark, now: dt.datetime, r
             f'data-tags="{" ".join(sorted(segs | flags))}">' + "".join(rows) + "</tbody>")
     labels = [(k, lab) for k, lab, _ in SEGMENTS] + [("logs", "records missing"), ("followup", "follow-up"),
                                                      ("stale", "host silent"), ("stopped", "stopped by us"),
-                                                     ("uncounted", "not counted"),
+                                                     ("uncounted", "not counted"), ("withdrawn", "withdrawn"),
                                                      ("excluded", "excluded")]
     chip_html = f'<button type="button" data-f="" class="is-on">All <b>{len(order)}</b></button>' + "".join(
         f'<button type="button" data-f="{k}"><i class="st-{k}"></i>{lab} <b>{chips[k]}</b></button>'
@@ -658,7 +667,8 @@ def benchmark_page(bench: taskdb.Benchmark) -> str:
                 if scope == "bench" and not n_own:
                     return _only_excluded(n_x)
                 tot = runview.totals(pairs, now)
-                return "".join([kpis(pairs, br.modes, note, now), cost_line(tot, br, pnote), metric_strip(pairs, br.metrics),
+                return "".join([kpis(pairs, br.modes, note, now, br.withdrawn), cost_line(tot, br, pnote),
+                                metric_strip(pairs, br.metrics),
                                 family_table(br, bench, scope),
                                 issue_chips(tot, pairs, data.get("hosts") or {}, filterable=True, followups=False)])
 
@@ -756,6 +766,8 @@ def overview() -> str:
                 link = f'{url(runview.runs_page(br.benchmark), root)}?run={E(rid)}'
                 extra = (f'<span class="rbench__x" title="tasks of this run excluded from the benchmark, not counted here">'
                          f"+ {x} excluded</span>" if x and scope == "bench" else "")
+                extra += "".join(f'<span class="rbench__x" title="{E(w["note"])}">{E(m)} withdrawn: {E(w["label"])}</span>'
+                                 for m, w in br.withdrawn.items())
                 rows.append(
                     f'<a class="rbench" href="{link}"><span class="rbench__name">{E(benches[br.benchmark].name)}'
                     + ('<span class="runtag runtag--default">default</span>' if br.default else "") + "</span>"
@@ -801,6 +813,8 @@ def overview() -> str:
                           if br.data else f"<span>{NO_DATA}</span>")
                        + (f'<span class="rcell__x" title="tasks of this run excluded from the benchmark, not counted">'
                           f"+ {x} excluded</span>" if x else "")
+                       + "".join(f'<span class="rcell__x" title="{E(w["note"])}">{E(m)} withdrawn</span>'
+                                 for m, w in br.withdrawn.items())
                        + ('<span class="runtag runtag--default">default</span>' if br.default else "")
                        + ('<span class="runtag runtag--closed">closed</span>' if br.closed else "") + "</a>")
         rows.append(row)
@@ -829,7 +843,8 @@ def overview() -> str:
                 + (runview.usd(xt["est"]) if xt["est_n"] else "—") + " est." if n_x else "—")]
         for m in modes:
             md = tot["modes"].get(m)
-            row.append(f"{md['done']}/{md['trials']} · {md['success']} ({_pct(md['success'], md['done'])})" if md else "—")
+            row.append("withdrawn" if m in br.withdrawn else
+                       f"{md['done']}/{md['trials']} · {md['success']} ({_pct(md['success'], md['done'])})" if md else "—")
         graded = [r for _, r in _pairs(br, bench) if r.get("state") in runview.DONE]
         figures = []
         for m in br.metrics:
@@ -873,7 +888,10 @@ def home_summary(root: str) -> str:
         cells = [link, f"{n_own}" + (f' <small>+ {n_x} excluded</small>' if n_x else "")]
         for mode in ("unlimited", "limited"):
             md = tot["modes"].get(mode)
-            cells.append(f'<b>{_pct(md["success"], md["done"])}</b> <small>{md["success"]}/{md["done"]}</small>' if md and md["done"] else "—")
+            w = br.withdrawn.get(mode)
+            cells.append(f'<span class="rt-none" title="{E(w["note"])}">withdrawn: {E(w["label"])}</span>' if w else
+                         f'<b>{_pct(md["success"], md["done"])}</b> <small>{md["success"]}/{md["done"]}</small>'
+                         if md and md["done"] else "—")
         mean = tot["progress_sum"] / tot["progress_n"] if tot["progress_n"] else None
         key = "q_score" if br.progress_key == "q_score" else br.progress_key
         pf = br.per_family
@@ -947,6 +965,43 @@ STUB = ('<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Moved
         'to <code>{new}</code>.</p></body></html>\n')
 
 
+WITHDRAWN_STUB = ('<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Withdrawn: {title}</title>'
+                  '<meta name="robots" content="noindex"><link rel="canonical" href="{to}">'
+                  '<meta http-equiv="refresh" content="0; url={to}">'
+                  '<script>location.replace("{to}");</script></head>'
+                  '<body><p>This trial log was withdrawn: {label}. {note} See <a href="{to}">the task\'s page</a>.</p>'
+                  '</body></html>\n')
+
+
+def _sentence(text: str) -> str:
+    """A note as a sentence: its first letter capitalised, without a final full stop (the caller adds one)."""
+    text = str(text).strip().rstrip(".")
+    return text[:1].upper() + text[1:]
+
+
+def withdrawn_stubs(pages: list[str]) -> list[tuple[str, str]]:
+    """(path, html) at the log-page addresses of a withdrawn mode (`withdrawn:` in state/runs/), under the run's id and
+    its former ids, where this build has no log page (the public site): each leads to the task's page, which says
+    "withdrawn". A local build keeps the pages themselves."""
+    have = set(pages)
+    formerly: dict[str, list[str]] = {}
+    for old, new in runsdb.aliases().items():
+        formerly.setdefault(new, []).append(old)
+    out = []
+    for bench in taskdb.benchmarks().values():
+        for br in runsdb.runs_of(bench.id):
+            for mode, w in br.withdrawn.items():
+                for tid in br.tasks:
+                    for slot in (mode, mode + "-prev"):
+                        if f"runs/{bench.id}/{br.run}/{tid}/{slot}.md" in have:
+                            continue
+                        for rid in [br.run] + formerly.get(br.run, []):
+                            out.append((f"runs/{bench.id}/{rid}/{tid}/{slot}/index.html", WITHDRAWN_STUB.format(
+                                to=E(f"../../../../../benchmarks/{bench.id}/tasks/{tid}/"), title=E(f"{tid} · {slot}"),
+                                label=E(w["label"]), note=E(_sentence(w["note"]) + ".") if w["note"] else "")))
+    return out
+
+
 def redirect_stubs(pages: list[str]) -> list[tuple[str, str]]:
     """(path, html) of a static redirect page at every former address of a log page: a run renamed (`formerly:` in
     data/agents/<run>.yml) keeps its old links working, runs/<b>/<former id>/<task>/<slot>/ -> runs/<b>/<id>/<task>/
@@ -1002,6 +1057,12 @@ def log_pages() -> list[tuple[str, str]]:
                         # a trial we stopped ourselves says so first (state/runs/ `stopped:`)
                         stop = (f'<p class="runlog__stopped">&#9209; <b>Stopped by us:</b> {E(rec["stopped"])}. '
                                 "This trial counts in no statistic.</p>") if slot == mode and rec.get("stopped") else ""
+                        # a withdrawn mode (state/runs/ `withdrawn:`): only a local build still has these pages
+                        w = br.withdrawn.get(mode)
+                        if w:
+                            stop += (f'<p class="runlog__stopped">⊘ <b>Withdrawn:</b> {E(w["label"])}'
+                                     + (f". {E(_sentence(w['note']))}" if w["note"] else "")
+                                     + ". This trial counts in no statistic and is not on the public site.</p>")
                         # a trial that ran but does not count (state/runs/ `not_counted:`): the reason first too
                         if slot == mode and rec.get("uncounted"):
                             stop += (f'<p class="runlog__stopped">⊘ <b>Not counted:</b> {E(str(rec["uncounted"]).rstrip("."))}. '

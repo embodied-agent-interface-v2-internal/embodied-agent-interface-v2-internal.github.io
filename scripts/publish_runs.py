@@ -198,9 +198,11 @@ def build(tmp: Path, only: set[str] | None = None) -> dict:
         if not data:
             continue
         tasks = {}
+        gone = br.withdrawn          # a mode taken off the site (`withdrawn:` in state/runs/): neither records nor logs
         for tid, modes in (data.get("tasks") or {}).items():
             # finished trials only: a trial still queued or running is published once it ends
-            done = {m: record(r) for m, r in modes.items() if isinstance(r, dict) and r.get("state") in FINISHED}
+            done = {m: record(r) for m, r in modes.items()
+                    if isinstance(r, dict) and r.get("state") in FINISHED and m not in gone}
             if done:
                 tasks[tid] = done
         run = {k: v for k, v in data.items() if k in RUN_KEYS}

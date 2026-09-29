@@ -35,7 +35,7 @@
 .st-logs, .st-stale { background: var(--st-error); }
 .st-followup { background: var(--md-accent-fg-color); }
 .st-excluded { background: transparent; box-shadow: inset 0 0 0 1px var(--rs-sub); }
-.st-stopped, .st-uncounted { background: repeating-linear-gradient(90deg, var(--st-queued) 0 2px, transparent 2px 4px); }
+.st-stopped, .st-uncounted, .st-withdrawn { background: repeating-linear-gradient(90deg, var(--st-queued) 0 2px, transparent 2px 4px); }
 
 /* ── one pill per mode of a run (scripts/runview.py pill_html, javascripts/tasklist.js runHtml) ──────── */
 .rpill {
@@ -66,7 +66,10 @@
 .rpill--queued   { --c: var(--st-queued); }
 .rpill--notrun   { --c: var(--st-queued); background: transparent; border-style: dashed; }
 .rpill--nodata   { --c: var(--st-queued); background: transparent; border-style: dotted; color: var(--rs-sub); }
-.rpill--stopped, .rpill--uncounted { --c: var(--st-queued); background: transparent; border-style: dashed; color: var(--rs-sub); }
+.rpill--stopped, .rpill--uncounted, .rpill--withdrawn { --c: var(--st-queued); background: transparent; border-style: dashed; color: var(--rs-sub); }
+/* a mode whose results are withdrawn (state/runs/ `withdrawn:`): its card says so instead of numbers */
+.kpi--withdrawn { opacity: 0.8; }
+.kpi__value.kpi__value--off { font-size: 1rem; color: var(--rs-sub); }
 .rpill--setup    { --c: var(--st-running); }
 .rpill--running  { --c: var(--st-running); }
 .rpill--grading  { --c: var(--st-grading); }

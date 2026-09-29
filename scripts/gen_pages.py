@@ -206,6 +206,9 @@ def gen_runs() -> None:
     # a renamed run's former log-page addresses redirect to the new ones (`formerly:` in data/agents/<run>.yml)
     for path, html in runpages.redirect_stubs([p for p, _ in pages]):
         write(path, html)
+    # a withdrawn mode's log pages (`withdrawn:` in state/runs/): their addresses lead to the task's page
+    for path, html in runpages.withdrawn_stubs([p for p, _ in pages]):
+        write(path, html)
     if sitemode.PUBLIC:
         # The log pages' data on the public site: the published snapshot (data/published_runs/<b>/<run>/<task>/
         # <slot>.json, scripts/publish_runs.py), served at runs-data/<b>/<run>/<task>/<slot>/log.json.
