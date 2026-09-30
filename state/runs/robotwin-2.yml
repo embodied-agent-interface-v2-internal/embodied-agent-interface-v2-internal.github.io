@@ -17,16 +17,16 @@ runs:
     batch: rt-luna-xh-0927
     # owner, 2026-09-29: one id for the configuration (harness, model, effort); RoboTwin ran it through Harbor's own agent
     harness: >-
-      Harbor's built-in codex agent (-a codex, Codex CLI 0.157.1) on the owner's ChatGPT login, not the CodexChatGPT
+      Harbor's built-in codex agent (-a codex; Codex CLI 0.157.1 limited, 0.158.0 unlimited) on the owner's ChatGPT login, not the CodexChatGPT
       wrapper the other benchmarks used: with the plain model id Codex applies ChatGPT's metadata for gpt-6-luna (its
       base instructions, verbosity low), and there is no model gateway (token counts are Harbor's per-trial totals)
     rerun_batches: [rt-luna-xh-rerun-0927]
-    modes: [limited]
-    closed: "limited mode only (rcb-limited/2.0, 2026-09-27); the unlimited mode was not run at this effort"
+    # unlimited added 2026-09-29 (Harbor job rt-gpt6luna-xhigh-unlimited, detailed reasoning summaries on), same batch id
     notes:
     - {task: pick_dual_bottles, mode: limited, trial: robotwin_2_0_pick_dual_bottles-l__96kfs6K, note: "rerun: in the first trial the robot service crashed while starting (the batch's first three trials started together), so the agent could send no action"}
     - {task: place_object_stand, mode: limited, trial: robotwin_2_0_place_object_stand__SbNySTL, note: "rerun: in the first trial the robot service crashed while starting (the batch's first three trials started together), so the agent could send no action"}
     - {task: shake_bottle, mode: limited, trial: robotwin_2_0_shake_bottle-limite__yiEcutt, note: "rerun: in the first trial the robot service crashed while starting (the batch's first three trials started together), so the agent could send no action"}
+    - {task: press_stapler, mode: unlimited, trial: robotwin_2_0_press_stapler__ceJ6A32, note: "regraded offline: the verifier ran out of GPU memory (OIDN) while other jobs shared the GPU and hung until Harbor's 1800 s verifier timeout, with no verdict; the same grader rerun on the collected trajectory, alone on the GPU, reads success (deterministic)"}
     tasks: &tasks
     - adjust_bottle
     - dump_bin_bigbin
