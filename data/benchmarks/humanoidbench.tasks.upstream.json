@@ -1,5 +1,5 @@
 {
-  "commit": "628c408",
+  "commit": "12fb1352",
   "tasks": [
     {
       "id": "loco_walk",
@@ -650,5 +650,5 @@
       "task_dir": "humanoidbench-loco-sit-simple-i00"
     }
   ],
-  "read": "2026-09-28"
+  "read": "2026-09-30"
 }

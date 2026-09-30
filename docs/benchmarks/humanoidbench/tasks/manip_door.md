@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 628c408
-  synced: '2026-09-28'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 12fb1352
+  synced: '2026-09-30'
   instruction: Walk to the door, press the handle, pull the door open towards the robot, and walk through it.
   env_id: h1-door-v0
   robot: Unitree H1 (19 actuators)

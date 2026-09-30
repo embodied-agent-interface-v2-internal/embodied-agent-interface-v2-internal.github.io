@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 628c408
-  synced: '2026-09-28'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 12fb1352
+  synced: '2026-09-30'
   instruction: 'Complete the four kitchen tasks, in order: microwave, kettle, bottom burner, light switch. Their goal configurations are not part of the observation; they are defined in the task''s source (OBS_ELEMENT_GOALS in humanoid_bench/envs/kitchen.py), which is in the image.'
   env_id: h1hand-kitchen-v0
   robot: Unitree H1 with two Shadow hands (61 actuators)

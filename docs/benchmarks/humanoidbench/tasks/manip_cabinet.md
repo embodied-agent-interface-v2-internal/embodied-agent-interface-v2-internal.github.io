@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 628c408
-  synced: '2026-09-28'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 12fb1352
+  synced: '2026-09-30'
   instruction: 'Open the cabinet''s compartments in order: slide open the sliding door, then pull out the drawer, then open one of the double doors and lift the cube from the drawer into that compartment, then open the flip-up door and lift the cube that started behind the double doors (not the one you put there) up into it.'
   env_id: h1hand-cabinet-v0
   robot: Unitree H1 with two Shadow hands (61 actuators)

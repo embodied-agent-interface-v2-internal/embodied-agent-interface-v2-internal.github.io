@@ -1,0 +1,63 @@
+# Curated task state for kinder.
+#
+# One block per task. Written by the site's Edit button and by hand; both are
+# fine. Task ids match docs/benchmarks/kinder/tasks/<id>.md.
+#
+#   status      keep | drop | needs-review | pending
+#   difficulty  unrated | easy | medium | hard | extreme
+#   labels      tier-2 ids from state/taxonomy.yml
+#   owner       bare GitHub handle
+#   note        free text; why you decided what you decided
+#
+# Task id = the family with underscores (our task directory kinder-<family>-i00). The 11 tasks are the ones
+# robot_coding_bench's scripts/kinder/subset.toml keeps of KinDER's 31 families, one variant each: every one `keep`,
+# its note why it was kept (the six Dynamic3D tasks whose goal a camera can see or a sentence can name, or the
+# screening of every other family, which GPT-6 Luna failed in limited mode) and the KinDER paper's challenges for its
+# family (scripts/import_kinder_tasks.py adds a NEW task with `status: keep` and never changes an existing entry).
+# dynamo is a fixture, not scored: `excluded`. Owner: williamzhangNU, who runs KinDER here. No difficulty or labels yet.
+
+tossing:
+  status: keep
+  owner: williamzhangNU
+  note: "Dynamic3D · challenges: dynamic"
+balance_beam:
+  status: keep
+  owner: williamzhangNU
+  note: "Dynamic3D · challenges: tool, dynamic"
+sweep_into_drawer:
+  status: keep
+  owner: williamzhangNU
+  note: "Dynamic3D · challenges: nonprehensile, tool, dynamic"
+scoop_pour:
+  status: keep
+  owner: williamzhangNU
+  note: "Dynamic3D · challenges: nonprehensile, tool, dynamic"
+shelf:
+  status: keep
+  owner: williamzhangNU
+  note: "Dynamic3D · challenges: spatial, geometric"
+constrained_cupboard:
+  status: keep
+  owner: williamzhangNU
+  note: "screening (failed in limited mode) · challenges: geometric"
+sweep_simple:
+  status: keep
+  owner: williamzhangNU
+  note: "screening (failed in limited mode) · challenges: nonprehensile, tool"
+sort_blocks:
+  status: keep
+  owner: williamzhangNU
+  note: "screening (failed in limited mode) · challenges: spatial"
+obstruction_3d:
+  status: keep
+  owner: williamzhangNU
+  note: "screening (failed in limited mode) · Kinematic3D · challenges: geometric"
+packing_3d:
+  status: keep
+  owner: williamzhangNU
+  note: "screening (failed in limited mode) · Kinematic3D · challenges: geometric"
+dynamo:
+  status: keep
+  owner: williamzhangNU
+  note: "fixture (Dynamic3D · challenges: nonprehensile)"
+  excluded: "a fixture, not scored: it checks the pipeline end to end (drive into a floor square past three chairs)"

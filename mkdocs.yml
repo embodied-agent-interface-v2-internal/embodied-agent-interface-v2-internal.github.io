@@ -187,6 +187,10 @@ nav:
           - benchmarks/humanoidbench/index.md
           - Capability coverage: benchmarks/humanoidbench/coverage.md
           - About the benchmark: benchmarks/humanoidbench/about.md
+      - KinDER:
+          - benchmarks/kinder/index.md
+          - Capability coverage: benchmarks/kinder/coverage.md
+          - About the benchmark: benchmarks/kinder/about.md
   - Contributing:
       - contributing/index.md
       - Task page guide: contributing/task-page-guide.md

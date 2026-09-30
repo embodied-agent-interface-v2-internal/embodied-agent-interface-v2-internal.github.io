@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 628c408
-  synced: '2026-09-28'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 12fb1352
+  synced: '2026-09-30'
   instruction: The robot starts a short walk in front of the chair, its heading turned by a random angle of up to about 100° from facing straight away from it. Get to the chair, sit down on it, and stay seated upright and still.
   env_id: h1-sit_hard-v0
   robot: Unitree H1 (19 actuators)

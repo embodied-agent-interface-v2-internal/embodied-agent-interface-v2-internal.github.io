@@ -20,7 +20,7 @@ BIN    := $(VENV)/bin
 .PHONY: help venv install serve build validate strict check guard public publish-runs export-run-media \
         compress-run-media upload-run-media publish links demos edit \
         runs runs-watch sync \
-        sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-humanoidbench sync-verified sync-dry clean
+        sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-humanoidbench sync-kinder sync-verified sync-dry clean
 
 help: ## Show this help
 	@grep -hE '^[a-z-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -151,7 +151,7 @@ upload-run-media: export-run-media compress-run-media ## Export, compress and up
 # Each benchmark syncs from its own upstream. BEHAVIOR reads a public gallery;
 # RoboWits and RoboLab read a source checkout (pass it in), because their tasks
 # are defined in code. All three are idempotent and write only `upstream:`.
-sync: sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-humanoidbench ## Re-sync every benchmark from its upstream
+sync: sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-humanoidbench sync-kinder ## Re-sync every benchmark from its upstream
 
 sync-behavior: ## Re-sync BEHAVIOR-1K task pages from the official gallery
 	$(BIN)/python scripts/import_behavior_tasks.py
@@ -198,6 +198,17 @@ HUMANOIDBENCH_SCENES ?= ../robot_coding_bench/jobs/results/humanoidbench/assets/
 sync-humanoidbench: ## Re-sync HumanoidBench from a robot_coding_bench commit (HUMANOIDBENCH_COMMIT=..., HUMANOIDBENCH_SCENES=...)
 	$(BIN)/python scripts/import_humanoidbench_tasks.py --source $(HUMANOIDBENCH_SRC) --commit $(HUMANOIDBENCH_COMMIT) \
 	    $(if $(wildcard $(HUMANOIDBENCH_SCENES)),--scenes $(HUMANOIDBENCH_SCENES),)
+
+# KinDER: our selection of it is defined in robot_coding_bench (scripts/kinder/subset.toml, facts.json,
+# tasks/kinder-<family>-i00): read from a commit of the clone with `git archive`, never a checkout.
+# KINDER_SCENES: the t = 0 room-camera stills (the results site's assets/cameras/<family>/room_camera.png), if present.
+KINDER_SRC    ?= ../robot_coding_bench
+KINDER_COMMIT ?= origin/dev/pingyue
+KINDER_SCENES ?= ../robot_coding_bench/jobs/results/kinder/assets/cameras
+
+sync-kinder: ## Re-sync KinDER from a robot_coding_bench commit (KINDER_COMMIT=..., KINDER_SCENES=...)
+	$(BIN)/python scripts/import_kinder_tasks.py --source $(KINDER_SRC) --commit $(KINDER_COMMIT) \
+	    $(if $(wildcard $(KINDER_SCENES)),--scenes $(KINDER_SCENES),)
 
 # The BDDL goals and dataset statistics come from the licensed BEHAVIOR download,
 # so the extract step runs inside the simulator image; see the script's docstring.
