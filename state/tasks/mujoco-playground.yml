@@ -1,0 +1,137 @@
+# Curated task state for mujoco-playground.
+#
+# One block per task. Written by the site's Edit button and by hand; both are
+# fine. Task ids match docs/benchmarks/mujoco-playground/tasks/<id>.md.
+#
+#   status      keep | drop | needs-review | pending
+#   difficulty  unrated | easy | medium | hard | extreme
+#   labels      tier-2 ids from state/taxonomy.yml
+#   owner       bare GitHub handle
+#   note        free text; why you decided what you decided
+#
+# First pass 2026-09-29 by Claude for the owner: labels by the guide's test (required by the goal, not visible in the
+# demo); difficulty from the oracle's and the agent's results; status left pending (triage is the owner's call).
+
+aero_cube_rotate_z_axis:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - in-hand
+  - dynamics
+  - horizon-atomic
+  - gen-layout
+  note: 'Same as leap_cube_rotate_z_axis on the TetherIA Aero hand. RL-policy only upstream; not built. gen-layout:
+    Playground randomizes the start per episode (our tasks freeze one seed).'
+  owner: JamesKrW
+  status: pending
+aloha_hand_over:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - horizon-composite
+  - gen-layout
+  note: 'bimanual: the left arm must pass the box to the right arm, which alone holds it at the target (the left
+    may not touch it at the end). composite: pick, hand over, place. Evidence: our scripted oracle succeeds; Codex
+    + GPT-6 Luna xhigh unlimited succeeded, limited failed. gen-layout: Playground randomizes the start per episode
+    (our tasks freeze one seed).'
+  owner: JamesKrW
+  status: pending
+aloha_single_peg_insertion:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - bimanual
+  - transport
+  - precision-fit
+  - horizon-composite
+  - gen-layout
+  note: 'bimanual: one arm holds the socket, the other the peg, both lifted. precision-fit: the tip within 5 mm
+    of the socket axis, 25 % of the depth inside. Evidence: scripted oracle succeeds; the agent succeeded in the
+    pilot, failed in the main run (unlimited, 60 min timeout) and in limited. gen-layout: Playground randomizes
+    the start per episode (our tasks freeze one seed).'
+  owner: JamesKrW
+  status: pending
+leap_cube_reorient:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - in-hand
+  - horizon-atomic
+  - gen-layout
+  note: 'in-hand: the cube is reoriented by the LEAP hand''s fingers to a goal orientation. Playground solves it
+    with a trained RL policy; no scripted solution, not built. gen-layout: Playground randomizes the start per episode
+    (our tasks freeze one seed).'
+  owner: JamesKrW
+  status: pending
+leap_cube_rotate_z_axis:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - in-hand
+  - dynamics
+  - horizon-atomic
+  - gen-layout
+  note: 'in-hand, and dynamics: the reward is rotation speed about z without dropping the cube, so momentum is the
+    task. RL-policy only upstream; not built. gen-layout: Playground randomizes the start per episode (our tasks
+    freeze one seed).'
+  owner: JamesKrW
+  status: pending
+panda_open_cabinet:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - articulated
+  - horizon-atomic
+  - gen-layout
+  note: 'articulated: the handle''s slide fixes the path; nothing is carried, so no transport. Evidence: scripted
+    oracle succeeds; the agent succeeded unlimited, failed limited. gen-layout: Playground randomizes the start
+    per episode (our tasks freeze one seed).'
+  owner: JamesKrW
+  status: pending
+panda_pick_cube:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-layout
+  note: 'Plain pick-and-place to a target position. Not built yet. gen-layout: Playground randomizes the start per
+    episode (our tasks freeze one seed).'
+  owner: JamesKrW
+  status: pending
+panda_pick_cube_cartesian:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-layout
+  note: 'Pick up and lift to a fixed location through a Cartesian controller; the variant is built for pixel observations
+    and sim2real. Not built yet. gen-layout: Playground randomizes the start per episode (our tasks freeze one seed).'
+  owner: JamesKrW
+  status: pending
+panda_pick_cube_orientation:
+  difficulty: medium
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-layout
+  note: 'Pick-and-place where the target also fixes the orientation (15 degrees); still one grasp and one move.
+    Evidence: scripted oracle succeeds; the agent succeeded unlimited, failed limited. gen-layout: Playground randomizes
+    the start per episode (our tasks freeze one seed).'
+  owner: JamesKrW
+  status: pending
+panda_robotiq_push_cube:
+  difficulty: easy
+  labels:
+  - scale-tabletop
+  - nonprehensile
+  - horizon-atomic
+  - gen-layout
+  note: 'nonprehensile: the cube is pushed to the target, not grasped. Not built yet. gen-layout: Playground randomizes
+    the start per episode (our tasks freeze one seed).'
+  owner: JamesKrW
+  status: pending
