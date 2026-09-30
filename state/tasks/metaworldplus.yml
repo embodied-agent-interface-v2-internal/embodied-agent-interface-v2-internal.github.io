@@ -1,0 +1,470 @@
+# Curated task state for metaworldplus.
+#
+# One block per task. Written by the site's Edit button and by hand; both are
+# fine. Task ids match docs/benchmarks/metaworldplus/tasks/<id>.md.
+#
+#   status      keep | drop | needs-review | pending
+#   difficulty  unrated | easy | medium | hard | extreme
+#   labels      tier-2 ids from state/taxonomy.yml
+#   owner       bare GitHub handle
+#   note        free text; why you decided what you decided
+#
+# Task id = <family>_iNN (our task directory metaworldplus-<environment>-privileged-iNN).
+# labels (2026-09-29): what each environment's native success condition requires, read from the pinned upstream
+# source (every instance of an environment shares them); gen-fixed because every task is one frozen instance. No
+# difficulty or triage yet: upstream Meta-World publishes no per-task difficulty, and none has been decided here.
+
+assembly_i00:
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - horizon-atomic
+  - gen-fixed
+assembly_i01:
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - horizon-atomic
+  - gen-fixed
+assembly_i02:
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - horizon-atomic
+  - gen-fixed
+basketball_i00:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+bin_picking_i00:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+box_close_i00:
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - horizon-atomic
+  - gen-fixed
+button_press_i00:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - horizon-atomic
+  - gen-fixed
+button_press_topdown_i00:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - horizon-atomic
+  - gen-fixed
+button_press_topdown_wall_i00:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - geometric-constraint
+  - horizon-atomic
+  - gen-fixed
+button_press_wall_i00:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - geometric-constraint
+  - horizon-atomic
+  - gen-fixed
+button_press_wall_i01:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - geometric-constraint
+  - horizon-atomic
+  - gen-fixed
+button_press_wall_i02:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - geometric-constraint
+  - horizon-atomic
+  - gen-fixed
+coffee_button_i00:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - horizon-atomic
+  - gen-fixed
+coffee_pull_i00:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+  note: 'Grasp-and-pull: the mug is moved to the goal by hand (the upstream policy
+    grasps it).'
+coffee_push_i00:
+  labels:
+  - scale-tabletop
+  - nonprehensile
+  - horizon-atomic
+  - gen-fixed
+dial_turn_i00:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - horizon-atomic
+  - gen-fixed
+disassemble_i00:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+door_close_i00:
+  labels:
+  - scale-tabletop
+  - articulated
+  - horizon-atomic
+  - gen-fixed
+door_lock_i00:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - horizon-atomic
+  - gen-fixed
+door_open_i00:
+  labels:
+  - scale-tabletop
+  - articulated
+  - horizon-atomic
+  - gen-fixed
+door_open_i01:
+  labels:
+  - scale-tabletop
+  - articulated
+  - horizon-atomic
+  - gen-fixed
+door_open_i02:
+  labels:
+  - scale-tabletop
+  - articulated
+  - horizon-atomic
+  - gen-fixed
+door_unlock_i00:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - horizon-atomic
+  - gen-fixed
+drawer_close_i00:
+  labels:
+  - scale-tabletop
+  - articulated
+  - horizon-atomic
+  - gen-fixed
+drawer_open_i00:
+  labels:
+  - scale-tabletop
+  - articulated
+  - horizon-atomic
+  - gen-fixed
+drawer_open_i01:
+  labels:
+  - scale-tabletop
+  - articulated
+  - horizon-atomic
+  - gen-fixed
+drawer_open_i02:
+  labels:
+  - scale-tabletop
+  - articulated
+  - horizon-atomic
+  - gen-fixed
+faucet_close_i00:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - horizon-atomic
+  - gen-fixed
+faucet_open_i00:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - horizon-atomic
+  - gen-fixed
+hammer_i00:
+  labels:
+  - scale-tabletop
+  - transport
+  - tool-use
+  - horizon-composite
+  - gen-fixed
+  note: Grasp the hammer, then drive the nail with it. The nail yields to a steady
+    push under position control, so no force or dynamics label.
+hammer_i01:
+  labels:
+  - scale-tabletop
+  - transport
+  - tool-use
+  - horizon-composite
+  - gen-fixed
+  note: Grasp the hammer, then drive the nail with it. The nail yields to a steady
+    push under position control, so no force or dynamics label.
+hammer_i02:
+  labels:
+  - scale-tabletop
+  - transport
+  - tool-use
+  - horizon-composite
+  - gen-fixed
+  note: Grasp the hammer, then drive the nail with it. The nail yields to a steady
+    push under position control, so no force or dynamics label.
+hand_insert_i00:
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - horizon-atomic
+  - gen-fixed
+handle_press_i00:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - horizon-atomic
+  - gen-fixed
+handle_press_side_i00:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - horizon-atomic
+  - gen-fixed
+handle_pull_i00:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - horizon-atomic
+  - gen-fixed
+handle_pull_side_i00:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - horizon-atomic
+  - gen-fixed
+lever_pull_i00:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - horizon-atomic
+  - gen-fixed
+peg_insert_side_i00:
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - horizon-atomic
+  - gen-fixed
+peg_insert_side_i01:
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - horizon-atomic
+  - gen-fixed
+peg_insert_side_i02:
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - horizon-atomic
+  - gen-fixed
+peg_unplug_side_i00:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+pick_out_of_hole_i00:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+pick_place_i00:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+pick_place_i01:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+pick_place_i02:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+pick_place_wall_i00:
+  labels:
+  - scale-tabletop
+  - transport
+  - geometric-constraint
+  - horizon-atomic
+  - gen-fixed
+plate_slide_back_i00:
+  labels:
+  - scale-tabletop
+  - nonprehensile
+  - horizon-atomic
+  - gen-fixed
+plate_slide_back_side_i00:
+  labels:
+  - scale-tabletop
+  - nonprehensile
+  - horizon-atomic
+  - gen-fixed
+plate_slide_i00:
+  labels:
+  - scale-tabletop
+  - nonprehensile
+  - horizon-atomic
+  - gen-fixed
+plate_slide_side_i00:
+  labels:
+  - scale-tabletop
+  - nonprehensile
+  - horizon-atomic
+  - gen-fixed
+push_back_i00:
+  labels:
+  - scale-tabletop
+  - nonprehensile
+  - horizon-atomic
+  - gen-fixed
+push_i00:
+  labels:
+  - scale-tabletop
+  - nonprehensile
+  - horizon-atomic
+  - gen-fixed
+push_i01:
+  labels:
+  - scale-tabletop
+  - nonprehensile
+  - horizon-atomic
+  - gen-fixed
+push_i02:
+  labels:
+  - scale-tabletop
+  - nonprehensile
+  - horizon-atomic
+  - gen-fixed
+push_wall_i00:
+  labels:
+  - scale-tabletop
+  - nonprehensile
+  - geometric-constraint
+  - horizon-atomic
+  - gen-fixed
+reach_i00:
+  labels:
+  - scale-tabletop
+  - horizon-atomic
+  - gen-fixed
+  note: 'No contact label: only the gripper has to reach the goal marker.'
+reach_wall_i00:
+  labels:
+  - scale-tabletop
+  - geometric-constraint
+  - horizon-atomic
+  - gen-fixed
+  note: 'No contact label: only the gripper has to reach the goal, around the wall.'
+shelf_place_i00:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+soccer_i00:
+  labels:
+  - scale-tabletop
+  - nonprehensile
+  - horizon-atomic
+  - gen-fixed
+stick_pull_i01:
+  labels:
+  - scale-tabletop
+  - transport
+  - tool-use
+  - horizon-composite
+  - gen-fixed
+stick_pull_i02:
+  labels:
+  - scale-tabletop
+  - transport
+  - tool-use
+  - horizon-composite
+  - gen-fixed
+stick_pull_i03:
+  labels:
+  - scale-tabletop
+  - transport
+  - tool-use
+  - horizon-composite
+  - gen-fixed
+stick_push_i00:
+  labels:
+  - scale-tabletop
+  - transport
+  - tool-use
+  - horizon-composite
+  - gen-fixed
+stick_push_i01:
+  labels:
+  - scale-tabletop
+  - transport
+  - tool-use
+  - horizon-composite
+  - gen-fixed
+stick_push_i02:
+  labels:
+  - scale-tabletop
+  - transport
+  - tool-use
+  - horizon-composite
+  - gen-fixed
+sweep_i00:
+  labels:
+  - scale-tabletop
+  - nonprehensile
+  - horizon-atomic
+  - gen-fixed
+  note: Sweep the puck to the table edge; nonprehensile, not surface treatment (no
+    particles).
+sweep_into_i00:
+  labels:
+  - scale-tabletop
+  - nonprehensile
+  - horizon-atomic
+  - gen-fixed
+window_close_i00:
+  labels:
+  - scale-tabletop
+  - articulated
+  - horizon-atomic
+  - gen-fixed
+window_open_i00:
+  labels:
+  - scale-tabletop
+  - articulated
+  - horizon-atomic
+  - gen-fixed

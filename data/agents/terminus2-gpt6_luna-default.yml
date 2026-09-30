@@ -1,0 +1,31 @@
+# One agent run: harness + model + settings. The file name is the run id that state/runs/<benchmark>.yml refers to:
+# <harness>-<model>-<effort>[-<tag>], spelled by harness_id, the model's id in data/prices.yml, settings.reasoning_effort
+# and tag (docs/contributing/registering-runs.md). Registered once, reused by every benchmark that runs this configuration.
+#
+# Read by the tooling: label, short, billing, price, modes, harness_id, tag, formerly. Everything else is for people.
+
+label: Terminus-2 2.0.0 + GPT-6 Luna, default reasoning (OpenRouter)
+# the run picker's text: harness + version · model · reasoning effort · access (billing)
+short: Terminus-2 2.0 · GPT-6 Luna · default · OpenRouter
+harness_id: terminus2
+harness: >-
+  Harbor's terminus-2 agent 2.0.0 (context summarisation on, no turn limit, Chat Completions); in the limited mode our
+  RGB bridge (limited-rgb-bridge-v1) attaches the latest observed camera images to the next model turn
+route: OpenRouter (the lab's API key), Chat Completions
+model: openrouter/openai/gpt-6-luna
+settings:
+  # no reasoning effort was set, so the model's default applied
+  reasoning_effort: default
+  api_base: https://openrouter.ai/api/v1
+  enable_summarize: true
+  max_turns: null
+  use_responses_api: false
+harbor: >-
+  Harbor job config: agent terminus-2, model_name openrouter/openai/gpt-6-luna, kwargs api_base=https://openrouter.ai/api/v1,
+  enable_summarize=true, use_responses_api=false, max_turns=null (robot_coding_bench scripts/vlabench/run_openrouter.py
+  and scripts/vlabench/limited/run.py, one Harbor job per task and mode); no reasoning effort was set, so the model's
+  default applied
+billing: openrouter             # OpenRouter reported a charge per response; this harness keeps no gateway log for the site
+price: openai/gpt-6-luna         # key in data/prices.yml
+modes: [unlimited, limited]
+since: 2026-09-24

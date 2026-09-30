@@ -3,14 +3,22 @@
 Reads only what every trial keeps, never a credential (the model gateway never logs one):
 - agent/gateway.jsonl: every model request. Its arrival time `t` and duration `latency_s`; the response (what the model decided: its words,
   its tool calls); and the request's tail (the previous tool call and its output, with any image the model was shown);
-- artifacts/data/episode.jsonl (limited): every robot call of the episode, with the note the agent gave it;
+- agent/trajectory.json, only for a trial that ran without our gateway (no request in gateway.jsonl): Harbor's ATIF
+  trajectory, written when the agent ends. Each agent step is one answered model request: its words, tool calls,
+  token counts and the tool outputs (with any image the model was shown). It keeps no request's start or duration and
+  no failed request, so a request is drawn from when its input was complete (the prompt, or the last tool output: the
+  step's time plus the tool's reported wall time, or the wait a Terminus keystroke asked for) to the step's time. A
+  readable reasoning summary (Terminus over OpenRouter; Codex keeps its reasoning encrypted) is kept as the step's
+  `think`, which the page does not show;
+- artifacts/data/episode.jsonl (limited): every robot call of the episode, with the note the agent gave it; where a
+  trial has none, its trusted recording (artifacts/trusted-recording/events.jsonl: every observation and control);
 - verifier/replay.mp4 and replay.last.png: the graded replay, shown only when the MP4 is complete (a render cut off
   or crashed mid-write leaves a file without its index, which no player opens: the page then says so);
 - artifacts/app/output/ (only when there is no replay: the agent handed in no trajectory): the newest images the
   agent saved there and its gen.py, the closest thing to its last attempt.
 
 The gateway log is complete while the trial runs (Codex writes its own session only at the end), so a running trial
-gets a live page too. Writes log.json, img/<n>.<ext> (the images the model saw) and replay.mp4 / replay.png.
+gets a live page too (a trial without the gateway gets its page once the agent ends). Writes log.json, img/<n>.<ext> (the images the model saw) and replay.mp4 / replay.png.
 Called by scripts/import_runs.py, with `extra` from the run's local-only data/runs/<benchmark>/<run>.backfill.yml:
 `note` (a line shown on the page), `episode` (a robot call log recovered elsewhere, used when the trial kept none),
 `video` (a replay rendered again later from the recorded trajectory, shown in place of the graded replay's own video
@@ -20,6 +28,7 @@ and this reason).
 
 from __future__ import annotations
 
+import ast
 import base64
 import hashlib
 import json
@@ -32,7 +41,7 @@ CMD = re.compile(r'\bcmd\s*:\s*("(?:[^"\\]|\\.)*")')
 SSE = re.compile(r"^data:\s*(\{.*\})\s*$", re.M)
 WALL = re.compile(r"Wall time ([\d.]+) seconds")
 HEAD, TAIL = 1800, 700            # characters of a tool output kept on the page (head + tail)
-VERSION = 4                       # bump to rebuild every page after a change here
+VERSION = 5                       # bump to rebuild every page after a change here
 SNAPSHOTS = 12                    # newest agent images shown when a run has no replay
 
 
@@ -62,6 +71,128 @@ def _script(inp: str) -> dict:
     if len(cmds) == 1 and (inp or "").count("await tools.") == 1:
         return {"cmd": cmds[0]}
     return {"code": inp or ""}
+
+
+def _output(step: dict, parts: list, out: Path, seen: dict) -> None:
+    """Fill a tool run step with its output: response-style parts (text, and images the model was shown)."""
+    texts, imgs = [], []
+    for part in parts:
+        if part.get("type") in ("input_text", "output_text", "text"):
+            texts.append(part.get("text") or "")
+        elif part.get("type") == "input_image":
+            name = _save_image(part.get("image_url"), out, seen)
+            if name:
+                imgs.append(name)
+    text = "".join(texts)
+    head = text.split("\n", 1)[0]
+    step["status"] = ("failed" if head.startswith("Script failed") else
+                      "background" if head.startswith("Script running") else "ok")
+    wall = WALL.search(text[:200])
+    step["wall"] = float(wall.group(1)) if wall else None
+    body = re.sub(r"^Script [^\n]*\n(Wall time [^\n]*\n)?(Output:\n)?", "", text, count=1)
+    step["out"], step["n"] = _clip(body)
+    if imgs:
+        step["img"] = imgs
+
+
+def _when(stamp) -> float | None:
+    try:
+        return datetime.fromisoformat(str(stamp).replace("Z", "+00:00")).timestamp()
+    except ValueError:
+        return None
+
+
+def _parts(content) -> list[dict]:
+    """An ATIF message or tool output as response-style parts. Codex's tool outputs arrive as the repr of its list."""
+    if isinstance(content, str) and content.startswith("[{"):
+        try:
+            content = ast.literal_eval(content)
+        except (ValueError, SyntaxError, MemoryError, RecursionError):
+            pass
+    if isinstance(content, str):
+        return [{"type": "input_text", "text": content}]
+    return [p for p in content or [] if isinstance(p, dict)] if isinstance(content, list) else []
+
+
+def _atif(src: Path, out: Path, seen: dict) -> tuple[float | None, list, list]:
+    """(t0, calls, steps) from Harbor's ATIF trajectory (see the module docstring)."""
+    try:
+        traj = json.loads((src / "agent" / "trajectory.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None, [], []
+    rows = [(_when(s.get("timestamp")), s) for s in traj.get("steps") or [] if isinstance(s, dict)]
+    rows = [(t, s) for t, s in rows if t is not None]
+    if not rows:
+        return None, [], []
+    t0 = min(t for t, _ in rows)
+    calls, steps, ready, running = [], [], 0.0, []
+    for t, s in rows:
+        t = round(t - t0, 1)
+        for step in running:            # a tool's output is in before the model's next answer
+            step["te"] = min(step["te"], t)
+        running = []
+        if s.get("source") != "agent":
+            ready = t
+            continue
+        m = s.get("metrics") or {}
+        calls.append([min(ready, t), t, 200, m.get("prompt_tokens"), m.get("cached_tokens"), m.get("completion_tokens"),
+                      (m.get("extra") or {}).get("reasoning_output_tokens")])
+        ready, first = t, len(steps)
+        text = "".join(p.get("text") or "" for p in _parts(s.get("message")) if p.get("type") in ("input_text", "text"))
+        if text.strip():
+            steps.append({"k": "say", "t": t, "text": text.strip()})
+        results = {r.get("source_call_id"): r for r in (s.get("observation") or {}).get("results") or []
+                   if isinstance(r, dict)}
+        for tc in s.get("tool_calls") or []:
+            args = tc.get("arguments") if isinstance(tc.get("arguments"), dict) else {}
+            step = {"k": "run", "t": t, "tool": tc.get("function_name") or "tool"}
+            if isinstance(args.get("input"), str):              # Codex code mode: the script it ran
+                step.update(_script(args["input"]))
+            elif isinstance(args.get("keystrokes"), str):       # Terminus: the keys it typed into its terminal
+                step["cmd"] = args["keystrokes"] or f"(no keys: waits {args.get('duration', 0)} s for output)"
+            elif args:
+                step["code"] = json.dumps(args, ensure_ascii=False, indent=1)
+            r = results.get(tc.get("tool_call_id"))
+            if r is not None:
+                _output(step, _parts(r.get("content")), out, seen)
+                wait = step["wall"] if step["wall"] is not None else args.get("duration")
+                step["te"] = round(t + (wait if isinstance(wait, (int, float)) else 0), 1)
+                ready = max(ready, step["te"])
+                running.append(step)
+            steps.append(step)
+        if s.get("reasoning_content") and len(steps) > first:
+            steps[first]["think"] = str(s["reasoning_content"]).strip()
+    return t0, calls, steps
+
+
+def _jsonl(path: Path):
+    for line in path.open(errors="replace"):
+        try:
+            yield json.loads(line)
+        except ValueError:
+            continue
+
+
+def _recording(path: Path):
+    """A trusted recording's events (artifacts/trusted-recording/events.jsonl, robot_coding_bench's limited tasks) in
+    episode.jsonl's shape: every observation and every control is one robot call (a control is one action, which the
+    agent sends one at a time or in batches)."""
+    call = 0
+    for e in _jsonl(path):
+        kind, ts = e.get("kind"), _when(e.get("at"))
+        if kind == "agent_start":
+            yield {"ev": "start", "ts": ts}
+        elif kind == "observation":
+            call += 1
+            yield {"ev": "observe", "ts": ts, "call": call, "type": None if e.get("camera") is None else f"camera {e['camera']}"}
+        elif kind == "action_end":
+            call += 1
+            yield {"ev": "step", "ts": ts, "call": call, "control_steps": 1}
+        elif kind == "request_rejected":
+            call += 1
+            yield {"ev": "rejected", "ts": ts, "call": call}
+        elif kind == "episode_end":
+            yield {"ev": "end", "ts": ts, "reason": e.get("reason"), "success": e.get("online_success"), "error": e.get("error")}
 
 
 def _clip(text: str) -> tuple[str, int]:
@@ -137,25 +268,9 @@ def build(src: Path, out: Path, meta: dict, extra: dict | None = None) -> dict:
             step = pending.pop(it.get("call_id"), None)
             if step is None:
                 continue
-            texts, imgs, o = [], [], it.get("output")
-            for part in ([{"type": "input_text", "text": o}] if isinstance(o, str) else (o or [])):
-                if part.get("type") in ("input_text", "output_text"):
-                    texts.append(part.get("text") or "")
-                elif part.get("type") == "input_image":
-                    name = _save_image(part.get("image_url"), out, images)
-                    if name:
-                        imgs.append(name)
-            text = "".join(texts)
-            head = text.split("\n", 1)[0]
-            step["status"] = ("failed" if head.startswith("Script failed") else
-                              "background" if head.startswith("Script running") else "ok")
-            wall = WALL.search(text[:200])
-            step["wall"] = float(wall.group(1)) if wall else None
-            body = re.sub(r"^Script [^\n]*\n(Wall time [^\n]*\n)?(Output:\n)?", "", text, count=1)
-            step["out"], step["n"] = _clip(body)
+            o = it.get("output")
+            _output(step, [{"type": "input_text", "text": o}] if isinstance(o, str) else (o or []), out, images)
             step["te"] = start
-            if imgs:
-                step["img"] = imgs
         items, usage = _sse(x.get("response") or "")
         det = usage.get("output_tokens_details") or {}
         cached = (usage.get("input_tokens_details") or {}).get("cached_tokens")
@@ -171,6 +286,8 @@ def build(src: Path, out: Path, meta: dict, extra: dict | None = None) -> dict:
                 step.update(_script(it.get("input") if it.get("type") == "custom_tool_call" else it.get("arguments")))
                 steps.append(step)
                 pending[it.get("call_id")] = step
+    if not recs:                          # ran without our gateway: Harbor's trajectory, once the agent has ended
+        t0, calls, steps = _atif(src, out, images)
 
     robot = []
     # the sim service writes /data, or /out where /data is a licensed dataset mount (BEHAVIOR)
@@ -179,12 +296,10 @@ def build(src: Path, out: Path, meta: dict, extra: dict | None = None) -> dict:
     if not ep.is_file() and extra.get("episode") and Path(extra["episode"]).is_file():
         ep = Path(extra["episode"])       # recovered elsewhere (e.g. from a stopped sim container); `note` says where
     ended = {}                            # how the live episode ended: its `end` reason and the first simulator error
-    if t0 is not None and ep.is_file():
-        for line in ep.open(errors="replace"):
-            try:
-                e = json.loads(line)
-            except ValueError:
-                continue
+    recording = src / "artifacts" / "trusted-recording" / "events.jsonl"
+    events = _jsonl(ep) if ep.is_file() else _recording(recording) if recording.is_file() else []
+    if t0 is not None:
+        for e in events:
             if e.get("ev") == "end" and e.get("reason"):
                 ended["reason"] = e["reason"]
             if e.get("error") and "error" not in ended:

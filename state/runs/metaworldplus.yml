@@ -1,0 +1,95 @@
+# MetaWorld+'s agent runs. Owned by the benchmark's owner, curated by hand like everything in state/.
+# Format and field meanings: docs/contributing/registering-runs.md (and the header of state/runs/behavior-1k.yml).
+
+default: codex-gpt6_luna-high
+# task id <family>_iNN -> its job's task directory metaworldplus-<family with dashes>-iNN. Our runner
+# (robot_coding_bench scripts/metaworldplus/run_codex.py) names its Harbor jobs <mode>-<slug> under its experiment
+# directory; robot_coding_bench scripts/site_media/link_site_jobs.py exposes the official trial of each task and mode as
+# jobs/site-agents/<batch>-<mode>-metaworldplus-<family>-iNN/ (symlinks only), which is where scripts/import_runs.py looks.
+task_dir: "metaworldplus-{task_dashed}"
+
+# Our graders keep no partial credit: success (0 or 1) is the only score (MetaWorld's final_reward is the environment's dense reward, 0 to 10, not a fraction), so progress is success.
+progress: success
+
+runs:
+  codex-gpt6_luna-high:
+    # 2026-09-28 17:51-23:40 UTC: the whole suite, one formal attempt per instance and mode, 60 minutes each (Harbor
+    # attempts 1, retries 0), 4 at a time after the first pair (robot_coding_bench
+    # jobs/metaworldplus-codex-luna-high-60min-20260928T1717Z; acceptance, per-instance oracle/nop preflight and smoke
+    # passed first). The limited mode of sweep_i00 was never started: its goal (the table's right edge) has no native
+    # marker and the task sentence does not name it, so it is not evaluable without privileged state.
+    batch: metaworldplus-lunahigh-0928
+    closed: >-
+      finished 2026-09-28 23:40 UTC: one formal attempt per task and mode; sweep_i00 limited was not run (its goal is
+      in privileged state only)
+    tasks:
+    - assembly_i00
+    - assembly_i01
+    - assembly_i02
+    - basketball_i00
+    - bin_picking_i00
+    - box_close_i00
+    - button_press_i00
+    - button_press_topdown_i00
+    - button_press_topdown_wall_i00
+    - button_press_wall_i00
+    - button_press_wall_i01
+    - button_press_wall_i02
+    - coffee_button_i00
+    - coffee_pull_i00
+    - coffee_push_i00
+    - dial_turn_i00
+    - disassemble_i00
+    - door_close_i00
+    - door_lock_i00
+    - door_open_i00
+    - door_open_i01
+    - door_open_i02
+    - door_unlock_i00
+    - drawer_close_i00
+    - drawer_open_i00
+    - drawer_open_i01
+    - drawer_open_i02
+    - faucet_close_i00
+    - faucet_open_i00
+    - hammer_i00
+    - hammer_i01
+    - hammer_i02
+    - hand_insert_i00
+    - handle_press_i00
+    - handle_press_side_i00
+    - handle_pull_i00
+    - handle_pull_side_i00
+    - lever_pull_i00
+    - peg_insert_side_i00
+    - peg_insert_side_i01
+    - peg_insert_side_i02
+    - peg_unplug_side_i00
+    - pick_out_of_hole_i00
+    - pick_place_i00
+    - pick_place_i01
+    - pick_place_i02
+    - pick_place_wall_i00
+    - plate_slide_back_i00
+    - plate_slide_back_side_i00
+    - plate_slide_i00
+    - plate_slide_side_i00
+    - push_back_i00
+    - push_i00
+    - push_i01
+    - push_i02
+    - push_wall_i00
+    - reach_i00
+    - reach_wall_i00
+    - shelf_place_i00
+    - soccer_i00
+    - stick_pull_i01
+    - stick_pull_i02
+    - stick_pull_i03
+    - stick_push_i00
+    - stick_push_i01
+    - stick_push_i02
+    - sweep_into_i00
+    - sweep_i00
+    - window_close_i00
+    - window_open_i00

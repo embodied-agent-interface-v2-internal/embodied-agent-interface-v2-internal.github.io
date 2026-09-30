@@ -1,0 +1,167 @@
+# VLABench's agent runs. Owned by the benchmark's owner, curated by hand like everything in state/.
+# Format and field meanings: docs/contributing/registering-runs.md (and the header of state/runs/behavior-1k.yml).
+
+default: terminus2-gpt6_luna-default
+# task id = the native task name -> its job's task directory
+# vlabench-<name with dashes>-i00. Our runners (robot_coding_bench scripts/vlabench/run_openrouter.py and
+# scripts/vlabench/limited/run.py) kept their Harbor jobs per experiment; robot_coding_bench
+# scripts/site_media/link_site_jobs.py exposes the official trial of each task and mode as
+# jobs/site-agents/<batch>-<mode>-vlabench-<name>-i00/ (symlinks only), which is where scripts/import_runs.py looks.
+task_dir: "vlabench-{task_dashed}-i00"
+
+# Our graders keep no partial credit: success (0 or 1) is the only score (VLABench's graders write no final_reward), so progress is success.
+progress: success
+
+runs:
+  terminus2-gpt6_luna-default:
+    # 2026-09-24 (unlimited, 83 tasks) and 2026-09-24/25 (limited, 91 tasks): one formal attempt per task and mode,
+    # 60 minutes each, 4 at a time, Harbor attempts 1 and retries 0 (robot_coding_bench
+    # jobs/vlabench-unlimited-gpt-6-luna-60min-20260924 and jobs/vlabench-limited-gpt-6-luna-60min-20260924). The sensor-only
+    # twins that run also covered are not on the site (owner, 2026-09-29). OpenRouter reported $5.50 (unlimited) and $592.26 (limited) for
+    # the requests that returned usage; this harness keeps no gateway log, so the site shows only its list-price estimate.
+    # Our own report counts an agent timeout as a timeout even where the verifier graded success, and a trial with no
+    # verdict (API credits, a lost session, a missing instruction) as not evaluated: those trials carry a note here.
+    batch: vlabench-terminus-0924
+    closed: >-
+      finished 2026-09-25: one formal attempt per task and mode
+    notes:  # on one trial each, graded as it is: nothing arranged
+    - {task: set_study_table, mode: unlimited, trial: vlabench-set-study-table-i00__YX9Fxzp, note: "the verifier graded the trajectory a success, but the agent hit the 60-minute limit (AgentTimeoutError) first; our own report counts this trial as a timeout"}
+    - {task: cluster_drink, mode: limited, trial: vlabench-cluster-drink-limited60__w8c4hsk, note: "the agent's terminal session was lost mid-run, so no result was collected: no verdict on the agent; our own report counts it as not evaluated"}
+    - {task: select_chemistry_tube_common_sense, mode: limited, trial: vlabench-select-chemistry-tube-c__tEyxfEM, note: "the episode reached native success and the verifier graded it a success, but the agent kept going until the 60-minute limit (AgentTimeoutError); our own report counts this trial as a timeout"}
+    - {task: select_drink_common_sense, mode: limited, trial: vlabench-select-drink-common-sen__ao4tj6t, note: "the native task has no instruction text at this commit, so the agent was not told the goal; our own report counts it as not evaluated"}
+    - {task: select_drink_semantic, mode: limited, trial: vlabench-select-drink-semantic-l__Mydgzzh, note: "the native task has no instruction text at this commit, so the agent was not told the goal; our own report counts it as not evaluated"}
+    - {task: select_unique_type_mahjong, mode: limited, trial: vlabench-select-unique-type-mahj__cNmMSTn, note: "OpenRouter rejected the model requests for insufficient credits (the account ran out during the sweep), so no result was collected: no verdict on the agent; our own report counts it as not evaluated; rerun once with Codex + ChatGPT login (GPT-6 Luna, high) as the run codex-gpt6_luna-high"}
+    - {task: set_dining_left_hand, mode: limited, trial: vlabench-set-dining-left-hand-li__PVc5eZZ, note: "OpenRouter rejected the model requests for insufficient credits (the account ran out during the sweep), so no result was collected: no verdict on the agent; our own report counts it as not evaluated; rerun once with Codex + ChatGPT login (GPT-6 Luna, high) as the run codex-gpt6_luna-high"}
+    - {task: set_dining_table, mode: limited, trial: vlabench-set-dining-table-limite__x93mn4K, note: "OpenRouter rejected the model requests for insufficient credits (the account ran out during the sweep), so no result was collected: no verdict on the agent; our own report counts it as not evaluated; rerun once with Codex + ChatGPT login (GPT-6 Luna, high) as the run codex-gpt6_luna-high"}
+    - {task: set_study_table, mode: limited, trial: vlabench-set-study-table-limited__fna39nP, note: "OpenRouter rejected the model requests for insufficient credits (the account ran out during the sweep), so no result was collected: no verdict on the agent; our own report counts it as not evaluated; rerun once with Codex + ChatGPT login (GPT-6 Luna, high) as the run codex-gpt6_luna-high"}
+    - {task: simple_seesaw_use, mode: limited, trial: vlabench-simple-seesaw-use-limit__3nEZnZq, note: "OpenRouter rejected the model requests for insufficient credits (the account ran out during the sweep), so no result was collected: no verdict on the agent; our own report counts it as not evaluated; rerun once with Codex + ChatGPT login (GPT-6 Luna, high) as the run codex-gpt6_luna-high"}
+    - {task: speed_of_sound_qa, mode: limited, trial: vlabench-speed-of-sound-qa-limit__55FsxzV, note: "OpenRouter rejected the model requests for insufficient credits (the account ran out during the sweep), so no result was collected: no verdict on the agent; our own report counts it as not evaluated; rerun once with Codex + ChatGPT login (GPT-6 Luna, high) as the run codex-gpt6_luna-high"}
+    - {task: store_food, mode: limited, trial: vlabench-store-food-limited60-i0__epjruRS, note: "OpenRouter rejected the model requests for insufficient credits (the account ran out during the sweep), so no result was collected: no verdict on the agent; our own report counts it as not evaluated; rerun once with Codex + ChatGPT login (GPT-6 Luna, high) as the run codex-gpt6_luna-high"}
+    - {task: take_chemistry_experiment, mode: limited, trial: vlabench-take-chemistry-experime__rBXYYVa, note: "OpenRouter rejected the model requests for insufficient credits (the account ran out during the sweep), so no result was collected: no verdict on the agent; our own report counts it as not evaluated; rerun once with Codex + ChatGPT login (GPT-6 Luna, high) as the run codex-gpt6_luna-high"}
+    - {task: take_out_cool_drink, mode: limited, trial: vlabench-take-out-cool-drink-lim__8hW3Rng, note: "OpenRouter rejected the model requests for insufficient credits (the account ran out during the sweep), so no result was collected: no verdict on the agent; our own report counts it as not evaluated; rerun once with Codex + ChatGPT login (GPT-6 Luna, high) as the run codex-gpt6_luna-high"}
+    - {task: texas_holdem_explore, mode: limited, trial: vlabench-texas-holdem-explore-li__oagZCvD, note: "OpenRouter rejected the model requests for insufficient credits (the account ran out during the sweep), so no result was collected: no verdict on the agent; our own report counts it as not evaluated; rerun once with Codex + ChatGPT login (GPT-6 Luna, high) as the run codex-gpt6_luna-high"}
+    - {task: texas_holdem, mode: limited, trial: vlabench-texas-holdem-limited60__88FmkRt, note: "OpenRouter rejected the model requests for insufficient credits (the account ran out during the sweep), so no result was collected: no verdict on the agent; our own report counts it as not evaluated; rerun once with Codex + ChatGPT login (GPT-6 Luna, high) as the run codex-gpt6_luna-high"}
+    - {task: thermal_expansion_qa, mode: limited, trial: vlabench-thermal-expansion-qa-li__53thB5u, note: "OpenRouter rejected the model requests for insufficient credits (the account ran out during the sweep), so no result was collected: no verdict on the agent; our own report counts it as not evaluated; rerun once with Codex + ChatGPT login (GPT-6 Luna, high) as the run codex-gpt6_luna-high"}
+    tasks:
+    - add_condiment
+    - add_condiment_common_sense
+    - add_condiment_semantic
+    - add_condiment_spatial
+    - assemble_hammer
+    - book_rearrange
+    - cluster_billiards
+    - cluster_book
+    - cluster_drink
+    - cluster_ingredients
+    - cluster_toy
+    - complex_seesaw_use
+    - cook_dishes
+    - cool_drink
+    - density_qa
+    - find_unseen_object
+    - friction_qa
+    - get_coffee
+    - get_coffee_with_milk
+    - get_coffee_with_sugar
+    - hammer_loose_nail
+    - hammer_nail_and_hang_picture
+    - hang_picture_on_specific_nail
+    - heat_food
+    - insert_bloom_flower
+    - insert_flower
+    - insert_flower_common_sense
+    - insert_flower_semantic
+    - insert_flower_spatial
+    - magnetism_qa
+    - make_juice
+    - play_mahjong
+    - play_math_game
+    - play_snooker
+    - put_box_on_painting
+    - rearrange_tube
+    - reflection_qa
+    - select_billiards
+    - select_billiards_common_sense
+    - select_billiards_spatial
+    - select_book
+    - select_book_semantic
+    - select_book_spatial
+    - select_chemistry_tube
+    - select_chemistry_tube_common_sense
+    - select_chemistry_tube_semantic
+    - select_chemistry_tube_spatial
+    - select_drink
+    - select_drink_common_sense
+    - select_drink_semantic
+    - select_fruit
+    - select_fruit_common_sense
+    - select_fruit_semantic
+    - select_fruit_spatial
+    - select_ingredient
+    - select_ingredient_common_sense
+    - select_ingredient_semantic
+    - select_ingredient_spatial
+    - select_mahjong
+    - select_mahjong_semantic
+    - select_mahjong_spatial
+    - select_nth_largest_poker
+    - select_painting
+    - select_poker
+    - select_poker_semantic
+    - select_poker_spatial
+    - select_specific_type_book
+    - select_toy
+    - select_toy_common_sense
+    - select_toy_semantic
+    - select_toy_spatial
+    - select_unique_type_mahjong
+    - set_dining_left_hand
+    - set_dining_table
+    - set_study_table
+    - simple_seesaw_use
+    - speed_of_sound_qa
+    - store_food
+    - take_chemistry_experiment
+    - take_out_cool_drink
+    - texas_holdem
+    - texas_holdem_explore
+    - thermal_expansion_qa
+    removed:
+      cluster_dessert: "no frozen instance: the native initial physics state is invalid (mjWARN_BADQACC)"
+      find_fruit_to_make_juice: "no frozen instance: the native task configuration is missing at this commit"
+      insert_power_cord_to_make_juice: "no frozen instance: the native task configuration is missing at this commit"
+      plug_cord_and_heat_food: "no frozen instance: the native task configuration is missing at this commit"
+      put_box_on_painting_semantic: "no frozen instance: the native task configuration is missing at this commit"
+      replace_wilted_flower: "no frozen instance: the native task configuration is missing at this commit"
+      select_billiards_semantic: "no frozen instance: the native config manager's constructor signature does not match at this commit"
+      select_drink_spatial: "no frozen instance: the native initial physics state is invalid (mjWARN_BADQACC)"
+      select_painting_by_style: "no frozen instance: the native task configuration is missing at this commit"
+      set_dining_chopstick: "no frozen instance: the native reset/step recurses without end (a 300 s preflight timed out)"
+      set_dining_chopstick_left_hand: "no frozen instance: the native task configuration is missing at this commit"
+      simple_cuestick_use: "no frozen instance: the native task configuration is missing at this commit"
+      weight_qa: "no frozen instance: the native scene has an invalid MuJoCo box geometry at this commit"
+  codex-gpt6_luna-high:
+    # 2026-09-29: the 12 limited trials the OpenRouter run above lost to exhausted credits (its sensor-only 13th is not
+    # on the site), run once each with the configuration of the MetaWorld+ subscription run (Codex 0.158.0, GPT-6 Luna,
+    # reasoning high, ChatGPT login), on the same limited task copies, frozen instances, 60-minute budget, simulator
+    # sidecar and verifier (robot_coding_bench scripts/vlabench/rerun_codex_high.py, which reuses
+    # scripts/vlabench/run_codex.py unchanged; jobs/vlabench-codex-luna-high-rerun-20260929; acceptance and smoke passed
+    # first). Another harness, so a run of its own: the OpenRouter records above stay as they were.
+    batch: vlabench-lunahigh-rerun-0929
+    closed: >-
+      finished 2026-09-29 04:29 UTC: one formal attempt per task
+    modes: [limited]
+    others: "not in this run: it reruns only the 12 limited trials whose OpenRouter run got no verdict (the credits ran out)"
+    tasks:
+    - select_unique_type_mahjong
+    - set_dining_left_hand
+    - set_dining_table
+    - set_study_table
+    - simple_seesaw_use
+    - speed_of_sound_qa
+    - store_food
+    - take_chemistry_experiment
+    - take_out_cool_drink
+    - texas_holdem_explore
+    - texas_holdem
+    - thermal_expansion_qa

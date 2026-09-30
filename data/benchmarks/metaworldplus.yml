@@ -1,0 +1,99 @@
+id: metaworldplus
+name: MetaWorld+
+edition: upstream Meta-World 3.1.1 (Farama-Foundation/Metaworld @ 59fc34d), v3 environments with reward v2; our frozen instances (2026-09-21)
+status: active
+simulator: MuJoCo 3.3.0 (Meta-World 3.1.1)
+description: >-
+  Every environment of Meta-World's v3 set (50, the full ENV_CLS_MAP at the pinned commit) on the Sawyer arm, as 70
+  frozen instances: one per environment, three for ten of them. "MetaWorld+" is our suite's name; the installed
+  package is upstream Meta-World, with no separate "+" release. Each instance is frozen whole (MuJoCo state, model
+  arrays, task caches and RNG, never a seed-only restore) and replays bit-exactly in fresh processes. Success is the
+  environment's own success flag, attained at any control of the trajectory, as upstream evaluates it.
+
+links:
+  repository: https://github.com/Farama-Foundation/Metaworld
+  pinned_commit: https://github.com/Farama-Foundation/Metaworld/tree/59fc34d7768af9785e4688c3e1db671424f4a6c3
+  documentation: https://metaworld.farama.org/
+  paper: https://arxiv.org/abs/1910.10897
+
+embodiment:
+  robot: Rethink Sawyer (7-DoF arm, fixed base) with a two-finger gripper; the wrist is fixed
+  dof: 3 (Cartesian) + gripper
+  control_modes: [mocap XYZ displacement + gripper]
+  control_rate_hz: 80
+  observations: [privileged state (unlimited), rgb-d + calibration + proprioception (limited)]
+  cameras:
+    topview / corner / corner2 / corner3 / corner4: fixed, 480x480
+    behindGripper / gripperPOV: on the hand
+  notes: >-
+    An action is [dx, dy, dz, grip] in [-1, 1]: the hand controller's target moves 0.01 m per unit (clipped to the
+    environment's mocap bounds) and the hand follows; grip +1 closes. Each control runs 5 physics steps of 2.5 ms.
+    An episode is at most 500 controls (6.25 s simulated), upstream's max_path_length.
+
+# Meta-World publishes no per-task skill annotation, so `skills:` cannot be validated.
+skill_vocabulary: []
+
+# One "scene" per environment (scripts/import_metaworldplus_tasks.py sets scene_model = the environment id), so the task
+# list's Scene filter picks an environment and its instances.
+scenes:
+  - assembly-v3
+  - basketball-v3
+  - bin-picking-v3
+  - box-close-v3
+  - button-press-topdown-v3
+  - button-press-topdown-wall-v3
+  - button-press-v3
+  - button-press-wall-v3
+  - coffee-button-v3
+  - coffee-pull-v3
+  - coffee-push-v3
+  - dial-turn-v3
+  - disassemble-v3
+  - door-close-v3
+  - door-lock-v3
+  - door-open-v3
+  - door-unlock-v3
+  - drawer-close-v3
+  - drawer-open-v3
+  - faucet-close-v3
+  - faucet-open-v3
+  - hammer-v3
+  - hand-insert-v3
+  - handle-press-side-v3
+  - handle-press-v3
+  - handle-pull-side-v3
+  - handle-pull-v3
+  - lever-pull-v3
+  - peg-insert-side-v3
+  - peg-unplug-side-v3
+  - pick-out-of-hole-v3
+  - pick-place-v3
+  - pick-place-wall-v3
+  - plate-slide-back-side-v3
+  - plate-slide-back-v3
+  - plate-slide-side-v3
+  - plate-slide-v3
+  - push-back-v3
+  - push-v3
+  - push-wall-v3
+  - reach-v3
+  - reach-wall-v3
+  - shelf-place-v3
+  - soccer-v3
+  - stick-pull-v3
+  - stick-push-v3
+  - sweep-into-v3
+  - sweep-v3
+  - window-close-v3
+  - window-open-v3
+
+# What we run it on, and what that costs: measured on an RTX 4090 workstation (the GPU is not used).
+integration:
+  image: our Meta-World image (1.1 GB; Python 3.11, MuJoCo 3.3.0, CPU OSMesa rendering), built locally
+  containers: >-
+    unlimited: main (the agent with the privileged runtime; reset as often as it likes) + a credential-free egress
+    proxy; limited: main (a four-endpoint client only) + sim (the simulator, the instance and the sealed record) +
+    the egress proxy; the verifier runs in its own container
+  physics_backend: MuJoCo on the CPU; rendering OSMesa on the CPU
+  determinism: bit-exact across fresh processes (live run == two fresh-process replays, full-state hash)
+  licence: Meta-World is MIT licensed

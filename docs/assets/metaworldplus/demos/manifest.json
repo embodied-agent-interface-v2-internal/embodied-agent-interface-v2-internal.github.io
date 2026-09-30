@@ -1,0 +1,562 @@
+{
+  "assembly_i00": {
+    "bytes": 475603,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 95 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "assembly_i01": {
+    "bytes": 450102,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 92 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "assembly_i02": {
+    "bytes": 447999,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 90 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "basketball_i00": {
+    "bytes": 399660,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 90 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "bin_picking_i00": {
+    "bytes": 442333,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 109 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "box_close_i00": {
+    "bytes": 475488,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 103 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "button_press_i00": {
+    "bytes": 340703,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 62 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "button_press_topdown_i00": {
+    "bytes": 359867,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 72 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "button_press_topdown_wall_i00": {
+    "bytes": 323755,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 61 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "button_press_wall_i00": {
+    "bytes": 339166,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 70 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "button_press_wall_i01": {
+    "bytes": 328206,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 66 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "button_press_wall_i02": {
+    "bytes": 329923,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 68 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "coffee_button_i00": {
+    "bytes": 242507,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 41 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "coffee_pull_i00": {
+    "bytes": 354672,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 74 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "coffee_push_i00": {
+    "bytes": 312251,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 56 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "dial_turn_i00": {
+    "bytes": 305267,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 77 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "disassemble_i00": {
+    "bytes": 562811,
+    "height": 480,
+    "poster": true,
+    "seconds": 2,
+    "source": "Recorded by us: the upstream scripted policy's 136 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "door_close_i00": {
+    "bytes": 342891,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 59 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "door_lock_i00": {
+    "bytes": 310662,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 64 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "door_open_i00": {
+    "bytes": 412588,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 71 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "door_open_i01": {
+    "bytes": 477620,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 84 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "door_open_i02": {
+    "bytes": 481264,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 86 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "door_unlock_i00": {
+    "bytes": 235931,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 47 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "drawer_close_i00": {
+    "bytes": 380517,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 78 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "drawer_open_i00": {
+    "bytes": 398782,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 93 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "drawer_open_i01": {
+    "bytes": 416287,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 92 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "drawer_open_i02": {
+    "bytes": 394684,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 91 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "faucet_close_i00": {
+    "bytes": 333193,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 67 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "faucet_open_i00": {
+    "bytes": 330069,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 61 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "hammer_i00": {
+    "bytes": 392948,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 71 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "hammer_i01": {
+    "bytes": 369255,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 65 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "hammer_i02": {
+    "bytes": 397446,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 71 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "hand_insert_i00": {
+    "bytes": 306447,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 61 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "handle_press_i00": {
+    "bytes": 231541,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 41 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "handle_press_side_i00": {
+    "bytes": 245009,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 48 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "handle_pull_i00": {
+    "bytes": 384172,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 90 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "handle_pull_side_i00": {
+    "bytes": 304155,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 76 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "lever_pull_i00": {
+    "bytes": 351897,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 74 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "peg_insert_side_i00": {
+    "bytes": 390093,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 78 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "peg_insert_side_i01": {
+    "bytes": 463504,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 92 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "peg_insert_side_i02": {
+    "bytes": 725703,
+    "height": 480,
+    "poster": true,
+    "seconds": 2,
+    "source": "Recorded by us: the upstream scripted policy's 186 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "peg_unplug_side_i00": {
+    "bytes": 407362,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 106 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "pick_out_of_hole_i00": {
+    "bytes": 418366,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 105 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "pick_place_i00": {
+    "bytes": 277457,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 53 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "pick_place_i01": {
+    "bytes": 286156,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 56 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "pick_place_i02": {
+    "bytes": 286116,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 56 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "pick_place_wall_i00": {
+    "bytes": 433945,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 96 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "plate_slide_back_i00": {
+    "bytes": 234846,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 42 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "plate_slide_back_side_i00": {
+    "bytes": 284704,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 54 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "plate_slide_i00": {
+    "bytes": 301429,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 53 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "plate_slide_side_i00": {
+    "bytes": 266783,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 45 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "push_back_i00": {
+    "bytes": 386288,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 80 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "push_i00": {
+    "bytes": 321922,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 65 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "push_i01": {
+    "bytes": 324205,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 68 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "push_i02": {
+    "bytes": 324482,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 65 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "push_wall_i00": {
+    "bytes": 392071,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 86 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "reach_i00": {
+    "bytes": 261056,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 46 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "reach_wall_i00": {
+    "bytes": 285518,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 52 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "shelf_place_i00": {
+    "bytes": 391584,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 78 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "soccer_i00": {
+    "bytes": 507849,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 114 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "stick_pull_i01": {
+    "bytes": 593289,
+    "height": 480,
+    "poster": true,
+    "seconds": 2,
+    "source": "Recorded by us: the upstream scripted policy's 119 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "stick_pull_i02": {
+    "bytes": 578629,
+    "height": 480,
+    "poster": true,
+    "seconds": 2,
+    "source": "Recorded by us: the upstream scripted policy's 119 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "stick_pull_i03": {
+    "bytes": 818584,
+    "height": 480,
+    "poster": true,
+    "seconds": 2,
+    "source": "Recorded by us: the upstream scripted policy's 172 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "stick_push_i00": {
+    "bytes": 341723,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 72 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "stick_push_i01": {
+    "bytes": 328365,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 68 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "stick_push_i02": {
+    "bytes": 364853,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 77 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "sweep_i00": {
+    "bytes": 486974,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 103 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "sweep_into_i00": {
+    "bytes": 269993,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 52 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "window_close_i00": {
+    "bytes": 434209,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 84 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  },
+  "window_open_i00": {
+    "bytes": 425920,
+    "height": 480,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: the upstream scripted policy's 92 controls for this frozen instance, replayed by our trusted renderer (corner and corner3 cameras, shown rotated 180\u00b0; 80 fps = real time).",
+    "width": 960
+  }
+}

@@ -1,0 +1,29 @@
+# One agent run: harness + model + settings. The file name is the run id that state/runs/<benchmark>.yml refers to:
+# <harness>-<model>-<effort>[-<tag>], spelled by harness_id, the model's id in data/prices.yml, settings.reasoning_effort
+# and tag (docs/contributing/registering-runs.md). Registered once, reused by every benchmark that runs this configuration.
+#
+# Read by the tooling: label, short, billing, price, modes, harness_id, tag, formerly. Everything else is for people.
+
+label: Codex CLI 0.158.0 + GPT-6 Luna, reasoning high (ChatGPT login)
+# the run picker's text: harness + version · model · reasoning effort · access (billing)
+short: Codex CLI 0.158 · GPT-6 Luna · high · ChatGPT login
+harness_id: codex
+harness: >-
+  Codex CLI 0.158.0 (the standalone binary with its code-mode host and rg, pinned by SHA256) as
+  codex_subscription.agent:SubscriptionCodex (robot_coding_bench scripts/vlabench/codex_subscription/agent.py): Harbor's
+  own Codex agent, ChatGPT login only (no API-key fallback), reaching chatgpt.com through a credential-free CONNECT proxy
+route: the owner's ChatGPT login (a Pro Lite subscription), directly from the Codex CLI (no model gateway)
+model: openai/gpt-6-luna
+settings:
+  reasoning_effort: high
+  version: 0.158.0
+  web_search: disabled
+harbor: >-
+  agent import_path codex_subscription.agent:SubscriptionCodex, model_name openai/gpt-6-luna, kwargs reasoning_effort=high,
+  version=0.158.0, web_search=disabled, config model_reasoning_effort=high (robot_coding_bench scripts/metaworldplus/run_codex.py
+  and scripts/vlabench/rerun_codex_high.py, one Harbor job per task and mode); each trial's native Codex session confirms
+  model gpt-6-luna and effort high
+billing: subscription           # a ChatGPT login: no per-token bill, so only the list-price estimate
+price: openai/gpt-6-luna         # key in data/prices.yml
+modes: [unlimited, limited]
+since: 2026-09-28

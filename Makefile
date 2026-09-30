@@ -20,7 +20,8 @@ BIN    := $(VENV)/bin
 .PHONY: help venv install serve build validate strict check guard public publish-runs export-run-media \
         compress-run-media upload-run-media publish links demos edit \
         runs runs-watch sync \
-        sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-verified sync-dry clean
+        sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-vlabench sync-metaworldplus \
+        sync-verified sync-dry clean
 
 help: ## Show this help
 	@grep -hE '^[a-z-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -151,7 +152,7 @@ upload-run-media: export-run-media compress-run-media ## Export, compress and up
 # Each benchmark syncs from its own upstream. BEHAVIOR reads a public gallery;
 # RoboWits and RoboLab read a source checkout (pass it in), because their tasks
 # are defined in code. All three are idempotent and write only `upstream:`.
-sync: sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint ## Re-sync every benchmark from its upstream
+sync: sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-vlabench sync-metaworldplus ## Re-sync every benchmark from its upstream
 
 sync-behavior: ## Re-sync BEHAVIOR-1K task pages from the official gallery
 	$(BIN)/python scripts/import_behavior_tasks.py
@@ -187,6 +188,26 @@ ROBOPAINT_DEMOS  ?=
 sync-robopaint: ## Re-sync RoboPaint from a robot_coding_bench commit (ROBOPAINT_COMMIT=..., ROBOPAINT_DEMOS="host:dir ...")
 	$(BIN)/python scripts/import_robopaint_tasks.py --source $(ROBOPAINT_SRC) --commit $(ROBOPAINT_COMMIT) \
 	    $(foreach d,$(ROBOPAINT_DEMOS),--demos $(d))
+
+# VLABench and MetaWorld+ are our frozen instances of upstream suites, defined in a robot_coding_bench checkout (its
+# suites/ and task directories, read in place). *_DEMOS: our renders of each task's reference solution
+# (scripts/site_media/render_site_media.py there); a missing directory means no demos are copied.
+VLABENCH_SRC        ?= ../robot_coding_bench
+VLABENCH_DEMOS      ?= ../robot_coding_bench/jobs/site-media/vlabench
+METAWORLDPLUS_SRC   ?= ../robot_coding_bench
+METAWORLDPLUS_INV   ?= ../robot_coding_bench/jobs/metaworldplus-codex-luna-high-60min-20260928T1717Z/inventory
+METAWORLDPLUS_UP    ?= ../robot_coding_bench/.cache/robot24/metaworld
+METAWORLDPLUS_DEMOS ?= ../robot_coding_bench/jobs/site-media/metaworldplus
+
+sync-vlabench: ## Re-sync VLABench from a robot_coding_bench checkout (VLABENCH_SRC=..., VLABENCH_DEMOS=...)
+	$(BIN)/python scripts/import_vlabench_tasks.py $(if $(wildcard $(VLABENCH_SRC)),--source $(VLABENCH_SRC),) \
+	    $(if $(wildcard $(VLABENCH_DEMOS)),--demos $(VLABENCH_DEMOS),)
+
+sync-metaworldplus: ## Re-sync MetaWorld+ from a robot_coding_bench checkout (METAWORLDPLUS_SRC=..., METAWORLDPLUS_DEMOS=...)
+	$(BIN)/python scripts/import_metaworldplus_tasks.py $(if $(wildcard $(METAWORLDPLUS_SRC)),--source $(METAWORLDPLUS_SRC),) \
+	    $(if $(wildcard $(METAWORLDPLUS_INV)),--inventory $(METAWORLDPLUS_INV),) \
+	    $(if $(wildcard $(METAWORLDPLUS_UP)),--metaworld $(METAWORLDPLUS_UP),) \
+	    $(if $(wildcard $(METAWORLDPLUS_DEMOS)),--demos $(METAWORLDPLUS_DEMOS),)
 
 # The BDDL goals and dataset statistics come from the licensed BEHAVIOR download,
 # so the extract step runs inside the simulator image; see the script's docstring.

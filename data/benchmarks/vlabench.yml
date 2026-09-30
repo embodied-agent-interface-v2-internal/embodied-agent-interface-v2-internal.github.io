@@ -1,0 +1,48 @@
+id: vlabench
+name: VLABench
+edition: "OpenMOSS/VLABench @ cf588fe (assets: LeRobot VLABench @ 08d7a44); our frozen instances (2026-09-20)"
+status: active
+simulator: MuJoCo 3.2.2 / dm_control 1.0.22
+description: >-
+  VLABench's 96 registered tasks at the pinned commit (60 primitive, 36 composite): language-conditioned tabletop
+  manipulation with a Franka Panda, from picking by common sense and physical question answering to cooking and
+  playing games. Each task is one frozen instance, built by the native task code and frozen whole (construction and
+  initial state); 13 tasks could not be built at this commit and have none. Success is the task's own native condition when the trajectory ends.
+
+links:
+  repository: https://github.com/OpenMOSS/VLABench
+  pinned_commit: https://github.com/OpenMOSS/VLABench/tree/cf588fe60c0c7282174fe979f5913170cfe69017
+  project_page: https://vlabench.github.io/
+  paper: https://arxiv.org/abs/2412.18194
+
+embodiment:
+  robot: Franka Panda (7-DoF arm + two-finger gripper, fixed base)
+  dof: 9 actuators
+  control_modes: [absolute actuator position targets (7 arm joints in radians, 2 finger slides in metres)]
+  control_rate_hz: 10
+  observations: [privileged state (unlimited), rgb-d + calibration + proprioception (limited)]
+  cameras:
+    camera 0-3: VLABench's fixed scene cameras (our renders use camera 2, 640x480)
+  notes: >-
+    Each control is held 0.1 s (100 physics substeps of 1 ms); at most 4000 controls per trajectory. The privileged
+    tier exposes object and robot poses, VLABench's official general skills, IK and planning; the limited mode
+    exposes cameras and proprioception only.
+
+# VLABench publishes no per-task skill annotation, so `skills:` cannot be validated.
+skill_vocabulary: []
+
+# One "scene" per VLABench task group (scripts/import_vlabench_tasks.py sets scene_model = vlabench_<group>), so the
+# task list's Scene filter separates primitive from composite tasks.
+scenes:
+  - vlabench_primitive
+  - vlabench_composite
+
+# What we run it on, and what that costs: measured on an RTX 4090 workstation (the GPU is not used).
+integration:
+  image: our VLABench image (15 GB with the assets; Python 3.10, MuJoCo 3.2.2, CPU OSMesa rendering), built locally
+  containers: >-
+    unlimited: main (the agent with the privileged runtime and VLABench's skills); limited: main (a client only) + sim
+    (the simulator, the instance and the sealed record); the verifier runs in its own container
+  physics_backend: MuJoCo on the CPU; rendering OSMesa on the CPU
+  determinism: bit-exact across fresh processes (two fresh-process replays, final-state hash)
+  licence: VLABench is MIT licensed; its assets come from the LeRobot VLABench release

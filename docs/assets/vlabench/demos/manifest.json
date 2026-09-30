@@ -1,0 +1,314 @@
+{
+  "add_condiment": {
+    "bytes": 313792,
+    "height": 480,
+    "poster": true,
+    "seconds": 18,
+    "source": "Recorded by us: our validated reference solution's 180 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "book_rearrange": {
+    "bytes": 1720397,
+    "height": 480,
+    "poster": true,
+    "seconds": 48,
+    "source": "Recorded by us: our validated reference solution's 479 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "find_unseen_object": {
+    "bytes": 1454023,
+    "height": 480,
+    "poster": true,
+    "seconds": 41,
+    "source": "Recorded by us: our validated reference solution's 407 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "friction_qa": {
+    "bytes": 205476,
+    "height": 480,
+    "poster": true,
+    "seconds": 22,
+    "source": "Recorded by us: our validated reference solution's 224 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "hammer_nail_and_hang_picture": {
+    "bytes": 1358160,
+    "height": 480,
+    "poster": true,
+    "seconds": 36,
+    "source": "Recorded by us: our validated reference solution's 361 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "heat_food": {
+    "bytes": 924370,
+    "height": 480,
+    "poster": true,
+    "seconds": 79,
+    "source": "Recorded by us: our validated reference solution's 793 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "insert_bloom_flower": {
+    "bytes": 328409,
+    "height": 480,
+    "poster": true,
+    "seconds": 20,
+    "source": "Recorded by us: our validated reference solution's 205 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "insert_flower": {
+    "bytes": 278216,
+    "height": 480,
+    "poster": true,
+    "seconds": 16,
+    "source": "Recorded by us: our validated reference solution's 158 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "magnetism_qa": {
+    "bytes": 343718,
+    "height": 480,
+    "poster": true,
+    "seconds": 30,
+    "source": "Recorded by us: our validated reference solution's 296 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "play_math_game": {
+    "bytes": 247432,
+    "height": 480,
+    "poster": true,
+    "seconds": 17,
+    "source": "Recorded by us: our validated reference solution's 167 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "put_box_on_painting": {
+    "bytes": 216831,
+    "height": 480,
+    "poster": true,
+    "seconds": 13,
+    "source": "Recorded by us: our validated reference solution's 131 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "reflection_qa": {
+    "bytes": 287410,
+    "height": 480,
+    "poster": true,
+    "seconds": 22,
+    "source": "Recorded by us: our validated reference solution's 222 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_billiards": {
+    "bytes": 269931,
+    "height": 480,
+    "poster": true,
+    "seconds": 19,
+    "source": "Recorded by us: our validated reference solution's 186 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_billiards_common_sense": {
+    "bytes": 268332,
+    "height": 480,
+    "poster": true,
+    "seconds": 19,
+    "source": "Recorded by us: our validated reference solution's 186 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_billiards_spatial": {
+    "bytes": 323479,
+    "height": 480,
+    "poster": true,
+    "seconds": 25,
+    "source": "Recorded by us: our validated reference solution's 248 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_book_semantic": {
+    "bytes": 142114,
+    "height": 480,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: our validated reference solution's 77 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_book_spatial": {
+    "bytes": 165710,
+    "height": 480,
+    "poster": true,
+    "seconds": 7,
+    "source": "Recorded by us: our validated reference solution's 73 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_chemistry_tube": {
+    "bytes": 126095,
+    "height": 480,
+    "poster": true,
+    "seconds": 7,
+    "source": "Recorded by us: our validated reference solution's 74 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_chemistry_tube_common_sense": {
+    "bytes": 118318,
+    "height": 480,
+    "poster": true,
+    "seconds": 7,
+    "source": "Recorded by us: our validated reference solution's 66 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_chemistry_tube_semantic": {
+    "bytes": 118899,
+    "height": 480,
+    "poster": true,
+    "seconds": 7,
+    "source": "Recorded by us: our validated reference solution's 66 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_chemistry_tube_spatial": {
+    "bytes": 134152,
+    "height": 480,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: our validated reference solution's 75 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_drink": {
+    "bytes": 150233,
+    "height": 480,
+    "poster": true,
+    "seconds": 10,
+    "source": "Recorded by us: our validated reference solution's 96 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_fruit": {
+    "bytes": 242709,
+    "height": 480,
+    "poster": true,
+    "seconds": 14,
+    "source": "Recorded by us: our validated reference solution's 138 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_fruit_common_sense": {
+    "bytes": 239897,
+    "height": 480,
+    "poster": true,
+    "seconds": 14,
+    "source": "Recorded by us: our validated reference solution's 145 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_fruit_semantic": {
+    "bytes": 239897,
+    "height": 480,
+    "poster": true,
+    "seconds": 14,
+    "source": "Recorded by us: our validated reference solution's 145 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_mahjong": {
+    "bytes": 134755,
+    "height": 480,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: our validated reference solution's 76 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_mahjong_semantic": {
+    "bytes": 191833,
+    "height": 480,
+    "poster": true,
+    "seconds": 12,
+    "source": "Recorded by us: our validated reference solution's 117 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_mahjong_spatial": {
+    "bytes": 227873,
+    "height": 480,
+    "poster": true,
+    "seconds": 15,
+    "source": "Recorded by us: our validated reference solution's 149 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_nth_largest_poker": {
+    "bytes": 131345,
+    "height": 480,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: our validated reference solution's 76 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_painting": {
+    "bytes": 196858,
+    "height": 480,
+    "poster": true,
+    "seconds": 24,
+    "source": "Recorded by us: our validated reference solution's 237 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_poker": {
+    "bytes": 149227,
+    "height": 480,
+    "poster": true,
+    "seconds": 9,
+    "source": "Recorded by us: our validated reference solution's 90 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_poker_semantic": {
+    "bytes": 135963,
+    "height": 480,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: our validated reference solution's 77 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_poker_spatial": {
+    "bytes": 147322,
+    "height": 480,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: our validated reference solution's 82 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_specific_type_book": {
+    "bytes": 152318,
+    "height": 480,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: our validated reference solution's 78 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_toy": {
+    "bytes": 212482,
+    "height": 480,
+    "poster": true,
+    "seconds": 16,
+    "source": "Recorded by us: our validated reference solution's 157 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "select_unique_type_mahjong": {
+    "bytes": 178349,
+    "height": 480,
+    "poster": true,
+    "seconds": 11,
+    "source": "Recorded by us: our validated reference solution's 107 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "set_study_table": {
+    "bytes": 491160,
+    "height": 480,
+    "poster": true,
+    "seconds": 24,
+    "source": "Recorded by us: our validated reference solution's 242 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "take_out_cool_drink": {
+    "bytes": 270341,
+    "height": 480,
+    "poster": true,
+    "seconds": 50,
+    "source": "Recorded by us: our validated reference solution's 500 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  },
+  "texas_holdem": {
+    "bytes": 982292,
+    "height": 480,
+    "poster": true,
+    "seconds": 66,
+    "source": "Recorded by us: our validated reference solution's 660 controls for this frozen instance, replayed by our trusted renderer (camera 2; 10 fps = real time).",
+    "width": 640
+  }
+}

@@ -1,0 +1,810 @@
+# Curated task state for vlabench.
+#
+# One block per task. Written by the site's Edit button and by hand; both are
+# fine. Task ids match docs/benchmarks/vlabench/tasks/<id>.md.
+#
+#   status      keep | drop | needs-review | pending
+#   difficulty  unrated | easy | medium | hard | extreme
+#   labels      tier-2 ids from state/taxonomy.yml
+#   owner       bare GitHub handle
+#   note        free text; why you decided what you decided
+#
+# Task id = VLABench's native task name (our task directory vlabench-<name>-i00).
+# labels (2026-09-29): from each task's instruction and its definition at the pinned commit (conditions and expert
+# skill sequence in VLABench/tasks/hierarchical_tasks); gen-fixed because every task is one frozen instance. A task
+# with no instruction at this commit is labelled from its registration and source, and its note says so. No
+# difficulty or triage yet.
+
+add_condiment:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+add_condiment_common_sense:
+  labels:
+  - scale-tabletop
+  - transport
+  - implicit-goal
+  - knowledge-goal
+  - horizon-atomic
+  - gen-fixed
+add_condiment_semantic:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+add_condiment_spatial:
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+assemble_hammer:
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - horizon-composite
+  - gen-fixed
+book_rearrange:
+  labels:
+  - scale-tabletop
+  - transport
+  - implicit-goal
+  - horizon-composite
+  - gen-fixed
+cluster_billiards:
+  labels:
+  - scale-tabletop
+  - transport
+  - implicit-goal
+  - horizon-composite
+  - fine-detail
+  - gen-fixed
+cluster_book:
+  labels:
+  - scale-tabletop
+  - transport
+  - implicit-goal
+  - knowledge-goal
+  - horizon-composite
+  - fine-detail
+  - gen-fixed
+cluster_dessert:
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - implicit-goal
+  - horizon-composite
+  - gen-fixed
+  note: 'No instruction text at the pinned commit: labelled from the task''s registration
+    and source.'
+cluster_drink:
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - implicit-goal
+  - horizon-composite
+  - gen-fixed
+cluster_ingredients:
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - implicit-goal
+  - horizon-composite
+  - gen-fixed
+cluster_toy:
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - implicit-goal
+  - horizon-composite
+  - gen-fixed
+complex_seesaw_use:
+  labels:
+  - scale-tabletop
+  - transport
+  - tool-use
+  - horizon-composite
+  - gen-fixed
+  note: 'Success is holding the pear, which sits in a container on a seesaw: the weights
+    have to be used as a lever to raise it.'
+cook_dishes:
+  labels:
+  - scale-tabletop
+  - transport
+  - knowledge-goal
+  - horizon-composite
+  - gen-fixed
+cool_drink:
+  labels:
+  - scale-tabletop
+  - transport
+  - articulated
+  - implicit-goal
+  - knowledge-goal
+  - horizon-composite
+  - ordered
+  - partial-observability
+  - gen-fixed
+  note: The fridge starts closed and success also requires it closed again, so opening
+    it first and closing it last are part of the goal.
+density_qa:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - knowledge-goal
+  - horizon-atomic
+  - gen-fixed
+  note: Answered by pressing the button beside the chosen object (VLABench's PhysicalQAConfigManager
+    extends PressButtonConfigManager), so no transport; picking the object needs knowledge
+    of the materials.
+find_fruit_to_make_juice:
+  labels:
+  - scale-tabletop
+  - transport
+  - device-operation
+  - horizon-composite
+  - ordered
+  - partial-observability
+  - gen-fixed
+  note: 'No instruction text at the pinned commit: labelled from the task''s registration
+    and source.'
+find_unseen_object:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - partial-observability
+  - gen-fixed
+  note: The target starts inside a container, out of view from the start pose.
+friction_qa:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - knowledge-goal
+  - horizon-atomic
+  - gen-fixed
+  note: Answered by pressing the button beside the chosen object (VLABench's PhysicalQAConfigManager
+    extends PressButtonConfigManager), so no transport; picking the object needs knowledge
+    of the materials.
+get_coffee:
+  labels:
+  - scale-tabletop
+  - transport
+  - device-operation
+  - horizon-composite
+  - ordered
+  - gen-fixed
+get_coffee_with_milk:
+  labels:
+  - scale-tabletop
+  - transport
+  - device-operation
+  - horizon-composite
+  - ordered
+  - gen-fixed
+get_coffee_with_sugar:
+  labels:
+  - scale-tabletop
+  - transport
+  - device-operation
+  - horizon-composite
+  - ordered
+  - gen-fixed
+hammer_loose_nail:
+  labels:
+  - scale-tabletop
+  - transport
+  - tool-use
+  - horizon-composite
+  - gen-fixed
+hammer_nail_and_hang_picture:
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - tool-use
+  - horizon-composite
+  - ordered
+  - gen-fixed
+hang_picture_on_specific_nail:
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+heat_food:
+  labels:
+  - scale-tabletop
+  - transport
+  - articulated
+  - device-operation
+  - thermal
+  - horizon-composite
+  - ordered
+  - gen-fixed
+insert_bloom_flower:
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - horizon-atomic
+  - gen-fixed
+insert_flower:
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - horizon-atomic
+  - gen-fixed
+insert_flower_common_sense:
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - knowledge-goal
+  - horizon-atomic
+  - gen-fixed
+insert_flower_semantic:
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - implicit-goal
+  - horizon-atomic
+  - gen-fixed
+insert_flower_spatial:
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - horizon-atomic
+  - gen-fixed
+insert_power_cord_to_make_juice:
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - device-operation
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'No instruction text at the pinned commit: labelled from the task''s registration
+    and source.'
+magnetism_qa:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - knowledge-goal
+  - horizon-atomic
+  - gen-fixed
+  note: Answered by pressing the button beside the chosen object (VLABench's PhysicalQAConfigManager
+    extends PressButtonConfigManager), so no transport; picking the object needs knowledge
+    of the materials.
+make_juice:
+  labels:
+  - scale-tabletop
+  - transport
+  - device-operation
+  - horizon-composite
+  - ordered
+  - gen-fixed
+play_mahjong:
+  labels:
+  - scale-tabletop
+  - transport
+  - knowledge-goal
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+play_math_game:
+  labels:
+  - scale-tabletop
+  - transport
+  - knowledge-goal
+  - horizon-composite
+  - fine-detail
+  - gen-fixed
+play_snooker:
+  labels:
+  - scale-tabletop
+  - transport
+  - knowledge-goal
+  - horizon-atomic
+  - gen-fixed
+plug_cord_and_heat_food:
+  labels:
+  - scale-tabletop
+  - transport
+  - articulated
+  - precision-fit
+  - device-operation
+  - thermal
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'No instruction text at the pinned commit: labelled from the task''s registration
+    and source.'
+put_box_on_painting:
+  labels:
+  - scale-tabletop
+  - transport
+  - knowledge-goal
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+put_box_on_painting_semantic:
+  labels:
+  - scale-tabletop
+  - transport
+  - implicit-goal
+  - knowledge-goal
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+  note: 'No instruction text at the pinned commit: labelled from the task''s registration
+    and source.'
+rearrange_tube:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - fine-detail
+  - gen-fixed
+reflection_qa:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - knowledge-goal
+  - horizon-atomic
+  - gen-fixed
+  note: Answered by pressing the button beside the chosen object (VLABench's PhysicalQAConfigManager
+    extends PressButtonConfigManager), so no transport; picking the object needs knowledge
+    of the materials.
+replace_wilted_flower:
+  labels:
+  - scale-tabletop
+  - transport
+  - precision-fit
+  - attribute-goal
+  - horizon-composite
+  - gen-fixed
+  note: 'No instruction text at the pinned commit: labelled from the task''s registration
+    and source.'
+select_billiards:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+select_billiards_common_sense:
+  labels:
+  - scale-tabletop
+  - transport
+  - knowledge-goal
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+select_billiards_semantic:
+  labels:
+  - scale-tabletop
+  - transport
+  - implicit-goal
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+  note: 'No instruction text at the pinned commit: labelled from the task''s registration
+    and source.'
+select_billiards_spatial:
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+select_book:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+select_book_semantic:
+  labels:
+  - scale-tabletop
+  - transport
+  - implicit-goal
+  - knowledge-goal
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+select_book_spatial:
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+select_chemistry_tube:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+select_chemistry_tube_common_sense:
+  labels:
+  - scale-tabletop
+  - transport
+  - knowledge-goal
+  - horizon-atomic
+  - gen-fixed
+select_chemistry_tube_semantic:
+  labels:
+  - scale-tabletop
+  - transport
+  - implicit-goal
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+select_chemistry_tube_spatial:
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+select_drink:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+select_drink_common_sense:
+  labels:
+  - scale-tabletop
+  - transport
+  - knowledge-goal
+  - horizon-atomic
+  - gen-fixed
+  note: 'No instruction text at the pinned commit: labelled from the task''s registration
+    and source.'
+select_drink_semantic:
+  labels:
+  - scale-tabletop
+  - transport
+  - implicit-goal
+  - horizon-atomic
+  - gen-fixed
+  note: 'No instruction text at the pinned commit: labelled from the task''s registration
+    and source.'
+select_drink_spatial:
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+  note: 'No instruction text at the pinned commit: labelled from the task''s registration
+    and source.'
+select_fruit:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+select_fruit_common_sense:
+  labels:
+  - scale-tabletop
+  - transport
+  - knowledge-goal
+  - horizon-atomic
+  - gen-fixed
+select_fruit_semantic:
+  labels:
+  - scale-tabletop
+  - transport
+  - implicit-goal
+  - horizon-atomic
+  - gen-fixed
+select_fruit_spatial:
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+select_ingredient:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+select_ingredient_common_sense:
+  labels:
+  - scale-tabletop
+  - transport
+  - knowledge-goal
+  - horizon-atomic
+  - gen-fixed
+select_ingredient_semantic:
+  labels:
+  - scale-tabletop
+  - transport
+  - implicit-goal
+  - horizon-atomic
+  - gen-fixed
+select_ingredient_spatial:
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+select_mahjong:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+select_mahjong_semantic:
+  labels:
+  - scale-tabletop
+  - transport
+  - implicit-goal
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+select_mahjong_spatial:
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+select_nth_largest_poker:
+  labels:
+  - scale-tabletop
+  - transport
+  - knowledge-goal
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+select_painting:
+  labels:
+  - scale-tabletop
+  - transport
+  - knowledge-goal
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+select_painting_by_style:
+  labels:
+  - scale-tabletop
+  - transport
+  - knowledge-goal
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+  note: 'No instruction text at the pinned commit: labelled from the task''s registration
+    and source.'
+select_poker:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+select_poker_semantic:
+  labels:
+  - scale-tabletop
+  - transport
+  - implicit-goal
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+select_poker_spatial:
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+select_specific_type_book:
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+select_toy:
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-atomic
+  - gen-fixed
+select_toy_common_sense:
+  labels:
+  - scale-tabletop
+  - transport
+  - knowledge-goal
+  - horizon-atomic
+  - gen-fixed
+select_toy_semantic:
+  labels:
+  - scale-tabletop
+  - transport
+  - implicit-goal
+  - horizon-atomic
+  - gen-fixed
+select_toy_spatial:
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - horizon-atomic
+  - gen-fixed
+select_unique_type_mahjong:
+  labels:
+  - scale-tabletop
+  - transport
+  - attribute-goal
+  - horizon-atomic
+  - fine-detail
+  - gen-fixed
+set_dining_chopstick:
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - knowledge-goal
+  - horizon-composite
+  - gen-fixed
+  note: 'No instruction text at the pinned commit: labelled from the task''s registration
+    and source.'
+set_dining_chopstick_left_hand:
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - knowledge-goal
+  - horizon-composite
+  - gen-fixed
+  note: 'No instruction text at the pinned commit: labelled from the task''s registration
+    and source.'
+set_dining_left_hand:
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - knowledge-goal
+  - horizon-composite
+  - gen-fixed
+set_dining_table:
+  labels:
+  - scale-tabletop
+  - transport
+  - relational-goal
+  - knowledge-goal
+  - horizon-composite
+  - gen-fixed
+set_study_table:
+  labels:
+  - scale-tabletop
+  - transport
+  - articulated
+  - implicit-goal
+  - knowledge-goal
+  - horizon-composite
+  - gen-fixed
+simple_cuestick_use:
+  labels:
+  - scale-tabletop
+  - dynamics
+  - tool-use
+  - horizon-atomic
+  - gen-fixed
+  note: 'No instruction text at the pinned commit: labelled from the task''s registration
+    and source.'
+simple_seesaw_use:
+  labels:
+  - scale-tabletop
+  - transport
+  - tool-use
+  - horizon-composite
+  - gen-fixed
+  note: 'Success is holding the pear, which sits in a container on a seesaw: the weights
+    have to be used as a lever to raise it.'
+speed_of_sound_qa:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - knowledge-goal
+  - horizon-atomic
+  - gen-fixed
+  note: Answered by pressing the button beside the chosen object (VLABench's PhysicalQAConfigManager
+    extends PressButtonConfigManager), so no transport; picking the object needs knowledge
+    of the materials.
+store_food:
+  labels:
+  - scale-tabletop
+  - transport
+  - implicit-goal
+  - knowledge-goal
+  - horizon-composite
+  - gen-fixed
+take_chemistry_experiment:
+  labels:
+  - scale-tabletop
+  - transport
+  - knowledge-goal
+  - horizon-composite
+  - ordered
+  - gen-fixed
+take_out_cool_drink:
+  labels:
+  - scale-tabletop
+  - transport
+  - articulated
+  - implicit-goal
+  - knowledge-goal
+  - horizon-composite
+  - ordered
+  - partial-observability
+  - gen-fixed
+  note: The fridge starts closed and success also requires it closed again, so opening
+    it first and closing it last are part of the goal.
+texas_holdem:
+  labels:
+  - scale-tabletop
+  - transport
+  - knowledge-goal
+  - horizon-composite
+  - fine-detail
+  - gen-fixed
+texas_holdem_explore:
+  labels:
+  - scale-tabletop
+  - transport
+  - knowledge-goal
+  - horizon-composite
+  - active-perception
+  - fine-detail
+  - gen-fixed
+  note: 'One card starts face down: it has to be turned over before the largest cards
+    can be chosen (active perception).'
+thermal_expansion_qa:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - knowledge-goal
+  - horizon-atomic
+  - gen-fixed
+  note: Answered by pressing the button beside the chosen object (VLABench's PhysicalQAConfigManager
+    extends PressButtonConfigManager), so no transport; picking the object needs knowledge
+    of the materials.
+weight_qa:
+  labels:
+  - scale-tabletop
+  - device-operation
+  - knowledge-goal
+  - horizon-atomic
+  - gen-fixed
+  note: 'Answered by pressing the button beside the chosen object (VLABench''s PhysicalQAConfigManager
+    extends PressButtonConfigManager), so no transport; picking the object needs knowledge
+    of the materials. No instruction text at the pinned commit: labelled from the
+    task''s registration and source.'
