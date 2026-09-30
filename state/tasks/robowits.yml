@@ -8,6 +8,8 @@
 #   labels      tier-2 ids from state/taxonomy.yml
 #   owner       bare GitHub handle
 #   note        free text; why you decided what you decided
+#   excluded    why a task is not part of the final benchmark: it stays on the site, greyed and last in every list,
+#               its runs in Runs, and counts in none of the benchmark's numbers
 
 align_blocks:
   difficulty: hard
@@ -21,6 +23,9 @@ align_blocks:
   - gen-layout
 align_chopsticks:
   difficulty: extreme
+  # 2026-09-28 20:15, user: removed from the benchmark as a broken task
+  excluded: "removed as a broken task: its frozen scene raises a Genesis NaN (\"Invalid constraint forces\") right after
+    the build, on every host"
   labels:
   - scale-tabletop
   - transport

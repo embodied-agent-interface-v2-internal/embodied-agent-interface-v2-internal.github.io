@@ -124,6 +124,8 @@ runs:
 | `removed` | Task id → why it is not in the run. These rows show grey. |
 | `others` | Why every task in neither list is not in it. These rows keep their colour: the task was simply not built for the run. |
 | `followups` | `{task, mode, trial, note}`: what is already arranged for one trial (a regrade, a rerun). The pill gets ↻. The note disappears by itself once another trial replaces that one. |
+| `withdrawn` | `{<mode>: {label, note}}`: every result of a mode taken off the site, e.g. after a bug in its robot service, to be rerun. The public snapshot leaves its records and log pages out, and their old addresses lead to the task's page. Every page reads *withdrawn* with the label instead of numbers, and the trials count in no statistic. The local data keeps them, and a local build keeps their log pages, marked. Remove the media from the Hugging Face dataset too. |
+| `not_counted` | `{task, mode, trial, note}`: a trial that ran but whose result does not count, e.g. one that could not be won on the host it ran on. It reads *not counted* with the note, keeps its log page, and counts in no statistic, like a trial we stopped. A later trial of the same task and mode counts again. |
 | `notes` | `{task, mode, trial, note}`: a note on one trial that is graded as it is, with nothing arranged (e.g. the agent ended itself). The pill gets ⓘ; the note shows under *ⓘ Notes* on the Runs page and on the trial's log page, never among the follow-ups. Like a follow-up, it is tied to that trial. |
 | `closed` | Why the run is over. Its jobs that never started read *not run* instead of *queued*. |
 | `harness` | Optional: how this benchmark's pages word the run's harness, in place of the `harness` of `data/agents/<run>.yml`. |

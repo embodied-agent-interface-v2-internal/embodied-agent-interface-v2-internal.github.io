@@ -260,6 +260,18 @@ def check_runs(rep: Report) -> None:
                     rep.error(here, f"follow-up mode {f.get('mode')!r} is not one of {br.modes}")
                 if not f.get("trial"):
                     rep.warn(here, f"follow-up for {f.get('task')} has no `trial`, so it never shows")
+            wd = spec.get("withdrawn") or {}
+            if not isinstance(wd, dict):
+                rep.error(here, "`withdrawn` must map a mode to its reason")
+            elif br:
+                for m in wd:
+                    if m not in br.modes:
+                        rep.error(here, f"withdrawn mode {m!r} is not one of {br.modes}")
+            for f in spec.get("not_counted") or []:
+                if not isinstance(f, dict) or not f.get("note") or not f.get("trial") or f.get("task") not in tasks:
+                    rep.error(here, f"not_counted {f!r}: needs a task of the run, its mode, the trial and a note")
+                elif br and f.get("mode") not in br.modes:
+                    rep.error(here, f"not_counted mode {f.get('mode')!r} is not one of {br.modes}")
             for f in spec.get("notes") or []:
                 if not isinstance(f, dict) or not f.get("note") or not f.get("trial"):
                     rep.error(here, f"note {f!r} needs task, mode, trial and note")
