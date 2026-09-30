@@ -23,6 +23,10 @@ billing: subscription           # the owner's ChatGPT Pro login: no per-token bi
 price: openai/gpt-6-luna         # key in data/prices.yml
 modes: [unlimited, limited]
 since: 2026-09-25
+notes: >-
+  Limited mode: the RoboLab, RoboPaint and RoboWits results are from the robot service's rcb-limited/2.2 protocol;
+  RoboPaint's and RoboWits' earlier limited round is kept as history, RoboLab's (2.0) was withdrawn. BEHAVIOR-1K's
+  limited results are from its earlier round.
 # Its id until 2026-09-28, when the lab's run ids became <harness>-<model>-<effort>: its old log-page addresses redirect
 # to the new ones, and ?run=<it> still picks this run.
 formerly: [codex-0.157-gpt6luna-xhigh-cgpt]

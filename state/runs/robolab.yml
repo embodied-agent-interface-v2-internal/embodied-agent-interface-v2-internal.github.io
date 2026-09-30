@@ -9,28 +9,42 @@ runs:
     batch: robolab-lunacx-0925-2038
     # 2026-09-28 21:20, user: "可以把它从网站上直接 take down，就直接删掉，我们全部重跑". The 2.0 RoboLab limited robot
     # service reported a stale wrist_cam pose (Isaac Lab's TiledCamera caches its initial pose): after the arm moved,
-    # the pose it reported was up to about 16 cm / 23° off. Every limited trial ran with it; all are rerun on the fixed
-    # version. Their records stay in data/runs/ here (a local build shows them, marked); the public snapshot and the
-    # Hugging Face dataset no longer hold them.
-    withdrawn:
-      limited:
-        label: "rerun pending (2.0 wrist-camera pose bug)"
-        note: >-
-          the 2.0 limited robot service reported a stale wrist-camera pose (Isaac Lab's TiledCamera keeps its initial
-          pose): once the arm moved, it was up to about 16 cm / 23° off. Every limited trial ran with it; they are rerun
-          on the fixed version
+    # the pose it reported was up to 394 mm / 76° off (325 mm on average). Every limited trial of the 2.0 batch ran with
+    # it; all 88 tasks were rerun on the fixed protocol, rcb-limited/2.2 (2026-09-28 22:50 to 09-29 09:14), in the rerun
+    # batches below, whose limited trials replace them (2026-09-29, user: publish the rerun).
+    # The 2.0 limited trials stay off the public site. A snapshot of this benchmark is made from local data whose
+    # limited records keep no history ("supersedes") from robolab-lunacx-0925-2038 and no limited-prev page built from
+    # one: strip both from data/runs/robolab/ and docs/assets/robolab/runs/ before `make publish-runs BENCHMARK=robolab`
+    # (the commit that published the rerun says how). Their records stay in the local data; the Hugging Face dataset no
+    # longer holds their media.
+    # rerun-0928: the 11 trials our memory guard killed; rerun2-0929: bagels_on_plate once more (the follow-ups below).
+    rerun_batches: [robolab-lunaxh-limited-0928, robolab-lunaxh-limited-rerun-0928, robolab-lunaxh-limited-rerun2-0929]
     followups:  # arranged for one trial each; the note goes away once another trial replaces it
     - {task: clean_up_toys, mode: unlimited, trial: robolab-clean-up-toys-i00__3b6KY3P, note: "regrade queued on ws3: the replay
         timed out while another user's jobs filled the GPU; it replays again once 8 GiB are free"}
-    # Trials our own stop cut short (the 01:55 RoboLab pause cut them at 01:53:22, after 44, 23, 17 and 79 of their
-    # 90 minutes) or kept from starting: they keep their pages and count in no statistic (2026-09-28 07:05, user:
-    # "RoboLab 那四个 trial 就不计入统计，我非常同意").
-    stopped:
-    - {task: larger_object_raisin_box_in_bin, mode: limited, note: "stopped by us at 01:53 when RoboLab was paused; not an agent failure"}
-    - {task: mustard_in_right_bin, mode: limited, note: "stopped by us at 01:53 when RoboLab was paused; not an agent failure"}
-    - {task: pick_glasses, mode: limited, note: "stopped by us at 01:53 when RoboLab was paused; not an agent failure"}
-    - {task: tools_picking_hammer, mode: limited, note: "stopped by us at 01:53 when RoboLab was paused; not an agent failure"}
-    - {task: pick_orange_object, mode: limited, note: "never started: stopped by us at 01:53 when RoboLab was paused"}
+    # 12 infrastructure failures of the 2.2 rerun, not counted: the rerun of each replaces it (2026-09-29). Our memory
+    # guard on lab killed 11 simulators when other users' jobs swung the host's free memory down by 47-80 GiB within
+    # minutes (02:30-04:05); ws lost GPU access mid-trial (a host systemd reload, 05:32-06:03).
+    - {task: rubiks_cube_and_banana, mode: limited, trial: robolab-rubiks-cube-and-banana-i__h4ya6tD, note: &guard "our memory
+        guard on lab killed its simulator when other users' jobs took the host's free memory: an infrastructure failure,
+        not counted; rerun in robolab-lunaxh-limited-rerun-0928"}
+    - {task: pick_up_blue_pitcher, mode: limited, trial: robolab-pick-up-blue-pitcher-i00__pmzLvxp, note: *guard}
+    - {task: red_dishes_in_bin, mode: limited, trial: robolab-red-dishes-in-bin-i00-li__QArocnc, note: *guard}
+    - {task: reorient_all_mugs, mode: limited, trial: robolab-reorient-all-mugs-i00-li__aQwzU6k, note: *guard}
+    - {task: bowl_stacking_left_on_right, mode: limited, trial: robolab-bowl-stacking-left-on-ri__gAWiDh2, note: *guard}
+    - {task: block_stacking_order_agnostic, mode: limited, trial: robolab-block-stacking-order-agn__wknQKsY, note: *guard}
+    - {task: recycle_cartons_vertical_crate, mode: limited, trial: robolab-recycle-cartons-vertical__QuanD42, note: *guard}
+    - {task: utensils_in_mug, mode: limited, trial: robolab-utensils-in-mug-i00-limi__9dMZ3TE, note: *guard}
+    - {task: rubiks_cube_then_banana, mode: limited, trial: robolab-rubiks-cube-then-banana__SfXXwRZ, note: *guard}
+    - {task: food_packing2_cans, mode: limited, trial: robolab-food-packing2-cans-i00-l__tkHcy2o, note: *guard}
+    - {task: bagels_on_plate, mode: limited, trial: robolab-bagels-on-plate-i00-limi__7xzdopM, note: *guard}
+    - {task: bagels_on_plate, mode: limited, trial: robolab-bagels-on-plate-i00-limi__eh2MPD7, note: "ws lost GPU access
+        mid-trial (a host systemd reload; \"Operation not permitted\"): an infrastructure failure, not counted; rerun on ws3
+        in robolab-lunaxh-limited-rerun2-0929"}
+    # Until 2026-09-29, `stopped:` named the four 2.0 limited trials our 01:55 RoboLab pause cut short
+    # (larger_object_raisin_box_in_bin, mustard_in_right_bin, pick_glasses, tools_picking_hammer) and
+    # pick_orange_object's, kept from starting (2026-09-28 07:05, user: "RoboLab 那四个 trial 就不计入统计，我非常同意").
+    # The 2.2 rerun replaced them all.
     tasks:
     - animals_in_bin
     - apple_and_yogurt_in_bowl

@@ -74,8 +74,10 @@ SCRUB = [
      r"\1\2<redacted>"),
     (re.compile(r"(?i)([\"'](?:api_?key|access_token|refresh_token|id_token|client_secret|password|secret)[\"']\s*:\s*[\"'])"
                 r"(?!<redacted>)[^\"']+"), r"\1<redacted>"),
-    # a login's account id (a Codex / ChatGPT auth.json carries one)
-    (re.compile(r"(?i)([\"']?(?:chatgpt_)?account_id[\"']?\s*[:=]\s*[\"']?)(?!<redacted>)[A-Za-z0-9_-]{6,}"), r"\1<redacted>"),
+    # a login's account id: a Codex / ChatGPT auth.json carries one, and the model gateway's command line carries it as the
+    # chatgpt-account-id header, which agents see in `ps` (2026-09-29: 111 of them had reached the published logs)
+    (re.compile(r"(?i)([\\\"']*(?:chatgpt[-_])?account[-_]id[\\\"']*(?:\s*[:=]\s*|\s+)[\\\"']*)(?!<redacted>)[A-Za-z0-9_-]{6,}"),
+     r"\1<redacted>"),
     (re.compile(rf"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.{TLDS}\b"), "<email>"),
     # user names in paths, and machines named in host paths
     (re.compile(r"/(home|Users|scratch)/(?!<user>)[A-Za-z0-9._-]+"), r"/\1/<user>"),
@@ -98,7 +100,8 @@ LEFT = {
     "user path": re.compile(r"/(?:home|Users|scratch)/(?!<user>)[A-Za-z0-9._-]+|/data/qineng|/DATA\d*/(?!<user>)\w"),
     "private ip": re.compile(r"\b(?:10\.\d{1,3}|172\.(?:1[6-9]|2\d|3[01])|192\.168)\.\d{1,3}\.\d{1,3}\b"),
     "machine": re.compile(r"(?<![\w.-])(?:ws3|ws|lab|laptop):/|\bmll-[a-z0-9]+|\bssh\s+(?:ws3|ws|lab|laptop)\b"),
-    "login material": re.compile(r"(?i)auth\.json|\.codex/|(?:chatgpt_)?account_id[\"']?\s*[:=]\s*[\"']?(?!<redacted>)[A-Za-z0-9_-]{6,}"
+    "login material": re.compile(r"(?i)auth\.json|\.codex/"
+                                 r"|(?:chatgpt[-_])?account[-_]id[\\\"']*(?:\s*[:=]\s*|\s+)[\\\"']*(?!<redacted>)[A-Za-z0-9_-]{6,}"
                                  r"|[\"'](?:access_token|refresh_token|id_token)[\"']\s*:\s*[\"'](?!<redacted>)"),
 }
 DROPPED = {"host", "hosts", "job", "where", "scan", "logs"}      # must be gone from every record and log
