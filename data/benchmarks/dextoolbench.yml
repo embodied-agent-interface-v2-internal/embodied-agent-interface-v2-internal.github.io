@@ -31,7 +31,8 @@ evaluation:
   metric: >-
     task progress = goals reached / goals. A goal counts when all 8 corners of the tool's grasp box (0.141 x 0.030 x
     0.027 m, scaled by 1.5) are within 1.5 cm of the same corners at the goal pose (eval_success_tolerance 0.01 x
-    keypoint_scale 1.5); then the next goal becomes current. 10 s per goal; a goal not reached in time ends the attempt.
+    keypoint_scale 1.5); then the next goal becomes current. Upstream gives each goal 10 s; ours (2026-09-29): 30 s per goal
+    in unlimited mode (replayed offline, free resets), no per-goal limit in limited mode (one episode, no reset).
 
 # SimToolReal publishes no per-task skill annotation.
 skill_vocabulary: []

@@ -7,7 +7,7 @@ title: About DexToolBench
 **DexToolBench** comes with SimToolReal (arXiv 2602.16863): 6 tool categories (hammer, marker, eraser, brush, spatula,
 screwdriver) × 2 real objects × 2 motions = 24 tasks, each a tool start pose and a sequence of goal poses taken from a
 human RGB-D demonstration. The robot is a **KUKA iiwa 14** with a left **Sharpa HA4** hand (22 joints). The score is
-**task progress**: the fraction of goals the tool reaches in order, each within a 1.5 cm keypoint tolerance and 10 s.
+**task progress**: the fraction of goals the tool reaches in order, each within a 1.5 cm keypoint tolerance and 10 s. We relax the time limit (2026-09-29): 30 s per goal in the unlimited mode, where the trajectory is replayed offline and the agent can reset freely, and none in the limited mode, where it gets one episode and no reset.
 
 [All 24 tasks](index.md){ .md-button .md-button--primary }
 [Capability coverage](coverage.md){ .md-button }
