@@ -36,7 +36,11 @@ runs:
     # drawing), on our workstations. No task is in both batches, so each task's jobs come from the one that has them.
     # robopaint-lunaxh-rerun-0928 (ws3): one rerun, xingshu_yong unlimited. Its first trial ended at 18 min when the
     # ChatGPT backend rejected a Codex request, not the agent's doing; the rerun supersedes it, as earlier reruns did.
-    rerun_batches: [robopaint-lunaxh-0928b, robopaint-lunaxh-rerun-0928]
+    # 2026-09-29, user: the limited round on the robot service's rcb-limited/2.2 protocol (ws and ws3, 82 tasks, 85
+    # trials) replaces robopaint-lunaxh-0928b's limited round, which stays as history. rerun-0929 (ws3): the 3 trials
+    # whose GPU ws lost (the follow-ups below).
+    rerun_batches: [robopaint-lunaxh-0928b, robopaint-lunaxh-rerun-0928, robopaint-lunaxh-limited-0929,
+                    robopaint-lunaxh-limited-rerun-0929]
     followups:  # arranged for one trial each; the note goes away once another trial replaces it
     - {task: xingshu_yong, mode: unlimited, trial: robopaint-xingshu-yong-i00__GkDcjZc, note: "the ChatGPT backend
         rejected a Codex request at 18 min (HTTP 400 \"prompt_cache_retention is not supported on this model\"), not the
@@ -44,6 +48,15 @@ runs:
     - {task: xingshu_zhi, mode: unlimited, trial: robopaint-xingshu-zhi-i00__NGSF7kr, note: "never reached the agent: the
         agent install's apt-get update failed (exit 100) while NVIDIA's CUDA apt repo was mid-sync; rerun in
         robopaint-lunaxh-rerun-0928"}
+    # 3 infrastructure failures of the 2.2 round, not counted: the rerun of each replaces it (2026-09-29). ws lost GPU
+    # access in its running containers (a host systemd reload, 05:32-06:03). A task keeps one earlier trial as history,
+    # so for these three the not-counted trial takes that place and robopaint-lunaxh-0928b's limited trial leaves the
+    # site; it stays in the raw records.
+    - {task: kaishu_he, mode: limited, trial: robopaint-kaishu-he-i00-limited__8m5hQTs, note: &gpu "ws lost GPU access
+        mid-trial (a host systemd reload): an infrastructure failure, not counted; rerun on ws3 in
+        robopaint-lunaxh-limited-rerun-0929. The earlier round's trial stays in the raw records"}
+    - {task: lettering_moon, mode: limited, trial: robopaint-lettering-moon-i00-lim__Y43YiNN, note: *gpu}
+    - {task: acrylic_suddenshower, mode: limited, trial: robopaint-acrylic-suddenshower-i__uE8X2QX, note: *gpu}
     # Graded as they are, not rerun (2026-09-28): the agent's own kill command also ended the Codex process.
     notes:  # on one trial each, graded as it is: nothing arranged
     - {task: kaishu_fu, mode: unlimited, trial: robopaint-kaishu-fu-i00__YTwmo84, note: "the agent's own `pkill -f
