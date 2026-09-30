@@ -10,7 +10,7 @@
 #   note        free text; why you decided what you decided
 #
 # First pass 2026-09-29 by Claude for the owner: labels by the guide's test (required by the goal, not visible in the
-# demo); difficulty from the oracle's and the agent's results; status left pending (triage is the owner's call).
+# demo); difficulty from the oracle's and the agent's results; status keep for every built task (owner 2026-09-30: keep all new tasks); unbuilt ones stay pending.
 
 brush_blue_brush_sweep_forward:
   difficulty: extreme
@@ -25,7 +25,7 @@ brush_blue_brush_sweep_forward:
     per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 8/34 goals; Codex
     + GPT-6 Luna xhigh unlimited 0/34 goals, limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 brush_blue_brush_sweep_right:
   difficulty: extreme
   labels:
@@ -53,7 +53,7 @@ brush_red_brush_sweep_forward:
     per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 20/38 goals; Codex
     + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 brush_red_brush_sweep_right:
   difficulty: extreme
   labels:
@@ -67,7 +67,7 @@ brush_red_brush_sweep_right:
     per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 19/38 goals; Codex
     + GPT-6 Luna xhigh unlimited 2/38 goals, limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 eraser_flat_eraser_wipe_c:
   difficulty: extreme
   labels:
@@ -109,7 +109,7 @@ eraser_handle_eraser_wipe_c:
     per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 12/31 goals; Codex
     + GPT-6 Luna xhigh unlimited 6/31 goals, limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 eraser_handle_eraser_wipe_smile:
   difficulty: hard
   labels:
@@ -123,7 +123,7 @@ eraser_handle_eraser_wipe_smile:
     per task. Difficulty ''hard'' from evidence: oracle (SimToolReal''s RL policy, our port) 29/29 goals; Codex
     + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 hammer_claw_hammer_swing_down:
   difficulty: hard
   labels:
@@ -137,7 +137,7 @@ hammer_claw_hammer_swing_down:
     per task. Difficulty ''hard'' from evidence: oracle (SimToolReal''s RL policy, our port) 37/37 goals; Codex
     + GPT-6 Luna xhigh unlimited 12/37 goals, limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 hammer_claw_hammer_swing_side:
   difficulty: extreme
   labels:
@@ -151,7 +151,7 @@ hammer_claw_hammer_swing_side:
     per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 13/40 goals; Codex
     + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 hammer_mallet_hammer_swing_down:
   difficulty: hard
   labels:
@@ -166,7 +166,7 @@ hammer_mallet_hammer_swing_down:
     RL policy, our port) 12/36 goals; Codex + GPT-6 Luna xhigh unlimited 36/36 goals, limited (no per-goal limit)
     0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 hammer_mallet_hammer_swing_side:
   difficulty: extreme
   labels:
@@ -180,7 +180,7 @@ hammer_mallet_hammer_swing_side:
     per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 5/32 goals; Codex
     + GPT-6 Luna xhigh unlimited 0/32 goals, limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 marker_sharpie_marker_draw_smile:
   difficulty: hard
   labels:
@@ -194,7 +194,7 @@ marker_sharpie_marker_draw_smile:
     per task. Difficulty ''hard'' from evidence: oracle (SimToolReal''s RL policy, our port) 36/36 goals; Codex
     + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 marker_sharpie_marker_write_c:
   difficulty: hard
   labels:
@@ -208,7 +208,7 @@ marker_sharpie_marker_write_c:
     per task. Difficulty ''hard'' from evidence: oracle (SimToolReal''s RL policy, our port) 25/25 goals; Codex
     + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 marker_staples_marker_draw_smile:
   difficulty: hard
   labels:
@@ -222,7 +222,7 @@ marker_staples_marker_draw_smile:
     per task. Difficulty ''hard'' from evidence: oracle (SimToolReal''s RL policy, our port) 49/49 goals; Codex
     + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 marker_staples_marker_write_c:
   difficulty: extreme
   labels:
@@ -236,7 +236,7 @@ marker_staples_marker_write_c:
     per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 19/29 goals; Codex
     + GPT-6 Luna xhigh unlimited 1/29 goals, limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 screwdriver_long_screwdriver_spin_horizontal:
   difficulty: hard
   labels:
@@ -252,7 +252,7 @@ screwdriver_long_screwdriver_spin_horizontal:
     per task. Difficulty ''hard'' from evidence: oracle (SimToolReal''s RL policy, our port) 31/31 goals; Codex
     + GPT-6 Luna xhigh unlimited 0/31 goals, limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 screwdriver_long_screwdriver_spin_vertical:
   difficulty: extreme
   labels:
@@ -268,7 +268,7 @@ screwdriver_long_screwdriver_spin_vertical:
     per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 27/100 goals; Codex
     + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 screwdriver_short_screwdriver_spin_horizontal:
   difficulty: extreme
   labels:
@@ -284,7 +284,7 @@ screwdriver_short_screwdriver_spin_horizontal:
     per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 15/38 goals; Codex
     + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 screwdriver_short_screwdriver_spin_vertical:
   difficulty: extreme
   labels:
@@ -300,7 +300,7 @@ screwdriver_short_screwdriver_spin_vertical:
     per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 36/76 goals; Codex
     + GPT-6 Luna xhigh unlimited 11/76 goals, limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 spatula_flat_spatula_flip_over:
   difficulty: extreme
   labels:
@@ -316,7 +316,7 @@ spatula_flat_spatula_flip_over:
     per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 7/45 goals; Codex
     + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 spatula_flat_spatula_serve_plate:
   difficulty: extreme
   labels:
@@ -330,7 +330,7 @@ spatula_flat_spatula_serve_plate:
     per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 9/33 goals; Codex
     + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 spatula_spoon_spatula_flip_over:
   difficulty: extreme
   labels:
@@ -346,7 +346,7 @@ spatula_spoon_spatula_flip_over:
     per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 6/40 goals; Codex
     + GPT-6 Luna xhigh unlimited 6/40 goals, limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep
 spatula_spoon_spatula_serve_plate:
   difficulty: extreme
   labels:
@@ -360,4 +360,4 @@ spatula_spoon_spatula_serve_plate:
     per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 13/48 goals; Codex
     + GPT-6 Luna xhigh unlimited 0/48 goals, limited (no per-goal limit) 0 goals.'
   owner: JamesKrW
-  status: pending
+  status: keep

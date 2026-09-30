@@ -10,7 +10,7 @@
 #   note        free text; why you decided what you decided
 #
 # First pass 2026-09-29 by Claude for the owner: labels by the guide's test (required by the goal, not visible in the
-# demo); difficulty from the oracle's and the agent's results; status left pending (triage is the owner's call).
+# demo); difficulty from the oracle's and the agent's results; status keep for every built task (owner 2026-09-30: keep all new tasks); unbuilt ones stay pending.
 
 aero_cube_rotate_z_axis:
   difficulty: extreme
@@ -37,7 +37,7 @@ aloha_hand_over:
     + GPT-6 Luna xhigh unlimited succeeded, limited failed. gen-layout: Playground randomizes the start per episode
     (our tasks freeze one seed).'
   owner: JamesKrW
-  status: pending
+  status: keep
 aloha_single_peg_insertion:
   difficulty: hard
   labels:
@@ -52,7 +52,7 @@ aloha_single_peg_insertion:
     pilot, failed in the main run (unlimited, 60 min timeout) and in limited. gen-layout: Playground randomizes
     the start per episode (our tasks freeze one seed).'
   owner: JamesKrW
-  status: pending
+  status: keep
 leap_cube_reorient:
   difficulty: extreme
   labels:
@@ -89,7 +89,7 @@ panda_open_cabinet:
     oracle succeeds; the agent succeeded unlimited, failed limited. gen-layout: Playground randomizes the start
     per episode (our tasks freeze one seed).'
   owner: JamesKrW
-  status: pending
+  status: keep
 panda_pick_cube:
   difficulty: easy
   labels:
@@ -123,7 +123,7 @@ panda_pick_cube_orientation:
     Evidence: scripted oracle succeeds; the agent succeeded unlimited, failed limited. gen-layout: Playground randomizes
     the start per episode (our tasks freeze one seed).'
   owner: JamesKrW
-  status: pending
+  status: keep
 panda_robotiq_push_cube:
   difficulty: easy
   labels:
