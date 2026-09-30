@@ -5,7 +5,7 @@ benchmark: kinder
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 12fb1352
+  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 7d6a7a44
   synced: '2026-09-30'
   instruction: 'Put the three flat green parts on the grey table, a square (part0) and two right triangles (part1, part2), each with a small red peg on top, into the purple tray in the middle of the table (rack). The task succeeds the moment the robot holds nothing and every part rests in the tray: its flat body (peg excluded) lies within the tray''s inner outline, its underside is within 5 mm of the tray floor''s height and its top is no more than 5 mm above the tray''s rim, it is within 5 mm of the tray without penetrating it, and no two parts (pegs included) overlap.'
   limited_instruction: 'Put the three flat green parts on the grey table, a square and two right triangles, each with a small red peg on top, into the purple tray in the middle of the table. The task succeeds the moment the robot holds nothing and every part rests in the tray: its flat body (peg excluded) lies within the tray''s inner outline, its underside is within 5 mm of the tray floor''s height and its top is no more than 5 mm above the tray''s rim, it is within 5 mm of the tray without penetrating it, and no two parts (pegs included) overlap.'
@@ -50,4 +50,4 @@ _No demo._
 
 ## Discussion
 
-Unlimited mode passes in 9 minutes by reading the parts' heights and supporting surfaces whenever a release failed; limited mode got all three parts into the tray only after the square took 30 minutes to place, and the goal check had not accepted them when its hour ran out at step 764. (@williamzhangNU)
+Both modes pass: unlimited mode in 9 minutes by reading the parts' heights and supporting surfaces whenever a release failed, limited mode live in its first episode, re-planning at each of its 35 refused moves and levelling the parts until the goal check accepted them at 59 minutes. (@williamzhangNU)

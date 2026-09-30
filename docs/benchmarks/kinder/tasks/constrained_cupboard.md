@@ -5,7 +5,7 @@ benchmark: kinder
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 12fb1352
+  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 7d6a7a44
   synced: '2026-09-30'
   instruction: 'Put the six brown rods lying on the floor (30 cm long) into the six 40 cm-tall compartments of the row of eleven narrow cupboards standing side by side, one rod each, as the state names pair them: rod cuboid_i into cupboard cupboard_i for i = 0 to 5, whose tall compartment is the upper one in cupboard_0 to cupboard_2 and the lower one in cupboard_3 to cupboard_5. The task succeeds the moment every rod''s centre is inside its compartment: above that compartment''s shelf, below the shelf over it, and within the cupboard''s 10 cm width and 30 cm depth.'
   limited_instruction: 'Put the six brown rods lying on the floor (30 cm long) into the row of eleven narrow cupboards standing side by side ahead of the robot, one rod each, each into a cupboard''s 40 cm-tall compartment: taking the rods in order of their distance from where the centre of the robot''s base starts, nearest first, they go into the 11th, 5th, 2nd, 8th, 4th and 1st cupboard of the row, counted from the robot''s left as it faces the row at the start. The task succeeds the moment every rod''s centre is inside its compartment: above that compartment''s shelf, below the shelf over it, and within the cupboard''s 10 cm width and 30 cm depth.'
@@ -50,4 +50,4 @@ _No demo._
 
 ## Discussion
 
-Unlimited mode passes only in its last minute, holding each rod by one end and fitting all six by step 935; limited mode's one episode lost 340 steps to two wasted arm motions and released its only rod outside the cupboard. (@williamzhangNU)
+Unlimited mode passes only in its last minute, holding each rod by one end and fitting all six by step 935; limited mode located all six rods and replayed a script for 40 episodes, but kept pushing centre-grasped rods in from above, and no rod ended in its compartment. (@williamzhangNU)

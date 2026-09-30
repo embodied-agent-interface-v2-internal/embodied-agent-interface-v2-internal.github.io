@@ -5,7 +5,7 @@ benchmark: kinder
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 12fb1352
+  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 7d6a7a44
   synced: '2026-09-30'
   instruction: Pick up the dark-red cube and the dark-green cube from the floor and put both in the top compartment of the brown cupboard, which has three compartments one above another. The task succeeds the moment both cubes rest on that compartment's floor.
   env_id: kinder/Shelf3D-o2-v0
@@ -49,4 +49,4 @@ _No demo._
 
 ## Discussion
 
-Unlimited mode passes once contact checks show the wrist must tilt 45° to enter the top compartment; limited mode's one episode found and carried the green cube but never found the red one before its 1000 steps ran out. (@williamzhangNU)
+Unlimited mode passes once contact checks show the wrist must tilt 45° to enter the top compartment; limited mode replayed a script for 21 episodes that grasped the red cube and drove it to the cupboard every time, but kept changing the placement height and mostly left the cube on the cupboard's top board. (@williamzhangNU)

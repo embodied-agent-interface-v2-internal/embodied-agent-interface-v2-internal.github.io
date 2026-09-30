@@ -5,7 +5,7 @@ benchmark: kinder
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 12fb1352
+  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 7d6a7a44
   synced: '2026-09-30'
   instruction: Get the green cube lying on the floor into the yellow bin on the far side of the low wall that runs across the room. The task succeeds the moment the cube's centre is inside the bin's goal region, the translucent green box marked in the bin.
   env_id: kinder/Tossing3D-o1-v0
@@ -49,4 +49,4 @@ _No demo._
 
 ## Discussion
 
-Unlimited mode passes with a throw found by searching thousands of candidates from an exact snapshot before release; in limited mode's one episode the robot took 658 steps to grasp the cube, never looked past the wall for the bin, and let the cube go just beyond the wall without a throw. (@williamzhangNU)
+Unlimited mode passes with a throw found by searching thousands of candidates from an exact snapshot before release; limited mode found the bin with wrist depth and replayed a scripted throw for 43 episodes, tuning it by computed trajectories rather than by looking, and its late throws landed short of the bin. (@williamzhangNU)

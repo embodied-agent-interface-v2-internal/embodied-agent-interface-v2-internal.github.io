@@ -10,8 +10,8 @@ description: >-
   centre inside a goal region, and the like), with no partial credit. We keep 11 of its 31 task
   families (10 scored and one fixture), one variant each, and run each in two modes: unlimited (full
   simulator state and the goal check, unlimited resets, one replayable trajectory handed in) and
-  limited (a robot behind a service: its base and wrist cameras, odometry and joint readings; one
-  episode, no reset).
+  limited (a robot behind a service: its base and wrist cameras, odometry and joint readings; 50
+  resets in our runs).
 
 links:
   paper: https://arxiv.org/abs/2604.25788

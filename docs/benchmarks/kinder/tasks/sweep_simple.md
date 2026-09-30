@@ -5,7 +5,7 @@ benchmark: kinder
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 12fb1352
+  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 7d6a7a44
   synced: '2026-09-30'
   instruction: Get the ten small dark-red cubes scattered on the floor into the translucent grey box marked on the floor at the end of the kitchen island (the free-standing white-topped counter) nearest the robot; a wiper stands on the floor next to the cubes. The task succeeds the moment all ten cubes' centres are inside that box.
   env_id: kinder/SweepSimple3D-o10-sweep_the_blocks_to_the_left_side_of_the_kitchen_island-v0
@@ -49,4 +49,4 @@ _No demo._
 
 ## Discussion
 
-Neither mode passes: unlimited mode could not hold the wiper and swept four cubes a few centimetres with the finger pads, and limited mode dropped the cube it had grasped while turning to find the box, released a second out of reach of it, and spent its last steps pushing with the base, which cannot move the cubes. (@williamzhangNU)
+Only limited mode passes: unlimited mode could not hold the wiper and swept four cubes a few centimetres with the finger pads, while limited mode calibrated a grasp-and-carry routine over 14 episodes, the base carrying each cube to the box, and finished its 15th with live re-grasps. (@williamzhangNU)

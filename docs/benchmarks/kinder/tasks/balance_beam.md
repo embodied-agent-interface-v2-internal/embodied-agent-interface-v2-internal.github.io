@@ -5,7 +5,7 @@ benchmark: kinder
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 12fb1352
+  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 7d6a7a44
   synced: '2026-09-30'
   instruction: Put the two small green cubes and the larger dark-red cube on the seesaw so that it balances. The task succeeds the moment all three cubes' centres are inside the translucent green region marked on the seesaw's beam and the beam is within 5° of level.
   env_id: kinder/BalanceBeam3D-o3-v0
@@ -49,4 +49,4 @@ _No demo._
 
 ## Discussion
 
-Unlimited mode passes by reading the seesaw's pose and balancing the moments about the pivot; limited mode grasped and placed all three cubes but bunched them at one end without reasoning about the pivot, and the beam was still tilted when its 1000 steps ran out. (@williamzhangNU)
+Unlimited mode passes by reading the seesaw's pose and balancing the moments about the pivot; limited mode grasped all three cubes on the first try and replayed its pick script with four placement layouts over 22 episodes, but never measured the beam's tilt, so it had nothing to steer the placement by. (@williamzhangNU)

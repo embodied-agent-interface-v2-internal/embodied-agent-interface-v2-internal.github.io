@@ -5,7 +5,7 @@ benchmark: kinder
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 12fb1352
+  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 7d6a7a44
   synced: '2026-09-30'
   instruction: Get the five small dark-red cubes on top of the kitchen island into the middle drawer of the island's upper row of drawers, which starts closed; a wiper lies next to the cubes. The task succeeds the moment all five cubes' centres are inside that drawer, each at least 2.5 cm from the drawer's two side walls.
   env_id: kinder/SweepIntoDrawer3D-o5-v0
@@ -49,4 +49,4 @@ _No demo._
 
 ## Discussion
 
-Neither mode passes: unlimited mode took 42 minutes to catch the pull and open the drawer about 7 cm, then only nudged the cubes a few centimetres, and limited mode's one episode ran out of its 1000 steps without opening the drawer. (@williamzhangNU)
+Neither mode passes: unlimited mode took 42 minutes to catch the pull and open the drawer about 7 cm, then only nudged the cubes; limited mode gripped the handle only at 52 minutes, after 18 episodes of approach poses, and its replay script never gripped it again. (@williamzhangNU)

@@ -5,7 +5,7 @@ benchmark: kinder
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 12fb1352
+  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 7d6a7a44
   synced: '2026-09-30'
   instruction: 'Sort the four small cubes clustered in the middle of the white table into the four open bins on it by colour: the dark-red cube into the red bin, the dark-green one into the green bin, the dark-blue one into the blue bin and the yellow one into the yellow bin. The task succeeds the moment every cube''s centre is inside the bin of its own colour, at least 1 cm from each of its inner walls, at least 1 cm below its rim and at least 0.5 cm above its floor.'
   env_id: kinder/SortClutteredBlocks3D-o4-sort_the_cluttered_blocks_into_bins-v0
@@ -49,4 +49,4 @@ _No demo._
 
 ## Discussion
 
-Unlimited mode passes on the last of its 1000 steps, with a jaw angle chosen per cube and two base positions; limited mode picked up only two cubes, spent 429 steps placing one, and ran out of steps at 34 minutes. (@williamzhangNU)
+Both modes pass: unlimited mode on the last of its 1000 steps, with a jaw angle chosen per cube and two base positions, limited mode in its 14th episode after refining a script over eleven and carrying each cube over its bin with the base. (@williamzhangNU)

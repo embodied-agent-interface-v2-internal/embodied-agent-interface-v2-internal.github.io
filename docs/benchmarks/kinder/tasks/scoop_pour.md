@@ -5,7 +5,7 @@ benchmark: kinder
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 12fb1352
+  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 7d6a7a44
   synced: '2026-09-30'
   instruction: Move all 30 small dark-red cubes from the yellow bin into the green bin; a scoop is in the scene. The task succeeds the moment every cube's centre is inside the green bin, at least 1 cm from each of its inner walls and at least 0.5 cm below its rim.
   env_id: kinder/ScoopPour3D-o30-v0
@@ -49,4 +49,4 @@ _No demo._
 
 ## Discussion
 
-Neither mode passes: both picked up the scoop but never got a cube into it, and unlimited mode's shovelling with the gripper and tipping over either bin moved no cube into the green bin either. (@williamzhangNU)
+Neither mode passes: both picked up the scoop but never got a cube to stay in it; unlimited mode's shovelling and tipping moved no cube, and limited mode's pick-and-place script moved at most one, its graded episode starting with a minute left. (@williamzhangNU)

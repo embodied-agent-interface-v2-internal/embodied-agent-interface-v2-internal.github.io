@@ -5,7 +5,7 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 12fb1352
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 7d6a7a44
   synced: '2026-09-30'
   instruction: Bring the robot's left hand to the target point and keep it there for as much of the episode as possible.
   env_id: h1-reach-v0

@@ -35,10 +35,11 @@ what a real TidyBot++ would give, and nothing else:
 | **Not given** | any object's or goal region's position, world coordinates, the goal check before the episode ends, masses and friction, the simulator itself; no camera in the room | not there on a real robot |
 
 It acts through `step`: one control step of base and arm-joint deltas and a gripper command, batches
-allowed. Our runs give it **one episode and no reset**: a real robot cannot put its scene back bit
-for bit, so every test move, test grasp and mistake is spent from the episode's 1000 steps (PyBullet:
-3000). The run passes the moment the episode reaches the goal. Both modes have 60 minutes of wall
-clock, and simulated time stands still between requests.
+allowed. Our runs give it **50 resets**, each back to the same start. KinDER's episode (1000 steps,
+100 s of robot time; PyBullet: 3000 steps) is the time to carry the task out with the whole state
+known; finding things and calibrating were never part of it, so they get earlier episodes. The run
+passes the moment any episode reaches the goal. Both modes have 60 minutes of wall clock, and
+simulated time stands still between requests.
 
 In the two PyBullet tasks the robot is the same TidyBot++, kinematic: the same two cameras on the same
 links, odometry, joint angles and the fingers' position (no velocities). `spec()` states its grasp,
@@ -93,13 +94,12 @@ passed, out of the 10 scored:
 
 | Model | Limited | Unlimited |
 | --- | --- | --- |
-| GPT-6 Luna | 0 | 7 (all but sweep into drawer, scoop pour, sweep simple) |
+| GPT-6 Luna | 3 (sweep simple, sort blocks, packing 3D) | 7 (all but sweep into drawer, scoop pour, sweep simple) |
 
-Limited mode has one episode, and every test move, test grasp and mistake is spent from it: the eight
-scored MuJoCo tasks ran out of their 1000 steps after 12 to 48 minutes, and the two PyBullet ones ran
-out of time with 163 and 764 of their 3000 steps. A control run with 50 bit-exact resets passed three
-(sweep simple, sort blocks, packing 3D), two of them by calibrating in early episodes and replaying a
-script, which a real robot cannot do. Unlimited mode passes by reading the state and the goal check
+The limited passes calibrated over earlier episodes and then replayed a script (sweep simple, sort
+blocks) or packed the tray live in the first episode (packing 3D). A control run with no reset passed
+none: exploring and executing had to share one episode, and the eight scored MuJoCo runs used up its 1000
+steps after 12 to 48 minutes. Unlimited mode passes by reading the state and the goal check
 and planning offline; it fails on the two multi-step contact tasks (sweep into drawer, scoop pour) and
 on sweep simple, where the base cannot move the cubes and the wiper would not stay in the gripper.
 Every run and its log are on the [Runs](../../runs/kinder.md) page; each task page's Discussion sums

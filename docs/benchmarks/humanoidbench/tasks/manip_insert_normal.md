@@ -5,7 +5,7 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 12fb1352
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 7d6a7a44
   synced: '2026-09-30'
   instruction: A bar and two small open sockets lie on the table in front of the robot. Fit each end of the bar into the socket of the matching colour, then lift the assembly to about 1.1 m and hold it there, without dropping anything.
   env_id: h1hand-insert_normal-v0

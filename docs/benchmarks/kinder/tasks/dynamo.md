@@ -5,7 +5,7 @@ benchmark: kinder
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 12fb1352
+  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 7d6a7a44
   synced: '2026-09-30'
   instruction: Drive the robot into the translucent green square marked on the floor; three chairs stand in the way and can be pushed. The task succeeds the moment the centre of the robot's base is inside the square. (The red, blue and yellow squares only mark where the chairs started.)
   env_id: kinder/Dynamo3D-o3-v0
@@ -49,4 +49,4 @@ _No demo._
 
 ## Discussion
 
-Unlimited mode reads the square's coordinates and drives around the chairs in 135 steps; in limited mode the square never came into view, and the robot swept the room blind until its 1000 steps ran out at 6 minutes. (@williamzhangNU)
+Unlimited mode reads the square's coordinates and drives around the chairs in 135 steps; limited mode, with only the downward base camera, swept the room lane by lane on odometry and drove into the square in its first episode, at step 724. (@williamzhangNU)

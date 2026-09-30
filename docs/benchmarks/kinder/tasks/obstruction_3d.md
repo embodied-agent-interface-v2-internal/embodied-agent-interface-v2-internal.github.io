@@ -5,7 +5,7 @@ benchmark: kinder
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 12fb1352
+  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 7d6a7a44
   synced: '2026-09-30'
   instruction: Put the purple block (target_block) on the thin purple pad on the wooden table (target_region); three of the four small red blocks (obstruction0, obstruction1, obstruction3) sit on the pad and the fourth (obstruction2) is elsewhere on the table. The task succeeds the moment the robot holds nothing, the block's underside is within 5 mm of the pad's top surface, and all four of its bottom corners lie within the pad's outline enlarged by 5 mm on every side.
   limited_instruction: Put the purple block on the thin purple pad on the wooden table; three of the four small red blocks sit on the pad and the fourth is elsewhere on the table. The task succeeds the moment the robot holds nothing, the block's underside is within 5 mm of the pad's top surface, and all four of its bottom corners lie within the pad's outline enlarged by 5 mm on every side.
@@ -50,4 +50,4 @@ _No demo._
 
 ## Discussion
 
-Unlimited mode passes in 11 minutes by checking collisions offline before each grasp; limited mode sent one step per tool call, 163 of its 3000 in the hour, and its descents onto the pad, still crowded with red blocks, were refused ten times. (@williamzhangNU)
+Unlimited mode passes in 11 minutes by checking collisions offline before each grasp; limited mode worked live in one episode, used `blocked` as its contact signal and cleared two red blocks off the pad, but slow releases and a mistake in its own arm model left the purple block off the pad when its hour ran out. (@williamzhangNU)

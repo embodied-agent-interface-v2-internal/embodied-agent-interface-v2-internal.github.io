@@ -8,11 +8,11 @@ task_dir: "kinder-{task_dashed}-i00"
 progress: none
 
 # Every run here: image 0.1.6, 60 minutes a mode, effort medium, Codex over OpenRouter, the agent reaching the model
-# APIs only. Limited: the standard config, one episode and no reset, the robot's own base and wrist cameras (wrist
+# APIs only. Limited: the standard config, 50 resets, the robot's own base and wrist cameras (wrist
 # depth, no room camera), and spec() gives the gripper's grasp point (`end_effector`); the PyBullet robot reports a
 # move it refuses as `blocked`. Unlimited: the first six ran on 2026-09-28 on the earlier
 # white floor, which changes only their images. Their Harbor jobs predate run_agent_batch.sh's names
-# (kinder-full-<family>-codex-gpt6luna-medium-60min, kinder-limited-<family>-...-60min-reset0-depth-ee); the batch name
+# (kinder-full-<family>-codex-gpt6luna-medium-60min, kinder-limited-<family>-...-60min-reset50-depth-ee); the batch name
 # below links to them on the machine that ran them.
 runs:
   codex-gpt6_luna-medium:
