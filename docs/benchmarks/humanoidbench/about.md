@@ -80,6 +80,11 @@ are close calls (reach 12008 against 12000 in limited mode, basketball 1239 agai
 run and its log are on the [Runs](../../runs/humanoidbench.md) page; each task page's Discussion
 sums up its runs.
 
+The run picker also has GPT-6 Luna (all 24 tasks), GPT-6 Sol and Claude Opus 5.5 (five tasks each,
+2026-09-28), kept as the evidence that robot_coding_bench's tasks without a reference solution cite: the
+passing trajectories its human review checked. Luna's limited trials, sit_simple's aside, are its protocol
+v1.0 sweep with 50 resets (push and sit_hard passed).
+
 ## Upstream links
 
 - [HumanoidBench](https://github.com/carlosferrazza/humanoid-bench): the environments, pinned at commit cb11890

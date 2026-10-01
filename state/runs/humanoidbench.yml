@@ -11,11 +11,15 @@ progress: none
 metrics:
 - {key: resets, label: Resets used, format: ".0f", better: lower}
 
+# GPT-6.1 Sol is HumanoidBench's run; GPT-6 Luna's, GPT-6 Sol's and Claude Opus 5.5's stay beside it because
+# robot_coding_bench's oracle_evidence cites their trials (the tasks without a reference solution: a passing trajectory,
+# checked against today's verifiers). Every run is on the tasks before protocol v1.0 (limited mode 1.1); only Luna's
+# rerun batch is on v1.0.
 # Task text 7 (robot_coding_bench ef883ec; the tasks regenerated since with the massless hands' centre of mass fixed),
 # image 0.1.6, 60 minutes a mode, limited with 50 resets, a pelvis IMU and the room camera. One attempt per task and
 # mode, 2026-09-30. The Harbor jobs predate run_agent_batch.sh's names (hb-<mode>-<task>-codex-gpt61sol-...-text7); the
-# batch name below links to them on the machine that ran them. The earlier runs (GPT-6 Luna, GPT-6 Sol, Claude Opus 5.5,
-# 2026-09-28) were taken off the site on 2026-10-01; their results stay in robot_coding_bench at e1f8660f.
+# batch name below links to them on the machine that ran them. The other three: the same, on 2026-09-28, with text 7
+# before the centre-of-mass fix (their notes say where it mattered).
 runs:
   codex-gpt6_1_sol-medium:
     batch: hb-sol61-0930
@@ -44,3 +48,61 @@ runs:
     - manip_room
     - manip_cabinet
     - manip_kitchen
+  codex-gpt6_luna-medium-openrouter:
+    batch: hb-luna-0928
+    # Protocol v1.0 (robot_coding_bench main 571079ea, 2026-10-01): the standard twins with 50 resets (23 tasks; sit_simple
+    # has a reference solution and was not swept) and push privileged, on Harbor's codex agent. Each replaces the
+    # task's earlier trial, which stays as its history. The v1.0 sweep without resets (0/23) is not on this site.
+    rerun_batches: [hb-luna-v1-1001]
+    notes:  # on one trial each, graded as it is: nothing arranged
+    - {task: manip_push, mode: limited, trial: humanoidbench-manip-push-i00-lim__R6DtjyA, note: "`spec()` placed the
+        hand 0.31 m beyond the real one (a massless link's centre of mass; fixed since); the arm poses the agent chose
+        with it in its last two episodes never reached the box"}
+    tasks:
+    - loco_sit_simple
+    - loco_walk
+    - loco_hurdle
+    - loco_balance_simple
+    - manip_door
+    - manip_powerlift
+    - manip_push
+    - manip_cube
+    - manip_package
+    - manip_bookshelf_simple
+    - loco_stair
+    - loco_balance_hard
+    - loco_maze
+    - manip_highbar_simple
+    - manip_basketball
+    - loco_reach
+    - loco_sit_hard
+    - manip_truck
+    - manip_window
+    - manip_spoon
+    - manip_insert_normal
+    - manip_room
+    - manip_cabinet
+    - manip_kitchen
+  claude_code-claude_opus5_5-medium:
+    batch: hb-opus-0928
+    notes:  # on one trial each, graded as it is: nothing arranged
+    - {task: manip_cube, mode: limited, trial: humanoidbench-manip-cube-i00-lim__P9dfBad, note: "the agent ended itself
+        at 6 min with 13 of its 50 resets left"}
+    - {task: manip_cube, mode: unlimited, trial: humanoidbench-manip-cube-i00__o94E5nq, note: "the agent ended itself at
+        17 min, believing its time was nearly up; it never checked the clock"}
+    - {task: manip_door, mode: limited, trial: humanoidbench-manip-door-i00-lim__4qvYP8i, note: "`spec()` placed the
+        hand 0.31 m beyond the real one (a massless link's centre of mass; fixed since); taking it for the fingertip,
+        the agent concluded its arms pass through the door and ended itself at 14 min with 16 resets left"}
+    tasks: [loco_walk, loco_sit_hard, manip_door, manip_push, manip_cube]
+    others: 'not in this run (the two dearer models ran five tasks, chosen to span locomotion and manipulation, easy
+      to hard)'
+  codex-gpt6_sol-medium:
+    batch: hb-sol-0928
+    notes:  # on one trial each, graded as it is: nothing arranged
+    - {task: manip_door, mode: limited, trial: humanoidbench-manip-door-i00-lim__BQAugTj, note: "`spec()` placed the
+        hand 0.31 m beyond the real one (a massless link's centre of mass; fixed since), and the agent aimed its hand at
+        the handle with it"}
+    tasks: [loco_walk, loco_sit_hard, manip_door, manip_push, manip_cube]
+    others: 'not in this run (the two dearer models ran five tasks, chosen to span locomotion and manipulation, easy
+      to hard)'
+    closed: 'the OpenRouter credit ran out on 2026-09-28 before the unlimited runs on door, push and cube'

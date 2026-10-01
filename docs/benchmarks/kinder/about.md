@@ -103,6 +103,11 @@ median 6 minutes. The subset no longer separates a model this strong: a harder v
 needed. Every run and its log are on the [Runs](../../runs/kinder.md) page; each task page's
 Discussion sums up its runs.
 
+The run picker also has GPT-6 Luna (all 11 tasks, 2026-09-28 to 10-01), kept as the evidence that
+robot_coding_bench's families without a reference solution cite: the passing trajectories its human review
+checked. Its limited trials, dynamo's aside, are its protocol v1.0 sweep with 50 resets (none passed); the
+earlier ones, three of which passed, are their history.
+
 ## Upstream links
 
 - [KinDER](https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden): the environments, pinned at commit 5b2dbac (MIT)
