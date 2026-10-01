@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Stops at the first compartments: only unlimited mode opens the sliding door, and no run reaches the cubes. (@williamzhangNU)
+Stops at the first compartments: limited mode opens the sliding door, but no later compartment counts in either mode and the cubes are never touched. (@williamzhangNU)

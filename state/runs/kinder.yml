@@ -1,27 +1,22 @@
 # KinDER's agent runs. Owned by the benchmark's owner, curated by hand like everything in state/.
 # Format and field meanings: docs/contributing/registering-runs.md (and the header of state/runs/behavior-1k.yml).
 
-default: codex-gpt6_luna-medium
+default: codex-gpt6_1_sol-medium
 # task id <family with underscores> -> our task directory kinder-<family>-i00 (and its -limited twin)
 task_dir: "kinder-{task_dashed}-i00"
 # No partial credit beside success: KinDER's goal check passes or fails, and its reward.json has no progress key.
 progress: none
 
-# Every run here: image 0.1.6, 60 minutes a mode, effort medium, Codex over OpenRouter, the agent reaching the model
-# APIs only. Limited: the standard config, 50 resets, the robot's own base and wrist cameras (wrist
-# depth, no room camera), and spec() gives the gripper's grasp point (`end_effector`); the PyBullet robot reports a
-# move it refuses as `blocked`. Unlimited: the first six ran on 2026-09-28 on the earlier
-# white floor, which changes only their images. Their Harbor jobs predate run_agent_batch.sh's names
-# (kinder-full-<family>-codex-gpt6luna-medium-60min, kinder-limited-<family>-...-60min-reset50-depth-ee); the batch name
-# below links to them on the machine that ran them.
+# Image 0.1.6, 60 minutes a mode, effort medium, the agent reaching the model APIs only. Limited: the standard config,
+# 50 resets, the robot's own base and wrist cameras (wrist depth, no room camera), and spec() gives the gripper's grasp
+# point (`end_effector`); the PyBullet robot reports a move it refuses as `blocked`. One attempt per task and mode:
+# limited 2026-09-30, unlimited 2026-10-01. The Harbor jobs predate run_agent_batch.sh's names
+# (kinder-full-<family>-codex-gpt61sol-medium-60min, kinder-limited-<family>-...-60min-reset50-depth-ee); the batch name
+# below links to them on the machine that ran them. GPT-6 Luna's runs (2026-09-28 to 30) were taken off the site on
+# 2026-10-01; their results stay in robot_coding_bench at e1f8660f.
 runs:
-  codex-gpt6_luna-medium:
-    batch: kinder-luna-0930
-    # The Codex CLI was the latest at each run, not the 0.157.0 of data/agents/codex-gpt6_luna-medium.yml.
-    harness: >-
-      Codex CLI 0.158.0 (the first six unlimited runs), 0.159.0 (the other five) and 0.159.2 (limited) as
-      harbor_agents.codex_openrouter:CodexOpenRouter: Codex over OpenRouter with web search off, without the model
-      gateway; in limited mode the adapter ends the trial when the session ends (harbor_agents/limited.py)
+  codex-gpt6_1_sol-medium:
+    batch: kinder-sol61-0930
     tasks:
     - tossing
     - balance_beam

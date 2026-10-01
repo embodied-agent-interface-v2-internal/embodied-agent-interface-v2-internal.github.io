@@ -50,4 +50,4 @@ _No demo._
 
 ## Discussion
 
-Unlimited mode passes only in its last minute, holding each rod by one end and fitting all six by step 935; limited mode located all six rods and replayed a script for 40 episodes, but kept pushing centre-grasped rods in from above, and no rod ended in its compartment. (@williamzhangNU)
+Both modes pass, limited mode at step 988 of its 17th episode after finding, in its ninth, that a tilted grasp and a base push get the rods into the bays. (@williamzhangNU)

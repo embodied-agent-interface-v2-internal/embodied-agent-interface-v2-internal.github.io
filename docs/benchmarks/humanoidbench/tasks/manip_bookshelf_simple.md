@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Stands but never grasps: the first object is never lifted in either mode. (@williamzhangNU)
+Only the first object gets placed, in unlimited mode; limited mode aligned both hands on it but never lifted it. (@williamzhangNU)

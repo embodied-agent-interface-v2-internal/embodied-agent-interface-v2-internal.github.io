@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Blocked on the grasp: the spoon never reaches the cup in either mode. (@williamzhangNU)
+Blocked on stirring: unlimited mode lifts the spoon into the cup but never stirs, and limited mode never holds the handle. (@williamzhangNU)

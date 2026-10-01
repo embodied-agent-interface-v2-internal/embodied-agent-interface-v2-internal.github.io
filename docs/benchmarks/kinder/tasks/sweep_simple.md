@@ -49,4 +49,4 @@ _No demo._
 
 ## Discussion
 
-Only limited mode passes: unlimited mode could not hold the wiper and swept four cubes a few centimetres with the finger pads, while limited mode calibrated a grasp-and-carry routine over 14 episodes, the base carrying each cube to the box, and finished its 15th with live re-grasps. (@williamzhangNU)
+Both modes pass by carrying each cube to the box rather than sweeping it, after the wiper rode over the cubes in unlimited mode. (@williamzhangNU)

@@ -51,4 +51,4 @@ _No demo._
 
 ## Discussion
 
-Blocked on walking: the robot never gets up the ramp to the packages. (@williamzhangNU)
+Blocked on walking: the robot stands but never gets up the ramp to the packages. (@williamzhangNU)

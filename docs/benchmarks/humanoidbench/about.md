@@ -64,24 +64,21 @@ hands (61 actuators).
 
 ### Model runs so far
 
-One attempt per task and mode on 2026-09-28, 60 minutes each, reasoning effort medium, through
-OpenRouter: GPT-6 Luna (Codex) on all 24 tasks; GPT-6 Sol (Codex) and Claude Opus 5.5 (Claude Code)
-on five, one per class. Tasks passed, out of the scored ones:
+One attempt per task and mode on 2026-09-30, 60 minutes each, reasoning effort medium: GPT-6.1 Sol
+(Codex, through OpenRouter) on all 24 tasks. Tasks passed, out of the 23 scored:
 
-| Model | Tasks | Limited | Unlimited |
-| --- | --- | --- | --- |
-| GPT-6 Luna | all 23 | 0 | 3 (push, reach, sit_hard) |
-| GPT-6 Sol | walk, door, push, cube, sit_hard | 1 (push) | 1 (sit_hard; only walk and sit_hard were run) |
-| Claude Opus 5.5 | the same five | 2 (push, sit_hard) | 4 (all but cube) |
+| Model | Limited | Unlimited |
+| --- | --- | --- |
+| GPT-6.1 Sol | 3 (push, reach, sit_hard) | 9 (walk, balance_simple, push, cube, maze, basketball, reach, sit_hard, kitchen) |
 
-Limited mode is held back by balance, not by information: nearly every failed limited run could not
-stand, or fell as soon as it stepped, and of the link masses and centres of mass `spec()` gives, only
-one run computed a centre of mass. Unlimited mode gets further on the full state and unlimited
-retries, and loses on the agent's own objective: without the reward, the proxies it writes pay for
-standing still or rank by the wrong term. Claude Opus 5.5 is the strongest on the shared five; it
-rebuilt three upstream rewards from memory, the one leak no scrub can stop, and it often stopped with
-most of its budget left. Every run and its log are on the [Runs](../../runs/humanoidbench.md) page;
-each task page's Discussion sums up its runs.
+Limited mode is held back by locomotion: the agent turns `spec()`'s link masses and joint positions into a
+centre-of-mass estimate and can stand a whole episode, but builds no gait that moves forward, and the
+graded episode is the last one, often still running when the hour ends. Unlimited mode gets much
+further with whole-body control and search on the full state; two caveats: the agent rebuilds
+several upstream rewards from memory almost exactly, the one leak no scrub can stop, and two passes
+are close calls (reach 12008 against 12000 in limited mode, basketball 1239 against 1200). Every
+run and its log are on the [Runs](../../runs/humanoidbench.md) page; each task page's Discussion
+sums up its runs.
 
 ## Upstream links
 

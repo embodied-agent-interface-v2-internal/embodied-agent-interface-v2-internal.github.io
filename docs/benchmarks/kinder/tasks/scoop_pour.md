@@ -49,4 +49,4 @@ _No demo._
 
 ## Discussion
 
-Neither mode passes: both picked up the scoop but never got a cube to stay in it; unlimited mode's shovelling and tipping moved no cube, and limited mode's pick-and-place script moved at most one, its graded episode starting with a minute left. (@williamzhangNU)
+Both modes pass by pouring rather than scooping: limited mode tipped the yellow bin over the green one, unlimited mode moved the green bin to the floor and tipped the yellow bin into it. (@williamzhangNU)

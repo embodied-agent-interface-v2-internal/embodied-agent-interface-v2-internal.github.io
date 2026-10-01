@@ -51,4 +51,4 @@ _No demo._
 
 ## Discussion
 
-No subtask done in either mode: the microwave door, the first of four, never opens. (@williamzhangNU)
+Passes in unlimited mode, all four subtasks in order by step 487 with arm IK to each appliance; limited mode never opens the microwave door. (@williamzhangNU)

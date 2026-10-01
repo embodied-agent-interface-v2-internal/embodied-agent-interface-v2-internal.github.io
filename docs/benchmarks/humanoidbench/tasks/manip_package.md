@@ -51,4 +51,4 @@ _No demo._
 
 ## Discussion
 
-Blocked on standing next to the package: the unlimited score comes from sweeping it in while falling. (@williamzhangNU)
+Blocked on lifting: unlimited mode drags the box into the goal radius at the end without lifting it, and limited mode's lifts slip. (@williamzhangNU)

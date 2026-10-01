@@ -51,4 +51,4 @@ _No demo._
 
 ## Discussion
 
-The easiest scored task: four of five runs pass, and in limited mode it separates the models by whether they find a leaning stance that reaches the table. (@williamzhangNU)
+The easiest scored task: passes both modes, limited mode in 15 episodes with an ankle lean and arm kinematics from `spec()`. (@williamzhangNU)

@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-The task that best separates the models in limited mode: every unlimited run passes, and in limited mode only Claude Opus 5.5 lands on the seat rather than its front edge. (@williamzhangNU)
+Passes in both modes; limited mode only just (750.77 against 750), by turning the hips toward the chair before sitting. (@williamzhangNU)

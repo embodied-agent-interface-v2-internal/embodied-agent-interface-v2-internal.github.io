@@ -50,4 +50,4 @@ _No demo._
 
 ## Discussion
 
-Both modes pass: unlimited mode in 9 minutes by reading the parts' heights and supporting surfaces whenever a release failed, limited mode live in its first episode, re-planning at each of its 35 refused moves and levelling the parts until the goal check accepted them at 59 minutes. (@williamzhangNU)
+Both modes pass without a reset, limited mode in its first episode in under five minutes. (@williamzhangNU)

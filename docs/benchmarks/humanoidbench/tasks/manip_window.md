@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Holds contact but not speed: the wiper stays on the glass in unlimited mode, but moves far slower than asked. (@williamzhangNU)
+Close in unlimited mode, 32 short of the bar: the wiper stays on the glass for 866 steps but moves at about half the asked speed. (@williamzhangNU)

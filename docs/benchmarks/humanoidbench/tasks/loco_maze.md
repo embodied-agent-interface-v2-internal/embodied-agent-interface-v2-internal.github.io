@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Needs upright walking first: the only corner reached was reached by diving at it. (@williamzhangNU)
+Passes in unlimited mode with whole-body control walking a planned route through every checkpoint without touching a wall; limited mode never gets past the first stage. (@williamzhangNU)

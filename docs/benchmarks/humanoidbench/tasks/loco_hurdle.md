@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Out of reach for now: no run gets running without falling, so the hurdles themselves are never tested. (@williamzhangNU)
+Speed is now the gap: in unlimited mode the robot runs the whole episode without falling or touching a wall, but at about 1.4 m/s; limited mode never gets past 1.92 m. (@williamzhangNU)

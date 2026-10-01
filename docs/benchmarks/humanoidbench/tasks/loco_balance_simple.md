@@ -51,4 +51,4 @@ _No demo._
 
 ## Discussion
 
-Out of reach for now: no run keeps the board off the floor for long; it needs a balancing controller none built. (@williamzhangNU)
+Passes in unlimited mode with centre-of-mass and board-state feedback tuned by CMA-ES, standing all 1000 steps by 11 minutes; limited mode never stays up past 99 steps. (@williamzhangNU)

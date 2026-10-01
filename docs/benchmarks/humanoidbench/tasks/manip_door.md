@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Hard in both modes: only Claude Opus 5.5 passes, in unlimited mode with sampling MPC, and no limited run gets the door open. (@williamzhangNU)
+Hard in both modes: unlimited mode unlocks the handle but opens the door only 26.5°, and limited mode never finds the handle. (@williamzhangNU)

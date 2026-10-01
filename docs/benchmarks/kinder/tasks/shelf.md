@@ -49,4 +49,4 @@ _No demo._
 
 ## Discussion
 
-Unlimited mode passes once contact checks show the wrist must tilt 45° to enter the top compartment; limited mode replayed a script for 21 episodes that grasped the red cube and drove it to the cupboard every time, but kept changing the placement height and mostly left the cube on the cupboard's top board. (@williamzhangNU)
+Both modes pass: limited mode found the hidden red cube by turning the base and entered the top compartment with the gripper held horizontal. (@williamzhangNU)

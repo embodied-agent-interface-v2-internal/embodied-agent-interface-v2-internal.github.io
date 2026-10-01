@@ -51,4 +51,4 @@ _No demo._
 
 ## Discussion
 
-As far out of reach as balance_simple: no run keeps the board up past about 100 steps. (@williamzhangNU)
+Still out of reach: the board stays up at most 69 steps in limited mode and 277 in unlimited mode, where CMA-ES-tuned board and centre-of-mass feedback got furthest. (@williamzhangNU)

@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Separates the models in unlimited mode, where only Claude Opus 5.5 walked fast enough; in limited mode no model kept up the speed without falling. (@williamzhangNU)
+Passes in unlimited mode with a whole-body inverse-dynamics walker at about 1 m/s; in limited mode the best episode walked 738 steps before falling and the graded one fell at step 441. (@williamzhangNU)

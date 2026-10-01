@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Out of reach for now: the robot swings up but never holds the handstand. (@williamzhangNU)
+Out of reach for now: the robot swings up to a partial inversion but never holds the handstand. (@williamzhangNU)

@@ -51,4 +51,4 @@ _No demo._
 
 ## Discussion
 
-A clear gap between the modes: unlimited passes by finding a stance in simulation first; limited never finds one that stays up. (@williamzhangNU)
+Passes in both modes, limited only just (12008 against 12000): a centre-of-mass crouch from `spec()` and a stereo-camera target let the arm reach without falling. (@williamzhangNU)

@@ -50,4 +50,4 @@ _No demo._
 
 ## Discussion
 
-Unlimited mode passes in 11 minutes by checking collisions offline before each grasp; limited mode worked live in one episode, used `blocked` as its contact signal and cleared two red blocks off the pad, but slow releases and a mistake in its own arm model left the purple block off the pad when its hour ran out. (@williamzhangNU)
+Both modes pass within minutes and without a reset: the limited run cleared the three red blocks with quarter-turned grasps placed by wrist depth. (@williamzhangNU)

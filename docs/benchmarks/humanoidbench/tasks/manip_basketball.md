@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Close in unlimited mode, where the ball goes in but too little is earned before it; out of reach in limited mode, where the throw is never aimed at the hoop. (@williamzhangNU)
+Passes in unlimited mode by holding the ball to earn the per-step reward and scoring on the last step; limited mode catches and throws, but always short. (@williamzhangNU)

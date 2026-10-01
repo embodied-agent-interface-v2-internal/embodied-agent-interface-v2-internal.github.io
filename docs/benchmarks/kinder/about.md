@@ -88,22 +88,20 @@ and its IKFast solver does not build in our image.
 
 ### Model runs so far
 
-One attempt per task and mode, 60 minutes each, reasoning effort medium, through OpenRouter: GPT-6
-Luna (Codex) on all 11 tasks, unlimited on 2026-09-28 and 29, limited on 2026-09-29 and 30. Tasks
-passed, out of the 10 scored:
+One attempt per task and mode, 60 minutes each, reasoning effort medium: GPT-6.1 Sol (Codex, through
+OpenRouter) on all 11 tasks, limited on 2026-09-30, unlimited on 2026-10-01. Tasks passed, out of the
+10 scored:
 
 | Model | Limited | Unlimited |
 | --- | --- | --- |
-| GPT-6 Luna | 3 (sweep simple, sort blocks, packing 3D) | 7 (all but sweep into drawer, scoop pour, sweep simple) |
+| GPT-6.1 Sol | 10 (all) | 10 (all) |
 
-The limited passes calibrated over earlier episodes and then replayed a script (sweep simple, sort
-blocks) or packed the tray live in the first episode (packing 3D). A control run with no reset passed
-none: exploring and executing had to share one episode, and the eight scored MuJoCo runs used up its 1000
-steps after 12 to 48 minutes. Unlimited mode passes by reading the state and the goal check
-and planning offline; it fails on the two multi-step contact tasks (sweep into drawer, scoop pour) and
-on sweep simple, where the base cannot move the cubes and the wiper would not stay in the gripper.
-Every run and its log are on the [Runs](../../runs/kinder.md) page; each task page's Discussion sums
-up its runs.
+In limited mode it locates objects and goals by back-projecting the wrist camera's depth through the
+arm's kinematics from `spec()`, and checks its work in the images; it used 0 to 16 of its 50 resets
+and a median 12 minutes. Unlimited mode reads the state and the goal check and plans offline, in a
+median 6 minutes. The subset no longer separates a model this strong: a harder variant or family is
+needed. Every run and its log are on the [Runs](../../runs/kinder.md) page; each task page's
+Discussion sums up its runs.
 
 ## Upstream links
 

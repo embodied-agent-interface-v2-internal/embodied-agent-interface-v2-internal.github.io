@@ -49,4 +49,4 @@ _No demo._
 
 ## Discussion
 
-Unlimited mode passes with a throw found by searching thousands of candidates from an exact snapshot before release; limited mode found the bin with wrist depth and replayed a scripted throw for 43 episodes, tuning it by computed trajectories rather than by looking, and its late throws landed short of the bin. (@williamzhangNU)
+Both modes pass: limited mode tuned the throw speed over five episodes by watching where the cube landed; unlimited mode searched launch velocities from a simulation snapshot. (@williamzhangNU)

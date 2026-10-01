@@ -49,4 +49,4 @@ _No demo._
 
 ## Discussion
 
-Unlimited mode passes by reading the seesaw's pose and balancing the moments about the pivot; limited mode grasped all three cubes on the first try and replayed its pick script with four placement layouts over 22 episodes, but never measured the beam's tilt, so it had nothing to steer the placement by. (@williamzhangNU)
+Both modes pass: limited mode measured the goal region with wrist depth and placed all three cubes in its third episode; unlimited mode reads the goal region from the state. (@williamzhangNU)

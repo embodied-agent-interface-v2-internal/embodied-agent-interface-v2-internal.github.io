@@ -49,4 +49,4 @@ _No demo._
 
 ## Discussion
 
-Neither mode passes: unlimited mode took 42 minutes to catch the pull and open the drawer about 7 cm, then only nudged the cubes; limited mode gripped the handle only at 52 minutes, after 18 episodes of approach poses, and its replay script never gripped it again. (@williamzhangNU)
+Both modes pass: limited mode pulled the drawer open by its handle and moved the cubes in one by one; unlimited mode swept them in with the wiper. (@williamzhangNU)

@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Works as the pipeline fixture: GPT-6 Luna passes both modes. (@williamzhangNU)
+Works as the pipeline fixture: passes both modes, limited mode in its first episode. (@williamzhangNU)

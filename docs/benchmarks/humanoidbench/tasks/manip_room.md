@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Blocked on walking: the objects, the nearest about 1.9 m away, are never reached in either mode. (@williamzhangNU)
+Blocked on walking: the robot stands the whole episode in both modes but never reaches an object. (@williamzhangNU)

@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Out of reach in both modes: the robot has to stay up while turning two cubes in its hands, and no run did both. (@williamzhangNU)
+Passes in unlimited mode with centre-of-mass balance and Jacobian wrist control turning both cubes; limited mode stays up and comes close (338.91 against 370) but drops a cube at step 491. (@williamzhangNU)

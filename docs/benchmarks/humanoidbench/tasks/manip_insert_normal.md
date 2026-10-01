@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Blocked on the grasp: the bar is never gripped in either mode. (@williamzhangNU)
+Blocked on the bar: unlimited mode lifts and turns both sockets but leaves the bar on the table; limited mode's grasps slip. (@williamzhangNU)

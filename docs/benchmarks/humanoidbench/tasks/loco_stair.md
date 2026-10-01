@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Out of reach for now: no run builds a stepping gait, so the stairs are never reached. (@williamzhangNU)
+Out of reach in both modes: no gait gets past the third stair transfer, and the unlimited run submits standing in place. (@williamzhangNU)

@@ -49,4 +49,4 @@ _No demo._
 
 ## Discussion
 
-Unlimited mode reads the square's coordinates and drives around the chairs in 135 steps; limited mode, with only the downward base camera, swept the room lane by lane on odometry and drove into the square in its first episode, at step 724. (@williamzhangNU)
+Works as the fixture: both modes pass, limited mode in its first episode by locating the square with wrist depth. (@williamzhangNU)

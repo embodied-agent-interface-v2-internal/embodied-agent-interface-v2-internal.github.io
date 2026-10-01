@@ -49,4 +49,4 @@ _No demo._
 
 ## Discussion
 
-Both modes pass: unlimited mode on the last of its 1000 steps, with a jaw angle chosen per cube and two base positions, limited mode in its 14th episode after refining a script over eleven and carrying each cube over its bin with the base. (@williamzhangNU)
+Both modes pass, limited mode in its sixth episode after three missed grasps led it to a vertical servoed descent. (@williamzhangNU)
