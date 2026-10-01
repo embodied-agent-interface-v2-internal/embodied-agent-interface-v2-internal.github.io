@@ -1,0 +1,62 @@
+# RoboTwin 2.0's agent runs. Owned by the benchmark's owner, curated by hand like everything in state/.
+# Format and field meanings: docs/contributing/registering-runs.md (and the header of state/runs/behavior-1k.yml).
+#
+# The harness repo is robot_coding_bench (branch dev/kangrui): tasks robotwin_2_0_<task> (unlimited) and
+# robotwin_2_0_<task>-limited (limited, robot as a service). Each batch is one Harbor job per mode with a trial per task;
+# the limited mode's protocol changed twice, so the medium run's limited trials are three batches:
+#   rcb-limited/1.0 (2026-09-23, /step with one action), 2.0 (2026-09-25, /submit action chunks + /observe, binary
+#   RCB1 responses), 2.1 (2026-09-28, 2.0 + measured proprioception). The last one is the result; the earlier ones stay
+#   as history. Codex CLI versions (Harbor installs the latest per trial): 0923 = 0.156.1, v20-0925 = 0.157.0,
+#   xh-0927 = 0.157.1, v21-0928 = 0.158.0.
+
+default: codex-gpt6_luna-xhigh
+task_dir: "robotwin_2_0_{task}"
+
+runs:
+  codex-gpt6_luna-xhigh:
+    batch: rt-luna-xh-0927
+    # owner, 2026-09-29: one id for the configuration (harness, model, effort); RoboTwin ran it through Harbor's own agent
+    harness: >-
+      Harbor's built-in codex agent (-a codex; Codex CLI 0.157.1 limited, 0.158.0 unlimited) on the owner's ChatGPT login, not the CodexChatGPT
+      wrapper the other benchmarks used: with the plain model id Codex applies ChatGPT's metadata for gpt-6-luna (its
+      base instructions, verbosity low), and there is no model gateway (token counts are Harbor's per-trial totals)
+    rerun_batches: [rt-luna-xh-rerun-0927]
+    # unlimited added 2026-09-29 (Harbor job rt-gpt6luna-xhigh-unlimited, detailed reasoning summaries on), same batch id
+    notes:
+    - {task: pick_dual_bottles, mode: limited, trial: robotwin_2_0_pick_dual_bottles-l__96kfs6K, note: "rerun: in the first trial the robot service crashed while starting (the batch's first three trials started together), so the agent could send no action"}
+    - {task: place_object_stand, mode: limited, trial: robotwin_2_0_place_object_stand__SbNySTL, note: "rerun: in the first trial the robot service crashed while starting (the batch's first three trials started together), so the agent could send no action"}
+    - {task: shake_bottle, mode: limited, trial: robotwin_2_0_shake_bottle-limite__yiEcutt, note: "rerun: in the first trial the robot service crashed while starting (the batch's first three trials started together), so the agent could send no action"}
+    - {task: press_stapler, mode: unlimited, trial: robotwin_2_0_press_stapler__ceJ6A32, note: "regraded offline: the verifier ran out of GPU memory (OIDN) while other jobs shared the GPU and hung until Harbor's 1800 s verifier timeout, with no verdict; the same grader rerun on the collected trajectory, alone on the GPU, reads success (deterministic)"}
+    tasks: &tasks
+    - adjust_bottle
+    - dump_bin_bigbin
+    - handover_mic
+    - hanging_mug
+    - lift_pot
+    - move_can_pot
+    - open_laptop
+    - open_microwave
+    - pick_dual_bottles
+    - place_a2b_right
+    - place_can_basket
+    - place_dual_shoes
+    - place_fan
+    - place_object_basket
+    - place_object_stand
+    - place_phone_stand
+    - press_stapler
+    - put_bottles_dustbin
+    - rotate_qrcode
+    - scan_object
+    - shake_bottle
+    - stack_blocks_two
+    others: "not built as a harness task: the run covers the 11 kept tasks, 10 sampled dropped ones and stack_blocks_two"
+
+  codex-gpt6_luna-medium:
+    batch: rt-luna-med-0923
+    rerun_batches: [rt-luna-med-v20-0925, rt-luna-med-v21-0928]
+    closed: "stack_blocks_two was not in the 2026-09-23 unlimited batch"
+    notes:
+    - {task: open_microwave, mode: limited, trial: robotwin_2_0_open_microwave-limi__fngWY3B, note: "regraded offline: the live episode succeeded and the service's verification replay succeeded and was deterministic, but rendering the videos of this 40,384-step episode outlasted the collect hook, so Harbor's grade read 0 (a service bug, since fixed); two fresh replays of the recorded trajectory confirm success"}
+    tasks: *tasks
+    others: "not built as a harness task: the run covers the 11 kept tasks, 10 sampled dropped ones and stack_blocks_two"

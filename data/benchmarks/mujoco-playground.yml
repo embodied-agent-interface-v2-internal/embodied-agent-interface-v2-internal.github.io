@@ -1,0 +1,49 @@
+id: mujoco-playground
+name: MuJoCo Playground (manipulation)
+edition: MuJoCo Playground (arXiv 2502.08844); code `main` @ 4057c14
+status: active
+simulator: MuJoCo 3.3.7 (plain MuJoCo on the CPU; upstream trains in MJX / MuJoCo Warp)
+description: >-
+  The ten manipulation environments of Google DeepMind's MuJoCo Playground: ALOHA 2 bimanual hand-over and peg
+  insertion, Franka Panda pick-and-place, cabinet opening and pushing, and in-hand cube rotation with the LEAP and Aero
+  hands. Playground is an RL training suite: each env defines a dense reward, not a success test. We run its scene XMLs
+  in plain MuJoCo with our own success tests; four envs are built so far.
+
+links:
+  paper: https://arxiv.org/abs/2502.08844
+  project_page: https://playground.mujoco.org/
+  repository: https://github.com/google-deepmind/mujoco_playground
+
+embodiment:
+  robot: ALOHA 2 (2 x ViperX 300s, 14 actuators) or Franka Panda (7 joints + gripper, 8 actuators); LEAP / Aero hands not built
+  action_space: >-
+    Actuator position targets, one row per 50 Hz control step, each held for 4 physics steps (8 for peg insertion);
+    our harness records them as the trajectory and replays it bit-exactly.
+  control_rate_hz: 50
+  observations: [rgb, depth, proprioception]
+  cameras:
+    ALOHA: the scene's overhead, wormseye and wrist cameras
+    Panda: front / left / right / top free views (added by us)
+  notes: >-
+    Start states are randomized as in Playground, with a fixed seed per task.
+
+evaluation:
+  metric: >-
+    success at the end of the trajectory, by our test per task (Playground has none): e.g. hand-over = box within 3 cm
+    of the target, held by the right gripper only; peg insertion = tip within 5 mm of the socket's axis and 25 % of its
+    depth inside. The exact test is on each task page.
+
+skill_vocabulary: []
+
+scenes:
+  - tabletop
+
+integration:
+  image: python 3.12 + MuJoCo 3.3.7 + MuJoCo Menagerie 1b86ece (aloha, franka_emika_panda) + Playground's scene XMLs @ 4057c14; tag rcb-mujoco:0.1.1
+  gpu: optional (physics on the CPU; EGL rendering with an OSMesa fallback)
+  determinism: MuJoCo on the CPU replays a recorded target trajectory bit-exactly (the verifier checks the replay against the live result)
+  oracle: scripted by us (damped-least-squares IK on privileged object poses, gravity feedforward); succeeds on all 4 built tasks. Playground's own reference solutions are trained RL policies, not shipped.
+  integrated_tasks: "4 of 10 (robot_coding_bench tasks/mujoco_playground_<env>, both modes); not built yet — PandaPickCube, PandaPickCubeCartesian, PandaRobotiqPushCube, LeapCubeReorient, LeapCubeRotateZAxis, AeroCubeRotateZAxis"
+
+key_dates:
+  playground_paper: 2025-02-12
