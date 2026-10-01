@@ -191,6 +191,14 @@ nav:
           - benchmarks/kinder/index.md
           - Capability coverage: benchmarks/kinder/coverage.md
           - About the benchmark: benchmarks/kinder/about.md
+      - DexToolBench:
+          - benchmarks/dextoolbench/index.md
+          - Capability coverage: benchmarks/dextoolbench/coverage.md
+          - About the benchmark: benchmarks/dextoolbench/about.md
+      - MuJoCo Playground:
+          - benchmarks/mujoco-playground/index.md
+          - Capability coverage: benchmarks/mujoco-playground/coverage.md
+          - About the benchmark: benchmarks/mujoco-playground/about.md
   - Contributing:
       - contributing/index.md
       - Task page guide: contributing/task-page-guide.md

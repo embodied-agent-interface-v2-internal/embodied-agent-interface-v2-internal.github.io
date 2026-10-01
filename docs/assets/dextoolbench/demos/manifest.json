@@ -1,0 +1,170 @@
+{
+  "brush_blue_brush_sweep_forward": {
+    "bytes": 844430,
+    "height": 480,
+    "poster": true,
+    "seconds": 14,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 8 of 34 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "brush_red_brush_sweep_forward": {
+    "bytes": 1650979,
+    "height": 480,
+    "poster": true,
+    "seconds": 29,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 20 of 38 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "brush_red_brush_sweep_right": {
+    "bytes": 1510409,
+    "height": 480,
+    "poster": true,
+    "seconds": 27,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 19 of 38 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "eraser_handle_eraser_wipe_c": {
+    "bytes": 1015966,
+    "height": 480,
+    "poster": true,
+    "seconds": 24,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 12 of 31 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "eraser_handle_eraser_wipe_smile": {
+    "bytes": 1339244,
+    "height": 480,
+    "poster": true,
+    "seconds": 26,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 29 of 29 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "hammer_claw_hammer_swing_down": {
+    "bytes": 666118,
+    "height": 480,
+    "poster": true,
+    "seconds": 12,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 37 of 37 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "hammer_claw_hammer_swing_side": {
+    "bytes": 995974,
+    "height": 480,
+    "poster": true,
+    "seconds": 18,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 13 of 40 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "hammer_mallet_hammer_swing_down": {
+    "bytes": 1506824,
+    "height": 480,
+    "poster": true,
+    "seconds": 24,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 12 of 36 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "hammer_mallet_hammer_swing_side": {
+    "bytes": 813352,
+    "height": 480,
+    "poster": true,
+    "seconds": 15,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 5 of 32 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "marker_sharpie_marker_draw_smile": {
+    "bytes": 353321,
+    "height": 480,
+    "poster": true,
+    "seconds": 7,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 36 of 36 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "marker_sharpie_marker_write_c": {
+    "bytes": 400655,
+    "height": 480,
+    "poster": true,
+    "seconds": 9,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 25 of 25 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "marker_staples_marker_draw_smile": {
+    "bytes": 563196,
+    "height": 480,
+    "poster": true,
+    "seconds": 12,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 49 of 49 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "marker_staples_marker_write_c": {
+    "bytes": 766245,
+    "height": 480,
+    "poster": true,
+    "seconds": 18,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 19 of 29 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "screwdriver_long_screwdriver_spin_horizontal": {
+    "bytes": 1361319,
+    "height": 480,
+    "poster": true,
+    "seconds": 27,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 31 of 31 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "screwdriver_long_screwdriver_spin_vertical": {
+    "bytes": 1257381,
+    "height": 480,
+    "poster": true,
+    "seconds": 22,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 27 of 100 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "screwdriver_short_screwdriver_spin_horizontal": {
+    "bytes": 976620,
+    "height": 480,
+    "poster": true,
+    "seconds": 24,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 15 of 38 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "screwdriver_short_screwdriver_spin_vertical": {
+    "bytes": 1323645,
+    "height": 480,
+    "poster": true,
+    "seconds": 25,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 36 of 76 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "spatula_flat_spatula_flip_over": {
+    "bytes": 901728,
+    "height": 480,
+    "poster": true,
+    "seconds": 21,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 7 of 45 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "spatula_flat_spatula_serve_plate": {
+    "bytes": 1052876,
+    "height": 480,
+    "poster": true,
+    "seconds": 20,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 9 of 33 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "spatula_spoon_spatula_flip_over": {
+    "bytes": 736025,
+    "height": 480,
+    "poster": true,
+    "seconds": 17,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 6 of 40 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  },
+  "spatula_spoon_spatula_serve_plate": {
+    "bytes": 856090,
+    "height": 480,
+    "poster": true,
+    "seconds": 16,
+    "source": "Recorded by us: SimToolReal's pretrained RL policy replayed in our MuJoCo port of the task, four views (front, side / top, oblique); it reaches 13 of 48 goals here. The green ghost tool is the current goal.",
+    "width": 640
+  }
+}

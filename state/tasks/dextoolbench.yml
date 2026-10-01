@@ -1,0 +1,363 @@
+# Curated task state for dextoolbench.
+#
+# One block per task. Written by the site's Edit button and by hand; both are
+# fine. Task ids match docs/benchmarks/dextoolbench/tasks/<id>.md.
+#
+#   status      keep | drop | needs-review | pending
+#   difficulty  unrated | easy | medium | hard | extreme
+#   labels      tier-2 ids from state/taxonomy.yml
+#   owner       bare GitHub handle
+#   note        free text; why you decided what you decided
+#
+# First pass 2026-09-29 by Claude for the owner: labels by the guide's test (required by the goal, not visible in the
+# demo); difficulty from the oracle's and the agent's results; status keep for every built task (owner 2026-09-30: keep all new tasks); unbuilt ones stay pending.
+
+brush_blue_brush_sweep_forward:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'Goals are tool poses (34, in order); the score never looks at the tool''s effect on the nail, board or
+    plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 8/34 goals; Codex
+    + GPT-6 Luna xhigh unlimited 0/34 goals, limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep
+brush_blue_brush_sweep_right:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'Goals are tool poses (21, in order); the score never looks at the tool''s effect on the nail, board or
+    plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''extreme'' from evidence: not built: SimToolReal''s pretrained policy reaches none of
+    the 21 goals in our MuJoCo port, so there is no verified solution.'
+  owner: JamesKrW
+  status: pending
+brush_red_brush_sweep_forward:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'Goals are tool poses (38, in order); the score never looks at the tool''s effect on the nail, board or
+    plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 20/38 goals; Codex
+    + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep
+brush_red_brush_sweep_right:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'Goals are tool poses (38, in order); the score never looks at the tool''s effect on the nail, board or
+    plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 19/38 goals; Codex
+    + GPT-6 Luna xhigh unlimited 2/38 goals, limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep
+eraser_flat_eraser_wipe_c:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'Goals are tool poses (35, in order); the score never looks at the tool''s effect on the nail, board or
+    plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''extreme'' from evidence: not built: SimToolReal''s pretrained policy reaches none of
+    the 35 goals in our MuJoCo port, so there is no verified solution.'
+  owner: JamesKrW
+  status: pending
+eraser_flat_eraser_wipe_smile:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'Goals are tool poses (33, in order); the score never looks at the tool''s effect on the nail, board or
+    plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''extreme'' from evidence: not built: SimToolReal''s pretrained policy reaches none of
+    the 33 goals in our MuJoCo port, so there is no verified solution.'
+  owner: JamesKrW
+  status: pending
+eraser_handle_eraser_wipe_c:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'Goals are tool poses (31, in order); the score never looks at the tool''s effect on the nail, board or
+    plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 12/31 goals; Codex
+    + GPT-6 Luna xhigh unlimited 6/31 goals, limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep
+eraser_handle_eraser_wipe_smile:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'Goals are tool poses (29, in order); the score never looks at the tool''s effect on the nail, board or
+    plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''hard'' from evidence: oracle (SimToolReal''s RL policy, our port) 29/29 goals; Codex
+    + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep
+hammer_claw_hammer_swing_down:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'Goals are tool poses (37, in order); the score never looks at the tool''s effect on the nail, board or
+    plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''hard'' from evidence: oracle (SimToolReal''s RL policy, our port) 37/37 goals; Codex
+    + GPT-6 Luna xhigh unlimited 12/37 goals, limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep
+hammer_claw_hammer_swing_side:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'Goals are tool poses (40, in order); the score never looks at the tool''s effect on the nail, board or
+    plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 13/40 goals; Codex
+    + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep
+hammer_mallet_hammer_swing_down:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'Goals are tool poses (36, in order); the score never looks at the tool''s effect on the nail, board or
+    plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''hard'' (the agent reached every goal, the RL policy a third) from evidence: oracle (SimToolReal''s
+    RL policy, our port) 12/36 goals; Codex + GPT-6 Luna xhigh unlimited 36/36 goals, limited (no per-goal limit)
+    0 goals.'
+  owner: JamesKrW
+  status: keep
+hammer_mallet_hammer_swing_side:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'Goals are tool poses (32, in order); the score never looks at the tool''s effect on the nail, board or
+    plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 5/32 goals; Codex
+    + GPT-6 Luna xhigh unlimited 0/32 goals, limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep
+marker_sharpie_marker_draw_smile:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'Goals are tool poses (36, in order); the score never looks at the tool''s effect on the nail, board or
+    plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''hard'' from evidence: oracle (SimToolReal''s RL policy, our port) 36/36 goals; Codex
+    + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep
+marker_sharpie_marker_write_c:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'Goals are tool poses (25, in order); the score never looks at the tool''s effect on the nail, board or
+    plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''hard'' from evidence: oracle (SimToolReal''s RL policy, our port) 25/25 goals; Codex
+    + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep
+marker_staples_marker_draw_smile:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'Goals are tool poses (49, in order); the score never looks at the tool''s effect on the nail, board or
+    plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''hard'' from evidence: oracle (SimToolReal''s RL policy, our port) 49/49 goals; Codex
+    + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep
+marker_staples_marker_write_c:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'Goals are tool poses (29, in order); the score never looks at the tool''s effect on the nail, board or
+    plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 19/29 goals; Codex
+    + GPT-6 Luna xhigh unlimited 1/29 goals, limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep
+screwdriver_long_screwdriver_spin_horizontal:
+  difficulty: hard
+  labels:
+  - scale-tabletop
+  - in-hand
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'in-hand: the goal trajectory reorients the tool beyond what the wrist gives, so it must be turned or regrasped
+    in the hand. Goals are tool poses (31, in order); the score never looks at the tool''s effect on the nail, board
+    or plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''hard'' from evidence: oracle (SimToolReal''s RL policy, our port) 31/31 goals; Codex
+    + GPT-6 Luna xhigh unlimited 0/31 goals, limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep
+screwdriver_long_screwdriver_spin_vertical:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - in-hand
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'in-hand: the goal trajectory reorients the tool beyond what the wrist gives, so it must be turned or regrasped
+    in the hand. Goals are tool poses (100, in order); the score never looks at the tool''s effect on the nail,
+    board or plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 27/100 goals; Codex
+    + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep
+screwdriver_short_screwdriver_spin_horizontal:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - in-hand
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'in-hand: the goal trajectory reorients the tool beyond what the wrist gives, so it must be turned or regrasped
+    in the hand. Goals are tool poses (38, in order); the score never looks at the tool''s effect on the nail, board
+    or plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 15/38 goals; Codex
+    + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep
+screwdriver_short_screwdriver_spin_vertical:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - in-hand
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'in-hand: the goal trajectory reorients the tool beyond what the wrist gives, so it must be turned or regrasped
+    in the hand. Goals are tool poses (76, in order); the score never looks at the tool''s effect on the nail, board
+    or plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 36/76 goals; Codex
+    + GPT-6 Luna xhigh unlimited 11/76 goals, limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep
+spatula_flat_spatula_flip_over:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - in-hand
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'in-hand: the goal trajectory reorients the tool beyond what the wrist gives, so it must be turned or regrasped
+    in the hand. Goals are tool poses (45, in order); the score never looks at the tool''s effect on the nail, board
+    or plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 7/45 goals; Codex
+    + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep
+spatula_flat_spatula_serve_plate:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'Goals are tool poses (33, in order); the score never looks at the tool''s effect on the nail, board or
+    plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 9/33 goals; Codex
+    + GPT-6 Luna xhigh unlimited no trajectory handed in (60 min timeout), limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep
+spatula_spoon_spatula_flip_over:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - in-hand
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'in-hand: the goal trajectory reorients the tool beyond what the wrist gives, so it must be turned or regrasped
+    in the hand. Goals are tool poses (40, in order); the score never looks at the tool''s effect on the nail, board
+    or plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 6/40 goals; Codex
+    + GPT-6 Luna xhigh unlimited 6/40 goals, limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep
+spatula_spoon_spatula_serve_plate:
+  difficulty: extreme
+  labels:
+  - scale-tabletop
+  - transport
+  - horizon-composite
+  - ordered
+  - gen-fixed
+  note: 'Goals are tool poses (48, in order); the score never looks at the tool''s effect on the nail, board or
+    plate, so tool-use and surface-treatment are not labelled. gen-fixed: one start pose and one goal trajectory
+    per task. Difficulty ''extreme'' from evidence: oracle (SimToolReal''s RL policy, our port) 13/48 goals; Codex
+    + GPT-6 Luna xhigh unlimited 0/48 goals, limited (no per-goal limit) 0 goals.'
+  owner: JamesKrW
+  status: keep

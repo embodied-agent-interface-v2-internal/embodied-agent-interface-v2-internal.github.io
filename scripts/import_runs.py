@@ -186,7 +186,8 @@ def started_at(d):
     return os.path.getmtime(d + "/config.json") if os.path.exists(d + "/config.json") else os.path.getmtime(d)
 
 def record(job, jd, mode, task, trials, scan, pkey, mkeys=()):
-    r = {"job": job, "mode": mode, "task": task, "alive": job in live, "trials": len(trials),
+    # a batch dir may be a symlink to the Harbor job (site_jobs/<batch>-<mode> -> jobs/<job name>): either name is live
+    r = {"job": job, "mode": mode, "task": task, "alive": job in live or os.path.basename(os.path.realpath(jd)) in live, "trials": len(trials),
          "created": os.path.getmtime(jd), "scan": scan}
     if not trials:
         return r

@@ -1,0 +1,34 @@
+{
+  "aloha_hand_over": {
+    "bytes": 1058580,
+    "height": 480,
+    "poster": true,
+    "seconds": 13,
+    "source": "Recorded by us: our scripted IK oracle (it reads object and target poses from the simulator) replayed from the task's frozen start in plain MuJoCo. Playground ships no demonstrations; its reference solutions are trained RL policies.",
+    "width": 640
+  },
+  "aloha_single_peg_insertion": {
+    "bytes": 873344,
+    "height": 480,
+    "poster": true,
+    "seconds": 9,
+    "source": "Recorded by us: our scripted IK oracle (it reads object and target poses from the simulator) replayed from the task's frozen start in plain MuJoCo. Playground ships no demonstrations; its reference solutions are trained RL policies.",
+    "width": 640
+  },
+  "panda_open_cabinet": {
+    "bytes": 471445,
+    "height": 480,
+    "poster": true,
+    "seconds": 9,
+    "source": "Recorded by us: our scripted IK oracle (it reads object and target poses from the simulator) replayed from the task's frozen start in plain MuJoCo. Playground ships no demonstrations; its reference solutions are trained RL policies.",
+    "width": 640
+  },
+  "panda_pick_cube_orientation": {
+    "bytes": 320422,
+    "height": 480,
+    "poster": true,
+    "seconds": 9,
+    "source": "Recorded by us: our scripted IK oracle (it reads object and target poses from the simulator) replayed from the task's frozen start in plain MuJoCo. Playground ships no demonstrations; its reference solutions are trained RL policies.",
+    "width": 640
+  }
+}

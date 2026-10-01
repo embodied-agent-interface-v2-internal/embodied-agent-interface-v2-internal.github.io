@@ -1,27 +1,25 @@
-# One agent run: harness + model + settings. The file name is the run id that state/runs/<benchmark>.yml refers to:
-# <harness>-<model>-<effort>[-<tag>], spelled by harness_id, the model's id in data/prices.yml, settings.reasoning_effort
-# and tag (docs/contributing/registering-runs.md). Registered once, reused by every benchmark that runs this configuration.
+# One agent run: harness + model + settings. The file name is the run id that state/runs/<benchmark>.yml refers to.
+# Run id <harness>-<model>-<effort> (docs/contributing/registering-runs.md).
 #
-# Read by the tooling: label, short, billing, price, modes, harness_id, tag, formerly. Everything else is for people.
+# Read by the tooling: label, short, billing, price, modes. Everything else is for people.
 
-label: Codex CLI 0.157–0.159 + GPT-6 Luna, reasoning medium (OpenRouter)
-short: Codex CLI 0.157–0.159 · GPT-6 Luna · medium · OpenRouter
+label: Codex + GPT-6 Luna, reasoning medium (ChatGPT login)
+short: Codex · GPT-6 Luna · medium · ChatGPT login
 harness_id: codex
 harness: >-
-  Codex CLI 0.157.0 (HumanoidBench) or 0.158.0–0.159.2 (KinDER; state/runs/kinder.yml says which run had which) as
-  harbor_agents.codex_openrouter:CodexOpenRouter (robot_coding_bench dev/pingyue, commit c9449ce):
-  Codex over OpenRouter with web search off, without the model gateway; in limited mode the adapter ends the trial when
-  the session ends (harbor_agents/limited.py)
-route: OpenRouter, with the owner's API key (billed per token)
-model: openrouter/openai/gpt-6-luna
+  Harbor's built-in codex agent (-a codex) on the owner's ChatGPT login (CODEX_FORCE_AUTH_JSON=1). Harbor installs the
+  latest Codex CLI per trial, so the version varies by batch (0.156.1 to 0.158.0; each batch's version is in
+  state/runs/<benchmark>.yml). Unlike harbor_agents.codex_chatgpt:CodexChatGPT (run codex-gpt6_luna-xhigh),
+  the model id is plain gpt-6-luna, so Codex applies ChatGPT's own metadata for it (its base instructions, verbosity
+  low), and there is no model gateway: token counts are Harbor's per-trial totals.
+route: the owner's ChatGPT login (a Pro subscription), Codex straight to ChatGPT's backend (no model gateway)
+model: openai/gpt-6-luna
 settings:
   reasoning_effort: medium
-  version: 0.157.0 (HumanoidBench), 0.158.0–0.159.2 (KinDER)
 harbor: >-
-  RCB_MODEL=openrouter/openai/gpt-6-luna scripts/run_deepseek_openrouter.sh <task dir> --ak reasoning_effort=medium
-  --ak version=0.157.0 (limited: RCB_RESET_BUDGET=50 RCB_OBS_IMU=1 RCB_OBS_ROOM_CAMERA=1), one Harbor job per task and mode;
-  the run script now pins Codex itself (RCB_CODEX_VERSION, 0.159.2) and keeps the key in the model gateway
-billing: openrouter
-price: openai/gpt-6-luna         # key in data/prices.yml
+  CODEX_FORCE_AUTH_JSON=1 harbor run -a codex -m openai/gpt-6-luna --ak reasoning_effort=medium -n 3 (one Harbor job per
+  mode, a trial per task)
+billing: subscription           # the owner's ChatGPT login: no per-token bill, so only the list-price estimate
+price: openai/gpt-6-luna        # key in data/prices.yml
 modes: [unlimited, limited]
-since: 2026-09-24
+since: 2026-09-23
