@@ -20,11 +20,65 @@ runs:
     # episode, no reset, so the per-goal limit ended every episode at step 600): episode capped at 36,000 control steps
     # (10 min of robot time). The 2026-09-28 limited trials (with the limit) stay as limited-prev. Five trials of the
     # rerun never started the agent (npm had not yet published Codex 0.159.0) and were rerun with the version pinned.
-    rerun_batches: [mj-luna-xh-nt-0929, mj-luna-xh-nt-rerun-0929]
+    rerun_batches: [mj-luna-xh-nt-0929, mj-luna-xh-nt-rerun-0929, mj-luna-xh-f1-1001]
+    # Official batches from 2026-10-01 (protocol v1.0): Codex CLI 0.159.0 on Azure OpenAI's API (gpt-6-luna), reasoning
+    # summaries detailed, sampled tasks in both modes (robot_coding_bench exps/formal_runs/codex-gpt6_luna-xhigh_batch*.json).
+    # Each replaces, for its tasks, the earlier ChatGPT-login result, which stays as history (<mode>-prev).
     harness: >-
-      Harbor's built-in codex agent (-a codex, Codex CLI 0.158.0) on the owner's ChatGPT login, reasoning effort xhigh
+      Since 2026-10-01 (batch mj-luna-xh-f1-1001, the official run): Harbor's built-in codex agent (-a codex, Codex CLI 0.159.0) on
+      Azure OpenAI's API (gpt-6-luna), reasoning effort xhigh with detailed reasoning summaries, no model gateway (token
+      counts are Harbor's per-trial totals); the tasks it has not reached yet still show the earlier result:       Harbor's built-in codex agent (-a codex, Codex CLI 0.158.0) on the owner's ChatGPT login, reasoning effort xhigh
       with detailed reasoning summaries; not the CodexChatGPT wrapper the other benchmarks used, so Codex applies
       ChatGPT's metadata for gpt-6-luna (its base instructions, verbosity low); token counts are Harbor's per-trial totals
+    tasks:
+    - brush_blue_brush_sweep_forward
+    - brush_red_brush_sweep_forward
+    - brush_red_brush_sweep_right
+    - eraser_handle_eraser_wipe_c
+    - eraser_handle_eraser_wipe_smile
+    - hammer_claw_hammer_swing_down
+    - hammer_claw_hammer_swing_side
+    - hammer_mallet_hammer_swing_down
+    - hammer_mallet_hammer_swing_side
+    - marker_sharpie_marker_draw_smile
+    - marker_sharpie_marker_write_c
+    - marker_staples_marker_draw_smile
+    - marker_staples_marker_write_c
+    - screwdriver_long_screwdriver_spin_horizontal
+    - screwdriver_long_screwdriver_spin_vertical
+    - screwdriver_short_screwdriver_spin_horizontal
+    - screwdriver_short_screwdriver_spin_vertical
+    - spatula_flat_spatula_flip_over
+    - spatula_flat_spatula_serve_plate
+    - spatula_spoon_spatula_flip_over
+    - spatula_spoon_spatula_serve_plate
+    others: "not built: SimToolReal's pretrained policy reaches no goal on these in our MuJoCo port"
+
+  codex-gpt6_luna-xhigh-azure:
+    # Azure API stress run of every task, 2026-09-30 (robot_coding_bench dev/kangrui). Harbor ran one job per endpoint
+    # with trials of both modes (jobs az1..az12-*); site_jobs/<batch>-<mode>/ holds one symlinked trial per task:
+    # the batch each task's first attempt, the rerun batch its final valid trial where that differs.
+    batch: mj-luna-xh-az-0930
+    rerun_batches: [mj-luna-xh-az-rerun-0930]
+    harness: >-
+      Harbor's built-in codex agent (-a codex, Codex CLI 0.159.0) on Azure OpenAI's API (gpt-6-luna), reasoning effort
+      xhigh with detailed reasoning summaries; limited mode on rcb-limited/2.1 with crash recovery; image rcb-mujoco
+      0.1.2. No model gateway: token counts are Harbor's
+    notes:
+    - {task: "brush_red_brush_sweep_right", mode: "unlimited", trial: "dextoolbench_brush_red_brush_swe__4zTvbA6", note: "rerun: the first trial got no model response: its endpoint (a second Azure resource, *.services.ai.azure.com) is not on the task's egress allowlist"}
+    - {task: "eraser_handle_eraser_wipe_c", mode: "limited", trial: "dextoolbench_eraser_handle_erase__qpWua7f", note: "rerun: the first trial ended on Azure's token rate limit (Codex retries its remote context compaction only twice)"}
+    - {task: "hammer_claw_hammer_swing_down", mode: "limited", trial: "dextoolbench_hammer_claw_hammer__GzEK4LU", note: "rerun: the first trial was lost when its task directory was regenerated under the running robot service"}
+    - {task: "hammer_claw_hammer_swing_down", mode: "unlimited", trial: "dextoolbench_hammer_claw_hammer__T7VWFa7", note: "rerun: the first trial ended on Azure's token rate limit (Codex retries its remote context compaction only twice)"}
+    - {task: "hammer_claw_hammer_swing_side", mode: "unlimited", trial: "dextoolbench_hammer_claw_hammer__WLZETmj", note: "rerun: the first trial got no model response: its endpoint (a second Azure resource, *.services.ai.azure.com) is not on the task's egress allowlist"}
+    - {task: "marker_sharpie_marker_draw_smile", mode: "unlimited", trial: "dextoolbench_marker_sharpie_mark__DzemHQB", note: "rerun: the first trial was stopped by us to move the work to another endpoint or machine"}
+    - {task: "marker_sharpie_marker_write_c", mode: "limited", trial: "dextoolbench_marker_sharpie_mark__gZ8LWb7", note: "rerun: the first trial ended on Azure's token rate limit (Codex retries its remote context compaction only twice) (3 earlier attempts in all)"}
+    - {task: "screwdriver_long_screwdriver_spin_horizontal", mode: "unlimited", trial: "dextoolbench_screwdriver_long_sc__QipkwfY", note: "rerun: the first trial got no model response: its endpoint (a second Azure resource, *.services.ai.azure.com) is not on the task's egress allowlist (2 earlier attempts in all)"}
+    - {task: "screwdriver_long_screwdriver_spin_vertical", mode: "unlimited", trial: "dextoolbench_screwdriver_long_sc__rpQzMUG", note: "rerun: the first trial got no model response: its endpoint (a second Azure resource, *.services.ai.azure.com) is not on the task's egress allowlist"}
+    - {task: "spatula_flat_spatula_flip_over", mode: "limited", trial: "dextoolbench_spatula_flat_spatul__oChi99R", note: "rerun: the first trial was stopped by us to move the work to another endpoint or machine"}
+    - {task: "spatula_flat_spatula_serve_plate", mode: "limited", trial: "dextoolbench_spatula_flat_spatul__5fhwo23", note: "rerun: the first trial was stopped by us to move the work to another endpoint or machine (2 earlier attempts in all)"}
+    - {task: "spatula_flat_spatula_serve_plate", mode: "unlimited", trial: "dextoolbench_spatula_flat_spatul__k9tUvgx", note: "rerun: the first trial was stopped by us to move the work to another endpoint or machine"}
+    - {task: "spatula_spoon_spatula_flip_over", mode: "limited", trial: "dextoolbench_spatula_spoon_spatu__2mLBVWR", note: "rerun: the first trial was stopped by us to move the work to another endpoint or machine"}
+    - {task: "spatula_spoon_spatula_serve_plate", mode: "limited", trial: "dextoolbench_spatula_spoon_spatu__wnVZN9L", note: "rerun: the first trial was stopped by us to move the work to another endpoint or machine"}
     tasks:
     - brush_blue_brush_sweep_forward
     - brush_red_brush_sweep_forward

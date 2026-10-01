@@ -1,0 +1,37 @@
+# One agent run: harness + model + settings. The file name is the run id that state/runs/<benchmark>.yml refers to:
+# <harness>-<model>-<effort>[-<tag>], spelled by harness_id, the model's id in data/prices.yml, settings.reasoning_effort
+# and tag (docs/contributing/registering-runs.md). Registered once, reused by every benchmark that runs this configuration.
+#
+# Read by the tooling: label, short, billing, price, modes, harness_id, tag, formerly. Everything else is for people.
+
+label: Codex + GPT-6 Luna, reasoning xhigh (Azure OpenAI API, 2026-09-30 stress test)
+# the run picker's text: harness · model · reasoning effort · access (billing). No harness version (owner, 2026-09-28).
+short: Codex · GPT-6 Luna · xhigh · Azure API stress test
+harness_id: codex
+# a tag (owner, 2026-10-01): this was a stress test of the batch infrastructure, not an official run. The official
+# runs of this configuration are batches of codex-gpt6_luna-xhigh (protocol v1.0 D4: provider in metadata, not the id).
+tag: azure
+harness: >-
+  Harbor's built-in codex agent (-a codex, Codex CLI 0.159.0) with a custom Azure provider in Codex's config
+  (Responses API, request and stream retries 30 each, stream idle timeout 10 min, auto-compaction at 150k tokens);
+  reasoning summaries detailed; no model gateway (token counts are Harbor's per-trial totals)
+route: >-
+  Azure OpenAI deployments of gpt-6-luna, one endpoint per Harbor job: the lab's main resource (1M tokens/min) and two
+  more (333k tokens/min each); each trial talked to one endpoint
+model: azure/gpt-6-luna
+settings:
+  reasoning_effort: xhigh
+  reasoning_summary: detailed
+  version: 0.159.0
+harbor: >-
+  -a codex -m openai/gpt-6-luna --ak reasoning_effort=xhigh --ak reasoning_summary=detailed --ak version=0.159.0
+  --ak config=<codex config.toml with the azure provider> (one Harbor job per endpoint, a trial per task)
+billing: api                    # pay-as-you-go Azure deployments; the cost shown is the list-price estimate
+price: openai/gpt-6-luna        # key in data/prices.yml
+modes: [unlimited, limited]
+since: 2026-09-30
+notes: >-
+  Not an official result. A large-batch stress run of every task on robot_coding_bench dev/kangrui (RoboTwin 2.0, DexToolBench, MuJoCo
+  Playground), both modes, limited mode on rcb-limited/2.1 with crash recovery. RoboTwin ran mostly on an AWS g6e
+  (L40S); the four RoboTwin tasks whose frozen instance does not rebuild bit-exactly there, and every MuJoCo task, ran on
+  the lab machine.
