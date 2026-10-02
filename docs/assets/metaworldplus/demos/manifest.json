@@ -1,0 +1,402 @@
+{
+  "assembly": {
+    "bytes": 13204,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "basketball": {
+    "bytes": 10261,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "bin_picking": {
+    "bytes": 12755,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "box_close": {
+    "bytes": 11721,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "button_press": {
+    "bytes": 8750,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "button_press_topdown": {
+    "bytes": 9756,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "button_press_topdown_wall": {
+    "bytes": 9104,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "button_press_wall": {
+    "bytes": 8870,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "coffee_button": {
+    "bytes": 6537,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "coffee_pull": {
+    "bytes": 8727,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "coffee_push": {
+    "bytes": 7842,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "dial_turn": {
+    "bytes": 8971,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "disassemble": {
+    "bytes": 14070,
+    "height": 240,
+    "poster": true,
+    "seconds": 2,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "door_close": {
+    "bytes": 9718,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "door_lock": {
+    "bytes": 8447,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "door_open": {
+    "bytes": 10498,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "door_unlock": {
+    "bytes": 7035,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "drawer_close": {
+    "bytes": 10106,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "drawer_open": {
+    "bytes": 10397,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "faucet_close": {
+    "bytes": 9576,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "faucet_open": {
+    "bytes": 9270,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "hammer": {
+    "bytes": 10547,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "hand_insert": {
+    "bytes": 8824,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "handle_press": {
+    "bytes": 7344,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "handle_press_side": {
+    "bytes": 8111,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "handle_pull": {
+    "bytes": 9954,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "handle_pull_side": {
+    "bytes": 9662,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "lever_pull": {
+    "bytes": 9075,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "peg_insert_side": {
+    "bytes": 11399,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "peg_unplug_side": {
+    "bytes": 11796,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "pick_out_of_hole": {
+    "bytes": 11503,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "pick_place": {
+    "bytes": 8401,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "pick_place_wall": {
+    "bytes": 11373,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "plate_slide": {
+    "bytes": 8809,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "plate_slide_back": {
+    "bytes": 7338,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "plate_slide_back_side": {
+    "bytes": 8716,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "plate_slide_side": {
+    "bytes": 8179,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "push": {
+    "bytes": 9287,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "push_back": {
+    "bytes": 10843,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "push_wall": {
+    "bytes": 10600,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "reach": {
+    "bytes": 8012,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "reach_wall": {
+    "bytes": 8188,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "shelf_place": {
+    "bytes": 7916,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "soccer": {
+    "bytes": 13356,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "stick_pull": {
+    "bytes": 14743,
+    "height": 240,
+    "poster": true,
+    "seconds": 2,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "stick_push": {
+    "bytes": 10174,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "sweep": {
+    "bytes": 13503,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "sweep_into": {
+    "bytes": 7889,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "window_close": {
+    "bytes": 12095,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "window_open": {
+    "bytes": 12026,
+    "height": 240,
+    "poster": true,
+    "seconds": 1,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  }
+}

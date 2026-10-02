@@ -20,7 +20,8 @@ BIN    := $(VENV)/bin
 .PHONY: help venv install serve build validate strict check guard public publish-runs export-run-media \
         compress-run-media upload-run-media publish links demos edit \
         runs runs-watch sync \
-        sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-humanoidbench sync-kinder sync-dextoolbench sync-mujoco-playground sync-verified sync-dry clean
+        sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-humanoidbench sync-kinder sync-dextoolbench sync-mujoco-playground \
+        sync-metaworldplus sync-vlabench sync-robocasa sync-robocasa365 sync-robocasa-gr1 sync-verified sync-dry clean
 
 help: ## Show this help
 	@grep -hE '^[a-z-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -151,7 +152,8 @@ upload-run-media: export-run-media compress-run-media ## Export, compress and up
 # Each benchmark syncs from its own upstream. BEHAVIOR reads a public gallery;
 # RoboWits and RoboLab read a source checkout (pass it in), because their tasks
 # are defined in code. All three are idempotent and write only `upstream:`.
-sync: sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-humanoidbench sync-kinder sync-dextoolbench sync-mujoco-playground ## Re-sync every benchmark from its upstream
+sync: sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-humanoidbench sync-kinder sync-dextoolbench sync-mujoco-playground \
+      sync-metaworldplus sync-vlabench sync-robocasa sync-robocasa365 sync-robocasa-gr1 ## Re-sync every benchmark from its upstream
 
 sync-behavior: ## Re-sync BEHAVIOR-1K task pages from the official gallery
 	$(BIN)/python scripts/import_behavior_tasks.py
@@ -226,6 +228,30 @@ KINDER_SCENES ?= ../robot_coding_bench/jobs/results/kinder/assets/cameras
 sync-kinder: ## Re-sync KinDER from a robot_coding_bench commit (KINDER_COMMIT=..., KINDER_SCENES=...)
 	$(BIN)/python scripts/import_kinder_tasks.py --source $(KINDER_SRC) --commit $(KINDER_COMMIT) \
 	    $(if $(wildcard $(KINDER_SCENES)),--scenes $(KINDER_SCENES),)
+
+# MetaWorld+, VLABench, RoboCasa, RoboCasa365 and RoboCasa-GR1 are defined in robot_coding_bench (tasks/<prefix>-<task>-i00-
+# privileged / -standard, written by scripts/<benchmark>/generate.py): read from a commit of the clone with `git archive`,
+# never a checkout (scripts/rcb_selection.py). RCB_ORACLE_JOBS: dirs of the oracle's Harbor trials whose verifier replays
+# are the demos (read only; searched recursively). Empty by default; set it per machine in Makefile.local.
+RCB_SRC         ?= ../robot_coding_bench
+RCB_COMMIT      ?= origin/main
+RCB_ORACLE_JOBS ?=
+RCB_SYNC         = --source $(RCB_SRC) --commit $(RCB_COMMIT) $(foreach d,$(RCB_ORACLE_JOBS),--demos $(d))
+
+sync-metaworldplus: ## Re-sync MetaWorld+ from a robot_coding_bench commit (RCB_COMMIT=..., RCB_ORACLE_JOBS="dir ...")
+	$(BIN)/python scripts/import_metaworldplus_tasks.py $(RCB_SYNC)
+
+sync-vlabench: ## Re-sync VLABench (our selection) from a robot_coding_bench commit
+	$(BIN)/python scripts/import_vlabench_tasks.py $(RCB_SYNC)
+
+sync-robocasa: ## Re-sync RoboCasa (our selection) from a robot_coding_bench commit
+	$(BIN)/python scripts/import_robocasa_tasks.py $(RCB_SYNC)
+
+sync-robocasa365: ## Re-sync RoboCasa365 (our selection) from a robot_coding_bench commit
+	$(BIN)/python scripts/import_robocasa365_tasks.py $(RCB_SYNC)
+
+sync-robocasa-gr1: ## Re-sync RoboCasa-GR1 from a robot_coding_bench commit
+	$(BIN)/python scripts/import_robocasa_gr1_tasks.py $(RCB_SYNC)
 
 # The BDDL goals and dataset statistics come from the licensed BEHAVIOR download,
 # so the extract step runs inside the simulator image; see the script's docstring.

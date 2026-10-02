@@ -1,0 +1,160 @@
+# Curated task state for vlabench.
+#
+# One block per task. Written by the site's Edit button and by hand; both are
+# fine. Task ids match docs/benchmarks/vlabench/tasks/<id>.md.
+#
+#   status      keep | drop | needs-review | pending
+#   difficulty  unrated | easy | medium | hard | extreme
+#   labels      tier-2 ids from state/taxonomy.yml
+#   owner       bare GitHub handle
+#   note        free text; why you decided what you decided
+#
+# Task id = the task part of our task pairs in robot_coding_bench (tasks/<prefix>-<task>-i00-privileged and -standard),
+# with underscores. Every task here is one robot_coding_bench keeps, so each is `keep`, with its category as the note
+# (scripts/import_vlabench_tasks.py adds a NEW task that way and never changes an existing entry).
+# Owner: changhechen, who built the selection. No difficulty or labels yet.
+
+add_condiment:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+book_rearrange:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+find_unseen_object:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+friction_qa:
+  status: keep
+  owner: changhechen
+  note: "Physical QA"
+hammer_nail_and_hang_picture:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+heat_food:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+insert_bloom_flower:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+insert_flower:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+magnetism_qa:
+  status: keep
+  owner: changhechen
+  note: "Physical QA"
+play_math_game:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+put_box_on_painting:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+reflection_qa:
+  status: keep
+  owner: changhechen
+  note: "Physical QA"
+select_billiards_common_sense:
+  status: keep
+  owner: changhechen
+  note: "Common sense"
+select_billiards:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+select_billiards_spatial:
+  status: keep
+  owner: changhechen
+  note: "Spatial"
+select_book_spatial:
+  status: keep
+  owner: changhechen
+  note: "Spatial"
+select_chemistry_tube_common_sense:
+  status: keep
+  owner: changhechen
+  note: "Common sense"
+select_chemistry_tube:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+select_chemistry_tube_semantic:
+  status: keep
+  owner: changhechen
+  note: "Semantic"
+select_chemistry_tube_spatial:
+  status: keep
+  owner: changhechen
+  note: "Spatial"
+select_drink:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+select_fruit_common_sense:
+  status: keep
+  owner: changhechen
+  note: "Common sense"
+select_fruit:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+select_mahjong:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+select_mahjong_semantic:
+  status: keep
+  owner: changhechen
+  note: "Semantic"
+select_mahjong_spatial:
+  status: keep
+  owner: changhechen
+  note: "Spatial"
+select_nth_largest_poker:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+select_painting:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+select_poker:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+select_poker_semantic:
+  status: keep
+  owner: changhechen
+  note: "Semantic"
+select_poker_spatial:
+  status: keep
+  owner: changhechen
+  note: "Spatial"
+select_specific_type_book:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+select_toy:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+select_unique_type_mahjong:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+take_out_cool_drink:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"
+texas_holdem:
+  status: keep
+  owner: changhechen
+  note: "Manipulation"

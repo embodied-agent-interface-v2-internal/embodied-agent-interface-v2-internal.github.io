@@ -1,0 +1,1006 @@
+{
+  "commit": "8c5594a43",
+  "tasks": [
+    {
+      "id": "assembly",
+      "task_dir": "metaworldplus-assembly-i00",
+      "family": "metaworld/assembly",
+      "seed": 0,
+      "instruction": "Place the nut onto the peg.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for assembly-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 89947f89b4e7…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for assembly-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 95 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-assembly-i00-privileged: the same instance and success check (Place the nut onto the peg.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "basketball",
+      "task_dir": "metaworldplus-basketball-i00",
+      "family": "metaworld/basketball",
+      "seed": 0,
+      "instruction": "Pick up the ball and place it through the basketball hoop.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for basketball-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 ac4f1f7e517d…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for basketball-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 90 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-basketball-i00-privileged: the same instance and success check (Pick up the ball and place it through the basketball hoop.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "bin_picking",
+      "task_dir": "metaworldplus-bin-picking-i00",
+      "family": "metaworld/bin-picking",
+      "seed": 0,
+      "instruction": "Pick up the object from its bin and move it to the target bin.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for bin-picking-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 c2684e1a7c44…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for bin-picking-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 109 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-bin-picking-i00-privileged: the same instance and success check (Pick up the object from its bin and move it to the target bin.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "box_close",
+      "task_dir": "metaworldplus-box-close-i00",
+      "family": "metaworld/box-close",
+      "seed": 0,
+      "instruction": "Move the lid onto the box to close it.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for box-close-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 0982332c188e…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for box-close-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 103 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-box-close-i00-privileged: the same instance and success check (Move the lid onto the box to close it.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "button_press",
+      "task_dir": "metaworldplus-button-press-i00",
+      "family": "metaworld/button-press",
+      "seed": 0,
+      "instruction": "Press the button inward.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for button-press-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 ef67b9784de1…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for button-press-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 62 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-button-press-i00-privileged: the same instance and success check (Press the button inward.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "button_press_topdown",
+      "task_dir": "metaworldplus-button-press-topdown-i00",
+      "family": "metaworld/button-press-topdown",
+      "seed": 0,
+      "instruction": "Press the button downward from above.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for button-press-topdown-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 a0200e0c09cc…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for button-press-topdown-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 72 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-button-press-topdown-i00-privileged: the same instance and success check (Press the button downward from above.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "button_press_topdown_wall",
+      "task_dir": "metaworldplus-button-press-topdown-wall-i00",
+      "family": "metaworld/button-press-topdown-wall",
+      "seed": 0,
+      "instruction": "Reach past the wall and press the button downward.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for button-press-topdown-wall-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 e921e7bd5ed9…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for button-press-topdown-wall-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 61 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-button-press-topdown-wall-i00-privileged: the same instance and success check (Reach past the wall and press the button downward.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "button_press_wall",
+      "task_dir": "metaworldplus-button-press-wall-i00",
+      "family": "metaworld/button-press-wall",
+      "seed": 0,
+      "instruction": "Reach past the wall and press the button inward.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for button-press-wall-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 fadc985e5656…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for button-press-wall-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 70 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-button-press-wall-i00-privileged: the same instance and success check (Reach past the wall and press the button inward.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "coffee_button",
+      "task_dir": "metaworldplus-coffee-button-i00",
+      "family": "metaworld/coffee-button",
+      "seed": 0,
+      "instruction": "Press the coffee-machine button.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for coffee-button-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 69a9320b3a4d…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for coffee-button-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 41 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-coffee-button-i00-privileged: the same instance and success check (Press the coffee-machine button.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "coffee_pull",
+      "task_dir": "metaworldplus-coffee-pull-i00",
+      "family": "metaworld/coffee-pull",
+      "seed": 0,
+      "instruction": "Pull the mug away from the coffee machine to the target.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for coffee-pull-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 2bfe79a3a072…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for coffee-pull-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 74 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-coffee-pull-i00-privileged: the same instance and success check (Pull the mug away from the coffee machine to the target.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "coffee_push",
+      "task_dir": "metaworldplus-coffee-push-i00",
+      "family": "metaworld/coffee-push",
+      "seed": 0,
+      "instruction": "Push the mug into the target position at the coffee machine.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for coffee-push-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 d549db7ea414…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for coffee-push-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 56 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-coffee-push-i00-privileged: the same instance and success check (Push the mug into the target position at the coffee machine.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "dial_turn",
+      "task_dir": "metaworldplus-dial-turn-i00",
+      "family": "metaworld/dial-turn",
+      "seed": 0,
+      "instruction": "Rotate the dial to its target position.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for dial-turn-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 4559f2e4122b…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for dial-turn-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 77 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-dial-turn-i00-privileged: the same instance and success check (Rotate the dial to its target position.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "disassemble",
+      "task_dir": "metaworldplus-disassemble-i00",
+      "family": "metaworld/disassemble",
+      "seed": 0,
+      "instruction": "Lift the nut off the peg.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for disassemble-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 93c272ea136a…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for disassemble-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 136 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-disassemble-i00-privileged: the same instance and success check (Lift the nut off the peg.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "door_close",
+      "task_dir": "metaworldplus-door-close-i00",
+      "family": "metaworld/door-close",
+      "seed": 0,
+      "instruction": "Push the hinged door closed.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for door-close-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 d1a668c2c516…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for door-close-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 59 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-door-close-i00-privileged: the same instance and success check (Push the hinged door closed.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "door_lock",
+      "task_dir": "metaworldplus-door-lock-i00",
+      "family": "metaworld/door-lock",
+      "seed": 0,
+      "instruction": "Move the door lock into its locked position.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for door-lock-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 fed6615a5212…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for door-lock-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 64 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-door-lock-i00-privileged: the same instance and success check (Move the door lock into its locked position.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "door_open",
+      "task_dir": "metaworldplus-door-open-i00",
+      "family": "metaworld/door-open",
+      "seed": 0,
+      "instruction": "Pull the hinged door open.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for door-open-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 5fbcf8b43bc7…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for door-open-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 71 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-door-open-i00-privileged: the same instance and success check (Pull the hinged door open.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "door_unlock",
+      "task_dir": "metaworldplus-door-unlock-i00",
+      "family": "metaworld/door-unlock",
+      "seed": 0,
+      "instruction": "Move the door lock into its unlocked position.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for door-unlock-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 5029649131b3…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for door-unlock-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 47 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-door-unlock-i00-privileged: the same instance and success check (Move the door lock into its unlocked position.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "drawer_close",
+      "task_dir": "metaworldplus-drawer-close-i00",
+      "family": "metaworld/drawer-close",
+      "seed": 0,
+      "instruction": "Push the drawer closed.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for drawer-close-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 00b109714fd4…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for drawer-close-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 78 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-drawer-close-i00-privileged: the same instance and success check (Push the drawer closed.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "drawer_open",
+      "task_dir": "metaworldplus-drawer-open-i00",
+      "family": "metaworld/drawer-open",
+      "seed": 0,
+      "instruction": "Pull the drawer open.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for drawer-open-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 58b577473f6d…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for drawer-open-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 93 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-drawer-open-i00-privileged: the same instance and success check (Pull the drawer open.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "faucet_close",
+      "task_dir": "metaworldplus-faucet-close-i00",
+      "family": "metaworld/faucet-close",
+      "seed": 0,
+      "instruction": "Rotate the faucet handle to close the faucet.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for faucet-close-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 22a6bb5a5dfb…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for faucet-close-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 67 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-faucet-close-i00-privileged: the same instance and success check (Rotate the faucet handle to close the faucet.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "faucet_open",
+      "task_dir": "metaworldplus-faucet-open-i00",
+      "family": "metaworld/faucet-open",
+      "seed": 0,
+      "instruction": "Rotate the faucet handle to open the faucet.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for faucet-open-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 585ae3497a1e…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for faucet-open-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 61 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-faucet-open-i00-privileged: the same instance and success check (Rotate the faucet handle to open the faucet.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "hammer",
+      "task_dir": "metaworldplus-hammer-i00",
+      "family": "metaworld/hammer",
+      "seed": 0,
+      "instruction": "Use the hammer to drive the nail into the block.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for hammer-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 de657a06a618…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for hammer-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 71 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-hammer-i00-privileged: the same instance and success check (Use the hammer to drive the nail into the block.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "hand_insert",
+      "task_dir": "metaworldplus-hand-insert-i00",
+      "family": "metaworld/hand-insert",
+      "seed": 0,
+      "instruction": "Move the object to the target inside the opening.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for hand-insert-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 b24a9acaabdd…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for hand-insert-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 61 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-hand-insert-i00-privileged: the same instance and success check (Move the object to the target inside the opening.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "handle_press",
+      "task_dir": "metaworldplus-handle-press-i00",
+      "family": "metaworld/handle-press",
+      "seed": 0,
+      "instruction": "Press the handle downward.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for handle-press-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 4f773337a385…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for handle-press-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 41 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh). In this environment the success state does not persist on its own: after the oracle's last action, holding still for 10 control steps loses it. Graded on the final state, a trajectory must end at that moment.",
+      "limited": "Standard-mode twin of metaworldplus-handle-press-i00-privileged: the same instance and success check (Press the handle downward.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "handle_press_side",
+      "task_dir": "metaworldplus-handle-press-side-i00",
+      "family": "metaworld/handle-press-side",
+      "seed": 0,
+      "instruction": "Approach the handle from the side and press it downward.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for handle-press-side-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 1f01512bb2d6…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for handle-press-side-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 48 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-handle-press-side-i00-privileged: the same instance and success check (Approach the handle from the side and press it downward.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "handle_pull",
+      "task_dir": "metaworldplus-handle-pull-i00",
+      "family": "metaworld/handle-pull",
+      "seed": 0,
+      "instruction": "Pull the handle upward.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for handle-pull-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 48784fe663fe…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for handle-pull-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 90 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-handle-pull-i00-privileged: the same instance and success check (Pull the handle upward.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "handle_pull_side",
+      "task_dir": "metaworldplus-handle-pull-side-i00",
+      "family": "metaworld/handle-pull-side",
+      "seed": 0,
+      "instruction": "Approach the handle from the side and pull it upward.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for handle-pull-side-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 06b7d21c6a69…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for handle-pull-side-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 76 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh). In this environment the success state does not persist on its own: after the oracle's last action, holding still for 10 control steps loses it. Graded on the final state, a trajectory must end at that moment.",
+      "limited": "Standard-mode twin of metaworldplus-handle-pull-side-i00-privileged: the same instance and success check (Approach the handle from the side and pull it upward.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "lever_pull",
+      "task_dir": "metaworldplus-lever-pull-i00",
+      "family": "metaworld/lever-pull",
+      "seed": 0,
+      "instruction": "Pull the lever to its target position.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for lever-pull-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 5da7abb07e2f…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for lever-pull-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 74 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-lever-pull-i00-privileged: the same instance and success check (Pull the lever to its target position.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "peg_insert_side",
+      "task_dir": "metaworldplus-peg-insert-side-i00",
+      "family": "metaworld/peg-insert-side",
+      "seed": 0,
+      "instruction": "Insert the peg into the side-facing socket.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for peg-insert-side-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 c034a01c412b…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for peg-insert-side-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 78 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-peg-insert-side-i00-privileged: the same instance and success check (Insert the peg into the side-facing socket.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "peg_unplug_side",
+      "task_dir": "metaworldplus-peg-unplug-side-i00",
+      "family": "metaworld/peg-unplug-side",
+      "seed": 0,
+      "instruction": "Pull the peg out of the side-facing socket.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for peg-unplug-side-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 eb490ec582cb…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for peg-unplug-side-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 106 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-peg-unplug-side-i00-privileged: the same instance and success check (Pull the peg out of the side-facing socket.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "pick_out_of_hole",
+      "task_dir": "metaworldplus-pick-out-of-hole-i00",
+      "family": "metaworld/pick-out-of-hole",
+      "seed": 0,
+      "instruction": "Pick the object out of the hole and lift it to the target.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for pick-out-of-hole-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 660defd1ddf6…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for pick-out-of-hole-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 105 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-pick-out-of-hole-i00-privileged: the same instance and success check (Pick the object out of the hole and lift it to the target.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "pick_place",
+      "task_dir": "metaworldplus-pick-place-i00",
+      "family": "metaworld/pick-place",
+      "seed": 0,
+      "instruction": "Pick up the object and move it to the target.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for pick-place-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 ed143b4220e3…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for pick-place-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 53 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-pick-place-i00-privileged: the same instance and success check (Pick up the object and move it to the target.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "pick_place_wall",
+      "task_dir": "metaworldplus-pick-place-wall-i00",
+      "family": "metaworld/pick-place-wall",
+      "seed": 0,
+      "instruction": "Pick up the object and move it over the wall to the target.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for pick-place-wall-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 17f0ecf11184…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for pick-place-wall-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 96 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-pick-place-wall-i00-privileged: the same instance and success check (Pick up the object and move it over the wall to the target.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "plate_slide_back",
+      "task_dir": "metaworldplus-plate-slide-back-i00",
+      "family": "metaworld/plate-slide-back",
+      "seed": 0,
+      "instruction": "Slide the plate back out to the target position.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for plate-slide-back-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 7bea74c2e85c…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for plate-slide-back-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 42 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-plate-slide-back-i00-privileged: the same instance and success check (Slide the plate back out to the target position.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "plate_slide_back_side",
+      "task_dir": "metaworldplus-plate-slide-back-side-i00",
+      "family": "metaworld/plate-slide-back-side",
+      "seed": 0,
+      "instruction": "Slide the plate out sideways to the target position.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for plate-slide-back-side-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 c703cdbced33…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for plate-slide-back-side-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 54 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-plate-slide-back-side-i00-privileged: the same instance and success check (Slide the plate out sideways to the target position.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "plate_slide",
+      "task_dir": "metaworldplus-plate-slide-i00",
+      "family": "metaworld/plate-slide",
+      "seed": 0,
+      "instruction": "Slide the plate forward into the target position.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for plate-slide-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 e489f340ab06…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for plate-slide-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 53 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-plate-slide-i00-privileged: the same instance and success check (Slide the plate forward into the target position.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "plate_slide_side",
+      "task_dir": "metaworldplus-plate-slide-side-i00",
+      "family": "metaworld/plate-slide-side",
+      "seed": 0,
+      "instruction": "Slide the plate sideways into the target position.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for plate-slide-side-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 c876bac72123…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for plate-slide-side-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 45 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-plate-slide-side-i00-privileged: the same instance and success check (Slide the plate sideways into the target position.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "push_back",
+      "task_dir": "metaworldplus-push-back-i00",
+      "family": "metaworld/push-back",
+      "seed": 0,
+      "instruction": "Push the object backward to the target.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for push-back-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 9c41a44646b3…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for push-back-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 80 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-push-back-i00-privileged: the same instance and success check (Push the object backward to the target.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "push",
+      "task_dir": "metaworldplus-push-i00",
+      "family": "metaworld/push",
+      "seed": 0,
+      "instruction": "Push the object to the target.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for push-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 b0c8e2a871b8…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for push-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 65 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-push-i00-privileged: the same instance and success check (Push the object to the target.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "push_wall",
+      "task_dir": "metaworldplus-push-wall-i00",
+      "family": "metaworld/push-wall",
+      "seed": 0,
+      "instruction": "Push the object around the wall to the target.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for push-wall-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 8ac35868b390…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for push-wall-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 86 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-push-wall-i00-privileged: the same instance and success check (Push the object around the wall to the target.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "reach",
+      "task_dir": "metaworldplus-reach-i00",
+      "family": "metaworld/reach",
+      "seed": 0,
+      "instruction": "Move the gripper to the target position.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for reach-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 9973d2a55a11…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for reach-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 46 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-reach-i00-privileged: the same instance and success check (Move the gripper to the target position.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "reach_wall",
+      "task_dir": "metaworldplus-reach-wall-i00",
+      "family": "metaworld/reach-wall",
+      "seed": 0,
+      "instruction": "Move the gripper around the wall to the target position.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for reach-wall-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 be76e27e272e…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for reach-wall-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 52 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-reach-wall-i00-privileged: the same instance and success check (Move the gripper around the wall to the target position.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "shelf_place",
+      "task_dir": "metaworldplus-shelf-place-i00",
+      "family": "metaworld/shelf-place",
+      "seed": 0,
+      "instruction": "Pick up the object and place it on the shelf at the target.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for shelf-place-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 7617159e5cfc…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for shelf-place-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 78 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-shelf-place-i00-privileged: the same instance and success check (Pick up the object and place it on the shelf at the target.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "soccer",
+      "task_dir": "metaworldplus-soccer-i00",
+      "family": "metaworld/soccer",
+      "seed": 1,
+      "instruction": "Push the soccer ball into the goal.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for soccer-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 1; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 23a0c707e1ec…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for soccer-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 114 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-soccer-i00-privileged: the same instance and success check (Push the soccer ball into the goal.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "stick_pull",
+      "task_dir": "metaworldplus-stick-pull-i00",
+      "family": "metaworld/stick-pull",
+      "seed": 1,
+      "instruction": "Use the stick to pull the target object.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for stick-pull-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 1; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 feb8f30ea035…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for stick-pull-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 119 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh). In this environment the success state does not persist on its own: after the oracle's last action, holding still for 10 control steps loses it. Graded on the final state, a trajectory must end at that moment.",
+      "limited": "Standard-mode twin of metaworldplus-stick-pull-i00-privileged: the same instance and success check (Use the stick to pull the target object.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "stick_push",
+      "task_dir": "metaworldplus-stick-push-i00",
+      "family": "metaworld/stick-push",
+      "seed": 0,
+      "instruction": "Use the stick to push the target object.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for stick-push-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 30d72c6ed5b2…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for stick-push-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 72 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-stick-push-i00-privileged: the same instance and success check (Use the stick to push the target object.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "sweep",
+      "task_dir": "metaworldplus-sweep-i00",
+      "family": "metaworld/sweep",
+      "seed": 0,
+      "instruction": "Sweep the object to the target position.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for sweep-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 711132aeeab6…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for sweep-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 103 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-sweep-i00-privileged: the same instance and success check (Sweep the object to the target position.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "sweep_into",
+      "task_dir": "metaworldplus-sweep-into-i00",
+      "family": "metaworld/sweep-into",
+      "seed": 0,
+      "instruction": "Sweep the object into the opening.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for sweep-into-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 018d333ed357…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for sweep-into-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 52 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-sweep-into-i00-privileged: the same instance and success check (Sweep the object into the opening.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "window_close",
+      "task_dir": "metaworldplus-window-close-i00",
+      "family": "metaworld/window-close",
+      "seed": 0,
+      "instruction": "Slide the window closed.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for window-close-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 796cf30e6cb1…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for window-close-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 84 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-window-close-i00-privileged: the same instance and success check (Slide the window closed.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "window_open",
+      "task_dir": "metaworldplus-window-open-i00",
+      "family": "metaworld/window-open",
+      "seed": 0,
+      "instruction": "Slide the window open.",
+      "requirements": [
+        "The verifier replays your actions from the frozen start in a separate sandbox (twice, in fresh processes; MuJoCo on the CPU is bit-exact) and applies Meta-World's own success check for window-open-v3 (evaluate_state) to the state after the last action. A success reached earlier and then lost does not count: end the trajectory while the task is achieved."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-metaworld:0.1.0",
+      "source": "Meta-World @ 59fc34d (MIT) on MuJoCo 3.3.0; image eai-metaworld:0.1.0",
+      "env_source": "",
+      "instance": "Meta-World's reset randomization with seed 0; MuJoCo state, model arrays, env caches and RNG frozen in instance.npz (SHA-256 a2e79a0b595a…, checked on load)",
+      "deliverable": "(T, 4) native actions [dx, dy, dz, grip], 1 ≤ T ≤ 500 (Meta-World's max_path_length)",
+      "reference": "Meta-World's scripted policy for window-open-v3 (metaworld/policies/, removed from the image), run on this instance up to its first success: 92 actions in solution/oracle.npz (recorded by scripts/metaworldplus/freeze.sh).",
+      "limited": "Standard-mode twin of metaworldplus-window-open-i00-privileged: the same instance and success check (Slide the window open.), served as a robot service (images/metaworld/standard/server_mw.py, protocol eai-standard/2.1, tool module mw_tool). The agent sees camera RGB-D, the robot's own state and the target point; no object poses, no reset; one episode.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    }
+  ],
+  "read": "2026-10-02"
+}

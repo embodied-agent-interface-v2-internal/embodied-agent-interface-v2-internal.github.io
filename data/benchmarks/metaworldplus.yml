@@ -1,0 +1,50 @@
+id: metaworldplus
+name: MetaWorld+
+edition: "our benchmark (robot_coding_bench @ 8c5594a43): Meta-World v3 @ 59fc34d, all 50 environments"
+status: active
+simulator: MuJoCo 3.3.0 (Meta-World v3)
+description: >-
+  All 50 of Meta-World's v3 environments for a Sawyer arm (reward v2), one frozen instance each: push, pick and place,
+  open doors, drawers and windows, press buttons, turn dials and faucets, insert pegs, hammer, sweep and more. Each
+  task passes or fails on Meta-World's own success check on the state after the agent's last action, with no partial
+  credit, and runs in two modes: unlimited (privileged: full simulator state, unlimited resets, one replayable
+  trajectory of at most 500 actions handed in) and limited (standard: a robot behind a service, four fixed cameras and
+  the arm's own state, one episode, no reset). Privileged is reported as a control; the standard mode is the
+  benchmark.
+
+links:
+  repository: https://github.com/Farama-Foundation/Metaworld
+  paper: https://arxiv.org/abs/1910.10897
+
+embodiment:
+  robot: "Rethink Sawyer: a 7-DoF arm whose hand is a mocap body (the wrist does not rotate), two-finger gripper"
+  action_space: "Meta-World's native action [dx, dy, dz, grip] in [-1, 1]: the hand target moves by 1 cm times each delta per control step; grip drives the two fingers (+1 closes)"
+  control_rate_hz: 80
+  observations: [proprioception, rgb, depth]
+  cameras:
+    front, left, right: 320x240 RGB-D, fixed around the table
+    topview: 320x240 RGB-D, Meta-World's own top camera
+  notes: >-
+    Unlimited: the agent drives Meta-World in Python with the whole simulator state. Limited: the simulator runs in a
+    service the agent cannot open; it sees the four cameras (with calibration), the hand's position, the gripper
+    opening, the hand target, the arm and finger joints and its last command, and the task's target point; never an
+    object's pose or the success check.
+
+# robot_coding_bench publishes no skill vocabulary for MetaWorld+, so `skills:` cannot be validated.
+skill_vocabulary: []
+
+# One scene model for the whole benchmark (scripts/import_metaworldplus_tasks.py sets it).
+scenes:
+  - metaworld_table
+
+# What we run it on: robot_coding_bench's task pairs, measured on an AMD Ryzen 9 7950X workstation.
+integration:
+  image: ghcr.io/mll-lab-nu/eai-metaworld:0.1.0 (MuJoCo 3.3.0, Meta-World @ 59fc34d with its scripted policies removed), CPU only
+  containers: >-
+    unlimited (privileged): main (the agent with the simulator) + the verifier's own sandbox, which replays
+    the trajectory twice in fresh processes. limited (standard): main (the agent: an HTTP client only) + sim
+    (the simulator and the recording; the agent reaches it only through the client) + the verifier's own
+    sandbox. The agent reaches the model APIs and nothing else.
+  physics_backend: MuJoCo on the CPU; OSMesa renders the cameras
+  determinism: bit-exact across fresh processes (both replays of a trajectory end in the same state)
+  licence: Meta-World is MIT

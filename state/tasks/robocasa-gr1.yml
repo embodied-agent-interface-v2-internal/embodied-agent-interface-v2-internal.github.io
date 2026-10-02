@@ -1,0 +1,112 @@
+# Curated task state for robocasa-gr1.
+#
+# One block per task. Written by the site's Edit button and by hand; both are
+# fine. Task ids match docs/benchmarks/robocasa-gr1/tasks/<id>.md.
+#
+#   status      keep | drop | needs-review | pending
+#   difficulty  unrated | easy | medium | hard | extreme
+#   labels      tier-2 ids from state/taxonomy.yml
+#   owner       bare GitHub handle
+#   note        free text; why you decided what you decided
+#
+# Task id = the task part of our task pairs in robot_coding_bench (tasks/<prefix>-<task>-i00-privileged and -standard),
+# with underscores. Every task here is one robot_coding_bench keeps, so each is `keep`, with its category as the note
+# (scripts/import_robocasa_gr1_tasks.py adds a NEW task that way and never changes an existing entry).
+# Owner: changhechen, who built the selection. No difficulty or labels yet.
+
+bottle_to_cabinet_close:
+  status: keep
+  owner: changhechen
+  note: "Pick and place, then close"
+can_to_drawer_close:
+  status: keep
+  owner: changhechen
+  note: "Pick and place, then close"
+cup_to_drawer_close:
+  status: keep
+  owner: changhechen
+  note: "Pick and place, then close"
+cuttingboard_to_basket:
+  status: keep
+  owner: changhechen
+  note: "Pick and place (novel objects)"
+cuttingboard_to_cardboardbox:
+  status: keep
+  owner: changhechen
+  note: "Pick and place (novel objects)"
+cuttingboard_to_pan:
+  status: keep
+  owner: changhechen
+  note: "Pick and place (novel objects)"
+cuttingboard_to_pot:
+  status: keep
+  owner: changhechen
+  note: "Pick and place (novel objects)"
+cuttingboard_to_tieredbasket:
+  status: keep
+  owner: changhechen
+  note: "Pick and place (novel objects)"
+milk_to_microwave_close:
+  status: keep
+  owner: changhechen
+  note: "Pick and place, then close"
+placemat_to_basket:
+  status: keep
+  owner: changhechen
+  note: "Pick and place (novel objects)"
+placemat_to_bowl:
+  status: keep
+  owner: changhechen
+  note: "Pick and place (novel objects)"
+placemat_to_plate:
+  status: keep
+  owner: changhechen
+  note: "Pick and place (novel objects)"
+placemat_to_tieredshelf:
+  status: keep
+  owner: changhechen
+  note: "Pick and place (novel objects)"
+plate_to_bowl:
+  status: keep
+  owner: changhechen
+  note: "Pick and place (novel objects)"
+plate_to_cardboardbox:
+  status: keep
+  owner: changhechen
+  note: "Pick and place (novel objects)"
+plate_to_pan:
+  status: keep
+  owner: changhechen
+  note: "Pick and place (novel objects)"
+plate_to_plate:
+  status: keep
+  owner: changhechen
+  note: "Pick and place (novel objects)"
+potato_to_microwave_close:
+  status: keep
+  owner: changhechen
+  note: "Pick and place, then close"
+tray_to_cardboardbox:
+  status: keep
+  owner: changhechen
+  note: "Pick and place (novel objects)"
+tray_to_plate:
+  status: keep
+  owner: changhechen
+  note: "Pick and place (novel objects)"
+tray_to_pot:
+  status: keep
+  owner: changhechen
+  note: "Pick and place (novel objects)"
+tray_to_tieredbasket:
+  status: keep
+  owner: changhechen
+  note: "Pick and place (novel objects)"
+tray_to_tieredshelf:
+  status: keep
+  owner: changhechen
+  note: "Pick and place (novel objects)"
+wine_to_cabinet_close:
+  status: keep
+  owner: changhechen
+  note: "Pick and place, then close"

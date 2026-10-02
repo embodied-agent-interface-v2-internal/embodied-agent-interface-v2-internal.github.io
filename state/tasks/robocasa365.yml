@@ -1,0 +1,216 @@
+# Curated task state for robocasa365.
+#
+# One block per task. Written by the site's Edit button and by hand; both are
+# fine. Task ids match docs/benchmarks/robocasa365/tasks/<id>.md.
+#
+#   status      keep | drop | needs-review | pending
+#   difficulty  unrated | easy | medium | hard | extreme
+#   labels      tier-2 ids from state/taxonomy.yml
+#   owner       bare GitHub handle
+#   note        free text; why you decided what you decided
+#
+# Task id = the task part of our task pairs in robot_coding_bench (tasks/<prefix>-<task>-i00-privileged and -standard),
+# with underscores. Every task here is one robot_coding_bench keeps, so each is `keep`, with its category as the note
+# (scripts/import_robocasa365_tasks.py adds a NEW task that way and never changes an existing entry).
+# Owner: changhechen, who built the selection. No difficulty or labels yet.
+
+add_lemon_to_fish:
+  status: keep
+  owner: changhechen
+  note: "Composite · garnishing dishes"
+assemble_cooking_array:
+  status: keep
+  owner: changhechen
+  note: "Composite · frying"
+beverage_sorting:
+  status: keep
+  owner: changhechen
+  note: "Composite · restocking supplies"
+bread_and_cheese:
+  status: keep
+  owner: changhechen
+  note: "Composite · snack preparation"
+candle_cleanup:
+  status: keep
+  owner: changhechen
+  note: "Composite · clearing table"
+cereal_and_bowl:
+  status: keep
+  owner: changhechen
+  note: "Composite · snack preparation"
+choose_measuring_cup:
+  status: keep
+  owner: changhechen
+  note: "Composite · measuring ingredients"
+clear_food_waste:
+  status: keep
+  owner: changhechen
+  note: "Composite · cleaning sink"
+clear_sink:
+  status: keep
+  owner: changhechen
+  note: "Composite · washing dishes"
+close_drawer:
+  status: keep
+  owner: changhechen
+  note: "Atomic · kitchen drawer"
+close_oven:
+  status: keep
+  owner: changhechen
+  note: "Atomic · kitchen doors"
+close_stand_mixer_head:
+  status: keep
+  owner: changhechen
+  note: "Atomic · kitchen stand mixer"
+cookie_dough_prep:
+  status: keep
+  owner: changhechen
+  note: "Composite · baking"
+deliver_brewed_coffee:
+  status: keep
+  owner: changhechen
+  note: "Composite · brewing"
+dessert_upgrade:
+  status: keep
+  owner: changhechen
+  note: "Composite · serving food"
+display_meat_variety:
+  status: keep
+  owner: changhechen
+  note: "Composite · filling serving dishes"
+divide_basins:
+  status: keep
+  owner: changhechen
+  note: "Composite · washing dishes"
+drain_veggies:
+  status: keep
+  owner: changhechen
+  note: "Composite · washing fruits and vegetables"
+drinkware_consolidation:
+  status: keep
+  owner: changhechen
+  note: "Composite · clearing table"
+make_ice_lemonade:
+  status: keep
+  owner: changhechen
+  note: "Composite · adding ice to beverages"
+make_loaded_potato:
+  status: keep
+  owner: changhechen
+  note: "Composite · reheating food"
+meal_prep_staging:
+  status: keep
+  owner: changhechen
+  note: "Composite · frying"
+microwave_defrost_meat:
+  status: keep
+  owner: changhechen
+  note: "Composite · microwaving food"
+open_dishwasher:
+  status: keep
+  owner: changhechen
+  note: "Atomic · kitchen doors"
+organize_coffee_condiments:
+  status: keep
+  owner: changhechen
+  note: "Composite · brewing"
+oven_broil_fish:
+  status: keep
+  owner: changhechen
+  note: "Composite · broiling fish"
+pack_dessert:
+  status: keep
+  owner: changhechen
+  note: "Atomic · kitchen pick place"
+pick_place_cabinet_to_counter:
+  status: keep
+  owner: changhechen
+  note: "Atomic · kitchen pick place"
+pick_place_sink_to_counter:
+  status: keep
+  owner: changhechen
+  note: "Atomic · kitchen pick place"
+plate_steak_meal:
+  status: keep
+  owner: changhechen
+  note: "Composite · plating food"
+portion_in_tupperware:
+  status: keep
+  owner: changhechen
+  note: "Composite · portioning meals"
+pre_rinse_station:
+  status: keep
+  owner: changhechen
+  note: "Composite · washing dishes"
+prep_for_sanitizing:
+  status: keep
+  owner: changhechen
+  note: "Composite · sanitizing surface"
+prep_marinating_meat:
+  status: keep
+  owner: changhechen
+  note: "Composite · meat preparation"
+reheat_meal:
+  status: keep
+  owner: changhechen
+  note: "Composite · microwaving food"
+retrieve_meat:
+  status: keep
+  owner: changhechen
+  note: "Composite · slicing meat"
+sanitize_prep_cutting_board:
+  status: keep
+  owner: changhechen
+  note: "Composite · sanitizing cutting board"
+scrub_bowl:
+  status: keep
+  owner: changhechen
+  note: "Composite · washing dishes"
+searing_meat:
+  status: keep
+  owner: changhechen
+  note: "Composite · frying"
+seasoning_spice_setup:
+  status: keep
+  owner: changhechen
+  note: "Composite · setting the table"
+set_up_cutting_station:
+  status: keep
+  owner: changhechen
+  note: "Composite · slicing meat"
+stocking_breakfast_foods:
+  status: keep
+  owner: changhechen
+  note: "Composite · restocking supplies"
+sweeten_coffee:
+  status: keep
+  owner: changhechen
+  note: "Composite · brewing"
+thaw_in_sink:
+  status: keep
+  owner: changhechen
+  note: "Composite · defrosting food"
+tong_buffet_setup:
+  status: keep
+  owner: changhechen
+  note: "Composite · arranging buffet"
+turn_off_microwave:
+  status: keep
+  owner: changhechen
+  note: "Atomic · kitchen microwave"
+turn_on_microwave:
+  status: keep
+  owner: changhechen
+  note: "Atomic · kitchen microwave"
+turn_on_sink_faucet:
+  status: keep
+  owner: changhechen
+  note: "Atomic · kitchen sink"
+turn_on_stove:
+  status: keep
+  owner: changhechen
+  note: "Atomic"
+turn_on_toaster_oven:
+  status: keep
+  owner: changhechen
+  note: "Atomic · kitchen toaster oven"

@@ -1,0 +1,48 @@
+id: robocasa-gr1
+name: RoboCasa-GR1
+edition: RoboCasa GR1 tabletop tasks @ 4840e67, all 24 (robot_coding_bench @ 8c5594a43)
+status: active
+simulator: robosuite @ 51cc017 (1.5.1, mink whole-body IK) / MuJoCo 3.2.6 (RoboCasa GR1 tabletop)
+description: >-
+  A Fourier GR1 humanoid with two dexterous hands at a kitchen counter: picking objects from one container or surface
+  and placing them in another, including novel objects, and placing into a cabinet, drawer or microwave and closing
+  it. We keep all 24 environments with an official demonstration, one frozen instance each (the demonstration's
+  initial state). Each task passes or fails on the environment's own success check on the state after the last action,
+  with no partial credit, and runs in two modes: unlimited (privileged: full simulator state, unlimited resets, one
+  replayable trajectory handed in) and limited (standard: the humanoid's own six cameras, one episode, no reset).
+
+links:
+  repository: https://github.com/robocasa/robocasa-gr1-tabletop-tasks
+
+embodiment:
+  robot: "Fourier GR1 humanoid: two arms, waist and two six-command Fourier hands; fixed base"
+  action_space: "the robot's native whole-body controller command, 24 numbers per control step: each hand's grip-site pose (position and axis-angle, solved by mink IK) and six finger commands per hand"
+  control_rate_hz: 20
+  observations: [proprioception, rgb, depth]
+  cameras:
+    robot0_agentview_center, left, right and egoview: RGB-D, on the robot
+    two hand cameras: RGB-D
+  notes: >-
+    Unlimited: the agent drives the environment in Python with the whole simulator state. Limited: the simulator runs in
+    a service; the agent sees the robot's own cameras (with the current calibration, since they move with the robot),
+    its joints, its grip sites' positions and last command, and the task's language; never an object's pose, the kitchen
+    layout or the success check.
+
+# robot_coding_bench publishes no skill vocabulary for RoboCasa-GR1, so `skills:` cannot be validated.
+skill_vocabulary: []
+
+# One scene model for the whole benchmark (scripts/import_robocasa_gr1_tasks.py sets it).
+scenes:
+  - gr1_counter
+
+# What we run it on: robot_coding_bench's task pairs, measured on an AMD Ryzen 9 7950X workstation.
+integration:
+  image: ghcr.io/mll-lab-nu/eai-robocasa-gr1:0.1.0 (robocasa-gr1-tabletop-tasks @ 4840e67, robosuite @ 51cc017, mink 0.0.5; demonstrations removed), CPU only, ~24 GB
+  containers: >-
+    unlimited (privileged): main (the agent with the simulator) + the verifier's own sandbox, which replays
+    the trajectory twice in fresh processes. limited (standard): main (the agent: an HTTP client only) + sim
+    (the simulator and the recording; the agent reaches it only through the client) + the verifier's own
+    sandbox. The agent reaches the model APIs and nothing else.
+  physics_backend: MuJoCo on the CPU; OSMesa renders the cameras
+  determinism: bit-exact across fresh processes (both replays of a trajectory end in the same state)
+  licence: the GR1 tabletop tasks are MIT; their assets carry their own licences (some CC-BY-NC-4.0)

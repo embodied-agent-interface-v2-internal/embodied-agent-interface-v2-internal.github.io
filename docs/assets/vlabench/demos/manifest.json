@@ -1,0 +1,290 @@
+{
+  "add_condiment": {
+    "bytes": 65758,
+    "height": 320,
+    "poster": true,
+    "seconds": 18,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "book_rearrange": {
+    "bytes": 361473,
+    "height": 320,
+    "poster": true,
+    "seconds": 48,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "find_unseen_object": {
+    "bytes": 267569,
+    "height": 320,
+    "poster": true,
+    "seconds": 41,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "friction_qa": {
+    "bytes": 47699,
+    "height": 320,
+    "poster": true,
+    "seconds": 22,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "hammer_nail_and_hang_picture": {
+    "bytes": 310821,
+    "height": 320,
+    "poster": true,
+    "seconds": 36,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "heat_food": {
+    "bytes": 217223,
+    "height": 320,
+    "poster": true,
+    "seconds": 79,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "insert_bloom_flower": {
+    "bytes": 74155,
+    "height": 320,
+    "poster": true,
+    "seconds": 21,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "insert_flower": {
+    "bytes": 64908,
+    "height": 320,
+    "poster": true,
+    "seconds": 16,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "magnetism_qa": {
+    "bytes": 75494,
+    "height": 320,
+    "poster": true,
+    "seconds": 30,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "play_math_game": {
+    "bytes": 56018,
+    "height": 320,
+    "poster": true,
+    "seconds": 17,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "put_box_on_painting": {
+    "bytes": 50327,
+    "height": 320,
+    "poster": true,
+    "seconds": 13,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "reflection_qa": {
+    "bytes": 60303,
+    "height": 320,
+    "poster": true,
+    "seconds": 22,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_billiards": {
+    "bytes": 65045,
+    "height": 320,
+    "poster": true,
+    "seconds": 19,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_billiards_common_sense": {
+    "bytes": 64802,
+    "height": 320,
+    "poster": true,
+    "seconds": 19,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_billiards_spatial": {
+    "bytes": 76659,
+    "height": 320,
+    "poster": true,
+    "seconds": 25,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_book_spatial": {
+    "bytes": 42101,
+    "height": 320,
+    "poster": true,
+    "seconds": 7,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_chemistry_tube": {
+    "bytes": 27220,
+    "height": 320,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_chemistry_tube_common_sense": {
+    "bytes": 25065,
+    "height": 320,
+    "poster": true,
+    "seconds": 7,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_chemistry_tube_semantic": {
+    "bytes": 25129,
+    "height": 320,
+    "poster": true,
+    "seconds": 7,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_chemistry_tube_spatial": {
+    "bytes": 29004,
+    "height": 320,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_drink": {
+    "bytes": 34534,
+    "height": 320,
+    "poster": true,
+    "seconds": 10,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_fruit": {
+    "bytes": 52917,
+    "height": 320,
+    "poster": true,
+    "seconds": 14,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_fruit_common_sense": {
+    "bytes": 53347,
+    "height": 320,
+    "poster": true,
+    "seconds": 15,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_mahjong": {
+    "bytes": 29646,
+    "height": 320,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_mahjong_semantic": {
+    "bytes": 42860,
+    "height": 320,
+    "poster": true,
+    "seconds": 12,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_mahjong_spatial": {
+    "bytes": 51672,
+    "height": 320,
+    "poster": true,
+    "seconds": 15,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_nth_largest_poker": {
+    "bytes": 28460,
+    "height": 320,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_painting": {
+    "bytes": 48130,
+    "height": 320,
+    "poster": true,
+    "seconds": 24,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_poker": {
+    "bytes": 32315,
+    "height": 320,
+    "poster": true,
+    "seconds": 9,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_poker_semantic": {
+    "bytes": 29673,
+    "height": 320,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_poker_spatial": {
+    "bytes": 30905,
+    "height": 320,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_specific_type_book": {
+    "bytes": 37569,
+    "height": 320,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_toy": {
+    "bytes": 49847,
+    "height": 320,
+    "poster": true,
+    "seconds": 16,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "select_unique_type_mahjong": {
+    "bytes": 40228,
+    "height": 320,
+    "poster": true,
+    "seconds": 11,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "take_out_cool_drink": {
+    "bytes": 70066,
+    "height": 320,
+    "poster": true,
+    "seconds": 50,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  },
+  "texas_holdem": {
+    "bytes": 231120,
+    "height": 320,
+    "poster": true,
+    "seconds": 66,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the front camera).",
+    "width": 320
+  }
+}

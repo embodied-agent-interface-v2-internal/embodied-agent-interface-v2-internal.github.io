@@ -1,0 +1,610 @@
+{
+  "commit": "8c5594a43",
+  "tasks": [
+    {
+      "id": "arrange_vegetables",
+      "task_dir": "robocasa-arrange-vegetables-i00",
+      "family": "robocasa/ArrangeVegetables",
+      "seed": null,
+      "instruction": "Pick the vegetables from the sink and place them on the cutting board.",
+      "requirements": [
+        "Each of the two vegetables touches the cutting board and its centre is within 0.7 × the board's horizontal radius of the board's centre (horizontal distance).",
+        "The gripper's grip site (between the fingertips) is more than 25 cm from the cutting board's centre: let go and move the hand away. A \"centre\" is a body's origin; \"touches\" means a MuJoCo contact."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/multi_stage/chopping_food/arrange_vegetables.py#L4",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/multi_stage/chopping_food/ArrangeVegetables/2024-05-11); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 512f1d546771…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 544 actions), executed from the frozen scene by the robot's own controller: 544 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-arrange-vegetables-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "close_double_door",
+      "task_dir": "robocasa-close-double-door-i00",
+      "family": "robocasa/CloseDoubleDoor",
+      "seed": null,
+      "instruction": "Close the cabinet doors.",
+      "requirements": [
+        "Both cabinet doors are at most 5% open (each hinge within 4.5° of closed; the check scales 0–90° to 0–100%)."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_doors.py#L159",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_doors/CloseDoubleDoor/2024-04-29); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 9a3d1510d32e…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 413 actions), executed from the frozen scene by the robot's own controller: 413 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-close-double-door-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "close_drawer",
+      "task_dir": "robocasa-close-drawer-i00",
+      "family": "robocasa/CloseDrawer",
+      "seed": null,
+      "instruction": "Close the left drawer.",
+      "requirements": [
+        "The left drawer is at most 5% open (the drawer's travel is scaled to 0–100% over 0.55 × the drawer's depth)."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_drawer.py#L239",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_drawer/CloseDrawer/2024-04-30); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 17a37afd3dfc…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 189 actions), executed from the frozen scene by the robot's own controller: 189 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-close-drawer-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "close_single_door",
+      "task_dir": "robocasa-close-single-door-i00",
+      "family": "robocasa/CloseSingleDoor",
+      "seed": null,
+      "instruction": "Close the microwave door.",
+      "requirements": [
+        "The microwave door is at most 5% open (each hinge within 4.5° of closed; the check scales 0–90° to 0–100%)."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_doors.py#L154",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_doors/CloseSingleDoor/2024-04-24); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 6c33b41d4d54…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 265 actions), executed from the frozen scene by the robot's own controller: 265 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-close-single-door-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "coffee_press_button",
+      "task_dir": "robocasa-coffee-press-button-i00",
+      "family": "robocasa/CoffeePressButton",
+      "seed": null,
+      "instruction": "Press the button on the coffee machine to serve coffee.",
+      "requirements": [
+        "The coffee machine is on: it switches on the first time the gripper touches its start button and then stays on.",
+        "The gripper's grip site is more than 15 cm from the start button: move the hand away after pressing. A \"centre\" is a body's origin; \"touches\" means a MuJoCo contact."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_coffee.py#L127",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_coffee/CoffeePressButton/2024-04-25); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 5bbda4561bed…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 113 actions), executed from the frozen scene by the robot's own controller: 113 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-coffee-press-button-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "coffee_serve_mug",
+      "task_dir": "robocasa-coffee-serve-mug-i00",
+      "family": "robocasa/CoffeeServeMug",
+      "seed": null,
+      "instruction": "Pick the mug from under the coffee machine dispenser and place it on the counter.",
+      "requirements": [
+        "The mug touches the counter by the coffee machine (standing on it).",
+        "The gripper's grip site (between the fingertips) is more than 25 cm from the mug's centre: let go and move the hand away. A \"centre\" is a body's origin; \"touches\" means a MuJoCo contact."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_coffee.py#L118",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_coffee/CoffeeServeMug/2024-05-01); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 b36ca4c90e66…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 341 actions), executed from the frozen scene by the robot's own controller: 341 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-coffee-serve-mug-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "coffee_setup_mug",
+      "task_dir": "robocasa-coffee-setup-mug-i00",
+      "family": "robocasa/CoffeeSetupMug",
+      "seed": null,
+      "instruction": "Pick the mug from the counter and place it under the coffee machine dispenser.",
+      "requirements": [
+        "The mug's centre is within 4 cm (horizontally) and 10 cm (vertically) of the coffee machine's mug spot under the dispenser.",
+        "The gripper's grip site (between the fingertips) is more than 25 cm from the mug's centre: let go and move the hand away. A \"centre\" is a body's origin; \"touches\" means a MuJoCo contact."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_coffee.py#L109",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_coffee/CoffeeSetupMug/2024-04-25); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 478ded1cb058…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 370 actions), executed from the frozen scene by the robot's own controller: 370 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-coffee-setup-mug-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "microwave_thawing",
+      "task_dir": "robocasa-microwave-thawing-i00",
+      "family": "robocasa/MicrowaveThawing",
+      "seed": null,
+      "instruction": "Pick the squash from the counter and place it in the microwave. Then turn on the microwave.",
+      "requirements": [
+        "The object is entirely inside the microwave (all eight corners of its bounding box within the interior, with a 5 cm tolerance).",
+        "The microwave is on; the microwave only registers a button while its door is closed (at most 0.5% open), and opening the door switches it off: close the door fully, then press the start button.",
+        "The gripper's grip site (between the fingertips) is more than 25 cm from the object's centre: let go and move the hand away. A \"centre\" is a body's origin; \"touches\" means a MuJoCo contact."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/multi_stage/defrosting_food/microwave_thawing.py#L4",
+      "instance": "the initial state of official demonstration episode 1 (demo_2, v0.1/multi_stage/defrosting_food/MicrowaveThawing/2024-05-11); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 0ef66e26d964…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 763 actions), executed from the frozen scene by the robot's own controller: 763 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-microwave-thawing-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "open_double_door",
+      "task_dir": "robocasa-open-double-door-i00",
+      "family": "robocasa/OpenDoubleDoor",
+      "seed": null,
+      "instruction": "Open the cabinet doors.",
+      "requirements": [
+        "Both cabinet doors are at least 90% open (each hinge at least 81° open; the check scales 0–90° to 0–100%)."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_doors.py#L144",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_doors/OpenDoubleDoor/2024-04-26); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 d7f922753a2d…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 722 actions), executed from the frozen scene by the robot's own controller: 722 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-open-double-door-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "open_drawer",
+      "task_dir": "robocasa-open-drawer-i00",
+      "family": "robocasa/OpenDrawer",
+      "seed": null,
+      "instruction": "Open the right drawer.",
+      "requirements": [
+        "The right drawer is at least 95% open (the drawer's travel is scaled to 0–100% over 0.55 × the drawer's depth)."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_drawer.py#L185",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_drawer/OpenDrawer/2024-05-03); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 129942a0a014…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 201 actions), executed from the frozen scene by the robot's own controller: 201 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-open-drawer-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "open_single_door",
+      "task_dir": "robocasa-open-single-door-i00",
+      "family": "robocasa/OpenSingleDoor",
+      "seed": null,
+      "instruction": "Open the cabinet door.",
+      "requirements": [
+        "The cabinet door is at least 90% open (each hinge at least 81° open; the check scales 0–90° to 0–100%)."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_doors.py#L139",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_doors/OpenSingleDoor/2024-04-24); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 f228fc1e39a5…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 233 actions), executed from the frozen scene by the robot's own controller: 233 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-open-single-door-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "pnp_cab_to_counter",
+      "task_dir": "robocasa-pnp-cab-to-counter-i00",
+      "family": "robocasa/PnPCabToCounter",
+      "seed": null,
+      "instruction": "Pick the hot dog from the cabinet and place it on the counter.",
+      "requirements": [
+        "The object touches the counter below the cabinet.",
+        "The gripper's grip site (between the fingertips) is more than 25 cm from the object's centre: let go and move the hand away. A \"centre\" is a body's origin; \"touches\" means a MuJoCo contact."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_pnp.py#L142",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_pnp/PnPCabToCounter/2024-04-24); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 c9ebef28995d…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 276 actions), executed from the frozen scene by the robot's own controller: 276 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-pnp-cab-to-counter-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "pnp_counter_to_cab",
+      "task_dir": "robocasa-pnp-counter-to-cab-i00",
+      "family": "robocasa/PnPCounterToCab",
+      "seed": null,
+      "instruction": "Pick the cake from the counter and place it in the cabinet.",
+      "requirements": [
+        "The object is entirely inside the cabinet (all eight corners of its bounding box within the interior, with a 5 cm tolerance).",
+        "The gripper's grip site (between the fingertips) is more than 25 cm from the object's centre: let go and move the hand away. A \"centre\" is a body's origin; \"touches\" means a MuJoCo contact."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_pnp.py#L24",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_pnp/PnPCounterToCab/2024-04-24); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 e95a84172b1b…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 217 actions), executed from the frozen scene by the robot's own controller: 217 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-pnp-counter-to-cab-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "pnp_counter_to_microwave",
+      "task_dir": "robocasa-pnp-counter-to-microwave-i00",
+      "family": "robocasa/PnPCounterToMicrowave",
+      "seed": null,
+      "instruction": "Pick the corn from the counter and place it in the microwave.",
+      "requirements": [
+        "The object touches the plate inside the microwave, and that plate touches the microwave.",
+        "The gripper's grip site (between the fingertips) is more than 25 cm from the object's centre: let go and move the hand away. A \"centre\" is a body's origin; \"touches\" means a MuJoCo contact."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_pnp.py#L481",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_pnp/PnPCounterToMicrowave/2024-04-27); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 ee78d9fc260f…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 445 actions), executed from the frozen scene by the robot's own controller: 445 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-pnp-counter-to-microwave-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "pnp_counter_to_sink",
+      "task_dir": "robocasa-pnp-counter-to-sink-i00",
+      "family": "robocasa/PnPCounterToSink",
+      "seed": null,
+      "instruction": "Pick the apple from the counter and place it in the sink.",
+      "requirements": [
+        "The object's centre is inside the sink basin.",
+        "The gripper's grip site (between the fingertips) is more than 25 cm from the object's centre: let go and move the hand away. A \"centre\" is a body's origin; \"touches\" means a MuJoCo contact."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_pnp.py#L258",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_pnp/PnPCounterToSink/2024-04-25); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 78be1948abbf…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 424 actions), executed from the frozen scene by the robot's own controller: 424 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-pnp-counter-to-sink-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "pnp_counter_to_stove",
+      "task_dir": "robocasa-pnp-counter-to-stove-i00",
+      "family": "robocasa/PnPCounterToStove",
+      "seed": null,
+      "instruction": "Pick the potato from the plate and place it in the pan.",
+      "requirements": [
+        "The object touches the pan and its centre is within 7 cm of the pan's centre (horizontal distance).",
+        "The gripper's grip site (between the fingertips) is more than 25 cm from the object's centre: let go and move the hand away. A \"centre\" is a body's origin; \"touches\" means a MuJoCo contact."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_pnp.py#L728",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_pnp/PnPCounterToStove/2024-04-26); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 375d9a4b5b9a…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 356 actions), executed from the frozen scene by the robot's own controller: 356 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-pnp-counter-to-stove-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "pnp_microwave_to_counter",
+      "task_dir": "robocasa-pnp-microwave-to-counter-i00",
+      "family": "robocasa/PnPMicrowaveToCounter",
+      "seed": null,
+      "instruction": "Pick the onion from the microwave and place it on plate located on the counter.",
+      "requirements": [
+        "The object touches the plate and its centre is within 0.7 × the plate's horizontal radius of the plate's centre (horizontal distance).",
+        "The gripper's grip site (between the fingertips) is more than 25 cm from the object's centre: let go and move the hand away. A \"centre\" is a body's origin; \"touches\" means a MuJoCo contact."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_pnp.py#L606",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_pnp/PnPMicrowaveToCounter/2024-04-26); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 dff6415b3df4…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 238 actions), executed from the frozen scene by the robot's own controller: 238 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-pnp-microwave-to-counter-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "pnp_sink_to_counter",
+      "task_dir": "robocasa-pnp-sink-to-counter-i00",
+      "family": "robocasa/PnPSinkToCounter",
+      "seed": null,
+      "instruction": "Pick the tomato from the sink and place it on the plate located on the counter.",
+      "requirements": [
+        "The object touches the plate and its centre is within 0.7 × the plate's horizontal radius of the plate's centre (horizontal distance).",
+        "The plate touches the counter.",
+        "The gripper's grip site (between the fingertips) is more than 25 cm from the object's centre: let go and move the hand away. A \"centre\" is a body's origin; \"touches\" means a MuJoCo contact."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_pnp.py#L369",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_pnp/PnPSinkToCounter/2024-04-26_2); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 337584e93136…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 273 actions), executed from the frozen scene by the robot's own controller: 273 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-pnp-sink-to-counter-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "pnp_stove_to_counter",
+      "task_dir": "robocasa-pnp-stove-to-counter-i00",
+      "family": "robocasa/PnPStoveToCounter",
+      "seed": null,
+      "instruction": "Pick the steak from the pan and place it on the plate.",
+      "requirements": [
+        "The object touches the plate and its centre is within 7 cm of the plate's centre (horizontal distance).",
+        "The gripper's grip site (between the fingertips) is more than 25 cm from the object's centre: let go and move the hand away. A \"centre\" is a body's origin; \"touches\" means a MuJoCo contact."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_pnp.py#L819",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_pnp/PnPStoveToCounter/2024-05-01); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 7f34764f5fac…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 270 actions), executed from the frozen scene by the robot's own controller: 270 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-pnp-stove-to-counter-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "pre_soak_pan",
+      "task_dir": "robocasa-pre-soak-pan-i00",
+      "family": "robocasa/PreSoakPan",
+      "seed": null,
+      "instruction": "Pick the pan and sponge and place them into the sink. Then turn on the water.",
+      "requirements": [
+        "The pan and the sponge are each entirely inside the sink basin (all eight corners of its bounding box within the interior, with a 5 cm tolerance).",
+        "The water is on: the faucet handle's angle (mod 360°) is between 0.40 rad (about 23°) and π from its off position.",
+        "The gripper's grip site (between the fingertips) is more than 25 cm from the pan's centre: let go and move the hand away. A \"centre\" is a body's origin; \"touches\" means a MuJoCo contact."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/multi_stage/washing_dishes/pre_soak_pan.py#L4",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/multi_stage/washing_dishes/PreSoakPan/2024-05-10); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 d4f029590af2…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 1007 actions), executed from the frozen scene by the robot's own controller: 1007 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-pre-soak-pan-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "prepare_coffee",
+      "task_dir": "robocasa-prepare-coffee-i00",
+      "family": "robocasa/PrepareCoffee",
+      "seed": null,
+      "instruction": "Pick the mug from the cabinet, place it under the coffee machine dispenser, and press the start button.",
+      "requirements": [
+        "The mug's centre is within 4 cm (horizontally) and 10 cm (vertically) of the coffee machine's mug spot under the dispenser.",
+        "The coffee machine is on: it switches on the first time the gripper touches its start button and then stays on.",
+        "The gripper's grip site (between the fingertips) is more than 25 cm from the mug's centre: let go and move the hand away.",
+        "The gripper's grip site is also more than 15 cm from the start button. A \"centre\" is a body's origin; \"touches\" means a MuJoCo contact."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/multi_stage/brewing/prepare_coffee.py#L4",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/multi_stage/brewing/PrepareCoffee/2024-05-07); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 c8921c3021e4…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 500 actions), executed from the frozen scene by the robot's own controller: 500 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-prepare-coffee-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "restock_pantry",
+      "task_dir": "robocasa-restock-pantry-i00",
+      "family": "robocasa/RestockPantry",
+      "seed": null,
+      "instruction": "Pick the cans from the counter and place them in their designated side in the cabinet.",
+      "requirements": [
+        "Both cans are entirely inside the cabinet (all eight corners of its bounding box within the interior, with a 5 cm tolerance).",
+        "Each of them is on the side of the can already in the cabinet: its distance to that can, times 2, is less than its distance to the other (non-can) item in the cabinet (centre to centre).",
+        "The gripper's grip site (between the fingertips) is more than 25 cm from each can's centre: let go and move the hand away. A \"centre\" is a body's origin; \"touches\" means a MuJoCo contact."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/multi_stage/restocking_supplies/restock_pantry.py#L4",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/multi_stage/restocking_supplies/RestockPantry/2024-05-10); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 7ce4a2129528…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 705 actions), executed from the frozen scene by the robot's own controller: 705 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-restock-pantry-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "turn_off_microwave",
+      "task_dir": "robocasa-turn-off-microwave-i00",
+      "family": "robocasa/TurnOffMicrowave",
+      "seed": null,
+      "instruction": "Press the stop button on the microwave.",
+      "requirements": [
+        "The microwave is off: touching its stop button with the gripper switches it off.",
+        "The gripper's grip site is more than 15 cm from the stop button: move the hand away after pressing."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_microwave.py#L88",
+      "instance": "the initial state of official demonstration episode 1 (demo_2, v0.1/single_stage/kitchen_microwave/TurnOffMicrowave/2024-04-25); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 9ff3947ed6f9…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 238 actions), executed from the frozen scene by the robot's own controller: 238 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-turn-off-microwave-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "turn_off_sink_faucet",
+      "task_dir": "robocasa-turn-off-sink-faucet-i00",
+      "family": "robocasa/TurnOffSinkFaucet",
+      "seed": null,
+      "instruction": "Turn off the sink faucet.",
+      "requirements": [
+        "The water is off: the faucet handle's angle (mod 360°) is outside 0.40 rad (about 23°) to π from its off position, i.e. lowered back to below 0.40 rad."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_sink.py#L115",
+      "instance": "the initial state of official demonstration episode 0 (demo_0, v0.1/single_stage/kitchen_sink/TurnOffSinkFaucet/2024-04-25); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 24e4e530d062…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 185 actions), executed from the frozen scene by the robot's own controller: 185 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-turn-off-sink-faucet-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "turn_off_stove",
+      "task_dir": "robocasa-turn-off-stove-i00",
+      "family": "robocasa/TurnOffStove",
+      "seed": null,
+      "instruction": "Turn off the front right burner of the stove.",
+      "requirements": [
+        "The front right burner's knob is within 0.35 rad (about 20°) of its off position."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_stove.py#L130",
+      "instance": "the initial state of official demonstration episode 1 (demo_2, v0.1/single_stage/kitchen_stove/TurnOffStove/2024-05-02); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 0f390ea2a6c3…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 247 actions), executed from the frozen scene by the robot's own controller: 247 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-turn-off-stove-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "turn_on_microwave",
+      "task_dir": "robocasa-turn-on-microwave-i00",
+      "family": "robocasa/TurnOnMicrowave",
+      "seed": null,
+      "instruction": "Press the start button on the microwave.",
+      "requirements": [
+        "The microwave is on: touching its start button with the gripper switches it on; the microwave only registers a button while its door is closed (at most 0.5% open), and opening the door switches it off.",
+        "The gripper's grip site is more than 15 cm from the start button: move the hand away after pressing."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_microwave.py#L83",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_microwave/TurnOnMicrowave/2024-04-25); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 a8b51619dcca…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 218 actions), executed from the frozen scene by the robot's own controller: 218 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-turn-on-microwave-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "turn_on_sink_faucet",
+      "task_dir": "robocasa-turn-on-sink-faucet-i00",
+      "family": "robocasa/TurnOnSinkFaucet",
+      "seed": null,
+      "instruction": "Turn on the sink faucet.",
+      "requirements": [
+        "The water is on: the faucet handle's angle (mod 360°) is between 0.40 rad (about 23°) and π from its off position."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_sink.py#L110",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_sink/TurnOnSinkFaucet/2024-04-25); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 36053cc46ba6…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 129 actions), executed from the frozen scene by the robot's own controller: 129 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-turn-on-sink-faucet-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "turn_on_stove",
+      "task_dir": "robocasa-turn-on-stove-i00",
+      "family": "robocasa/TurnOnStove",
+      "seed": null,
+      "instruction": "Turn on the front left burner of the stove.",
+      "requirements": [
+        "The front left burner's knob is turned at least 0.35 rad (about 20°) away from its off position, either way (|angle| between 0.35 rad and 2π − 0.35 rad)."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_stove.py#L125",
+      "instance": "the initial state of official demonstration episode 0 (demo_0, v0.1/single_stage/kitchen_stove/TurnOnStove/2024-05-02); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 bbf8379d0980…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 138 actions), executed from the frozen scene by the robot's own controller: 138 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-turn-on-stove-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    },
+    {
+      "id": "turn_sink_spout",
+      "task_dir": "robocasa-turn-sink-spout-i00",
+      "family": "robocasa/TurnSinkSpout",
+      "seed": null,
+      "instruction": "Turn the sink spout to the right.",
+      "requirements": [
+        "The spout's joint angle (mod 360°) is between 30° and 180°, the range the check calls right: swing it at least 30° to the right of its middle position."
+      ],
+      "oracle": "full",
+      "base_image": "ghcr.io/mll-lab-nu/eai-robocasa:0.1.0",
+      "source": "RoboCasa @ 756598a (v0.2; MIT), robosuite 1.5.1, MuJoCo 3.2.6; environment source",
+      "env_source": "https://github.com/robocasa/robocasa/blob/756598a5be52e052339bb2d957426e39015c2afb/robocasa/environments/kitchen/single_stage/kitchen_sink.py#L120",
+      "instance": "the initial state of official demonstration episode 0 (demo_1, v0.1/single_stage/kitchen_sink/TurnSinkSpout/2024-04-29); MuJoCo state, model arrays, task state and RNG frozen in instance.npz (SHA-256 ca06676fa410…, checked on load)",
+      "deliverable": "(T, 12) native controller commands, 1 ≤ T ≤ 3000, 20 Hz",
+      "reference": "The demonstration's own actions (original: 87 actions), executed from the frozen scene by the robot's own controller: 87 actions in solution/oracle.npz. The demonstration is a reference solution: it is not in the image and the agent cannot reach it.",
+      "limited": "Standard mode (robot as a service, eai-standard/2.1) of robocasa-turn-sink-spout-i00-privileged: the same frozen instance and success check, served by the sim sidecar (images/robocasa/standard/server_casa.py, tool module casa_tool), which records the episode, replays it in a fresh simulator and judges it; the verifier grades the sidecar's record in a container of its own. The agent sees the robot's cameras (RGB-D, calibrated), its own joints and end effector, and the instruction.",
+      "agent_budget_s": 3600,
+      "standard_twin": true
+    }
+  ],
+  "read": "2026-10-02"
+}

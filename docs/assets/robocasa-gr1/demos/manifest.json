@@ -1,0 +1,194 @@
+{
+  "bottle_to_cabinet_close": {
+    "bytes": 68212,
+    "height": 240,
+    "poster": true,
+    "seconds": 18,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "can_to_drawer_close": {
+    "bytes": 45664,
+    "height": 240,
+    "poster": true,
+    "seconds": 14,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "cup_to_drawer_close": {
+    "bytes": 47903,
+    "height": 240,
+    "poster": true,
+    "seconds": 14,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "cuttingboard_to_basket": {
+    "bytes": 35155,
+    "height": 240,
+    "poster": true,
+    "seconds": 6,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "cuttingboard_to_cardboardbox": {
+    "bytes": 50355,
+    "height": 240,
+    "poster": true,
+    "seconds": 9,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "cuttingboard_to_pan": {
+    "bytes": 45172,
+    "height": 240,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "cuttingboard_to_pot": {
+    "bytes": 49928,
+    "height": 240,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "cuttingboard_to_tieredbasket": {
+    "bytes": 45299,
+    "height": 240,
+    "poster": true,
+    "seconds": 11,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "milk_to_microwave_close": {
+    "bytes": 60421,
+    "height": 240,
+    "poster": true,
+    "seconds": 18,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "placemat_to_basket": {
+    "bytes": 45715,
+    "height": 240,
+    "poster": true,
+    "seconds": 7,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "placemat_to_bowl": {
+    "bytes": 36208,
+    "height": 240,
+    "poster": true,
+    "seconds": 7,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "placemat_to_plate": {
+    "bytes": 41930,
+    "height": 240,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "placemat_to_tieredshelf": {
+    "bytes": 51206,
+    "height": 240,
+    "poster": true,
+    "seconds": 12,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "plate_to_bowl": {
+    "bytes": 44008,
+    "height": 240,
+    "poster": true,
+    "seconds": 11,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "plate_to_cardboardbox": {
+    "bytes": 45600,
+    "height": 240,
+    "poster": true,
+    "seconds": 13,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "plate_to_pan": {
+    "bytes": 44280,
+    "height": 240,
+    "poster": true,
+    "seconds": 9,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "plate_to_plate": {
+    "bytes": 50433,
+    "height": 240,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "potato_to_microwave_close": {
+    "bytes": 50336,
+    "height": 240,
+    "poster": true,
+    "seconds": 17,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "tray_to_cardboardbox": {
+    "bytes": 33536,
+    "height": 240,
+    "poster": true,
+    "seconds": 10,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "tray_to_plate": {
+    "bytes": 36506,
+    "height": 240,
+    "poster": true,
+    "seconds": 10,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "tray_to_pot": {
+    "bytes": 35553,
+    "height": 240,
+    "poster": true,
+    "seconds": 7,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "tray_to_tieredbasket": {
+    "bytes": 51994,
+    "height": 240,
+    "poster": true,
+    "seconds": 13,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "tray_to_tieredshelf": {
+    "bytes": 56974,
+    "height": 240,
+    "poster": true,
+    "seconds": 13,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "wine_to_cabinet_close": {
+    "bytes": 86056,
+    "height": 240,
+    "poster": true,
+    "seconds": 20,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  }
+}

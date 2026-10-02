@@ -1,0 +1,402 @@
+{
+  "add_lemon_to_fish": {
+    "bytes": 577111,
+    "height": 240,
+    "poster": true,
+    "seconds": 42,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "assemble_cooking_array": {
+    "bytes": 523784,
+    "height": 240,
+    "poster": true,
+    "seconds": 36,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "beverage_sorting": {
+    "bytes": 451150,
+    "height": 240,
+    "poster": true,
+    "seconds": 30,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "bread_and_cheese": {
+    "bytes": 117048,
+    "height": 240,
+    "poster": true,
+    "seconds": 13,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "candle_cleanup": {
+    "bytes": 491705,
+    "height": 240,
+    "poster": true,
+    "seconds": 34,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "cereal_and_bowl": {
+    "bytes": 563978,
+    "height": 240,
+    "poster": true,
+    "seconds": 32,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "choose_measuring_cup": {
+    "bytes": 728649,
+    "height": 240,
+    "poster": true,
+    "seconds": 32,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "clear_food_waste": {
+    "bytes": 383215,
+    "height": 240,
+    "poster": true,
+    "seconds": 29,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "clear_sink": {
+    "bytes": 652884,
+    "height": 240,
+    "poster": true,
+    "seconds": 31,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "close_drawer": {
+    "bytes": 274489,
+    "height": 240,
+    "poster": true,
+    "seconds": 10,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "close_oven": {
+    "bytes": 156288,
+    "height": 240,
+    "poster": true,
+    "seconds": 9,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "close_stand_mixer_head": {
+    "bytes": 124054,
+    "height": 240,
+    "poster": true,
+    "seconds": 4,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "cookie_dough_prep": {
+    "bytes": 550608,
+    "height": 240,
+    "poster": true,
+    "seconds": 36,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "deliver_brewed_coffee": {
+    "bytes": 332329,
+    "height": 240,
+    "poster": true,
+    "seconds": 22,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "dessert_upgrade": {
+    "bytes": 170539,
+    "height": 240,
+    "poster": true,
+    "seconds": 16,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "display_meat_variety": {
+    "bytes": 684751,
+    "height": 240,
+    "poster": true,
+    "seconds": 33,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "divide_basins": {
+    "bytes": 711734,
+    "height": 240,
+    "poster": true,
+    "seconds": 32,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "drain_veggies": {
+    "bytes": 464406,
+    "height": 240,
+    "poster": true,
+    "seconds": 31,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "drinkware_consolidation": {
+    "bytes": 472137,
+    "height": 240,
+    "poster": true,
+    "seconds": 37,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "make_ice_lemonade": {
+    "bytes": 382585,
+    "height": 240,
+    "poster": true,
+    "seconds": 32,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "make_loaded_potato": {
+    "bytes": 393666,
+    "height": 240,
+    "poster": true,
+    "seconds": 31,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "meal_prep_staging": {
+    "bytes": 503634,
+    "height": 240,
+    "poster": true,
+    "seconds": 37,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "microwave_defrost_meat": {
+    "bytes": 501836,
+    "height": 240,
+    "poster": true,
+    "seconds": 35,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "open_dishwasher": {
+    "bytes": 110580,
+    "height": 240,
+    "poster": true,
+    "seconds": 7,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "organize_coffee_condiments": {
+    "bytes": 716137,
+    "height": 240,
+    "poster": true,
+    "seconds": 40,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "oven_broil_fish": {
+    "bytes": 329607,
+    "height": 240,
+    "poster": true,
+    "seconds": 36,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "pack_dessert": {
+    "bytes": 253973,
+    "height": 240,
+    "poster": true,
+    "seconds": 16,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "pick_place_cabinet_to_counter": {
+    "bytes": 186462,
+    "height": 240,
+    "poster": true,
+    "seconds": 11,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "pick_place_sink_to_counter": {
+    "bytes": 452650,
+    "height": 240,
+    "poster": true,
+    "seconds": 20,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "plate_steak_meal": {
+    "bytes": 390077,
+    "height": 240,
+    "poster": true,
+    "seconds": 22,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "portion_in_tupperware": {
+    "bytes": 547346,
+    "height": 240,
+    "poster": true,
+    "seconds": 32,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "pre_rinse_station": {
+    "bytes": 601837,
+    "height": 240,
+    "poster": true,
+    "seconds": 40,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "prep_for_sanitizing": {
+    "bytes": 447013,
+    "height": 240,
+    "poster": true,
+    "seconds": 32,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "prep_marinating_meat": {
+    "bytes": 400184,
+    "height": 240,
+    "poster": true,
+    "seconds": 31,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "reheat_meal": {
+    "bytes": 538115,
+    "height": 240,
+    "poster": true,
+    "seconds": 39,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "retrieve_meat": {
+    "bytes": 304729,
+    "height": 240,
+    "poster": true,
+    "seconds": 28,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "sanitize_prep_cutting_board": {
+    "bytes": 353332,
+    "height": 240,
+    "poster": true,
+    "seconds": 31,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "scrub_bowl": {
+    "bytes": 601134,
+    "height": 240,
+    "poster": true,
+    "seconds": 30,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "searing_meat": {
+    "bytes": 428896,
+    "height": 240,
+    "poster": true,
+    "seconds": 40,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "seasoning_spice_setup": {
+    "bytes": 734934,
+    "height": 240,
+    "poster": true,
+    "seconds": 32,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "set_up_cutting_station": {
+    "bytes": 1106088,
+    "height": 240,
+    "poster": true,
+    "seconds": 44,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "stocking_breakfast_foods": {
+    "bytes": 547581,
+    "height": 240,
+    "poster": true,
+    "seconds": 31,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "sweeten_coffee": {
+    "bytes": 655700,
+    "height": 240,
+    "poster": true,
+    "seconds": 43,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "thaw_in_sink": {
+    "bytes": 660834,
+    "height": 240,
+    "poster": true,
+    "seconds": 27,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "tong_buffet_setup": {
+    "bytes": 452446,
+    "height": 240,
+    "poster": true,
+    "seconds": 31,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "turn_off_microwave": {
+    "bytes": 87191,
+    "height": 240,
+    "poster": true,
+    "seconds": 8,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "turn_on_microwave": {
+    "bytes": 69617,
+    "height": 240,
+    "poster": true,
+    "seconds": 6,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "turn_on_sink_faucet": {
+    "bytes": 280822,
+    "height": 240,
+    "poster": true,
+    "seconds": 14,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "turn_on_stove": {
+    "bytes": 85763,
+    "height": 240,
+    "poster": true,
+    "seconds": 12,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "turn_on_toaster_oven": {
+    "bytes": 157845,
+    "height": 240,
+    "poster": true,
+    "seconds": 14,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  }
+}

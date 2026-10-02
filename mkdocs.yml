@@ -199,6 +199,26 @@ nav:
           - benchmarks/mujoco-playground/index.md
           - Capability coverage: benchmarks/mujoco-playground/coverage.md
           - About the benchmark: benchmarks/mujoco-playground/about.md
+      - MetaWorld+:
+          - benchmarks/metaworldplus/index.md
+          - Capability coverage: benchmarks/metaworldplus/coverage.md
+          - About the benchmark: benchmarks/metaworldplus/about.md
+      - VLABench:
+          - benchmarks/vlabench/index.md
+          - Capability coverage: benchmarks/vlabench/coverage.md
+          - About the benchmark: benchmarks/vlabench/about.md
+      - RoboCasa:
+          - benchmarks/robocasa/index.md
+          - Capability coverage: benchmarks/robocasa/coverage.md
+          - About the benchmark: benchmarks/robocasa/about.md
+      - RoboCasa365:
+          - benchmarks/robocasa365/index.md
+          - Capability coverage: benchmarks/robocasa365/coverage.md
+          - About the benchmark: benchmarks/robocasa365/about.md
+      - RoboCasa-GR1:
+          - benchmarks/robocasa-gr1/index.md
+          - Capability coverage: benchmarks/robocasa-gr1/coverage.md
+          - About the benchmark: benchmarks/robocasa-gr1/about.md
   - Contributing:
       - contributing/index.md
       - Task page guide: contributing/task-page-guide.md
