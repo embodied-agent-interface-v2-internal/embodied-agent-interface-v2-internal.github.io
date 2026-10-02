@@ -1,0 +1,57 @@
+# KinDER's agent runs. Owned by the benchmark's owner, curated by hand like everything in state/.
+# Format and field meanings: docs/contributing/registering-runs.md (and the header of state/runs/behavior-1k.yml).
+
+default: codex-gpt6_1_sol-medium
+# task id <family with underscores> -> our task directory kinder-<family>-i00 (and its -limited twin)
+task_dir: "kinder-{task_dashed}-i00"
+# No partial credit beside success: KinDER's goal check passes or fails, and its reward.json has no progress key.
+progress: none
+
+# GPT-6.1 Sol is KinDER's run; GPT-6 Luna's stays beside it because robot_coding_bench's oracle_evidence cites its trials
+# (the families without a reference solution: a passing trajectory, checked against today's verifiers).
+# Image 0.1.6, 60 minutes a mode, effort medium, the agent reaching the model APIs only. Limited: the standard config,
+# 50 resets, the robot's own base and wrist cameras (wrist depth, no room camera), and spec() gives the gripper's grasp
+# point (`end_effector`); the PyBullet robot reports a move it refuses as `blocked`. One attempt per task and mode:
+# limited 2026-09-30, unlimited 2026-10-01. The Harbor jobs predate run_agent_batch.sh's names
+# (kinder-full-<family>-codex-gpt61sol-medium-60min, kinder-limited-<family>-...-60min-reset50-depth-ee); the batch name
+# below links to them on the machine that ran them. Both are on the tasks before protocol v1.0 (limited mode 1.1); only
+# Luna's rerun batch is on v1.0.
+runs:
+  codex-gpt6_1_sol-medium:
+    batch: kinder-sol61-0930
+    tasks:
+    - tossing
+    - balance_beam
+    - dynamo
+    - sweep_into_drawer
+    - scoop_pour
+    - shelf
+    - constrained_cupboard
+    - sweep_simple
+    - sort_blocks
+    - obstruction_3d
+    - packing_3d
+  codex-gpt6_luna-medium-openrouter:
+    batch: kinder-luna-0930
+    # Protocol v1.0 (robot_coding_bench main d1b93b49, 2026-10-01): the standard twins with 50 resets (10 families; dynamo
+    # has a reference solution and was not swept) and dynamo privileged, on Harbor's codex agent (Codex CLI 0.159.2).
+    # Each replaces the task's earlier trial, which stays as its history. The v1.0 sweep without resets (0/10) is not
+    # on this site.
+    rerun_batches: [kinder-luna-v1-1001]
+    harness: >-
+      Before v1.0: Codex CLI 0.158.0 (the first six unlimited runs), 0.159.0 (the other five) and 0.159.2 (limited) as
+      harbor_agents.codex_openrouter:CodexOpenRouter, Codex over OpenRouter with web search off, without the model
+      gateway; in limited mode the adapter ends the trial when the session ends (harbor_agents/limited.py). On v1.0:
+      Harbor's codex agent, Codex CLI 0.159.2, web search disabled (scripts/kinder/configs/codex-openrouter.yaml)
+    tasks:
+    - tossing
+    - balance_beam
+    - dynamo
+    - sweep_into_drawer
+    - scoop_pour
+    - shelf
+    - constrained_cupboard
+    - sweep_simple
+    - sort_blocks
+    - obstruction_3d
+    - packing_3d

@@ -183,6 +183,14 @@ nav:
           - benchmarks/robotwin-2/index.md
           - Capability coverage: benchmarks/robotwin-2/coverage.md
           - About the benchmark: benchmarks/robotwin-2/about.md
+      - HumanoidBench:
+          - benchmarks/humanoidbench/index.md
+          - Capability coverage: benchmarks/humanoidbench/coverage.md
+          - About the benchmark: benchmarks/humanoidbench/about.md
+      - KinDER:
+          - benchmarks/kinder/index.md
+          - Capability coverage: benchmarks/kinder/coverage.md
+          - About the benchmark: benchmarks/kinder/about.md
       - DexToolBench:
           - benchmarks/dextoolbench/index.md
           - Capability coverage: benchmarks/dextoolbench/coverage.md

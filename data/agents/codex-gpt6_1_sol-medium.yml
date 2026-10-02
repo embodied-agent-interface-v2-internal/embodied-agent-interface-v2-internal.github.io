@@ -1,0 +1,26 @@
+# One agent run: harness + model + settings. The file name is the run id that state/runs/<benchmark>.yml refers to:
+# <harness>-<model>-<effort>[-<tag>], spelled by harness_id, the model's id in data/prices.yml, settings.reasoning_effort
+# and tag (docs/contributing/registering-runs.md). Registered once, reused by every benchmark that runs this configuration.
+#
+# Read by the tooling: label, short, billing, price, modes, harness_id, tag, formerly. Everything else is for people.
+
+label: Codex CLI 0.159.2 + GPT-6.1 Sol, reasoning medium (OpenRouter)
+short: Codex CLI 0.159 · GPT-6.1 Sol · medium · OpenRouter
+harness_id: codex
+harness: >-
+  Codex CLI 0.159.2 as harbor_agents.codex_openrouter:CodexOpenRouter (robot_coding_bench dev/pingyue, commit e1f8660f):
+  Codex over OpenRouter with web search off; the API key stays in the model gateway, the agent's container only sees a
+  placeholder
+route: OpenRouter, with the owner's API key (billed per token), through our model gateway
+model: openrouter/openai/gpt-6.1-sol
+settings:
+  reasoning_effort: medium
+  version: 0.159.2
+harbor: >-
+  RCB_MODEL=openrouter/openai/gpt-6.1-sol scripts/run_deepseek_openrouter.sh <task dir> --ak reasoning_effort=medium
+  (HumanoidBench limited: RCB_RESET_BUDGET=50 RCB_OBS_IMU=1 RCB_OBS_ROOM_CAMERA=1; KinDER limited: RCB_RESET_BUDGET=50
+  RCB_OBS_DEPTH=1), one Harbor job per task and mode
+billing: openrouter
+price: openai/gpt-6.1-sol        # key in data/prices.yml
+modes: [unlimited, limited]
+since: 2026-09-30

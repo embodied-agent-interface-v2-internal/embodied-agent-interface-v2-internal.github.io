@@ -1,0 +1,55 @@
+id: kinder
+name: KinDER
+edition: 5b2dbac (upstream), our selection of 11 tasks (2026-09-30)
+status: active
+simulator: MuJoCo 3.3 (KinDER's Dynamic3D environments); PyBullet for two kinematic tasks
+description: >-
+  Physical reasoning for robot planning and control, kept apart from perception and language: a
+  simulated TidyBot++ mobile manipulator throws, balances, sweeps, scoops, stacks into cupboards,
+  sorts, clears and packs. Each episode passes or fails on KinDER's own goal check (an object's
+  centre inside a goal region, and the like), with no partial credit. We keep 11 of its 31 task
+  families (10 scored and one fixture), one variant each, and run each in two modes: unlimited (full
+  simulator state and the goal check, unlimited resets, one replayable trajectory handed in) and
+  limited (a robot behind a service: its base and wrist cameras, odometry and joint readings; 50
+  resets in our runs).
+
+links:
+  paper: https://arxiv.org/abs/2604.25788
+  repository: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden
+
+embodiment:
+  robot: TidyBot++ (holonomic base, Kinova Gen3 7-DoF arm, Robotiq 2F-85 gripper); kinematic in the two PyBullet tasks
+  action_space: deltas per control step for the base (x, y, yaw) and the 7 arm joints, and a gripper command; tossing adds 7 arm joint velocity targets
+  control_rate_hz: 10
+  observations: [proprioception, rgb, depth]
+  cameras:
+    robot_base: 480x640 RGB, on the base, looking down 45°
+    robot_wrist: 480x640 RGB-D, on the arm's last link (the Gen3's RealSense D410)
+    room_camera: 480x640, fixed in the room, never overhead (a knob for control runs; not in the standard limited mode)
+  notes: >-
+    Unlimited: the agent drives the simulator in Python with KinDER's whole object-centric state and
+    its goal check. Limited: the simulator runs in a service the agent cannot open; it sees the two
+    robot cameras (wrist depth), base odometry, arm joint angles and velocities and the fingers'
+    position, and reads the robot's own facts (action layout and bounds, joint axes, positions and
+    limits, the gripper's grasp point, camera poses) from spec(). The service reports only whether
+    the episode ended and why.
+
+# KinDER publishes no skill vocabulary, so `skills:` cannot be validated.
+skill_vocabulary: []
+
+# One "scene" per KinDER environment class (scripts/import_kinder_tasks.py sets scene_model = kinder_<class>), so the
+# task list's Scene filter picks MuJoCo or PyBullet.
+scenes:
+  - kinder_dynamic3d
+  - kinder_kinematic3d
+
+# What we run it on: measured on an RTX 4090 workstation.
+integration:
+  image: our KinDER image 0.1.6 (MuJoCo 3.3.7, PyBullet and kindergarden @ 5b2dbac, with KinDER's MimicLabs scenes)
+  containers: >-
+    unlimited: main (the agent with the simulator) + the verifier's own sandbox, which replays the trajectory.
+    limited: main (the agent: an HTTP client only) + sim (the simulator, its goal check and the recording; the agent
+    reaches it only through the client) + the verifier's own sandbox. The agent reaches the model APIs and nothing else.
+  physics_backend: MuJoCo on the CPU (EGL on the GPU renders the limited mode's cameras); PyBullet on the CPU
+  determinism: bit-exact across fresh processes (both replays of a trajectory end in the same state)
+  licence: KinDER is MIT

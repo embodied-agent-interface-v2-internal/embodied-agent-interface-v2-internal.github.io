@@ -1,0 +1,114 @@
+# Curated task state for humanoidbench.
+#
+# One block per task. Written by the site's Edit button and by hand; both are
+# fine. Task ids match docs/benchmarks/humanoidbench/tasks/<id>.md.
+#
+#   status      keep | drop | needs-review | pending
+#   difficulty  unrated | easy | medium | hard | extreme
+#   labels      tier-2 ids from state/taxonomy.yml
+#   owner       bare GitHub handle
+#   note        free text; why you decided what you decided
+#
+# Task id = <category>_<task> (our task directory humanoidbench-<category>-<task>-i00). The 24 tasks are the ones
+# robot_coding_bench's scripts/humanoidbench/subset.toml keeps of HumanoidBench's 32: every one `keep`, its note the
+# capability class it was kept for (scripts/import_humanoidbench_tasks.py adds a NEW task this way and never changes
+# an existing entry). sit_simple is a fixture, not scored: `excluded`. Owner: williamzhangNU, who runs HumanoidBench
+# here. No difficulty or labels yet.
+
+loco_walk:
+  status: keep
+  owner: williamzhangNU
+  note: "C1 · flat-ground periodic gait"
+loco_stair:
+  status: keep
+  owner: williamzhangNU
+  note: "C2 · constrained gait"
+loco_hurdle:
+  status: keep
+  owner: williamzhangNU
+  note: "C2 · constrained gait"
+loco_balance_simple:
+  status: keep
+  owner: williamzhangNU
+  note: "C3 · quasi-static stabilisation"
+loco_balance_hard:
+  status: keep
+  owner: williamzhangNU
+  note: "C3 · quasi-static stabilisation"
+manip_door:
+  status: keep
+  owner: williamzhangNU
+  note: "C4 · navigation and passage"
+loco_maze:
+  status: keep
+  owner: williamzhangNU
+  note: "C4 · navigation and passage"
+manip_highbar_simple:
+  status: keep
+  owner: williamzhangNU
+  note: "C5 · whole-body power and momentum"
+manip_basketball:
+  status: keep
+  owner: williamzhangNU
+  note: "C5 · whole-body power and momentum"
+manip_powerlift:
+  status: keep
+  owner: williamzhangNU
+  note: "C5 · whole-body power and momentum"
+manip_push:
+  status: keep
+  owner: williamzhangNU
+  note: "C6 · standing bimanual manipulation"
+manip_window:
+  status: keep
+  owner: williamzhangNU
+  note: "C6 · standing bimanual manipulation"
+manip_spoon:
+  status: keep
+  owner: williamzhangNU
+  note: "C6 · standing bimanual manipulation"
+manip_insert_normal:
+  status: keep
+  owner: williamzhangNU
+  note: "C7 · in-hand precision"
+manip_cube:
+  status: keep
+  owner: williamzhangNU
+  note: "C7 · in-hand precision"
+loco_reach:
+  status: keep
+  owner: williamzhangNU
+  note: "C8 · mobile manipulation"
+loco_sit_hard:
+  status: keep
+  owner: williamzhangNU
+  note: "C8 · mobile manipulation"
+manip_package:
+  status: keep
+  owner: williamzhangNU
+  note: "C8 · mobile manipulation"
+manip_room:
+  status: keep
+  owner: williamzhangNU
+  note: "C8 · mobile manipulation"
+manip_cabinet:
+  status: keep
+  owner: williamzhangNU
+  note: "C9 · long-horizon multi-subtask"
+manip_truck:
+  status: keep
+  owner: williamzhangNU
+  note: "C9 · long-horizon multi-subtask"
+manip_kitchen:
+  status: keep
+  owner: williamzhangNU
+  note: "C9 · long-horizon multi-subtask"
+manip_bookshelf_simple:
+  status: keep
+  owner: williamzhangNU
+  note: "C9 · long-horizon multi-subtask"
+loco_sit_simple:
+  status: keep
+  owner: williamzhangNU
+  note: "fixture (C3 · quasi-static stabilisation, too easy to score)"
+  excluded: "a fixture, not scored: it checks the pipeline end to end (subset.toml role = fixture)"

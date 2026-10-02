@@ -17,3 +17,37 @@ openai/gpt-6-luna:
     from these three numbers (robowits-lunacx-0925-1906 dominos: 35,827 uncached + 499,968 cached input and 3,330
     output tokens = $0.0102474; robowits-lunaxh-0925-2042 align_blocks: $0.0410121). OpenRouter's flex tier
     billed half of it.
+
+openai/gpt-6-sol:
+  id: gpt6_sol
+  input: 2.50
+  cached_input: 0.20
+  output: 10.00
+  as_of: 2026-09-28
+  source: >-
+    LiteLLM's price table as Harbor applied it to our trials: these three numbers reproduce result.json
+    agent_result.cost_usd of all 10 HumanoidBench GPT-6 Sol trials of 2026-09-25 to within 0.01% (e.g. the limited
+    door: 186,164 uncached + 23,645,449 cached input and 111,457 output tokens = $6.3087).
+
+openai/gpt-6.1-sol:
+  id: gpt6_1_sol
+  input: 2.00
+  cached_input: 0.10
+  output: 10.00
+  as_of: 2026-09-30
+  source: >-
+    OpenRouter's model listing for openai/gpt-6.1-sol on 2026-09-30 (prompts over 272k tokens: 4.00 / 0.20 / 15.00).
+    The HumanoidBench limited door trial's tokens price to $3.38 at these rates against $3.6267 billed; the rest is
+    requests over 272k tokens, billed at the higher tier.
+
+anthropic/claude-opus-5.5:
+  id: claude_opus5_5
+  input: 6.25
+  cached_input: 0.50
+  output: 25.00
+  as_of: 2026-09-28
+  source: >-
+    LiteLLM's price table as Harbor applied it to our Claude Code trials: these three numbers reproduce result.json
+    agent_result.cost_usd of all 5 HumanoidBench Claude Opus 5.5 trials of 2026-09-26 to within 0.01% (e.g. the
+    limited walk: 161,111 uncached + 6,838,455 cached input and 63,727 output tokens = $6.0192). Claude Code's uncached
+    input is almost all cache writes, which is the rate `input` holds here.

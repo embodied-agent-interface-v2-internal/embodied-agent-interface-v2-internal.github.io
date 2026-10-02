@@ -1,0 +1,26 @@
+# One agent run: harness + model + settings. The file name is the run id that state/runs/<benchmark>.yml refers to:
+# <harness>-<model>-<effort>[-<tag>], spelled by harness_id, the model's id in data/prices.yml, settings.reasoning_effort
+# and tag (docs/contributing/registering-runs.md). Registered once, reused by every benchmark that runs this configuration.
+#
+# Read by the tooling: label, short, billing, price, modes, harness_id, tag, formerly. Everything else is for people.
+
+label: Claude Code 2.1.283 + Claude Opus 5.5, reasoning medium (OpenRouter)
+short: Claude Code 2.1 · Claude Opus 5.5 · medium · OpenRouter
+harness_id: claude_code
+harness: >-
+  Claude Code 2.1.283 as harbor_agents.claude_code_openrouter:ClaudeCodeOpenRouter (robot_coding_bench dev/pingyue,
+  commit c9449ce): Claude Code over OpenRouter, without the model gateway; in limited mode the adapter ends the trial
+  when the session ends (harbor_agents/limited.py)
+route: OpenRouter, with the owner's API key (billed per token)
+model: openrouter/anthropic/claude-opus-5.5
+settings:
+  reasoning_effort: medium
+  version: 2.1.283
+harbor: >-
+  harbor run -p <task dir> -a harbor_agents.claude_code_openrouter:ClaudeCodeOpenRouter
+  -m openrouter/anthropic/claude-opus-5.5 --allow-agent-host openrouter.ai --ak reasoning_effort=medium
+  --ak version=2.1.283 (limited: RCB_RESET_BUDGET=50 RCB_OBS_IMU=1 RCB_OBS_ROOM_CAMERA=1), one Harbor job per task and mode
+billing: openrouter
+price: anthropic/claude-opus-5.5   # key in data/prices.yml
+modes: [unlimited, limited]
+since: 2026-09-26

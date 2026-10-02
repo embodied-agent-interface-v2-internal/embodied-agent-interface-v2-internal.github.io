@@ -1,0 +1,52 @@
+id: humanoidbench
+name: HumanoidBench
+edition: cb11890 (upstream), our selection of 24 tasks (2026-09-28)
+status: active
+simulator: MuJoCo 3 (HumanoidBench's gymnasium environments)
+description: >-
+  Whole-body tasks for a simulated Unitree H1 humanoid, bare or with two Shadow dexterous hands:
+  locomotion (walking, stairs, hurdles, balancing, a maze, sitting) and whole-body manipulation
+  (doors, cabinets, a bookshelf, pushing and lifting, a cube in each hand). Each episode is scored
+  by HumanoidBench's own dense reward, summed over the episode, against its own success bar. We keep
+  23 of its 32 registered tasks plus one fixture, and run each in two modes: unlimited (full
+  simulator state, unlimited resets, one replayable trajectory handed in) and limited (a robot
+  behind a service: cameras, joint readings and an IMU, 50 resets in our runs).
+
+links:
+  paper: https://arxiv.org/abs/2403.10506
+  project_page: https://humanoid-bench.github.io
+  repository: https://github.com/carlosferrazza/humanoid-bench
+
+embodiment:
+  robot: Unitree H1 (19 actuators); 9 of the 24 tasks add two Shadow hands (61 actuators)
+  action_space: position-servo targets in [-1, 1], one per actuator (the ends of each servo's range)
+  control_rate_hz: 50
+  observations: [proprioception, rgb]
+  cameras:
+    left_eye_camera: 256x256 (cube 512x512), on the head
+    right_eye_camera: 256x256 (cube 512x512), on the head
+    room_camera: 256x256, fixed in the room (limited mode, when a run turns it on)
+  notes: >-
+    Unlimited: the agent drives the simulator in Python with the whole physical state. Limited: the
+    simulator runs in a service the agent cannot open; it sees the head cameras, joint angles and
+    velocities, a pelvis IMU and the room camera, and reads the robot's own facts (servo ranges,
+    joint axes and positions, link masses, camera poses) from spec(). Neither mode returns a reward.
+
+# HumanoidBench publishes no skill vocabulary, so `skills:` cannot be validated.
+skill_vocabulary: []
+
+# One "scene" per paper category (scripts/import_humanoidbench_tasks.py sets scene_model = humanoidbench_<category>),
+# so the task list's Scene filter picks locomotion or manipulation.
+scenes:
+  - humanoidbench_loco
+  - humanoidbench_manip
+
+# What we run it on: measured on an RTX 4090 workstation.
+integration:
+  image: our HumanoidBench image 0.1.6 (MuJoCo + humanoid-bench @ cb11890; every get_reward() removed)
+  containers: >-
+    unlimited: main (the agent with the simulator) + the verifier's own sandbox, which restores the reward to grade.
+    limited: main (the agent: an HTTP client only) + sim (the simulator, its reward and the recording; the agent
+    reaches it only through the client) + the verifier's own sandbox
+  physics_backend: MuJoCo on the CPU; EGL (GPU) renders the limited mode's cameras
+  determinism: bit-exact across fresh processes (both replays of a trajectory end in the same state)
