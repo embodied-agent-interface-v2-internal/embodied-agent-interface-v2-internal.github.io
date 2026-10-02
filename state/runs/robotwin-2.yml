@@ -17,17 +17,57 @@ runs:
     batch: rt-luna-xh-0927
     # owner, 2026-09-29: one id for the configuration (harness, model, effort); RoboTwin ran it through Harbor's own agent
     harness: >-
-      Harbor's built-in codex agent (-a codex; Codex CLI 0.157.1 limited, 0.158.0 unlimited) on the owner's ChatGPT login, not the CodexChatGPT
+      Since 2026-10-01 (batch rt-luna-xh-f1-1001, the official run): Harbor's built-in codex agent (-a codex, Codex CLI 0.159.0) on
+      Azure OpenAI's API (gpt-6-luna), reasoning effort xhigh with detailed reasoning summaries, no model gateway (token
+      counts are Harbor's per-trial totals); the tasks it has not reached yet still show the earlier result:       Harbor's built-in codex agent (-a codex; Codex CLI 0.157.1 limited, 0.158.0 unlimited) on the owner's ChatGPT login, not the CodexChatGPT
       wrapper the other benchmarks used: with the plain model id Codex applies ChatGPT's metadata for gpt-6-luna (its
       base instructions, verbosity low), and there is no model gateway (token counts are Harbor's per-trial totals)
-    rerun_batches: [rt-luna-xh-rerun-0927]
+    rerun_batches: [rt-luna-xh-rerun-0927, rt-luna-xh-f1-1001]
+    # Official batches from 2026-10-01 (protocol v1.0): Codex CLI 0.159.0 on Azure OpenAI's API (gpt-6-luna), reasoning
+    # summaries detailed, sampled tasks in both modes (robot_coding_bench exps/formal_runs/codex-gpt6_luna-xhigh_batch*.json).
+    # Each replaces, for its tasks, the earlier ChatGPT-login result, which stays as history (<mode>-prev).
     # unlimited added 2026-09-29 (Harbor job rt-gpt6luna-xhigh-unlimited, detailed reasoning summaries on), same batch id
     notes:
+    - {task: put_bottles_dustbin, mode: unlimited, trial: robotwin_2_0_put_bottles_dustbin__Tc8zehp, note: "Harbor reports a verifier timeout, but the verdict (success, deterministic) was written first; the grader ran out of time rendering the replay video of this 15,347-step trajectory, which the same grader rendered afterwards (scripts/regrade_trials.sh)"}
     - {task: pick_dual_bottles, mode: limited, trial: robotwin_2_0_pick_dual_bottles-l__96kfs6K, note: "rerun: in the first trial the robot service crashed while starting (the batch's first three trials started together), so the agent could send no action"}
     - {task: place_object_stand, mode: limited, trial: robotwin_2_0_place_object_stand__SbNySTL, note: "rerun: in the first trial the robot service crashed while starting (the batch's first three trials started together), so the agent could send no action"}
     - {task: shake_bottle, mode: limited, trial: robotwin_2_0_shake_bottle-limite__yiEcutt, note: "rerun: in the first trial the robot service crashed while starting (the batch's first three trials started together), so the agent could send no action"}
     - {task: press_stapler, mode: unlimited, trial: robotwin_2_0_press_stapler__ceJ6A32, note: "regraded offline: the verifier ran out of GPU memory (OIDN) while other jobs shared the GPU and hung until Harbor's 1800 s verifier timeout, with no verdict; the same grader rerun on the collected trajectory, alone on the GPU, reads success (deterministic)"}
-    tasks: &tasks
+    tasks:
+    - adjust_bottle
+    - dump_bin_bigbin
+    - handover_mic
+    - hanging_mug
+    - lift_pot
+    - move_can_pot
+    - open_laptop
+    - open_microwave
+    - pick_dual_bottles
+    - place_a2b_right
+    - place_bread_skillet
+    - place_burger_fries
+    - place_can_basket
+    - place_dual_shoes
+    - place_fan
+    - place_mouse_pad
+    - place_object_basket
+    - place_object_stand
+    - place_phone_stand
+    - press_stapler
+    - put_bottles_dustbin
+    - rotate_qrcode
+    - scan_object
+    - shake_bottle
+    - stack_blocks_two
+    others: "not in this run yet: the ChatGPT-login batches covered the 11 kept tasks, 10 sampled dropped ones and stack_blocks_two; the official batches add sampled tasks"
+
+  codex-gpt6_luna-medium:
+    batch: rt-luna-med-0923
+    rerun_batches: [rt-luna-med-v20-0925, rt-luna-med-v21-0928]
+    closed: "stack_blocks_two was not in the 2026-09-23 unlimited batch"
+    notes:
+    - {task: open_microwave, mode: limited, trial: robotwin_2_0_open_microwave-limi__fngWY3B, note: "regraded offline: the live episode succeeded and the service's verification replay succeeded and was deterministic, but rendering the videos of this 40,384-step episode outlasted the collect hook, so Harbor's grade read 0 (a service bug, since fixed); two fresh replays of the recorded trajectory confirm success"}
+    tasks:
     - adjust_bottle
     - dump_bin_bigbin
     - handover_mic
@@ -52,11 +92,77 @@ runs:
     - stack_blocks_two
     others: "not built as a harness task: the run covers the 11 kept tasks, 10 sampled dropped ones and stack_blocks_two"
 
-  codex-gpt6_luna-medium:
-    batch: rt-luna-med-0923
-    rerun_batches: [rt-luna-med-v20-0925, rt-luna-med-v21-0928]
-    closed: "stack_blocks_two was not in the 2026-09-23 unlimited batch"
+  codex-gpt6_luna-xhigh-azure:
+    # Azure API stress run of every task, 2026-09-30 (robot_coding_bench dev/kangrui). Harbor ran one job per endpoint
+    # with trials of both modes (jobs az1..az12-*); site_jobs/<batch>-<mode>/ holds one symlinked trial per task:
+    # the batch each task's first attempt, the rerun batch its final valid trial where that differs.
+    batch: rt-luna-xh-az-0930
+    rerun_batches: [rt-luna-xh-az-rerun-0930]
+    harness: >-
+      Harbor's built-in codex agent (-a codex, Codex CLI 0.159.0) on Azure OpenAI's API (gpt-6-luna), reasoning effort
+      xhigh with detailed reasoning summaries; limited mode on rcb-limited/2.1 with crash recovery. Most trials ran on
+      an AWS g6e (L40S); place_a2b_left, place_a2b_right, place_object_scale and place_object_stand, whose frozen
+      instances rebuild to another state hash there, ran on the lab machine. No model gateway: token counts are Harbor's
     notes:
-    - {task: open_microwave, mode: limited, trial: robotwin_2_0_open_microwave-limi__fngWY3B, note: "regraded offline: the live episode succeeded and the service's verification replay succeeded and was deterministic, but rendering the videos of this 40,384-step episode outlasted the collect hook, so Harbor's grade read 0 (a service bug, since fixed); two fresh replays of the recorded trajectory confirm success"}
-    tasks: *tasks
-    others: "not built as a harness task: the run covers the 11 kept tasks, 10 sampled dropped ones and stack_blocks_two"
+    - {task: "handover_mic", mode: "limited", trial: "robotwin_2_0_handover_mic-limite__HysvUnZ", note: "rerun: the first trial ended on Azure's token rate limit (Codex retries its remote context compaction only twice)"}
+    - {task: "hanging_mug", mode: "limited", trial: "robotwin_2_0_hanging_mug-limited__zXfAx4U", note: "rerun: the first trial lost its robot service, which crashed 7 times while starting (another user's job held half the GPU)"}
+    - {task: "lift_pot", mode: "limited", trial: "robotwin_2_0_lift_pot-limited__FfzGNWK", note: "rerun: the first trial was stopped by us to move the work to another endpoint or machine"}
+    - {task: "open_microwave", mode: "limited", trial: "robotwin_2_0_open_microwave-limi__GkeGpzK", note: "rerun: the first trial lost its robot service, which crashed 4 times while starting (GPU out of memory under load) and ran out of restarts"}
+    - {task: "place_a2b_left", mode: "limited", trial: "robotwin_2_0_place_a2b_left-limi__ijp74ge", note: "rerun: the first trial lost its robot service (infra_error)"}
+    - {task: "place_a2b_right", mode: "unlimited", trial: "robotwin_2_0_place_a2b_right__oCuNXCQ", note: "rerun: the first trial was stopped by us to move the work to another endpoint or machine"}
+    - {task: "place_bread_skillet", mode: "unlimited", trial: "robotwin_2_0_place_bread_skillet__j5XDmAk", note: "rerun: the first trial was stopped by us to move the work to another endpoint or machine"}
+    - {task: "place_burger_fries", mode: "limited", trial: "robotwin_2_0_place_burger_fries__Bd2NQLv", note: "rerun: the first trial was stopped by us to move the work to another endpoint or machine"}
+    - {task: "place_dual_shoes", mode: "unlimited", trial: "robotwin_2_0_place_dual_shoes__srbDbkU", note: "regraded offline: the verifier ran out of GPU memory (cuRobo) while other jobs shared the lab machine's GPU, so it wrote grader_error; the same grader rerun on the collected trajectory, alone on the GPU, reads success (deterministic)"}
+    - {task: "place_object_stand", mode: "unlimited", trial: "robotwin_2_0_place_object_stand__4QHR9JY", note: "rerun: the first trial was stopped by us to move the work to another endpoint or machine (2 earlier attempts in all)"}
+    - {task: "place_phone_stand", mode: "limited", trial: "robotwin_2_0_place_phone_stand-l__kz7veK8", note: "rerun: the first trial was stopped by us to move the work to another endpoint or machine"}
+    - {task: "press_stapler", mode: "unlimited", trial: "robotwin_2_0_press_stapler__fQwsPup", note: "regraded offline: the verifier ran out of GPU memory (cuRobo) while other jobs shared the lab machine's GPU, so it wrote grader_error; the same grader rerun on the collected trajectory, alone on the GPU, reads success (deterministic)"}
+    - {task: "put_bottles_dustbin", mode: "limited", trial: "robotwin_2_0_put_bottles_dustbin__J8fLVxa", note: "rerun: the first trial was stopped by us to move the work to another endpoint or machine"}
+    tasks:
+    - adjust_bottle
+    - beat_block_hammer
+    - blocks_ranking_rgb
+    - blocks_ranking_size
+    - dump_bin_bigbin
+    - grab_roller
+    - handover_block
+    - handover_mic
+    - hanging_mug
+    - lift_pot
+    - move_can_pot
+    - move_pillbottle_pad
+    - move_playingcard_away
+    - move_stapler_pad
+    - open_laptop
+    - open_microwave
+    - pick_diverse_bottles
+    - pick_dual_bottles
+    - place_a2b_left
+    - place_a2b_right
+    - place_bread_basket
+    - place_bread_skillet
+    - place_burger_fries
+    - place_can_basket
+    - place_cans_plasticbox
+    - place_container_plate
+    - place_dual_shoes
+    - place_empty_cup
+    - place_fan
+    - place_mouse_pad
+    - place_object_basket
+    - place_object_scale
+    - place_object_stand
+    - place_phone_stand
+    - place_shoe
+    - press_stapler
+    - put_bottles_dustbin
+    - rotate_qrcode
+    - scan_object
+    - shake_bottle
+    - shake_bottle_horizontally
+    - stack_blocks_three
+    - stack_blocks_two
+    - stack_bowls_three
+    - stack_bowls_two
+    - stamp_seal
+    - turn_switch
+    others: "not built as a harness task: click_bell (success is one instant of contact, which a replay does not reproduce), click_alarmclock and put_object_cabinet (the expert demonstration fails on all 6 seeds)"

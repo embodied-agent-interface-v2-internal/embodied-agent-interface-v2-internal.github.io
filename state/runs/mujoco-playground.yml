@@ -11,13 +11,36 @@ task_dir: "mujoco_playground_{task}"
 runs:
   codex-gpt6_luna-xhigh:
     batch: mj-luna-xh-0928
+    rerun_batches: [mj-luna-xh-f1-1001]
+    # Official batches from 2026-10-01 (protocol v1.0): Codex CLI 0.159.0 on Azure OpenAI's API (gpt-6-luna), reasoning
+    # summaries detailed, sampled tasks in both modes (robot_coding_bench exps/formal_runs/codex-gpt6_luna-xhigh_batch*.json).
+    # Each replaces, for its tasks, the earlier ChatGPT-login result, which stays as history (<mode>-prev).
     harness: >-
-      Harbor's built-in codex agent (-a codex, Codex CLI 0.158.0) on the owner's ChatGPT login, reasoning effort xhigh
+      Since 2026-10-01 (batch mj-luna-xh-f1-1001, the official run): Harbor's built-in codex agent (-a codex, Codex CLI 0.159.0) on
+      Azure OpenAI's API (gpt-6-luna), reasoning effort xhigh with detailed reasoning summaries, no model gateway (token
+      counts are Harbor's per-trial totals); the tasks it has not reached yet still show the earlier result:       Harbor's built-in codex agent (-a codex, Codex CLI 0.158.0) on the owner's ChatGPT login, reasoning effort xhigh
       with detailed reasoning summaries; not the CodexChatGPT wrapper the other benchmarks used, so Codex applies
       ChatGPT's metadata for gpt-6-luna (its base instructions, verbosity low); token counts are Harbor's per-trial totals
     notes:
     - {task: aloha_hand_over, mode: unlimited, trial: mujoco_playground_aloha_hand_ove__C6yiMhN, note: "Harbor reports a verifier timeout, but the verdict (success) was written first: the grader then spent 20 min rendering videos of the agent's rollouts on software rendering (an image bug, fixed in rcb-mujoco 0.1.2, plus a render budget in the grader)"}
     - {task: panda_pick_cube_orientation, mode: unlimited, trial: mujoco_playground_panda_pick_cub__V7VoKZT, note: "Harbor reports a verifier timeout, but the verdict (success) was written first: the grader then spent 20 min rendering videos of the agent's rollouts on software rendering (an image bug, fixed in rcb-mujoco 0.1.2, plus a render budget in the grader)"}
+    tasks:
+    - aloha_hand_over
+    - aloha_single_peg_insertion
+    - panda_open_cabinet
+    - panda_pick_cube_orientation
+    others: "not built yet"
+
+  codex-gpt6_luna-xhigh-azure:
+    # Azure API stress run of every task, 2026-09-30 (robot_coding_bench dev/kangrui). Harbor ran one job per endpoint
+    # with trials of both modes (jobs az1..az12-*); site_jobs/<batch>-<mode>/ holds one symlinked trial per task:
+    # the batch each task's first attempt, the rerun batch its final valid trial where that differs.
+    batch: mj-luna-xh-az-0930
+    rerun_batches: [mj-luna-xh-az-rerun-0930]
+    harness: >-
+      Harbor's built-in codex agent (-a codex, Codex CLI 0.159.0) on Azure OpenAI's API (gpt-6-luna), reasoning effort
+      xhigh with detailed reasoning summaries; limited mode on rcb-limited/2.1 with crash recovery; image rcb-mujoco
+      0.1.2. No model gateway: token counts are Harbor's
     tasks:
     - aloha_hand_over
     - aloha_single_peg_insertion
