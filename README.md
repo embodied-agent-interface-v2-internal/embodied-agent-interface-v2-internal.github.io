@@ -7,7 +7,7 @@ it requires, and whether we are keeping it.
 **Public site:** <https://embodied-agent-interface-v2-internal.github.io/>. It is
 published from `main` by GitHub Actions; see [HANDOFF.md](HANDOFF.md#publishing).
 
-Seven benchmarks, 426 tasks, each synced from its own upstream:
+Twelve benchmarks, 615 tasks, each synced from its own upstream:
 
 | Benchmark | Simulator | Tasks | Demos | Synced from |
 | --- | --- | --- | --- | --- |
@@ -18,6 +18,11 @@ Seven benchmarks, 426 tasks, each synced from its own upstream:
 | **RoboPaint** (ours) | ManiSkill 3.0.1 + brush models (Spline-FRIDA, a virtual Chinese brush, MyPaint) | 91 (82 + 9 excluded) | 91 replays of our reference solution | our benchmark repository, at a pinned commit |
 | **HumanoidBench** | MuJoCo 3 | 24 (23 + 1 fixture excluded) | none upstream; 24 starting-scene stills | our selection's task definitions, at a pinned commit |
 | **KinDER** | MuJoCo 3.3 (Dynamic3D), PyBullet (two kinematic tasks) | 11 (10 + 1 fixture excluded) | none upstream; 11 starting-scene stills | our selection's task definitions, at a pinned commit |
+| **MetaWorld+** (ours) | MuJoCo 3.3.0 (Meta-World v3) | 50 | 50 replays of our reference solution | our benchmark repository, at a pinned commit |
+| **VLABench** | MuJoCo 3.2.2 + dm_control | 36 | 36 replays of our reference solution | our selection's task definitions, at a pinned commit |
+| **RoboCasa** v0.2 | robosuite 1.5.1 / MuJoCo 3.2.6 | 29 | 29 replays of our reference solution | our selection's task definitions, at a pinned commit |
+| **RoboCasa365** | robosuite 1.5.2 / MuJoCo 3.3.1 | 50 | 50 replays of our reference solution | our selection's task definitions, at a pinned commit |
+| **RoboCasa-GR1** | robosuite 1.5.1 / MuJoCo 3.2.6 | 24 | 24 replays of our reference solution | our selection's task definitions, at a pinned commit |
 
 Each is pinned to the exact version our images build from, so what you review
 here is what we run.

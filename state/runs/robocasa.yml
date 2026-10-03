@@ -1,0 +1,27 @@
+# RoboCasa's agent runs. Owned by the benchmark's owner, curated by hand like everything in state/.
+# Format and field meanings: docs/contributing/registering-runs.md (and the header of state/runs/behavior-1k.yml).
+
+default: codex-gpt6_luna-xhigh
+# task id <task> -> our task directory robocasa-<task>-i00 (robot_coding_bench: robocasa-<task>-i00-privileged is the
+# unlimited mode, its -standard twin the limited mode)
+task_dir: "robocasa-{task_dashed}-i00"
+# No partial credit beside success: the grader's final_reward is the environment's last-step reward, not progress.
+progress: none
+
+# The sample model trial of robot_coding_bench PR #22 (2026-10-01): four tasks, one attempt per task and mode, 60
+# minutes a mode. Codex CLI 0.159.3 as Harbor's own codex agent (`-a codex`), the owner's ChatGPT login
+# (CODEX_FORCE_AUTH_JSON=1), no model gateway, agent egress allowlisted to the model APIs. After the trial the
+# maintainer reworded the instructions to state the thresholds of each task's _check_success (robot_coding_bench main,
+# 2026-10-02); the agent saw the earlier wording. Scenes, instances, checks and reference solutions are unchanged. The
+# Harbor jobs ran as one job per benchmark; they are filed here under the runner's per-task job names.
+runs:
+  codex-gpt6_luna-xhigh:
+    batch: robocasa-lunaxh-1001
+    harness: Codex CLI 0.159.3 as Harbor's codex agent (ChatGPT login, no model gateway)
+    tasks:
+    - arrange_vegetables
+    - open_drawer
+    - pnp_counter_to_cab
+    - turn_on_stove
+    others: not in the sample (robot_coding_bench PR #22's model trial ran four tasks)
+    closed: the sample model trial of PR #22, run once

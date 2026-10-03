@@ -1,0 +1,234 @@
+{
+  "arrange_vegetables": {
+    "bytes": 529462,
+    "height": 240,
+    "poster": true,
+    "seconds": 27,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "close_double_door": {
+    "bytes": 387719,
+    "height": 240,
+    "poster": true,
+    "seconds": 21,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "close_drawer": {
+    "bytes": 210917,
+    "height": 240,
+    "poster": true,
+    "seconds": 10,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "close_single_door": {
+    "bytes": 174727,
+    "height": 240,
+    "poster": true,
+    "seconds": 13,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "coffee_press_button": {
+    "bytes": 124017,
+    "height": 240,
+    "poster": true,
+    "seconds": 6,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "coffee_serve_mug": {
+    "bytes": 632677,
+    "height": 240,
+    "poster": true,
+    "seconds": 17,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "coffee_setup_mug": {
+    "bytes": 324825,
+    "height": 240,
+    "poster": true,
+    "seconds": 19,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "microwave_thawing": {
+    "bytes": 364968,
+    "height": 240,
+    "poster": true,
+    "seconds": 38,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "open_double_door": {
+    "bytes": 1013805,
+    "height": 240,
+    "poster": true,
+    "seconds": 36,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "open_drawer": {
+    "bytes": 157915,
+    "height": 240,
+    "poster": true,
+    "seconds": 10,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "open_single_door": {
+    "bytes": 274297,
+    "height": 240,
+    "poster": true,
+    "seconds": 12,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "pnp_cab_to_counter": {
+    "bytes": 246861,
+    "height": 240,
+    "poster": true,
+    "seconds": 14,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "pnp_counter_to_cab": {
+    "bytes": 398385,
+    "height": 240,
+    "poster": true,
+    "seconds": 11,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "pnp_counter_to_microwave": {
+    "bytes": 153166,
+    "height": 240,
+    "poster": true,
+    "seconds": 22,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "pnp_counter_to_sink": {
+    "bytes": 394672,
+    "height": 240,
+    "poster": true,
+    "seconds": 21,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "pnp_counter_to_stove": {
+    "bytes": 389305,
+    "height": 240,
+    "poster": true,
+    "seconds": 18,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "pnp_microwave_to_counter": {
+    "bytes": 109195,
+    "height": 240,
+    "poster": true,
+    "seconds": 12,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "pnp_sink_to_counter": {
+    "bytes": 374042,
+    "height": 240,
+    "poster": true,
+    "seconds": 14,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "pnp_stove_to_counter": {
+    "bytes": 102098,
+    "height": 240,
+    "poster": true,
+    "seconds": 14,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "pre_soak_pan": {
+    "bytes": 1091070,
+    "height": 240,
+    "poster": true,
+    "seconds": 34,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "prepare_coffee": {
+    "bytes": 614240,
+    "height": 240,
+    "poster": true,
+    "seconds": 25,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "restock_pantry": {
+    "bytes": 1100358,
+    "height": 240,
+    "poster": true,
+    "seconds": 35,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "turn_off_microwave": {
+    "bytes": 88103,
+    "height": 240,
+    "poster": true,
+    "seconds": 12,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "turn_off_sink_faucet": {
+    "bytes": 233171,
+    "height": 240,
+    "poster": true,
+    "seconds": 9,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "turn_off_stove": {
+    "bytes": 70674,
+    "height": 240,
+    "poster": true,
+    "seconds": 12,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "turn_on_microwave": {
+    "bytes": 100360,
+    "height": 240,
+    "poster": true,
+    "seconds": 11,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "turn_on_sink_faucet": {
+    "bytes": 258065,
+    "height": 240,
+    "poster": true,
+    "seconds": 7,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "turn_on_stove": {
+    "bytes": 148048,
+    "height": 240,
+    "poster": true,
+    "seconds": 7,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  },
+  "turn_sink_spout": {
+    "bytes": 75481,
+    "height": 240,
+    "poster": true,
+    "seconds": 4,
+    "source": "Recorded by us: our reference solution, replayed by the verifier (the scene camera).",
+    "width": 320
+  }
+}

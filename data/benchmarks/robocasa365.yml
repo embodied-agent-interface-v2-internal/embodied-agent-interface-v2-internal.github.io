@@ -1,0 +1,49 @@
+id: robocasa365
+name: RoboCasa365
+edition: RoboCasa365 (robocasa 1.0.1 @ 4f8a298), our selection of 50 tasks (robot_coding_bench @ 8c5594a43)
+status: active
+simulator: robosuite 1.5.2 / MuJoCo 3.3.1 (RoboCasa365)
+description: >-
+  RoboCasa's 365-task kitchen suite for the same mobile manipulator: atomic skills and long composite activities
+  across cooking, cleaning, storing and serving. We keep 50 of the families with a validated demonstration, chosen by
+  a fixed rule (12 atomic, 38 composite, in SHA-256 order of their names), one frozen instance each. Each task passes
+  or fails on the environment's own success check on the state after the last action, with no partial credit, and runs
+  in two modes: unlimited (privileged: full simulator state, unlimited resets, one replayable trajectory handed in)
+  and limited (standard: the robot's own four cameras, one episode, no reset).
+
+links:
+  repository: https://github.com/robocasa/robocasa
+  project: https://robocasa.ai
+
+embodiment:
+  robot: Franka Panda on an Omron mobile base with a torso lift (PandaOmron)
+  action_space: "the robot's native composite-controller command, 13 numbers per control step: 7 arm joint targets, gripper, base velocity, torso, and the base/arm mode"
+  control_rate_hz: 20
+  observations: [proprioception, rgb, depth]
+  cameras:
+    robot0_agentview_center, left, right: RGB-D, on the robot
+    robot0_eye_in_hand: RGB-D, on the hand
+  notes: >-
+    Unlimited: the agent drives the environment in Python with the whole simulator state. Limited: the simulator runs in
+    a service; the agent sees the robot's own cameras (with the current calibration, since they move with the robot),
+    its joints, its end-effector position and last command, and the task's language; never an object's pose, the kitchen
+    layout or the success check.
+
+# robot_coding_bench publishes no skill vocabulary for RoboCasa365, so `skills:` cannot be validated.
+skill_vocabulary: []
+
+# One scene model for the whole benchmark (scripts/import_robocasa365_tasks.py sets it).
+scenes:
+  - robocasa365_kitchen
+
+# What we run it on: robot_coding_bench's task pairs, measured on an AMD Ryzen 9 7950X workstation.
+integration:
+  image: ghcr.io/mll-lab-nu/eai-robocasa365:0.1.0 (robocasa @ 4f8a298, robosuite @ 5ce6643; demonstrations removed), CPU only, ~27 GB
+  containers: >-
+    unlimited (privileged): main (the agent with the simulator) + the verifier's own sandbox, which replays
+    the trajectory twice in fresh processes. limited (standard): main (the agent: an HTTP client only) + sim
+    (the simulator and the recording; the agent reaches it only through the client) + the verifier's own
+    sandbox. The agent reaches the model APIs and nothing else.
+  physics_backend: MuJoCo on the CPU (its process-wide mesh cache off, so every rebuild is bit-exact); OSMesa renders the cameras
+  determinism: bit-exact across fresh processes (both replays of a trajectory end in the same state)
+  licence: RoboCasa is MIT; its assets carry their own licences

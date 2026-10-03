@@ -1,0 +1,132 @@
+# Curated task state for robocasa.
+#
+# One block per task. Written by the site's Edit button and by hand; both are
+# fine. Task ids match docs/benchmarks/robocasa/tasks/<id>.md.
+#
+#   status      keep | drop | needs-review | pending
+#   difficulty  unrated | easy | medium | hard | extreme
+#   labels      tier-2 ids from state/taxonomy.yml
+#   owner       bare GitHub handle
+#   note        free text; why you decided what you decided
+#
+# Task id = the task part of our task pairs in robot_coding_bench (tasks/<prefix>-<task>-i00-privileged and -standard),
+# with underscores. Every task here is one robot_coding_bench keeps, so each is `keep`, with its category as the note
+# (scripts/import_robocasa_tasks.py adds a NEW task that way and never changes an existing entry).
+# Owner: changhechen, who built the selection. No difficulty or labels yet.
+
+arrange_vegetables:
+  status: keep
+  owner: changhechen
+  note: "Multi-stage · chopping food"
+close_double_door:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen doors"
+close_drawer:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen drawer"
+close_single_door:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen doors"
+coffee_press_button:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen coffee"
+coffee_serve_mug:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen coffee"
+coffee_setup_mug:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen coffee"
+microwave_thawing:
+  status: keep
+  owner: changhechen
+  note: "Multi-stage · defrosting food"
+open_double_door:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen doors"
+open_drawer:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen drawer"
+open_single_door:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen doors"
+pnp_cab_to_counter:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen pnp"
+pnp_counter_to_cab:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen pnp"
+pnp_counter_to_microwave:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen pnp"
+pnp_counter_to_sink:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen pnp"
+pnp_counter_to_stove:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen pnp"
+pnp_microwave_to_counter:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen pnp"
+pnp_sink_to_counter:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen pnp"
+pnp_stove_to_counter:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen pnp"
+pre_soak_pan:
+  status: keep
+  owner: changhechen
+  note: "Multi-stage · washing dishes"
+prepare_coffee:
+  status: keep
+  owner: changhechen
+  note: "Multi-stage · brewing"
+restock_pantry:
+  status: keep
+  owner: changhechen
+  note: "Multi-stage · restocking supplies"
+turn_off_microwave:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen microwave"
+turn_off_sink_faucet:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen sink"
+turn_off_stove:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen stove"
+turn_on_microwave:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen microwave"
+turn_on_sink_faucet:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen sink"
+turn_on_stove:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen stove"
+turn_sink_spout:
+  status: keep
+  owner: changhechen
+  note: "Single-stage · kitchen sink"

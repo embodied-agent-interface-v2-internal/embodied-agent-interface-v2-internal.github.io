@@ -1,0 +1,216 @@
+# Curated task state for metaworldplus.
+#
+# One block per task. Written by the site's Edit button and by hand; both are
+# fine. Task ids match docs/benchmarks/metaworldplus/tasks/<id>.md.
+#
+#   status      keep | drop | needs-review | pending
+#   difficulty  unrated | easy | medium | hard | extreme
+#   labels      tier-2 ids from state/taxonomy.yml
+#   owner       bare GitHub handle
+#   note        free text; why you decided what you decided
+#
+# Task id = the task part of our task pairs in robot_coding_bench (tasks/<prefix>-<task>-i00-privileged and -standard),
+# with underscores. Every task here is one robot_coding_bench keeps, so each is `keep`, with its category as the note
+# (scripts/import_metaworldplus_tasks.py adds a NEW task that way and never changes an existing entry).
+# Owner: changhechen, who built the selection. No difficulty or labels yet.
+
+assembly:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+basketball:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+bin_picking:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+box_close:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+button_press:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+button_press_topdown:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+button_press_topdown_wall:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+button_press_wall:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+coffee_button:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+coffee_pull:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+coffee_push:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+dial_turn:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+disassemble:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+door_close:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+door_lock:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+door_open:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+door_unlock:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+drawer_close:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+drawer_open:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+faucet_close:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+faucet_open:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+hammer:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+hand_insert:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+handle_press:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+handle_press_side:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+handle_pull:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+handle_pull_side:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+lever_pull:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+peg_insert_side:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+peg_unplug_side:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+pick_out_of_hole:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+pick_place:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+pick_place_wall:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+plate_slide_back:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+plate_slide_back_side:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+plate_slide:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+plate_slide_side:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+push_back:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+push:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+push_wall:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+reach:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+reach_wall:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+shelf_place:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+soccer:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+stick_pull:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+stick_push:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+sweep:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+sweep_into:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+window_close:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"
+window_open:
+  status: keep
+  owner: changhechen
+  note: "Meta-World v3"

@@ -1,0 +1,28 @@
+# VLABench's agent runs. Owned by the benchmark's owner, curated by hand like everything in state/.
+# Format and field meanings: docs/contributing/registering-runs.md (and the header of state/runs/behavior-1k.yml).
+
+default: codex-gpt6_luna-xhigh
+# task id <task> -> our task directory vlabench-<task>-i00 (robot_coding_bench: vlabench-<task>-i00-privileged is the
+# unlimited mode, its -standard twin the limited mode)
+task_dir: "vlabench-{task_dashed}-i00"
+# No partial credit beside success: VLABench's own check is pass or fail; its reward.json has no partial credit.
+progress: none
+
+# The sample model trial of robot_coding_bench PR #19 (2026-10-01): four tasks, one attempt per task and mode, 60
+# minutes a mode. Codex CLI 0.159.3 as Harbor's own codex agent (`-a codex`), the owner's ChatGPT login
+# (CODEX_FORCE_AUTH_JSON=1), no model gateway, agent egress allowlisted to the model APIs. After the trial the
+# maintainer reworded the instructions to state exactly what VLABench's check requires and dropped three other tasks
+# (robot_coding_bench main, 2026-10-02); the agent saw the earlier wording. Scenes, instances, checks and reference
+# solutions are unchanged. The Harbor jobs ran as one job per benchmark; they are filed here under the runner's
+# per-task job names.
+runs:
+  codex-gpt6_luna-xhigh:
+    batch: vlabench-lunaxh-1001
+    harness: Codex CLI 0.159.3 as Harbor's codex agent (ChatGPT login, no model gateway)
+    tasks:
+    - friction_qa
+    - heat_food
+    - insert_flower
+    - select_fruit
+    others: not in the sample (robot_coding_bench PR #19's model trial ran four tasks)
+    closed: the sample model trial of PR #19, run once

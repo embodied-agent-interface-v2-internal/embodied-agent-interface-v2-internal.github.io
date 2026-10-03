@@ -1,0 +1,50 @@
+id: vlabench
+name: VLABench
+edition: VLABench @ cf588fe, our selection of 36 tasks (robot_coding_bench @ 8c5594a43)
+status: active
+simulator: MuJoCo 3.2.2 + dm_control 1.0.22 (VLABench)
+description: >-
+  Language-conditioned manipulation for a Franka Panda at a table: selecting by attribute, common sense, semantic and
+  spatial descriptions, physical question answering by pressing buttons, and multi-step tasks (heating food, setting a
+  table, playing poker). We keep the 36 of VLABench's native tasks whose recorded expert re-verifies on a frozen
+  instance, one instance each. Each task passes or fails on VLABench's own success check (its termination condition),
+  with no partial credit, and runs in two modes: unlimited (privileged: every entity's pose, VLABench's skills as
+  planning primitives, unlimited resets, one replayable trajectory handed in) and limited (standard: four cameras and
+  the arm's own state, one episode, no reset).
+
+links:
+  repository: https://github.com/OpenMOSS/VLABench
+  paper: https://arxiv.org/abs/2412.18194
+
+embodiment:
+  robot: Franka Panda (7-DoF arm, two-finger gripper)
+  action_space: "9 absolute position targets per control step (0.1 s): 7 arm joints (rad) and 2 fingers (m, 0 to 0.04)"
+  control_rate_hz: 10
+  observations: [proprioception, rgb, depth]
+  cameras:
+    forward, left, right: 320x320 RGB-D, fixed
+    wrist: 320x320 RGB-D, on the hand
+  notes: >-
+    Unlimited: the agent drives VLABench in Python with its whole state and general skills (pick, place, pull, press,
+    ...). Limited: the simulator runs in a service; the agent sees the four cameras (with calibration) and the arm's
+    joints, fingers and last command, never an object's pose or the success check. The privileged trajectory has at most
+    4000 control steps; a standard episode stops at 9000 (a technical cap).
+
+# robot_coding_bench publishes no skill vocabulary for VLABench, so `skills:` cannot be validated.
+skill_vocabulary: []
+
+# One scene model for the whole benchmark (scripts/import_vlabench_tasks.py sets it).
+scenes:
+  - vlabench_table
+
+# What we run it on: robot_coding_bench's task pairs, measured on an AMD Ryzen 9 7950X workstation.
+integration:
+  image: ghcr.io/mll-lab-nu/eai-vlabench:0.1.0 (VLABench @ cf588fe with its per-task experts removed; assets @ 08d7a44), CPU only, ~15 GB
+  containers: >-
+    unlimited (privileged): main (the agent with the simulator) + the verifier's own sandbox, which replays
+    the trajectory twice in fresh processes. limited (standard): main (the agent: an HTTP client only) + sim
+    (the simulator and the recording; the agent reaches it only through the client) + the verifier's own
+    sandbox. The agent reaches the model APIs and nothing else.
+  physics_backend: MuJoCo on the CPU; OSMesa renders the cameras
+  determinism: bit-exact across fresh processes (both replays of a trajectory end in the same state)
+  licence: VLABench is MIT; its assets carry their own licences
