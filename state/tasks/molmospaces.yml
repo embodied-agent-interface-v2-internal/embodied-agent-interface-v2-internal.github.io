@@ -1,0 +1,49 @@
+# Curated task state for molmospaces.
+#
+# One block per task. Written by the site's Edit button and by hand; both are
+# fine. Task ids match docs/benchmarks/molmospaces/tasks/<id>.md.
+#
+#   status      keep | drop | needs-review | pending
+#   difficulty  unrated | easy | medium | hard | extreme
+#   labels      tier-2 ids from state/taxonomy.yml
+#   owner       bare GitHub handle
+#   note        free text; why you decided what you decided
+#
+# Task id = the family with underscores (our task directory molmospaces-<family>-i00). The 8 tasks are the episodes
+# robot_coding_bench keeps, one per family: of three candidates a fixed rule takes from each upstream package, the
+# hardest and most representative in GPT-6 Luna's runs. Every one `keep`, its robot and why it was kept as the note
+# (scripts/import_molmospaces_tasks.py adds a NEW task with `status: keep` and never changes an existing entry).
+# Owner: williamzhangNU, who runs MolmoSpaces here. No difficulty or labels yet.
+
+pick:
+  status: keep
+  owner: williamzhangNU
+  note: "Franka · kept of 3 candidates: a pestle against a wall, the approach is the hard part"
+pick_and_place:
+  status: keep
+  owner: williamzhangNU
+  note: "Franka · kept of 3 candidates: the GPS tips over, limited mode failed twice"
+pick_and_place_next_to:
+  status: keep
+  owner: williamzhangNU
+  note: "Franka · kept of 3 candidates: a flat moth, the 6 cm placement decides"
+pick_and_place_color:
+  status: keep
+  owner: williamzhangNU
+  note: "Franka · kept of 3 candidates: limited mode failed twice"
+open:
+  status: keep
+  owner: williamzhangNU
+  note: "Franka · kept of 3 candidates: a drawer whose slide direction both modes first missed"
+close:
+  status: keep
+  owner: williamzhangNU
+  note: "Franka · kept of 3 candidates: a drawer, limited mode pulled it open instead"
+navigate_to:
+  status: keep
+  owner: williamzhangNU
+  note: "RB-Y1 · kept of 3 candidates: a bed two rooms away"
+open_door:
+  status: keep
+  owner: williamzhangNU
+  note: "RB-Y1 · kept of 3 candidates: a door to pull, the hardest family"

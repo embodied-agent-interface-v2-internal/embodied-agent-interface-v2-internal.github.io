@@ -21,7 +21,7 @@ BIN    := $(VENV)/bin
         compress-run-media upload-run-media publish links demos edit \
         runs runs-watch sync \
         sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-humanoidbench sync-kinder sync-dextoolbench sync-mujoco-playground \
-        sync-metaworldplus sync-vlabench sync-robocasa sync-robocasa365 sync-robocasa-gr1 sync-verified sync-dry clean
+        sync-metaworldplus sync-vlabench sync-robocasa sync-robocasa365 sync-robocasa-gr1 sync-molmospaces sync-verified sync-dry clean
 
 help: ## Show this help
 	@grep -hE '^[a-z-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -153,7 +153,7 @@ upload-run-media: export-run-media compress-run-media ## Export, compress and up
 # RoboWits and RoboLab read a source checkout (pass it in), because their tasks
 # are defined in code. All three are idempotent and write only `upstream:`.
 sync: sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-humanoidbench sync-kinder sync-dextoolbench sync-mujoco-playground \
-      sync-metaworldplus sync-vlabench sync-robocasa sync-robocasa365 sync-robocasa-gr1 ## Re-sync every benchmark from its upstream
+      sync-metaworldplus sync-vlabench sync-robocasa sync-robocasa365 sync-robocasa-gr1 sync-molmospaces ## Re-sync every benchmark from its upstream
 
 sync-behavior: ## Re-sync BEHAVIOR-1K task pages from the official gallery
 	$(BIN)/python scripts/import_behavior_tasks.py
@@ -254,6 +254,15 @@ sync-robocasa365: ## Re-sync RoboCasa365 (our selection) from a robot_coding_ben
 
 sync-robocasa-gr1: ## Re-sync RoboCasa-GR1 from a robot_coding_bench commit
 	$(BIN)/python scripts/import_robocasa_gr1_tasks.py $(RCB_SYNC)
+
+# MolmoSpaces: no reference solution, so a row shows the starting scene. MOLMOSPACES_SCENES: a dir of the t = 0 camera
+# images (<family>-i00/t0_<camera>.png, as robot_coding_bench's results tooling writes them). Empty by default (the
+# committed stills stay); set it per machine in Makefile.local.
+MOLMOSPACES_SCENES ?=
+
+sync-molmospaces: ## Re-sync MolmoSpaces from a robot_coding_bench commit (RCB_COMMIT=..., MOLMOSPACES_SCENES=...)
+	$(BIN)/python scripts/import_molmospaces_tasks.py --source $(RCB_SRC) --commit $(RCB_COMMIT) \
+	    $(if $(MOLMOSPACES_SCENES),--scenes $(MOLMOSPACES_SCENES),)
 
 # The BDDL goals and dataset statistics come from the licensed BEHAVIOR download,
 # so the extract step runs inside the simulator image; see the script's docstring.

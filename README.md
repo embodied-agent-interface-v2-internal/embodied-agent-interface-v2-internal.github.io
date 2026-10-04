@@ -7,7 +7,7 @@ it requires, and whether we are keeping it.
 **Public site:** <https://embodied-agent-interface-v2-internal.github.io/>. It is
 published from `main` by GitHub Actions; see [HANDOFF.md](HANDOFF.md#publishing).
 
-Twelve benchmarks, 615 tasks, each synced from its own upstream:
+Thirteen benchmarks, 623 tasks, each synced from its own upstream:
 
 | Benchmark | Simulator | Tasks | Demos | Synced from |
 | --- | --- | --- | --- | --- |
@@ -23,6 +23,7 @@ Twelve benchmarks, 615 tasks, each synced from its own upstream:
 | **RoboCasa** v0.2 | robosuite 1.5.1 / MuJoCo 3.2.6 | 29 | 29 replays of our reference solution | our selection's task definitions, at a pinned commit |
 | **RoboCasa365** | robosuite 1.5.2 / MuJoCo 3.3.1 | 50 | 50 replays of our reference solution | our selection's task definitions, at a pinned commit |
 | **RoboCasa-GR1** | robosuite 1.5.1 / MuJoCo 3.2.6 | 24 | 24 replays of our reference solution | our selection's task definitions, at a pinned commit |
+| **MolmoSpaces** | MuJoCo 3.5.0 (molmo-spaces 0.2.9) | 8 | none upstream; 8 starting-scene stills | our selection's task definitions, at a pinned commit |
 
 Each is pinned to the exact version our images build from, so what you review
 here is what we run.

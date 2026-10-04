@@ -1,0 +1,62 @@
+id: molmospaces
+name: MolmoSpaces
+edition: molmo-spaces 0.2.9, benchmark molmospaces-bench-v2/20260415; our selection of 8 episodes (robot_coding_bench @ e46be110c, #47)
+status: active
+simulator: MuJoCo 3.5.0 (molmo-spaces 0.2.9)
+description: >-
+  Ai2's zero-shot evaluation episodes for robot policies in unseen houses: a Franka FR3 picks, places (into a
+  receptacle, next to an object, by colour), opens and closes fixtures, and a Rainbow RB-Y1 mobile manipulator navigates
+  to an object and opens a room door. We keep one upstream episode per family, 8 in all: of three candidates a fixed
+  rule picks per family (cluttered targets, upstream's Hard configurations, far and unseen navigation targets, three
+  different houses), the hardest and most representative in GPT-6 Luna's runs. Each task passes or fails on upstream's
+  own `judge_success()` at the end of the episode, with no partial credit, and runs in two modes: unlimited (privileged:
+  the simulator's full state, upstream's kinematics, unlimited resets, one replayable trajectory handed in) and limited
+  (standard: the robot's own cameras with depth and its proprioception, one episode, no reset).
+
+links:
+  repository: https://github.com/allenai/molmospaces
+  paper: https://arxiv.org/abs/2602.11337
+  molmobot_paper: https://arxiv.org/abs/2603.16861
+
+embodiment:
+  robot: Franka FR3 with a Robotiq 2F-85 gripper on a fixed base (the DROID setup); Rainbow RB-Y1 (holonomic base, 6-joint torso, two 7-joint arms with parallel grippers)
+  action_space: >-
+    Absolute targets of upstream's joint-position controllers, one row per control step: Franka 8 (7 arm joints in rad,
+    the Robotiq command 0 to 255); RB-Y1 25 (base x, y in m and yaw in rad in the house's frame, torso 6, two arms 7
+    each, two grippers as finger forces from -100 to 100)
+  control_rate_hz: 15 (Franka), 5 (RB-Y1 navigation), 10 (RB-Y1 door)
+  observations: [proprioception, rgb, depth]
+  cameras:
+    Franka: the wrist camera and four exterior cameras of upstream's randomised camera system (shoulder, two zed2, gopro)
+    RB-Y1: the head camera and two wrist cameras
+  notes: >-
+    Unlimited: the agent drives upstream's episode in Python with its full state, upstream's kinematics and unlimited
+    resets, and hands in one trajectory. Limited: the simulator runs in a service; the agent sees the episode's robot
+    cameras (RGB, depth, calibration) and the robot's joints and grippers, and can ask upstream's kinematic model for
+    FK/IK; never an object's pose or the success check. Each episode keeps upstream's own horizon.
+
+# robot_coding_bench publishes no skill vocabulary for MolmoSpaces, so `skills:` cannot be validated.
+skill_vocabulary: []
+
+# Each task is one upstream house (scripts/import_molmospaces_tasks.py sets it).
+scenes:
+  - procthor-objaverse val 1053
+  - procthor-objaverse val 1001
+  - procthor-objaverse val 1058
+  - procthor-objaverse val 123
+  - ithor val 414
+  - ithor val 20
+  - holodeck-objaverse val 1430
+  - procthor-10k val 0
+
+# What we run it on: robot_coding_bench's task pairs, on an RTX 4090 workstation.
+integration:
+  image: ghcr.io/mll-lab-nu/eai-molmospaces:0.2.0 (molmo-spaces 0.2.9 with upstream's scripted experts replaced by stubs and no grasp files; only the assets these episodes open; Objaverse assets 20251016_from_20250610, the benchmark's own), ~7.4 GB
+  containers: >-
+    unlimited (privileged): main (the agent with the simulator) + the verifier's own sandbox, which replays the
+    trajectory twice in fresh processes. limited (standard): main (the agent: an HTTP client only) + sim (the
+    simulator and the recording; the agent reaches it only through the client) + the verifier's own sandbox. The agent
+    reaches the model APIs and nothing else.
+  physics_backend: MuJoCo on the CPU; EGL renders the cameras on a GPU (OSMesa without one is about 15x slower)
+  determinism: bit-exact across fresh processes (both replays of a trajectory end in the same state)
+  licence: MolmoSpaces code is Apache-2.0; its assets are CC BY 4.0 / ODC-BY 1.0 (a few Objaverse objects CC BY-NC)
