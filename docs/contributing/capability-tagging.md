@@ -8,6 +8,31 @@ Labels are what turn a pile of videos into something you can reason about:
 "we have four tasks that need bimanual manipulation outside the kitchen" is
 only sayable if someone labelled them.
 
+## Two groups on every page
+
+What a task page and a task list show, and what the list filters on, are the
+task's **display tags** (`display_tags:` in `state/tasks/<benchmark>.yml`), in
+two groups:
+
+| Group | The question | Tags |
+| --- | --- | --- |
+| Capability | What does the agent have to be able to do? | [Perception & Understanding](../reference/capabilities.md#tag-perception-understanding) · [Planning & Reasoning](../reference/capabilities.md#tag-planning-reasoning) · [Control & Coordination](../reference/capabilities.md#tag-control-coordination) · [Feedback & Adaptation](../reference/capabilities.md#tag-feedback-adaptation) |
+| Task Domain | What kind of task is it? | [Manipulation](../reference/capabilities.md#tag-manipulation) · [Locomotion & Stability](../reference/capabilities.md#tag-locomotion-stability) · [Navigation & Exploration](../reference/capabilities.md#tag-navigation-exploration) · [Mobile / Whole-body Manipulation](../reference/capabilities.md#tag-mobile-whole-body-manipulation) · [Interaction & Collaboration](../reference/capabilities.md#tag-interaction-collaboration) |
+
+Take every tag that applies, and at least one from each group: validation
+rejects a task tagged in one group but not the other. Pages show the Capability
+tags first and the Task Domain tags after them, each group in its own colour.
+The editor (`make edit`) sets them.
+
+`scripts/migrate_tag_groups.py` gave every task its first display tags, from its
+detailed labels where it has them and from a rule per benchmark where it does
+not; `python scripts/migrate_tag_groups.py --table` prints which label implies
+which tag, and why.
+
+The rest of this page is about those **detailed labels** (`labels:`): kept as
+they are, for analysis and `scripts/suggest_labels.py`, set by hand in the
+state file, and not shown on task pages.
+
 ## Eight questions, not forty-five labels
 
 The vocabulary is organised into eight **facets**. Work down them and answer one
@@ -89,11 +114,11 @@ when both are genuinely required.
 
 ## Let the benchmark suggest the labels
 
-Two things propose labels so you only have to confirm them. With `make edit`,
-the editor marks labels a task's annotated BEHAVIOR skills imply — `open door`
-suggests [Open and close](../reference/capabilities.md#cap-articulated). And
+Two things make proposals so you only have to confirm them. With `make edit`,
+the editor marks the display tags a task's annotated BEHAVIOR skills imply —
+`open door` suggests [Control & Coordination](../reference/capabilities.md#tag-control-coordination). And
 `python scripts/suggest_labels.py` applies every `derived_from` rule to all 250
-tasks at once, printing the reason for each proposal:
+tasks at once, proposing detailed labels with the reason for each:
 
 ```console
 $ python scripts/suggest_labels.py --task water_into_mug
@@ -147,7 +172,8 @@ visible in the video:
 
 Do not invent an id by hand — validation rejects unknown ones.
 
-Use **Add & tag** in the editor. It appends your label to a `custom` group in
-`state/taxonomy.yml` and tags the task in one step. Custom labels are a queue,
-not a decision: when several tasks share one, promote it into a proper group in
-a PR, with those tasks as the evidence.
+For a display tag, use **Add & tag** in the editor. It adds your tag to the
+group you pick in `state/display_tags.yml` and tags the task in one step. A new
+tag is a proposal, not a decision: argue for it in a PR, with the tasks that
+share it as the evidence. A new detailed label goes into `state/taxonomy.yml` the
+same way, by hand.

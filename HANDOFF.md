@@ -13,8 +13,9 @@ RoboLab (120).
 | Pages | 12 hand-written, 3 generated per benchmark, 250 task pages |
 | Demos | 134/250 local (1.2 GB) + poster frames, playable inline at 1–4× |
 | Scene stills | 107 RoboLab rows with no upstream clip show their scene instead |
-| Editing | In-browser status/label editing via a localhost daemon (`make edit`) |
+| Editing | In-browser status/tag editing via a localhost daemon (`make edit`) |
 | Labels | 8 facets, 45 labels, fitted to 15 benchmarks; 3 facets are ordinal ladders |
+| Display tags | What the site shows: 2 groups, Capability (4) and Task Domain (5), derived from the labels |
 | Curated state | One folder, `state/` — the whole review surface |
 | Triaged | 2 of 250 (worked examples), plus 2 tasks we have run end to end |
 
@@ -198,16 +199,25 @@ and so could never fire — plus three that fired on 30–84 tasks by tagging ev
 container and every knife, which is the difference between what an object *can*
 do and what the task *needs*.
 
-Three ways to revise it, all writing the same file:
+Revise it in `state/taxonomy.yml`, in an editor.
+
+Task pages and lists do not show these labels. They show **display tags**, two
+groups in `state/display_tags.yml`, a task's own under `display_tags:`:
+**Capability** (Perception & Understanding, Planning & Reasoning, Control &
+Coordination, Feedback & Adaptation) and **Task Domain** (Manipulation,
+Locomotion & Stability, Navigation & Exploration, Mobile / Whole-body
+Manipulation, Interaction & Collaboration), Capability first, each group in its
+own colour, at least one of each per tagged task. `scripts/migrate_tag_groups.py`
+derived them from the labels (its table maps every label to tags, with a rule for
+each benchmark that has none). The site edits the display tags:
 
 1. The **Label taxonomy** page with `make edit` — rename, add, delete, save.
-2. `state/taxonomy.yml` in an editor.
-3. **Add & tag** on a task row, for when a gap shows up mid-triage; the new
-   label is parked under a `custom` capability for later placement.
+2. **Add & tag** on a task row, for when a gap shows up mid-triage; the new
+   tag goes into the group picked beside it.
 
-Two guard rails: the save path refuses to remove a label that tasks still
+Two guard rails: the save path refuses to remove a tag that tasks still
 reference (and names them), and `make validate` rejects any task state
-pointing at an id that does not exist.
+pointing at a label or tag id that does not exist.
 
 ## The label vocabulary is explicitly provisional
 
@@ -223,9 +233,9 @@ counting, object state, bimanual, search.
 An earlier draft had 34 fine-grained labels that I invented without evidence
 or discussion. It was too detailed to apply consistently and too speculative
 to defend, so it was cut to this. Treat the current set as a **starting point
-for the group to argue with**, not a standard. The "Add & tag" box appends new
-labels to a `custom` group so proposals accumulate as evidence rather than
-being lost.
+for the group to argue with**, not a standard. The "Add & tag" box adds new
+display tags to the group picked beside it, so proposals accumulate as evidence
+rather than being lost.
 
 ## Known gaps
 

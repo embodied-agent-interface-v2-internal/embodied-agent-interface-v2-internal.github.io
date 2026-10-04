@@ -2,7 +2,7 @@
 
 Two jobs:
   1. Build the header of every task page from frontmatter — facts, instruction,
-     local demo player, capability labels. Contributors write prose only; no
+     local demo player, display tags. Contributors write prose only; no
      data is duplicated into the body, so an upstream re-sync updates every
      page at once.
   2. Expand `<!-- gen:... -->` placeholders so hand-written pages can embed the
@@ -415,24 +415,31 @@ def _verified(task: taskdb.Task) -> str:
     return "\n".join(out) + "\n"
 
 
-def _capability_labels(task: taskdb.Task, link_root: str, url_root: str) -> str:
-    caps = taskdb.capability_index()
-    if not task.capabilities:
+def _display_tags(task: taskdb.Task, link_root: str, url_root: str) -> str:
+    tags = taskdb.tag_index()
+    if not task.display_tags:
         return (
-            "\n## Labels\n\n"
-            '!!! danger "Not labelled yet"\n\n'
-            "    No labels on this task yet. Applying them is the most useful\n"
+            "\n## Tags\n\n"
+            '!!! danger "Not tagged yet"\n\n'
+            "    No tags on this task yet. Applying them is the most useful\n"
             f"    contribution you can make here — see the\n"
             f"    [label taxonomy]({link_root}reference/capabilities.md).\n"
         )
-    chips = []
-    for cid in task.capabilities:
-        if cid in caps:
-            href = doc_url("reference/capabilities.md", url_root) + f"#{caps[cid]['anchor']}"
-            chips.append(f'<a class="chip" href="{href}">{html.escape(caps[cid]["name"])}</a>')
-        else:
-            chips.append(f'<span class="chip chip--gap">{html.escape(cid)}</span>')
-    out = f'\n## Required capabilities\n\n<div class="row__labels">{"".join(chips)}</div>\n'
+    # One row per group, Capability before Task Domain (state/display_tags.yml's order), each in its group's colour.
+    # The detailed labels (`labels:`) are not shown.
+    rows = []
+    for group, ids in task.tag_groups:
+        chips = "".join(f'<a class="chip chip--{group["id"]}" href="{doc_url("reference/capabilities.md", url_root)}'
+                        f'#{tags[tid]["anchor"]}">{html.escape(tags[tid]["name"])}</a>' for tid in ids)
+        chips = chips or '<span class="chip chip--gap">none yet</span>'
+        rows.append(f'<div class="row__labels"><span class="row__group">{html.escape(group["name"])}</span>'
+                    f"{chips}</div>")
+    unknown = [tid for tid in task.display_tags if tid not in tags]
+    if unknown:
+        rows.append('<div class="row__labels"><span class="row__group">Unknown</span>'
+                    + "".join(f'<span class="chip chip--gap">{html.escape(tid)}</span>' for tid in unknown)
+                    + "</div>")
+    out = f'\n## Tags\n\n{"".join(rows)}\n'
     if task.skills:
         skills = "".join(f'<span class="chip">{html.escape(s)}</span>' for s in task.skills)
         out += f'\n**Skill primitives in the demo:** <span class="row__labels">{skills}</span>\n'
@@ -507,7 +514,7 @@ def _task_header(task: taskdb.Task, link_root: str, asset_root: str) -> str:
     out.append("\n" + _demo(task, asset_root))
     out.append(_upstream_facts(task))
     out.append(_verified(task))
-    out.append(_capability_labels(task, link_root, asset_root))
+    out.append(_display_tags(task, link_root, asset_root))
     out.append(_extra_media(task.state.get("media") or [], asset_root))
     return "\n".join(out)
 
@@ -595,7 +602,7 @@ def _stats(bench_id: str) -> str:
         ("Keep", str(by["keep"]), ""),
         ("Drop", str(by["drop"]), ""),
         ("Untriaged", str(by["pending"]), ""),
-        ("Tagged", f"{sum(1 for t in tasks if t.capabilities)}/{len(tasks)}", ""),
+        ("Tagged", f"{sum(1 for t in tasks if t.tagged)}/{len(tasks)}", ""),
         # the public build links some benchmarks' demos to the official videos instead (scripts/sitemode.py)
         (("Demos (official, linked)", f"{sum(1 for t in tasks if t.upstream.get('oracle_video'))}/{len(tasks)}", "")
          if sitemode.links_demos(bench_id) else
@@ -627,7 +634,7 @@ def _benchmark_cards(url_root: str) -> str:
     for bench in taskdb.benchmarks().values():
         tasks, excluded = bench.included, bench.excluded
         pending = sum(1 for t in tasks if t.status == "pending")
-        untagged = sum(1 for t in tasks if not t.capabilities)
+        untagged = sum(1 for t in tasks if not t.tagged)
         href = doc_url(f"benchmarks/{bench.id}/index.md", url_root)
         cards.append(
             f'<a class="bcard" href="{href}">'
@@ -636,7 +643,7 @@ def _benchmark_cards(url_root: str) -> str:
             f'<span class="bcard__nums">'
             f"<b>{len(tasks)}</b> tasks{f' + {len(excluded)} excluded' if excluded else ''} &middot; "
             f"<b>{pending}</b> untriaged &middot; "
-            f"<b>{untagged}</b> unlabelled</span>"
+            f"<b>{untagged}</b> untagged</span>"
             f'<span class="bcard__go">Open the task list &rarr;</span>'
             "</a>"
         )
@@ -681,7 +688,7 @@ def on_page_markdown(markdown: str, page, config, files):
                 return ""
             return (
                 '<div class="tax" data-taxonomy-editor>'
-                '<p class="tax__hint">Run <code>make edit</code> to change these labels '
+                '<p class="tax__hint">Run <code>make edit</code> to change the display tags '
                 "from this page. Without the local edit daemon the site is read-only.</p>"
                 "</div>"
             )

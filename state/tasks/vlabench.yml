@@ -6,6 +6,7 @@
 #   status      keep | drop | needs-review | pending
 #   difficulty  unrated | easy | medium | hard | extreme
 #   labels      tier-2 ids from state/taxonomy.yml
+#   display_tags  what the site shows: tag ids from state/display_tags.yml
 #   owner       bare GitHub handle
 #   note        free text; why you decided what you decided
 #
@@ -18,143 +19,302 @@ add_condiment:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - control-coordination
+  - manipulation
 book_rearrange:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 find_unseen_object:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - manipulation
 friction_qa:
   status: keep
   owner: changhechen
   note: "Physical QA"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 hammer_nail_and_hang_picture:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 heat_food:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 insert_bloom_flower:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - control-coordination
+  - manipulation
 insert_flower:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - control-coordination
+  - manipulation
 magnetism_qa:
   status: keep
   owner: changhechen
   note: "Physical QA"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 play_math_game:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 put_box_on_painting:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
 reflection_qa:
   status: keep
   owner: changhechen
   note: "Physical QA"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 select_billiards_common_sense:
   status: keep
   owner: changhechen
   note: "Common sense"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 select_billiards:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
 select_billiards_spatial:
   status: keep
   owner: changhechen
   note: "Spatial"
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
 select_book_spatial:
   status: keep
   owner: changhechen
   note: "Spatial"
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
 select_chemistry_tube_common_sense:
   status: keep
   owner: changhechen
   note: "Common sense"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 select_chemistry_tube:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
 select_chemistry_tube_semantic:
   status: keep
   owner: changhechen
   note: "Semantic"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 select_chemistry_tube_spatial:
   status: keep
   owner: changhechen
   note: "Spatial"
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
 select_drink:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
 select_fruit_common_sense:
   status: keep
   owner: changhechen
   note: "Common sense"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 select_fruit:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
 select_mahjong:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
 select_mahjong_semantic:
   status: keep
   owner: changhechen
   note: "Semantic"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 select_mahjong_spatial:
   status: keep
   owner: changhechen
   note: "Spatial"
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
 select_nth_largest_poker:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 select_painting:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 select_poker:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
 select_poker_semantic:
   status: keep
   owner: changhechen
   note: "Semantic"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 select_poker_spatial:
   status: keep
   owner: changhechen
   note: "Spatial"
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
 select_specific_type_book:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
 select_toy:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
 select_unique_type_mahjong:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 take_out_cool_drink:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 texas_holdem:
   status: keep
   owner: changhechen
   note: "Manipulation"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation

@@ -16,6 +16,10 @@
   --drop: #c53030;
   --review: #c05621;
   --pending: #718096;
+
+  /* the display tags' two groups (state/display_tags.yml): Capability, then Task Domain */
+  --cap: #0e7490;
+  --dom: #a2387f;
 }
 
 [data-md-color-scheme="slate"] {
@@ -24,6 +28,8 @@
   --review: #f6ad55;
   --pending: #a0aec0;
   --surface: color-mix(in srgb, var(--md-default-fg-color) 5%, transparent);
+  --cap: #67d4e8;
+  --dom: #f0a6d6;
 }
 
 /* No right-hand TOC, so give the width to the video. */
@@ -106,6 +112,21 @@ a.chip:hover { border-color: var(--md-accent-fg-color); color: var(--md-accent-f
   background: transparent;
   color: var(--drop);
 }
+
+/* A display tag's group gives its colour: Capability chips first, then Task Domain, a little apart. */
+.chip--capability { --tone: var(--cap); }
+.chip--domain     { --tone: var(--dom); }
+.chip--capability,
+.chip--domain,
+.md-typeset a.chip--capability,
+.md-typeset a.chip--domain {
+  border-color: color-mix(in srgb, var(--tone) 45%, transparent);
+  background: color-mix(in srgb, var(--tone) 10%, transparent);
+  color: var(--tone);
+}
+.md-typeset a.chip--capability:hover,
+.md-typeset a.chip--domain:hover { --tone: var(--md-accent-fg-color); }
+.chip--capability + .chip--domain { margin-left: 0.35rem; }
 
 /* ── toolbar ──────────────────────────────────────────────────────────── */
 
@@ -283,6 +304,24 @@ a.chip:hover { border-color: var(--md-accent-fg-color); color: var(--md-accent-f
 }
 
 .row__labels { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.row__labels + .row__labels { margin-top: 0.35rem; }
+
+/* A task page's tag rows lead with their group's name, set like the editor's group headings. */
+.row__group {
+  flex: 0 0 6.5rem;
+  align-self: center;
+  font-size: 0.58rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  /* not var(--dim): that resolves on :root, before the slate scheme applies, and reads dark on dark */
+  color: var(--md-default-fg-color--light);
+}
+
+/* On a phone the group name takes its own line, so wrapped chips stay under their group. */
+@media screen and (max-width: 30em) {
+  .row__group { flex-basis: 100%; }
+}
 
 .row__foot {
   display: flex;
@@ -619,6 +658,9 @@ a.chip:hover { border-color: var(--md-accent-fg-color); color: var(--md-accent-f
   color: var(--dim);
 }
 
+.ed__grp--capability b { color: var(--cap); }
+.ed__grp--domain b     { color: var(--dom); }
+
 .ed__tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
 
 /* Labels are toggle buttons, not checkboxes: bigger targets, and the selected
@@ -658,6 +700,8 @@ a.chip:hover { border-color: var(--md-accent-fg-color); color: var(--md-accent-f
   border: 1px solid var(--line);
   border-radius: 6px;
 }
+
+.ed__new--group { flex: 0 0 auto; }
 
 .ed__add, .ed__save, .ed__cancel {
   padding: 0.2rem 0.6rem;
@@ -739,7 +783,7 @@ a.chip:hover { border-color: var(--md-accent-fg-color); color: var(--md-accent-f
 }
 
 .tax__capname { flex: 0 0 11rem; font-weight: 700; }
-.tax__name { flex: 0 0 10rem; }
+.tax__name { flex: 0 0 13rem; }
 .tax__desc { flex: 1 1 16rem; min-width: 8rem; font-size: 0.65rem; color: var(--dim); }
 
 .tax__from {

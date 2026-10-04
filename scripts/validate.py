@@ -48,16 +48,18 @@ def check_registries(rep: Report) -> None:
     # A label rolls up the primitives of whichever benchmark motivated it, so a
     # skill only has to exist in *some* registry: warning per benchmark would
     # fire ten times the moment a second suite with its own vocabulary appears.
-    index = taskdb.capability_index()
     known = {s for b in taskdb.benchmarks().values() for s in b.skill_vocabulary}
     if known:
-        for lid, label in index.items():
-            unknown = [s for s in (label.get("from_skills") or []) if s not in known]
-            if unknown:
-                rep.warn(
-                    "state/taxonomy.yml",
-                    f"label {lid!r} maps skills no benchmark declares: {', '.join(unknown)}",
-                )
+        for where, kind, index in (("state/taxonomy.yml", "label", taskdb.capability_index()),
+                                   ("state/display_tags.yml", "tag", taskdb.tag_index())):
+            for lid, label in index.items():
+                unknown = [s for s in (label.get("from_skills") or []) if s not in known]
+                if unknown:
+                    rep.warn(where, f"{kind} {lid!r} maps skills no benchmark declares: {', '.join(unknown)}")
+    groups = [g.get("id") for g in taskdb.tag_vocabulary().get("capabilities") or []]
+    missing = [g for g in taskdb.TAG_GROUPS if g not in groups]
+    if missing:
+        rep.error("state/display_tags.yml", f"no group {', '.join(map(repr, missing))} (taskdb.TAG_GROUPS)")
     for bid, bench in taskdb.benchmarks().items():
         if not bench.skill_vocabulary:
             rep.warn(f"data/benchmarks/{bid}.yml", "no skill_vocabulary; `skills:` cannot be checked")
@@ -101,6 +103,18 @@ def check_task(task: taskdb.Task, bench: taskdb.Benchmark, rep: Report) -> None:
             rep.error(f"state/tasks/{bench.id}.yml", f"{task.task_id}: unknown label {cid!r}")
     if len(set(task.capabilities)) != len(task.capabilities):
         rep.error(f"state/tasks/{bench.id}.yml", f"{task.task_id}: duplicate labels")
+
+    # The display tags: untagged is unfinished work (a warning below); tagged is one tag or more from each group.
+    tags = taskdb.tag_index()
+    for tid in task.display_tags:
+        if tid not in tags:
+            rep.error(f"state/tasks/{bench.id}.yml", f"{task.task_id}: unknown display tag {tid!r}")
+    if len(set(task.display_tags)) != len(task.display_tags):
+        rep.error(f"state/tasks/{bench.id}.yml", f"{task.task_id}: duplicate display tags")
+    if task.display_tags and task.missing_tag_groups:
+        rep.error(f"state/tasks/{bench.id}.yml",
+                  f"{task.task_id}: no {' or '.join(task.missing_tag_groups)} display tag — a tagged task takes at "
+                  "least one from each group")
 
     if bench.skill_vocabulary:
         for skill in task.skills:

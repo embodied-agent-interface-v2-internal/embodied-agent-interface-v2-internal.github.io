@@ -6,6 +6,7 @@
 #   status      keep | drop | needs-review | pending
 #   difficulty  unrated | easy | medium | hard | extreme
 #   labels      tier-2 ids from state/taxonomy.yml
+#   display_tags  what the site shows: tag ids from state/display_tags.yml
 #   owner       bare GitHub handle
 #   note        free text; why you decided what you decided
 #
@@ -20,44 +21,92 @@ tossing:
   status: keep
   owner: williamzhangNU
   note: "Dynamic3D · challenges: dynamic"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 balance_beam:
   status: keep
   owner: williamzhangNU
   note: "Dynamic3D · challenges: tool, dynamic"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 sweep_into_drawer:
   status: keep
   owner: williamzhangNU
   note: "Dynamic3D · challenges: nonprehensile, tool, dynamic"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 scoop_pour:
   status: keep
   owner: williamzhangNU
   note: "Dynamic3D · challenges: nonprehensile, tool, dynamic"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 shelf:
   status: keep
   owner: williamzhangNU
   note: "Dynamic3D · challenges: spatial, geometric"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 constrained_cupboard:
   status: keep
   owner: williamzhangNU
   note: "screening (failed in limited mode) · challenges: geometric"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 sweep_simple:
   status: keep
   owner: williamzhangNU
   note: "screening (failed in limited mode) · challenges: nonprehensile, tool"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 sort_blocks:
   status: keep
   owner: williamzhangNU
   note: "screening (failed in limited mode) · challenges: spatial"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 obstruction_3d:
   status: keep
   owner: williamzhangNU
   note: "screening (failed in limited mode) · Kinematic3D · challenges: geometric"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 packing_3d:
   status: keep
   owner: williamzhangNU
   note: "screening (failed in limited mode) · Kinematic3D · challenges: geometric"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 dynamo:
   status: keep
   owner: williamzhangNU
   note: "fixture (Dynamic3D · challenges: nonprehensile)"
   excluded: "a fixture, not scored: it checks the pipeline end to end (drive into a floor square past three chairs)"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation

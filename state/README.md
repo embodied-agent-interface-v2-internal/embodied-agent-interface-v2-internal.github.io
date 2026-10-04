@@ -5,8 +5,9 @@ repository changes as you curate.
 
 | File | Holds |
 | --- | --- |
-| `taxonomy.yml` | The two-tier label vocabulary |
-| `tasks/<benchmark>.yml` | Per-task status, difficulty, labels, owner, notes, and `excluded` (below) |
+| `taxonomy.yml` | The two-tier label vocabulary: the detailed labels (`labels:`), not shown on task pages |
+| `display_tags.yml` | What the site shows: the display tags (`display_tags:`), two groups, Capability and Task Domain |
+| `tasks/<benchmark>.yml` | Per-task status, difficulty, labels, display tags, owner, notes, and `excluded` (below) |
 | `runs/<benchmark>.yml` | The benchmark's agent runs: batches, which tasks each run covers, why the others are out ([registering runs](../docs/contributing/registering-runs.md)) |
 
 ## Why it is separated

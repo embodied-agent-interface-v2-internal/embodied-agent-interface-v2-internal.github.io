@@ -24,6 +24,9 @@ DATA = ROOT / "data"
 STATUSES = ["keep", "drop", "needs-review", "pending"]
 DIFFICULTIES = ["easy", "medium", "hard", "extreme", "unrated"]
 
+# The display tags' groups (state/display_tags.yml), in display order: a tagged task carries at least one from each.
+TAG_GROUPS = ("capability", "domain")
+
 STATUS_HELP = {
     "keep": "Reviewed and staying in the suite.",
     "drop": "Reviewed and excluded. `status_reason` must say why.",
@@ -82,6 +85,28 @@ class Task:
             if parent and parent not in out:
                 out.append(parent)
         return out
+
+    @property
+    def display_tags(self) -> list[str]:
+        """Display tag ids (`display_tags:`), in vocabulary order: Capability tags before Task Domain ones."""
+        return ordered_tags(self.state.get("display_tags") or [])
+
+    @property
+    def tag_groups(self) -> list[tuple[dict, list[str]]]:
+        """(group, this task's display tags in it) for every group of state/display_tags.yml, in its order."""
+        index = tag_index()
+        return [(group, [tid for tid in self.display_tags if index.get(tid, {}).get("group_id") == group["id"]])
+                for group in tag_vocabulary().get("capabilities", [])]
+
+    @property
+    def missing_tag_groups(self) -> list[str]:
+        """Names of the groups (Capability, Task Domain) this task has no display tag from."""
+        return [group["name"] for group, tags in self.tag_groups if group["id"] in TAG_GROUPS and not tags]
+
+    @property
+    def tagged(self) -> bool:
+        """At least one display tag from each group."""
+        return bool(self.display_tags) and not self.missing_tag_groups
 
     @property
     def skills(self) -> list[str]:
@@ -151,8 +176,8 @@ class Task:
         out = []
         if not self.instruction:
             out.append("instruction missing upstream")
-        if not self.capabilities:
-            out.append("untagged capabilities")
+        if not self.tagged:
+            out.append("untagged")
         if self.difficulty == "unrated":
             out.append("unrated difficulty")
         if self.status == "pending":
@@ -203,35 +228,62 @@ def taxonomy() -> dict:
 @functools.lru_cache(maxsize=1)
 def capability_index() -> dict[str, dict]:
     """label id -> {name, description, group_id, group_name, from_skills, anchor}."""
+    return _index(taxonomy(), anchor_for)
+
+
+@functools.lru_cache(maxsize=1)
+def tag_vocabulary() -> dict:
+    """The display tags (state/display_tags.yml): the two groups the site shows, Capability then Task Domain."""
+    return statedb.load_display_tags()
+
+
+@functools.lru_cache(maxsize=1)
+def tag_index() -> dict[str, dict]:
+    """display tag id -> {name, description, group_id, group_name, from_skills, anchor}, in vocabulary order."""
+    return _index(tag_vocabulary(), tag_anchor)
+
+
+def _index(doc: dict, anchor) -> dict[str, dict]:
     out = {}
-    for cap in taxonomy().get("capabilities", []):
+    for cap in doc.get("capabilities", []):
         for sub in cap.get("subcapabilities") or []:
             out[sub["id"]] = {
                 **sub,
                 "group_id": cap["id"],
                 "group_name": cap["name"],
-                "anchor": anchor_for(sub["id"]),
+                "anchor": anchor(sub["id"]),
             }
     return out
 
 
 @functools.lru_cache(maxsize=1)
-def skill_to_labels() -> dict[str, list[str]]:
-    """BEHAVIOR skill primitive -> the labels that roll it up.
+def skill_to_tags() -> dict[str, list[str]]:
+    """BEHAVIOR skill primitive -> the display tags that roll it up.
 
-    Lets the editor pre-suggest labels from a task's annotated skills instead
+    Lets the editor pre-suggest tags from a task's annotated skills instead
     of making someone read the whole vocabulary every time.
     """
     out: dict[str, list[str]] = {}
-    for lid, label in capability_index().items():
-        for skill in label.get("from_skills") or []:
-            out.setdefault(skill, []).append(lid)
+    for tid, tag in tag_index().items():
+        for skill in tag.get("from_skills") or []:
+            out.setdefault(skill, []).append(tid)
     return out
+
+
+def ordered_tags(tag_ids: list[str]) -> list[str]:
+    """Display tag ids in vocabulary order (group, then tag); ids it does not know keep their order, last."""
+    rank = {tid: i for i, tid in enumerate(tag_index())}
+    return sorted(tag_ids, key=lambda tid: rank.get(tid, len(rank)))
 
 
 def anchor_for(capability_id: str) -> str:
     """Heading ids avoid dots so they stay usable as CSS/JS selectors."""
     return "cap-" + capability_id.replace(".", "-")
+
+
+def tag_anchor(tag_id: str) -> str:
+    """A display tag's heading id on the Label taxonomy page, apart from the labels' `cap-` ones."""
+    return "tag-" + tag_id.replace(".", "-")
 
 
 @functools.lru_cache(maxsize=1)
@@ -309,7 +361,7 @@ def reset_caches() -> None:
     state/ re-emits the previous values and the page never changes. Called at
     the start of each build from scripts/hooks.py.
     """
-    for fn in (taxonomy, capability_index, skill_to_labels,
+    for fn in (taxonomy, capability_index, tag_vocabulary, tag_index, skill_to_tags,
                demo_manifest, local_demos, benchmarks):
         fn.cache_clear()
     runsdb.reset_caches()

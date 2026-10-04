@@ -1,6 +1,6 @@
 """Read and write everything a human edits.
 
-All mutable curation lives under `state/` — the taxonomy and one file of
+All mutable curation lives under `state/` — the taxonomies and one file of
 per-task records per benchmark. Task pages keep only upstream metadata and
 prose, so a day of triage shows up as a diff of one file instead of a hundred.
 
@@ -20,12 +20,14 @@ ROOT = Path(__file__).resolve().parent.parent
 STATE = ROOT / "state"
 TASK_STATE = STATE / "tasks"
 TAXONOMY = STATE / "taxonomy.yml"
+DISPLAY_TAGS = STATE / "display_tags.yml"
 
 # Fields a human owns. Anything else in a record is preserved untouched.
 DEFAULTS = {
     "status": "pending",
     "difficulty": "unrated",
     "labels": [],
+    "display_tags": [],
     "owner": "",
     "note": "",
     "excluded": "",
@@ -40,6 +42,7 @@ HEADER = """\
 #   status      keep | drop | needs-review | pending
 #   difficulty  unrated | easy | medium | hard | extreme
 #   labels      tier-2 ids from state/taxonomy.yml
+#   display_tags  what the site shows: tag ids from state/display_tags.yml
 #   owner       bare GitHub handle
 #   note        free text; why you decided what you decided
 
@@ -131,24 +134,32 @@ def load_taxonomy() -> dict:
     return yaml.safe_load(TAXONOMY.read_text(encoding="utf-8")) or {}
 
 
-def save_taxonomy(doc: dict) -> None:
-    """Rewrite the taxonomy.
+def load_display_tags() -> dict:
+    return yaml.safe_load(DISPLAY_TAGS.read_text(encoding="utf-8")) or {}
+
+
+def save_display_tags(doc: dict) -> None:
+    """Rewrite the display tags (the Labels page's editor; state/taxonomy.yml is edited by hand).
 
     PyYAML drops the file's comments. Accepted deliberately: the alternative is
     refusing to let anyone edit the vocabulary from the page that shows it.
-    The provenance notes are re-emitted below so they survive a round trip.
     """
     header = (
-        "# Label taxonomy — two tiers, fully editable.\n"
+        "# Display tags — what the site shows on every task, in two groups.\n"
         "#\n"
-        "#   capabilities      tier 1: the broad property\n"
-        "#     subcapabilities tier 2: the specific label a task is tagged with\n"
+        "#   capabilities      tier 1: a group — Capability (shown first), then Task Domain\n"
+        "#     subcapabilities tier 2: a tag; a task lists its id under `display_tags:`\n"
         "#\n"
-        "# Sub-capabilities with `from_skills` roll up BEHAVIOR's official\n"
-        "# 31-primitive skill vocabulary; everything else is ours. A starting\n"
-        "# point to argue with, not a standard.\n"
+        "# A tagged task carries at least one tag from each group, and each group has its\n"
+        "# own colour (`.chip--<group id>` in docs/stylesheets/extra.css). Tags with\n"
+        "# `from_skills` roll up BEHAVIOR's official 31-primitive skill vocabulary, so\n"
+        "# the editor can suggest them.\n"
+        "#\n"
+        "# The detailed labels (`labels:`, state/taxonomy.yml) are kept as they are and\n"
+        "# not shown as chips; scripts/migrate_tag_groups.py derived the first display\n"
+        "# tags from them.\n"
         "#\n"
         "# Rewritten by the Labels page; comments beyond this header are lost.\n\n"
     )
     body = yaml.safe_dump(doc, sort_keys=False, allow_unicode=True, default_flow_style=False)
-    _atomic_write(TAXONOMY, header + body)
+    _atomic_write(DISPLAY_TAGS, header + body)

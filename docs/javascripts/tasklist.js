@@ -1,5 +1,5 @@
 /*
- * Task list: browse, filter, watch demos at speed, and edit labels in place.
+ * Task list: browse, filter, watch demos at speed, and edit tags in place.
  *
  * Resource budget is the design constraint. 100 rows × a <video> element each
  * is far too much for the browser, and it was also what made the first paint
@@ -23,7 +23,7 @@
 (function () {
   "use strict";
 
-  var FACETS = ["scene", "room", "status", "runstate", "difficulty", "capability"];
+  var FACETS = ["scene", "room", "status", "runstate", "difficulty", "capability", "domain"];
   var SPEED_KEY = "rb-speed";
   var CHUNK = 12;          // rows painted per batch
   var NEAR = "600px";      // how early to upgrade a poster to a video
@@ -73,6 +73,7 @@
     if (s.status && t.status !== s.status) return false;
     if (s.difficulty && t.difficulty !== s.difficulty) return false;
     if (s.capability && t.capIds.indexOf(s.capability) === -1) return false;
+    if (s.domain && t.capIds.indexOf(s.domain) === -1) return false;
     if (s.runstate && ((t.runTags || {})[RUN] || []).indexOf(s.runstate) === -1) return false;
     if (s.q) {
       var hay = (t.title + " " + t.instruction + " " + t.id).toLowerCase();
@@ -162,8 +163,13 @@
   }
 
   function rowHtml(t) {
+    // The display tags: Capability first, then Task Domain (the server sends them in that order); the group colours
+    // the chip.
     var labels = t.caps.length
-      ? t.caps.map(function (c) { return '<span class="chip">' + esc(c) + "</span>"; }).join("")
+      ? t.caps.map(function (c, i) {
+          var g = (t.capGroups || [])[i];
+          return '<span class="chip' + (g ? " chip--" + esc(g) : "") + '">' + esc(c) + "</span>";
+        }).join("")
       : '<span class="chip chip--gap">untagged</span>';
 
     var facts = [t.roomLabel || "—", t.scene, fmtDuration(t.duration)];
@@ -507,7 +513,7 @@
       [].forEach.call(rows.querySelectorAll("[data-edit]"), function (b) {
         b.classList.toggle("row__edit--live", editEnabled);
         b.title = editEnabled
-          ? "Edit status and labels"
+          ? "Edit status and tags"
           : wrongDoor
             ? "This is the preview port — click to open " + wrongDoor + ", where editing is on"
             : "Run `make edit` to enable editing";
@@ -528,7 +534,7 @@
       var t = byId[id];
       if (row.querySelector(".ed")) { row.querySelector(".ed").remove(); return; }
 
-      // Labels the task's annotated BEHAVIOR skills imply, so the common case
+      // Tags the task's annotated BEHAVIOR skills imply, so the common case
       // is confirming a suggestion rather than reading the whole vocabulary.
       var suggested = {};
       (t.skills || []).forEach(function (sk) {
@@ -544,8 +550,8 @@
             (suggested[c.id] ? '<i title="implied by this task\u2019s skills">\u00b7</i>' : "") +
             "</button>";
         }).join("");
-        return '<div class="ed__grp"><b>' + esc(grp.name) + "</b><div class=\"ed__tags\">" +
-          boxes + "</div></div>";
+        return '<div class="ed__grp ed__grp--' + esc(grp.id) + '" data-group="' + esc(grp.id) + '"><b>' +
+          esc(grp.name) + "</b><div class=\"ed__tags\">" + boxes + "</div></div>";
       }).join("");
 
       var el = document.createElement("div");
@@ -562,7 +568,11 @@
               (t.difficulty === d ? ' class="is-on"' : "") + ">" + d + "</button>";
           }).join("") + "</span></div>" +
         '<div class="ed__caps">' + groups + "</div>" +
-        '<div class="ed__row"><span>New label</span>' +
+        '<div class="ed__row"><span>New tag</span>' +
+          '<select class="ed__new ed__new--group" data-ed-group aria-label="Group of the new tag">' +
+            taxonomy.capabilities.map(function (grp) {
+              return '<option value="' + esc(grp.id) + '">' + esc(grp.name) + "</option>";
+            }).join("") + "</select>" +
           '<input class="ed__new" type="text" placeholder="e.g. Reflective surfaces" data-ed-new>' +
           '<button type="button" class="ed__add" data-ed-add>Add &amp; tag</button></div>' +
         '<div class="ed__foot"><span class="ed__msg" data-ed-msg></span>' +
@@ -603,12 +613,13 @@
         msg.textContent = "adding…";
         fetch(window.rbEdit.api + "/api/capability", {
           method: "POST", headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name: name })
+          body: JSON.stringify({ name: name, parent: el.querySelector("[data-ed-group]").value })
         }).then(function (r) { return r.json(); }).then(function (res) {
           if (!res.ok) { msg.textContent = res.error || "failed"; return; }
           taxonomy = res.taxonomy;
           msg.textContent = "added " + res.id + " — reload to see it everywhere";
-          var host = el.querySelector(".ed__grp:last-child .ed__tags");
+          var host = el.querySelector('.ed__grp[data-group="' + res.parent + '"] .ed__tags') ||
+            el.querySelector(".ed__grp:last-child .ed__tags");
           if (host) {
             var b = document.createElement("button");
             b.type = "button";
@@ -627,15 +638,16 @@
         fetch(window.rbEdit.api + "/api/task/" + encodeURIComponent(id), {
           method: "POST", headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            status: pick.status, difficulty: pick.difficulty, labels: chosen()
+            status: pick.status, difficulty: pick.difficulty, display_tags: chosen()
           })
         }).then(function (r) { return r.json(); }).then(function (res) {
           if (!res.ok) { msg.textContent = res.error || "failed"; return; }
           // Update in place so the row reflects the save without a rebuild.
           t.status = res.task.status;
           t.difficulty = res.task.difficulty;
-          t.capIds = res.task.labels;
-          t.caps = res.task.labelNames;
+          t.capIds = res.task.displayTags;
+          t.caps = res.task.tagNames;
+          t.capGroups = res.task.tagGroups;
           el.remove();
           var fresh = document.createElement("div");
           fresh.innerHTML = rowHtml(t);
@@ -712,8 +724,8 @@
 })();
 
 /* =========================================================================
- * Labels page: edit the two-tier taxonomy and write it back to
- * state/taxonomy.yml. Only active when the local edit daemon answers.
+ * Labels page: edit the display tags (two groups) and write them back to
+ * state/display_tags.yml. Only active when the local edit daemon answers.
  * ========================================================================= */
 
 (function () {
@@ -794,15 +806,15 @@
 
     function draw() {
       var html = '<div class="tax__bar"><b>Editing</b>' +
-        '<span class="tax__msg" data-msg>writes to <code>state/taxonomy.yml</code></span>' +
-        '<button type="button" class="tax__add" data-add-cap>+ Capability</button>' +
-        '<button type="button" class="tax__save" data-save>Save taxonomy</button></div>';
+        '<span class="tax__msg" data-msg>writes to <code>state/display_tags.yml</code></span>' +
+        '<button type="button" class="tax__add" data-add-cap>+ Group</button>' +
+        '<button type="button" class="tax__save" data-save>Save tags</button></div>';
 
       html += doc.capabilities.map(function (cap, ci) {
         var subs = (cap.subcapabilities || []).map(function (sub, si) {
           return '<div class="tax__sub">' +
             '<input class="tax__name" value="' + esc(sub.name) + '" data-ci="' + ci +
-              '" data-si="' + si + '" data-f="name" placeholder="Label name">' +
+              '" data-si="' + si + '" data-f="name" placeholder="Tag name">' +
             '<input class="tax__desc" value="' + esc(sub.description || "") + '" data-ci="' + ci +
               '" data-si="' + si + '" data-f="description" placeholder="One line: when does this apply?">' +
             (sub.from_skills && sub.from_skills.length
@@ -817,14 +829,14 @@
         return '<div class="tax__cap">' +
           '<div class="tax__caphead">' +
             '<input class="tax__capname" value="' + esc(cap.name) + '" data-ci="' + ci +
-              '" data-f="name" placeholder="Capability">' +
+              '" data-f="name" placeholder="Group">' +
             '<input class="tax__desc" value="' + esc(cap.description || "") + '" data-ci="' + ci +
-              '" data-f="description" placeholder="What does this capability cover?">' +
+              '" data-f="description" placeholder="What does this group cover?">' +
             '<button type="button" class="tax__del" data-del-cap data-ci="' + ci +
-              '" title="Remove capability">&times;</button>' +
+              '" title="Remove group">&times;</button>' +
           "</div>" + subs +
           '<button type="button" class="tax__addsub" data-add-sub data-ci="' + ci +
-            '">+ Sub-capability</button>' +
+            '">+ Tag</button>' +
           "</div>";
       }).join("");
 
@@ -862,14 +874,14 @@
         b.addEventListener("click", function () {
           var cap = doc.capabilities[+b.getAttribute("data-ci")];
           (cap.subcapabilities = cap.subcapabilities || [])
-            .push({ id: "", name: "New label", description: "" });
+            .push({ id: "", name: "New tag", description: "" });
           draw();
         });
       });
 
       var addCap = host.querySelector("[data-add-cap]");
       if (addCap) addCap.addEventListener("click", function () {
-        doc.capabilities.push({ id: "", name: "New capability", description: "", subcapabilities: [] });
+        doc.capabilities.push({ id: "", name: "New group", description: "", subcapabilities: [] });
         draw();
       });
 

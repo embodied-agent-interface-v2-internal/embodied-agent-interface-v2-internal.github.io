@@ -34,15 +34,44 @@ def write(path: str, text: str) -> None:
 # --------------------------------------------------------------------- capability reference
 
 
-def gen_capability_reference() -> None:
-    tax = taskdb.taxonomy()
-    caps = taskdb.capability_index()
-
-    usage: dict[str, list[taskdb.Task]] = {cid: [] for cid in caps}
+def _tasks_with(ids: dict, of) -> dict[str, list[taskdb.Task]]:
+    """id -> the tasks carrying it, for every id in `ids` (and any unknown one a task carries)."""
+    usage: dict[str, list[taskdb.Task]] = {cid: [] for cid in ids}
     for bench in taskdb.benchmarks().values():
         for task in bench.tasks:
-            for cid in task.capabilities:
+            for cid in of(task):
                 usage.setdefault(cid, []).append(task)
+    return usage
+
+
+def _entry(cap: dict, anchor: str, used: list[taskdb.Task], heading: str) -> list[str]:
+    out = [f"{heading} {cap['name']} {{ #{anchor} }}", "", f"`{cap['id']}`", "", cap["description"], ""]
+    if cap.get("flag"):
+        out += ["*A flag, not a rung: it can apply at any level of this ladder.*", ""]
+    if cap.get("evidence"):
+        out += [f"*Why it exists:* {cap['evidence'].strip()}", ""]
+    if cap.get("from_skills"):
+        out += [
+            "*Rolls up BEHAVIOR skills:* "
+            + ", ".join(f"`{x}`" for x in cap["from_skills"]),
+            "",
+        ]
+    if used:
+        links = ", ".join(
+            f"[{t.title}](../benchmarks/{t.benchmark}/tasks/{t.task_id}.md)"
+            for t in sorted(used, key=lambda t: t.title)
+        )
+        out += [f"*Tagged on {len(used)} task(s):* {links}", ""]
+    else:
+        out += ["*Not yet tagged on any task.*", ""]
+    return out
+
+
+def gen_capability_reference() -> None:
+    tags_doc = taskdb.tag_vocabulary()
+    tags = taskdb.tag_index()
+    tax = taskdb.taxonomy()
+    caps = taskdb.capability_index()
 
     out = [
         "---",
@@ -51,9 +80,42 @@ def gen_capability_reference() -> None:
         "",
         "# Label taxonomy",
         "",
+        "A task in `state/tasks/<benchmark>.yml` carries two sets of labels:",
+        "",
+        "- **Display tags** (`display_tags:`, vocabulary `state/display_tags.yml`), in",
+        "  two groups: **Capability**, what the agent has to be able to do, and **Task",
+        "  Domain**, what kind of task it is. They are what the site shows. Every task",
+        "  page and task list shows a task's Capability tags first, then its Task Domain",
+        "  tags, each group in its own colour, and the task list filters by both. A",
+        "  tagged task carries at least one tag from each group.",
+        "- **Detailed labels** (`labels:`, vocabulary `state/taxonomy.yml`): eight facets,",
+        "  each a question you ask about a task, [listed below the tags](#detailed-labels).",
+        "  They are kept as they are, for analysis and `scripts/suggest_labels.py`, and",
+        "  are not shown on task pages.",
+        "",
+        (f"**{len(tags)} display tags in {len(tags_doc.get('capabilities', []))} groups; "
+         f"{len(caps)} detailed labels across {len(tax['capabilities'])} facets.**"),
+        "",
+        "Edit the display tags in place below (with `make edit`), or in",
+        "`state/display_tags.yml`; edit the detailed labels in `state/taxonomy.yml`.",
+        "",
+        "<!-- gen:taxonomy-editor -->",
+        "",
+    ]
+
+    usage = _tasks_with(tags, lambda t: t.display_tags)
+    for group in tags_doc.get("capabilities", []):
+        out += [f"## {group['name']}", "", group.get("description", ""), ""]
+        for cap in group.get("subcapabilities") or []:
+            out += _entry(cap, taskdb.tag_anchor(cap["id"]), usage.get(cap["id"], []), "###")
+
+    out += [
+        "## Detailed labels { #detailed-labels }",
+        "",
         "The shared vocabulary for the `labels:` field in `state/tasks/<benchmark>.yml`,",
         "written to span benchmarks rather than describe one. Each **facet** below is a",
         "question you ask about a task; the **labels** under it are the answers.",
+        "`scripts/migrate_tag_groups.py` derived the first display tags from them.",
         "",
         "!!! warning \"Where these came from, and how settled they are\"",
         "",
@@ -77,45 +139,14 @@ def gen_capability_reference() -> None:
         "    in it would occupy, and they are here so that adding one does not mean",
         "    rewriting the vocabulary.",
         "",
-        "    Edit it in place below (with `make edit`), or in `state/taxonomy.yml`.",
-        "",
-        f"**{len(caps)} labels across {len(tax['capabilities'])} facets.**",
-        "",
-        "<!-- gen:taxonomy-editor -->",
-        "",
     ]
 
+    usage = _tasks_with(caps, lambda t: t.capabilities)
     for group in tax["capabilities"]:
         ladder = " — *ladder: take the highest rung that applies*" if group.get("graded") else ""
-        out += [f"## {group['name']}", "", group.get("description", "") + ladder, ""]
+        out += [f"### {group['name']}", "", group.get("description", "") + ladder, ""]
         for cap in group.get("subcapabilities") or []:
-            used = usage.get(cap["id"], [])
-            out += [
-                f"### {cap['name']} {{ #{taskdb.anchor_for(cap['id'])} }}",
-                "",
-                f"`{cap['id']}`",
-                "",
-                cap["description"],
-                "",
-            ]
-            if cap.get("flag"):
-                out += ["*A flag, not a rung: it can apply at any level of this ladder.*", ""]
-            if cap.get("evidence"):
-                out += [f"*Why it exists:* {cap['evidence'].strip()}", ""]
-            if cap.get("from_skills"):
-                out += [
-                    "*Rolls up BEHAVIOR skills:* "
-                    + ", ".join(f"`{x}`" for x in cap["from_skills"]),
-                    "",
-                ]
-            if used:
-                links = ", ".join(
-                    f"[{t.title}](../benchmarks/{t.benchmark}/tasks/{t.task_id}.md)"
-                    for t in sorted(used, key=lambda t: t.title)
-                )
-                out += [f"*Tagged on {len(used)} task(s):* {links}", ""]
-            else:
-                out += ["*Not yet tagged on any task.*", ""]
+            out += _entry(cap, taskdb.anchor_for(cap["id"]), usage.get(cap["id"], []), "####")
 
     write("reference/capabilities.md", "\n".join(out))
 
@@ -124,7 +155,6 @@ def gen_capability_reference() -> None:
 
 
 def gen_coverage(bench: taskdb.Benchmark) -> None:
-    caps = taskdb.capability_index()
     tasks = bench.included          # what the suite exercises: its tasks excluded from it (state `excluded:`) are not
 
     out = [
@@ -134,13 +164,13 @@ def gen_coverage(bench: taskdb.Benchmark) -> None:
         "",
         f"# {bench.name} capability coverage",
         "",
-        "What the suite actually exercises. Thin rows are the interesting ones: a",
-        "capability tagged on one or two tasks is either genuinely rare or a sign we",
-        "have not finished tagging.",
+        "What the suite actually exercises, by display tag. Thin rows are the",
+        "interesting ones: a tag on one or two tasks is either genuinely rare or a sign",
+        "we have not finished tagging.",
         "",
     ]
 
-    tagged = [t for t in tasks if t.capabilities]
+    tagged = [t for t in tasks if t.tagged]
     out += [
         f"**{len(tagged)} of {len(tasks)} tasks tagged.**"
         + (f" The {len(bench.excluded)} tasks excluded from the benchmark are not counted." if bench.excluded else ""),
@@ -150,22 +180,22 @@ def gen_coverage(bench: taskdb.Benchmark) -> None:
         out += [
             '!!! warning "Coverage is incomplete"',
             "",
-            f"    {len(tasks) - len(tagged)} task(s) carry no capability tags yet, so every",
+            f"    {len(tasks) - len(tagged)} task(s) lack a Capability or a Task Domain tag, so every",
             "    count below is a lower bound. Treat this page as a progress tracker until",
             "    the triage board shows zero untagged tasks.",
             "",
         ]
 
-    for family in taskdb.taxonomy()["capabilities"]:
-        hits1 = [t for t in tasks if family["id"] in t.tier1]
+    for family in taskdb.tag_vocabulary().get("capabilities", []):
+        hits1 = [t for t in tasks if any(group["id"] == family["id"] and ids for group, ids in t.tag_groups)]
         out += [f"## {family['name']}", "",
-                f"*{len(hits1)} task(s) touch this capability.*", "",
-                "| Sub-capability | Tasks | Coverage |", "| --- | --- | --- |"]
+                f"*{len(hits1)} task(s) carry a tag from this group.*", "",
+                "| Tag | Tasks | Coverage |", "| --- | --- | --- |"]
         for cap in family.get("subcapabilities") or []:
-            hits = [t for t in tasks if cap["id"] in t.capabilities]
+            hits = [t for t in tasks if cap["id"] in t.display_tags]
             bar = "▓" * round(20 * len(hits) / max(len(tasks), 1)) if hits else ""
             out.append(
-                f"| [{cap['name']}](../../reference/capabilities.md#{taskdb.anchor_for(cap['id'])}) "
+                f"| [{cap['name']}](../../reference/capabilities.md#{taskdb.tag_anchor(cap['id'])}) "
                 f"| {len(hits)} | `{bar:<20}` |"
             )
         out.append("")

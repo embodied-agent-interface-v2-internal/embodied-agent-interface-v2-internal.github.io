@@ -147,8 +147,9 @@ Run `make check` before pushing; CI runs the same thing.
 
 ```
 state/                             EVERYTHING A HUMAN EDITS LIVES HERE
-  taxonomy.yml                     two-tier label vocabulary
-  tasks/<bench>.yml                per-task status, difficulty, labels, owner
+  taxonomy.yml                     two-tier label vocabulary (the detailed labels)
+  display_tags.yml                 what the site shows: Capability and Task Domain tags
+  tasks/<bench>.yml                per-task status, difficulty, labels, display tags, owner
 data/
   benchmarks/<id>.yml              benchmark facts + its own annotation vocabulary
   benchmarks/<id>.tasks.*.json     importer caches, so a rebuild needs no upstream
@@ -175,11 +176,26 @@ scripts/
   statedb.py                       atomic read/write of state/
   editd.py                         localhost API that writes edits back to disk
   migrate_state.py                 one-off: frontmatter -> state/
+  migrate_tag_groups.py            one-off: detailed labels -> display tags
 ```
 
 ## The label taxonomy
 
-Two tiers, in `state/taxonomy.yml`:
+A task carries two sets of labels. The site shows its **display tags**
+(`display_tags:`, vocabulary `state/display_tags.yml`), in two groups:
+**Capability**, what the agent has to be able to do (Perception & Understanding,
+Planning & Reasoning, Control & Coordination, Feedback & Adaptation), and **Task
+Domain**, what kind of task it is (Manipulation, Locomotion & Stability,
+Navigation & Exploration, Mobile / Whole-body Manipulation, Interaction &
+Collaboration). A tagged task carries at least one of each (`make validate`
+enforces it); every page shows its Capability tags first, then its Task Domain
+tags, each group in its own colour, and the task list filters by both.
+`scripts/migrate_tag_groups.py` derived the first tags from the detailed labels
+below: it holds the table from each label to the tags, and the rule for each
+benchmark that has no labels.
+
+The **detailed labels** (`labels:`) are kept as they are, for analysis; task
+pages and lists do not show them. Two tiers, in `state/taxonomy.yml`:
 
 ```yaml
 capabilities:                 # tier 1 — the broad property
@@ -229,9 +245,9 @@ deliberate: HumanoidBench, MuJoCo Playground, DexToolBench, VLABench, RoboTwin
 and RoboCasa each reach them, and the point of a shared vocabulary is that adding
 one of those does not mean rewriting it. Still a **first draft, not a standard**.
 
-To revise it: edit `state/taxonomy.yml`, or use the **Label taxonomy** page in
-the site (`make edit`), which writes the same file. Deleting a label that tasks
-still use is refused, and the offending labels are named.
+To revise the detailed labels, edit `state/taxonomy.yml`. The **Label taxonomy**
+page in the site (`make edit`) edits the display tags in `state/display_tags.yml`;
+deleting a tag that tasks still use is refused, and the offending tags are named.
 
 ## Four rules
 

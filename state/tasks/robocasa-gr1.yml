@@ -6,6 +6,7 @@
 #   status      keep | drop | needs-review | pending
 #   difficulty  unrated | easy | medium | hard | extreme
 #   labels      tier-2 ids from state/taxonomy.yml
+#   display_tags  what the site shows: tag ids from state/display_tags.yml
 #   owner       bare GitHub handle
 #   note        free text; why you decided what you decided
 #
@@ -18,95 +19,173 @@ bottle_to_cabinet_close:
   status: keep
   owner: changhechen
   note: "Pick and place, then close"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 can_to_drawer_close:
   status: keep
   owner: changhechen
   note: "Pick and place, then close"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 cup_to_drawer_close:
   status: keep
   owner: changhechen
   note: "Pick and place, then close"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 cuttingboard_to_basket:
   status: keep
   owner: changhechen
   note: "Pick and place (novel objects)"
+  display_tags:
+  - control-coordination
+  - manipulation
 cuttingboard_to_cardboardbox:
   status: keep
   owner: changhechen
   note: "Pick and place (novel objects)"
+  display_tags:
+  - control-coordination
+  - manipulation
 cuttingboard_to_pan:
   status: keep
   owner: changhechen
   note: "Pick and place (novel objects)"
+  display_tags:
+  - control-coordination
+  - manipulation
 cuttingboard_to_pot:
   status: keep
   owner: changhechen
   note: "Pick and place (novel objects)"
+  display_tags:
+  - control-coordination
+  - manipulation
 cuttingboard_to_tieredbasket:
   status: keep
   owner: changhechen
   note: "Pick and place (novel objects)"
+  display_tags:
+  - control-coordination
+  - manipulation
 milk_to_microwave_close:
   status: keep
   owner: changhechen
   note: "Pick and place, then close"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 placemat_to_basket:
   status: keep
   owner: changhechen
   note: "Pick and place (novel objects)"
+  display_tags:
+  - control-coordination
+  - manipulation
 placemat_to_bowl:
   status: keep
   owner: changhechen
   note: "Pick and place (novel objects)"
+  display_tags:
+  - control-coordination
+  - manipulation
 placemat_to_plate:
   status: keep
   owner: changhechen
   note: "Pick and place (novel objects)"
+  display_tags:
+  - control-coordination
+  - manipulation
 placemat_to_tieredshelf:
   status: keep
   owner: changhechen
   note: "Pick and place (novel objects)"
+  display_tags:
+  - control-coordination
+  - manipulation
 plate_to_bowl:
   status: keep
   owner: changhechen
   note: "Pick and place (novel objects)"
+  display_tags:
+  - control-coordination
+  - manipulation
 plate_to_cardboardbox:
   status: keep
   owner: changhechen
   note: "Pick and place (novel objects)"
+  display_tags:
+  - control-coordination
+  - manipulation
 plate_to_pan:
   status: keep
   owner: changhechen
   note: "Pick and place (novel objects)"
+  display_tags:
+  - control-coordination
+  - manipulation
 plate_to_plate:
   status: keep
   owner: changhechen
   note: "Pick and place (novel objects)"
+  display_tags:
+  - control-coordination
+  - manipulation
 potato_to_microwave_close:
   status: keep
   owner: changhechen
   note: "Pick and place, then close"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 tray_to_cardboardbox:
   status: keep
   owner: changhechen
   note: "Pick and place (novel objects)"
+  display_tags:
+  - control-coordination
+  - manipulation
 tray_to_plate:
   status: keep
   owner: changhechen
   note: "Pick and place (novel objects)"
+  display_tags:
+  - control-coordination
+  - manipulation
 tray_to_pot:
   status: keep
   owner: changhechen
   note: "Pick and place (novel objects)"
+  display_tags:
+  - control-coordination
+  - manipulation
 tray_to_tieredbasket:
   status: keep
   owner: changhechen
   note: "Pick and place (novel objects)"
+  display_tags:
+  - control-coordination
+  - manipulation
 tray_to_tieredshelf:
   status: keep
   owner: changhechen
   note: "Pick and place (novel objects)"
+  display_tags:
+  - control-coordination
+  - manipulation
 wine_to_cabinet_close:
   status: keep
   owner: changhechen
   note: "Pick and place, then close"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation

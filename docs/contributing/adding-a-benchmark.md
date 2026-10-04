@@ -155,7 +155,9 @@ outside the kitchen" possible at all. If your benchmark needs a capability that
 does not exist, add it to `state/taxonomy.yml` for everyone — with the task
 evidence that motivated it, in the description. RoboWits and RoboLab added five
 that way (`tool-use`, `stack-balance`, `deformable`, `spatial-reference`,
-`attribute-reference`), each naming the tasks that forced it.
+`attribute-reference`), each naming the tasks that forced it. And give every task
+its display tags (`display_tags:`), at least one Capability and one Task Domain
+tag from `state/display_tags.yml`: they are what the site shows.
 
 `skill_vocabulary` in the registry is the other half: it is the benchmark's *own*
 annotation vocabulary, and the only thing `skills:` on a task page is validated

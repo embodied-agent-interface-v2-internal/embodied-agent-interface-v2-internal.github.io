@@ -21,14 +21,15 @@ import runview
 import sitemode
 import taskdb
 
+# `capability` and `domain` are the display tags' two groups (state/display_tags.yml), one filter each.
 FACETS = [("status", "Status"), ("runstate", "Run state"), ("scene", "Scene"), ("room", "Room"),
-          ("capability", "Capability"), ("difficulty", "Difficulty")]
+          ("capability", "Capability"), ("domain", "Task Domain"), ("difficulty", "Difficulty")]
 
 SPEEDS = ["1", "2", "3", "4"]
 
 
 def _payload(bench: taskdb.Benchmark, asset_root: str) -> list[dict]:
-    caps = taskdb.capability_index()
+    tags = taskdb.tag_index()
     manifest = taskdb.demo_manifest(bench.id)
     media_base = f"{asset_root}{taskdb.demo_dir(bench.id)}"
     scene_base = f"{asset_root}{taskdb.scene_dir(bench.id)}"
@@ -76,8 +77,11 @@ def _payload(bench: taskdb.Benchmark, asset_root: str) -> list[dict]:
             # why the task is not part of the final benchmark (state `excluded:`), "" if it is: greyed, last
             "excluded": t.excluded,
             "owner": t.owner,
-            "caps": [caps[c]["name"] if c in caps else c for c in t.capabilities],
-            "capIds": t.capabilities,
+            # the display tags (`display_tags:`), Capability first, then Task Domain; the detailed labels are not sent
+            "caps": [tags[c]["name"] if c in tags else c for c in t.display_tags],
+            "capIds": t.display_tags,
+            # each tag's group, which colours its chip
+            "capGroups": [tags[c]["group_id"] if c in tags else "" for c in t.display_tags],
             "skills": t.skills,
             # One entry per run of the benchmark; the page shows the one picked in its Run menu (the default run
             # first). "" = the order without any run: the review decision.
@@ -135,7 +139,7 @@ def _runs_meta(bench: taskdb.Benchmark) -> list[dict]:
 
 def render(bench: taskdb.Benchmark, asset_root: str = "") -> str:
     tasks = bench.tasks
-    caps = taskdb.capability_index()
+    tags = taskdb.tag_index()
     payload = _payload(bench, asset_root)
     runs = _runs_meta(bench)
 
@@ -144,12 +148,13 @@ def render(bench: taskdb.Benchmark, asset_root: str = "") -> str:
         "room": sorted({r for t in tasks for r in t.rooms}),
         "status": [s for s in taskdb.STATUSES if any(t.status == s for t in tasks)],
         "difficulty": [d for d in taskdb.DIFFICULTIES if any(t.difficulty == d for t in tasks)],
-        "capability": sorted({c for t in tasks for c in t.capabilities},
-                             key=lambda c: caps[c]["name"] if c in caps else c),
+        **{group: taskdb.ordered_tags({c for t in tasks for c in t.display_tags
+                                        if tags.get(c, {}).get("group_id") == group})
+           for group in taskdb.TAG_GROUPS},
         # the default run's states; the page swaps in another run's when its Run menu changes
         "runstate": [v for v, _ in (runs[0]["values"] if runs else [])],
     }
-    labels = {c: (caps[c]["name"] if c in caps else c) for c in values["capability"]}
+    labels = {c: tags[c]["name"] for group in taskdb.TAG_GROUPS for c in values[group]}
     labels.update({v: runview.STATE_LABEL.get(v) or runview.OUT_LABEL[v] for v in values["runstate"]})
 
     bar = ['<span class="tl__searchwrap">'

@@ -6,6 +6,7 @@
 #   status      keep | drop | needs-review | pending
 #   difficulty  unrated | easy | medium | hard | extreme
 #   labels      tier-2 ids from state/taxonomy.yml
+#   display_tags  what the site shows: tag ids from state/display_tags.yml
 #   owner       bare GitHub handle
 #   note        free text; why you decided what you decided
 #
@@ -18,115 +19,208 @@ arrange_vegetables:
   status: keep
   owner: changhechen
   note: "Multi-stage · chopping food"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 close_double_door:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen doors"
+  display_tags:
+  - control-coordination
+  - manipulation
 close_drawer:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen drawer"
+  display_tags:
+  - control-coordination
+  - manipulation
 close_single_door:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen doors"
+  display_tags:
+  - control-coordination
+  - manipulation
 coffee_press_button:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen coffee"
+  display_tags:
+  - control-coordination
+  - manipulation
 coffee_serve_mug:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen coffee"
+  display_tags:
+  - control-coordination
+  - manipulation
 coffee_setup_mug:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen coffee"
+  display_tags:
+  - control-coordination
+  - manipulation
 microwave_thawing:
   status: keep
   owner: changhechen
   note: "Multi-stage · defrosting food"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 open_double_door:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen doors"
+  display_tags:
+  - control-coordination
+  - manipulation
 open_drawer:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen drawer"
+  display_tags:
+  - control-coordination
+  - manipulation
 open_single_door:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen doors"
+  display_tags:
+  - control-coordination
+  - manipulation
 pnp_cab_to_counter:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen pnp"
+  display_tags:
+  - control-coordination
+  - manipulation
 pnp_counter_to_cab:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen pnp"
+  display_tags:
+  - control-coordination
+  - manipulation
 pnp_counter_to_microwave:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen pnp"
+  display_tags:
+  - control-coordination
+  - manipulation
 pnp_counter_to_sink:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen pnp"
+  display_tags:
+  - control-coordination
+  - manipulation
 pnp_counter_to_stove:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen pnp"
+  display_tags:
+  - control-coordination
+  - manipulation
 pnp_microwave_to_counter:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen pnp"
+  display_tags:
+  - control-coordination
+  - manipulation
 pnp_sink_to_counter:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen pnp"
+  display_tags:
+  - control-coordination
+  - manipulation
 pnp_stove_to_counter:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen pnp"
+  display_tags:
+  - control-coordination
+  - manipulation
 pre_soak_pan:
   status: keep
   owner: changhechen
   note: "Multi-stage · washing dishes"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 prepare_coffee:
   status: keep
   owner: changhechen
   note: "Multi-stage · brewing"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 restock_pantry:
   status: keep
   owner: changhechen
   note: "Multi-stage · restocking supplies"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 turn_off_microwave:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen microwave"
+  display_tags:
+  - control-coordination
+  - manipulation
 turn_off_sink_faucet:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen sink"
+  display_tags:
+  - control-coordination
+  - manipulation
 turn_off_stove:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen stove"
+  display_tags:
+  - control-coordination
+  - manipulation
 turn_on_microwave:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen microwave"
+  display_tags:
+  - control-coordination
+  - manipulation
 turn_on_sink_faucet:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen sink"
+  display_tags:
+  - control-coordination
+  - manipulation
 turn_on_stove:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen stove"
+  display_tags:
+  - control-coordination
+  - manipulation
 turn_sink_spout:
   status: keep
   owner: changhechen
   note: "Single-stage · kitchen sink"
+  display_tags:
+  - control-coordination
+  - manipulation

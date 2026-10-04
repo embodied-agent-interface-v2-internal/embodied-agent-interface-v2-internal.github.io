@@ -48,8 +48,12 @@
 # scripts/task_skill_digest.py prints what all 250 tasks we hold actually
 # demand — that digest is what this vocabulary was fitted to.
 #
-# A starting point to argue with, not a standard. Edit it here, or from the
-# Labels page in the site (which writes back to this file).
+# These are the detailed labels (`labels:` in state/tasks/). Task pages and task
+# lists do not show them; they show the display tags of state/display_tags.yml,
+# which scripts/migrate_tag_groups.py derived from these.
+#
+# A starting point to argue with, not a standard. Edit it here, by hand (the
+# Labels page in the site edits the display tags).
 
 version: 7
 
