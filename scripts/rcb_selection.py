@@ -101,9 +101,11 @@ _Not yet reviewed._
 
 
 def clean(s: str) -> str:
-    """Markdown to one line of plain text: links keep their text, code and emphasis marks go."""
+    """Markdown to one line of plain text: links keep their text, code and emphasis marks go (a `__` inside a word, as
+    in a Harbor trial name, is not emphasis and stays)."""
     s = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", s)
-    s = re.sub(r"`([^`]*)`", r"\1", s).replace("**", "").replace("__", "")
+    s = re.sub(r"`([^`]*)`", r"\1", s).replace("**", "")
+    s = re.sub(r"(?<![A-Za-z0-9])__|__(?![A-Za-z0-9])", "", s)
     return re.sub(r"\s+", " ", s).strip()
 
 

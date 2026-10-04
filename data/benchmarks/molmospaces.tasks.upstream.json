@@ -1,5 +1,5 @@
 {
-  "commit": "e46be110c",
+  "commit": "030f55607",
   "tasks": [
     {
       "id": "close",
@@ -11,7 +11,7 @@
         "the target's joint is open at most 15% of its range (it starts 50% open)",
         "judged at the end of the episode: the trajectory's last row (privileged), `done` (standard) or 455 control steps (the benchmark's 30 s horizon), whichever comes first"
       ],
-      "oracle": "none — upstream record: learned policies are evaluated on the MolmoSpaces benchmark episodes in arXiv 2602.11337 (MolmoSpaces) and arXiv 2603.16861 (MolmoBot); no reference solution is shipped",
+      "oracle": "none — no reference solution (MolmoSpaces' planners and grasp files are not shipped); positive example graded 1 by the separate verifier: molmospaces-close-i00-privileged__U2cQyVE (run codex-gpt6_luna-medium, batch molmospaces-luna-1003; https://embodied-agent-interface-v2-internal.github.io/runs/molmospaces/codex-gpt6_luna-medium-openrouter/close/unlimited/); human review in PR #47",
       "base_image": "ghcr.io/mll-lab-nu/eai-molmospaces:0.2.0",
       "source": "",
       "env_source": "",
@@ -34,7 +34,7 @@
         "for the one of the 2 target objects nearest to the robot base (horizontal distance), the horizontal distance from the base to its position (the origin of its body, not its nearest surface) is less than 1.5 m and at least one of its pixels shows in head_camera",
         "judged at the end of the episode: the trajectory's last row (privileged), `done` (standard) or 500 control steps (the benchmark's 100 s horizon), whichever comes first"
       ],
-      "oracle": "none — upstream record: learned policies are evaluated on the MolmoSpaces benchmark episodes in arXiv 2602.11337 (MolmoSpaces) and arXiv 2603.16861 (MolmoBot); no reference solution is shipped",
+      "oracle": "none — no reference solution (MolmoSpaces' planners and grasp files are not shipped); positive example graded 1 by the separate verifier: molmospaces-navigate-to-i01-priv__Nxshh8t (run codex-gpt6_luna-medium, batch molmospaces-luna-1003; https://embodied-agent-interface-v2-internal.github.io/runs/molmospaces/codex-gpt6_luna-medium-openrouter/navigate_to/unlimited/); human review in PR #47",
       "base_image": "ghcr.io/mll-lab-nu/eai-molmospaces:0.2.0",
       "source": "",
       "env_source": "",
@@ -57,7 +57,7 @@
         "the door's hinge is open at least 67% of its 90-degree range",
         "judged at the end of the episode: the trajectory's last row (privileged), `done` (standard) or 400 control steps (the benchmark's 40 s horizon), whichever comes first"
       ],
-      "oracle": "none — upstream record: learned policies are evaluated on the MolmoSpaces benchmark episodes in arXiv 2602.11337 (MolmoSpaces) and arXiv 2603.16861 (MolmoBot); no reference solution is shipped",
+      "oracle": "none — no reference solution (MolmoSpaces' planners and grasp files are not shipped); positive example graded 1 by the separate verifier: molmospaces-open-door-i01-privil__7zEbSdU (run codex-gpt6_luna-medium, batch molmospaces-luna-rby1-r2c of 2026-10-03: an earlier round on the same episode, kept with the run's records, not on the results site); human review in PR #47",
       "base_image": "ghcr.io/mll-lab-nu/eai-molmospaces:0.2.0",
       "source": "",
       "env_source": "",
@@ -80,7 +80,7 @@
         "some joint of any drawer in the room is open at least 15% of its range (all start closed)",
         "judged at the end of the episode: the trajectory's last row (privileged), `done` (standard) or 455 control steps (the benchmark's 30 s horizon), whichever comes first"
       ],
-      "oracle": "none — upstream record: learned policies are evaluated on the MolmoSpaces benchmark episodes in arXiv 2602.11337 (MolmoSpaces) and arXiv 2603.16861 (MolmoBot); no reference solution is shipped",
+      "oracle": "none — no reference solution (MolmoSpaces' planners and grasp files are not shipped); positive example graded 1 by the separate verifier: molmospaces-open-i00-privileged__zxfmJNN (run codex-gpt6_luna-medium, batch molmospaces-luna-1003; https://embodied-agent-interface-v2-internal.github.io/runs/molmospaces/codex-gpt6_luna-medium-openrouter/open/unlimited/); human review in PR #47",
       "base_image": "ghcr.io/mll-lab-nu/eai-molmospaces:0.2.0",
       "source": "",
       "env_source": "",
@@ -103,7 +103,7 @@
         "the rule of pick-and-place, for the receptacle of the named colour (the other, differently coloured receptacle does not count): the robot does not touch the object; that receptacle supports the object (at least 50% of its weight through contact, or upstream's on-receptacle test, or within 5 mm and 10 degrees, relative to the receptacle, of a pose in which it was supported at an earlier control step); and that receptacle has moved at most 15 cm and tilted at most 60 degrees",
         "judged at the end of the episode: the trajectory's last row (privileged), `done` (standard) or 606 control steps (the benchmark's 40 s horizon), whichever comes first"
       ],
-      "oracle": "none — upstream record: learned policies are evaluated on the MolmoSpaces benchmark episodes in arXiv 2602.11337 (MolmoSpaces) and arXiv 2603.16861 (MolmoBot); no reference solution is shipped",
+      "oracle": "none — no reference solution (MolmoSpaces' planners and grasp files are not shipped); positive example graded 1 by the separate verifier: molmospaces-pick-and-place-color__hMCxv9C (run codex-gpt6_luna-medium, batch molmospaces-luna-1003; https://embodied-agent-interface-v2-internal.github.io/runs/molmospaces/codex-gpt6_luna-medium-openrouter/pick_and_place_color/unlimited/); human review in PR #47",
       "base_image": "ghcr.io/mll-lab-nu/eai-molmospaces:0.2.0",
       "source": "",
       "env_source": "",
@@ -126,7 +126,7 @@
         "the robot does not touch the object; the receptacle supports the object (it carries at least 50% of the object's weight through contact, or the object lies on it by upstream's on-receptacle test, or the object is within 5 mm and 10 degrees, relative to the receptacle, of a pose in which it was supported at an earlier control step); and the receptacle has moved at most 15 cm and tilted at most 60 degrees from its start pose",
         "judged at the end of the episode: the trajectory's last row (privileged), `done` (standard) or 606 control steps (the benchmark's 40 s horizon), whichever comes first"
       ],
-      "oracle": "none — upstream record: learned policies are evaluated on the MolmoSpaces benchmark episodes in arXiv 2602.11337 (MolmoSpaces) and arXiv 2603.16861 (MolmoBot); no reference solution is shipped",
+      "oracle": "none — no reference solution (MolmoSpaces' planners and grasp files are not shipped); positive example graded 1 by the separate verifier: molmospaces-pick-and-place-i01-p__ywMYWxy (run codex-gpt6_luna-medium, batch molmospaces-luna-1003; https://embodied-agent-interface-v2-internal.github.io/runs/molmospaces/codex-gpt6_luna-medium-openrouter/pick_and_place/unlimited/); human review in PR #47",
       "base_image": "ghcr.io/mll-lab-nu/eai-molmospaces:0.2.0",
       "source": "",
       "env_source": "",
@@ -149,7 +149,7 @@
         "the horizontal gap between the two objects' axis-aligned bounding boxes is between 0 and 6 cm; both rest on the same supporting body; and the reference object has moved at most 15 cm and rotated at most 60 degrees from its start pose",
         "judged at the end of the episode: the trajectory's last row (privileged), `done` (standard) or 455 control steps (the benchmark's 30 s horizon), whichever comes first"
       ],
-      "oracle": "none — upstream record: learned policies are evaluated on the MolmoSpaces benchmark episodes in arXiv 2602.11337 (MolmoSpaces) and arXiv 2603.16861 (MolmoBot); no reference solution is shipped",
+      "oracle": "none — no reference solution (MolmoSpaces' planners and grasp files are not shipped); positive example graded 1 by the separate verifier: molmospaces-pick-and-place-next__3W4hmcz (run codex-gpt6_luna-medium, batch molmospaces-luna-1003; https://embodied-agent-interface-v2-internal.github.io/runs/molmospaces/codex-gpt6_luna-medium-openrouter/pick_and_place_next_to/unlimited/); human review in PR #47",
       "base_image": "ghcr.io/mll-lab-nu/eai-molmospaces:0.2.0",
       "source": "",
       "env_source": "",
@@ -172,7 +172,7 @@
         "the object touches the robot and nothing else, and it is at least 1 cm higher than where it started",
         "judged at the end of the episode: the trajectory's last row (privileged), `done` (standard) or 303 control steps (the benchmark's 20 s horizon), whichever comes first"
       ],
-      "oracle": "none — upstream record: learned policies are evaluated on the MolmoSpaces benchmark episodes in arXiv 2602.11337 (MolmoSpaces) and arXiv 2603.16861 (MolmoBot); no reference solution is shipped",
+      "oracle": "none — no reference solution (MolmoSpaces' planners and grasp files are not shipped); positive example graded 1 by the separate verifier: molmospaces-pick-i02-privileged__wN67cFo (run codex-gpt6_luna-medium, batch molmospaces-luna-1003; https://embodied-agent-interface-v2-internal.github.io/runs/molmospaces/codex-gpt6_luna-medium-openrouter/pick/unlimited/); human review in PR #47",
       "base_image": "ghcr.io/mll-lab-nu/eai-molmospaces:0.2.0",
       "source": "",
       "env_source": "",
