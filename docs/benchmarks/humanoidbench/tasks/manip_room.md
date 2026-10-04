@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 7d6a7a44
-  synced: '2026-09-30'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 841996303
+  synced: '2026-10-04'
   instruction: 'Six loose objects — a chair, a trophy, a pair of headphones, two packages and a snow globe — are scattered around the room (the table and the bookshelf are fixed). Tidy up: gather them together, so they end up close to one another rather than spread out.'
   env_id: h1hand-room-v0
   robot: Unitree H1 with two Shadow hands (61 actuators)
@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Blocked on walking: the robot stands the whole episode in both modes but never reaches an object. (@williamzhangNU)
+Blocked on walking: the robot stands the whole episode in unlimited mode but never reaches an object; without resets GPT-6 Luna's limited episode (2026-10-04) ended in a fall at step 123. (@williamzhangNU)

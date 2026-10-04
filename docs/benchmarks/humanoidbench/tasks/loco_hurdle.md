@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 7d6a7a44
-  synced: '2026-09-30'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 841996303
+  synced: '2026-10-04'
   instruction: Run the robot forward down the walled track and over the hurdles, without touching the side or back walls and without falling.
   env_id: h1-hurdle-v0
   robot: Unitree H1 (19 actuators)
@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Speed is now the gap: in unlimited mode the robot runs the whole episode without falling or touching a wall, but at about 1.4 m/s; limited mode never gets past 1.92 m. (@williamzhangNU)
+Speed is the gap: GPT-6.1 Sol's unlimited run covers the whole episode without falling or touching a wall but at about 1.4 m/s, and GPT-6 Luna's (2026-10-04) stops short of the first hurdle; limited mode never gets past 1.92 m, and without resets Luna's episode ended in a fall at step 49. (@williamzhangNU)

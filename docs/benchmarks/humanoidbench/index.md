@@ -4,8 +4,9 @@ title: HumanoidBench
 
 # HumanoidBench tasks
 
-A simulated Unitree H1 humanoid, bare or with two Shadow hands: 23 locomotion and whole-body
-manipulation tasks we keep of HumanoidBench's 32, plus one fixture (greyed at the bottom).
+A simulated Unitree H1 humanoid, bare or with two Shadow hands: the 9 hardest locomotion and
+whole-body manipulation tasks we keep of HumanoidBench's 32 (since 2026-10-04), and, greyed at the
+bottom, the 14 others we kept until then and one fixture.
 HumanoidBench publishes no per-task demonstration, so every row shows the starting scene.
 
 <!-- gen:benchmark-stats benchmark=humanoidbench -->

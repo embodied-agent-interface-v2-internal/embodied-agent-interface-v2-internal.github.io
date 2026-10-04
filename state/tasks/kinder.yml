@@ -10,20 +10,25 @@
 #   note        free text; why you decided what you decided
 #
 # Task id = the family with underscores (our task directory kinder-<family>-i00). The 11 tasks are the ones
-# robot_coding_bench's scripts/kinder/subset.toml keeps of KinDER's 31 families, one variant each: every one `keep`,
+# robot_coding_bench's scripts/kinder/subset.toml kept of KinDER's 31 families, one variant each: every one `keep`,
 # its note why it was kept (the six Dynamic3D tasks whose goal a camera can see or a sentence can name, or the
 # screening of every other family, which GPT-6 Luna failed in limited mode) and the KinDER paper's challenges for its
 # family (scripts/import_kinder_tasks.py adds a NEW task with `status: keep` and never changes an existing entry).
-# dynamo is a fixture, not scored: `excluded`. Owner: williamzhangNU, who runs KinDER here. No difficulty or labels yet.
+# dynamo is a fixture, not scored: `excluded`. Since 2026-10-04 the benchmark is the 4 whose unlimited run took GPT-6
+# Luna its whole hour (sweep_into_drawer, scoop_pour, constrained_cupboard, sweep_simple); the other 6 are `excluded`
+# with the reason (docs/benchmarks/kinder.md in robot_coding_bench). Owner: williamzhangNU, who runs KinDER here. No
+# difficulty or labels yet.
 
 tossing:
   status: keep
   owner: williamzhangNU
   note: "Dynamic3D · challenges: dynamic"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in unlimited mode in 37 minutes"
 balance_beam:
   status: keep
   owner: williamzhangNU
   note: "Dynamic3D · challenges: tool, dynamic"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in unlimited mode in 5 minutes"
 sweep_into_drawer:
   status: keep
   owner: williamzhangNU
@@ -36,6 +41,7 @@ shelf:
   status: keep
   owner: williamzhangNU
   note: "Dynamic3D · challenges: spatial, geometric"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in unlimited mode in 21 minutes"
 constrained_cupboard:
   status: keep
   owner: williamzhangNU
@@ -48,14 +54,17 @@ sort_blocks:
   status: keep
   owner: williamzhangNU
   note: "screening (failed in limited mode) · challenges: spatial"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in both modes"
 obstruction_3d:
   status: keep
   owner: williamzhangNU
   note: "screening (failed in limited mode) · Kinematic3D · challenges: geometric"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in unlimited mode in 11 minutes"
 packing_3d:
   status: keep
   owner: williamzhangNU
   note: "screening (failed in limited mode) · Kinematic3D · challenges: geometric"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in both modes"
 dynamo:
   status: keep
   owner: williamzhangNU

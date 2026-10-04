@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 7d6a7a44
-  synced: '2026-09-30'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 841996303
+  synced: '2026-10-04'
   instruction: Walk to the package, pick it up, carry it to the destination marker and set it down there, standing upright.
   env_id: h1-package-v0
   robot: Unitree H1 (19 actuators)
@@ -51,4 +51,4 @@ _No demo._
 
 ## Discussion
 
-Blocked on lifting: unlimited mode drags the box into the goal radius at the end without lifting it, and limited mode's lifts slip. (@williamzhangNU)
+Blocked on lifting: the unlimited runs move the box toward the goal without lifting it (GPT-6 Luna's lunge, 2026-10-04, pushes it to 8 cm from the marker: 870 of 1500), and limited mode's lifts slip. (@williamzhangNU)

@@ -5,8 +5,8 @@ benchmark: kinder
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 7d6a7a44
-  synced: '2026-09-30'
+  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ ae0d92a50
+  synced: '2026-10-04'
   instruction: Get the ten small dark-red cubes scattered on the floor into the translucent grey box marked on the floor at the end of the kitchen island (the free-standing white-topped counter) nearest the robot; a wiper stands on the floor next to the cubes. The task succeeds the moment all ten cubes' centres are inside that box.
   env_id: kinder/SweepSimple3D-o10-sweep_the_blocks_to_the_left_side_of_the_kitchen_island-v0
   robot: 'TidyBot++: holonomic base, Kinova Gen3 7-DoF arm, Robotiq 2F-85 gripper'
@@ -49,4 +49,4 @@ _No demo._
 
 ## Discussion
 
-Both modes pass by carrying each cube to the box rather than sweeping it, after the wiper rode over the cubes in unlimited mode. (@williamzhangNU)
+Passed by carrying each cube to the box rather than sweeping it: GPT-6.1 Sol in both modes, after the wiper rode over the cubes in unlimited mode, and GPT-6 Luna (2026-10-04) in unlimited mode, after moving the wiper out of the cubes' way (goal at step 914). (@williamzhangNU)

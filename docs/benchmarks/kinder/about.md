@@ -7,10 +7,10 @@ title: About KinDER
 **KinDER** (RSS 2026) tests physical reasoning for robot planning and control, kept apart from
 perception and language: tool use, non-prehensile multi-object manipulation, geometric and dynamic
 constraints. A simulated **TidyBot++** mobile manipulator (a holonomic base, a Kinova Gen3 7-DoF arm
-and a Robotiq 2F-85 gripper) works in **MuJoCo**, in KinDER's MimicLabs lab; two tasks run in
-**PyBullet**, where the robot is kinematic. Every episode passes or fails on KinDER's own goal check,
-with no partial credit. We keep 11 of its 31 task families, one variant each at seed 0 (10 scored
-plus one fixture), and run each in two modes.
+and a Robotiq 2F-85 gripper) works in **MuJoCo**, in KinDER's MimicLabs lab (two tasks that have
+left the benchmark ran in **PyBullet**, where the robot is kinematic). Every episode passes or fails
+on KinDER's own goal check, with no partial credit. We keep 5 of its 31 task families, one variant
+each at seed 0 (the 4 hardest, scored, plus one fixture), and run each in two modes.
 
 [All tasks](index.md){ .md-button .md-button--primary }
 [Runs](../../runs/kinder.md){ .md-button }
@@ -34,11 +34,13 @@ what a real TidyBot++ would give, and nothing else:
 | Each step's status | the step, whether the episode ended and why (`success`, `failed`, `timeout`, `error`), the seconds since the first request | the controller's own state |
 | **Not given** | any object's or goal region's position, world coordinates, the goal check before the episode ends, masses and friction, the simulator itself; no camera in the room | not there on a real robot |
 
-It acts through `step`: one control step of base and arm-joint deltas and a gripper command, batches
-allowed. Our runs give it **50 resets**, each back to the same start. KinDER's episode (1000 steps,
-100 s of robot time; PyBullet: 3000 steps) is the time to carry the task out with the whole state
-known; finding things and calibrating were never part of it, so they get earlier episodes. The run
-passes the moment any episode reaches the goal. Both modes have 60 minutes of wall clock, and
+It acts through the robot service's client (protocol `eai-standard/2.1`): chunks of control steps of
+base and arm-joint deltas and a gripper command, and observations on request. Since 2026-10-04 the
+run is one episode with no reset, as on a real robot (protocol v1.0's standard configuration), and
+passes the moment the episode reaches the goal. Our earlier runs gave it **50 resets**, each back to
+the same start: KinDER's episode (1000 steps, 100 s of robot time; PyBullet: 3000 steps) is the time
+to carry the task out with the whole state known, and finding things and calibrating were never part
+of it. Both modes have 60 minutes of wall clock, and
 simulated time stands still between requests.
 
 In the two PyBullet tasks the robot is the same TidyBot++, kinematic: the same two cameras on the same
@@ -61,7 +63,7 @@ KinDER has 31 task families (123 variants) across the five challenges its paper 
 relations, non-prehensile multi-object manipulation, tool use, combinatorial geometric constraints
 and dynamic constraints (each task page's note lists its family's). Upstream, the kinematic families
 are near-solved; on the dynamic ones the paper's best methods stay low (at most 0.14 on
-SweepIntoDrawer3D-o5). We keep one variant of 11 families:
+SweepIntoDrawer3D-o5). Until 2026-10-04 we kept one variant of 11 families:
 
 - **Six Dynamic3D tasks** in which physics decides the outcome and a camera can see the goal or a
   sentence can name it, so the limited mode is fair: tossing, balance beam, sweep into drawer, scoop
@@ -77,6 +79,11 @@ passed in both modes; the ten 2D ones passed in unlimited mode and have no limit
 camera image of a 2D scene is nearly its state; LimbRepositioning3D drives another robot interface
 and its IKFast solver does not build in our image.
 
+Since 2026-10-04 the benchmark is the hardest 4 of those 10 scored families, plus `dynamo`: sweep into
+drawer, scoop pour, sweep simple and constrained cupboard, the four whose unlimited run took GPT-6 Luna
+its whole hour (it failed three; constrained cupboard passed in the last minute), also the four GPT-6.1
+Sol took longest on. The other six stay on the site, greyed, each with the reason it left.
+
 ## What we run it on
 
 | | |
@@ -88,9 +95,23 @@ and its IKFast solver does not build in our image.
 
 ### Model runs so far
 
-One attempt per task and mode, 60 minutes each, reasoning effort medium: GPT-6.1 Sol (Codex, through
-OpenRouter) on all 11 tasks, limited on 2026-09-30, unlimited on 2026-10-01. Tasks passed, out of the
-10 scored:
+GPT-6 Luna (Codex, through OpenRouter, reasoning effort medium) on the 4 tasks on 2026-10-04, one
+attempt per task and mode, 60 minutes each, on robot_coding_bench's protocol v1.0.1 (limited: one
+episode, no reset). Tasks passed, out of the 4:
+
+| Model | Limited | Unlimited |
+| --- | --- | --- |
+| GPT-6 Luna | 0 | 2 (sweep into drawer, sweep simple) |
+
+In unlimited mode it opened the drawer and swept the five cubes in (goal at step 922), and carried
+the ten cubes of sweep simple to the box one by one (step 914); scoop pour (at best 14 of 30 cubes
+across) and constrained cupboard (five of six rods placed) ran out of the hour. Every limited
+episode ran its 1000 steps without reaching the goal. A separate run with 50 resets
+(robot_coding_bench PR #45; reported apart, not on this site) passed none either.
+
+Before 2026-10-04, on all 11 tasks as they were then: one attempt per task and mode, 60 minutes each,
+reasoning effort medium, GPT-6.1 Sol (Codex, through OpenRouter), limited mode with 50 resets, limited
+on 2026-09-30, unlimited on 2026-10-01. Tasks passed, out of the 10 scored:
 
 | Model | Limited | Unlimited |
 | --- | --- | --- |
@@ -103,10 +124,9 @@ median 6 minutes. The subset no longer separates a model this strong: a harder v
 needed. Every run and its log are on the [Runs](../../runs/kinder.md) page; each task page's
 Discussion sums up its runs.
 
-The run picker also has GPT-6 Luna (all 11 tasks, 2026-09-28 to 10-01), kept as the evidence that
-robot_coding_bench's families without a reference solution cite: the passing trajectories its human review
-checked. Its limited trials, dynamo's aside, are its protocol v1.0 sweep with 50 resets (none passed); the
-earlier ones, three of which passed, are their history.
+GPT-6 Luna's earlier trials on all 11 tasks (2026-09-28 to 10-01: before protocol v1.0, and its v1.0
+sweep with 50 resets in limited mode, which passed none) stay in its run: the latest of them is each
+task's history beside the 2026-10-04 trial, and the only one on the 6 tasks that left the benchmark.
 
 ## Upstream links
 

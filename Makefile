@@ -208,10 +208,11 @@ sync-robopaint: ## Re-sync RoboPaint from a robot_coding_bench commit (ROBOPAINT
 	    $(foreach d,$(ROBOPAINT_DEMOS),--demos $(d))
 
 # HumanoidBench: our selection of it is defined in robot_coding_bench (scripts/humanoidbench/subset.toml, facts.json,
-# tasks/humanoidbench-<category>-<task>-i00): read from a commit of the clone with `git archive`, never a checkout.
+# tasks/humanoidbench-<category>-<task>-i00-privileged / -standard): read from a commit of the clone with `git archive`,
+# never a checkout. The 9-task set is robot_coding_bench PR #44 (origin/main once it is merged).
 # HUMANOIDBENCH_SCENES: the t = 0 room-camera stills (gen_tasks.py measure-limited --images DIR), if present.
 HUMANOIDBENCH_SRC    ?= ../robot_coding_bench
-HUMANOIDBENCH_COMMIT ?= origin/dev/pingyue
+HUMANOIDBENCH_COMMIT ?= origin/dev/pingyue-hb-hard
 HUMANOIDBENCH_SCENES ?= ../robot_coding_bench/jobs/results/humanoidbench/assets/cameras
 
 sync-humanoidbench: ## Re-sync HumanoidBench from a robot_coding_bench commit (HUMANOIDBENCH_COMMIT=..., HUMANOIDBENCH_SCENES=...)
@@ -219,10 +220,11 @@ sync-humanoidbench: ## Re-sync HumanoidBench from a robot_coding_bench commit (H
 	    $(if $(wildcard $(HUMANOIDBENCH_SCENES)),--scenes $(HUMANOIDBENCH_SCENES),)
 
 # KinDER: our selection of it is defined in robot_coding_bench (scripts/kinder/subset.toml, facts.json,
-# tasks/kinder-<family>-i00): read from a commit of the clone with `git archive`, never a checkout.
+# tasks/kinder-<family>-i00-privileged / -standard): read from a commit of the clone with `git archive`, never a
+# checkout. The 4-family set is robot_coding_bench PR #45 (origin/main once it is merged).
 # KINDER_SCENES: the t = 0 room-camera stills (the results site's assets/cameras/<family>/room_camera.png), if present.
 KINDER_SRC    ?= ../robot_coding_bench
-KINDER_COMMIT ?= origin/dev/pingyue
+KINDER_COMMIT ?= origin/dev/pingyue-kinder-hard
 KINDER_SCENES ?= ../robot_coding_bench/jobs/results/kinder/assets/cameras
 
 sync-kinder: ## Re-sync KinDER from a robot_coding_bench commit (KINDER_COMMIT=..., KINDER_SCENES=...)

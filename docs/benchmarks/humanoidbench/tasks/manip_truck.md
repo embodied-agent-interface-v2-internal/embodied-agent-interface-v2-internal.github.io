@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 7d6a7a44
-  synced: '2026-09-30'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 841996303
+  synced: '2026-10-04'
   instruction: Unload the five loose packages from the truck (the wall of boxes behind them is fixed) and put them on the table — all of them.
   env_id: h1-truck-v0
   robot: Unitree H1 (19 actuators)
@@ -51,4 +51,4 @@ _No demo._
 
 ## Discussion
 
-Blocked on walking: the robot stands but never gets up the ramp to the packages. (@williamzhangNU)
+Blocked on walking: the robot never gets up the ramp to the packages; GPT-6 Luna (2026-10-04) stood in unlimited mode, and in limited mode it fell and the episode ran on to its 1000 steps (truck ends only when the last package is on the table). (@williamzhangNU)

@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 7d6a7a44
-  synced: '2026-09-30'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 841996303
+  synced: '2026-10-04'
   instruction: Walk the robot forward over the stairs, up each flight and down the other side, without falling.
   env_id: h1-stair-v0
   robot: Unitree H1 (19 actuators)
@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Out of reach in both modes: no gait gets past the third stair transfer, and the unlimited run submits standing in place. (@williamzhangNU)
+Out of reach in both modes: GPT-6.1 Sol's gaits never got past the third stair transfer, GPT-6 Luna's best unlimited trajectory (2026-10-04) only reaches the first riser, and without resets Luna's limited episode ended in a fall at step 47. (@williamzhangNU)

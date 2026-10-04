@@ -7,7 +7,7 @@ title: About HumanoidBench
 **HumanoidBench** puts a simulated **Unitree H1** humanoid, bare or with two **Shadow
 dexterous hands**, through locomotion and whole-body manipulation in **MuJoCo**. Every episode is
 scored by HumanoidBench's own dense reward, summed over the episode, against its own success
-bar. We keep 23 of its 32 registered tasks plus one fixture, and run each in two modes.
+bar. We keep the 9 hardest of its 32 registered tasks plus one fixture, and run each in two modes.
 
 [All tasks](index.md){ .md-button .md-button--primary }
 [Runs](../../runs/humanoidbench.md){ .md-button }
@@ -31,10 +31,11 @@ what a real H1 would give, and nothing else:
 | Each step's status | the step, whether the episode ended and why (`success`, `failed`, `timeout`, `error`), the resets left, the seconds since the first request | the controller's own state |
 | **Not given** | the reward, the robot's position in the room, any object's pose, contact forces, the simulator itself | not there on a real robot |
 
-It acts through `step` (one position target in [−1, 1] per servo, one 50 Hz step, batches allowed)
-and `reset` (back to the same starting state, as often as the run allows: 50 in our runs). A run passes the moment an episode
-reaches the bar; otherwise its last episode is graded. Both modes have 60 minutes of wall clock,
-and simulated time stands still between requests.
+It acts through the robot service's client (protocol `eai-standard/2.1`): chunks of position targets in
+[−1, 1] per servo at 50 Hz, and observations on request. The run is one episode with no reset, as on a
+real robot (protocol v1.0's standard configuration; our runs before 2026-10-04 allowed 50 resets, each
+back to the same starting state). The run passes the moment the episode reaches the bar. Both modes have
+60 minutes of wall clock, and simulated time stands still between requests.
 
 ## Scoring
 
@@ -49,10 +50,13 @@ limited mode's episodes are recorded by the service and replayed the same way.
 ## The tasks
 
 HumanoidBench registers 32 tasks. We dropped the duplicates (`stair` and `slide` share one reward
-function) and the give-aways (`pole` pays 71% of its bar for standing still), which leaves 23 in
+function) and the give-aways (`pole` pays 71% of its bar for standing still), which left 23 in
 nine capability classes (each task page names its class), plus `sit_simple`, a fixture that checks
-the whole pipeline and is not scored. 15 tasks use the bare H1 (19 actuators), 9 add the Shadow
-hands (61 actuators).
+the whole pipeline and is not scored. Since 2026-10-04 the benchmark is the 9 hardest of them, in
+five classes (stair, hurdle, balance_hard, highbar_simple, powerlift, package, room, truck,
+bookshelf_simple): the 13 that no model passed in either mode, minus window, which came within 5% of
+the bar, and spoon, insert_normal and cabinet, whose bar does not measure the task. The other 14 stay
+on the site, greyed, each with the reason it left. 6 of the 9 use the bare H1 (19 actuators), 3 add the Shadow hands (61 actuators).
 
 ## What we run it on
 
@@ -64,8 +68,26 @@ hands (61 actuators).
 
 ### Model runs so far
 
-One attempt per task and mode on 2026-09-30, 60 minutes each, reasoning effort medium: GPT-6.1 Sol
-(Codex, through OpenRouter) on all 24 tasks. Tasks passed, out of the 23 scored:
+GPT-6 Luna (Codex, through OpenRouter, reasoning effort medium) on the 9 tasks on 2026-10-04, one
+attempt per task and mode, 60 minutes each, on robot_coding_bench's protocol v1.0.1 (limited: one
+episode, no reset). Tasks passed, out of the 9:
+
+| Model | Limited | Unlimited |
+| --- | --- | --- |
+| GPT-6 Luna | 0 | 0 |
+
+Without resets there is no second try after a fall: the three locomotion tasks, whose episode ends
+when the robot falls, ended within 43 to 49 control steps, room and bookshelf_simple at 123 and 301.
+A separate run with 50 resets (robot_coding_bench PR #44; reported apart, not on this site) passed
+none either, using all 50 resets on 8 of the 9 tasks. In unlimited mode the best returns are
+highbar_simple's 526 of 750 (a swing held by torso-angle feedback) and package's 870 of 1500 (a
+lunge that pushes the box to 8 cm from the marker), the closest any model has come on these two
+(stair's 175 of 700 is the best yet too), yet the locomotion tasks stay far off (balance_hard 56 of
+800, hurdle 68 of 700).
+
+Before 2026-10-04, on all 24 tasks as they were then: one attempt per task and mode on 2026-09-30, 60
+minutes each, reasoning effort medium, GPT-6.1 Sol (Codex, through OpenRouter), limited mode with 50
+resets. Tasks passed, out of the 23 scored (none of the 9 kept):
 
 | Model | Limited | Unlimited |
 | --- | --- | --- |
@@ -80,10 +102,10 @@ are close calls (reach 12008 against 12000 in limited mode, basketball 1239 agai
 run and its log are on the [Runs](../../runs/humanoidbench.md) page; each task page's Discussion
 sums up its runs.
 
-The run picker also has GPT-6 Luna (all 24 tasks), GPT-6 Sol and Claude Opus 5.5 (five tasks each,
-2026-09-28), kept as the evidence that robot_coding_bench's tasks without a reference solution cite: the
-passing trajectories its human review checked. Luna's limited trials, sit_simple's aside, are its protocol
-v1.0 sweep with 50 resets (push and sit_hard passed).
+GPT-6 Luna's earlier trials on all 24 tasks (2026-09-28, and its protocol v1.0 sweep with 50 resets in
+limited mode, which passed push and sit_hard) stay in its run: the latest of them is each task's history
+beside the 2026-10-04 trial, and the only one on the 14 tasks that left the benchmark. The run picker also
+has GPT-6 Sol and Claude Opus 5.5 (five tasks each, 2026-09-28).
 
 ## Upstream links
 

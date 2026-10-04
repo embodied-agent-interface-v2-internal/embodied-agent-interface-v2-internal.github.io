@@ -3,8 +3,9 @@
 
 KinDER (Princeton-Robot-Planning-and-Learning/kindergarden, pinned in our image at 5b2dbac) has 31 task families of
 physical reasoning for a TidyBot++ mobile manipulator: Dynamic3D in MuJoCo, Kinematic3D in PyBullet, and 2D ones in
-Pymunk. robot_coding_bench keeps 11 of them, one variant each at seed 0, and defines each as a pair,
-`tasks/kinder-<family>-i00` and its `-limited` twin, generated from `scripts/kinder/subset.toml` (what a human decided:
+Pymunk. robot_coding_bench keeps 5 of them (11 until 2026-10-04), one variant each at seed 0, and defines each as a pair,
+`tasks/kinder-<family>-i00-privileged` and its `-standard` twin (`tasks/kinder-<family>-i00` and `-limited` before
+protocol v1.0), generated from `scripts/kinder/subset.toml` (what a human decided:
 which environments, each goal's sentence) and `facts.json` (what the simulator says: the action space, the state
 size, the camera images, the checks). The site's task id is the family with underscores, so `kinder-sweep-into-drawer-i00`
 is `sweep_into_drawer`, and a run's job is `<batch>-<mode>-kinder-<family>-i00` (`task_dir: "kinder-{task_dashed}-i00"`
@@ -151,14 +152,17 @@ def read_source(root: Path) -> list[dict]:
     tasks = []
     for t in subset.get("task") or []:
         family = t["family"]
-        d = root / "tasks" / f"kinder-{family}-i00"
+        base = root / "tasks" / f"kinder-{family}-i00"
+        # protocol v1.0 names the twins <base>-privileged / <base>-standard; before it, <base> / <base>-limited
+        d = base.with_name(base.name + "-privileged") if base.with_name(base.name + "-privileged").is_dir() else base
         f = facts.get(family) or {}
         if not (d / "task.toml").is_file() or not f:
             continue
         kind = next((k for k in KINDS if f".{k}." in f.get("entry_point", "")), "")
         meta = tomllib.loads((d / "task.toml").read_text())
         full_md = (d / "instruction.md").read_text() if (d / "instruction.md").is_file() else ""
-        lim = d.parent / f"{d.name}-limited"
+        lim = next((x for x in (base.with_name(base.name + "-standard"), base.with_name(base.name + "-limited")) if x.is_dir()),
+                   base.with_name(base.name + "-standard"))
         lim_md = (lim / "instruction.md").read_text() if (lim / "instruction.md").is_file() else ""
         steps, robot_time = _step_budget(full_md)
         bounds = [abs(x) for x in (f.get("action_high") or [])[:10] if isinstance(x, (int, float))]
@@ -169,7 +173,7 @@ def read_source(root: Path) -> list[dict]:
             "kind": kind,
             "env_id": t.get("env_id", ""),
             "instruction": _task_sentence(full_md),
-            "limited_instruction": _task_sentence(lim_md) if "limited_statement" in t else "",
+            "limited_instruction": _task_sentence(lim_md) if ("standard_statement" in t or "limited_statement" in t) else "",
             "max_steps": steps,
             "robot_time": robot_time,
             "action_dim": f.get("action_dim"),
@@ -177,10 +181,10 @@ def read_source(root: Path) -> list[dict]:
             "action_bound": max(bounds) if bounds else None,
             "state_dim": f.get("obs_dim"),
             "nop_success": f.get("nop_success"),
-            "image_hw": (f.get("limited") or {}).get("image_hw"),
+            "image_hw": (f.get("standard") or f.get("limited") or {}).get("image_hw"),
             "agent_budget_s": int((meta.get("agent") or {}).get("timeout_sec", 0)),
             "limited_twin": lim.is_dir(),
-            "task_dir": d.name,
+            "task_dir": base.name,
         })
     return tasks
 

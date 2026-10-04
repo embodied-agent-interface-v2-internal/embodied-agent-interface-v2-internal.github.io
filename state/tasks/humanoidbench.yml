@@ -10,15 +10,18 @@
 #   note        free text; why you decided what you decided
 #
 # Task id = <category>_<task> (our task directory humanoidbench-<category>-<task>-i00). The 24 tasks are the ones
-# robot_coding_bench's scripts/humanoidbench/subset.toml keeps of HumanoidBench's 32: every one `keep`, its note the
+# robot_coding_bench's scripts/humanoidbench/subset.toml kept of HumanoidBench's 32: every one `keep`, its note the
 # capability class it was kept for (scripts/import_humanoidbench_tasks.py adds a NEW task this way and never changes
-# an existing entry). sit_simple is a fixture, not scored: `excluded`. Owner: williamzhangNU, who runs HumanoidBench
+# an existing entry). sit_simple is a fixture, not scored: `excluded`. Since 2026-10-04 the benchmark is the 9 hardest:
+# never passed by any model in either mode, never within 5% of the bar, and with a bar that measures the task; the
+# other 14 are `excluded` with the reason (docs/benchmarks/humanoidbench.md in robot_coding_bench). Owner: williamzhangNU, who runs HumanoidBench
 # here. No difficulty or labels yet.
 
 loco_walk:
   status: keep
   owner: williamzhangNU
   note: "C1 · flat-ground periodic gait"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in unlimited mode"
 loco_stair:
   status: keep
   owner: williamzhangNU
@@ -31,6 +34,7 @@ loco_balance_simple:
   status: keep
   owner: williamzhangNU
   note: "C3 · quasi-static stabilisation"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in unlimited mode"
 loco_balance_hard:
   status: keep
   owner: williamzhangNU
@@ -39,10 +43,12 @@ manip_door:
   status: keep
   owner: williamzhangNU
   note: "C4 · navigation and passage"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in unlimited mode"
 loco_maze:
   status: keep
   owner: williamzhangNU
   note: "C4 · navigation and passage"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in unlimited mode"
 manip_highbar_simple:
   status: keep
   owner: williamzhangNU
@@ -51,6 +57,7 @@ manip_basketball:
   status: keep
   owner: williamzhangNU
   note: "C5 · whole-body power and momentum"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in unlimited mode"
 manip_powerlift:
   status: keep
   owner: williamzhangNU
@@ -59,30 +66,37 @@ manip_push:
   status: keep
   owner: williamzhangNU
   note: "C6 · standing bimanual manipulation"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in both modes"
 manip_window:
   status: keep
   owner: williamzhangNU
   note: "C6 · standing bimanual manipulation"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): the best run reached 95% of the bar"
 manip_spoon:
   status: keep
   owner: williamzhangNU
   note: "C6 · standing bimanual manipulation"
+  excluded: "its bar does not measure the task: holding still earns 58% of it (robot_coding_bench 2026-10-04)"
 manip_insert_normal:
   status: keep
   owner: williamzhangNU
   note: "C7 · in-hand precision"
+  excluded: "its bar does not measure the task: it can be reached without inserting (robot_coding_bench 2026-10-04)"
 manip_cube:
   status: keep
   owner: williamzhangNU
   note: "C7 · in-hand precision"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in unlimited mode"
 loco_reach:
   status: keep
   owner: williamzhangNU
   note: "C8 · mobile manipulation"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in both modes"
 loco_sit_hard:
   status: keep
   owner: williamzhangNU
   note: "C8 · mobile manipulation"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in both modes"
 manip_package:
   status: keep
   owner: williamzhangNU
@@ -95,6 +109,7 @@ manip_cabinet:
   status: keep
   owner: williamzhangNU
   note: "C9 · long-horizon multi-subtask"
+  excluded: "its bar cannot be reached at upstream's commit (robot_coding_bench 2026-10-04)"
 manip_truck:
   status: keep
   owner: williamzhangNU
@@ -103,6 +118,7 @@ manip_kitchen:
   status: keep
   owner: williamzhangNU
   note: "C9 · long-horizon multi-subtask"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in unlimited mode"
 manip_bookshelf_simple:
   status: keep
   owner: williamzhangNU

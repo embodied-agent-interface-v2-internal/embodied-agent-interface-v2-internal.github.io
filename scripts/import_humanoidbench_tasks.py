@@ -2,8 +2,9 @@
 """Sync HumanoidBench's task pages from robot_coding_bench, where our selection of it is defined.
 
 HumanoidBench (carlosferrazza/humanoid-bench, pinned in our image at cb11890) registers 32 tasks for a Unitree H1,
-bare or with two Shadow hands. robot_coding_bench keeps 23 of them plus one fixture (sit_simple) and defines each as a
-pair, `tasks/humanoidbench-<category>-<task>-i00` and its `-limited` twin, generated from
+bare or with two Shadow hands. robot_coding_bench keeps 9 of them (23 until 2026-10-04) plus one fixture (sit_simple) and defines each as a
+pair, `tasks/humanoidbench-<category>-<task>-i00-privileged` and its `-standard` twin (before protocol v1.0:
+`tasks/humanoidbench-<category>-<task>-i00` and `-limited`), generated from
 `scripts/humanoidbench/subset.toml` (what a human decided: which tasks, why, how to describe them) and `facts.json`
 (what the simulator says: the success bar, the episode length, the action size, the all-zero-action floor). The site's
 task id is `<category>_<task>`, so `humanoidbench-manip-bookshelf-simple-i00` is `manip_bookshelf_simple`, and a
@@ -139,12 +140,16 @@ def read_source(root: Path) -> list[dict]:
     tasks = []
     for t in subset.get("task") or []:
         family, cat = t["family"], t.get("paper_category", "")
-        d = root / "tasks" / f"humanoidbench-{cat}-{family.replace('_', '-')}-i00"
+        base = root / "tasks" / f"humanoidbench-{cat}-{family.replace('_', '-')}-i00"
+        # protocol v1.0 names the twins <base>-privileged / <base>-standard; before it, <base> / <base>-limited
+        d = base.with_name(base.name + "-privileged") if base.with_name(base.name + "-privileged").is_dir() else base
+        twin = next((x for x in (base.with_name(base.name + "-standard"), base.with_name(base.name + "-limited")) if x.is_dir()), None)
         f = facts.get(family) or {}
         if not (d / "task.toml").is_file() or not f:
             continue
         meta = tomllib.loads((d / "task.toml").read_text())
-        lim = t.get("limited") or {}
+        lim = t.get("standard") or t.get("limited") or {}
+        flim = f.get("standard") or f.get("limited") or {}
         tasks.append({
             "id": f"{cat}_{family}",
             "title": f"{CATEGORY_NAMES.get(cat, cat.title())} · {family.replace('_', ' ').capitalize()}",
@@ -163,11 +168,11 @@ def read_source(root: Path) -> list[dict]:
             "max_steps": f.get("max_steps"),
             "nu": f.get("nu"),
             "nop_return": f.get("nop_return"),
-            "control_hz": (f.get("limited") or {}).get("control_hz"),
-            "image_hw": (f.get("limited") or {}).get("image_hw"),
+            "control_hz": flim.get("control_hz"),
+            "image_hw": flim.get("image_hw"),
             "agent_budget_s": int((meta.get("agent") or {}).get("timeout_sec", 0)),
-            "limited_twin": (d.parent / f"{d.name}-limited").is_dir(),
-            "task_dir": d.name,
+            "limited_twin": twin is not None,
+            "task_dir": base.name,
         })
     return tasks
 
