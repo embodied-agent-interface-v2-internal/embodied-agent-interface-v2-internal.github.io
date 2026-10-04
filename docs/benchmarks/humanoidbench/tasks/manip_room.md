@@ -21,8 +21,8 @@ upstream:
       steps)
     - 'unlimited: both fresh-process replays of the handed-in trajectory reach it and
       end in the same state'
-    - 'limited: the run passes the moment a live episode reaches it (the recorded episode
-      replays to the same state); otherwise the last episode is graded'
+    - 'limited: the run passes the moment its one episode reaches it (no reset in our
+      runs since 2026-10-04; the recorded episode replays to the same state)'
   scoring: Unusually, this task gives you no target positions at all. The dominant term measures how spread out the six objects are — the variance of their horizontal coordinates — and rewards making that small; a smaller term pays for standing steadily. Any arrangement that brings the objects close together scores, wherever in the room you do it.
   ends_early: The episode ends if the pelvis drops near the ground.
   zero_action_return: 8.84

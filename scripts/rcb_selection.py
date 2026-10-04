@@ -3,9 +3,9 @@
 VLABench, RoboCasa, RoboCasa365, RoboCasa-GR1 and MolmoSpaces (scripts/import_<benchmark>_tasks.py each give the
 constants).
 
-Each such benchmark is a set of task pairs on robot_coding_bench `main`, `tasks/<prefix>-<task>-i00-privileged` and
-`...-standard` (protocol v1.0.1), written by `scripts/<benchmark>/generate.py`. The site's task id is the task part with
-underscores (`metaworldplus-button-press-i00-*` is `button_press`), and a run's job is
+Each such benchmark is a set of task pairs in robot_coding_bench, `tasks/<prefix>-<task>-i00-privileged` and
+`...-standard` (protocol v1.0.1), written by the benchmark's generator under `scripts/<benchmark>/`. The site's task id
+is the task part with underscores (`metaworldplus-button-press-i00-*` is `button_press`), and a run's job is
 `<batch>-<mode>-<prefix>-<task>-i00` (`task_dir` in state/runs/<benchmark>.yml).
 
 What it reads, from a commit's export (`git archive <commit>`, never a checkout of anyone's working tree):
@@ -336,7 +336,7 @@ def scene_dir(bench: Bench) -> Path:
 
 
 def install_scenes(bench: Bench, tasks: list[dict], scenes: Path, dry: bool) -> int:
-    """Each task's starting scene as a JPEG still (ffmpeg, as the KinDER and HumanoidBench importers do), rewritten only
+    """Each task's starting scene as a JPEG still (ffmpeg, as the KinDER importer does), rewritten only
     when the conversion differs from what is there."""
     changed = 0
     with tempfile.TemporaryDirectory(prefix=f"{bench.id}-scenes-") as tmpd:
@@ -384,6 +384,8 @@ def main(bench: Bench, doc: str) -> int:
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--force", action="store_true", help="rewrite pages even when upstream is unchanged")
     args = ap.parse_args()
+    if args.scenes and not bench.scene:
+        ap.error(f"--scenes: {bench.name} has no starting-scene stills (its pages show demos)")
     cache = ROOT / "data" / "benchmarks" / f"{bench.id}.tasks.upstream.json"
     pages = ROOT / "docs" / "benchmarks" / bench.id / "tasks"
 
@@ -411,7 +413,7 @@ def main(bench: Bench, doc: str) -> int:
             tasks, commit = payload["tasks"], payload.get("commit", "")
 
     demo_files = install_demos(bench, tasks, find_demos(args.demos, bench), args.dry_run) if args.demos else 0
-    scene_files = install_scenes(bench, tasks, Path(args.scenes), args.dry_run) if args.scenes and bench.scene else 0
+    scene_files = install_scenes(bench, tasks, Path(args.scenes), args.dry_run) if args.scenes else 0
 
     synced = dt.date.today().isoformat()
     pages.mkdir(parents=True, exist_ok=True)

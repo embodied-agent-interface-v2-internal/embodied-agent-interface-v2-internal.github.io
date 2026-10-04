@@ -18,12 +18,12 @@ metrics:
 # limited = the standard twin on eai-standard/2.1 in its standard configuration: one episode, no reset), image 0.1.6
 # as published, 60 minutes a mode, effort medium, one attempt per task and mode, started by run_agent_batch.sh.
 # GPT-6.1 Sol's run and the earlier ones stay beside it as history; before 2026-10-04 GPT-6.1 Sol was the default.
-# Every other batch is on the tasks before protocol v1.0 (limited mode 1.1), except Luna's hb-luna-v1-1001.
-# Task text 7 (robot_coding_bench ef883ec; the tasks regenerated since with the massless hands' centre of mass fixed),
-# image 0.1.6, 60 minutes a mode, limited with 50 resets, a pelvis IMU and the room camera. One attempt per task and
-# mode, 2026-09-30. The Harbor jobs predate run_agent_batch.sh's names (hb-<mode>-<task>-codex-gpt61sol-...-text7); the
-# batch name below links to them on the machine that ran them. The other three: the same, on 2026-09-28, with text 7
-# before the centre-of-mass fix (their notes say where it mattered).
+# Every other batch is on the tasks before protocol v1.0 (limited mode 1.1), except Luna's hb-luna-v1-1001. The rest
+# describes the runs before then. GPT-6.1 Sol: task text 7 (robot_coding_bench ef883ec; the tasks regenerated since
+# with the massless hands' centre of mass fixed), image 0.1.6, 60 minutes a mode, limited with 50 resets, a pelvis IMU
+# and the room camera. One attempt per task and mode, 2026-09-30. The Harbor jobs predate run_agent_batch.sh's names
+# (hb-<mode>-<task>-codex-gpt61sol-...-text7); the batch name below links to them on the machine that ran them. The
+# other three: the same, on 2026-09-28, with text 7 before the centre-of-mass fix (their notes say where it mattered).
 runs:
   codex-gpt6_1_sol-medium:
     batch: hb-sol61-0930
@@ -63,8 +63,8 @@ runs:
     - {task: manip_push, mode: limited, trial: humanoidbench-manip-push-i00-lim__R6DtjyA, note: "`spec()` placed the
         hand 0.31 m beyond the real one (a massless link's centre of mass; fixed since); the arm poses the agent chose
         with it in its last two episodes never reached the box"}
-    - {task: loco_stair, mode: unlimited, trial: humanoidbench-loco-stair-i00-pri__KDhUSwu, note: "the agent ended itself
-        at 48 min, its trajectory saved, judging that stair traversal stayed unsolved"}
+    - {task: loco_stair, mode: unlimited, trial: humanoidbench-loco-stair-i00-pri__KDhUSwu,
+       note: "the agent ended itself at 48 min, its trajectory saved, judging that stair traversal stayed unsolved"}
     tasks:
     - loco_sit_simple
     - loco_walk

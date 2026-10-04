@@ -21,8 +21,8 @@ upstream:
       steps)
     - 'unlimited: both fresh-process replays of the handed-in trajectory reach it and
       end in the same state'
-    - 'limited: the run passes the moment a live episode reaches it (the recorded episode
-      replays to the same state); otherwise the last episode is graded'
+    - 'limited: the run passes the moment its one episode reaches it (no reset in our
+      runs since 2026-10-04; the recorded episode replays to the same state)'
   scoring: 'Forward speed, staying upright (head at standing height, torso vertical) and low actuator force, multiplied together — but the speed target is a sprint rather than a walk, on the order of 5 m/s. On top of that, touching any barrier''s collision geometry multiplies that entire step down to a small fraction of its value: contact is a gate to be respected, not a penalty to be traded off. Only the walls that line the track on both sides and behind the start count as barriers here; the hurdles themselves carry no such penalty, but they are solid and have to be cleared.'
   ends_early: The episode ends early if the pelvis drops near the ground.
   zero_action_return: 17.9

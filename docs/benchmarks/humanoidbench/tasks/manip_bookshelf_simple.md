@@ -21,8 +21,8 @@ upstream:
       steps)
     - 'unlimited: both fresh-process replays of the handed-in trajectory reach it and
       end in the same state'
-    - 'limited: the run passes the moment a live episode reaches it (the recorded episode
-      replays to the same state); otherwise the last episode is graded'
+    - 'limited: the run passes the moment its one episode reaches it (no reset in our
+      runs since 2026-10-04; the recorded episode replays to the same state)'
   scoring: 'Only the object you are currently on is scored: each step pays for standing steadily, for a hand being near that object and for its progress towards its assigned slot. Placing it pays a one-off bonus that grows with how many you have placed — together the bonuses are most of the bar — and moves the scoring on to the next one. So the return is cut into five plateaus and stalling on the first caps the episode low.'
   ends_early: The episode ends early if the pelvis drops too low or if the object currently being scored goes below about half a metre, and it ends once all five are placed.
   zero_action_return: 30.45

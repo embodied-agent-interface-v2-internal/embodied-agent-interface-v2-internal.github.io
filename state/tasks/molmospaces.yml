@@ -22,7 +22,7 @@ pick:
 pick_and_place:
   status: keep
   owner: williamzhangNU
-  note: "Franka · kept of 3 candidates: the GPS tips over, limited mode failed twice"
+  note: "Franka · kept of 3 candidates: the GPS tips over, limited mode failed in both rounds of runs"
 pick_and_place_next_to:
   status: keep
   owner: williamzhangNU
@@ -30,7 +30,7 @@ pick_and_place_next_to:
 pick_and_place_color:
   status: keep
   owner: williamzhangNU
-  note: "Franka · kept of 3 candidates: limited mode failed twice"
+  note: "Franka · kept of 3 candidates: limited mode failed in both rounds of runs"
 open:
   status: keep
   owner: williamzhangNU

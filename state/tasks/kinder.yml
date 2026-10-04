@@ -23,12 +23,12 @@ tossing:
   status: keep
   owner: williamzhangNU
   note: "Dynamic3D · challenges: dynamic"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in unlimited mode in 37 minutes"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in unlimited mode in 37 min"
 balance_beam:
   status: keep
   owner: williamzhangNU
   note: "Dynamic3D · challenges: tool, dynamic"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in unlimited mode in 5 minutes"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in unlimited mode in 5 min"
 sweep_into_drawer:
   status: keep
   owner: williamzhangNU
@@ -41,7 +41,7 @@ shelf:
   status: keep
   owner: williamzhangNU
   note: "Dynamic3D · challenges: spatial, geometric"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in unlimited mode in 21 minutes"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in unlimited mode in 21 min"
 constrained_cupboard:
   status: keep
   owner: williamzhangNU
@@ -59,7 +59,7 @@ obstruction_3d:
   status: keep
   owner: williamzhangNU
   note: "screening (failed in limited mode) · Kinematic3D · challenges: geometric"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in unlimited mode in 11 minutes"
+  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in unlimited mode in 11 min"
 packing_3d:
   status: keep
   owner: williamzhangNU

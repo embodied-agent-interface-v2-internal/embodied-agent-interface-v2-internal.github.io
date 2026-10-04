@@ -125,8 +125,9 @@ needed. Every run and its log are on the [Runs](../../runs/kinder.md) page; each
 Discussion sums up its runs.
 
 GPT-6 Luna's earlier trials on all 11 tasks (2026-09-28 to 10-01: before protocol v1.0, and its v1.0
-sweep with 50 resets in limited mode, which passed none) stay in its run: the latest of them is each
-task's history beside the 2026-10-04 trial, and the only one on the 6 tasks that left the benchmark.
+sweep with 50 resets in limited mode, which passed none) stay in its run: on the 4 tasks the latest
+of them is each task's history beside the 2026-10-04 trial, and on the 6 tasks that left the
+benchmark it is the trial shown.
 
 ## Upstream links
 

@@ -2,13 +2,13 @@
 """Sync HumanoidBench's task pages from robot_coding_bench, where our selection of it is defined.
 
 HumanoidBench (carlosferrazza/humanoid-bench, pinned in our image at cb11890) registers 32 tasks for a Unitree H1,
-bare or with two Shadow hands. robot_coding_bench keeps 9 of them (23 until 2026-10-04) plus one fixture (sit_simple) and defines each as a
-pair, `tasks/humanoidbench-<category>-<task>-i00-privileged` and its `-standard` twin (before protocol v1.0:
-`tasks/humanoidbench-<category>-<task>-i00` and `-limited`), generated from
+bare or with two Shadow hands. robot_coding_bench keeps 9 of them (23 until 2026-10-04) plus one fixture (sit_simple)
+and defines each as a pair, `tasks/humanoidbench-<category>-<task>-i00-privileged` and its `-standard` twin (before
+protocol v1.0: `tasks/humanoidbench-<category>-<task>-i00` and `-limited`), generated from
 `scripts/humanoidbench/subset.toml` (what a human decided: which tasks, why, how to describe them) and `facts.json`
 (what the simulator says: the success bar, the episode length, the action size, the all-zero-action floor). The site's
-task id is `<category>_<task>`, so `humanoidbench-manip-bookshelf-simple-i00` is `manip_bookshelf_simple`, and a
-run's job is `<batch>-<mode>-humanoidbench-<category>-<task>-i00` (`task_dir: "humanoidbench-{task_dashed}-i00"` in
+task id is `<category>_<task>`, so `humanoidbench-manip-bookshelf-simple-i00` is `manip_bookshelf_simple`, and a run's
+job is `<batch>-<mode>-humanoidbench-<category>-<task>-i00` (`task_dir: "humanoidbench-{task_dashed}-i00"` in
 state/runs/humanoidbench.yml).
 
 What it reads, from a commit's export (`git archive <commit>`, never a checkout of anyone's working tree):
@@ -28,7 +28,7 @@ curation is the owner's). Re-running is safe: an unchanged source writes nothing
 never deleted.
 
 Usage:
-  python scripts/import_humanoidbench_tasks.py --source ../robot_coding_bench --commit dev/pingyue \\
+  python scripts/import_humanoidbench_tasks.py --source ../robot_coding_bench --commit origin/main \\
       --scenes ../robot_coding_bench/jobs/results/humanoidbench/assets/cameras
   python scripts/import_humanoidbench_tasks.py                  # from the cache
   python scripts/import_humanoidbench_tasks.py ... --dry-run
@@ -134,6 +134,14 @@ def _prose(text: str) -> str:
     return re.sub(r"\*([^*]+)\*", r"\1", " ".join((text or "").split()))
 
 
+def task_pair(base: Path) -> tuple[Path, Path | None]:
+    """A task's privileged directory and its limited twin: `<base>-privileged` and `-standard` since protocol v1.0,
+    `<base>` and `<base>-limited` before it (the twin is None when there is none)."""
+    named = lambda suffix: base.with_name(base.name + suffix)  # noqa: E731
+    priv = named("-privileged") if named("-privileged").is_dir() else base
+    return priv, next((d for d in (named("-standard"), named("-limited")) if d.is_dir()), None)
+
+
 def read_source(root: Path) -> list[dict]:
     subset = tomllib.loads((root / "scripts" / "humanoidbench" / "subset.toml").read_text())
     facts = json.loads((root / "scripts" / "humanoidbench" / "facts.json").read_text())
@@ -141,9 +149,7 @@ def read_source(root: Path) -> list[dict]:
     for t in subset.get("task") or []:
         family, cat = t["family"], t.get("paper_category", "")
         base = root / "tasks" / f"humanoidbench-{cat}-{family.replace('_', '-')}-i00"
-        # protocol v1.0 names the twins <base>-privileged / <base>-standard; before it, <base> / <base>-limited
-        d = base.with_name(base.name + "-privileged") if base.with_name(base.name + "-privileged").is_dir() else base
-        twin = next((x for x in (base.with_name(base.name + "-standard"), base.with_name(base.name + "-limited")) if x.is_dir()), None)
+        d, twin = task_pair(base)
         f = facts.get(family) or {}
         if not (d / "task.toml").is_file() or not f:
             continue
@@ -186,8 +192,8 @@ def upstream_block(task: dict, synced: str, commit: str) -> dict:
     criteria = [f"the summed per-step reward over one episode reaches {bar:g}, HumanoidBench's own success bar "
                 f"(a total of rewards, not a number of steps; an episode is at most {steps} control steps)" if bar else "",
                 "unlimited: both fresh-process replays of the handed-in trajectory reach it and end in the same state",
-                "limited: the run passes the moment a live episode reaches it (the recorded episode replays to the same "
-                "state); otherwise the last episode is graded"]
+                "limited: the run passes the moment its one episode reaches it (no reset in our runs since 2026-10-04; "
+                "the recorded episode replays to the same state)"]
     hw = task.get("image_hw") or []
     block = {
         "source": f"{UPSTREAM}, as defined in our task definitions @ {commit}" if commit else UPSTREAM,
@@ -244,7 +250,7 @@ def seed_state(tasks: list[dict], dry: bool) -> list[str]:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--source", default=None, help="a robot_coding_bench git clone (with --commit) or an export of it")
-    ap.add_argument("--commit", default="", help="the commit to read from the clone (git archive), e.g. dev/pingyue")
+    ap.add_argument("--commit", default="", help="the commit to read from the clone (git archive), e.g. origin/main")
     ap.add_argument("--scenes", default=None, help="a dir of <task>/room_camera.png or <task>/t0_room_camera.png")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--force", action="store_true", help="rewrite pages even when upstream is unchanged")

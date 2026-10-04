@@ -50,13 +50,14 @@ limited mode's episodes are recorded by the service and replayed the same way.
 ## The tasks
 
 HumanoidBench registers 32 tasks. We dropped the duplicates (`stair` and `slide` share one reward
-function) and the give-aways (`pole` pays 71% of its bar for standing still), which left 23 in
-nine capability classes (each task page names its class), plus `sit_simple`, a fixture that checks
-the whole pipeline and is not scored. Since 2026-10-04 the benchmark is the 9 hardest of them, in
-five classes (stair, hurdle, balance_hard, highbar_simple, powerlift, package, room, truck,
+function) and the give-aways (`pole` pays 71% of its bar for standing still), which left 23 in nine
+capability classes (each task page names its class), plus `sit_simple`, a fixture that checks the
+whole pipeline and is not scored. Since 2026-10-04 the benchmark is the 9 hardest of them, in five
+classes (stair, hurdle, balance_hard, highbar_simple, powerlift, package, room, truck,
 bookshelf_simple): the 13 that no model passed in either mode, minus window, which came within 5% of
-the bar, and spoon, insert_normal and cabinet, whose bar does not measure the task. The other 14 stay
-on the site, greyed, each with the reason it left. 6 of the 9 use the bare H1 (19 actuators), 3 add the Shadow hands (61 actuators).
+the bar, and spoon, insert_normal and cabinet, whose bar does not measure the task. The other 14
+stay on the site, greyed, each with the reason it left. 6 of the 9 use the bare H1 (19 actuators), 3
+add the Shadow hands (61 actuators).
 
 ## What we run it on
 
@@ -102,10 +103,11 @@ are close calls (reach 12008 against 12000 in limited mode, basketball 1239 agai
 run and its log are on the [Runs](../../runs/humanoidbench.md) page; each task page's Discussion
 sums up its runs.
 
-GPT-6 Luna's earlier trials on all 24 tasks (2026-09-28, and its protocol v1.0 sweep with 50 resets in
-limited mode, which passed push and sit_hard) stay in its run: the latest of them is each task's history
-beside the 2026-10-04 trial, and the only one on the 14 tasks that left the benchmark. The run picker also
-has GPT-6 Sol and Claude Opus 5.5 (five tasks each, 2026-09-28).
+GPT-6 Luna's earlier trials on all 24 tasks (2026-09-28, and its protocol v1.0 sweep with 50 resets
+in limited mode, which passed push and sit_hard) stay in its run: on the 9 tasks the latest of them
+is each task's history beside the 2026-10-04 trial, and on the 14 tasks that left the benchmark it
+is the trial shown. The run picker also has GPT-6 Sol and Claude Opus 5.5 (five tasks each,
+2026-09-28).
 
 ## Upstream links
 

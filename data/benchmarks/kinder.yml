@@ -1,17 +1,17 @@
 id: kinder
 name: KinDER
-edition: 5b2dbac (upstream), our selection of 11 tasks (2026-09-30)
+edition: 5b2dbac (upstream), our selection of 4 tasks and a fixture (2026-10-04; 11 until then)
 status: active
-simulator: MuJoCo 3.3 (KinDER's Dynamic3D environments); PyBullet for two kinematic tasks
+simulator: MuJoCo 3.3 (KinDER's Dynamic3D environments); PyBullet for two kinematic tasks now excluded
 description: >-
   Physical reasoning for robot planning and control, kept apart from perception and language: a
   simulated TidyBot++ mobile manipulator throws, balances, sweeps, scoops, stacks into cupboards,
   sorts, clears and packs. Each episode passes or fails on KinDER's own goal check (an object's
-  centre inside a goal region, and the like), with no partial credit. We keep 11 of its 31 task
-  families (10 scored and one fixture), one variant each, and run each in two modes: unlimited (full
-  simulator state and the goal check, unlimited resets, one replayable trajectory handed in) and
-  limited (a robot behind a service: its base and wrist cameras, odometry and joint readings; 50
-  resets in our runs).
+  centre inside a goal region, and the like), with no partial credit. We keep 5 of its 31 task
+  families (the 4 hardest, scored, and one fixture), one variant each, and run each in two modes:
+  unlimited (full simulator state and the goal check, unlimited resets, one replayable trajectory
+  handed in) and limited (a robot behind a service: its base and wrist cameras, odometry and joint
+  readings; one episode without resets).
 
 links:
   paper: https://arxiv.org/abs/2604.25788

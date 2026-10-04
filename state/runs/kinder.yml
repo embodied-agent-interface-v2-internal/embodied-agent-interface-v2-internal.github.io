@@ -20,7 +20,7 @@ progress: none
 # limited 2026-09-30, unlimited 2026-10-01. The Harbor jobs predate run_agent_batch.sh's names
 # (kinder-full-<family>-codex-gpt61sol-medium-60min, kinder-limited-<family>-...-60min-reset50-depth-ee); the batch name
 # below links to them on the machine that ran them. Both are on the tasks before protocol v1.0 (limited mode 1.1); only
-# Luna's rerun batch is on v1.0.
+# Luna's rerun batches are on v1.0.
 runs:
   codex-gpt6_1_sol-medium:
     batch: kinder-sol61-0930

@@ -257,11 +257,13 @@ sync-robocasa-gr1: ## Re-sync RoboCasa-GR1 from a robot_coding_bench commit
 
 # MolmoSpaces: no reference solution, so a row shows the starting scene. MOLMOSPACES_SCENES: a dir of the t = 0 camera
 # images (<family>-i00/t0_<camera>.png, as robot_coding_bench's results tooling writes them). Empty by default (the
-# committed stills stay); set it per machine in Makefile.local.
+# committed stills stay); set it per machine in Makefile.local. MOLMOSPACES_COMMIT: robot_coding_bench PR #47's branch
+# (origin/main once it is merged).
 MOLMOSPACES_SCENES ?=
+MOLMOSPACES_COMMIT ?= origin/dev/pingyue-molmospaces
 
-sync-molmospaces: ## Re-sync MolmoSpaces from a robot_coding_bench commit (RCB_COMMIT=..., MOLMOSPACES_SCENES=...)
-	$(BIN)/python scripts/import_molmospaces_tasks.py --source $(RCB_SRC) --commit $(RCB_COMMIT) \
+sync-molmospaces: ## Re-sync MolmoSpaces from a robot_coding_bench commit (MOLMOSPACES_COMMIT=..., MOLMOSPACES_SCENES=...)
+	$(BIN)/python scripts/import_molmospaces_tasks.py --source $(RCB_SRC) --commit $(MOLMOSPACES_COMMIT) \
 	    $(if $(MOLMOSPACES_SCENES),--scenes $(MOLMOSPACES_SCENES),)
 
 # The BDDL goals and dataset statistics come from the licensed BEHAVIOR download,

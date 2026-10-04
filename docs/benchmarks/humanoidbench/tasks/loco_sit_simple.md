@@ -21,8 +21,8 @@ upstream:
       steps)
     - 'unlimited: both fresh-process replays of the handed-in trajectory reach it and
       end in the same state'
-    - 'limited: the run passes the moment a live episode reaches it (the recorded episode
-      replays to the same state); otherwise the last episode is graded'
+    - 'limited: the run passes the moment its one episode reaches it (no reset in our
+      runs since 2026-10-04; the recorded episode replays to the same state)'
   scoring: 'A product: the average of two seat terms — how close the pelvis is to the height it has when seated, and whether the robot is over the seat rather than beside it — multiplied by staying upright, a seated posture (the head''s height above the torso), not moving, and low actuator force. Every step spent not yet sitting forfeits the reward that step could have paid, so both how fast and how steadily the robot sits matter.'
   ends_early: The episode ends early if the pelvis drops below about half its standing height — not far below its height when seated.
   zero_action_return: 637.64

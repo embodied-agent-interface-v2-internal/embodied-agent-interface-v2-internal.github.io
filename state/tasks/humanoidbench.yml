@@ -12,10 +12,10 @@
 # Task id = <category>_<task> (our task directory humanoidbench-<category>-<task>-i00). The 24 tasks are the ones
 # robot_coding_bench's scripts/humanoidbench/subset.toml kept of HumanoidBench's 32: every one `keep`, its note the
 # capability class it was kept for (scripts/import_humanoidbench_tasks.py adds a NEW task this way and never changes
-# an existing entry). sit_simple is a fixture, not scored: `excluded`. Since 2026-10-04 the benchmark is the 9 hardest:
-# never passed by any model in either mode, never within 5% of the bar, and with a bar that measures the task; the
-# other 14 are `excluded` with the reason (docs/benchmarks/humanoidbench.md in robot_coding_bench). Owner: williamzhangNU, who runs HumanoidBench
-# here. No difficulty or labels yet.
+# an existing entry). sit_simple is a fixture, not scored: `excluded`. Since 2026-10-04 the benchmark is the 9
+# hardest: never passed by any model in either mode, never within 5% of the bar, and with a bar that measures the
+# task; the other 14 are `excluded` with the reason (docs/benchmarks/humanoidbench.md in robot_coding_bench). Owner:
+# williamzhangNU, who runs HumanoidBench here. No difficulty or labels yet.
 
 loco_walk:
   status: keep

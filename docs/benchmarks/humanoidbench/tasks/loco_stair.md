@@ -21,8 +21,8 @@ upstream:
       steps)
     - 'unlimited: both fresh-process replays of the handed-in trajectory reach it and
       end in the same state'
-    - 'limited: the run passes the moment a live episode reaches it (the recorded episode
-      replays to the same state); otherwise the last episode is graded'
+    - 'limited: the run passes the moment its one episode reaches it (no reset in our
+      runs since 2026-10-04; the recorded episode replays to the same state)'
   scoring: 'The same three multiplied requirements as walking on the flat — forward speed (the target is on the order of 1 m/s), staying upright, low actuator force — with one change that matters: the height part of "upright" is measured as the head''s height above the feet, not above the ground, because the ground rises and falls under you and so cannot be the yardstick, and the torso tilt it accepts is looser than on the flat.'
   ends_early: 'Termination is also different: the episode ends only when the torso tips close to horizontal, rather than when it drops to a fixed height.'
   zero_action_return: 8.63

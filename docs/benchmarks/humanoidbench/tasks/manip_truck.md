@@ -21,8 +21,8 @@ upstream:
       steps)
     - 'unlimited: both fresh-process replays of the handed-in trajectory reach it and
       end in the same state'
-    - 'limited: the run passes the moment a live episode reaches it (the recorded episode
-      replays to the same state); otherwise the last episode is graded'
+    - 'limited: the run passes the moment its one episode reaches it (no reset in our
+      runs since 2026-10-04; the recorded episode replays to the same state)'
   scoring: 'Each step is your uprightness multiplied by a base amount plus three progress terms: how close the robot is to a package still on the truck, how close it is to a package it has picked up, and how close a picked-up package is to the table. On top of that, lifting a package off the truck and placing one on the table each pay a one-off bonus (taken back if a package comes off the table again), and delivering the last package pays a larger one and ends the episode. Uprightness is a factor, so lying down costs a large part of every step. The one-off bonuses are most of the bar but not all of it, so the rest has to come from the per-step terms before the last delivery.'
   zero_action_return: 544.42
   action_dim: 19
