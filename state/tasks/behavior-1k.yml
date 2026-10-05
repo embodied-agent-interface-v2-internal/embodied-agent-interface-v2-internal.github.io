@@ -9,13 +9,6 @@
 #   display_tags  what the site shows: tag ids from state/display_tags.yml
 #   owner       bare GitHub handle
 #   note        free text; why you decided what you decided
-#   excluded    why a task is not part of the final benchmark: it stays on the site, greyed and last in every list,
-#               its runs in Runs, and counts in none of the benchmark's numbers
-#
-# 2026-10-04 pruning (the owner: keep the hardest 30; the final set is chosen from them). Ranked by our agent runs
-# first (failed in both modes > failed in one > solved; less partial progress = harder), then by the site's difficulty
-# and the human demonstration's mean length, skill diversity breaking ties. The 51 tasks without runs rank below every
-# task that failed in both modes (40 did). Each excluded task's line says why.
 
 assembling_gift_baskets:
   difficulty: hard
@@ -25,7 +18,6 @@ assembling_gift_baskets:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -39,7 +31,6 @@ attach_a_camera_to_a_tripod:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -53,7 +44,6 @@ boxing_books_up_for_storage:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -83,7 +73,6 @@ bringing_in_wood:
   - control-coordination
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-outdoor
   - bimanual
@@ -162,7 +151,6 @@ canning_food:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -212,7 +200,6 @@ chop_an_onion:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -230,7 +217,6 @@ chopping_wood:
   - feedback-adaptation
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-outdoor
   - transport
@@ -245,7 +231,6 @@ clean_a_keyboard:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -261,7 +246,6 @@ clean_a_patio:
   - control-coordination
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-outdoor
   - transport
@@ -276,7 +260,6 @@ clean_a_trumpet:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -291,7 +274,6 @@ clean_boxing_gloves:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -309,7 +291,6 @@ clean_up_broken_glass:
   - feedback-adaptation
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-building
   - transport
@@ -323,7 +304,6 @@ clean_up_your_desk:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -340,7 +320,6 @@ clean_your_rusty_garden_tools:
   - feedback-adaptation
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-outdoor
   - transport
@@ -372,7 +351,6 @@ cleaning_up_plates_and_food:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -403,7 +381,6 @@ collecting_aluminum_cans:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-room
   - transport
@@ -417,7 +394,6 @@ collecting_childrens_toys:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -433,7 +409,6 @@ composting_waste:
   - feedback-adaptation
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-building
   - transport
@@ -466,7 +441,6 @@ cook_a_frozen_pie:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -485,7 +459,6 @@ cook_bacon:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -503,7 +476,6 @@ cook_broccolini:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): failed in both modes, with partial progress (up to 0.36)"
   labels:
   - scale-room
   - transport
@@ -521,7 +493,6 @@ cook_brussels_sprouts:
   - feedback-adaptation
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-building
   - transport
@@ -544,7 +515,6 @@ cook_cabbage:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -566,7 +536,6 @@ cook_hot_dogs:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -601,7 +570,6 @@ dispose_of_glass:
   - feedback-adaptation
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-building
   - transport
@@ -616,7 +584,6 @@ freeze_fruit:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -634,7 +601,6 @@ freeze_pies:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -653,7 +619,6 @@ getting_organized_for_work:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - whole-body
@@ -670,7 +635,6 @@ halve_an_egg:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -686,7 +650,6 @@ hanging_pictures:
   display_tags:
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): failed in both modes, but lighter demands than the kept ones"
   labels:
   - scale-room
   - transport
@@ -701,7 +664,6 @@ hiding_Easter_eggs:
   - control-coordination
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-outdoor
   - transport
@@ -716,7 +678,6 @@ installing_a_fax_machine:
   - control-coordination
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-building
   - transport
@@ -731,7 +692,6 @@ installing_a_modem:
   - control-coordination
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-building
   - transport
@@ -747,7 +707,6 @@ installing_a_scanner:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-room
   - transport
@@ -763,7 +722,6 @@ installing_smoke_detectors:
   - control-coordination
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-outdoor
   - transport
@@ -794,7 +752,6 @@ loading_the_car:
   - feedback-adaptation
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-building
   - transport
@@ -810,7 +767,6 @@ make_cabinet_doors:
   - control-coordination
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-building
   - transport
@@ -825,7 +781,6 @@ make_gift_bags_for_baby_showers:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): failed in both modes, with partial progress (up to 0.33)"
   labels:
   - scale-room
   - transport
@@ -840,7 +795,6 @@ make_microwave_popcorn:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -858,7 +812,6 @@ make_pizza:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -875,7 +828,6 @@ make_rose_centerpieces:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): failed in both modes, but lighter demands than the kept ones"
   labels:
   - scale-room
   - transport
@@ -890,7 +842,6 @@ moving_boxes_to_storage:
   - feedback-adaptation
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-building
   - bimanual
@@ -906,7 +857,6 @@ organizing_art_supplies:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): failed in both modes, with partial progress (up to 0.20)"
   labels:
   - scale-room
   - transport
@@ -919,7 +869,6 @@ organizing_school_stuff:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -961,7 +910,6 @@ picking_up_toys:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -977,7 +925,6 @@ picking_up_trash:
   - feedback-adaptation
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): failed in both modes, with partial progress (up to 0.67)"
   labels:
   - scale-building
   - transport
@@ -991,7 +938,6 @@ polishing_shoes:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -1038,7 +984,6 @@ putting_away_Halloween_decorations:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -1058,7 +1003,6 @@ putting_away_toys:
   - feedback-adaptation
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-building
   - transport
@@ -1102,7 +1046,6 @@ putting_shoes_on_rack:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): failed in both modes, with partial progress (up to 0.70)"
   labels:
   - scale-room
   - transport
@@ -1119,7 +1062,6 @@ putting_up_Christmas_decorations_inside:
   - feedback-adaptation
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): failed in both modes, with partial progress (up to 0.22)"
   labels:
   - scale-building
   - transport
@@ -1135,7 +1077,6 @@ re_shelving_library_books:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -1176,7 +1117,6 @@ scrubbing_bathroom_floor:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -1207,7 +1147,6 @@ setting_mousetraps:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): failed in both modes, with partial progress (up to 0.33)"
   labels:
   - scale-room
   - whole-body
@@ -1275,7 +1214,6 @@ slicing_vegetables:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -1314,7 +1252,6 @@ sorting_bottles_cans_and_paper:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -1331,7 +1268,6 @@ sorting_household_items:
   - feedback-adaptation
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-building
   - whole-body
@@ -1350,7 +1286,6 @@ sorting_vegetables:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -1365,7 +1300,6 @@ spraying_for_bugs:
   - control-coordination
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-outdoor
   - transport
@@ -1380,7 +1314,6 @@ spraying_fruit_trees:
   - control-coordination
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-outdoor
   - transport
@@ -1396,7 +1329,6 @@ stacking_wood:
   - control-coordination
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-outdoor
   - transport
@@ -1413,7 +1345,6 @@ store_batteries:
   - feedback-adaptation
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-building
   - transport
@@ -1459,7 +1390,6 @@ storing_food:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -1474,7 +1404,6 @@ sweeping_garage:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -1520,7 +1449,6 @@ tidying_bedroom:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-room
   - transport
@@ -1543,7 +1471,6 @@ turning_on_radio:
   display_tags:
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-room
   - device-operation
@@ -1566,7 +1493,6 @@ turning_out_all_lights_before_sleep:
   - feedback-adaptation
   - navigation-exploration
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-building
   - device-operation
@@ -1596,7 +1522,6 @@ vacuuming_floors:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): failed in both modes, but lighter demands than the kept ones"
   labels:
   - scale-room
   - transport
@@ -1610,7 +1535,6 @@ wash_a_baseball_cap:
   - planning-reasoning
   - control-coordination
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport
@@ -1627,7 +1551,6 @@ wash_dog_toys:
   - control-coordination
   - feedback-adaptation
   - mobile-whole-body-manipulation
-  excluded: "not in the hardest 30 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-room
   - transport

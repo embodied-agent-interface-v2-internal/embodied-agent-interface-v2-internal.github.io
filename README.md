@@ -11,11 +11,11 @@ Thirteen benchmarks, 623 tasks, each synced from its own upstream:
 
 | Benchmark | Simulator | Tasks | Demos | Synced from |
 | --- | --- | --- | --- | --- |
-| **BEHAVIOR-1K** (2026 Challenge) | OmniGibson / Isaac Sim 5.1 | 100 (30 + 70 excluded) | 98 | the official demo gallery, plus the licensed dataset we run |
-| **RoboWits** | Genesis 0.4.7 | 30 (15 + 15 excluded) | 23 | the task source at the pinned commit, plus the project page |
-| **RoboLab** v0.3.1 | Isaac Lab 2.3 / Isaac Sim 5.1 | 120 (15 + 105 excluded) | 13 + 107 scene stills | the task source at the pinned tag, plus the project page |
+| **BEHAVIOR-1K** (2026 Challenge) | OmniGibson / Isaac Sim 5.1 | 100 | 98 | the official demo gallery, plus the licensed dataset we run |
+| **RoboWits** | Genesis 0.4.7 | 30 | 23 | the task source at the pinned commit, plus the project page |
+| **RoboLab** v0.3.1 | Isaac Lab 2.3 / Isaac Sim 5.1 | 120 | 13 + 107 scene stills | the task source at the pinned tag, plus the project page |
 | **RoboTwin 2.0** | SAPIEN 3 / PhysX + CuRobo | 50 | 48 expert clips we recorded (six-camera grid) + 50 scene stills; official ALOHA clips linked | the task source at the pinned commit, plus the documentation site |
-| **RoboPaint** (ours) | ManiSkill 3.0.1 + brush models (Spline-FRIDA, a virtual Chinese brush, MyPaint) | 91 (38 + 53 excluded) | 91 replays of our reference solution | our benchmark repository, at a pinned commit |
+| **RoboPaint** (ours) | ManiSkill 3.0.1 + brush models (Spline-FRIDA, a virtual Chinese brush, MyPaint) | 91 (82 + 9 excluded) | 91 replays of our reference solution | our benchmark repository, at a pinned commit |
 | **HumanoidBench** | MuJoCo 3 | 24 (9 + 15 excluded) | none upstream; 24 starting-scene stills | our selection's task definitions, at a pinned commit |
 | **KinDER** | MuJoCo 3.3 (Dynamic3D), PyBullet (two kinematic tasks) | 11 (4 + 7 excluded) | none upstream; 11 starting-scene stills | our selection's task definitions, at a pinned commit |
 | **MetaWorld+** (ours) | MuJoCo 3.3.0 (Meta-World v3) | 50 | 50 replays of our reference solution | our benchmark repository, at a pinned commit |
