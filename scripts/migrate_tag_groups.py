@@ -215,6 +215,12 @@ UNLABELLED: dict[str, tuple[tuple[str, ...], str, dict[str, tuple[tuple[str, ...
         "beverage_sorting": ((PERC,), "alcoholic or not: world knowledge"),
         "choose_measuring_cup": ((PERC,), "the smaller cup"),
     }),
+    "molmospaces": ((CTRL,), "a house scene; the Franka FR3 on a fixed base (category Franka) is Manipulation, the "
+                    "RB-Y1 (a holonomic base with two arms) Mobile / Whole-body Manipulation, or Navigation", {
+        "pick_and_place_color": ((PERC,), "the receptacle is named only by its colour"),
+        "pick_and_place_next_to": ((PERC,), "placed relative to another named object: spatial grounding"),
+        "navigate_to": ((PERC, FEED, NAV), "find a bed out of view, through doorways in an unseen house"),
+    }),
     "robocasa-gr1": ((CTRL, MANIP), "GR1's arms, waist and hands at a counter, its base fixed; category Pick and "
                      "place, then close adds Planning", {}),
 }
@@ -245,6 +251,9 @@ def by_rule(task: taskdb.Task) -> set[str]:
         out.add(MOBILE if task.task_id in ROBOCASA365_MOBILE else MANIP)
         if str(up.get("category", "")).startswith("Composite"):
             out.add(PLAN)
+    elif task.benchmark == "molmospaces":
+        if NAV not in out:
+            out.add(MANIP if up.get("category") == "Franka" else MOBILE)
     elif task.benchmark == "robocasa-gr1":
         if up.get("category") == "Pick and place, then close":
             out.add(PLAN)
