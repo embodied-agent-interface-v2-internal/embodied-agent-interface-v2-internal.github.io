@@ -16,10 +16,14 @@ progress: none
 # the ones shipped as -i00. After the run four sentences of the instructions were made clearer (the Franka gripper's
 # target at t = 0, the largest valid dt, the navigation distance to the object's position, the tooling's usage log);
 # scenes, instances and checks are unchanged. The Harbor jobs ran as one job for all candidates; they are filed here
-# under the runner's per-task job names.
+# under the runner's per-task job names. molmospaces-luna-1004-pick (2026-10-04): pick's episode was chosen again after
+# a filter that excludes non-commercially licensed assets (the image redistributes every asset); its three new
+# candidates ran in both modes, same configuration, and the kept one (#118) is filed here. pick's earlier result, on the
+# replaced episode #12, stays only as history.
 runs:
   codex-gpt6_luna-medium-openrouter:
     batch: molmospaces-luna-1003
+    rerun_batches: [molmospaces-luna-1004-pick]
     harness: Codex CLI 0.159.2 as Harbor's codex agent (OpenRouter as its own provider, no model gateway)
     tasks:
     - pick
