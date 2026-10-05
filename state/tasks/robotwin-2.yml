@@ -6,11 +6,15 @@
 #   status      keep | drop | needs-review | pending
 #   difficulty  unrated | easy | medium | hard | extreme
 #   labels      tier-2 ids from state/taxonomy.yml
+#   display_tags  what the site shows: tag ids from state/display_tags.yml
 #   owner       bare GitHub handle
 #   note        free text; why you decided what you decided
 
 adjust_bottle:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -23,6 +27,10 @@ adjust_bottle:
   status: drop
 beat_block_hammer:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -35,6 +43,11 @@ beat_block_hammer:
   status: drop
 blocks_ranking_rgb:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -46,6 +59,11 @@ blocks_ranking_rgb:
   status: drop
 blocks_ranking_size:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - bimanual
@@ -60,6 +78,9 @@ blocks_ranking_size:
   status: drop
 click_alarmclock:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - device-operation
@@ -78,6 +99,9 @@ click_alarmclock:
   status: drop
 click_bell:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - device-operation
@@ -90,6 +114,10 @@ click_bell:
   status: drop
 dump_bin_bigbin:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - bimanual
@@ -104,6 +132,9 @@ dump_bin_bigbin:
   status: keep
 grab_roller:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - bimanual
@@ -117,6 +148,12 @@ grab_roller:
   status: drop
 handover_block:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
+  - interaction-collaboration
   labels:
   - scale-tabletop
   - bimanual
@@ -130,6 +167,11 @@ handover_block:
   status: drop
 handover_mic:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
+  - interaction-collaboration
   labels:
   - scale-tabletop
   - bimanual
@@ -140,6 +182,10 @@ handover_mic:
   status: drop
 hanging_mug:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - bimanual
@@ -154,6 +200,9 @@ hanging_mug:
   status: keep
 lift_pot:
   difficulty: medium
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - bimanual
@@ -165,6 +214,10 @@ lift_pot:
   status: drop
 move_can_pot:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -178,6 +231,9 @@ move_can_pot:
   status: drop
 move_pillbottle_pad:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -190,6 +246,10 @@ move_pillbottle_pad:
   status: drop
 move_playingcard_away:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -203,6 +263,10 @@ move_playingcard_away:
   status: drop
 move_stapler_pad:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -216,6 +280,9 @@ move_stapler_pad:
   status: drop
 open_laptop:
   difficulty: medium
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - articulated
@@ -226,6 +293,10 @@ open_laptop:
   status: keep
 open_microwave:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - articulated
@@ -244,6 +315,10 @@ open_microwave:
   - rcb-integrated
 pick_diverse_bottles:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - bimanual
@@ -258,6 +333,9 @@ pick_diverse_bottles:
   status: drop
 pick_dual_bottles:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - bimanual
@@ -271,6 +349,10 @@ pick_dual_bottles:
   status: drop
 place_a2b_left:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -282,6 +364,10 @@ place_a2b_left:
   status: drop
 place_a2b_right:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -292,6 +378,11 @@ place_a2b_right:
   status: drop
 place_bread_basket:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - bimanual
@@ -304,6 +395,9 @@ place_bread_basket:
   status: drop
 place_bread_skillet:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -320,6 +414,10 @@ place_bread_skillet:
   status: drop
 place_burger_fries:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - bimanual
@@ -329,6 +427,10 @@ place_burger_fries:
   status: drop
 place_can_basket:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - bimanual
@@ -350,6 +452,11 @@ place_can_basket:
   - rcb-integrated
 place_cans_plasticbox:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - bimanual
@@ -360,6 +467,9 @@ place_cans_plasticbox:
   status: drop
 place_container_plate:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -372,6 +482,11 @@ place_container_plate:
   status: drop
 place_dual_shoes:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - bimanual
@@ -389,6 +504,10 @@ place_dual_shoes:
   status: keep
 place_empty_cup:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -402,6 +521,10 @@ place_empty_cup:
   status: drop
 place_fan:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -418,6 +541,10 @@ place_fan:
   status: drop
 place_mouse_pad:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -431,6 +558,10 @@ place_mouse_pad:
   status: drop
 place_object_basket:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - bimanual
@@ -447,6 +578,9 @@ place_object_basket:
   status: drop
 place_object_scale:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -459,6 +593,9 @@ place_object_scale:
   status: drop
 place_object_stand:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -472,6 +609,9 @@ place_object_stand:
   status: drop
 place_phone_stand:
   difficulty: medium
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -481,6 +621,9 @@ place_phone_stand:
   status: keep
 place_shoe:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -493,6 +636,9 @@ place_shoe:
   status: drop
 press_stapler:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - device-operation
@@ -506,6 +652,11 @@ press_stapler:
   status: drop
 put_bottles_dustbin:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - manipulation
   labels:
   - scale-tabletop
   - bimanual
@@ -525,6 +676,10 @@ put_bottles_dustbin:
   - rcb-integrated
 put_object_cabinet:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - bimanual
@@ -541,6 +696,10 @@ put_object_cabinet:
   status: drop
 rotate_qrcode:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -557,6 +716,11 @@ rotate_qrcode:
   status: keep
 scan_object:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - bimanual
@@ -576,6 +740,9 @@ scan_object:
   - rcb-integrated
 shake_bottle:
   difficulty: medium
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -587,6 +754,9 @@ shake_bottle:
   status: keep
 shake_bottle_horizontally:
   difficulty: medium
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -596,6 +766,10 @@ shake_bottle_horizontally:
   status: drop
 stack_blocks_three:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - bimanual
@@ -608,6 +782,10 @@ stack_blocks_three:
   status: drop
 stack_blocks_two:
   difficulty: easy
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - bimanual
@@ -632,6 +810,10 @@ stack_blocks_two:
   - rcb-integrated
 stack_bowls_three:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -642,6 +824,10 @@ stack_bowls_three:
   status: drop
 stack_bowls_two:
   difficulty: easy
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -655,6 +841,11 @@ stack_bowls_two:
   status: drop
 stamp_seal:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -667,6 +858,9 @@ stamp_seal:
   status: drop
 turn_switch:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - device-operation

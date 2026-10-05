@@ -1,0 +1,97 @@
+# Display tags — what the site shows on every task, in two groups.
+#
+#   capabilities      tier 1: a group — Capability (shown first), then Task Domain
+#     subcapabilities tier 2: a tag; a task lists its id under `display_tags:`
+#
+# A tagged task carries at least one tag from each group, and each group has its
+# own colour (`.chip--<group id>` in docs/stylesheets/extra.css). Tags with
+# `from_skills` roll up BEHAVIOR's official 31-primitive skill vocabulary, so
+# the editor can suggest them.
+#
+# The detailed labels (`labels:`, state/taxonomy.yml) are kept as they are and
+# not shown as chips; scripts/migrate_tag_groups.py derived the first display
+# tags from them.
+#
+# Rewritten by the Labels page; comments beyond this header are lost.
+
+version: 1
+capabilities:
+- id: capability
+  name: Capability
+  description: What the agent has to be able to do to solve the task. Take every one
+    the goal requires.
+  subcapabilities:
+  - id: perception-understanding
+    name: Perception & Understanding
+    description: Perception, object/state recognition, semantic grounding, spatial
+      understanding.
+  - id: planning-reasoning
+    name: Planning & Reasoning
+    description: Task planning, sequencing, tool/affordance reasoning, geometric reasoning.
+    from_skills:
+    - ignite
+    - chop
+  - id: control-coordination
+    name: Control & Coordination
+    description: Manipulation/control, contact-rich execution, locomotion control,
+      multi-arm or whole-body coordination.
+    from_skills:
+    - hand over
+    - pick up from
+    - place in
+    - place on
+    - place under
+    - place in next to
+    - place on next to
+    - hold
+    - release
+    - push to
+    - sweep surface
+    - tip over
+    - open door
+    - open drawer
+    - open lid
+    - close door
+    - close drawer
+    - close lid
+    - insert
+    - attach
+    - hang
+    - press
+    - wipe hard
+    - pour
+    - turn on switch
+    - turn off switch
+    - turn to
+    - ignite
+    - chop
+    - spray
+  - id: feedback-adaptation
+    name: Feedback & Adaptation
+    description: Closed-loop correction, failure recovery, online adaptation, exploration
+      based on feedback.
+- id: domain
+  name: Task Domain
+  description: 'What kind of task it is: where the robot works and what its body has
+    to do. Take every one that applies.'
+  subcapabilities:
+  - id: manipulation
+    name: Manipulation
+    description: Fixed-base object manipulation, grasping, pushing, insertion, tool
+      use, articulated/deformable object interaction.
+  - id: locomotion-stability
+    name: Locomotion & Stability
+    description: Walking, running, balancing, terrain traversal, dynamic stabilization.
+  - id: navigation-exploration
+    name: Navigation & Exploration
+    description: Navigation, target search, exploration, spatial memory.
+  - id: mobile-whole-body-manipulation
+    name: Mobile / Whole-body Manipulation
+    description: Tasks combining navigation/locomotion with manipulation or requiring
+      coordinated whole-body motion.
+    from_skills:
+    - move to
+  - id: interaction-collaboration
+    name: Interaction & Collaboration
+    description: Human-robot interaction, multi-robot collaboration, handover, cooperative
+      tasks.

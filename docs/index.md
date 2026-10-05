@@ -24,8 +24,9 @@ triage is `git diff state/` — not a hundred file diffs.
 
 | I want to… | Edit this | Or use |
 | --- | --- | --- |
-| Triage a task, set its labels | `state/tasks/<benchmark>.yml` | the **Edit** button on any task row |
-| Add or reword a label | `state/taxonomy.yml` | the [Label taxonomy](reference/capabilities.md) page |
+| Triage a task, set its tags | `state/tasks/<benchmark>.yml` | the **Edit** button on any task row |
+| Add or reword a display tag | `state/display_tags.yml` | the [Label taxonomy](reference/capabilities.md) page |
+| Add or reword a detailed label | `state/taxonomy.yml` | — |
 | Write up why a task is interesting | `docs/benchmarks/<benchmark>/tasks/<task_id>.md` | — |
 | Record benchmark-level facts | `data/benchmarks/<benchmark>.yml` | — |
 | Change how the task list looks | `scripts/gallery.py`, `docs/javascripts/tasklist.js` | — |
@@ -83,9 +84,9 @@ Then:
 
 - :material-tag-multiple-outline: **Argue with the labels**
 
-    The vocabulary is a first draft, not a standard. 10 of the 14
-    sub-capabilities are derived from BEHAVIOR's own 31 skill primitives;
-    the rest are ours. [Label taxonomy →](reference/capabilities.md)
+    The vocabulary is a first draft, not a standard: tasks show display
+    tags in two groups, Capability and Task Domain, and keep their detailed
+    labels for analysis. [Label taxonomy →](reference/capabilities.md)
 
 - :material-text-search: **Reconstruct a missing goal**
 

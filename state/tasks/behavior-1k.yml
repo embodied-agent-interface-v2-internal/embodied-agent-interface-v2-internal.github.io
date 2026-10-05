@@ -6,11 +6,18 @@
 #   status      keep | drop | needs-review | pending
 #   difficulty  unrated | easy | medium | hard | extreme
 #   labels      tier-2 ids from state/taxonomy.yml
+#   display_tags  what the site shows: tag ids from state/display_tags.yml
 #   owner       bare GitHub handle
 #   note        free text; why you decided what you decided
 
 assembling_gift_baskets:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -20,6 +27,10 @@ assembling_gift_baskets:
   - gen-layout
 attach_a_camera_to_a_tripod:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -28,6 +39,11 @@ attach_a_camera_to_a_tripod:
   - gen-layout
 boxing_books_up_for_storage:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -35,6 +51,13 @@ boxing_books_up_for_storage:
   - gen-layout
 boxing_food_after_dinner:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -45,6 +68,11 @@ boxing_food_after_dinner:
   - gen-layout
 bringing_in_wood:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-outdoor
   - bimanual
@@ -53,6 +81,13 @@ bringing_in_wood:
   - gen-layout
 bringing_paper_to_recycling:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-outdoor
   - transport
@@ -63,6 +98,13 @@ bringing_paper_to_recycling:
   - gen-layout
 bringing_water:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -73,6 +115,12 @@ bringing_water:
   - gen-layout
 can_meat:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -97,6 +145,12 @@ can_meat:
   - reference-example
 canning_food:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -112,6 +166,13 @@ canning_food:
   - gen-layout
 carrying_in_groceries:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -122,6 +183,11 @@ carrying_in_groceries:
   - gen-layout
 carrying_out_garden_furniture:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-outdoor
   - bimanual
@@ -130,6 +196,10 @@ carrying_out_garden_furniture:
   - gen-layout
 chop_an_onion:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -141,6 +211,12 @@ chop_an_onion:
   - gen-layout
 chopping_wood:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-outdoor
   - transport
@@ -151,6 +227,10 @@ chopping_wood:
   - gen-layout
 clean_a_keyboard:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -161,6 +241,11 @@ clean_a_keyboard:
   - gen-layout
 clean_a_patio:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-outdoor
   - transport
@@ -171,6 +256,10 @@ clean_a_patio:
   - gen-layout
 clean_a_trumpet:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -181,6 +270,10 @@ clean_a_trumpet:
   - gen-layout
 clean_boxing_gloves:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -191,6 +284,13 @@ clean_boxing_gloves:
   - gen-layout
 clean_up_broken_glass:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -199,6 +299,11 @@ clean_up_broken_glass:
   - gen-layout
 clean_up_your_desk:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -208,6 +313,13 @@ clean_up_your_desk:
   - gen-layout
 clean_your_rusty_garden_tools:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-outdoor
   - transport
@@ -221,6 +333,11 @@ clean_your_rusty_garden_tools:
   - gen-layout
 cleaning_up_branches_and_twigs:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-outdoor
   - transport
@@ -229,6 +346,11 @@ cleaning_up_branches_and_twigs:
   - gen-layout
 cleaning_up_plates_and_food:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -239,6 +361,11 @@ cleaning_up_plates_and_food:
   - gen-layout
 clearing_food_from_table_into_fridge:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -249,6 +376,11 @@ clearing_food_from_table_into_fridge:
   - gen-layout
 collecting_aluminum_cans:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -256,6 +388,12 @@ collecting_aluminum_cans:
   - gen-layout
 collecting_childrens_toys:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -264,6 +402,13 @@ collecting_childrens_toys:
   - gen-layout
 composting_waste:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -272,6 +417,12 @@ composting_waste:
   - gen-layout
 cook_a_brisket:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -284,6 +435,12 @@ cook_a_brisket:
   - gen-layout
 cook_a_frozen_pie:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -296,6 +453,12 @@ cook_a_frozen_pie:
   - gen-layout
 cook_bacon:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -309,6 +472,10 @@ cook_bacon:
   - gen-layout
 cook_broccolini:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -319,6 +486,13 @@ cook_broccolini:
   - gen-layout
 cook_brussels_sprouts:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -335,6 +509,12 @@ cook_brussels_sprouts:
   - gen-layout
 cook_cabbage:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -350,6 +530,12 @@ cook_cabbage:
   - gen-layout
 cook_hot_dogs:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -362,6 +548,13 @@ cook_hot_dogs:
   - gen-layout
 dispose_of_batteries:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -370,6 +563,13 @@ dispose_of_batteries:
   - gen-layout
 dispose_of_glass:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -378,6 +578,12 @@ dispose_of_glass:
   - gen-layout
 freeze_fruit:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -389,6 +595,12 @@ freeze_fruit:
   - gen-layout
 freeze_pies:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -401,6 +613,12 @@ freeze_pies:
   - gen-layout
 getting_organized_for_work:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - whole-body
@@ -411,6 +629,12 @@ getting_organized_for_work:
   - gen-layout
 halve_an_egg:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -423,6 +647,9 @@ halve_an_egg:
   - gen-layout
 hanging_pictures:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -431,6 +658,12 @@ hanging_pictures:
   - gen-layout
 hiding_Easter_eggs:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-outdoor
   - transport
@@ -440,6 +673,11 @@ hiding_Easter_eggs:
   - gen-layout
 installing_a_fax_machine:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -448,6 +686,12 @@ installing_a_fax_machine:
   - gen-layout
 installing_a_modem:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -458,6 +702,11 @@ installing_a_modem:
   - gen-layout
 installing_a_scanner:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -468,6 +717,11 @@ installing_a_scanner:
   - gen-layout
 installing_smoke_detectors:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-outdoor
   - transport
@@ -476,6 +730,12 @@ installing_smoke_detectors:
   - gen-layout
 laying_tile_floors:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -485,6 +745,13 @@ laying_tile_floors:
   - gen-layout
 loading_the_car:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -495,6 +762,11 @@ loading_the_car:
   - gen-layout
 make_cabinet_doors:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -503,6 +775,12 @@ make_cabinet_doors:
   - gen-layout
 make_gift_bags_for_baby_showers:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -513,6 +791,10 @@ make_gift_bags_for_baby_showers:
   - gen-layout
 make_microwave_popcorn:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -524,6 +806,12 @@ make_microwave_popcorn:
   - gen-layout
 make_pizza:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -536,6 +824,10 @@ make_pizza:
   - gen-layout
 make_rose_centerpieces:
   difficulty: easy
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -543,6 +835,13 @@ make_rose_centerpieces:
   - gen-layout
 moving_boxes_to_storage:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - bimanual
@@ -554,6 +853,10 @@ moving_boxes_to_storage:
   - gen-layout
 organizing_art_supplies:
   difficulty: easy
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -561,6 +864,11 @@ organizing_art_supplies:
   - gen-layout
 organizing_school_stuff:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -568,6 +876,11 @@ organizing_school_stuff:
   - gen-layout
 outfit_a_basic_toolbox:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -577,6 +890,11 @@ outfit_a_basic_toolbox:
   - gen-layout
 packing_meal_for_delivery:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -586,6 +904,12 @@ packing_meal_for_delivery:
   - gen-layout
 picking_up_toys:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -594,6 +918,13 @@ picking_up_toys:
   - gen-layout
 picking_up_trash:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -602,6 +933,11 @@ picking_up_trash:
   - gen-layout
 polishing_shoes:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -614,6 +950,12 @@ polishing_shoes:
   - gen-layout
 preparing_lunch_box:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -624,6 +966,10 @@ preparing_lunch_box:
   - gen-layout
 put_together_a_basic_pruning_kit:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -633,6 +979,11 @@ put_together_a_basic_pruning_kit:
   - gen-layout
 putting_away_Halloween_decorations:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -645,6 +996,13 @@ putting_away_Halloween_decorations:
   - gen-layout
 putting_away_toys:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -654,6 +1012,11 @@ putting_away_toys:
   - gen-layout
 putting_dirty_dishes_in_sink:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -661,6 +1024,12 @@ putting_dirty_dishes_in_sink:
   - gen-layout
 putting_dishes_away_after_cleaning:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -672,6 +1041,11 @@ putting_dishes_away_after_cleaning:
   - gen-layout
 putting_shoes_on_rack:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -681,6 +1055,13 @@ putting_shoes_on_rack:
   - gen-layout
 putting_up_Christmas_decorations_inside:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -691,6 +1072,11 @@ putting_up_Christmas_decorations_inside:
   - gen-layout
 re_shelving_library_books:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -699,6 +1085,12 @@ re_shelving_library_books:
   - gen-layout
 rearrange_your_room:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -707,6 +1099,10 @@ rearrange_your_room:
   - gen-layout
 rearranging_kitchen_furniture:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -717,6 +1113,10 @@ rearranging_kitchen_furniture:
   - gen-layout
 scrubbing_bathroom_floor:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -727,6 +1127,12 @@ scrubbing_bathroom_floor:
   - gen-layout
 set_up_a_coffee_station_in_your_kitchen:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -736,6 +1142,11 @@ set_up_a_coffee_station_in_your_kitchen:
   - gen-layout
 setting_mousetraps:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - whole-body
@@ -746,6 +1157,10 @@ setting_mousetraps:
   - gen-layout
 setting_the_fire:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -758,6 +1173,13 @@ setting_the_fire:
   - gen-layout
 setting_the_table:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -770,6 +1192,12 @@ setting_the_table:
   - gen-layout
 setup_a_bar_for_a_cocktail_party:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -780,6 +1208,12 @@ setup_a_bar_for_a_cocktail_party:
   - gen-layout
 slicing_vegetables:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -793,6 +1227,12 @@ slicing_vegetables:
   - gen-layout
 sorting_books_on_shelf:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -806,6 +1246,12 @@ sorting_books_on_shelf:
   - gen-layout
 sorting_bottles_cans_and_paper:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -815,6 +1261,13 @@ sorting_bottles_cans_and_paper:
   - gen-layout
 sorting_household_items:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - whole-body
@@ -827,6 +1280,12 @@ sorting_household_items:
   - gen-layout
 sorting_vegetables:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -836,6 +1295,11 @@ sorting_vegetables:
   - gen-layout
 spraying_for_bugs:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-outdoor
   - transport
@@ -845,6 +1309,11 @@ spraying_for_bugs:
   - gen-layout
 spraying_fruit_trees:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-outdoor
   - transport
@@ -854,6 +1323,12 @@ spraying_fruit_trees:
   - gen-layout
 stacking_wood:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-outdoor
   - transport
@@ -863,6 +1338,13 @@ stacking_wood:
   - gen-layout
 store_batteries:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -873,6 +1355,12 @@ store_batteries:
   - gen-layout
 store_honey:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -882,6 +1370,11 @@ store_honey:
   - gen-layout
 store_produce:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -891,6 +1384,12 @@ store_produce:
   - gen-layout
 storing_food:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -901,6 +1400,10 @@ storing_food:
   - gen-layout
 sweeping_garage:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -911,6 +1414,12 @@ sweeping_garage:
   - gen-layout
 thawing_frozen_food:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -924,6 +1433,10 @@ thawing_frozen_food:
   - gen-layout
 tidying_bathroom:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -931,6 +1444,11 @@ tidying_bathroom:
   - gen-layout
 tidying_bedroom:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -939,6 +1457,10 @@ tidying_bedroom:
   - gen-layout
 tidying_living_room:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -946,6 +1468,9 @@ tidying_living_room:
   - gen-layout
 turning_on_radio:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - device-operation
@@ -961,6 +1486,13 @@ turning_on_radio:
   - smoke-test-candidate
 turning_out_all_lights_before_sleep:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - device-operation
@@ -969,6 +1501,13 @@ turning_out_all_lights_before_sleep:
   - gen-layout
 unloading_the_car:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - navigation-exploration
+  - mobile-whole-body-manipulation
   labels:
   - scale-building
   - transport
@@ -979,6 +1518,10 @@ unloading_the_car:
   - gen-layout
 vacuuming_floors:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -988,6 +1531,10 @@ vacuuming_floors:
   - gen-layout
 wash_a_baseball_cap:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport
@@ -998,6 +1545,12 @@ wash_a_baseball_cap:
   - gen-layout
 wash_dog_toys:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
   labels:
   - scale-room
   - transport

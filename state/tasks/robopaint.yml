@@ -6,6 +6,7 @@
 #   status      keep | drop | needs-review | pending
 #   difficulty  unrated | easy | medium | hard | extreme
 #   labels      tier-2 ids from state/taxonomy.yml
+#   display_tags  what the site shows: tag ids from state/display_tags.yml
 #   owner       bare GitHub handle
 #   note        free text; why you decided what you decided
 #
@@ -21,192 +22,647 @@
 
 line_butterfly:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   excluded: "too easy for the final benchmark (line drawings; kept for the record, results in Runs)"
 line_city:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   excluded: "too easy for the final benchmark (line drawings; kept for the record, results in Runs)"
 line_cottage:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   excluded: "too easy for the final benchmark (line drawings; kept for the record, results in Runs)"
 line_fish:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   excluded: "too easy for the final benchmark (line drawings; kept for the record, results in Runs)"
 line_flower:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   excluded: "too easy for the final benchmark (line drawings; kept for the record, results in Runs)"
 line_landscape:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   excluded: "too easy for the final benchmark (line drawings; kept for the record, results in Runs)"
 line_rainbow:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   excluded: "too easy for the final benchmark (line drawings; kept for the record, results in Runs)"
 line_rocket:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   excluded: "too easy for the final benchmark (line drawings; kept for the record, results in Runs)"
 line_sailboat:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   excluded: "too easy for the final benchmark (line drawings; kept for the record, results in Runs)"
 lettering_donum:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 lettering_inunum:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 lettering_minim:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 lettering_minimum:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 lettering_minium:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 lettering_moon:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 lettering_nimium:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 lettering_nun:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 lettering_omnium:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 lettering_unpin:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_ai:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_chun:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_da:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_dao:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_de:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_feng:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_fu:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_guo:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_he:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_houdezaiwu:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_hua:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_jia:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_jiang:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_jing:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_kou:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_le:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_lin:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_long:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_ma:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_ming:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_ningjingzhiyuan:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_qing:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_ran:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_ren:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_shan:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_shu:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_shui:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_tian:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_tiandaochouqin:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_xin:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_yong:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_yongzibafa:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_yue:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_zhong:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 kaishu_zi:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 acrylic_applesoranges:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 acrylic_bedroom:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 acrylic_bluehorses:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 acrylic_greatwave:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 acrylic_kajikazawa:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 acrylic_plumpark:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 acrylic_redfuji:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 acrylic_suddenshower:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 acrylic_sunflowers:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 acrylic_vision:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 oil_bathers:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 oil_cafeterrace:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 oil_cypresses:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 oil_irises:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 oil_milkmaid:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 oil_monalisa:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 oil_pearlearring:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 oil_saintevictoire:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 oil_starrynight:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 oil_temeraire:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 oil_wanderer:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 xingshu_chun:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 xingshu_feng:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 xingshu_he:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 xingshu_huifenghechang:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 xingshu_jian:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 xingshu_maolinxiuzhu:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 xingshu_nian:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 xingshu_ren:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 xingshu_shan:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 xingshu_tianlangqiqing:
   difficulty: extreme
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 xingshu_tong:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 xingshu_xian:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 xingshu_xin:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 xingshu_yong:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 xingshu_yu:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 xingshu_zhi:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation

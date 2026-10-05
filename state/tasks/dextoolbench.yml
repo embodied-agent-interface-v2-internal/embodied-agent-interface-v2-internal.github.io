@@ -6,6 +6,7 @@
 #   status      keep | drop | needs-review | pending
 #   difficulty  unrated | easy | medium | hard | extreme
 #   labels      tier-2 ids from state/taxonomy.yml
+#   display_tags  what the site shows: tag ids from state/display_tags.yml
 #   owner       bare GitHub handle
 #   note        free text; why you decided what you decided
 #
@@ -14,6 +15,10 @@
 
 brush_blue_brush_sweep_forward:
   difficulty: extreme
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -28,6 +33,10 @@ brush_blue_brush_sweep_forward:
   status: keep
 brush_blue_brush_sweep_right:
   difficulty: extreme
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -42,6 +51,10 @@ brush_blue_brush_sweep_right:
   status: pending
 brush_red_brush_sweep_forward:
   difficulty: extreme
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -56,6 +69,10 @@ brush_red_brush_sweep_forward:
   status: keep
 brush_red_brush_sweep_right:
   difficulty: extreme
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -70,6 +87,10 @@ brush_red_brush_sweep_right:
   status: keep
 eraser_flat_eraser_wipe_c:
   difficulty: extreme
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -84,6 +105,10 @@ eraser_flat_eraser_wipe_c:
   status: pending
 eraser_flat_eraser_wipe_smile:
   difficulty: extreme
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -98,6 +123,10 @@ eraser_flat_eraser_wipe_smile:
   status: pending
 eraser_handle_eraser_wipe_c:
   difficulty: extreme
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -112,6 +141,10 @@ eraser_handle_eraser_wipe_c:
   status: keep
 eraser_handle_eraser_wipe_smile:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -126,6 +159,10 @@ eraser_handle_eraser_wipe_smile:
   status: keep
 hammer_claw_hammer_swing_down:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -140,6 +177,10 @@ hammer_claw_hammer_swing_down:
   status: keep
 hammer_claw_hammer_swing_side:
   difficulty: extreme
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -154,6 +195,10 @@ hammer_claw_hammer_swing_side:
   status: keep
 hammer_mallet_hammer_swing_down:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -169,6 +214,10 @@ hammer_mallet_hammer_swing_down:
   status: keep
 hammer_mallet_hammer_swing_side:
   difficulty: extreme
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -183,6 +232,10 @@ hammer_mallet_hammer_swing_side:
   status: keep
 marker_sharpie_marker_draw_smile:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -197,6 +250,10 @@ marker_sharpie_marker_draw_smile:
   status: keep
 marker_sharpie_marker_write_c:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -211,6 +268,10 @@ marker_sharpie_marker_write_c:
   status: keep
 marker_staples_marker_draw_smile:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -225,6 +286,10 @@ marker_staples_marker_draw_smile:
   status: keep
 marker_staples_marker_write_c:
   difficulty: extreme
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -239,6 +304,10 @@ marker_staples_marker_write_c:
   status: keep
 screwdriver_long_screwdriver_spin_horizontal:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - in-hand
@@ -255,6 +324,10 @@ screwdriver_long_screwdriver_spin_horizontal:
   status: keep
 screwdriver_long_screwdriver_spin_vertical:
   difficulty: extreme
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - in-hand
@@ -271,6 +344,10 @@ screwdriver_long_screwdriver_spin_vertical:
   status: keep
 screwdriver_short_screwdriver_spin_horizontal:
   difficulty: extreme
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - in-hand
@@ -287,6 +364,10 @@ screwdriver_short_screwdriver_spin_horizontal:
   status: keep
 screwdriver_short_screwdriver_spin_vertical:
   difficulty: extreme
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - in-hand
@@ -303,6 +384,10 @@ screwdriver_short_screwdriver_spin_vertical:
   status: keep
 spatula_flat_spatula_flip_over:
   difficulty: extreme
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - in-hand
@@ -319,6 +404,10 @@ spatula_flat_spatula_flip_over:
   status: keep
 spatula_flat_spatula_serve_plate:
   difficulty: extreme
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -333,6 +422,10 @@ spatula_flat_spatula_serve_plate:
   status: keep
 spatula_spoon_spatula_flip_over:
   difficulty: extreme
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - in-hand
@@ -349,6 +442,10 @@ spatula_spoon_spatula_flip_over:
   status: keep
 spatula_spoon_spatula_serve_plate:
   difficulty: extreme
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport

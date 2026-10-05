@@ -6,6 +6,7 @@
 #   status      keep | drop | needs-review | pending
 #   difficulty  unrated | easy | medium | hard | extreme
 #   labels      tier-2 ids from state/taxonomy.yml
+#   display_tags  what the site shows: tag ids from state/display_tags.yml
 #   owner       bare GitHub handle
 #   note        free text; why you decided what you decided
 #
@@ -18,199 +19,357 @@ assembly:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 basketball:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 bin_picking:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 box_close:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 button_press:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 button_press_topdown:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 button_press_topdown_wall:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 button_press_wall:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 coffee_button:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 coffee_pull:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 coffee_push:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 dial_turn:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 disassemble:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 door_close:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 door_lock:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 door_open:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 door_unlock:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 drawer_close:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 drawer_open:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 faucet_close:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 faucet_open:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 hammer:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 hand_insert:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 handle_press:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 handle_press_side:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 handle_pull:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 handle_pull_side:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 lever_pull:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 peg_insert_side:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 peg_unplug_side:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 pick_out_of_hole:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 pick_place:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 pick_place_wall:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 plate_slide_back:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 plate_slide_back_side:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 plate_slide:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 plate_slide_side:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 push_back:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 push:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 push_wall:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 reach:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 reach_wall:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 shelf_place:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 soccer:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 stick_pull:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 stick_push:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 sweep:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 sweep_into:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 window_close:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation
 window_open:
   status: keep
   owner: changhechen
   note: "Meta-World v3"
+  display_tags:
+  - control-coordination
+  - manipulation

@@ -6,6 +6,7 @@
 #   status      keep | drop | needs-review | pending
 #   difficulty  unrated | easy | medium | hard | extreme
 #   labels      tier-2 ids from state/taxonomy.yml
+#   display_tags  what the site shows: tag ids from state/display_tags.yml
 #   owner       bare GitHub handle
 #   note        free text; why you decided what you decided
 #
@@ -14,6 +15,9 @@
 
 aero_cube_rotate_z_axis:
   difficulty: extreme
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - in-hand
@@ -26,6 +30,11 @@ aero_cube_rotate_z_axis:
   status: pending
 aloha_hand_over:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
+  - interaction-collaboration
   labels:
   - scale-tabletop
   - bimanual
@@ -40,6 +49,10 @@ aloha_hand_over:
   status: keep
 aloha_single_peg_insertion:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - bimanual
@@ -55,6 +68,9 @@ aloha_single_peg_insertion:
   status: keep
 leap_cube_reorient:
   difficulty: extreme
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - in-hand
@@ -67,6 +83,9 @@ leap_cube_reorient:
   status: pending
 leap_cube_rotate_z_axis:
   difficulty: extreme
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - in-hand
@@ -80,6 +99,9 @@ leap_cube_rotate_z_axis:
   status: pending
 panda_open_cabinet:
   difficulty: medium
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - articulated
@@ -92,6 +114,9 @@ panda_open_cabinet:
   status: keep
 panda_pick_cube:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -103,6 +128,9 @@ panda_pick_cube:
   status: pending
 panda_pick_cube_cartesian:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -114,6 +142,9 @@ panda_pick_cube_cartesian:
   status: pending
 panda_pick_cube_orientation:
   difficulty: medium
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -126,6 +157,9 @@ panda_pick_cube_orientation:
   status: keep
 panda_robotiq_push_cube:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - nonprehensile

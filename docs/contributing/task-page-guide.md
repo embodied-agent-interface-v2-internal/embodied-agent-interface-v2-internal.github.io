@@ -66,6 +66,8 @@ can_meat:
   difficulty: hard
   labels: [articulated, pick-place, insert-attach, long-horizon, counting,
            object-state, search]
+  display_tags: [perception-understanding, planning-reasoning, control-coordination,
+                 feedback-adaptation, mobile-whole-body-manipulation]
   owner: alice
   note: Dense multi-constraint goal; high discriminative value per episode.
   skills: [open door, open lid, pick up from, place in, close lid, close door]
@@ -75,7 +77,8 @@ can_meat:
 | --- | --- |
 | `status` | `keep` · `drop` · `needs-review` · `pending` |
 | `difficulty` | `unrated` · `easy` · `medium` · `hard` · `extreme` — for a coding agent driving this robot, not a human teleoperator |
-| `labels` | tier-2 ids from [the taxonomy](../reference/capabilities.md); unknown ids fail validation |
+| `labels` | tier-2 ids from [the taxonomy](../reference/capabilities.md#detailed-labels), the detailed labels, not shown on the page; unknown ids fail validation |
+| `display_tags` | what the page and the task list show: ids from [the display tags](../reference/capabilities.md), at least one Capability and one Task Domain tag; unknown ids, or tags from one group only, fail validation |
 | `owner` | bare GitHub handle, no `@` |
 | `note` | free text; optional |
 | `excluded` | optional: why the task is not part of the final benchmark — see below |

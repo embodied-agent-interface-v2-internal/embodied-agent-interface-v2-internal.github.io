@@ -6,11 +6,16 @@
 #   status      keep | drop | needs-review | pending
 #   difficulty  unrated | easy | medium | hard | extreme
 #   labels      tier-2 ids from state/taxonomy.yml
+#   display_tags  what the site shows: tag ids from state/display_tags.yml
 #   owner       bare GitHub handle
 #   note        free text; why you decided what you decided
 
 animals_in_bin:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -21,6 +26,11 @@ animals_in_bin:
   - semantics
 apple_and_yogurt_in_bowl:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -32,6 +42,10 @@ apple_and_yogurt_in_bowl:
   - affordance
 bagels_on_plate:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -42,6 +56,9 @@ bagels_on_plate:
   - semantics
 banana_in_bowl:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -60,6 +77,9 @@ banana_in_bowl:
   - rcb-integrated
 banana_on_plate:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -68,6 +88,10 @@ banana_on_plate:
   - gen-language
 banana_then_rubiks_cube:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -79,6 +103,11 @@ banana_then_rubiks_cube:
   - conjunction
 bananas_in_bin_one_more:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -91,6 +120,11 @@ bananas_in_bin_one_more:
   - semantics
 bananas_in_bin_three_total:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -103,6 +137,11 @@ bananas_in_bin_three_total:
   - semantics
 bananas_in_crate:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -114,6 +153,11 @@ bananas_in_crate:
   - counting
 bananas_out_of_bin:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -138,6 +182,11 @@ bananas_out_of_bin:
   - spatial
 bbq_sauce_in_bin:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -150,6 +199,10 @@ bbq_sauce_in_bin:
   - semantics
 big_pumpkin_in_bin:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -161,6 +214,11 @@ big_pumpkin_in_bin:
   - size
 black_items_in_bin:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -173,6 +231,10 @@ black_items_in_bin:
   - sorting
 block_stacking_order_agnostic:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -184,6 +246,11 @@ block_stacking_order_agnostic:
   - stacking
 block_stacking_specified_order:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -198,6 +265,11 @@ block_stacking_specified_order:
   - stacking
 blocks_in_bin:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -209,6 +281,9 @@ blocks_in_bin:
   - sorting
 bowl_in_bin:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -217,6 +292,10 @@ bowl_in_bin:
   - gen-language
 bowl_stacking_left_on_right:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -229,6 +308,10 @@ bowl_stacking_left_on_right:
   - spatial
 bowl_stacking_right_on_left:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -241,6 +324,10 @@ bowl_stacking_right_on_left:
   - spatial
 butter_above_raisin:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -252,6 +339,9 @@ butter_above_raisin:
   - spatial
 canned_food_in_bin:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -262,6 +352,10 @@ canned_food_in_bin:
   - semantics
 clamp_in_right_bin:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -274,6 +368,12 @@ clamp_in_right_bin:
   - spatial
 clean_up_toys:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -286,6 +386,12 @@ clean_up_toys:
   - sorting
 clear_organic_objects:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -298,6 +404,11 @@ clear_organic_objects:
   - semantics
 clutter_plastic:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -309,6 +420,10 @@ clutter_plastic:
   - semantics
 clutter_pumpkin:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -319,6 +434,9 @@ clutter_pumpkin:
   - semantics
 coffee_pot_in_bin:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -329,6 +447,11 @@ coffee_pot_in_bin:
   - semantics
 condiments_in_bin:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -341,6 +464,11 @@ condiments_in_bin:
   - sorting
 cooking_clear_plate:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -353,6 +481,11 @@ cooking_clear_plate:
   - sorting
 cooking_pick_pasta_tool:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -368,6 +501,12 @@ cooking_pick_pasta_tool:
   - vague
 cubes_and_blocks_in_bin:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -380,6 +519,11 @@ cubes_and_blocks_in_bin:
   - sorting
 dishes_in_bin:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -393,6 +537,11 @@ dishes_in_bin:
   - vague
 electronics_in_bin:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -405,6 +554,10 @@ electronics_in_bin:
   - sorting
 food_packing1_boxes:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -416,6 +569,10 @@ food_packing1_boxes:
   - semantics
 food_packing1_cans:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -427,6 +584,11 @@ food_packing1_cans:
   - semantics
 food_packing2_boxes:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -438,6 +600,11 @@ food_packing2_boxes:
   - semantics
 food_packing2_cans:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -449,6 +616,11 @@ food_packing2_cans:
   - semantics
 food_packing3_boxes:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -461,6 +633,11 @@ food_packing3_boxes:
   - semantics
 food_packing3_cans:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -473,6 +650,11 @@ food_packing3_cans:
   - semantics
 food_packing_by_color:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -488,6 +670,11 @@ food_packing_by_color:
   - spatial
 fruits_green_limes_on_plate:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -499,6 +686,11 @@ fruits_green_limes_on_plate:
   - color
 fruits_moving:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -511,6 +703,11 @@ fruits_moving:
   - color
 fruits_moving_orange_or_lime:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -522,6 +719,12 @@ fruits_moving_orange_or_lime:
   - conjunction
 fruits_on_plate:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - feedback-adaptation
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -534,6 +737,11 @@ fruits_on_plate:
   - vague
 fruits_on_plate3:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -548,6 +756,9 @@ fruits_on_plate3:
   - vague
 fruits_onion:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -558,6 +769,11 @@ fruits_onion:
   - semantics
 fruits_onion_to_plate:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -570,6 +786,11 @@ fruits_onion_to_plate:
   - vague
 fruits_oranges_on_plate:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -584,6 +805,9 @@ fruits_oranges_on_plate:
   - vague
 grab_a_bagel:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -594,6 +818,9 @@ grab_a_bagel:
   - semantics
 grab_a_fruit:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -604,6 +831,11 @@ grab_a_fruit:
   - semantics
 green_spoons_in_pot:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -617,6 +849,11 @@ green_spoons_in_pot:
   - reorientation
 hammers_in_left_bin:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -631,6 +868,10 @@ hammers_in_left_bin:
   - spatial
 jugs_on_shelf:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -642,6 +883,10 @@ jugs_on_shelf:
   - semantics
 keyboard_out_of_bin:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -653,6 +898,10 @@ keyboard_out_of_bin:
   - spatial
 larger_object_raisin_box_in_bin:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -664,6 +913,9 @@ larger_object_raisin_box_in_bin:
   - size
 marker_in_mug:
   difficulty: medium
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -675,6 +927,9 @@ marker_in_mug:
   - affordance
 mouse_on_keyboard:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -685,6 +940,10 @@ mouse_on_keyboard:
   - semantics
 move_banana_to_bagel_plate:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -695,6 +954,10 @@ move_banana_to_bagel_plate:
   - semantics
 mustard_above_raisin:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -706,6 +969,10 @@ mustard_above_raisin:
   - spatial
 mustard_in_left_bin:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -717,6 +984,10 @@ mustard_in_left_bin:
   - spatial
 mustard_in_right_bin:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -728,6 +999,11 @@ mustard_in_right_bin:
   - spatial
 non_hammer_tools_in_right_bin:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -742,6 +1018,11 @@ non_hammer_tools_in_right_bin:
   - spatial
 one_bottle_in_square_pail:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -753,6 +1034,11 @@ one_bottle_in_square_pail:
   - semantics
 one_bottle_on_shelf:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -765,6 +1051,11 @@ one_bottle_on_shelf:
   - semantics
 phone_or_remote_in_bin:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -776,6 +1067,9 @@ phone_or_remote_in_bin:
   - conjunction
 pick_drill:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -786,6 +1080,9 @@ pick_drill:
   - semantics
 pick_glasses:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -796,6 +1093,10 @@ pick_glasses:
   - semantics
 pick_orange_object:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -807,6 +1108,10 @@ pick_orange_object:
   - color
 pick_up_blue_pitcher:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -819,6 +1124,10 @@ pick_up_blue_pitcher:
   - color
 pick_up_green_object:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -830,6 +1139,10 @@ pick_up_green_object:
   - color
 pink_spoon_in_pot:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -843,6 +1156,11 @@ pink_spoon_in_pot:
   - color
 plastic_bottles_in_square_pail:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -856,6 +1174,11 @@ plastic_bottles_in_square_pail:
   - sorting
 put_bowl_on_shelf_top:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -868,6 +1191,11 @@ put_bowl_on_shelf_top:
   - spatial
 put_mugs_on_shelf:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -883,6 +1211,11 @@ put_mugs_on_shelf:
   - spatial
 put_two_mugs_on_shelf:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -898,6 +1231,11 @@ put_two_mugs_on_shelf:
   - spatial
 recycle_carton:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -912,6 +1250,11 @@ recycle_carton:
   - vague
 recycle_cartons_on_box:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -924,6 +1267,11 @@ recycle_cartons_on_box:
   - semantics
 recycle_cartons_vertical_crate:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -939,6 +1287,11 @@ recycle_cartons_vertical_crate:
   - spatial
 red_dishes_in_bin:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -951,6 +1304,11 @@ red_dishes_in_bin:
   - semantics
 red_items_in_bin:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -963,6 +1321,10 @@ red_items_in_bin:
   - sorting
 reorient_all_mugs:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -974,6 +1336,9 @@ reorient_all_mugs:
   - reorientation
 reorient_jug:
   difficulty: medium
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -987,6 +1352,10 @@ reorient_jug:
   - semantics
 reorient_red_mug:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1000,6 +1369,11 @@ reorient_red_mug:
   - reorientation
 reorient_white_mugs:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1013,6 +1387,9 @@ reorient_white_mugs:
   - reorientation
 rubiks_cube:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1021,6 +1398,10 @@ rubiks_cube:
   - gen-language
 rubiks_cube_and_banana:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1031,6 +1412,10 @@ rubiks_cube_and_banana:
   - conjunction
 rubiks_cube_behind_bowl:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1042,6 +1427,10 @@ rubiks_cube_behind_bowl:
   - spatial
 rubiks_cube_in_front_of_bowl:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1053,6 +1442,10 @@ rubiks_cube_in_front_of_bowl:
   - spatial
 rubiks_cube_left_of_bowl:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1064,6 +1457,11 @@ rubiks_cube_left_of_bowl:
   - spatial
 rubiks_cube_or_banana:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1075,6 +1473,10 @@ rubiks_cube_or_banana:
   - conjunction
 rubiks_cube_right_of_bowl:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1086,6 +1488,10 @@ rubiks_cube_right_of_bowl:
   - spatial
 rubiks_cube_then_banana:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1097,6 +1503,10 @@ rubiks_cube_then_banana:
   - conjunction
 rubiks_cubes_in_bin:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1107,6 +1517,10 @@ rubiks_cubes_in_bin:
   - sorting
 sauce_bottles_crate:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1119,6 +1533,10 @@ sauce_bottles_crate:
   - semantics
 small_pumpkin_in_bin:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1130,6 +1548,10 @@ small_pumpkin_in_bin:
   - size
 smaller_object_butter_in_bin:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1141,6 +1563,9 @@ smaller_object_butter_in_bin:
   - size
 smartphone_in_bin:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1151,6 +1576,10 @@ smartphone_in_bin:
   - semantics
 spoon_in_mug:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1164,6 +1593,11 @@ spoon_in_mug:
   - spatial
 spoons_in_pot:
   difficulty: hard
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1179,6 +1613,10 @@ spoons_in_pot:
   - semantics
 stack3_rubiks_cube:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1190,6 +1628,11 @@ stack3_rubiks_cube:
   - stacking
 stack_white_mugs:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1204,6 +1647,10 @@ stack_white_mugs:
   - stacking
 stack_yellow_on_red:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1216,6 +1663,9 @@ stack_yellow_on_red:
   - stacking
 take_measuring_spoon_out:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1226,6 +1676,10 @@ take_measuring_spoon_out:
   - semantics
 take_mugs_off_of_shelf:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1238,6 +1692,11 @@ take_mugs_off_of_shelf:
   - semantics
 take_spatula_off_shelf:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1251,6 +1710,9 @@ take_spatula_off_shelf:
   - spatial
 throw_away_apple:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1261,6 +1723,11 @@ throw_away_apple:
   - semantics
 throw_away_snacks:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1272,6 +1739,11 @@ throw_away_snacks:
   - semantics
 tool_organization:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1286,6 +1758,11 @@ tool_organization:
   - spatial
 tool_organization_both:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1298,6 +1775,11 @@ tool_organization_both:
   - spatial
 tools_picking_all_hammers:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1310,6 +1792,10 @@ tools_picking_all_hammers:
   - spatial
 tools_picking_drill:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1322,6 +1808,10 @@ tools_picking_drill:
   - spatial
 tools_picking_hammer:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1336,6 +1826,9 @@ tools_picking_hammer:
   - spatial
 toy_in_bin:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1346,6 +1839,10 @@ toy_in_bin:
   - semantics
 unstack_rubiks_cube:
   difficulty: hard
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1356,6 +1853,10 @@ unstack_rubiks_cube:
   - stacking
 utensils_in_mug:
   difficulty: medium
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1368,6 +1869,10 @@ utensils_in_mug:
   - semantics
 white_mug_in_center_of_table:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1381,6 +1886,11 @@ white_mug_in_center_of_table:
   - spatial
 white_mugs_in_bin:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1392,6 +1902,9 @@ white_mugs_in_bin:
   - color
 wood_spatula_to_bowl:
   difficulty: easy
+  display_tags:
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1402,6 +1915,11 @@ wood_spatula_to_bowl:
   - semantics
 yellow_and_white_objects_in_bin:
   difficulty: medium
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport
@@ -1414,6 +1932,10 @@ yellow_and_white_objects_in_bin:
   - conjunction
 yogurt_in_bowl:
   difficulty: easy
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - manipulation
   labels:
   - scale-tabletop
   - transport

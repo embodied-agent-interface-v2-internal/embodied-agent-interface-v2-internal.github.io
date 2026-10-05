@@ -6,6 +6,7 @@
 #   status      keep | drop | needs-review | pending
 #   difficulty  unrated | easy | medium | hard | extreme
 #   labels      tier-2 ids from state/taxonomy.yml
+#   display_tags  what the site shows: tag ids from state/display_tags.yml
 #   owner       bare GitHub handle
 #   note        free text; why you decided what you decided
 #
@@ -18,199 +19,389 @@ add_lemon_to_fish:
   status: keep
   owner: changhechen
   note: "Composite · garnishing dishes"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 assemble_cooking_array:
   status: keep
   owner: changhechen
   note: "Composite · frying"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 beverage_sorting:
   status: keep
   owner: changhechen
   note: "Composite · restocking supplies"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 bread_and_cheese:
   status: keep
   owner: changhechen
   note: "Composite · snack preparation"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 candle_cleanup:
   status: keep
   owner: changhechen
   note: "Composite · clearing table"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 cereal_and_bowl:
   status: keep
   owner: changhechen
   note: "Composite · snack preparation"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 choose_measuring_cup:
   status: keep
   owner: changhechen
   note: "Composite · measuring ingredients"
+  display_tags:
+  - perception-understanding
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 clear_food_waste:
   status: keep
   owner: changhechen
   note: "Composite · cleaning sink"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 clear_sink:
   status: keep
   owner: changhechen
   note: "Composite · washing dishes"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 close_drawer:
   status: keep
   owner: changhechen
   note: "Atomic · kitchen drawer"
+  display_tags:
+  - control-coordination
+  - manipulation
 close_oven:
   status: keep
   owner: changhechen
   note: "Atomic · kitchen doors"
+  display_tags:
+  - control-coordination
+  - manipulation
 close_stand_mixer_head:
   status: keep
   owner: changhechen
   note: "Atomic · kitchen stand mixer"
+  display_tags:
+  - control-coordination
+  - manipulation
 cookie_dough_prep:
   status: keep
   owner: changhechen
   note: "Composite · baking"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 deliver_brewed_coffee:
   status: keep
   owner: changhechen
   note: "Composite · brewing"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 dessert_upgrade:
   status: keep
   owner: changhechen
   note: "Composite · serving food"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 display_meat_variety:
   status: keep
   owner: changhechen
   note: "Composite · filling serving dishes"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 divide_basins:
   status: keep
   owner: changhechen
   note: "Composite · washing dishes"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 drain_veggies:
   status: keep
   owner: changhechen
   note: "Composite · washing fruits and vegetables"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 drinkware_consolidation:
   status: keep
   owner: changhechen
   note: "Composite · clearing table"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 make_ice_lemonade:
   status: keep
   owner: changhechen
   note: "Composite · adding ice to beverages"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 make_loaded_potato:
   status: keep
   owner: changhechen
   note: "Composite · reheating food"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 meal_prep_staging:
   status: keep
   owner: changhechen
   note: "Composite · frying"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 microwave_defrost_meat:
   status: keep
   owner: changhechen
   note: "Composite · microwaving food"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 open_dishwasher:
   status: keep
   owner: changhechen
   note: "Atomic · kitchen doors"
+  display_tags:
+  - control-coordination
+  - manipulation
 organize_coffee_condiments:
   status: keep
   owner: changhechen
   note: "Composite · brewing"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 oven_broil_fish:
   status: keep
   owner: changhechen
   note: "Composite · broiling fish"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 pack_dessert:
   status: keep
   owner: changhechen
   note: "Atomic · kitchen pick place"
+  display_tags:
+  - control-coordination
+  - manipulation
 pick_place_cabinet_to_counter:
   status: keep
   owner: changhechen
   note: "Atomic · kitchen pick place"
+  display_tags:
+  - control-coordination
+  - manipulation
 pick_place_sink_to_counter:
   status: keep
   owner: changhechen
   note: "Atomic · kitchen pick place"
+  display_tags:
+  - control-coordination
+  - manipulation
 plate_steak_meal:
   status: keep
   owner: changhechen
   note: "Composite · plating food"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 portion_in_tupperware:
   status: keep
   owner: changhechen
   note: "Composite · portioning meals"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 pre_rinse_station:
   status: keep
   owner: changhechen
   note: "Composite · washing dishes"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 prep_for_sanitizing:
   status: keep
   owner: changhechen
   note: "Composite · sanitizing surface"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 prep_marinating_meat:
   status: keep
   owner: changhechen
   note: "Composite · meat preparation"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 reheat_meal:
   status: keep
   owner: changhechen
   note: "Composite · microwaving food"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 retrieve_meat:
   status: keep
   owner: changhechen
   note: "Composite · slicing meat"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 sanitize_prep_cutting_board:
   status: keep
   owner: changhechen
   note: "Composite · sanitizing cutting board"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 scrub_bowl:
   status: keep
   owner: changhechen
   note: "Composite · washing dishes"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 searing_meat:
   status: keep
   owner: changhechen
   note: "Composite · frying"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 seasoning_spice_setup:
   status: keep
   owner: changhechen
   note: "Composite · setting the table"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 set_up_cutting_station:
   status: keep
   owner: changhechen
   note: "Composite · slicing meat"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 stocking_breakfast_foods:
   status: keep
   owner: changhechen
   note: "Composite · restocking supplies"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 sweeten_coffee:
   status: keep
   owner: changhechen
   note: "Composite · brewing"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 thaw_in_sink:
   status: keep
   owner: changhechen
   note: "Composite · defrosting food"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - manipulation
 tong_buffet_setup:
   status: keep
   owner: changhechen
   note: "Composite · arranging buffet"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 turn_off_microwave:
   status: keep
   owner: changhechen
   note: "Atomic · kitchen microwave"
+  display_tags:
+  - control-coordination
+  - manipulation
 turn_on_microwave:
   status: keep
   owner: changhechen
   note: "Atomic · kitchen microwave"
+  display_tags:
+  - control-coordination
+  - manipulation
 turn_on_sink_faucet:
   status: keep
   owner: changhechen
   note: "Atomic · kitchen sink"
+  display_tags:
+  - control-coordination
+  - manipulation
 turn_on_stove:
   status: keep
   owner: changhechen
   note: "Atomic"
+  display_tags:
+  - control-coordination
+  - manipulation
 turn_on_toaster_oven:
   status: keep
   owner: changhechen
   note: "Atomic · kitchen toaster oven"
+  display_tags:
+  - control-coordination
+  - manipulation

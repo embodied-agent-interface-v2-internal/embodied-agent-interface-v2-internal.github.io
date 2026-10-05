@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local edit daemon: lets the site write label and status changes back to disk.
+"""Local edit daemon: lets the site write tag and status changes back to disk.
 
 Why this exists: tagging a hundred tasks by hand-editing YAML frontmatter is
 miserable, and the judgement happens while you are watching the demo — which
@@ -53,8 +53,11 @@ SLUG_RE = re.compile(r"[^a-z0-9]+")
 
 
 def taxonomy_payload() -> dict:
-    """The capability tree, shaped for the editor's checkboxes."""
-    tax = taskdb.taxonomy()
+    """The display tags (state/display_tags.yml), shaped for the editor's checkboxes.
+
+    The detailed labels (`labels:`, state/taxonomy.yml) are not edited from the site.
+    """
+    tax = taskdb.tag_vocabulary()
     return {
         "capabilities": [
             {
@@ -73,8 +76,8 @@ def taxonomy_payload() -> dict:
             }
             for c in tax.get("capabilities", [])
         ],
-        # Lets the editor pre-suggest labels from a task's annotated skills.
-        "skillMap": taskdb.skill_to_labels(),
+        # Lets the editor pre-suggest tags from a task's annotated skills.
+        "skillMap": taskdb.skill_to_tags(),
     }
 
 
@@ -98,7 +101,7 @@ def patch_task(task_id: str, body: dict) -> dict:
         if task is None:
             return {"ok": False, "error": f"unknown task {task_id}"}
 
-        caps = taskdb.capability_index()
+        tags = taskdb.tag_index()
         patch: dict = {}
 
         if "status" in body:
@@ -112,11 +115,21 @@ def patch_task(task_id: str, body: dict) -> dict:
             patch["difficulty"] = body["difficulty"]
 
         if "labels" in body:
-            chosen = list(dict.fromkeys(body["labels"]))
-            unknown = [c for c in chosen if c not in caps]
+            return {"ok": False, "error": "the detailed labels are edited by hand in state/tasks/; "
+                    "the site edits display_tags"}
+        if "display_tags" in body:
+            chosen = list(dict.fromkeys(body["display_tags"]))
+            unknown = [c for c in chosen if c not in tags]
             if unknown:
-                return {"ok": False, "error": f"unknown labels: {', '.join(unknown)}"}
-            patch["labels"] = chosen
+                return {"ok": False, "error": f"unknown tags: {', '.join(unknown)}"}
+            groups = {tags[c]["group_id"] for c in chosen}
+            missing = [g for g in taskdb.TAG_GROUPS if chosen and g not in groups]
+            if missing:
+                names = {c["id"]: c["name"] for c in taskdb.tag_vocabulary().get("capabilities", [])}
+                return {"ok": False, "error": "pick at least one tag from "
+                        + " and from ".join(names.get(g, g) for g in missing)}
+            # Stored in vocabulary order, Capability tags first, as every page shows them.
+            patch["display_tags"] = taskdb.ordered_tags(chosen)
 
         if "owner" in body:
             patch["owner"] = str(body["owner"]).lstrip("@").strip()
@@ -127,16 +140,19 @@ def patch_task(task_id: str, body: dict) -> dict:
         reload_caches()
 
         _, fresh = find_task(task_id)
-        caps = taskdb.capability_index()
+        tags = taskdb.tag_index()
         return {
             "ok": True,
             "task": {
                 "id": fresh.task_id,
                 "status": fresh.status,
                 "difficulty": fresh.difficulty,
-                "labels": fresh.capabilities,
-                "labelNames": [
-                    caps[c]["name"] if c in caps else c for c in fresh.capabilities
+                "displayTags": fresh.display_tags,
+                "tagNames": [
+                    tags[c]["name"] if c in tags else c for c in fresh.display_tags
+                ],
+                "tagGroups": [
+                    tags[c]["group_id"] if c in tags else "" for c in fresh.display_tags
                 ],
                 "owner": fresh.owner,
                 "note": fresh.note,
@@ -145,13 +161,13 @@ def patch_task(task_id: str, body: dict) -> dict:
 
 
 def add_capability(name: str, parent: str = "") -> dict:
-    """Add a tier-2 sub-capability under an existing tier-1 capability."""
+    """Add a display tag under an existing group of state/display_tags.yml."""
     name = name.strip()
     if not name:
         return {"ok": False, "error": "empty name"}
 
     with LOCK:
-        doc = statedb.load_taxonomy()
+        doc = statedb.load_display_tags()
         cap_id = SLUG_RE.sub("-", name.lower()).strip("-")
         if not cap_id:
             return {"ok": False, "error": "name has no usable characters"}
@@ -165,13 +181,13 @@ def add_capability(name: str, parent: str = "") -> dict:
         target = next((c for c in doc["capabilities"] if c["id"] == parent), None)
         if target is None:
             # No parent chosen: park it under `custom` for later triage rather
-            # than guessing which capability it belongs to.
+            # than guessing which group it belongs to.
             target = next((c for c in doc["capabilities"] if c["id"] == "custom"), None)
             if target is None:
                 target = {
                     "id": "custom",
                     "name": "Custom",
-                    "description": "Added from the site. Move these into a proper capability once a pattern emerges.",
+                    "description": "Added from the site. Move these into a proper group once a pattern emerges.",
                     "subcapabilities": [],
                 }
                 doc["capabilities"].append(target)
@@ -180,7 +196,7 @@ def add_capability(name: str, parent: str = "") -> dict:
             {"id": cap_id, "name": name,
              "description": "Added from the site; no definition written yet."}
         )
-        statedb.save_taxonomy(doc)
+        statedb.save_display_tags(doc)
         reload_caches()
         return {"ok": True, "id": cap_id, "parent": target["id"], "taxonomy": taxonomy_payload()}
 
@@ -194,7 +210,7 @@ def _carried(source: dict | None, entry: dict, skip: tuple[str, ...] = ()) -> di
 
 
 def save_taxonomy(doc: dict) -> dict:
-    """Replace the whole taxonomy from the Labels page editor.
+    """Replace the whole display tag vocabulary (state/display_tags.yml) from the Labels page editor.
 
     The editor round-trips only id, name, description and from_skills. Every
     other field in the file — `graded`, `flag`, `derived_from`, `evidence` — is
@@ -204,9 +220,9 @@ def save_taxonomy(doc: dict) -> dict:
     """
     caps = doc.get("capabilities")
     if not isinstance(caps, list) or not caps:
-        return {"ok": False, "error": "taxonomy needs at least one capability"}
+        return {"ok": False, "error": "the display tags need at least one group"}
 
-    current = statedb.load_taxonomy()
+    current = statedb.load_display_tags()
     on_disk_caps = {c["id"]: c for c in current.get("capabilities") or [] if c.get("id")}
     on_disk_subs = {s["id"]: s
                     for c in current.get("capabilities") or []
@@ -235,7 +251,8 @@ def save_taxonomy(doc: dict) -> dict:
             # POST. Re-attach them from disk by id, or one Save silently deletes
             # the provenance the whole taxonomy is argued from.
             entry.update(_carried(on_disk_subs.get(sid), entry))
-            entry.update(_carried(sub, entry))
+            # `from_skills` is set above, and only when not empty: the browser sends `[]` for every tag without.
+            entry.update(_carried(sub, entry, skip=("from_skills",)))
             subs.append(entry)
         entry = {"id": cid, "name": cap.get("name") or cid,
                  "description": cap.get("description", ""),
@@ -247,12 +264,12 @@ def save_taxonomy(doc: dict) -> dict:
         clean.append(entry)
 
     with LOCK:
-        # Labels still in use must survive, or task state silently breaks.
+        # Tags still in use must survive, or task state silently breaks.
         reload_caches()
         in_use: set[str] = set()
         for bench in taskdb.benchmarks().values():
             for task in bench.tasks:
-                in_use.update(task.capabilities)
+                in_use.update(task.display_tags)
         orphaned = sorted(in_use - seen)
         if orphaned:
             return {
@@ -262,8 +279,8 @@ def save_taxonomy(doc: dict) -> dict:
 
         # Keep the document's own version: hardcoding it reverted the file to an
         # older schema number on every save.
-        statedb.save_taxonomy({"version": doc.get("version") or taskdb.taxonomy().get("version", 1),
-                               "capabilities": clean})
+        statedb.save_display_tags({"version": doc.get("version") or taskdb.tag_vocabulary().get("version", 1),
+                                   "capabilities": clean})
         reload_caches()
         return {"ok": True, "taxonomy": taxonomy_payload()}
 

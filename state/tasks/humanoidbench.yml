@@ -6,6 +6,7 @@
 #   status      keep | drop | needs-review | pending
 #   difficulty  unrated | easy | medium | hard | extreme
 #   labels      tier-2 ids from state/taxonomy.yml
+#   display_tags  what the site shows: tag ids from state/display_tags.yml
 #   owner       bare GitHub handle
 #   note        free text; why you decided what you decided
 #
@@ -19,96 +20,189 @@ loco_walk:
   status: keep
   owner: williamzhangNU
   note: "C1 · flat-ground periodic gait"
+  display_tags:
+  - control-coordination
+  - locomotion-stability
 loco_stair:
   status: keep
   owner: williamzhangNU
   note: "C2 · constrained gait"
+  display_tags:
+  - control-coordination
+  - locomotion-stability
 loco_hurdle:
   status: keep
   owner: williamzhangNU
   note: "C2 · constrained gait"
+  display_tags:
+  - control-coordination
+  - locomotion-stability
 loco_balance_simple:
   status: keep
   owner: williamzhangNU
   note: "C3 · quasi-static stabilisation"
+  display_tags:
+  - control-coordination
+  - feedback-adaptation
+  - locomotion-stability
 loco_balance_hard:
   status: keep
   owner: williamzhangNU
   note: "C3 · quasi-static stabilisation"
+  display_tags:
+  - control-coordination
+  - feedback-adaptation
+  - locomotion-stability
 manip_door:
   status: keep
   owner: williamzhangNU
   note: "C4 · navigation and passage"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - navigation-exploration
+  - mobile-whole-body-manipulation
 loco_maze:
   status: keep
   owner: williamzhangNU
   note: "C4 · navigation and passage"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - locomotion-stability
+  - navigation-exploration
 manip_highbar_simple:
   status: keep
   owner: williamzhangNU
   note: "C5 · whole-body power and momentum"
+  display_tags:
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
 manip_basketball:
   status: keep
   owner: williamzhangNU
   note: "C5 · whole-body power and momentum"
+  display_tags:
+  - perception-understanding
+  - control-coordination
+  - feedback-adaptation
+  - mobile-whole-body-manipulation
 manip_powerlift:
   status: keep
   owner: williamzhangNU
   note: "C5 · whole-body power and momentum"
+  display_tags:
+  - control-coordination
+  - mobile-whole-body-manipulation
 manip_push:
   status: keep
   owner: williamzhangNU
   note: "C6 · standing bimanual manipulation"
+  display_tags:
+  - control-coordination
+  - mobile-whole-body-manipulation
 manip_window:
   status: keep
   owner: williamzhangNU
   note: "C6 · standing bimanual manipulation"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 manip_spoon:
   status: keep
   owner: williamzhangNU
   note: "C6 · standing bimanual manipulation"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 manip_insert_normal:
   status: keep
   owner: williamzhangNU
   note: "C7 · in-hand precision"
+  display_tags:
+  - control-coordination
+  - mobile-whole-body-manipulation
 manip_cube:
   status: keep
   owner: williamzhangNU
   note: "C7 · in-hand precision"
+  display_tags:
+  - control-coordination
+  - mobile-whole-body-manipulation
 loco_reach:
   status: keep
   owner: williamzhangNU
   note: "C8 · mobile manipulation"
+  display_tags:
+  - control-coordination
+  - locomotion-stability
+  - mobile-whole-body-manipulation
 loco_sit_hard:
   status: keep
   owner: williamzhangNU
   note: "C8 · mobile manipulation"
+  display_tags:
+  - control-coordination
+  - feedback-adaptation
+  - locomotion-stability
+  - mobile-whole-body-manipulation
 manip_package:
   status: keep
   owner: williamzhangNU
   note: "C8 · mobile manipulation"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 manip_room:
   status: keep
   owner: williamzhangNU
   note: "C8 · mobile manipulation"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 manip_cabinet:
   status: keep
   owner: williamzhangNU
   note: "C9 · long-horizon multi-subtask"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 manip_truck:
   status: keep
   owner: williamzhangNU
   note: "C9 · long-horizon multi-subtask"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 manip_kitchen:
   status: keep
   owner: williamzhangNU
   note: "C9 · long-horizon multi-subtask"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 manip_bookshelf_simple:
   status: keep
   owner: williamzhangNU
   note: "C9 · long-horizon multi-subtask"
+  display_tags:
+  - planning-reasoning
+  - control-coordination
+  - mobile-whole-body-manipulation
 loco_sit_simple:
   status: keep
   owner: williamzhangNU
   note: "fixture (C3 · quasi-static stabilisation, too easy to score)"
   excluded: "a fixture, not scored: it checks the pipeline end to end (subset.toml role = fixture)"
+  display_tags:
+  - control-coordination
+  - feedback-adaptation
+  - locomotion-stability

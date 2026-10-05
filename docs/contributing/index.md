@@ -54,7 +54,8 @@ is in one folder:
 ```
 state/
   taxonomy.yml           the label vocabulary: 6 facets, 35 labels
-  tasks/behavior-1k.yml  per-task status, difficulty, labels, owner, notes
+  display_tags.yml       what pages show: Capability and Task Domain tags
+  tasks/behavior-1k.yml  per-task status, difficulty, labels, display tags, owner, notes
 ```
 
 Task pages under `docs/` hold only upstream metadata and prose. So reviewing a
@@ -75,19 +76,20 @@ happens. You can set:
 
 - **status** — keep, drop, needs-review, pending
 - **difficulty** — for a coding agent driving this robot, not a human
-- **labels** — tier-2 ids, as toggle buttons. Labels implied by the task's
+- **display tags** — as toggle buttons, under their group: Capability, then
+  Task Domain; a save needs at least one from each. Tags implied by the task's
   annotated BEHAVIOR skills are marked with a `·`, so usually you are
   confirming a suggestion rather than reading the whole vocabulary.
 
 Saving writes `state/tasks/<benchmark>.yml` and nothing else — task pages are
-never touched. **Add & tag** creates a new sub-capability when the existing
-vocabulary does not fit.
+never touched. **Add & tag** creates a new tag, in the group you pick, when the
+existing vocabulary does not fit. The detailed labels (`labels:`) are not on the
+page: set them in the state file by hand.
 
 The [Label taxonomy](../reference/capabilities.md) page has the same treatment
-for the vocabulary itself: rename capabilities, add or remove
-sub-capabilities, save back to `state/taxonomy.yml`. It refuses to delete a
-label that tasks still use, and names them, so the vocabulary cannot silently
-break your task state.
+for the display tags themselves: rename groups, add or remove tags, save back to
+`state/display_tags.yml`. It refuses to delete a tag that tasks still use, and
+names them, so the vocabulary cannot silently break your task state.
 
 ## Your first contribution: triage one task
 
@@ -109,9 +111,10 @@ PR sits for a week. Exempt: taxonomy changes, tooling, and upstream re-syncs.
 
 | You want to… | Edit |
 | --- | --- |
-| Triage a task, set labels | `state/tasks/<bench>.yml` — or the **Edit** button |
+| Triage a task, set tags | `state/tasks/<bench>.yml` — or the **Edit** button |
 | Leave a task out of the final benchmark, keeping it on the site | `excluded: "<why>"` in `state/tasks/<bench>.yml` — see [the task page guide](task-page-guide.md#excluded-out-of-the-final-benchmark-still-on-the-site) |
-| Add or reword a label | `state/taxonomy.yml` — or the **Labels** page |
+| Add or reword a display tag | `state/display_tags.yml` — or the **Labels** page |
+| Add or reword a detailed label | `state/taxonomy.yml` |
 | Write prose about a task | `docs/benchmarks/<bench>/tasks/<task_id>.md` |
 | Record benchmark-level facts | `data/benchmarks/<bench>.yml` |
 | Register an agent run, or your benchmark's part in one | `data/agents/<run>.yml`, `state/runs/<bench>.yml` — see [Registering runs](registering-runs.md) |
