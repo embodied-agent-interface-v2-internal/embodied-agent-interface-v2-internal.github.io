@@ -75,8 +75,9 @@ SCRUB = [
     (re.compile(r"(?i)([\"'](?:api_?key|access_token|refresh_token|id_token|client_secret|password|secret)[\"']\s*:\s*[\"'])"
                 r"(?!<redacted>)[^\"']+"), r"\1<redacted>"),
     # a login's account id: a Codex / ChatGPT auth.json carries one, and the model gateway's command line carries it as the
-    # chatgpt-account-id header, which agents see in `ps` (2026-09-29: 111 of them had reached the published logs)
-    (re.compile(r"(?i)([\\\"']*(?:chatgpt[-_])?account[-_]id[\\\"']*(?:\s*[:=]\s*|\s+)[\\\"']*)(?!<redacted>)[A-Za-z0-9_-]{6,}"),
+    # chatgpt-account-id header, which agents see in `ps` (2026-09-29: 111 of them had reached the published logs). Any
+    # length counts: `ps` cuts a line at the terminal width, so a value can be cut short (2026-10-04: a 2-character one)
+    (re.compile(r"(?i)([\\\"']*(?:chatgpt[-_])?account[-_]id[\\\"']*(?:\s*[:=]\s*|\s+)[\\\"']*)(?!<redacted>)[A-Za-z0-9_-]+"),
      r"\1<redacted>"),
     (re.compile(rf"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.{TLDS}\b"), "<email>"),
     # user names in paths, and machines named in host paths
@@ -101,7 +102,7 @@ LEFT = {
     "private ip": re.compile(r"\b(?:10\.\d{1,3}|172\.(?:1[6-9]|2\d|3[01])|192\.168)\.\d{1,3}\.\d{1,3}\b"),
     "machine": re.compile(r"(?<![\w.-])(?:ws3|ws|lab|laptop):/|\bmll-[a-z0-9]+|\bssh\s+(?:ws3|ws|lab|laptop)\b"),
     "login material": re.compile(r"(?i)auth\.json|\.codex/"
-                                 r"|(?:chatgpt[-_])?account[-_]id[\\\"']*(?:\s*[:=]\s*|\s+)[\\\"']*(?!<redacted>)[A-Za-z0-9_-]{6,}"
+                                 r"|(?:chatgpt[-_])?account[-_]id[\\\"']*(?:\s*[:=]\s*|\s+)[\\\"']*(?!<redacted>)[A-Za-z0-9_-]+"
                                  r"|[\"'](?:access_token|refresh_token|id_token)[\"']\s*:\s*[\"'](?!<redacted>)"),
 }
 DROPPED = {"host", "hosts", "job", "where", "scan", "logs"}      # must be gone from every record and log

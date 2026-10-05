@@ -218,7 +218,7 @@ ground truth. A sub-capability with `from_skills` is a roll-up of those
 primitives, which is what lets the editor suggest labels from a task's
 annotated skills. Everything else is *ours*.
 
-Current shape: **8 facets, 45 labels**, fitted to fifteen benchmarks rather than
+Current shape: **8 facets, 45 labels**, fitted to fourteen benchmarks rather than
 the three we have integrated (see `docs/reference/benchmark-landscape.md`) and to
 a per-task digest of all 250 tasks we hold (`scripts/task_skill_digest.py`).
 A facet is one question about a task: how far the robot must go, what the body

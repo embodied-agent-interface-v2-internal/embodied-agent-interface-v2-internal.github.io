@@ -123,7 +123,7 @@ def gen_capability_reference() -> None:
         "    BEHAVIOR a formal goal language and an object ontology, RoboLab an attribute",
         "    list about how the goal is *worded*, RoboWits a paragraph of prose per task,",
         "    HumanoidBench nothing but a reward function. Those are theirs.",
-        "    **The labels below are ours**, fitted to fifteen suites — see the",
+        "    **The labels below are ours**, fitted to fourteen suites — see the",
         "    [benchmark landscape](benchmark-landscape.md) — under one rule: a label earns",
         "    its place only if knowing it changes what you predict about the task.",
         "",

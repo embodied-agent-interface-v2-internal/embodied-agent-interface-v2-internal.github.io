@@ -14,7 +14,7 @@ RoboLab (120).
 | Demos | 134/250 local (1.2 GB) + poster frames, playable inline at 1–4× |
 | Scene stills | 107 RoboLab rows with no upstream clip show their scene instead |
 | Editing | In-browser status/tag editing via a localhost daemon (`make edit`) |
-| Labels | 8 facets, 45 labels, fitted to 15 benchmarks; 3 facets are ordinal ladders |
+| Labels | 8 facets, 45 labels, fitted to 14 benchmarks; 3 facets are ordinal ladders |
 | Display tags | What the site shows: 2 groups, Capability (4) and Task Domain (5), derived from the labels |
 | Curated state | One folder, `state/` — the whole review surface |
 | Triaged | 2 of 250 (worked examples), plus 2 tasks we have run end to end |
@@ -187,7 +187,7 @@ both. A facet with `graded: true` is a ladder — `scripts/suggest_labels.py` ke
 only the highest matching rung, and labels marked `flag: true` sit in a graded
 facet without being rungs.
 
-The facets were fitted to fifteen benchmarks, not our three —
+The facets were fitted to fourteen benchmarks, not our three —
 `docs/reference/benchmark-landscape.md` is that survey, and
 `scripts/task_skill_digest.py` prints what all 250 tasks we hold actually demand,
 which is the evidence the vocabulary had to fit.

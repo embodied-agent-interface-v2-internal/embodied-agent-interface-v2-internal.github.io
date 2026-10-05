@@ -6,9 +6,9 @@ title: Benchmark landscape
 
 A label vocabulary written against one benchmark describes that benchmark. This
 page is the survey the [label taxonomy](capabilities.md) was written against:
-fifteen suites the lab has integrated, is integrating, is building, or has on
-its list, read for **what each one is actually trying to measure** rather than
-for how many tasks it ships.
+fourteen suites the lab has integrated, is integrating, or has on its list,
+read for **what each one is actually trying to measure** rather than for how
+many tasks it ships.
 
 The short version: these fourteen do not disagree about labels, they disagree
 about *what a task is*. A LIBERO task is a language-conditioned trajectory on a
@@ -36,14 +36,10 @@ independent facets rather than one list of skills.
 | [HumanoidBench](https://humanoid-bench.github.io/) | MuJoCo | Unitree H1 + two 21-DoF Shadow hands | 27 tasks (12 locomotion, 15 whole-body manipulation) | Whole-body control at 101 DoF; no language, reward only |
 | [MuJoCo Playground](https://playground.mujoco.org/) | MJX | Go1, Spot, Barkour, G1, H1, T1, Apollo, Op3, Berkeley Humanoid; Panda, Aloha, Leap | ~19 locomotion + 10 manipulation envs | GPU-scale RL and sim-to-real: gaits, getting up, in-hand reorientation |
 | [DexToolBench](https://arxiv.org/html/2602.16863v1) | Isaac Gym (+ real) | dexterous hand | 24 tool-use tasks, 6 tool categories | Tool use as a *hand* problem: grasp it, then rotate it in-hand to work |
-| **TopoGym** (ours) | Genesis | in development | not public | Tasks built around a **complex spatial constraint** — the one axis below that nothing public occupies |
 
-TopoGym is our own, still in development, and it is the reason
-`geometric-constraint` is a label rather than a footnote: no public suite in this
-table annotates "the difficulty is finding a configuration that fits". One
-external note: **DexToolBench** appears in the literature as a real-world
-benchmark with digital twins rather than a pure simulator, so "Isaac Gym"
-describes its evaluation path, not its home.
+One note on the table: **DexToolBench** appears in the literature as a
+real-world benchmark with digital twins rather than a pure simulator, so "Isaac
+Gym" describes its evaluation path, not its home.
 
 ## Six things they are collectively doing
 

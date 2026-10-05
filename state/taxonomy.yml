@@ -338,9 +338,8 @@ capabilities:
           robowits: {paper_insight_keywords: [geometr, clearance, narrow, fit through, aperture,
                                               restriction, reachab, out of reach, align]}
         evidence: >-
-          TopoGym, our own suite, is built entirely on this axis. It is also the
-          largest cluster in RoboWits — 15 of its 30 published insights are about
-          geometry and clearance — and it is what Meta-World's peg and assembly
+          The largest cluster in RoboWits — 15 of its 30 published insights are
+          about geometry and clearance — and what Meta-World's peg and assembly
           tasks and RoboCasa's packing really test. No suite annotates it.
       - id: relational-goal
         name: Spatial reference
