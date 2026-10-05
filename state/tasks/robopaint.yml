@@ -19,6 +19,8 @@
 # its runs in Runs (not the review `status`, which other benchmarks use for drop). All 9 line drawings are excluded
 # since 2026-09-28 04:30, the owner: "放到展示的最下面，同时在 benchmark 里面都灰掉. 最终的 benchmark 我们可能不会 include
 # 简笔画" and "我们仍然可以在 runs…去展示它，毕竟我们跑过…不需要丢掉". Keep notes in this block: the Edit button keeps it.
+# 2026-10-04 pruning (the owner): every single-character calligraphy task (31 kaishu, 13 xingshu) is excluded too; the
+# seven multi-character works, lettering, acrylic and oil stay.
 
 line_butterfly:
   difficulty: easy
@@ -169,6 +171,7 @@ kaishu_ai:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_chun:
   difficulty: hard
   display_tags:
@@ -176,6 +179,7 @@ kaishu_chun:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_da:
   difficulty: medium
   display_tags:
@@ -183,6 +187,7 @@ kaishu_da:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_dao:
   difficulty: hard
   display_tags:
@@ -190,6 +195,7 @@ kaishu_dao:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_de:
   difficulty: hard
   display_tags:
@@ -197,6 +203,7 @@ kaishu_de:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_feng:
   difficulty: hard
   display_tags:
@@ -204,6 +211,7 @@ kaishu_feng:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_fu:
   difficulty: hard
   display_tags:
@@ -211,6 +219,7 @@ kaishu_fu:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_guo:
   difficulty: hard
   display_tags:
@@ -218,6 +227,7 @@ kaishu_guo:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_he:
   difficulty: hard
   display_tags:
@@ -225,6 +235,7 @@ kaishu_he:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_houdezaiwu:
   difficulty: extreme
   display_tags:
@@ -239,6 +250,7 @@ kaishu_hua:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_jia:
   difficulty: hard
   display_tags:
@@ -246,6 +258,7 @@ kaishu_jia:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_jiang:
   difficulty: hard
   display_tags:
@@ -253,6 +266,7 @@ kaishu_jiang:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_jing:
   difficulty: hard
   display_tags:
@@ -260,6 +274,7 @@ kaishu_jing:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_kou:
   difficulty: medium
   display_tags:
@@ -267,6 +282,7 @@ kaishu_kou:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_le:
   difficulty: hard
   display_tags:
@@ -274,6 +290,7 @@ kaishu_le:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_lin:
   difficulty: hard
   display_tags:
@@ -281,6 +298,7 @@ kaishu_lin:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_long:
   difficulty: hard
   display_tags:
@@ -288,6 +306,7 @@ kaishu_long:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_ma:
   difficulty: hard
   display_tags:
@@ -295,6 +314,7 @@ kaishu_ma:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_ming:
   difficulty: hard
   display_tags:
@@ -302,6 +322,7 @@ kaishu_ming:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_ningjingzhiyuan:
   difficulty: extreme
   display_tags:
@@ -316,6 +337,7 @@ kaishu_qing:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_ran:
   difficulty: hard
   display_tags:
@@ -323,6 +345,7 @@ kaishu_ran:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_ren:
   difficulty: medium
   display_tags:
@@ -330,6 +353,7 @@ kaishu_ren:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_shan:
   difficulty: medium
   display_tags:
@@ -337,6 +361,7 @@ kaishu_shan:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_shu:
   difficulty: hard
   display_tags:
@@ -344,6 +369,7 @@ kaishu_shu:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_shui:
   difficulty: medium
   display_tags:
@@ -351,6 +377,7 @@ kaishu_shui:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_tian:
   difficulty: medium
   display_tags:
@@ -358,6 +385,7 @@ kaishu_tian:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_tiandaochouqin:
   difficulty: extreme
   display_tags:
@@ -372,6 +400,7 @@ kaishu_xin:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_yong:
   difficulty: medium
   display_tags:
@@ -379,6 +408,7 @@ kaishu_yong:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_yongzibafa:
   difficulty: extreme
   display_tags:
@@ -393,6 +423,7 @@ kaishu_yue:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_zhong:
   difficulty: medium
   display_tags:
@@ -400,6 +431,7 @@ kaishu_zhong:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 kaishu_zi:
   difficulty: hard
   display_tags:
@@ -407,6 +439,7 @@ kaishu_zi:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 acrylic_applesoranges:
   difficulty: hard
   display_tags:
@@ -561,6 +594,7 @@ xingshu_chun:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 xingshu_feng:
   difficulty: hard
   display_tags:
@@ -568,6 +602,7 @@ xingshu_feng:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 xingshu_he:
   difficulty: hard
   display_tags:
@@ -575,6 +610,7 @@ xingshu_he:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 xingshu_huifenghechang:
   difficulty: extreme
   display_tags:
@@ -589,6 +625,7 @@ xingshu_jian:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 xingshu_maolinxiuzhu:
   difficulty: extreme
   display_tags:
@@ -603,6 +640,7 @@ xingshu_nian:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 xingshu_ren:
   difficulty: hard
   display_tags:
@@ -610,6 +648,7 @@ xingshu_ren:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 xingshu_shan:
   difficulty: hard
   display_tags:
@@ -617,6 +656,7 @@ xingshu_shan:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 xingshu_tianlangqiqing:
   difficulty: extreme
   display_tags:
@@ -631,6 +671,7 @@ xingshu_tong:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 xingshu_xian:
   difficulty: hard
   display_tags:
@@ -638,6 +679,7 @@ xingshu_xian:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 xingshu_xin:
   difficulty: hard
   display_tags:
@@ -645,6 +687,7 @@ xingshu_xin:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 xingshu_yong:
   difficulty: hard
   display_tags:
@@ -652,6 +695,7 @@ xingshu_yong:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 xingshu_yu:
   difficulty: hard
   display_tags:
@@ -659,6 +703,7 @@ xingshu_yu:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"
 xingshu_zhi:
   difficulty: hard
   display_tags:
@@ -666,3 +711,4 @@ xingshu_zhi:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "a single-character calligraphy task (2026-10-04 pruning): the multi-character works stay"

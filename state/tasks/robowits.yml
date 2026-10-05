@@ -11,6 +11,11 @@
 #   note        free text; why you decided what you decided
 #   excluded    why a task is not part of the final benchmark: it stays on the site, greyed and last in every list,
 #               its runs in Runs, and counts in none of the benchmark's numbers
+#
+# 2026-10-04 pruning (the owner: keep the hardest 15; the final set is chosen from them). Ranked by our agent runs
+# first (failed in both modes > failed in one > solved; less partial progress = harder, no trajectory = none), then by
+# the site's difficulty, the demand labels and the number of success criteria. ball_into_jar and differentiate_cubes
+# count as failed in one mode: their unlimited trials are not counted. Each excluded task's line says why.
 
 align_blocks:
   difficulty: hard
@@ -18,6 +23,7 @@ align_blocks:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -65,6 +71,7 @@ ball_into_bottle:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -93,6 +100,7 @@ ball_onto_tower:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -107,6 +115,7 @@ collect_screws:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -121,6 +130,7 @@ cover_with_lid:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -164,6 +174,7 @@ dominos:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - nonprehensile
@@ -178,6 +189,7 @@ gap_retrieve:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -190,6 +202,7 @@ hold_cup:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -204,6 +217,7 @@ move_cube:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -249,6 +263,7 @@ place_tall_box:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -261,6 +276,7 @@ raise_platform:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -274,6 +290,7 @@ retrieve_cube:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -374,6 +391,7 @@ stack_bowls:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -387,6 +405,7 @@ stack_cubes:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport

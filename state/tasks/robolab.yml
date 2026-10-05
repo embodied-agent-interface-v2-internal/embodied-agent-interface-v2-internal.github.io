@@ -9,6 +9,14 @@
 #   display_tags  what the site shows: tag ids from state/display_tags.yml
 #   owner       bare GitHub handle
 #   note        free text; why you decided what you decided
+#   excluded    why a task is not part of the final benchmark: it stays on the site, greyed and last in every list,
+#               its runs in Runs, and counts in none of the benchmark's numbers
+#
+# 2026-10-04 pruning (the owner: keep the hardest 15; the final set is chosen from them). Ranked by our agent runs
+# first (failed in both modes > failed in one > solved; less partial progress = harder, no trajectory = none), then by
+# the site's difficulty, upstream's difficulty label, the horizon and the demand labels. Among the tied double failures
+# (medium, upstream "simple") at most two of one skill family are kept. The 32 tasks without runs rank below every
+# task that failed in both modes (36 did). Each excluded task's line says why.
 
 animals_in_bin:
   difficulty: medium
@@ -16,6 +24,7 @@ animals_in_bin:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, but the same skill as the kept dishes_in_bin and white_mugs_in_bin"
   labels:
   - scale-tabletop
   - transport
@@ -31,6 +40,7 @@ apple_and_yogurt_in_bowl:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -59,6 +69,7 @@ banana_in_bowl:
   display_tags:
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -80,6 +91,7 @@ banana_on_plate:
   display_tags:
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -92,6 +104,7 @@ banana_then_rubiks_cube:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -108,6 +121,7 @@ bananas_in_bin_one_more:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -125,6 +139,7 @@ bananas_in_bin_three_total:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -142,6 +157,7 @@ bananas_in_crate:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -158,6 +174,7 @@ bananas_out_of_bin:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -187,6 +204,7 @@ bbq_sauce_in_bin:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -203,6 +221,7 @@ big_pumpkin_in_bin:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -219,6 +238,7 @@ black_items_in_bin:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, with partial progress (up to 0.60)"
   labels:
   - scale-tabletop
   - transport
@@ -235,6 +255,7 @@ block_stacking_order_agnostic:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -251,6 +272,7 @@ block_stacking_specified_order:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -270,6 +292,7 @@ blocks_in_bin:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -284,6 +307,7 @@ bowl_in_bin:
   display_tags:
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -296,6 +320,7 @@ bowl_stacking_left_on_right:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, but lighter demands than the kept ones"
   labels:
   - scale-tabletop
   - transport
@@ -312,6 +337,7 @@ bowl_stacking_right_on_left:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, but lighter demands than the kept ones"
   labels:
   - scale-tabletop
   - transport
@@ -328,6 +354,7 @@ butter_above_raisin:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -342,6 +369,7 @@ canned_food_in_bin:
   display_tags:
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -356,6 +384,7 @@ clamp_in_right_bin:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, but lighter demands than the kept ones"
   labels:
   - scale-tabletop
   - transport
@@ -374,6 +403,7 @@ clean_up_toys:
   - control-coordination
   - feedback-adaptation
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, with partial progress (up to 0.78)"
   labels:
   - scale-tabletop
   - transport
@@ -392,6 +422,7 @@ clear_organic_objects:
   - control-coordination
   - feedback-adaptation
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, with partial progress (up to 0.36)"
   labels:
   - scale-tabletop
   - transport
@@ -409,6 +440,7 @@ clutter_plastic:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -424,6 +456,7 @@ clutter_pumpkin:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -437,6 +470,7 @@ coffee_pot_in_bin:
   display_tags:
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -452,6 +486,7 @@ condiments_in_bin:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -469,6 +504,7 @@ cooking_clear_plate:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -486,6 +522,7 @@ cooking_pick_pasta_tool:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, but lighter demands than the kept ones"
   labels:
   - scale-tabletop
   - transport
@@ -507,6 +544,7 @@ cubes_and_blocks_in_bin:
   - control-coordination
   - feedback-adaptation
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -542,6 +580,7 @@ electronics_in_bin:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, with partial progress (up to 0.75)"
   labels:
   - scale-tabletop
   - transport
@@ -558,6 +597,7 @@ food_packing1_boxes:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -573,6 +613,7 @@ food_packing1_cans:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -589,6 +630,7 @@ food_packing2_boxes:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, but the same skill as the kept food_packing_by_color and food_packing3_boxes"
   labels:
   - scale-tabletop
   - transport
@@ -605,6 +647,7 @@ food_packing2_cans:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -638,6 +681,7 @@ food_packing3_cans:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -675,6 +719,7 @@ fruits_green_limes_on_plate:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in limited mode"
   labels:
   - scale-tabletop
   - transport
@@ -691,6 +736,7 @@ fruits_moving:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -708,6 +754,7 @@ fruits_moving_orange_or_lime:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -725,6 +772,7 @@ fruits_on_plate:
   - control-coordination
   - feedback-adaptation
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, with partial progress (up to 0.14)"
   labels:
   - scale-tabletop
   - transport
@@ -742,6 +790,7 @@ fruits_on_plate3:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -759,6 +808,7 @@ fruits_onion:
   display_tags:
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -774,6 +824,7 @@ fruits_onion_to_plate:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -791,6 +842,7 @@ fruits_oranges_on_plate:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -808,6 +860,7 @@ grab_a_bagel:
   display_tags:
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -821,6 +874,7 @@ grab_a_fruit:
   display_tags:
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -887,6 +941,7 @@ keyboard_out_of_bin:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -902,6 +957,7 @@ larger_object_raisin_box_in_bin:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -916,6 +972,7 @@ marker_in_mug:
   display_tags:
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -930,6 +987,7 @@ mouse_on_keyboard:
   display_tags:
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -958,6 +1016,7 @@ mustard_above_raisin:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -973,6 +1032,7 @@ mustard_in_left_bin:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -988,6 +1048,7 @@ mustard_in_right_bin:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -1023,6 +1084,7 @@ one_bottle_in_square_pail:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1039,6 +1101,7 @@ one_bottle_on_shelf:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1056,6 +1119,7 @@ phone_or_remote_in_bin:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1070,6 +1134,7 @@ pick_drill:
   display_tags:
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1083,6 +1148,7 @@ pick_glasses:
   display_tags:
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1097,6 +1163,7 @@ pick_orange_object:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1112,6 +1179,7 @@ pick_up_blue_pitcher:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -1128,6 +1196,7 @@ pick_up_green_object:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, but lighter demands than the kept ones"
   labels:
   - scale-tabletop
   - transport
@@ -1143,6 +1212,7 @@ pink_spoon_in_pot:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, but lighter demands than the kept ones"
   labels:
   - scale-tabletop
   - transport
@@ -1161,6 +1231,7 @@ plastic_bottles_in_square_pail:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -1179,6 +1250,7 @@ put_bowl_on_shelf_top:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, but lighter demands than the kept ones"
   labels:
   - scale-tabletop
   - transport
@@ -1216,6 +1288,7 @@ put_two_mugs_on_shelf:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -1236,6 +1309,7 @@ recycle_carton:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -1255,6 +1329,7 @@ recycle_cartons_on_box:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, with partial progress (up to 0.50)"
   labels:
   - scale-tabletop
   - transport
@@ -1272,6 +1347,7 @@ recycle_cartons_vertical_crate:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -1292,6 +1368,7 @@ red_dishes_in_bin:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -1309,6 +1386,7 @@ red_items_in_bin:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1356,6 +1434,7 @@ reorient_red_mug:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1390,6 +1469,7 @@ rubiks_cube:
   display_tags:
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1402,6 +1482,7 @@ rubiks_cube_and_banana:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in limited mode"
   labels:
   - scale-tabletop
   - transport
@@ -1416,6 +1497,7 @@ rubiks_cube_behind_bowl:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1431,6 +1513,7 @@ rubiks_cube_in_front_of_bowl:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1446,6 +1529,7 @@ rubiks_cube_left_of_bowl:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1462,6 +1546,7 @@ rubiks_cube_or_banana:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1477,6 +1562,7 @@ rubiks_cube_right_of_bowl:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1492,6 +1578,7 @@ rubiks_cube_then_banana:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -1507,6 +1594,7 @@ rubiks_cubes_in_bin:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1521,6 +1609,7 @@ sauce_bottles_crate:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1537,6 +1626,7 @@ small_pumpkin_in_bin:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1552,6 +1642,7 @@ smaller_object_butter_in_bin:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1566,6 +1657,7 @@ smartphone_in_bin:
   display_tags:
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1580,6 +1672,7 @@ spoon_in_mug:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -1598,6 +1691,7 @@ spoons_in_pot:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, with partial progress (up to 0.33)"
   labels:
   - scale-tabletop
   - transport
@@ -1617,6 +1711,7 @@ stack3_rubiks_cube:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1651,6 +1746,7 @@ stack_yellow_on_red:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1666,6 +1762,7 @@ take_measuring_spoon_out:
   display_tags:
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1680,6 +1777,7 @@ take_mugs_off_of_shelf:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -1697,6 +1795,7 @@ take_spatula_off_shelf:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1713,6 +1812,7 @@ throw_away_apple:
   display_tags:
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1728,6 +1828,7 @@ throw_away_snacks:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1744,6 +1845,7 @@ tool_organization:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1763,6 +1865,7 @@ tool_organization_both:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, but the same skill as the kept non_hammer_tools_in_right_bin and hammers_in_left_bin"
   labels:
   - scale-tabletop
   - transport
@@ -1780,6 +1883,7 @@ tools_picking_all_hammers:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, but the same skill as the kept non_hammer_tools_in_right_bin and hammers_in_left_bin"
   labels:
   - scale-tabletop
   - transport
@@ -1796,6 +1900,7 @@ tools_picking_drill:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, but lighter demands than the kept ones"
   labels:
   - scale-tabletop
   - transport
@@ -1812,6 +1917,7 @@ tools_picking_hammer:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, but lighter demands than the kept ones"
   labels:
   - scale-tabletop
   - transport
@@ -1829,6 +1935,7 @@ toy_in_bin:
   display_tags:
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1843,6 +1950,7 @@ unstack_rubiks_cube:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1857,6 +1965,7 @@ utensils_in_mug:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in unlimited mode"
   labels:
   - scale-tabletop
   - transport
@@ -1873,6 +1982,7 @@ white_mug_in_center_of_table:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): solved in limited mode"
   labels:
   - scale-tabletop
   - transport
@@ -1905,6 +2015,7 @@ wood_spatula_to_bowl:
   display_tags:
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
@@ -1920,6 +2031,7 @@ yellow_and_white_objects_in_bin:
   - planning-reasoning
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): failed in both modes, but the same skill as the kept dishes_in_bin and white_mugs_in_bin"
   labels:
   - scale-tabletop
   - transport
@@ -1936,6 +2048,7 @@ yogurt_in_bowl:
   - perception-understanding
   - control-coordination
   - manipulation
+  excluded: "not in the hardest 15 (2026-10-04 pruning): no agent runs yet, so ranked below every task that failed in both modes"
   labels:
   - scale-tabletop
   - transport
