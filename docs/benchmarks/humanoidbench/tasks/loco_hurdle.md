@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 7d6a7a44
-  synced: '2026-09-30'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 841996303
+  synced: '2026-10-04'
   instruction: Run the robot forward down the walled track and over the hurdles, without touching the side or back walls and without falling.
   env_id: h1-hurdle-v0
   robot: Unitree H1 (19 actuators)
@@ -21,8 +21,8 @@ upstream:
       steps)
     - 'unlimited: both fresh-process replays of the handed-in trajectory reach it and
       end in the same state'
-    - 'limited: the run passes the moment a live episode reaches it (the recorded episode
-      replays to the same state); otherwise the last episode is graded'
+    - 'limited: the run passes the moment its one episode reaches it (no reset in our
+      runs since 2026-10-04; the recorded episode replays to the same state)'
   scoring: 'Forward speed, staying upright (head at standing height, torso vertical) and low actuator force, multiplied together — but the speed target is a sprint rather than a walk, on the order of 5 m/s. On top of that, touching any barrier''s collision geometry multiplies that entire step down to a small fraction of its value: contact is a gate to be respected, not a penalty to be traded off. Only the walls that line the track on both sides and behind the start count as barriers here; the hurdles themselves carry no such penalty, but they are solid and have to be cleared.'
   ends_early: The episode ends early if the pelvis drops near the ground.
   zero_action_return: 17.9
@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Speed is now the gap: in unlimited mode the robot runs the whole episode without falling or touching a wall, but at about 1.4 m/s; limited mode never gets past 1.92 m. (@williamzhangNU)
+Speed is the gap: GPT-6.1 Sol's unlimited run covers the whole episode without falling or touching a wall but at about 1.4 m/s, and GPT-6 Luna's (2026-10-04) stops short of the first hurdle; limited mode never gets past 1.92 m, and without resets Luna's episode ended in a fall at step 49. (@williamzhangNU)

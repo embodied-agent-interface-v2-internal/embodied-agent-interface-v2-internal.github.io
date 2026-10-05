@@ -1,52 +1,6 @@
 {
-  "commit": "7d6a7a44",
+  "commit": "ae0d92a50",
   "tasks": [
-    {
-      "id": "tossing",
-      "title": "Dynamic3D · Tossing",
-      "family": "tossing",
-      "kind": "dynamic3d",
-      "env_id": "kinder/Tossing3D-o1-v0",
-      "instruction": "Get the green cube lying on the floor into the yellow bin on the far side of the low wall that runs across the room. The task succeeds the moment the cube's centre is inside the bin's goal region, the translucent green box marked in the bin.",
-      "limited_instruction": "",
-      "max_steps": 1000,
-      "robot_time": "100 s at 10 Hz",
-      "action_dim": 18,
-      "actions": "base pos and yaw (3), arm joints (7), gripper pos (1), and arm joint velocity targets (7, rad/s)",
-      "action_bound": 0.1,
-      "state_dim": 61,
-      "nop_success": false,
-      "image_hw": [
-        480,
-        640
-      ],
-      "agent_budget_s": 3600,
-      "limited_twin": true,
-      "task_dir": "kinder-tossing-i00"
-    },
-    {
-      "id": "balance_beam",
-      "title": "Dynamic3D · Balance beam",
-      "family": "balance-beam",
-      "kind": "dynamic3d",
-      "env_id": "kinder/BalanceBeam3D-o3-v0",
-      "instruction": "Put the two small green cubes and the larger dark-red cube on the seesaw so that it balances. The task succeeds the moment all three cubes' centres are inside the translucent green region marked on the seesaw's beam and the beam is within 5° of level.",
-      "limited_instruction": "",
-      "max_steps": 1000,
-      "robot_time": "100 s at 10 Hz",
-      "action_dim": 11,
-      "actions": "base pos and yaw (3), arm joints (7), gripper pos (1)",
-      "action_bound": 0.1,
-      "state_dim": 86,
-      "nop_success": false,
-      "image_hw": [
-        480,
-        640
-      ],
-      "agent_budget_s": 3600,
-      "limited_twin": true,
-      "task_dir": "kinder-balance-beam-i00"
-    },
     {
       "id": "dynamo",
       "title": "Dynamic3D · Dynamo",
@@ -117,29 +71,6 @@
       "task_dir": "kinder-scoop-pour-i00"
     },
     {
-      "id": "shelf",
-      "title": "Dynamic3D · Shelf",
-      "family": "shelf",
-      "kind": "dynamic3d",
-      "env_id": "kinder/Shelf3D-o2-v0",
-      "instruction": "Pick up the dark-red cube and the dark-green cube from the floor and put both in the top compartment of the brown cupboard, which has three compartments one above another. The task succeeds the moment both cubes rest on that compartment's floor.",
-      "limited_instruction": "",
-      "max_steps": 1000,
-      "robot_time": "100 s at 10 Hz",
-      "action_dim": 11,
-      "actions": "base pos and yaw (3), arm joints (7), gripper pos (1)",
-      "action_bound": 0.1,
-      "state_dim": 61,
-      "nop_success": false,
-      "image_hw": [
-        480,
-        640
-      ],
-      "agent_budget_s": 3600,
-      "limited_twin": true,
-      "task_dir": "kinder-shelf-i00"
-    },
-    {
       "id": "constrained_cupboard",
       "title": "Dynamic3D · Constrained cupboard",
       "family": "constrained-cupboard",
@@ -184,76 +115,7 @@
       "agent_budget_s": 3600,
       "limited_twin": true,
       "task_dir": "kinder-sweep-simple-i00"
-    },
-    {
-      "id": "sort_blocks",
-      "title": "Dynamic3D · Sort blocks",
-      "family": "sort-blocks",
-      "kind": "dynamic3d",
-      "env_id": "kinder/SortClutteredBlocks3D-o4-sort_the_cluttered_blocks_into_bins-v0",
-      "instruction": "Sort the four small cubes clustered in the middle of the white table into the four open bins on it by colour: the dark-red cube into the red bin, the dark-green one into the green bin, the dark-blue one into the blue bin and the yellow one into the yellow bin. The task succeeds the moment every cube's centre is inside the bin of its own colour, at least 1 cm from each of its inner walls, at least 1 cm below its rim and at least 0.5 cm above its floor.",
-      "limited_instruction": "",
-      "max_steps": 1000,
-      "robot_time": "100 s at 10 Hz",
-      "action_dim": 11,
-      "actions": "base pos and yaw (3), arm joints (7), gripper pos (1)",
-      "action_bound": 0.1,
-      "state_dim": 157,
-      "nop_success": false,
-      "image_hw": [
-        480,
-        640
-      ],
-      "agent_budget_s": 3600,
-      "limited_twin": true,
-      "task_dir": "kinder-sort-blocks-i00"
-    },
-    {
-      "id": "obstruction_3d",
-      "title": "Kinematic3D · Obstruction 3D",
-      "family": "obstruction-3d",
-      "kind": "kinematic3d",
-      "env_id": "kinder/Obstruction3D-o4-v0",
-      "instruction": "Put the purple block (target_block) on the thin purple pad on the wooden table (target_region); three of the four small red blocks (obstruction0, obstruction1, obstruction3) sit on the pad and the fourth (obstruction2) is elsewhere on the table. The task succeeds the moment the robot holds nothing, the block's underside is within 5 mm of the pad's top surface, and all four of its bottom corners lie within the pad's outline enlarged by 5 mm on every side.",
-      "limited_instruction": "Put the purple block on the thin purple pad on the wooden table; three of the four small red blocks sit on the pad and the fourth is elsewhere on the table. The task succeeds the moment the robot holds nothing, the block's underside is within 5 mm of the pad's top surface, and all four of its bottom corners lie within the pad's outline enlarged by 5 mm on every side.",
-      "max_steps": 3000,
-      "robot_time": "",
-      "action_dim": 11,
-      "actions": "bounded relative base position, rotation, and joint positions, and open / close",
-      "action_bound": 0.2,
-      "state_dim": 91,
-      "nop_success": false,
-      "image_hw": [
-        480,
-        640
-      ],
-      "agent_budget_s": 3600,
-      "limited_twin": true,
-      "task_dir": "kinder-obstruction-3d-i00"
-    },
-    {
-      "id": "packing_3d",
-      "title": "Kinematic3D · Packing 3D",
-      "family": "packing-3d",
-      "kind": "kinematic3d",
-      "env_id": "kinder/Packing3D-p3-v0",
-      "instruction": "Put the three flat green parts on the grey table, a square (part0) and two right triangles (part1, part2), each with a small red peg on top, into the purple tray in the middle of the table (rack). The task succeeds the moment the robot holds nothing and every part rests in the tray: its flat body (peg excluded) lies within the tray's inner outline, its underside is within 5 mm of the tray floor's height and its top is no more than 5 mm above the tray's rim, it is within 5 mm of the tray without penetrating it, and no two parts (pegs included) overlap.",
-      "limited_instruction": "Put the three flat green parts on the grey table, a square and two right triangles, each with a small red peg on top, into the purple tray in the middle of the table. The task succeeds the moment the robot holds nothing and every part rests in the tray: its flat body (peg excluded) lies within the tray's inner outline, its underside is within 5 mm of the tray floor's height and its top is no more than 5 mm above the tray's rim, it is within 5 mm of the tray without penetrating it, and no two parts (pegs included) overlap.",
-      "max_steps": 3000,
-      "robot_time": "",
-      "action_dim": 11,
-      "actions": "bounded relative base position, rotation, and joint positions, and open / close",
-      "action_bound": 0.2,
-      "state_dim": 67,
-      "nop_success": false,
-      "image_hw": [
-        480,
-        640
-      ],
-      "agent_budget_s": 3600,
-      "limited_twin": true,
-      "task_dir": "kinder-packing-3d-i00"
     }
   ],
-  "read": "2026-09-30"
+  "read": "2026-10-04"
 }

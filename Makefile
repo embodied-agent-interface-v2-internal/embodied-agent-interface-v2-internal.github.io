@@ -21,7 +21,7 @@ BIN    := $(VENV)/bin
         compress-run-media upload-run-media publish links demos edit \
         runs runs-watch sync \
         sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-humanoidbench sync-kinder sync-dextoolbench sync-mujoco-playground \
-        sync-metaworldplus sync-vlabench sync-robocasa sync-robocasa365 sync-robocasa-gr1 sync-verified sync-dry clean
+        sync-metaworldplus sync-vlabench sync-robocasa sync-robocasa365 sync-robocasa-gr1 sync-molmospaces sync-verified sync-dry clean
 
 help: ## Show this help
 	@grep -hE '^[a-z-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -153,7 +153,7 @@ upload-run-media: export-run-media compress-run-media ## Export, compress and up
 # RoboWits and RoboLab read a source checkout (pass it in), because their tasks
 # are defined in code. All three are idempotent and write only `upstream:`.
 sync: sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-humanoidbench sync-kinder sync-dextoolbench sync-mujoco-playground \
-      sync-metaworldplus sync-vlabench sync-robocasa sync-robocasa365 sync-robocasa-gr1 ## Re-sync every benchmark from its upstream
+      sync-metaworldplus sync-vlabench sync-robocasa sync-robocasa365 sync-robocasa-gr1 sync-molmospaces ## Re-sync every benchmark from its upstream
 
 sync-behavior: ## Re-sync BEHAVIOR-1K task pages from the official gallery
 	$(BIN)/python scripts/import_behavior_tasks.py
@@ -208,10 +208,11 @@ sync-robopaint: ## Re-sync RoboPaint from a robot_coding_bench commit (ROBOPAINT
 	    $(foreach d,$(ROBOPAINT_DEMOS),--demos $(d))
 
 # HumanoidBench: our selection of it is defined in robot_coding_bench (scripts/humanoidbench/subset.toml, facts.json,
-# tasks/humanoidbench-<category>-<task>-i00): read from a commit of the clone with `git archive`, never a checkout.
+# tasks/humanoidbench-<category>-<task>-i00-privileged / -standard): read from a commit of the clone with `git archive`,
+# never a checkout. The 9-task set is robot_coding_bench PR #44 (origin/main once it is merged).
 # HUMANOIDBENCH_SCENES: the t = 0 room-camera stills (gen_tasks.py measure-limited --images DIR), if present.
 HUMANOIDBENCH_SRC    ?= ../robot_coding_bench
-HUMANOIDBENCH_COMMIT ?= origin/dev/pingyue
+HUMANOIDBENCH_COMMIT ?= origin/dev/pingyue-hb-hard
 HUMANOIDBENCH_SCENES ?= ../robot_coding_bench/jobs/results/humanoidbench/assets/cameras
 
 sync-humanoidbench: ## Re-sync HumanoidBench from a robot_coding_bench commit (HUMANOIDBENCH_COMMIT=..., HUMANOIDBENCH_SCENES=...)
@@ -219,10 +220,11 @@ sync-humanoidbench: ## Re-sync HumanoidBench from a robot_coding_bench commit (H
 	    $(if $(wildcard $(HUMANOIDBENCH_SCENES)),--scenes $(HUMANOIDBENCH_SCENES),)
 
 # KinDER: our selection of it is defined in robot_coding_bench (scripts/kinder/subset.toml, facts.json,
-# tasks/kinder-<family>-i00): read from a commit of the clone with `git archive`, never a checkout.
+# tasks/kinder-<family>-i00-privileged / -standard): read from a commit of the clone with `git archive`, never a
+# checkout. The 4-family set is robot_coding_bench PR #45 (origin/main once it is merged).
 # KINDER_SCENES: the t = 0 room-camera stills (the results site's assets/cameras/<family>/room_camera.png), if present.
 KINDER_SRC    ?= ../robot_coding_bench
-KINDER_COMMIT ?= origin/dev/pingyue
+KINDER_COMMIT ?= origin/dev/pingyue-kinder-hard
 KINDER_SCENES ?= ../robot_coding_bench/jobs/results/kinder/assets/cameras
 
 sync-kinder: ## Re-sync KinDER from a robot_coding_bench commit (KINDER_COMMIT=..., KINDER_SCENES=...)
@@ -252,6 +254,17 @@ sync-robocasa365: ## Re-sync RoboCasa365 (our selection) from a robot_coding_ben
 
 sync-robocasa-gr1: ## Re-sync RoboCasa-GR1 from a robot_coding_bench commit
 	$(BIN)/python scripts/import_robocasa_gr1_tasks.py $(RCB_SYNC)
+
+# MolmoSpaces: no reference solution, so a row shows the starting scene. MOLMOSPACES_SCENES: a dir of the t = 0 camera
+# images (<family>-i00/t0_<camera>.png, as robot_coding_bench's results tooling writes them). Empty by default (the
+# committed stills stay); set it per machine in Makefile.local. MOLMOSPACES_COMMIT: robot_coding_bench PR #47's branch
+# (origin/main once it is merged).
+MOLMOSPACES_SCENES ?=
+MOLMOSPACES_COMMIT ?= origin/dev/pingyue-molmospaces
+
+sync-molmospaces: ## Re-sync MolmoSpaces from a robot_coding_bench commit (MOLMOSPACES_COMMIT=..., MOLMOSPACES_SCENES=...)
+	$(BIN)/python scripts/import_molmospaces_tasks.py --source $(RCB_SRC) --commit $(MOLMOSPACES_COMMIT) \
+	    $(if $(MOLMOSPACES_SCENES),--scenes $(MOLMOSPACES_SCENES),)
 
 # The BDDL goals and dataset statistics come from the licensed BEHAVIOR download,
 # so the extract step runs inside the simulator image; see the script's docstring.

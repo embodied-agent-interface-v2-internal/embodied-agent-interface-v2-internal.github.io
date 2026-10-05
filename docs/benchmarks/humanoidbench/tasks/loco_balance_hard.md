@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 7d6a7a44
-  synced: '2026-09-30'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 841996303
+  synced: '2026-10-04'
   instruction: Stand on the balance board and stay on it, upright and still, for the whole episode.
   env_id: h1-balance_hard-v0
   robot: Unitree H1 (19 actuators)
@@ -21,8 +21,8 @@ upstream:
       steps)
     - 'unlimited: both fresh-process replays of the handed-in trajectory reach it and
       end in the same state'
-    - 'limited: the run passes the moment a live episode reaches it (the recorded episode
-      replays to the same state); otherwise the last episode is graded'
+    - 'limited: the run passes the moment its one episode reaches it (no reset in our
+      runs since 2026-10-04; the recorded episode replays to the same state)'
   scoring: A good step asks for only three things, multiplied together — low actuator force, staying upright (head at full standing height on the board, torso vertical), and near-zero horizontal velocity — so scoring well for one step is not the difficulty. The difficulty is that the episode ends the moment the pelvis drops too low, anything but the rolling sphere touches the ground — the board included — or the sphere touches anything other than the ground and the board, and every step after that is worth nothing.
   zero_action_return: 29.03
   action_dim: 19
@@ -51,4 +51,4 @@ _No demo._
 
 ## Discussion
 
-Still out of reach: the board stays up at most 69 steps in limited mode and 277 in unlimited mode, where CMA-ES-tuned board and centre-of-mass feedback got furthest. (@williamzhangNU)
+Still out of reach: the board stays up at most 277 steps in unlimited mode (GPT-6.1 Sol's CMA-ES-tuned board and centre-of-mass feedback; GPT-6 Luna's, 2026-10-04, 78) and 69 in limited mode; without resets Luna's episode ended in a fall at step 43. (@williamzhangNU)

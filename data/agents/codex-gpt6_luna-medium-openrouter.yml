@@ -16,7 +16,9 @@ harness: >-
   0.158.0–0.159.2 (KinDER) as harbor_agents.codex_openrouter:CodexOpenRouter (dev/pingyue, commit c9449ce), Codex over
   OpenRouter with web search off, without the model gateway. On protocol v1.0 (2026-10-01): Harbor's built-in codex
   agent, Codex CLI 0.159.2, with OpenRouter registered as its own provider and web search disabled
-  (scripts/<benchmark>/configs/codex-openrouter.yaml). state/runs/<benchmark>.yml says which batch is which.
+  (scripts/<benchmark>/configs/codex-openrouter.yaml); from 2026-10-04 (HumanoidBench and KinDER's hardest tasks)
+  started by scripts/run_agent_batch.sh, with the same Codex config passed as AGENT_CONFIG and no usage gateway.
+  state/runs/<benchmark>.yml says which batch is which.
 route: OpenRouter, with the owner's API key (billed per token)
 model: openrouter/openai/gpt-6-luna
 settings:
@@ -26,7 +28,9 @@ harbor: >-
   Before v1.0: RCB_MODEL=openrouter/openai/gpt-6-luna scripts/run_deepseek_openrouter.sh <task dir>
   --ak reasoning_effort=medium (limited: RCB_RESET_BUDGET=50 ...), one Harbor job per task and mode. On v1.0:
   harbor run -c scripts/<benchmark>/configs/codex-openrouter.yaml -p tasks/<task dir> (standard: RCB_RESET_BUDGET=50),
-  one Harbor job per mode and sweep
+  one Harbor job per mode and sweep. From 2026-10-04: AGENT=codex MODEL=openai/gpt-6-luna EFFORT=medium
+  AK="--ak version=0.159.2" AGENT_CONFIG=<Codex config.toml with the OpenRouter provider> scripts/run_agent_batch.sh
+  <batch> <task base>... (one Harbor job per task and mode; standard mode without resets)
 billing: openrouter
 price: openai/gpt-6-luna         # key in data/prices.yml
 modes: [unlimited, limited]

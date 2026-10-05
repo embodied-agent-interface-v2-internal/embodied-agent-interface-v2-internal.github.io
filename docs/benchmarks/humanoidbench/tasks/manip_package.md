@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 7d6a7a44
-  synced: '2026-09-30'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 841996303
+  synced: '2026-10-04'
   instruction: Walk to the package, pick it up, carry it to the destination marker and set it down there, standing upright.
   env_id: h1-package-v0
   robot: Unitree H1 (19 actuators)
@@ -21,8 +21,8 @@ upstream:
       steps)
     - 'unlimited: both fresh-process replays of the handed-in trajectory reach it and
       end in the same state'
-    - 'limited: the run passes the moment a live episode reaches it (the recorded episode
-      replays to the same state); otherwise the last episode is graded'
+    - 'limited: the run passes the moment its one episode reaches it (no reset in our
+      runs since 2026-10-04; the recorded episode replays to the same state)'
   scoring: 'Every step charges you for the distance from the package to its destination — the largest term by far — and a little for the distance from each hand to the package; against that you earn a share for standing steadily and a share for how high the package is off the ground. So the return is strongly negative while the package sits on the floor away from its destination, and improves as you close the distance with it lifted. Landing the package on the destination pays a one-off bonus and ends the episode, but the bonus alone is short of the bar: the rest has to come from the per-step terms before the landing, and those only turn positive once the package is close to the destination.'
   zero_action_return: -2191.95
   action_dim: 19
@@ -51,4 +51,4 @@ _No demo._
 
 ## Discussion
 
-Blocked on lifting: unlimited mode drags the box into the goal radius at the end without lifting it, and limited mode's lifts slip. (@williamzhangNU)
+Blocked on lifting: the unlimited runs move the box toward the goal without lifting it (GPT-6 Luna's lunge, 2026-10-04, pushes it to 8 cm from the marker: 870 of 1500), and limited mode's lifts slip. (@williamzhangNU)

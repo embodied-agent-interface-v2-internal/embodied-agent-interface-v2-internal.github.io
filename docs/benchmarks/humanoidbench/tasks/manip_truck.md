@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 7d6a7a44
-  synced: '2026-09-30'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 841996303
+  synced: '2026-10-04'
   instruction: Unload the five loose packages from the truck (the wall of boxes behind them is fixed) and put them on the table — all of them.
   env_id: h1-truck-v0
   robot: Unitree H1 (19 actuators)
@@ -21,8 +21,8 @@ upstream:
       steps)
     - 'unlimited: both fresh-process replays of the handed-in trajectory reach it and
       end in the same state'
-    - 'limited: the run passes the moment a live episode reaches it (the recorded episode
-      replays to the same state); otherwise the last episode is graded'
+    - 'limited: the run passes the moment its one episode reaches it (no reset in our
+      runs since 2026-10-04; the recorded episode replays to the same state)'
   scoring: 'Each step is your uprightness multiplied by a base amount plus three progress terms: how close the robot is to a package still on the truck, how close it is to a package it has picked up, and how close a picked-up package is to the table. On top of that, lifting a package off the truck and placing one on the table each pay a one-off bonus (taken back if a package comes off the table again), and delivering the last package pays a larger one and ends the episode. Uprightness is a factor, so lying down costs a large part of every step. The one-off bonuses are most of the bar but not all of it, so the rest has to come from the per-step terms before the last delivery.'
   zero_action_return: 544.42
   action_dim: 19
@@ -51,4 +51,4 @@ _No demo._
 
 ## Discussion
 
-Blocked on walking: the robot stands but never gets up the ramp to the packages. (@williamzhangNU)
+Blocked on walking: the robot never gets up the ramp to the packages; GPT-6 Luna (2026-10-04) stood in unlimited mode, and in limited mode it fell and the episode ran on to its 1000 steps (truck ends only when the last package is on the table). (@williamzhangNU)

@@ -219,6 +219,10 @@ nav:
           - benchmarks/robocasa-gr1/index.md
           - Capability coverage: benchmarks/robocasa-gr1/coverage.md
           - About the benchmark: benchmarks/robocasa-gr1/about.md
+      - MolmoSpaces:
+          - benchmarks/molmospaces/index.md
+          - Capability coverage: benchmarks/molmospaces/coverage.md
+          - About the benchmark: benchmarks/molmospaces/about.md
   - Contributing:
       - contributing/index.md
       - Task page guide: contributing/task-page-guide.md

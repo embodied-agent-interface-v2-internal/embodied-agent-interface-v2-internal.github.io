@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Shared importer for the benchmarks whose selection is defined in robot_coding_bench by its own generator: MetaWorld+,
-VLABench, RoboCasa, RoboCasa365 and RoboCasa-GR1 (scripts/import_<benchmark>_tasks.py each give the constants).
+VLABench, RoboCasa, RoboCasa365, RoboCasa-GR1 and MolmoSpaces (scripts/import_<benchmark>_tasks.py each give the
+constants).
 
-Each such benchmark is a set of task pairs on robot_coding_bench `main`, `tasks/<prefix>-<task>-i00-privileged` and
-`...-standard` (protocol v1.0.1), written by `scripts/<benchmark>/generate.py`. The site's task id is the task part with
-underscores (`metaworldplus-button-press-i00-*` is `button_press`), and a run's job is
+Each such benchmark is a set of task pairs in robot_coding_bench, `tasks/<prefix>-<task>-i00-privileged` and
+`...-standard` (protocol v1.0.1), written by the benchmark's generator under `scripts/<benchmark>/`. The site's task id
+is the task part with underscores (`metaworldplus-button-press-i00-*` is `button_press`), and a run's job is
 `<batch>-<mode>-<prefix>-<task>-i00` (`task_dir` in state/runs/<benchmark>.yml).
 
 What it reads, from a commit's export (`git archive <commit>`, never a checkout of anyone's working tree):
@@ -15,7 +16,10 @@ What it reads, from a commit's export (`git archive <commit>`, never a checkout 
   tasks/<dir>-standard/README.md           what the standard (limited) twin gives the agent
 and, with --demos, the verifier's replay of our reference solution in the oracle's validation trials (Harbor trial dirs
 under the given dirs, searched recursively, read only): <trial>/verifier/replay.mp4 with replay.last.png as its poster,
-re-encoded (H.264, CRF 30, +faststart) and credited to us. A privileged trial wins over a standard one.
+re-encoded (H.264, CRF 30, +faststart) and credited to us. A privileged trial wins over a standard one. A benchmark
+without a reference solution shows a still instead: with --scenes, each task's starting scene (the file `scene` names
+under the given dir, e.g. a results site's t = 0 camera images), stored as docs/assets/<id>/scenes/<task>.jpg and named
+in the page's `scene_image`.
 
 Writes docs/benchmarks/<id>/tasks/<task>.md (only the `upstream:` block of an existing page; a new task gets a page from
 the template), data/benchmarks/<id>.tasks.upstream.json (the cache: rebuilding the pages needs no source),
@@ -61,6 +65,7 @@ class Bench:
     extra: Callable[[dict], dict] = field(default=lambda t: {})   # benchmark-specific upstream fields
     sources: tuple[str, ...] = ()            # more files to export beside the task dirs (e.g. the generator's data)
     enrich: Callable[[Path, dict], None] = field(default=lambda root, t: None)   # add fields to a task record
+    scene: Callable[[dict], str] | None = None   # a task record -> its t = 0 still under --scenes (no demos of ours)
 
 
 BODY_TEMPLATE = """
@@ -96,9 +101,11 @@ _Not yet reviewed._
 
 
 def clean(s: str) -> str:
-    """Markdown to one line of plain text: links keep their text, code and emphasis marks go."""
+    """Markdown to one line of plain text: links keep their text, code and emphasis marks go (a `__` inside a word, as
+    in a Harbor trial name, is not emphasis and stays)."""
     s = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", s)
-    s = re.sub(r"`([^`]*)`", r"\1", s).replace("**", "").replace("__", "")
+    s = re.sub(r"`([^`]*)`", r"\1", s).replace("**", "")
+    s = re.sub(r"(?<![A-Za-z0-9])__|__(?![A-Za-z0-9])", "", s)
     return re.sub(r"\s+", " ", s).strip()
 
 
@@ -247,6 +254,7 @@ def upstream_block(bench: Bench, task: dict, synced: str, commit: str) -> dict:
         "agent_budget": f"{task['agent_budget_s']} s of wall clock per mode" if task["agent_budget_s"] else "",
         "environment_source": task.get("env_source", ""),
         "task_dirs": f"{task['task_dir']}-privileged, {task['task_dir']}-standard",
+        "scene_image": f"{task['id']}.jpg" if (scene_dir(bench) / f"{task['id']}.jpg").is_file() else "",
         **bench.extra(task),
     }
     return {k: v for k, v in block.items() if v not in (None, "", [], {})}
@@ -325,6 +333,31 @@ def install_demos(bench: Bench, tasks: list[dict], found: dict[str, Path], dry: 
     return changed
 
 
+def scene_dir(bench: Bench) -> Path:
+    return ROOT / "docs" / "assets" / bench.id / "scenes"
+
+
+def install_scenes(bench: Bench, tasks: list[dict], scenes: Path, dry: bool) -> int:
+    """Each task's starting scene as a JPEG still (ffmpeg, as the KinDER importer does), rewritten only
+    when the conversion differs from what is there."""
+    changed = 0
+    with tempfile.TemporaryDirectory(prefix=f"{bench.id}-scenes-") as tmpd:
+        for t in tasks:
+            src = scenes / bench.scene(t)
+            if not src.is_file():
+                continue
+            jpg = Path(tmpd) / f"{t['id']}.jpg"
+            subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(src), "-q:v", "3", str(jpg)], check=True)
+            dst = scene_dir(bench) / jpg.name
+            if dst.is_file() and dst.read_bytes() == jpg.read_bytes():
+                continue
+            changed += 1
+            if not dry:
+                dst.parent.mkdir(parents=True, exist_ok=True)
+                dst.write_bytes(jpg.read_bytes())
+    return changed
+
+
 # ----------------------------------------------------------------------------------------------- state
 
 
@@ -349,9 +382,12 @@ def main(bench: Bench, doc: str) -> int:
     ap.add_argument("--source", default=None, help="a robot_coding_bench git clone (with --commit) or an export of it")
     ap.add_argument("--commit", default="", help="the commit to read from the clone (git archive), e.g. origin/main")
     ap.add_argument("--demos", action="append", default=[], help="a dir of the oracle's Harbor trials (repeatable)")
+    ap.add_argument("--scenes", default=None, help="a dir of t = 0 stills (the benchmark's `scene` names each file)")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--force", action="store_true", help="rewrite pages even when upstream is unchanged")
     args = ap.parse_args()
+    if args.scenes and not bench.scene:
+        ap.error(f"--scenes: {bench.name} has no starting-scene stills (its pages show demos)")
     cache = ROOT / "data" / "benchmarks" / f"{bench.id}.tasks.upstream.json"
     pages = ROOT / "docs" / "benchmarks" / bench.id / "tasks"
 
@@ -379,6 +415,7 @@ def main(bench: Bench, doc: str) -> int:
             tasks, commit = payload["tasks"], payload.get("commit", "")
 
     demo_files = install_demos(bench, tasks, find_demos(args.demos, bench), args.dry_run) if args.demos else 0
+    scene_files = install_scenes(bench, tasks, Path(args.scenes), args.dry_run) if args.scenes else 0
 
     synced = dt.date.today().isoformat()
     pages.mkdir(parents=True, exist_ok=True)
@@ -410,6 +447,8 @@ def main(bench: Bench, doc: str) -> int:
     print(f"updated   : {updated}")
     print(f"unchanged : {unchanged}")
     print(f"demos     : {demo_files} task(s) changed" if args.demos else "demos     : not asked (--demos DIR)")
+    if args.scenes:
+        print(f"scenes    : {scene_files} still(s) changed")
     if seeded:
         print(f"state for {len(seeded)} new task(s) in state/tasks/{bench.id}.yml")
     if orphans:

@@ -1,21 +1,26 @@
 # KinDER's agent runs. Owned by the benchmark's owner, curated by hand like everything in state/.
 # Format and field meanings: docs/contributing/registering-runs.md (and the header of state/runs/behavior-1k.yml).
 
-default: codex-gpt6_1_sol-medium
-# task id <family with underscores> -> our task directory kinder-<family>-i00 (and its -limited twin)
+default: codex-gpt6_luna-medium-openrouter
+# task id <family with underscores> -> our task directory kinder-<family>-i00 (protocol v1.0: its -privileged twin is
+# the unlimited mode, its -standard twin the limited mode)
 task_dir: "kinder-{task_dashed}-i00"
 # No partial credit beside success: KinDER's goal check passes or fails, and its reward.json has no progress key.
 progress: none
 
-# GPT-6.1 Sol is KinDER's run; GPT-6 Luna's stays beside it because robot_coding_bench's oracle_evidence cites its trials
-# (the families without a reference solution: a passing trajectory, checked against today's verifiers).
+# Since 2026-10-04 the benchmark is its 4 hardest families (the other 6 are `excluded` in state/tasks/kinder.yml), and
+# GPT-6 Luna's batch kinder-luna-1004 on them is its run: robot_coding_bench's task set of that day (protocol v1.0.1;
+# limited = the standard twin on eai-standard/2.1 in its standard configuration: one episode, no reset, the robot's own
+# base and wrist cameras with wrist depth), image 0.1.6 as published, 60 minutes a mode, effort medium, one attempt per
+# task and mode, started by run_agent_batch.sh. GPT-6.1 Sol's run stays beside it as history (the default before
+# 2026-10-04); robot_coding_bench's oracle_evidence cites Luna's trials. The rest describes the runs before then.
 # Image 0.1.6, 60 minutes a mode, effort medium, the agent reaching the model APIs only. Limited: the standard config,
 # 50 resets, the robot's own base and wrist cameras (wrist depth, no room camera), and spec() gives the gripper's grasp
 # point (`end_effector`); the PyBullet robot reports a move it refuses as `blocked`. One attempt per task and mode:
 # limited 2026-09-30, unlimited 2026-10-01. The Harbor jobs predate run_agent_batch.sh's names
 # (kinder-full-<family>-codex-gpt61sol-medium-60min, kinder-limited-<family>-...-60min-reset50-depth-ee); the batch name
 # below links to them on the machine that ran them. Both are on the tasks before protocol v1.0 (limited mode 1.1); only
-# Luna's rerun batch is on v1.0.
+# Luna's rerun batches are on v1.0.
 runs:
   codex-gpt6_1_sol-medium:
     batch: kinder-sol61-0930
@@ -36,8 +41,9 @@ runs:
     # Protocol v1.0 (robot_coding_bench main d1b93b49, 2026-10-01): the standard twins with 50 resets (10 families; dynamo
     # has a reference solution and was not swept) and dynamo privileged, on Harbor's codex agent (Codex CLI 0.159.2).
     # Each replaces the task's earlier trial, which stays as its history. The v1.0 sweep without resets (0/10) is not
-    # on this site.
-    rerun_batches: [kinder-luna-v1-1001]
+    # on this site. kinder-luna-1004 (2026-10-04): the 4 families of the benchmark, both modes, limited without resets
+    # (header above).
+    rerun_batches: [kinder-luna-v1-1001, kinder-luna-1004]
     harness: >-
       Before v1.0: Codex CLI 0.158.0 (the first six unlimited runs), 0.159.0 (the other five) and 0.159.2 (limited) as
       harbor_agents.codex_openrouter:CodexOpenRouter, Codex over OpenRouter with web search off, without the model

@@ -3,18 +3,19 @@
 
 KinDER (Princeton-Robot-Planning-and-Learning/kindergarden, pinned in our image at 5b2dbac) has 31 task families of
 physical reasoning for a TidyBot++ mobile manipulator: Dynamic3D in MuJoCo, Kinematic3D in PyBullet, and 2D ones in
-Pymunk. robot_coding_bench keeps 11 of them, one variant each at seed 0, and defines each as a pair,
-`tasks/kinder-<family>-i00` and its `-limited` twin, generated from `scripts/kinder/subset.toml` (what a human decided:
-which environments, each goal's sentence) and `facts.json` (what the simulator says: the action space, the state
-size, the camera images, the checks). The site's task id is the family with underscores, so `kinder-sweep-into-drawer-i00`
-is `sweep_into_drawer`, and a run's job is `<batch>-<mode>-kinder-<family>-i00` (`task_dir: "kinder-{task_dashed}-i00"`
-in state/runs/kinder.yml).
+Pymunk. robot_coding_bench keeps 5 of them (11 until 2026-10-04), one variant each at seed 0, and defines each as a
+pair, `tasks/kinder-<family>-i00-privileged` and its `-standard` twin (`tasks/kinder-<family>-i00` and `-limited`
+before protocol v1.0), generated from `scripts/kinder/subset.toml` (what a human decided: which environments, each
+goal's sentence) and `facts.json` (what the simulator says: the action space, the state size, the camera images, the
+checks). The site's task id is the family with underscores, so `kinder-sweep-into-drawer-i00` is `sweep_into_drawer`,
+and a run's job is `<batch>-<mode>-kinder-<family>-i00` (`task_dir: "kinder-{task_dashed}-i00"` in
+state/runs/kinder.yml).
 
 What it reads, from a commit's export (`git archive <commit>`, never a checkout of anyone's working tree):
   scripts/kinder/subset.toml          env id, the episode length (where a task sets its own), the goal sentences
   scripts/kinder/facts.json           the action space, the state vector's size, the limited mode's cameras
   tasks/<dir>/instruction.md          the task sentence (its `**Task:**` paragraph) and the scoring's step budget
-  tasks/<dir>-limited/instruction.md  the limited twin's task sentence, where it differs
+  tasks/<dir>-standard/instruction.md the limited twin's task sentence, where it differs (-limited before v1.0)
   tasks/<dir>/task.toml               the agent's budget
 and, with --scenes, the starting scene as the limited mode's room camera sees it at t = 0 (a results site's
 assets/cameras/<family>/room_camera.png, or `t0_room_camera.png`): the task's scene image, stored as JPEG (640×480 PNG
@@ -27,7 +28,7 @@ category as the note (an entry that exists is never changed: curation is the own
 unchanged source writes nothing; a task that disappears is reported, never deleted.
 
 Usage:
-  python scripts/import_kinder_tasks.py --source ../robot_coding_bench --commit dev/pingyue \\
+  python scripts/import_kinder_tasks.py --source ../robot_coding_bench --commit origin/main \\
       --scenes ../robot_coding_bench/jobs/results/kinder/assets/cameras
   python scripts/import_kinder_tasks.py                  # from the cache
   python scripts/import_kinder_tasks.py ... --dry-run
@@ -145,21 +146,29 @@ def _actions(doc: str) -> str:
     return ""
 
 
+def task_pair(base: Path) -> tuple[Path, Path | None]:
+    """A task's privileged directory and its limited twin: `<base>-privileged` and `-standard` since protocol v1.0,
+    `<base>` and `<base>-limited` before it (the twin is None when there is none)."""
+    named = lambda suffix: base.with_name(base.name + suffix)  # noqa: E731
+    priv = named("-privileged") if named("-privileged").is_dir() else base
+    return priv, next((d for d in (named("-standard"), named("-limited")) if d.is_dir()), None)
+
+
 def read_source(root: Path) -> list[dict]:
     subset = tomllib.loads((root / "scripts" / "kinder" / "subset.toml").read_text())
     facts = json.loads((root / "scripts" / "kinder" / "facts.json").read_text())
     tasks = []
     for t in subset.get("task") or []:
         family = t["family"]
-        d = root / "tasks" / f"kinder-{family}-i00"
+        base = root / "tasks" / f"kinder-{family}-i00"
+        d, lim = task_pair(base)
         f = facts.get(family) or {}
         if not (d / "task.toml").is_file() or not f:
             continue
         kind = next((k for k in KINDS if f".{k}." in f.get("entry_point", "")), "")
         meta = tomllib.loads((d / "task.toml").read_text())
         full_md = (d / "instruction.md").read_text() if (d / "instruction.md").is_file() else ""
-        lim = d.parent / f"{d.name}-limited"
-        lim_md = (lim / "instruction.md").read_text() if (lim / "instruction.md").is_file() else ""
+        lim_md = (lim / "instruction.md").read_text() if lim and (lim / "instruction.md").is_file() else ""
         steps, robot_time = _step_budget(full_md)
         bounds = [abs(x) for x in (f.get("action_high") or [])[:10] if isinstance(x, (int, float))]
         tasks.append({
@@ -169,7 +178,8 @@ def read_source(root: Path) -> list[dict]:
             "kind": kind,
             "env_id": t.get("env_id", ""),
             "instruction": _task_sentence(full_md),
-            "limited_instruction": _task_sentence(lim_md) if "limited_statement" in t else "",
+            "limited_instruction": (_task_sentence(lim_md) if {"standard_statement", "limited_statement"} & t.keys()
+                                    else ""),
             "max_steps": steps,
             "robot_time": robot_time,
             "action_dim": f.get("action_dim"),
@@ -177,10 +187,10 @@ def read_source(root: Path) -> list[dict]:
             "action_bound": max(bounds) if bounds else None,
             "state_dim": f.get("obs_dim"),
             "nop_success": f.get("nop_success"),
-            "image_hw": (f.get("limited") or {}).get("image_hw"),
+            "image_hw": (f.get("standard") or f.get("limited") or {}).get("image_hw"),
             "agent_budget_s": int((meta.get("agent") or {}).get("timeout_sec", 0)),
-            "limited_twin": lim.is_dir(),
-            "task_dir": d.name,
+            "limited_twin": lim is not None,
+            "task_dir": base.name,
         })
     return tasks
 
@@ -281,7 +291,7 @@ def seed_state(tasks: list[dict], dry: bool) -> list[str]:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--source", default=None, help="a robot_coding_bench git clone (with --commit) or an export of it")
-    ap.add_argument("--commit", default="", help="the commit to read from the clone (git archive), e.g. dev/pingyue")
+    ap.add_argument("--commit", default="", help="the commit to read from the clone (git archive), e.g. origin/main")
     ap.add_argument("--scenes", default=None, help="a dir of <family>/room_camera.png or <family>/t0_room_camera.png")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--force", action="store_true", help="rewrite pages even when upstream is unchanged")

@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 7d6a7a44
-  synced: '2026-09-30'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 841996303
+  synced: '2026-10-04'
   instruction: Lift the dumbbell from the floor to overhead — close to two metres up — and hold it there.
   env_id: h1hand-powerlift-v0
   robot: Unitree H1 with two Shadow hands (61 actuators)
@@ -21,8 +21,8 @@ upstream:
       steps)
     - 'unlimited: both fresh-process replays of the handed-in trajectory reach it and
       end in the same state'
-    - 'limited: the run passes the moment a live episode reaches it (the recorded episode
-      replays to the same state); otherwise the last episode is graded'
+    - 'limited: the run passes the moment its one episode reaches it (no reset in our
+      runs since 2026-10-04; the recorded episode replays to the same state)'
   scoring: 'A weighted sum of two things: a small share for standing steadily, and the bulk for how high the dumbbell is, measured against a target band around two metres. Be warned that the height term is broad. Clearing the bar means lifting it high and keeping it there for most of the episode, not improving the height a little.'
   ends_early: The episode ends early if the pelvis drops near the ground.
   zero_action_return: 20.39
@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Blocked on the grasp: the dumbbell never leaves the floor in either mode. (@williamzhangNU)
+Blocked on the grasp: the dumbbell never leaves the floor in either mode; GPT-6 Luna's unlimited run (2026-10-04) never got its fingers onto it. (@williamzhangNU)

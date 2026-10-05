@@ -1,25 +1,29 @@
 # HumanoidBench's agent runs. Owned by the benchmark's owner, curated by hand like everything in state/.
 # Format and field meanings: docs/contributing/registering-runs.md (and the header of state/runs/behavior-1k.yml).
 
-default: codex-gpt6_1_sol-medium
-# task id <category>_<task> -> our task directory humanoidbench-<category>-<task>-i00 (and its -limited twin)
+default: codex-gpt6_luna-medium-openrouter
+# task id <category>_<task> -> our task directory humanoidbench-<category>-<task>-i00 (protocol v1.0: its -privileged
+# twin is the unlimited mode, its -standard twin the limited mode)
 task_dir: "humanoidbench-{task_dashed}-i00"
 # No partial credit beside success: HumanoidBench's reward.json has none (its final_reward is the last step's reward,
 # not progress; the episode return, on each task's own scale, stays in verifier/diagnostics.json).
 progress: none
-# The limited mode's resets used, of the 50 our runs allow (reward.json `resets`; the unlimited mode has no count).
+# The limited mode's resets used, of the 50 our runs allowed until 2026-10-04 (none since: protocol v1.0's standard
+# configuration; reward.json `resets`; the unlimited mode has no count).
 metrics:
 - {key: resets, label: Resets used, format: ".0f", better: lower}
 
-# GPT-6.1 Sol is HumanoidBench's run; GPT-6 Luna's, GPT-6 Sol's and Claude Opus 5.5's stay beside it because
-# robot_coding_bench's oracle_evidence cites their trials (the tasks without a reference solution: a passing trajectory,
-# checked against today's verifiers). Every run is on the tasks before protocol v1.0 (limited mode 1.1); only Luna's
-# rerun batch is on v1.0.
-# Task text 7 (robot_coding_bench ef883ec; the tasks regenerated since with the massless hands' centre of mass fixed),
-# image 0.1.6, 60 minutes a mode, limited with 50 resets, a pelvis IMU and the room camera. One attempt per task and
-# mode, 2026-09-30. The Harbor jobs predate run_agent_batch.sh's names (hb-<mode>-<task>-codex-gpt61sol-...-text7); the
-# batch name below links to them on the machine that ran them. The other three: the same, on 2026-09-28, with text 7
-# before the centre-of-mass fix (their notes say where it mattered).
+# Since 2026-10-04 the benchmark is its 9 hardest tasks (the other 14 are `excluded` in state/tasks/humanoidbench.yml),
+# and GPT-6 Luna's batch hb-luna-1004 on them is its run: robot_coding_bench's task set of that day (protocol v1.0.1;
+# limited = the standard twin on eai-standard/2.1 in its standard configuration: one episode, no reset), image 0.1.6
+# as published, 60 minutes a mode, effort medium, one attempt per task and mode, started by run_agent_batch.sh.
+# GPT-6.1 Sol's run and the earlier ones stay beside it as history; before 2026-10-04 GPT-6.1 Sol was the default.
+# Every other batch is on the tasks before protocol v1.0 (limited mode 1.1), except Luna's hb-luna-v1-1001. The rest
+# describes the runs before then. GPT-6.1 Sol: task text 7 (robot_coding_bench ef883ec; the tasks regenerated since
+# with the massless hands' centre of mass fixed), image 0.1.6, 60 minutes a mode, limited with 50 resets, a pelvis IMU
+# and the room camera. One attempt per task and mode, 2026-09-30. The Harbor jobs predate run_agent_batch.sh's names
+# (hb-<mode>-<task>-codex-gpt61sol-...-text7); the batch name below links to them on the machine that ran them. The
+# other three: the same, on 2026-09-28, with text 7 before the centre-of-mass fix (their notes say where it mattered).
 runs:
   codex-gpt6_1_sol-medium:
     batch: hb-sol61-0930
@@ -53,11 +57,14 @@ runs:
     # Protocol v1.0 (robot_coding_bench main 571079ea, 2026-10-01): the standard twins with 50 resets (23 tasks; sit_simple
     # has a reference solution and was not swept) and push privileged, on Harbor's codex agent. Each replaces the
     # task's earlier trial, which stays as its history. The v1.0 sweep without resets (0/23) is not on this site.
-    rerun_batches: [hb-luna-v1-1001]
+    # hb-luna-1004 (2026-10-04): the 9 tasks of the benchmark, both modes, limited without resets (header above).
+    rerun_batches: [hb-luna-v1-1001, hb-luna-1004]
     notes:  # on one trial each, graded as it is: nothing arranged
     - {task: manip_push, mode: limited, trial: humanoidbench-manip-push-i00-lim__R6DtjyA, note: "`spec()` placed the
         hand 0.31 m beyond the real one (a massless link's centre of mass; fixed since); the arm poses the agent chose
         with it in its last two episodes never reached the box"}
+    - {task: loco_stair, mode: unlimited, trial: humanoidbench-loco-stair-i00-pri__KDhUSwu,
+       note: "the agent ended itself at 48 min, its trajectory saved, judging that stair traversal stayed unsolved"}
     tasks:
     - loco_sit_simple
     - loco_walk

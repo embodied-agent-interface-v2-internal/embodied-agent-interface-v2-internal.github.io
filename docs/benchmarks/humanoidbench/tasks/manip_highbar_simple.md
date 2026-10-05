@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 7d6a7a44
-  synced: '2026-09-30'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 841996303
+  synced: '2026-10-04'
   instruction: 'The robot starts hanging from a high bar. Swing up: get inverted and drive the feet as high as you can.'
   env_id: h1-highbar_simple-v0
   robot: Unitree H1 (19 actuators)
@@ -21,8 +21,8 @@ upstream:
       steps)
     - 'unlimited: both fresh-process replays of the handed-in trajectory reach it and
       end in the same state'
-    - 'limited: the run passes the moment a live episode reaches it (the recorded episode
-      replays to the same state); otherwise the last episode is graded'
+    - 'limited: the run passes the moment its one episode reaches it (no reset in our
+      runs since 2026-10-04; the recorded episode replays to the same state)'
   scoring: 'Three multiplied requirements: how far the torso is towards inverted, how high the feet are, and low actuator force. Read the first one carefully — it rewards being upside down, so hanging the right way up scores nothing at all no matter how steady it is. The feet-height term saturates only when the feet are well above the bar. On this robot the forearms are fixed to the bar, so it cannot fall off.'
   ends_early: The episode still ends if the head drops too low, which an inverted hang under the bar can do.
   zero_action_return: 0.08
@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Out of reach for now: the robot swings up to a partial inversion but never holds the handstand. (@williamzhangNU)
+Out of reach for now: the robot swings up to a partial inversion but never holds the handstand; GPT-6 Luna's feedback-held swing (2026-10-04) came closest, 526 of 750. (@williamzhangNU)
