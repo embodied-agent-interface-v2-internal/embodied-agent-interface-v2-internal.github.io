@@ -79,6 +79,9 @@ SCRUB = [
     # length counts: `ps` cuts a line at the terminal width, so a value can be cut short (2026-10-04: a 2-character one)
     (re.compile(r"(?i)([\\\"']*(?:chatgpt[-_])?account[-_]id[\\\"']*(?:\s*[:=]\s*|\s+)[\\\"']*)(?!<redacted>)[A-Za-z0-9_-]+"),
      r"\1<redacted>"),
+    # the login file's name: Codex's auth.json is linked from a secrets dir, so an agent's `ls` or `du` shows its path
+    # (2026-10-05: 2 logs). The name alone carries no secret, but the scan stops on it, so it goes too
+    (re.compile(r"(?i)(?:[\w.~/-]*/)?auth\.json"), "<login file>"),
     (re.compile(rf"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.{TLDS}\b"), "<email>"),
     # user names in paths, and machines named in host paths
     (re.compile(r"/(home|Users|scratch)/(?!<user>)[A-Za-z0-9._-]+"), r"/\1/<user>"),
@@ -107,6 +110,8 @@ LEFT = {
 }
 DROPPED = {"host", "hosts", "job", "where", "scan", "logs"}      # must be gone from every record and log
 FINISHED = {"success", "failed", "error"}                          # the trial states a snapshot publishes
+# what a record keeps of the one it replaces, as published (import_runs.SUPERSEDED without the DROPPED fields)
+PREV_KEYS = ("state", "trial", "reward", "progress", "exception", "started", "finished", "agent_wall_s")
 
 
 def scrub(x):
@@ -227,6 +232,67 @@ def build(tmp: Path, only: set[str] | None = None) -> dict:
     return {"runs": runs, "logs": n_logs, "bytes": n_bytes}
 
 
+def keep_published(tmp: Path, only: set[str], info: dict) -> None:
+    """Runs and trials this checkout has no local data for keep their part of the current snapshot.
+
+    The local data holds only what this machine's hosts could see. A colleague's run, or an earlier batch that ran on
+    another machine, has nothing here: build() would leave it out and the publish would take it off the site. So a run
+    with no collected data keeps its published file and logs as they are, and a run that has some keeps the published
+    records (and their logs) of the tasks and modes its local data lacks. What was collected here wins everywhere else."""
+    old = json.loads((OUT / "SNAPSHOT.json").read_text(encoding="utf-8")) if (OUT / "SNAPSHOT.json").is_file() else {}
+    old_runs = {(r.get("benchmark"), r.get("run")): r for r in old.get("runs") or []}
+    by_run = {(r["benchmark"], r["run"]): r for r in info["runs"]}
+    for br in runsdb.all_runs():
+        if only and br.benchmark not in only:
+            continue
+        src = OUT / br.benchmark / f"{br.run}.json"
+        if not src.is_file():
+            continue
+        dst = tmp / br.benchmark / f"{br.run}.json"
+        if not dst.is_file():                          # nothing collected here: the published part, as it is
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src, dst)
+            if (OUT / br.benchmark / br.run).is_dir():
+                shutil.copytree(OUT / br.benchmark / br.run, tmp / br.benchmark / br.run)
+            info["bytes"] += sum(len(f.read_text(encoding="utf-8")) for f in [dst, *(tmp / br.benchmark / br.run).rglob("*.json")])
+            if (br.benchmark, br.run) in old_runs:
+                info["runs"].append(old_runs[(br.benchmark, br.run)])
+            continue
+        pub, cur = json.loads(src.read_text(encoding="utf-8")), json.loads(dst.read_text(encoding="utf-8"))
+        added = logs = 0
+        for tid, modes in (pub.get("tasks") or {}).items():
+            for mode, rec in modes.items():
+                new = (cur.get("tasks") or {}).get(tid, {}).get(mode)
+                if new is not None:
+                    # A later batch replaced a trial whose batch this machine cannot see: the published one is its
+                    # history (as import_runs.py keeps it when it sees both), with its log as <mode>-prev.
+                    if (not new.get("supersedes") and not new.get("rerun") and rec.get("trial") and new.get("trial")
+                            and rec["trial"] != new["trial"] and rec.get("state") in FINISHED):
+                        new["supersedes"] = {k: rec.get(k) for k in PREV_KEYS if k in rec}
+                        added += 1
+                        f = OUT / br.benchmark / br.run / tid / f"{mode}.json"
+                        if f.is_file():
+                            (tmp / br.benchmark / br.run / tid).mkdir(parents=True, exist_ok=True)
+                            shutil.copy2(f, tmp / br.benchmark / br.run / tid / f"{mode}-prev.json")
+                            logs += 1
+                    continue
+                cur.setdefault("tasks", {}).setdefault(tid, {})[mode] = rec
+                added += 1
+                for slot in (mode, mode + "-prev"):
+                    f = OUT / br.benchmark / br.run / tid / f"{slot}.json"
+                    if f.is_file():
+                        (tmp / br.benchmark / br.run / tid).mkdir(parents=True, exist_ok=True)
+                        shutil.copy2(f, tmp / br.benchmark / br.run / tid / f"{slot}.json")
+                        logs += 1
+        if added:
+            info["bytes"] += dump(dst, cur)
+            r = by_run.get((br.benchmark, br.run))
+            if r:
+                r["tasks"] = len(cur["tasks"])
+                r["logs"] = (r.get("logs") or 0) + logs
+    info["logs"] = sum(r.get("logs") or 0 for r in info["runs"])
+
+
 def keep_others(tmp: Path, only: set[str], info: dict) -> None:
     """The benchmarks not in `only`: their part of the current snapshot, as it is, and their lines in SNAPSHOT.json."""
     old = json.loads((OUT / "SNAPSHOT.json").read_text(encoding="utf-8")) if (OUT / "SNAPSHOT.json").is_file() else {}
@@ -258,6 +324,7 @@ def main() -> int:
     tmp.mkdir(parents=True)
     only = set(args.benchmark or ())
     info = build(tmp, only)
+    keep_published(tmp, only, info)
     if only:
         keep_others(tmp, only, info)
     hits = scan(tmp)

@@ -18,7 +18,7 @@ runs:
     # (the commit that published the rerun says how). Their records stay in the local data; the Hugging Face dataset no
     # longer holds their media.
     # rerun-0928: the 11 trials our memory guard killed; rerun2-0929: bagels_on_plate once more (the follow-ups below).
-    rerun_batches: [robolab-lunaxh-limited-0928, robolab-lunaxh-limited-rerun-0928, robolab-lunaxh-limited-rerun2-0929]
+    rerun_batches: [robolab-lunaxh-limited-0928, robolab-lunaxh-limited-rerun-0928, robolab-lunaxh-limited-rerun2-0929, robolab-bel-luna-xh-1005]
     followups:  # arranged for one trial each; the note goes away once another trial replaces it
     - {task: clean_up_toys, mode: unlimited, trial: robolab-clean-up-toys-i00__3b6KY3P, note: "regrade queued on ws3: the replay
         timed out while another user's jobs filled the GPU; it replays again once 8 GiB are free"}
@@ -169,3 +169,97 @@ runs:
       toy_in_bin: 'one-step pick-and-place: 1 object(s) into grey_bin'
       wood_spatula_to_bowl: 'one-step pick-and-place: 1 object(s) into wooden_bowl'
       yogurt_in_bowl: 'one-step pick-and-place: 1 object(s) into bowl'
+  codex-gpt6_astra-high:
+    batch: robolab-bel-astra-hi-1005
+    tasks:
+    - banana_in_bowl
+    - banana_then_rubiks_cube
+    - bananas_in_bin_one_more
+    - bananas_in_bin_three_total
+    - bananas_out_of_bin
+    - bbq_sauce_in_bin
+    - butter_above_raisin
+    - clutter_plastic
+    - clutter_pumpkin
+    - condiments_in_bin
+    - food_packing2_cans
+    - food_packing3_cans
+    - keyboard_out_of_bin
+    - larger_object_raisin_box_in_bin
+    - mustard_in_left_bin
+    - mustard_in_right_bin
+    - pick_up_blue_pitcher
+    - plastic_bottles_in_square_pail
+    - put_two_mugs_on_shelf
+    - recycle_carton
+    - recycle_cartons_vertical_crate
+    - red_dishes_in_bin
+    - reorient_red_mug
+    - rubiks_cubes_in_bin
+    - spoon_in_mug
+    - stack3_rubiks_cube
+    - take_measuring_spoon_out
+    - throw_away_snacks
+    - tools_picking_drill
+    - utensils_in_mug
+    - white_mug_in_center_of_table
+    others: 'not run: the batch evaluation (2026-10-03 to 10-05) gave GPT-6 Astra the tasks GPT-6 Luna failed plus a stratified sample'
+    closed: "the batch evaluation of 2026-10-03 to 10-05 is over; GPT-6 Astra ran the tasks and modes GPT-6 Luna failed, plus a stratified sample, so a mode it skipped reads not run"
+  codex-gpt6_sol-high:
+    batch: robolab-bel-sol-hi-1005
+    tasks:
+    - banana_in_bowl
+    - bananas_in_bin_one_more
+    - bananas_in_bin_three_total
+    - bbq_sauce_in_bin
+    - butter_above_raisin
+    - clutter_plastic
+    - condiments_in_bin
+    - food_packing2_cans
+    - food_packing3_cans
+    - keyboard_out_of_bin
+    - larger_object_raisin_box_in_bin
+    - mustard_in_left_bin
+    - mustard_in_right_bin
+    - pick_up_blue_pitcher
+    - put_two_mugs_on_shelf
+    - recycle_carton
+    - recycle_cartons_vertical_crate
+    - red_dishes_in_bin
+    - reorient_red_mug
+    - spoon_in_mug
+    - stack3_rubiks_cube
+    - take_measuring_spoon_out
+    - throw_away_snacks
+    - tools_picking_drill
+    - white_mug_in_center_of_table
+    others: 'not run (yet): the batch evaluation gave GPT-6 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'
+  codex-gpt6_1_sol-high:
+    batch: robolab-bel-sol61-hi-1005
+    tasks:
+    - banana_in_bowl
+    - bananas_in_bin_one_more
+    - bananas_in_bin_three_total
+    - bbq_sauce_in_bin
+    - butter_above_raisin
+    - clutter_plastic
+    - condiments_in_bin
+    - food_packing2_cans
+    - food_packing3_cans
+    - keyboard_out_of_bin
+    - larger_object_raisin_box_in_bin
+    - mustard_in_left_bin
+    - mustard_in_right_bin
+    - pick_up_blue_pitcher
+    - put_two_mugs_on_shelf
+    - recycle_carton
+    - recycle_cartons_vertical_crate
+    - red_dishes_in_bin
+    - reorient_red_mug
+    - spoon_in_mug
+    - stack3_rubiks_cube
+    - take_measuring_spoon_out
+    - throw_away_snacks
+    - tools_picking_drill
+    - white_mug_in_center_of_table
+    others: 'not run (yet): the batch evaluation gave GPT-6.1 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'

@@ -412,12 +412,33 @@
       if (el.getAttribute("data-ready")) return;
       el.setAttribute("data-ready", "1");
       el.innerHTML = '<p class="rl-loading">Loading the run…</p>';
+      var fail = function (e) {
+        el.innerHTML = '<p class="rl-loading">Could not read this run’s log data: ' + esc(e.message) + "</p>";
+      };
       // XMLHttpRequest rather than fetch: it also works on a build opened straight from disk.
       var xhr = new XMLHttpRequest();
-      xhr.open("GET", el.getAttribute("data-runlog") + "log.json?" + Date.now());
+      // data-gz: the public site serves the data gzipped (log.json.gz, scripts/gen_pages.py), unpacked here
+      var gz = el.getAttribute("data-gz") === "1";
+      xhr.open("GET", el.getAttribute("data-runlog") + (gz ? "log.json.gz?" : "log.json?") + Date.now());
+      if (gz) xhr.responseType = "arraybuffer";
       xhr.onload = function () {
-        try { render(el, JSON.parse(xhr.responseText)); }
-        catch (e) { el.innerHTML = '<p class="rl-loading">Could not read this run’s log data: ' + esc(e.message) + "</p>"; }
+        if (!gz) {
+          try { render(el, JSON.parse(xhr.responseText)); } catch (e) { fail(e); }
+          return;
+        }
+        var buf = new Uint8Array(xhr.response || new ArrayBuffer(0));
+        // a server that sends the file with Content-Encoding: gzip has unpacked it already
+        if (!(buf[0] === 0x1f && buf[1] === 0x8b)) {
+          try { render(el, JSON.parse(new TextDecoder().decode(buf))); } catch (e) { fail(e); }
+          return;
+        }
+        if (typeof DecompressionStream === "undefined") {
+          fail(new Error("this browser cannot unpack it (DecompressionStream); a current browser can"));
+          return;
+        }
+        new Response(new Blob([buf]).stream().pipeThrough(new DecompressionStream("gzip"))).text()
+          .then(function (text) { render(el, JSON.parse(text)); })
+          .catch(fail);
       };
       xhr.onerror = function () {
         el.innerHTML = '<p class="rl-loading">No log data here yet: run <code>make runs</code>.</p>';

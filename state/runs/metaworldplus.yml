@@ -18,11 +18,144 @@ progress: none
 runs:
   codex-gpt6_luna-xhigh:
     batch: metaworldplus-lunaxh-1001
+    rerun_batches: [metaworldplus-bel-luna-xh-1005]   # the batch evaluation of 2026-10-03 to 10-05 (protocol v1.0)
     harness: Codex CLI 0.159.3 as Harbor's codex agent (ChatGPT login, no model gateway)
     tasks:
     - assembly
     - door_open
     - handle_press
     - push
+    - basketball
+    - bin_picking
+    - box_close
+    - button_press
+    - button_press_topdown
+    - button_press_topdown_wall
+    - button_press_wall
+    - coffee_button
+    - coffee_pull
+    - coffee_push
+    - dial_turn
+    - disassemble
+    - door_close
+    - door_lock
+    - door_unlock
+    - drawer_close
+    - drawer_open
+    - faucet_close
+    - faucet_open
+    - hammer
+    - hand_insert
+    - handle_press_side
+    - handle_pull
+    - handle_pull_side
+    - lever_pull
+    - peg_insert_side
+    - peg_unplug_side
+    - pick_out_of_hole
+    - pick_place
+    - pick_place_wall
+    - plate_slide
+    - plate_slide_back
+    - plate_slide_back_side
+    - plate_slide_side
+    - push_back
+    - push_wall
+    - reach
+    - reach_wall
+    - shelf_place
+    - soccer
+    - stick_pull
+    - stick_push
+    - sweep
+    - sweep_into
+    - window_close
+    - window_open
     others: not in the sample (robot_coding_bench PR #12's model trial ran four tasks)
     closed: the sample model trial of PR #12, run once
+  codex-gpt6_astra-high:
+    batch: metaworldplus-bel-astra-hi-1005
+    tasks:
+    - basketball
+    - button_press_topdown
+    - button_press_topdown_wall
+    - button_press_wall
+    - disassemble
+    - door_lock
+    - door_open
+    - door_unlock
+    - drawer_open
+    - faucet_close
+    - hand_insert
+    - handle_press
+    - handle_press_side
+    - handle_pull
+    - handle_pull_side
+    - lever_pull
+    - peg_insert_side
+    - plate_slide_back
+    - push
+    - push_back
+    - push_wall
+    - reach_wall
+    - shelf_place
+    - soccer
+    - stick_pull
+    - stick_push
+    - sweep
+    others: 'not run: the batch evaluation (2026-10-03 to 10-05) gave GPT-6 Astra the tasks GPT-6 Luna failed plus a stratified sample'
+    closed: "the batch evaluation of 2026-10-03 to 10-05 is over; GPT-6 Astra ran the tasks and modes GPT-6 Luna failed, plus a stratified sample, so a mode it skipped reads not run"
+  codex-gpt6_sol-high:
+    batch: metaworldplus-bel-sol-hi-1005
+    tasks:
+    - basketball
+    - button_press_topdown
+    - button_press_topdown_wall
+    - button_press_wall
+    - disassemble
+    - door_lock
+    - door_open
+    - door_unlock
+    - drawer_open
+    - faucet_close
+    - hand_insert
+    - handle_pull
+    - handle_pull_side
+    - lever_pull
+    - peg_insert_side
+    - plate_slide_back
+    - push
+    - push_back
+    - push_wall
+    - reach_wall
+    - stick_pull
+    - stick_push
+    - sweep
+    others: 'not run (yet): the batch evaluation gave GPT-6 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'
+  codex-gpt6_1_sol-high:
+    batch: metaworldplus-bel-sol61-hi-1005
+    tasks:
+    - basketball
+    - button_press_topdown
+    - button_press_topdown_wall
+    - button_press_wall
+    - disassemble
+    - door_lock
+    - door_open
+    - door_unlock
+    - drawer_open
+    - faucet_close
+    - hand_insert
+    - handle_pull
+    - handle_pull_side
+    - lever_pull
+    - peg_insert_side
+    - plate_slide_back
+    - push
+    - push_back
+    - push_wall
+    - reach_wall
+    - stick_pull
+    - stick_push
+    - sweep
+    others: 'not run (yet): the batch evaluation gave GPT-6.1 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'

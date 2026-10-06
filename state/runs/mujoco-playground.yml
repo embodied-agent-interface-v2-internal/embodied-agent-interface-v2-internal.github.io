@@ -11,7 +11,7 @@ task_dir: "mujoco_playground_{task}"
 runs:
   codex-gpt6_luna-xhigh:
     batch: mj-luna-xh-0928
-    rerun_batches: [mj-luna-xh-f1-1001]
+    rerun_batches: [mj-luna-xh-f1-1001, mujoco-playground-bel-luna-xh-1005]
     # Official batches from 2026-10-01 (protocol v1.0): Codex CLI 0.159.0 on Azure OpenAI's API (gpt-6-luna), reasoning
     # summaries detailed, sampled tasks in both modes (robot_coding_bench exps/formal_runs/codex-gpt6_luna-xhigh_batch*.json).
     # Each replaces, for its tasks, the earlier ChatGPT-login result, which stays as history (<mode>-prev).
@@ -47,3 +47,28 @@ runs:
     - panda_open_cabinet
     - panda_pick_cube_orientation
     others: "not built yet"
+  codex-gpt6_astra-high:
+    batch: mujoco-playground-bel-astra-hi-1005
+    tasks:
+    - aloha_hand_over
+    - aloha_single_peg_insertion
+    - panda_open_cabinet
+    - panda_pick_cube_orientation
+    others: 'not run: the batch evaluation (2026-10-03 to 10-05) gave GPT-6 Astra the tasks GPT-6 Luna failed plus a stratified sample'
+    closed: "the batch evaluation of 2026-10-03 to 10-05 is over; GPT-6 Astra ran the tasks and modes GPT-6 Luna failed, plus a stratified sample, so a mode it skipped reads not run"
+  codex-gpt6_sol-high:
+    batch: mujoco-playground-bel-sol-hi-1005
+    tasks:
+    - aloha_hand_over
+    - aloha_single_peg_insertion
+    - panda_open_cabinet
+    - panda_pick_cube_orientation
+    others: 'not run (yet): the batch evaluation gave GPT-6 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'
+  codex-gpt6_1_sol-high:
+    batch: mujoco-playground-bel-sol61-hi-1005
+    tasks:
+    - aloha_hand_over
+    - aloha_single_peg_insertion
+    - panda_open_cabinet
+    - panda_pick_cube_orientation
+    others: 'not run (yet): the batch evaluation gave GPT-6.1 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'

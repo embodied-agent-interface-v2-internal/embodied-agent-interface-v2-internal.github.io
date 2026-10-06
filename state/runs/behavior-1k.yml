@@ -27,7 +27,7 @@ runs:
   codex-gpt6_luna-xhigh:
     batch: behavior-lunaxh-0925-2057
     # 2026-09-27 01:00: every job reruns with the 8-thread cap (commit 912567f); the old batch's runs stay as history
-    rerun_batches: [behavior-lunaxh-t8-0927]
+    rerun_batches: [behavior-lunaxh-t8-0927, behavior-1k-bel-luna-xh-1005]
     rerun_all: true
     tasks:
     - picking_up_trash
@@ -83,3 +83,49 @@ runs:
     - dispose_of_batteries
     others: 'not among the 30 chosen for the first round (2026-09-26): mostly particles, cutting and liquids, or long tidy-ups
       like chosen ones'
+  codex-gpt6_astra-high:
+    batch: behavior-1k-bel-astra-hi-1005
+    tasks:
+    - clean_up_broken_glass
+    - collecting_aluminum_cans
+    - composting_waste
+    - dispose_of_glass
+    - hiding_Easter_eggs
+    - installing_a_scanner
+    - picking_up_trash
+    - putting_shoes_on_rack
+    - stacking_wood
+    - tidying_bedroom
+    - turning_on_radio
+    others: 'not run: the batch evaluation (2026-10-03 to 10-05) gave GPT-6 Astra the tasks GPT-6 Luna failed plus a stratified sample'
+    closed: "the batch evaluation of 2026-10-03 to 10-05 is over; GPT-6 Astra ran the tasks and modes GPT-6 Luna failed, plus a stratified sample, so a mode it skipped reads not run"
+  codex-gpt6_sol-high:
+    batch: behavior-1k-bel-sol-hi-1005
+    tasks:
+    - clean_up_broken_glass
+    - collecting_aluminum_cans
+    - composting_waste
+    - dispose_of_glass
+    - hiding_Easter_eggs
+    - installing_a_scanner
+    - picking_up_trash
+    - putting_shoes_on_rack
+    - stacking_wood
+    - tidying_bedroom
+    - turning_on_radio
+    others: 'not run (yet): the batch evaluation gave GPT-6 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'
+  codex-gpt6_1_sol-high:
+    batch: behavior-1k-bel-sol61-hi-1005
+    tasks:
+    - clean_up_broken_glass
+    - collecting_aluminum_cans
+    - composting_waste
+    - dispose_of_glass
+    - hiding_Easter_eggs
+    - installing_a_scanner
+    - picking_up_trash
+    - putting_shoes_on_rack
+    - stacking_wood
+    - tidying_bedroom
+    - turning_on_radio
+    others: 'not run (yet): the batch evaluation gave GPT-6.1 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'

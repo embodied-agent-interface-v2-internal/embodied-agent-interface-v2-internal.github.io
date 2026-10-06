@@ -17,11 +17,174 @@ progress: none
 runs:
   codex-gpt6_luna-xhigh:
     batch: robocasa365-lunaxh-1001
+    rerun_batches: [robocasa365-bel-luna-xh-1005]   # the batch evaluation of 2026-10-03 to 10-05 (protocol v1.0)
     harness: Codex CLI 0.160.0 as Harbor's codex agent (ChatGPT login, no model gateway)
     tasks:
     - bread_and_cheese
     - close_drawer
     - retrieve_meat
     - turn_on_stove
+    - add_lemon_to_fish
+    - assemble_cooking_array
+    - beverage_sorting
+    - candle_cleanup
+    - cereal_and_bowl
+    - choose_measuring_cup
+    - clear_food_waste
+    - clear_sink
+    - close_oven
+    - close_stand_mixer_head
+    - cookie_dough_prep
+    - deliver_brewed_coffee
+    - dessert_upgrade
+    - display_meat_variety
+    - divide_basins
+    - drain_veggies
+    - drinkware_consolidation
+    - make_ice_lemonade
+    - make_loaded_potato
+    - meal_prep_staging
+    - microwave_defrost_meat
+    - open_dishwasher
+    - organize_coffee_condiments
+    - oven_broil_fish
+    - pack_dessert
+    - pick_place_cabinet_to_counter
+    - pick_place_sink_to_counter
+    - plate_steak_meal
+    - portion_in_tupperware
+    - pre_rinse_station
+    - prep_for_sanitizing
+    - prep_marinating_meat
+    - reheat_meal
+    - sanitize_prep_cutting_board
+    - scrub_bowl
+    - searing_meat
+    - seasoning_spice_setup
+    - set_up_cutting_station
+    - stocking_breakfast_foods
+    - sweeten_coffee
+    - thaw_in_sink
+    - tong_buffet_setup
+    - turn_off_microwave
+    - turn_on_microwave
+    - turn_on_sink_faucet
+    - turn_on_toaster_oven
     others: not in the sample (robot_coding_bench PR #25's model trial ran four tasks)
     closed: the sample model trial of PR #25, run once
+  codex-gpt6_astra-high:
+    batch: robocasa365-bel-astra-hi-1005
+    tasks:
+    - add_lemon_to_fish
+    - assemble_cooking_array
+    - beverage_sorting
+    - bread_and_cheese
+    - candle_cleanup
+    - cereal_and_bowl
+    - choose_measuring_cup
+    - clear_food_waste
+    - clear_sink
+    - close_drawer
+    - close_oven
+    - close_stand_mixer_head
+    - cookie_dough_prep
+    - deliver_brewed_coffee
+    - dessert_upgrade
+    - display_meat_variety
+    - divide_basins
+    - drain_veggies
+    - drinkware_consolidation
+    - make_ice_lemonade
+    - make_loaded_potato
+    - meal_prep_staging
+    - microwave_defrost_meat
+    - open_dishwasher
+    - organize_coffee_condiments
+    - oven_broil_fish
+    - pack_dessert
+    - pick_place_cabinet_to_counter
+    - pick_place_sink_to_counter
+    - plate_steak_meal
+    - portion_in_tupperware
+    - pre_rinse_station
+    - prep_for_sanitizing
+    - prep_marinating_meat
+    - reheat_meal
+    - retrieve_meat
+    - sanitize_prep_cutting_board
+    - scrub_bowl
+    - searing_meat
+    - seasoning_spice_setup
+    - set_up_cutting_station
+    - stocking_breakfast_foods
+    - sweeten_coffee
+    - thaw_in_sink
+    - tong_buffet_setup
+    - turn_off_microwave
+    - turn_on_microwave
+    - turn_on_sink_faucet
+    - turn_on_stove
+    - turn_on_toaster_oven
+    others: 'not run: the batch evaluation (2026-10-03 to 10-05) gave GPT-6 Astra the tasks GPT-6 Luna failed plus a stratified sample'
+    closed: "the batch evaluation of 2026-10-03 to 10-05 is over; GPT-6 Astra ran the tasks and modes GPT-6 Luna failed, plus a stratified sample, so a mode it skipped reads not run"
+  codex-gpt6_sol-high:
+    batch: robocasa365-bel-sol-hi-1005
+    tasks:
+    - assemble_cooking_array
+    - beverage_sorting
+    - cereal_and_bowl
+    - clear_food_waste
+    - cookie_dough_prep
+    - display_meat_variety
+    - drain_veggies
+    - drinkware_consolidation
+    - make_loaded_potato
+    - meal_prep_staging
+    - microwave_defrost_meat
+    - open_dishwasher
+    - oven_broil_fish
+    - pick_place_cabinet_to_counter
+    - plate_steak_meal
+    - pre_rinse_station
+    - prep_for_sanitizing
+    - searing_meat
+    - seasoning_spice_setup
+    - set_up_cutting_station
+    - stocking_breakfast_foods
+    - sweeten_coffee
+    - thaw_in_sink
+    - turn_on_sink_faucet
+    - turn_on_stove
+    - turn_on_toaster_oven
+    others: 'not run (yet): the batch evaluation gave GPT-6 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'
+  codex-gpt6_1_sol-high:
+    batch: robocasa365-bel-sol61-hi-1005
+    tasks:
+    - assemble_cooking_array
+    - beverage_sorting
+    - cereal_and_bowl
+    - clear_food_waste
+    - cookie_dough_prep
+    - display_meat_variety
+    - drain_veggies
+    - drinkware_consolidation
+    - make_loaded_potato
+    - meal_prep_staging
+    - microwave_defrost_meat
+    - open_dishwasher
+    - oven_broil_fish
+    - pick_place_cabinet_to_counter
+    - plate_steak_meal
+    - pre_rinse_station
+    - prep_for_sanitizing
+    - searing_meat
+    - seasoning_spice_setup
+    - set_up_cutting_station
+    - stocking_breakfast_foods
+    - sweeten_coffee
+    - thaw_in_sink
+    - tong_buffet_setup
+    - turn_on_sink_faucet
+    - turn_on_stove
+    - turn_on_toaster_oven
+    others: 'not run (yet): the batch evaluation gave GPT-6.1 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'
