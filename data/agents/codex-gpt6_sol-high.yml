@@ -1,0 +1,27 @@
+# One agent run: harness + model + settings. The file name is the run id that state/runs/<benchmark>.yml refers to:
+# <harness>-<model>-<effort>[-<tag>], spelled by harness_id, the model's id in data/prices.yml, settings.reasoning_effort
+# and tag (docs/contributing/registering-runs.md). Registered once, reused by every benchmark that runs this configuration.
+#
+# Read by the tooling: label, short, billing, price, modes, harness_id, tag, formerly. Everything else is for people.
+
+label: Codex + GPT-6 Sol, reasoning high (Azure + ChatGPT login)
+short: Codex · GPT-6 Sol · high · Azure + ChatGPT login
+harness_id: codex
+harness: >-
+  Codex CLI 0.160.0 as Harbor's own codex agent (`-a codex`, robot_coding_bench scripts/run_agent_batch.sh, protocol
+  v1.0), web search off, the agent's egress allowlisted to the model APIs, every request through our model gateway
+route: Azure OpenAI deployments (235 trials) and the owner's ChatGPT Pro subscriptions (173), through our model gateway
+model: openai/gpt-6-sol
+settings:
+  reasoning_effort: high
+  version: 0.160.0
+harbor: >-
+  AGENT=codex MODEL=openai/gpt-6-sol EFFORT=high GATEWAY=1 scripts/run_agent_batch.sh (one Harbor job per task and mode,
+  dispatched by our batch scheduler across the lab's and AWS machines)
+billing: api
+price: openai/gpt-6-sol
+modes: [unlimited, limited]
+since: 2026-10-03
+notes: >-
+  Batch evaluation of 2026-10-03 to 10-05 on robot_coding_bench main (protocol v1.0): the privileged task is the
+  unlimited mode, its standard twin the limited mode. Trials that died on a rate or capacity limit were rerun; they count once, as their rerun.

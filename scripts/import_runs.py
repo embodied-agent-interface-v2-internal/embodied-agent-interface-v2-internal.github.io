@@ -171,6 +171,39 @@ def gateway(p):
     out["billed"] = c["cost"] if c["cost_off"] is not None and c["ncost"] else None
     return out
 
+def gateway_usage(p):
+    """The usage gateway (robot_coding_bench PR #37, 2026-10-02): <trial>/gateway/usage.jsonl, one line per request with
+    the provider's usage block (`usage_raw`), and the raw exchange compressed beside it. Counted in gateway()'s shape;
+    a finished trial's file no longer changes, so the cache keys it by size."""
+    try:
+        st = os.stat(p)
+    except OSError:
+        return None
+    key = "usage:" + p
+    c = cache.get(key)
+    if not c or c.get("size") != st.st_size:
+        c = {"size": st.st_size, "posts": 0, "ok": 0, "bad": 0, "last": None, "tin": 0, "tcached": 0, "tout": 0, "treason": 0}
+        for line in open(p, errors="replace"):
+            try:
+                x = json.loads(line)
+            except ValueError:
+                continue
+            if x.get("method") != "POST":
+                continue
+            c["posts"] += 1
+            c["ok" if x.get("status") == 200 else "bad"] += 1
+            c["last"] = x.get("ts") or c["last"]
+            u = x.get("usage_raw") or {}
+            if x.get("status") == 200 and isinstance(u.get("input_tokens"), int):
+                c["tin"] += u["input_tokens"]
+                c["tcached"] += (u.get("input_tokens_details") or {}).get("cached_tokens") or 0
+                c["tout"] += u.get("output_tokens") or 0
+                c["treason"] += (u.get("output_tokens_details") or {}).get("reasoning_tokens") or 0
+        cache[key] = c
+    out = {k: c[k] for k in ("posts", "ok", "bad", "last", "tin", "tcached", "tout", "treason")}
+    out["billed"] = None
+    return out
+
 def billed_cc(a):
     """Claude Code over OpenRouter: agent/openrouter_costs.json, one entry per generation with its charge."""
     d = load(a + "/openrouter_costs.json")
@@ -217,7 +250,7 @@ def record(job, jd, mode, task, trials, scan, pkey, mkeys=()):
             prog = 0.0
     elif isinstance(rw, dict) and isinstance(rw.get(pkey), (int, float)):
         prog = float(rw[pkey])
-    gw = gateway(a + "/gateway.jsonl")
+    gw = gateway(a + "/gateway.jsonl") or gateway_usage(t + "/gateway/usage.jsonl")
     # What the provider charged, where it says: Claude Code over OpenRouter keeps it per generation; our gateway
     # sees OpenRouter's charge in every response.
     cc = billed_cc(a)

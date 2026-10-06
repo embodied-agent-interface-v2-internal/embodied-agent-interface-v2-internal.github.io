@@ -17,11 +17,125 @@ progress: none
 runs:
   codex-gpt6_luna-xhigh:
     batch: robocasa-lunaxh-1001
+    rerun_batches: [robocasa-bel-luna-xh-1005]   # the batch evaluation of 2026-10-03 to 10-05 (protocol v1.0)
     harness: Codex CLI 0.159.3 as Harbor's codex agent (ChatGPT login, no model gateway)
     tasks:
     - arrange_vegetables
     - open_drawer
     - pnp_counter_to_cab
     - turn_on_stove
+    - close_double_door
+    - close_drawer
+    - close_single_door
+    - coffee_press_button
+    - coffee_serve_mug
+    - coffee_setup_mug
+    - microwave_thawing
+    - open_double_door
+    - open_single_door
+    - pnp_cab_to_counter
+    - pnp_counter_to_microwave
+    - pnp_counter_to_sink
+    - pnp_counter_to_stove
+    - pnp_microwave_to_counter
+    - pnp_sink_to_counter
+    - pnp_stove_to_counter
+    - pre_soak_pan
+    - prepare_coffee
+    - restock_pantry
+    - turn_off_microwave
+    - turn_off_sink_faucet
+    - turn_off_stove
+    - turn_on_microwave
+    - turn_on_sink_faucet
+    - turn_sink_spout
     others: not in the sample (robot_coding_bench PR #22's model trial ran four tasks)
     closed: the sample model trial of PR #22, run once
+  codex-gpt6_astra-high:
+    batch: robocasa-bel-astra-hi-1005
+    tasks:
+    - arrange_vegetables
+    - close_double_door
+    - close_drawer
+    - close_single_door
+    - coffee_serve_mug
+    - coffee_setup_mug
+    - microwave_thawing
+    - open_double_door
+    - open_drawer
+    - open_single_door
+    - pnp_cab_to_counter
+    - pnp_counter_to_microwave
+    - pnp_counter_to_sink
+    - pnp_counter_to_stove
+    - pnp_microwave_to_counter
+    - pnp_stove_to_counter
+    - pre_soak_pan
+    - prepare_coffee
+    - restock_pantry
+    - turn_off_microwave
+    - turn_off_sink_faucet
+    - turn_off_stove
+    - turn_on_microwave
+    - turn_on_sink_faucet
+    - turn_on_stove
+    others: 'not run: the batch evaluation (2026-10-03 to 10-05) gave GPT-6 Astra the tasks GPT-6 Luna failed plus a stratified sample'
+    closed: "the batch evaluation of 2026-10-03 to 10-05 is over; GPT-6 Astra ran the tasks and modes GPT-6 Luna failed, plus a stratified sample, so a mode it skipped reads not run"
+  codex-gpt6_sol-high:
+    batch: robocasa-bel-sol-hi-1005
+    tasks:
+    - arrange_vegetables
+    - close_double_door
+    - close_drawer
+    - close_single_door
+    - coffee_serve_mug
+    - coffee_setup_mug
+    - microwave_thawing
+    - open_double_door
+    - open_drawer
+    - open_single_door
+    - pnp_cab_to_counter
+    - pnp_counter_to_microwave
+    - pnp_counter_to_sink
+    - pnp_counter_to_stove
+    - pnp_microwave_to_counter
+    - pnp_stove_to_counter
+    - pre_soak_pan
+    - prepare_coffee
+    - restock_pantry
+    - turn_off_microwave
+    - turn_off_sink_faucet
+    - turn_off_stove
+    - turn_on_microwave
+    - turn_on_sink_faucet
+    - turn_on_stove
+    others: 'not run (yet): the batch evaluation gave GPT-6 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'
+  codex-gpt6_1_sol-high:
+    batch: robocasa-bel-sol61-hi-1005
+    tasks:
+    - arrange_vegetables
+    - close_double_door
+    - close_drawer
+    - close_single_door
+    - coffee_serve_mug
+    - coffee_setup_mug
+    - microwave_thawing
+    - open_double_door
+    - open_drawer
+    - open_single_door
+    - pnp_cab_to_counter
+    - pnp_counter_to_microwave
+    - pnp_counter_to_sink
+    - pnp_counter_to_stove
+    - pnp_microwave_to_counter
+    - pnp_stove_to_counter
+    - pre_soak_pan
+    - prepare_coffee
+    - restock_pantry
+    - turn_off_microwave
+    - turn_off_sink_faucet
+    - turn_off_stove
+    - turn_on_microwave
+    - turn_on_sink_faucet
+    - turn_on_stove
+    others: 'not run (yet): the batch evaluation gave GPT-6.1 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'

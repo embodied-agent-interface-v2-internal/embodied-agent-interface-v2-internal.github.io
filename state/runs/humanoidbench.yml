@@ -113,3 +113,114 @@ runs:
     others: 'not in this run (the two dearer models ran five tasks, chosen to span locomotion and manipulation, easy
       to hard)'
     closed: 'the OpenRouter credit ran out on 2026-09-28 before the unlimited runs on door, push and cube'
+  codex-gpt6_luna-xhigh:
+    batch: humanoidbench-bel-luna-xh-1005
+    tasks:
+    - loco_balance_hard
+    - loco_balance_simple
+    - loco_hurdle
+    - loco_maze
+    - loco_reach
+    - loco_sit_hard
+    - loco_sit_simple
+    - loco_stair
+    - loco_walk
+    - manip_basketball
+    - manip_bookshelf_simple
+    - manip_cabinet
+    - manip_cube
+    - manip_door
+    - manip_highbar_simple
+    - manip_insert_normal
+    - manip_kitchen
+    - manip_package
+    - manip_powerlift
+    - manip_push
+    - manip_room
+    - manip_spoon
+    - manip_truck
+    - manip_window
+    others: 'not in the batch evaluation of 2026-10-03 to 10-05 (humanoidbench-bel-luna-xh-1005)'
+  codex-gpt6_astra-high:
+    batch: humanoidbench-bel-astra-hi-1005
+    tasks:
+    - loco_balance_hard
+    - loco_balance_simple
+    - loco_hurdle
+    - loco_maze
+    - loco_reach
+    - loco_sit_hard
+    - loco_sit_simple
+    - loco_stair
+    - loco_walk
+    - manip_basketball
+    - manip_bookshelf_simple
+    - manip_cabinet
+    - manip_cube
+    - manip_door
+    - manip_highbar_simple
+    - manip_insert_normal
+    - manip_kitchen
+    - manip_package
+    - manip_powerlift
+    - manip_push
+    - manip_room
+    - manip_spoon
+    - manip_truck
+    - manip_window
+    others: 'not run: the batch evaluation (2026-10-03 to 10-05) gave GPT-6 Astra the tasks GPT-6 Luna failed plus a stratified sample'
+    closed: "the batch evaluation of 2026-10-03 to 10-05 is over; GPT-6 Astra ran the tasks and modes GPT-6 Luna failed, plus a stratified sample, so a mode it skipped reads not run"
+  codex-gpt6_sol-high:
+    batch: humanoidbench-bel-sol-hi-1005
+    tasks:
+    - loco_balance_hard
+    - loco_balance_simple
+    - loco_hurdle
+    - loco_maze
+    - loco_reach
+    - loco_sit_hard
+    - loco_sit_simple
+    - loco_stair
+    - loco_walk
+    - manip_basketball
+    - manip_bookshelf_simple
+    - manip_cabinet
+    - manip_cube
+    - manip_door
+    - manip_highbar_simple
+    - manip_insert_normal
+    - manip_kitchen
+    - manip_package
+    - manip_powerlift
+    - manip_room
+    - manip_spoon
+    - manip_truck
+    - manip_window
+    others: 'not run (yet): the batch evaluation gave GPT-6 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'
+  codex-gpt6_1_sol-high:
+    batch: humanoidbench-bel-sol61-hi-1005
+    tasks:
+    - loco_balance_hard
+    - loco_balance_simple
+    - loco_hurdle
+    - loco_maze
+    - loco_reach
+    - loco_sit_hard
+    - loco_sit_simple
+    - loco_stair
+    - loco_walk
+    - manip_basketball
+    - manip_bookshelf_simple
+    - manip_cabinet
+    - manip_cube
+    - manip_door
+    - manip_highbar_simple
+    - manip_insert_normal
+    - manip_kitchen
+    - manip_package
+    - manip_powerlift
+    - manip_room
+    - manip_spoon
+    - manip_truck
+    - manip_window
+    others: 'not run (yet): the batch evaluation gave GPT-6.1 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'

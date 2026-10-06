@@ -12,7 +12,7 @@ runs:
     # 2026-09-29, user: the limited round on the robot service's rcb-limited/2.2 protocol (28 tasks on the laptop,
     # water_into_mug on ws3) replaces the earlier limited round, which stays as history. rerun-0929: cover_with_lid.
     rerun_batches: [robowits-lunaxh-gpu-0926, robowits-lunaxh-rerun-0927, robowits-lunaxh-limited-0929,
-                    robowits-lunaxh-limited-rerun-0929]
+                    robowits-lunaxh-limited-rerun-0929, robowits-bel-luna-xh-1005]
     followups:  # arranged for one trial each; the note goes away once another trial replaces it
     - {task: ball_into_jar, mode: limited, trial: robowits-ball-into-jar-i00-limit__6Bu2BRV, note: "rerun on the laptop, CPU backend as in its unlimited run, with collect waits set from a measured scene build: the old waits (10 / 9 / 20 min) ran out, so no result was collected"}
     - {task: differentiate_cubes, mode: limited, trial: robowits-differentiate-cubes-i00__auecEhM, note: "rerun on the laptop, CPU backend as in its unlimited run, with collect waits set from a measured scene build: the old waits (10 / 9 / 20 min) ran out, so no result was collected"}
@@ -72,3 +72,52 @@ runs:
     - stand_bulb
     - stand_pages
     - water_into_mug
+  codex-gpt6_astra-high:
+    batch: robowits-bel-astra-hi-1005
+    tasks:
+    - align_blocks
+    - ball_into_bottle
+    - ball_onto_tower
+    - collect_screws
+    - cover_with_lid
+    - dominos
+    - gap_retrieve
+    - hold_cup
+    - move_cube
+    - raise_platform
+    - retrieve_cube
+    - stack_bowls
+    - stand_bulb
+    - stand_pages
+    others: 'not run: the batch evaluation (2026-10-03 to 10-05) gave GPT-6 Astra the tasks GPT-6 Luna failed plus a stratified sample'
+    closed: "the batch evaluation of 2026-10-03 to 10-05 is over; GPT-6 Astra ran the tasks and modes GPT-6 Luna failed, plus a stratified sample, so a mode it skipped reads not run"
+  codex-gpt6_sol-high:
+    batch: robowits-bel-sol-hi-1005
+    tasks:
+    - align_blocks
+    - ball_into_bottle
+    - collect_screws
+    - cover_with_lid
+    - dominos
+    - gap_retrieve
+    - hold_cup
+    - raise_platform
+    - retrieve_cube
+    - stack_bowls
+    - stand_pages
+    others: 'not run (yet): the batch evaluation gave GPT-6 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'
+  codex-gpt6_1_sol-high:
+    batch: robowits-bel-sol61-hi-1005
+    tasks:
+    - align_blocks
+    - ball_into_bottle
+    - collect_screws
+    - cover_with_lid
+    - dominos
+    - gap_retrieve
+    - hold_cup
+    - raise_platform
+    - retrieve_cube
+    - stack_bowls
+    - stand_pages
+    others: 'not run (yet): the batch evaluation gave GPT-6.1 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'

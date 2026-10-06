@@ -20,7 +20,7 @@ runs:
     # episode, no reset, so the per-goal limit ended every episode at step 600): episode capped at 36,000 control steps
     # (10 min of robot time). The 2026-09-28 limited trials (with the limit) stay as limited-prev. Five trials of the
     # rerun never started the agent (npm had not yet published Codex 0.159.0) and were rerun with the version pinned.
-    rerun_batches: [mj-luna-xh-nt-0929, mj-luna-xh-nt-rerun-0929, mj-luna-xh-f1-1001]
+    rerun_batches: [mj-luna-xh-nt-0929, mj-luna-xh-nt-rerun-0929, mj-luna-xh-f1-1001, dextoolbench-bel-luna-xh-1005]
     # Official batches from 2026-10-01 (protocol v1.0): Codex CLI 0.159.0 on Azure OpenAI's API (gpt-6-luna), reasoning
     # summaries detailed, sampled tasks in both modes (robot_coding_bench exps/formal_runs/codex-gpt6_luna-xhigh_batch*.json).
     # Each replaces, for its tasks, the earlier ChatGPT-login result, which stays as history (<mode>-prev).
@@ -102,3 +102,77 @@ runs:
     - spatula_spoon_spatula_flip_over
     - spatula_spoon_spatula_serve_plate
     others: "not built: SimToolReal's pretrained policy reaches no goal on these in our MuJoCo port"
+  codex-gpt6_astra-high:
+    batch: dextoolbench-bel-astra-hi-1005
+    tasks:
+    - brush_blue_brush_sweep_forward
+    - brush_red_brush_sweep_forward
+    - brush_red_brush_sweep_right
+    - eraser_handle_eraser_wipe_c
+    - eraser_handle_eraser_wipe_smile
+    - hammer_claw_hammer_swing_down
+    - hammer_claw_hammer_swing_side
+    - hammer_mallet_hammer_swing_down
+    - hammer_mallet_hammer_swing_side
+    - marker_sharpie_marker_draw_smile
+    - marker_sharpie_marker_write_c
+    - marker_staples_marker_draw_smile
+    - marker_staples_marker_write_c
+    - screwdriver_long_screwdriver_spin_horizontal
+    - screwdriver_long_screwdriver_spin_vertical
+    - screwdriver_short_screwdriver_spin_horizontal
+    - screwdriver_short_screwdriver_spin_vertical
+    - spatula_flat_spatula_flip_over
+    - spatula_flat_spatula_serve_plate
+    - spatula_spoon_spatula_flip_over
+    - spatula_spoon_spatula_serve_plate
+    others: 'not run: the batch evaluation (2026-10-03 to 10-05) gave GPT-6 Astra the tasks GPT-6 Luna failed plus a stratified sample'
+    closed: "the batch evaluation of 2026-10-03 to 10-05 is over; GPT-6 Astra ran the tasks and modes GPT-6 Luna failed, plus a stratified sample, so a mode it skipped reads not run"
+  codex-gpt6_sol-high:
+    batch: dextoolbench-bel-sol-hi-1005
+    tasks:
+    - brush_blue_brush_sweep_forward
+    - brush_red_brush_sweep_forward
+    - brush_red_brush_sweep_right
+    - eraser_handle_eraser_wipe_c
+    - eraser_handle_eraser_wipe_smile
+    - hammer_claw_hammer_swing_down
+    - hammer_claw_hammer_swing_side
+    - hammer_mallet_hammer_swing_down
+    - hammer_mallet_hammer_swing_side
+    - marker_sharpie_marker_draw_smile
+    - marker_sharpie_marker_write_c
+    - marker_staples_marker_draw_smile
+    - marker_staples_marker_write_c
+    - screwdriver_long_screwdriver_spin_horizontal
+    - screwdriver_long_screwdriver_spin_vertical
+    - screwdriver_short_screwdriver_spin_vertical
+    - spatula_flat_spatula_flip_over
+    - spatula_flat_spatula_serve_plate
+    - spatula_spoon_spatula_flip_over
+    - spatula_spoon_spatula_serve_plate
+    others: 'not run (yet): the batch evaluation gave GPT-6 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'
+  codex-gpt6_1_sol-high:
+    batch: dextoolbench-bel-sol61-hi-1005
+    tasks:
+    - brush_blue_brush_sweep_forward
+    - brush_red_brush_sweep_forward
+    - brush_red_brush_sweep_right
+    - eraser_handle_eraser_wipe_c
+    - eraser_handle_eraser_wipe_smile
+    - hammer_claw_hammer_swing_down
+    - hammer_claw_hammer_swing_side
+    - hammer_mallet_hammer_swing_down
+    - hammer_mallet_hammer_swing_side
+    - marker_sharpie_marker_draw_smile
+    - marker_sharpie_marker_write_c
+    - marker_staples_marker_draw_smile
+    - marker_staples_marker_write_c
+    - screwdriver_long_screwdriver_spin_horizontal
+    - screwdriver_long_screwdriver_spin_vertical
+    - screwdriver_short_screwdriver_spin_vertical
+    - spatula_flat_spatula_flip_over
+    - spatula_flat_spatula_serve_plate
+    - spatula_spoon_spatula_flip_over
+    - spatula_spoon_spatula_serve_plate
+    others: 'not run (yet): the batch evaluation gave GPT-6.1 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'

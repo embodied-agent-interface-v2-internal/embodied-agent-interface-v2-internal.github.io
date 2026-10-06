@@ -18,11 +18,128 @@ progress: none
 runs:
   codex-gpt6_luna-xhigh:
     batch: vlabench-lunaxh-1001
+    rerun_batches: [vlabench-bel-luna-xh-1005]   # the batch evaluation of 2026-10-03 to 10-05 (protocol v1.0)
     harness: Codex CLI 0.159.3 as Harbor's codex agent (ChatGPT login, no model gateway)
     tasks:
     - friction_qa
     - heat_food
     - insert_flower
     - select_fruit
+    - add_condiment
+    - book_rearrange
+    - find_unseen_object
+    - hammer_nail_and_hang_picture
+    - insert_bloom_flower
+    - magnetism_qa
+    - play_math_game
+    - put_box_on_painting
+    - reflection_qa
+    - select_billiards
+    - select_billiards_common_sense
+    - select_billiards_spatial
+    - select_book_spatial
+    - select_chemistry_tube
+    - select_chemistry_tube_common_sense
+    - select_chemistry_tube_semantic
+    - select_chemistry_tube_spatial
+    - select_drink
+    - select_fruit_common_sense
+    - select_mahjong
+    - select_mahjong_semantic
+    - select_mahjong_spatial
+    - select_nth_largest_poker
+    - select_painting
+    - select_poker
+    - select_poker_semantic
+    - select_poker_spatial
+    - select_specific_type_book
+    - select_toy
+    - select_unique_type_mahjong
+    - take_out_cool_drink
+    - texas_holdem
     others: not in the sample (robot_coding_bench PR #19's model trial ran four tasks)
     closed: the sample model trial of PR #19, run once
+  codex-gpt6_astra-high:
+    batch: vlabench-bel-astra-hi-1005
+    tasks:
+    - book_rearrange
+    - find_unseen_object
+    - friction_qa
+    - hammer_nail_and_hang_picture
+    - heat_food
+    - insert_flower
+    - play_math_game
+    - put_box_on_painting
+    - select_billiards
+    - select_billiards_common_sense
+    - select_billiards_spatial
+    - select_book_spatial
+    - select_chemistry_tube
+    - select_chemistry_tube_semantic
+    - select_drink
+    - select_fruit
+    - select_mahjong
+    - select_mahjong_semantic
+    - select_mahjong_spatial
+    - select_nth_largest_poker
+    - select_painting
+    - select_poker
+    - select_poker_semantic
+    - select_poker_spatial
+    - select_specific_type_book
+    - select_toy
+    - select_unique_type_mahjong
+    - take_out_cool_drink
+    - texas_holdem
+    others: 'not run: the batch evaluation (2026-10-03 to 10-05) gave GPT-6 Astra the tasks GPT-6 Luna failed plus a stratified sample'
+    closed: "the batch evaluation of 2026-10-03 to 10-05 is over; GPT-6 Astra ran the tasks and modes GPT-6 Luna failed, plus a stratified sample, so a mode it skipped reads not run"
+  codex-gpt6_sol-high:
+    batch: vlabench-bel-sol-hi-1005
+    tasks:
+    - book_rearrange
+    - find_unseen_object
+    - friction_qa
+    - hammer_nail_and_hang_picture
+    - heat_food
+    - put_box_on_painting
+    - select_billiards
+    - select_billiards_common_sense
+    - select_billiards_spatial
+    - select_book_spatial
+    - select_chemistry_tube
+    - select_chemistry_tube_semantic
+    - select_fruit
+    - select_mahjong
+    - select_mahjong_semantic
+    - select_mahjong_spatial
+    - select_painting
+    - select_specific_type_book
+    - select_unique_type_mahjong
+    - take_out_cool_drink
+    - texas_holdem
+    others: 'not run (yet): the batch evaluation gave GPT-6 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'
+  codex-gpt6_1_sol-high:
+    batch: vlabench-bel-sol61-hi-1005
+    tasks:
+    - book_rearrange
+    - find_unseen_object
+    - friction_qa
+    - hammer_nail_and_hang_picture
+    - heat_food
+    - put_box_on_painting
+    - select_billiards
+    - select_billiards_common_sense
+    - select_billiards_spatial
+    - select_book_spatial
+    - select_chemistry_tube
+    - select_chemistry_tube_semantic
+    - select_fruit
+    - select_mahjong
+    - select_mahjong_semantic
+    - select_mahjong_spatial
+    - select_painting
+    - select_specific_type_book
+    - select_unique_type_mahjong
+    - take_out_cool_drink
+    - texas_holdem
+    others: 'not run (yet): the batch evaluation gave GPT-6.1 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'

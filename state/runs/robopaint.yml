@@ -40,7 +40,7 @@ runs:
     # trials) replaces robopaint-lunaxh-0928b's limited round, which stays as history. rerun-0929 (ws3): the 3 trials
     # whose GPU ws lost (the follow-ups below).
     rerun_batches: [robopaint-lunaxh-0928b, robopaint-lunaxh-rerun-0928, robopaint-lunaxh-limited-0929,
-                    robopaint-lunaxh-limited-rerun-0929]
+                    robopaint-lunaxh-limited-rerun-0929, robopaint-bel-luna-xh-1005]
     followups:  # arranged for one trial each; the note goes away once another trial replaces it
     - {task: xingshu_yong, mode: unlimited, trial: robopaint-xingshu-yong-i00__GkDcjZc, note: "the ChatGPT backend
         rejected a Codex request at 18 min (HTTP 400 \"prompt_cache_retention is not supported on this model\"), not the
@@ -168,3 +168,178 @@ runs:
     - xingshu_yu
     - xingshu_zhi
     others: not in this run (a task added after its sweep)
+  codex-gpt6_astra-high:
+    batch: robopaint-bel-astra-hi-1005
+    tasks:
+    - acrylic_applesoranges
+    - acrylic_bedroom
+    - acrylic_bluehorses
+    - acrylic_greatwave
+    - acrylic_kajikazawa
+    - acrylic_plumpark
+    - acrylic_redfuji
+    - acrylic_suddenshower
+    - acrylic_sunflowers
+    - acrylic_vision
+    - kaishu_ai
+    - kaishu_chun
+    - kaishu_da
+    - kaishu_dao
+    - kaishu_de
+    - kaishu_feng
+    - kaishu_fu
+    - kaishu_guo
+    - kaishu_he
+    - kaishu_houdezaiwu
+    - kaishu_hua
+    - kaishu_jia
+    - kaishu_jiang
+    - kaishu_jing
+    - kaishu_kou
+    - kaishu_le
+    - kaishu_lin
+    - kaishu_long
+    - kaishu_ma
+    - kaishu_ming
+    - kaishu_ningjingzhiyuan
+    - kaishu_qing
+    - kaishu_ran
+    - kaishu_ren
+    - kaishu_shan
+    - kaishu_shu
+    - kaishu_shui
+    - kaishu_tian
+    - kaishu_tiandaochouqin
+    - kaishu_xin
+    - kaishu_yong
+    - kaishu_yongzibafa
+    - kaishu_yue
+    - kaishu_zhong
+    - kaishu_zi
+    - lettering_donum
+    - lettering_inunum
+    - lettering_minim
+    - lettering_minimum
+    - lettering_minium
+    - lettering_moon
+    - lettering_nun
+    - lettering_omnium
+    - lettering_unpin
+    - oil_bathers
+    - oil_cafeterrace
+    - oil_cypresses
+    - oil_irises
+    - oil_milkmaid
+    - oil_monalisa
+    - oil_pearlearring
+    - oil_saintevictoire
+    - oil_starrynight
+    - oil_temeraire
+    - oil_wanderer
+    - xingshu_chun
+    - xingshu_feng
+    - xingshu_he
+    - xingshu_huifenghechang
+    - xingshu_jian
+    - xingshu_maolinxiuzhu
+    - xingshu_nian
+    - xingshu_ren
+    - xingshu_shan
+    - xingshu_tianlangqiqing
+    - xingshu_tong
+    - xingshu_xian
+    - xingshu_xin
+    - xingshu_yong
+    - xingshu_yu
+    - xingshu_zhi
+    others: 'not run: the batch evaluation (2026-10-03 to 10-05) gave GPT-6 Astra the tasks GPT-6 Luna failed plus a stratified sample'
+    closed: "the batch evaluation of 2026-10-03 to 10-05 is over; GPT-6 Astra ran the tasks and modes GPT-6 Luna failed, plus a stratified sample, so a mode it skipped reads not run"
+  codex-gpt6_sol-high:
+    batch: robopaint-bel-sol-hi-1005
+    tasks:
+    - acrylic_applesoranges
+    - acrylic_bluehorses
+    - acrylic_greatwave
+    - acrylic_redfuji
+    - acrylic_suddenshower
+    - acrylic_sunflowers
+    - kaishu_da
+    - kaishu_dao
+    - kaishu_feng
+    - kaishu_hua
+    - kaishu_jiang
+    - kaishu_jing
+    - kaishu_kou
+    - kaishu_le
+    - kaishu_ningjingzhiyuan
+    - kaishu_ran
+    - kaishu_shu
+    - kaishu_tian
+    - kaishu_xin
+    - kaishu_yong
+    - kaishu_yongzibafa
+    - kaishu_yue
+    - lettering_minium
+    - lettering_omnium
+    - oil_bathers
+    - oil_cafeterrace
+    - oil_irises
+    - oil_milkmaid
+    - oil_monalisa
+    - oil_pearlearring
+    - oil_saintevictoire
+    - oil_temeraire
+    - oil_wanderer
+    - xingshu_chun
+    - xingshu_feng
+    - xingshu_he
+    - xingshu_jian
+    - xingshu_maolinxiuzhu
+    - xingshu_nian
+    - xingshu_ren
+    - xingshu_shan
+    - xingshu_tianlangqiqing
+    - xingshu_tong
+    - xingshu_xian
+    - xingshu_yong
+    - xingshu_zhi
+    others: 'not run (yet): the batch evaluation gave GPT-6 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'
+  codex-gpt6_1_sol-high:
+    batch: robopaint-bel-sol61-hi-1005
+    tasks:
+    - acrylic_applesoranges
+    - acrylic_bluehorses
+    - acrylic_greatwave
+    - acrylic_redfuji
+    - acrylic_suddenshower
+    - acrylic_sunflowers
+    - kaishu_da
+    - kaishu_hua
+    - kaishu_kou
+    - kaishu_le
+    - kaishu_ningjingzhiyuan
+    - kaishu_ran
+    - kaishu_shu
+    - kaishu_xin
+    - kaishu_yongzibafa
+    - lettering_minium
+    - lettering_omnium
+    - oil_bathers
+    - oil_irises
+    - oil_milkmaid
+    - oil_monalisa
+    - oil_pearlearring
+    - oil_temeraire
+    - oil_wanderer
+    - xingshu_chun
+    - xingshu_feng
+    - xingshu_he
+    - xingshu_jian
+    - xingshu_nian
+    - xingshu_ren
+    - xingshu_shan
+    - xingshu_tong
+    - xingshu_xian
+    - xingshu_yong
+    - xingshu_zhi
+    others: 'not run (yet): the batch evaluation gave GPT-6.1 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'

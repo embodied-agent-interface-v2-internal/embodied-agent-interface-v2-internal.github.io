@@ -27,7 +27,10 @@ since: 2026-09-25
 notes: >-
   Limited mode: the RoboLab, RoboPaint and RoboWits results are from the robot service's rcb-limited/2.2 protocol;
   RoboPaint's and RoboWits' earlier limited round is kept as history, RoboLab's (2.0) was withdrawn. BEHAVIOR-1K's
-  limited results are from its earlier round.
+  limited results are from its earlier round. The batch evaluation of 2026-10-03 to 10-05 (batches <benchmark>-bel-luna-xh-1005,
+  robot_coding_bench main, protocol v1.0: privileged = unlimited, standard = limited) ran Codex CLI 0.160.0 as Harbor's
+  codex agent through our model gateway, on the owner's ChatGPT Pro subscriptions (855 trials) and Azure (86); where a
+  benchmark lists it among its rerun batches, its result is the latest of each task.
 # Its id until 2026-09-28, when the lab's run ids became <harness>-<model>-<effort>: its old log-page addresses redirect
 # to the new ones, and ?run=<it> still picks this run.
 formerly: [codex-0.157-gpt6luna-xhigh-cgpt]

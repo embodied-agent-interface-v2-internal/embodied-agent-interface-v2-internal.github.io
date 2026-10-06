@@ -11,6 +11,7 @@ Run indirectly by `mkdocs build` via the mkdocs-gen-files plugin.
 
 from __future__ import annotations
 
+import gzip
 import sys
 from pathlib import Path
 
@@ -241,10 +242,13 @@ def gen_runs() -> None:
         write(path, html)
     if sitemode.PUBLIC:
         # The log pages' data on the public site: the published snapshot (data/published_runs/<b>/<run>/<task>/
-        # <slot>.json, scripts/publish_runs.py), served at runs-data/<b>/<run>/<task>/<slot>/log.json.
+        # <slot>.json, scripts/publish_runs.py), served gzipped at runs-data/<b>/<run>/<task>/<slot>/log.json.gz;
+        # javascripts/runlog.js unpacks it. Plain, the logs alone passed GitHub Pages' 1 GB (2026-10-05: 3,468 logs,
+        # 747 MB); gzipped they are about a sixth of that.
         for src in sorted(runsdb.PUBLISHED.glob("*/*/*/*.json")):
             bench, run, task = src.parts[-4:-1]
-            write(f"runs-data/{bench}/{run}/{task}/{src.stem}/log.json", src.read_text(encoding="utf-8"))
+            with mkdocs_gen_files.open(f"runs-data/{bench}/{run}/{task}/{src.stem}/log.json.gz", "wb") as fh:
+                fh.write(gzip.compress(src.read_bytes(), compresslevel=9, mtime=0))
 
 
 def main() -> None:
