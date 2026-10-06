@@ -946,14 +946,14 @@ def _runlog_div(root: str, benchmark: str, run: str, task: str, slot: str) -> st
     """Where a log page's script (javascripts/runlog.js) finds the trial's data and media.
 
     Locally both are next to each other, docs/assets/<benchmark>/runs/<run>/<task>/<slot>/. On the public site
-    (scripts/sitemode.py) the data is the published snapshot, served at runs-data/<benchmark>/<run>/<task>/<slot>/
+    (scripts/sitemode.py) the data is the published snapshot, served gzipped at runs-data/<benchmark>/<run>/<task>/<slot>/
     (scripts/gen_pages.py), and the replay and images load from data/public.yml's run_media_base; an empty
     data-media makes the page say "media not yet published"."""
     rel = f"{benchmark}/runs/{run}/{task}/{slot}/"
     if not sitemode.PUBLIC:
         return f'<div class="runlog" data-runlog="{root}assets/{rel}"></div>'
     media = f"{sitemode.RUN_MEDIA_BASE}{benchmark}/{run}/{task}/{slot}/" if sitemode.RUN_MEDIA_BASE else ""
-    return (f'<div class="runlog" data-runlog="{root}runs-data/{benchmark}/{run}/{task}/{slot}/" '
+    return (f'<div class="runlog" data-runlog="{root}runs-data/{benchmark}/{run}/{task}/{slot}/" data-gz="1" '
             f'data-media="{E(media)}"></div>')
 
 

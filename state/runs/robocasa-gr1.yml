@@ -18,11 +18,113 @@ progress: none
 runs:
   codex-gpt6_luna-xhigh:
     batch: robocasa-gr1-lunaxh-1001
+    rerun_batches: [robocasa-gr1-bel-luna-xh-1005]   # the batch evaluation of 2026-10-03 to 10-05 (protocol v1.0)
     harness: Codex CLI 0.159.3 (4 trials) and 0.160.0 (4 trials) as Harbor's codex agent (ChatGPT login, no model gateway)
     tasks:
     - bottle_to_cabinet_close
     - can_to_drawer_close
     - cuttingboard_to_basket
     - plate_to_bowl
+    - cup_to_drawer_close
+    - cuttingboard_to_cardboardbox
+    - cuttingboard_to_pan
+    - cuttingboard_to_pot
+    - cuttingboard_to_tieredbasket
+    - milk_to_microwave_close
+    - placemat_to_basket
+    - placemat_to_bowl
+    - placemat_to_plate
+    - placemat_to_tieredshelf
+    - plate_to_cardboardbox
+    - plate_to_pan
+    - plate_to_plate
+    - potato_to_microwave_close
+    - tray_to_cardboardbox
+    - tray_to_plate
+    - tray_to_pot
+    - tray_to_tieredbasket
+    - tray_to_tieredshelf
+    - wine_to_cabinet_close
     others: not in the sample (robot_coding_bench PR #29's model trial ran four tasks)
     closed: the sample model trial of PR #29, run once
+  codex-gpt6_astra-high:
+    batch: robocasa-gr1-bel-astra-hi-1005
+    tasks:
+    - bottle_to_cabinet_close
+    - can_to_drawer_close
+    - cup_to_drawer_close
+    - cuttingboard_to_basket
+    - cuttingboard_to_cardboardbox
+    - cuttingboard_to_pan
+    - cuttingboard_to_pot
+    - cuttingboard_to_tieredbasket
+    - milk_to_microwave_close
+    - placemat_to_basket
+    - placemat_to_bowl
+    - placemat_to_plate
+    - placemat_to_tieredshelf
+    - plate_to_bowl
+    - plate_to_cardboardbox
+    - plate_to_pan
+    - plate_to_plate
+    - potato_to_microwave_close
+    - tray_to_cardboardbox
+    - tray_to_plate
+    - tray_to_pot
+    - tray_to_tieredbasket
+    - tray_to_tieredshelf
+    - wine_to_cabinet_close
+    others: 'not run: the batch evaluation (2026-10-03 to 10-05) gave GPT-6 Astra the tasks GPT-6 Luna failed plus a stratified sample'
+    closed: "the batch evaluation of 2026-10-03 to 10-05 is over; GPT-6 Astra ran the tasks and modes GPT-6 Luna failed, plus a stratified sample, so a mode it skipped reads not run"
+  codex-gpt6_sol-high:
+    batch: robocasa-gr1-bel-sol-hi-1005
+    tasks:
+    - bottle_to_cabinet_close
+    - can_to_drawer_close
+    - cup_to_drawer_close
+    - cuttingboard_to_basket
+    - cuttingboard_to_cardboardbox
+    - cuttingboard_to_pan
+    - cuttingboard_to_pot
+    - milk_to_microwave_close
+    - placemat_to_basket
+    - placemat_to_bowl
+    - plate_to_bowl
+    - plate_to_cardboardbox
+    - plate_to_pan
+    - plate_to_plate
+    - potato_to_microwave_close
+    - tray_to_cardboardbox
+    - tray_to_pot
+    - tray_to_tieredbasket
+    - tray_to_tieredshelf
+    - wine_to_cabinet_close
+    others: 'not run (yet): the batch evaluation gave GPT-6 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'
+  codex-gpt6_1_sol-high:
+    batch: robocasa-gr1-bel-sol61-hi-1005
+    tasks:
+    - bottle_to_cabinet_close
+    - can_to_drawer_close
+    - cup_to_drawer_close
+    - cuttingboard_to_basket
+    - cuttingboard_to_cardboardbox
+    - cuttingboard_to_pan
+    - cuttingboard_to_pot
+    - cuttingboard_to_tieredbasket
+    - milk_to_microwave_close
+    - placemat_to_basket
+    - placemat_to_bowl
+    - placemat_to_plate
+    - placemat_to_tieredshelf
+    - plate_to_bowl
+    - plate_to_cardboardbox
+    - plate_to_pan
+    - plate_to_plate
+    - potato_to_microwave_close
+    - tray_to_cardboardbox
+    - tray_to_plate
+    - tray_to_pot
+    - tray_to_tieredbasket
+    - tray_to_tieredshelf
+    - wine_to_cabinet_close
+    others: 'not run (yet): the batch evaluation gave GPT-6.1 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'

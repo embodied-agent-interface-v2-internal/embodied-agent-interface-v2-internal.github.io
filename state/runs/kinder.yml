@@ -61,3 +61,61 @@ runs:
     - sort_blocks
     - obstruction_3d
     - packing_3d
+  codex-gpt6_luna-xhigh:
+    batch: kinder-bel-luna-xh-1005
+    tasks:
+    - balance_beam
+    - constrained_cupboard
+    - dynamo
+    - obstruction_3d
+    - packing_3d
+    - scoop_pour
+    - shelf
+    - sort_blocks
+    - sweep_into_drawer
+    - sweep_simple
+    - tossing
+    others: 'not in the batch evaluation of 2026-10-03 to 10-05 (kinder-bel-luna-xh-1005)'
+  codex-gpt6_astra-high:
+    batch: kinder-bel-astra-hi-1005
+    tasks:
+    - balance_beam
+    - constrained_cupboard
+    - obstruction_3d
+    - packing_3d
+    - scoop_pour
+    - shelf
+    - sort_blocks
+    - sweep_into_drawer
+    - sweep_simple
+    - tossing
+    others: 'not run: the batch evaluation (2026-10-03 to 10-05) gave GPT-6 Astra the tasks GPT-6 Luna failed plus a stratified sample'
+    closed: "the batch evaluation of 2026-10-03 to 10-05 is over; GPT-6 Astra ran the tasks and modes GPT-6 Luna failed, plus a stratified sample, so a mode it skipped reads not run"
+  codex-gpt6_sol-high:
+    batch: kinder-bel-sol-hi-1005
+    tasks:
+    - balance_beam
+    - constrained_cupboard
+    - obstruction_3d
+    - packing_3d
+    - scoop_pour
+    - shelf
+    - sort_blocks
+    - sweep_into_drawer
+    - sweep_simple
+    - tossing
+    others: 'not run (yet): the batch evaluation gave GPT-6 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'
+  codex-gpt6_1_sol-high:
+    batch: kinder-bel-sol61-hi-1005
+    tasks:
+    - balance_beam
+    - constrained_cupboard
+    - obstruction_3d
+    - packing_3d
+    - scoop_pour
+    - shelf
+    - sort_blocks
+    - sweep_into_drawer
+    - sweep_simple
+    - tossing
+    others: 'not run (yet): the batch evaluation gave GPT-6.1 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'

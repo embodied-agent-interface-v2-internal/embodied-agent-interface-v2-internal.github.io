@@ -40,6 +40,16 @@ openai/gpt-6.1-sol:
     The HumanoidBench limited door trial's tokens price to $3.38 at these rates against $3.6267 billed; the rest is
     requests over 272k tokens, billed at the higher tier.
 
+openai/gpt-6-astra:
+  id: gpt6_astra
+  input: 10.00
+  cached_input: 1.00
+  output: 50.00
+  as_of: 2026-10-05
+  source: >-
+    OpenRouter's model listing for openai/gpt-6-astra on 2026-10-05 (non-batch): $10 input, $1 cached input, $50 output
+    per 1M tokens.
+
 anthropic/claude-opus-5.5:
   id: claude_opus5_5
   input: 6.25
