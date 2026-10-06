@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 7d6a7a44
-  synced: '2026-09-30'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ be39e53bb
+  synced: '2026-10-06'
   instruction: Grasp the wiping tool — it starts in the air just in front of the hands and falls within the first second unless it is held — and wipe the window with it, moving steadily up and down.
   env_id: h1hand-window-v0
   robot: Unitree H1 with two Shadow hands (61 actuators)
@@ -21,8 +21,8 @@ upstream:
       steps)
     - 'unlimited: both fresh-process replays of the handed-in trajectory reach it and
       end in the same state'
-    - 'limited: the run passes the moment a live episode reaches it (the recorded episode
-      replays to the same state); otherwise the last episode is graded'
+    - 'limited: the run passes the moment its one episode reaches it (no reset in our
+      runs since 2026-10-04; the recorded episode replays to the same state)'
   scoring: A large share of each step is paid only while the tool is in contact with the glass — while it is not, that share is zero, so the bar cannot be reached without contact. The rest pays for moving the tool vertically at a target speed on the order of half a metre per second, for keeping both hands near the tool, and for standing with the head about 40 cm from where it started.
   ends_early: The episode ends immediately if the pelvis drops or the tool falls, i.e. if it is dropped.
   zero_action_return: 1.56
@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Close in unlimited mode, 32 short of the bar: the wiper stays on the glass for 866 steps but moves at about half the asked speed. (@williamzhangNU)
+Close in unlimited mode, but the strokes are too slow: GPT-6.1 Sol came 32 short of the bar, GPT-6 Luna (2026-10-06) 147 short, holding the wiper on the glass for 872 steps at about 0.03 m/s; Luna's limited episode failed at step 92. (@williamzhangNU)

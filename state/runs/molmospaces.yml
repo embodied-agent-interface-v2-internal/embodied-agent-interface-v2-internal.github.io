@@ -8,15 +8,14 @@ task_dir: "molmospaces-{task_dashed}-i00"
 # No partial credit beside success: upstream's judge_success() passes or fails, and reward.json has no progress key.
 progress: none
 
-# The model run behind the selection (2026-10-03): GPT-6 Luna on all 24 candidate episodes (three per family), one
-# attempt per task and mode, 60 minutes a mode; the benchmark keeps one episode per family, and these are its trials.
-# Codex CLI 0.159.2 as Harbor's own codex agent with OpenRouter as its own provider, reasoning medium, web search
-# disabled, no model gateway, agent egress allowlisted to the model APIs (scripts/molmospaces/configs/
-# codex-openrouter.yaml). The candidates ran under their candidate names (e.g. molmospaces-pick-i02); the episodes are
-# the ones shipped as -i00. After the run four sentences of the instructions were made clearer (the Franka gripper's
-# target at t = 0, the largest valid dt, the navigation distance to the object's position, the tooling's usage log);
-# scenes, instances and checks are unchanged. The Harbor jobs ran as one job for all candidates; they are filed here
-# under the runner's per-task job names.
+# GPT-6 Luna, one attempt per task and mode, 60 minutes a mode: Codex CLI 0.159.2 as Harbor's own codex agent with
+# OpenRouter as its own provider, reasoning medium, web search disabled, no model gateway, agent egress allowlisted to
+# the model APIs (scripts/molmospaces/configs/codex-openrouter.yaml). molmospaces-luna-1003: all 24 candidates of the
+# selection used until 2026-10-06 (three per family), filed under the runner's per-task job names. Since 2026-10-06 each
+# family's episode is chosen by rule alone (state/tasks/molmospaces.yml), and each final episode's trials are the last
+# of: molmospaces-luna-1006 (all 8 families), molmospaces-luna-1006b (pick, pick-and-place, next-to, colour and
+# navigation after the difficulty filters were raised) and molmospaces-luna-1006c (pick and next-to after the naming
+# filter). A task's earlier trials stay as its history; those before its final batch ran on its earlier episodes.
 runs:
   codex-gpt6_luna-medium-openrouter:
     batch: molmospaces-luna-1003
@@ -30,4 +29,4 @@ runs:
     - close
     - navigate_to
     - open_door
-    closed: the selection run of 2026-10-03, run once
+    rerun_batches: [molmospaces-luna-1006, molmospaces-luna-1006b, molmospaces-luna-1006c]

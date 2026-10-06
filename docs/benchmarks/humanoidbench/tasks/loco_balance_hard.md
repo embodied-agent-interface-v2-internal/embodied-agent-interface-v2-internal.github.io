@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 841996303
-  synced: '2026-10-04'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ be39e53bb
+  synced: '2026-10-06'
   instruction: Stand on the balance board and stay on it, upright and still, for the whole episode.
   env_id: h1-balance_hard-v0
   robot: Unitree H1 (19 actuators)
@@ -51,4 +51,4 @@ _No demo._
 
 ## Discussion
 
-Still out of reach: the board stays up at most 277 steps in unlimited mode (GPT-6.1 Sol's CMA-ES-tuned board and centre-of-mass feedback; GPT-6 Luna's, 2026-10-04, 78) and 69 in limited mode; without resets Luna's episode ended in a fall at step 43. (@williamzhangNU)
+Still out of reach: the board stays up at most 277 steps in unlimited mode (GPT-6.1 Sol); GPT-6 Luna's (2026-10-06) rolls off the sphere at step 81, and its limited episode fell at step 40. (@williamzhangNU)

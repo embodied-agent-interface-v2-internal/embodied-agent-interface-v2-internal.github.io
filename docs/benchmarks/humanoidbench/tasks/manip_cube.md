@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 7d6a7a44
-  synced: '2026-09-30'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ be39e53bb
+  synced: '2026-10-06'
   instruction: A cube starts just above and in front of each palm. Rotate both cubes to the goal orientation without dropping them.
   env_id: h1hand-cube-v0
   robot: Unitree H1 with two Shadow hands (61 actuators)
@@ -21,8 +21,8 @@ upstream:
       steps)
     - 'unlimited: both fresh-process replays of the handed-in trajectory reach it and
       end in the same state'
-    - 'limited: the run passes the moment a live episode reaches it (the recorded episode
-      replays to the same state); otherwise the last episode is graded'
+    - 'limited: the run passes the moment its one episode reaches it (no reset in our
+      runs since 2026-10-04; the recorded episode replays to the same state)'
   scoring: 'A weighted sum: the largest term is how closely each cube''s orientation matches the goal, averaged over the two hands; then how close each hand is to its cube; then a small share for standing steadily without moving. The orientation term is sharp — it falls away quickly as the orientation drifts, so approximate alignment earns much less than it looks like it should — and it compares orientations as quaternions, sign included: of the two ways to turn a cube onto the goal, only one scores, because the other ends at the same orientation with the opposite sign, which counts as far off.'
   ends_early: The episode ends the moment either cube drops below a height, or the pelvis does.
   zero_action_return: 5.0
@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Passes in unlimited mode with centre-of-mass balance and Jacobian wrist control turning both cubes; limited mode stays up and comes close (338.91 against 370) but drops a cube at step 491. (@williamzhangNU)
+Passes in unlimited mode with centre-of-mass balance and Jacobian wrist control (GPT-6.1 Sol); GPT-6 Luna (2026-10-06) drops a cube at step 273 in unlimited mode (132 of 370) and at step 50 in limited mode. (@williamzhangNU)

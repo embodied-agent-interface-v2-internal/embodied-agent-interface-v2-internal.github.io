@@ -1,24 +1,24 @@
 {
-  "commit": "841996303",
+  "commit": "be39e53bb",
   "tasks": [
     {
-      "id": "loco_stair",
-      "title": "Locomotion · Stair",
-      "family": "stair",
+      "id": "loco_walk",
+      "title": "Locomotion · Walk",
+      "family": "walk",
       "category": "loco",
-      "env_id": "h1-stair-v0",
+      "env_id": "h1-walk-v0",
       "robot": "h1",
-      "capability_class": "C2 · constrained gait",
+      "capability_class": "C1 · flat-ground periodic gait",
       "role": "scored",
-      "instruction": "Walk the robot forward over the stairs, up each flight and down the other side, without falling.",
-      "scoring": "The same three multiplied requirements as walking on the flat — forward speed (the target is on the order of 1 m/s), staying upright, low actuator force — with one change that matters: the height part of \"upright\" is measured as the head's height above the feet, not above the ground, because the ground rises and falls under you and so cannot be the yardstick, and the torso tilt it accepts is looser than on the flat.",
-      "ends": "Termination is also different: the episode ends only when the torso tips close to horizontal, rather than when it drops to a fixed height.",
-      "limited_ends": "when the robot falls (its torso tips close to horizontal)",
-      "limited_hidden": "where the robot is in the room, not the stairs' geometry",
+      "instruction": "Walk the robot forward and keep walking, without falling.",
+      "scoring": "Each step is judged on three things at once — how fast the centre of mass is moving forward, how upright the robot is (head at standing height, torso vertical), and how little actuator force it is using — and they multiply. Not being upright is what makes a step worth nothing; heavy actuator force costs part of it. The forward-speed target is on the order of 1 m/s.",
+      "ends": "The episode ends early if the pelvis drops near the ground.",
+      "limited_ends": "when the robot falls (its pelvis drops near the ground)",
+      "limited_hidden": "where the robot is in the room, not how fast it is moving",
       "bar": 700.0,
       "max_steps": 1000,
       "nu": 19,
-      "nop_return": 8.63,
+      "nop_return": 6.56,
       "control_hz": 50,
       "image_hw": [
         256,
@@ -26,7 +26,7 @@
       ],
       "agent_budget_s": 3600,
       "limited_twin": true,
-      "task_dir": "humanoidbench-loco-stair-i00"
+      "task_dir": "humanoidbench-loco-walk-i00"
     },
     {
       "id": "loco_hurdle",
@@ -67,7 +67,7 @@
       "instruction": "Stand on the balance board and stay on it, upright and still, for the whole episode.",
       "scoring": "A good step asks for only three things, multiplied together — low actuator force, staying upright (head at full standing height on the board, torso vertical), and near-zero horizontal velocity — so scoring well for one step is not the difficulty. The difficulty is that the episode ends the moment the pelvis drops too low, anything but the rolling sphere touches the ground — the board included — or the sphere touches anything other than the ground and the board, and every step after that is worth nothing.",
       "ends": "",
-      "limited_ends": "when the robot falls, when anything but the roller under the board touches the ground (see Scoring)",
+      "limited_ends": "when the robot falls, when anything but the roller under the board touches the ground or the roller touches anything but the ground and the board (see Scoring)",
       "limited_hidden": "where the robot is in the room, not the board's or the roller's pose",
       "bar": 800.0,
       "max_steps": 1000,
@@ -83,23 +83,23 @@
       "task_dir": "humanoidbench-loco-balance-hard-i00"
     },
     {
-      "id": "manip_highbar_simple",
-      "title": "Manipulation · Highbar simple",
-      "family": "highbar_simple",
+      "id": "manip_door",
+      "title": "Manipulation · Door",
+      "family": "door",
       "category": "manip",
-      "env_id": "h1-highbar_simple-v0",
+      "env_id": "h1-door-v0",
       "robot": "h1",
-      "capability_class": "C5 · whole-body power and momentum",
+      "capability_class": "C4 · navigation and passage",
       "role": "scored",
-      "instruction": "The robot starts hanging from a high bar. Swing up: get inverted and drive the feet as high as you can.",
-      "scoring": "Three multiplied requirements: how far the torso is towards inverted, how high the feet are, and low actuator force. Read the first one carefully — it rewards being upside down, so hanging the right way up scores nothing at all no matter how steady it is. The feet-height term saturates only when the feet are well above the bar. On this robot the forearms are fixed to the bar, so it cannot fall off.",
-      "ends": "The episode still ends if the head drops too low, which an inverted hang under the bar can do.",
-      "limited_ends": "when the robot's head drops too low (an inverted hang under the bar can do that)",
-      "limited_hidden": "the robot's position or heading in the room",
-      "bar": 750.0,
+      "instruction": "Walk to the door, press the handle, pull the door open towards the robot, and walk through it.",
+      "scoring": "This one is a weighted sum rather than a product, so partial credit is real: getting the door open and getting the torso past the doorway are the two large terms, with reaching for the handle, moving the handle, and posture as small ones. The bar cannot be reached without opening the door.",
+      "ends": "The episode ends early if the pelvis drops too low.",
+      "limited_ends": "when the robot falls (its pelvis drops too low)",
+      "limited_hidden": "where the robot is in the room, not the door's or the handle's angle",
+      "bar": 600.0,
       "max_steps": 1000,
       "nu": 19,
-      "nop_return": 0.08,
+      "nop_return": 30.86,
       "control_hz": 50,
       "image_hw": [
         256,
@@ -107,7 +107,7 @@
       ],
       "agent_budget_s": 3600,
       "limited_twin": true,
-      "task_dir": "humanoidbench-manip-highbar-simple-i00"
+      "task_dir": "humanoidbench-manip-door-i00"
     },
     {
       "id": "manip_powerlift",
@@ -137,23 +137,23 @@
       "task_dir": "humanoidbench-manip-powerlift-i00"
     },
     {
-      "id": "manip_package",
-      "title": "Manipulation · Package",
-      "family": "package",
+      "id": "manip_window",
+      "title": "Manipulation · Window",
+      "family": "window",
       "category": "manip",
-      "env_id": "h1-package-v0",
-      "robot": "h1",
-      "capability_class": "C8 · mobile manipulation",
+      "env_id": "h1hand-window-v0",
+      "robot": "h1hand",
+      "capability_class": "C6 · standing bimanual manipulation",
       "role": "scored",
-      "instruction": "Walk to the package, pick it up, carry it to the destination marker and set it down there, standing upright.",
-      "scoring": "Every step charges you for the distance from the package to its destination — the largest term by far — and a little for the distance from each hand to the package; against that you earn a share for standing steadily and a share for how high the package is off the ground. So the return is strongly negative while the package sits on the floor away from its destination, and improves as you close the distance with it lifted. Landing the package on the destination pays a one-off bonus and ends the episode, but the bonus alone is short of the bar: the rest has to come from the per-step terms before the landing, and those only turn positive once the package is close to the destination.",
-      "ends": "",
-      "limited_ends": "when the package reaches the destination",
-      "limited_hidden": "where the robot is in the room, not where the package or the destination is",
-      "bar": 1500.0,
+      "instruction": "Grasp the wiping tool — it starts in the air just in front of the hands and falls within the first second unless it is held — and wipe the window with it, moving steadily up and down.",
+      "scoring": "A large share of each step is paid only while the tool is in contact with the glass — while it is not, that share is zero, so the bar cannot be reached without contact. The rest pays for moving the tool vertically at a target speed on the order of half a metre per second, for keeping both hands near the tool, and for standing with the head about 40 cm from where it started.",
+      "ends": "The episode ends immediately if the pelvis drops or the tool falls, i.e. if it is dropped.",
+      "limited_ends": "when the robot falls (its pelvis drops too low), when the tool drops",
+      "limited_hidden": "where the robot is in the room, not the tool's pose",
+      "bar": 650.0,
       "max_steps": 1000,
-      "nu": 19,
-      "nop_return": -2191.95,
+      "nu": 61,
+      "nop_return": 1.56,
       "control_hz": 50,
       "image_hw": [
         256,
@@ -161,7 +161,34 @@
       ],
       "agent_budget_s": 3600,
       "limited_twin": true,
-      "task_dir": "humanoidbench-manip-package-i00"
+      "task_dir": "humanoidbench-manip-window-i00"
+    },
+    {
+      "id": "manip_cube",
+      "title": "Manipulation · Cube",
+      "family": "cube",
+      "category": "manip",
+      "env_id": "h1hand-cube-v0",
+      "robot": "h1hand",
+      "capability_class": "C7 · in-hand precision",
+      "role": "scored",
+      "instruction": "A cube starts just above and in front of each palm. Rotate both cubes to the goal orientation without dropping them.",
+      "scoring": "A weighted sum: the largest term is how closely each cube's orientation matches the goal, averaged over the two hands; then how close each hand is to its cube; then a small share for standing steadily without moving. The orientation term is sharp — it falls away quickly as the orientation drifts, so approximate alignment earns much less than it looks like it should — and it compares orientations as quaternions, sign included: of the two ways to turn a cube onto the goal, only one scores, because the other ends at the same orientation with the opposite sign, which counts as far off.",
+      "ends": "The episode ends the moment either cube drops below a height, or the pelvis does.",
+      "limited_ends": "when the robot falls (its pelvis drops too low), when either cube drops",
+      "limited_hidden": "where the robot is in the room, not the cubes' orientations, not the goal orientation",
+      "bar": 370.0,
+      "max_steps": 500,
+      "nu": 61,
+      "nop_return": 5.0,
+      "control_hz": 50,
+      "image_hw": [
+        512,
+        512
+      ],
+      "agent_budget_s": 3600,
+      "limited_twin": true,
+      "task_dir": "humanoidbench-manip-cube-i00"
     },
     {
       "id": "manip_room",
@@ -189,33 +216,6 @@
       "agent_budget_s": 3600,
       "limited_twin": true,
       "task_dir": "humanoidbench-manip-room-i00"
-    },
-    {
-      "id": "manip_truck",
-      "title": "Manipulation · Truck",
-      "family": "truck",
-      "category": "manip",
-      "env_id": "h1-truck-v0",
-      "robot": "h1",
-      "capability_class": "C9 · long-horizon multi-subtask",
-      "role": "scored",
-      "instruction": "Unload the five loose packages from the truck (the wall of boxes behind them is fixed) and put them on the table — all of them.",
-      "scoring": "Each step is your uprightness multiplied by a base amount plus three progress terms: how close the robot is to a package still on the truck, how close it is to a package it has picked up, and how close a picked-up package is to the table. On top of that, lifting a package off the truck and placing one on the table each pay a one-off bonus (taken back if a package comes off the table again), and delivering the last package pays a larger one and ends the episode. Uprightness is a factor, so lying down costs a large part of every step. The one-off bonuses are most of the bar but not all of it, so the rest has to come from the per-step terms before the last delivery.",
-      "ends": "",
-      "limited_ends": "when the last package is on the table",
-      "limited_hidden": "where the robot is in the room, not where the packages are",
-      "bar": 3000.0,
-      "max_steps": 1000,
-      "nu": 19,
-      "nop_return": 544.42,
-      "control_hz": 50,
-      "image_hw": [
-        256,
-        256
-      ],
-      "agent_budget_s": 3600,
-      "limited_twin": true,
-      "task_dir": "humanoidbench-manip-truck-i00"
     },
     {
       "id": "manip_bookshelf_simple",
@@ -272,5 +272,5 @@
       "task_dir": "humanoidbench-loco-sit-simple-i00"
     }
   ],
-  "read": "2026-10-04"
+  "read": "2026-10-06"
 }

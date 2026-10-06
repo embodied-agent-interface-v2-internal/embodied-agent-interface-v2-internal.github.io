@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 841996303
-  synced: '2026-10-04'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ be39e53bb
+  synced: '2026-10-06'
   instruction: Lift the dumbbell from the floor to overhead — close to two metres up — and hold it there.
   env_id: h1hand-powerlift-v0
   robot: Unitree H1 with two Shadow hands (61 actuators)
@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Blocked on the grasp: the dumbbell never leaves the floor in either mode; GPT-6 Luna's unlimited run (2026-10-04) never got its fingers onto it. (@williamzhangNU)
+Blocked on the grasp: the dumbbell never leaves the floor in either mode; GPT-6 Luna (2026-10-06) stands the whole unlimited episode (333 of 800), and its limited episode fell at step 32. (@williamzhangNU)

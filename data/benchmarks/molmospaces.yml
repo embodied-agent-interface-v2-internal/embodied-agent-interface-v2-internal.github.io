@@ -1,14 +1,14 @@
 id: molmospaces
 name: MolmoSpaces
-edition: molmo-spaces 0.2.9, benchmark molmospaces-bench-v2/20260415; our selection of 8 episodes (robot_coding_bench @ e46be110c, #47)
+edition: molmo-spaces 0.2.9, benchmark molmospaces-bench-v2/20260415; our selection of 8 episodes (robot_coding_bench @ 6aa89c6d2, #47)
 status: active
 simulator: MuJoCo 3.5.0 (molmo-spaces 0.2.9)
 description: >-
   Ai2's zero-shot evaluation episodes for robot policies in unseen houses: a Franka FR3 picks, places (into a
   receptacle, next to an object, by colour), opens and closes fixtures, and a Rainbow RB-Y1 mobile manipulator navigates
-  to an object and opens a room door. We keep one upstream episode per family, 8 in all: of three candidates a fixed
-  rule picks per family (cluttered targets, upstream's Hard configurations, far and unseen navigation targets, three
-  different houses), the hardest and most representative in GPT-6 Luna's runs. Each task passes or fails on upstream's
+  to an object and opens a room door. We keep one upstream episode per family, 8 in all: the first in upstream's order
+  that a fixed rule accepts (cluttered targets named unambiguously, upstream's Hard configurations, far and unseen
+  navigation targets; no model's results enter the choice). Each task passes or fails on upstream's
   own `judge_success()` at the end of the episode, with no partial credit, and runs in two modes: unlimited (privileged:
   the simulator's full state, upstream's kinematics, unlimited resets, one replayable trajectory handed in) and limited
   (standard: the robot's own cameras with depth and its proprioception, one episode, no reset).

@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 7d6a7a44
-  synced: '2026-09-30'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ be39e53bb
+  synced: '2026-10-06'
   instruction: Walk the robot forward and keep walking, without falling.
   env_id: h1-walk-v0
   robot: Unitree H1 (19 actuators)
@@ -21,8 +21,8 @@ upstream:
       steps)
     - 'unlimited: both fresh-process replays of the handed-in trajectory reach it and
       end in the same state'
-    - 'limited: the run passes the moment a live episode reaches it (the recorded episode
-      replays to the same state); otherwise the last episode is graded'
+    - 'limited: the run passes the moment its one episode reaches it (no reset in our
+      runs since 2026-10-04; the recorded episode replays to the same state)'
   scoring: Each step is judged on three things at once — how fast the centre of mass is moving forward, how upright the robot is (head at standing height, torso vertical), and how little actuator force it is using — and they multiply. Not being upright is what makes a step worth nothing; heavy actuator force costs part of it. The forward-speed target is on the order of 1 m/s.
   ends_early: The episode ends early if the pelvis drops near the ground.
   zero_action_return: 6.56
@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Passes in unlimited mode with a whole-body inverse-dynamics walker at about 1 m/s; in limited mode the best episode walked 738 steps before falling and the graded one fell at step 441. (@williamzhangNU)
+Passes in unlimited mode with a whole-body inverse-dynamics walker at about 1 m/s (GPT-6.1 Sol); GPT-6 Luna (2026-10-06) walks the whole unlimited episode at about half that speed (491 of 700), and without resets its limited episode ended in a fall at step 95. (@williamzhangNU)
