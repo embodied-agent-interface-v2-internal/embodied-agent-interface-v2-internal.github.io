@@ -5,8 +5,8 @@ benchmark: molmospaces
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/allenai/molmospaces @ molmo-spaces 0.2.9 (benchmark molmospaces-bench-v2/20260415), as defined in our task definitions @ 030f55607
-  synced: '2026-10-04'
+  source: https://github.com/allenai/molmospaces @ molmo-spaces 0.2.9 (benchmark molmospaces-bench-v2/20260415), as defined in our task definitions @ 6aa89c6d2
+  synced: '2026-10-06'
   instruction: Pull the door open.
   family: open-door
   robot: 'Rainbow RB-Y1: holonomic base, 6-joint torso, two 7-joint arms with parallel grippers'
@@ -25,8 +25,8 @@ upstream:
   deliverable: '/app/output/trajectory.npz with actions: float64 (T, 25), one row per control step, the targets of upstream''s joint-position controllers'
   reference_solution: 'None is shipped. Upstream''s scripted experts (molmo_spaces/policy/solvers) are reference solutions and are not in the image; neither are grasp files nor the public MolmoBot trajectories (agent egress: the model APIs only).'
   limited_mode: 'Standard-mode twin of molmospaces-open-door-i00-privileged (the same frozen MolmoSpaces episode): Pull the door open. The agent gets only the eai-standard/2.2 client (docs/STANDARD_MODE_2_2.md); the simulator runs in the sim sidecar (environment/docker-compose.yaml), which owns the episode, serves cameras, proprioception and upstream''s kinematic model, and records every executed row. The collect hook (environment/sim/finalize.sh) ends the episode, lets the service exit, replays the trajectory in two fresh processes and writes final.json; the verifier grades those artifacts in a separate sandbox (tests/Dockerfile).'
-  oracle: 'none — no reference solution (MolmoSpaces'' planners and grasp files are not shipped); positive example graded 1 by the separate verifier: molmospaces-open-door-i01-privil__7zEbSdU (run codex-gpt6_luna-medium, batch molmospaces-luna-rby1-r2c of 2026-10-03: an earlier round on the same episode, kept with the run''s records, not on the results site); human review in PR #47'
-  base_image: ghcr.io/mll-lab-nu/eai-molmospaces:0.2.0
+  oracle: 'none — no reference solution (MolmoSpaces'' planners and grasp files are not shipped); positive example graded 1 by the separate verifier: molmospaces-open-door-i00-privil__iroCZzB (run codex-gpt6_luna-medium, batch molmospaces-luna-1006; https://embodied-agent-interface-v2-internal.github.io/runs/molmospaces/codex-gpt6_luna-medium-openrouter/open_door/unlimited/); human review in PR #47'
+  base_image: ghcr.io/mll-lab-nu/eai-molmospaces:0.2.3
   agent_budget: 3600 s of wall clock per mode
   task_dirs: molmospaces-open-door-i00-privileged, molmospaces-open-door-i00-standard
   scene_image: open_door.jpg
@@ -55,4 +55,4 @@ _No demo._
 <!-- Sign your points with your GitHub handle. Long threads belong in the
      linked GitHub Discussion; keep the conclusions here. -->
 
-The hardest family: grasps slip on the first pull. Unlike the push door, it cannot be rammed open with the base. (@williamzhangNU)
+GPT-6 Luna (2026-10-06) passed unlimited mode in its last minutes; in limited mode it held the handle only at its ninth close and lost it while pulling. (@williamzhangNU)

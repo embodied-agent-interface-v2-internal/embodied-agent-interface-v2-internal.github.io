@@ -7,7 +7,7 @@ title: About HumanoidBench
 **HumanoidBench** puts a simulated **Unitree H1** humanoid, bare or with two **Shadow
 dexterous hands**, through locomotion and whole-body manipulation in **MuJoCo**. Every episode is
 scored by HumanoidBench's own dense reward, summed over the episode, against its own success
-bar. We keep the 9 hardest of its 32 registered tasks plus one fixture, and run each in two modes.
+bar. We keep one task per capability class (9) of its 32 registered tasks plus one fixture, and run each in two modes.
 
 [All tasks](index.md){ .md-button .md-button--primary }
 [Runs](../../runs/humanoidbench.md){ .md-button }
@@ -52,12 +52,13 @@ limited mode's episodes are recorded by the service and replayed the same way.
 HumanoidBench registers 32 tasks. We dropped the duplicates (`stair` and `slide` share one reward
 function) and the give-aways (`pole` pays 71% of its bar for standing still), which left 23 in nine
 capability classes (each task page names its class), plus `sit_simple`, a fixture that checks the
-whole pipeline and is not scored. Since 2026-10-04 the benchmark is the 9 hardest of them, in five
-classes (stair, hurdle, balance_hard, highbar_simple, powerlift, package, room, truck,
-bookshelf_simple): the 13 that no model passed in either mode, minus window, which came within 5% of
-the bar, and spoon, insert_normal and cabinet, whose bar does not measure the task. The other 14
-stay on the site, greyed, each with the reason it left. 6 of the 9 use the bare H1 (19 actuators), 3
-add the Shadow hands (61 actuators).
+whole pipeline and is not scored. Since 2026-10-06 the benchmark is one task per class, chosen without
+any model's results: of the 23, the bar must measure the task and be reachable and holding still must
+earn under 40% of it (spoon, insert_normal and cabinet go); within a class, upstream's hard version
+first, then the task that moves more objects, then the dexterous hands, then the higher speed target.
+That gives walk, hurdle, balance_hard, door, powerlift, window, cube, room and bookshelf_simple. The
+other 14 stay on the site, greyed, each with the reason. 4 of the 9 use the bare H1 (19 actuators),
+5 add the Shadow hands (61 actuators).
 
 ## What we run it on
 
@@ -69,7 +70,7 @@ add the Shadow hands (61 actuators).
 
 ### Model runs so far
 
-GPT-6 Luna (Codex, through OpenRouter, reasoning effort medium) on the 9 tasks on 2026-10-04, one
+GPT-6 Luna (Codex, through OpenRouter, reasoning effort medium) on the 9 tasks on 2026-10-06, one
 attempt per task and mode, 60 minutes each, on robot_coding_bench's protocol v1.0.1 (limited: one
 episode, no reset). Tasks passed, out of the 9:
 
@@ -77,18 +78,17 @@ episode, no reset). Tasks passed, out of the 9:
 | --- | --- | --- |
 | GPT-6 Luna | 0 | 0 |
 
-Without resets there is no second try after a fall: the three locomotion tasks, whose episode ends
-when the robot falls, ended within 43 to 49 control steps, room and bookshelf_simple at 123 and 301.
-A separate run with 50 resets (robot_coding_bench PR #44; reported apart, not on this site) passed
-none either, using all 50 resets on 8 of the 9 tasks. In unlimited mode the best returns are
-highbar_simple's 526 of 750 (a swing held by torso-angle feedback) and package's 870 of 1500 (a
-lunge that pushes the box to 8 cm from the marker), the closest any model has come on these two
-(stair's 175 of 700 is the best yet too), yet the locomotion tasks stay far off (balance_hard 56 of
-800, hurdle 68 of 700).
+Without resets every limited episode failed within 32 to 234 control steps (a fall, or a dropped tool
+or cube), after 1 to 5 minutes. In unlimited mode the closest are window's 503 of 650 and walk's 491
+of 700; the rest stay at or below half the bar (balance_hard 62 of 800, hurdle 72 of 700). A
+separate run with 50 resets (robot_coding_bench PR #44; reported apart, not on this site) passed none
+either. On 2026-10-04 the benchmark was the 9 tasks no model had passed (stair, hurdle, balance_hard,
+highbar_simple, powerlift, package, room, truck, bookshelf_simple), and GPT-6 Luna passed none of
+them in either mode.
 
 Before 2026-10-04, on all 24 tasks as they were then: one attempt per task and mode on 2026-09-30, 60
 minutes each, reasoning effort medium, GPT-6.1 Sol (Codex, through OpenRouter), limited mode with 50
-resets. Tasks passed, out of the 23 scored (none of the 9 kept):
+resets. Tasks passed, out of the 23 scored (of today's 9: walk and cube, unlimited):
 
 | Model | Limited | Unlimited |
 | --- | --- | --- |
@@ -105,8 +105,8 @@ sums up its runs.
 
 GPT-6 Luna's earlier trials on all 24 tasks (2026-09-28, and its protocol v1.0 sweep with 50 resets
 in limited mode, which passed push and sit_hard) stay in its run: on the 9 tasks the latest of them
-is each task's history beside the 2026-10-04 trial, and on the 14 tasks that left the benchmark it
-is the trial shown. The run picker also has GPT-6 Sol and Claude Opus 5.5 (five tasks each,
+is each task's history beside the 2026-10-06 trial, and on the 14 tasks outside the benchmark the
+latest is the trial shown. The run picker also has GPT-6 Sol and Claude Opus 5.5 (five tasks each,
 2026-09-28).
 
 ## Upstream links

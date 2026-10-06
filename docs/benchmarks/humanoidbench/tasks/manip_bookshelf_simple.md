@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 841996303
-  synced: '2026-10-04'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ be39e53bb
+  synced: '2026-10-06'
   instruction: Put each of the five objects onto its assigned place on the bookshelf, one at a time, in order.
   env_id: h1hand-bookshelf_simple-v0
   robot: Unitree H1 with two Shadow hands (61 actuators)
@@ -52,4 +52,4 @@ _No demo._
 
 ## Discussion
 
-Only the first object gets placed, by GPT-6.1 Sol in unlimited mode; GPT-6 Luna (2026-10-04) brings a palm within 7 cm of it without moving it, and its limited episode ended in a fall at step 301. (@williamzhangNU)
+Only the first object gets placed, by GPT-6.1 Sol in unlimited mode; GPT-6 Luna (2026-10-06) stands with a hand by it without placing it (819 of 2000), and its limited episode fell at step 75. (@williamzhangNU)

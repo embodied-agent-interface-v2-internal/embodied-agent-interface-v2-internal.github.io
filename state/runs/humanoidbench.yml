@@ -13,8 +13,8 @@ progress: none
 metrics:
 - {key: resets, label: Resets used, format: ".0f", better: lower}
 
-# Since 2026-10-04 the benchmark is its 9 hardest tasks (the other 14 are `excluded` in state/tasks/humanoidbench.yml),
-# and GPT-6 Luna's batch hb-luna-1004 on them is its run: robot_coding_bench's task set of that day (protocol v1.0.1;
+# Since 2026-10-06 the benchmark is one task per capability class (the other 14 are `excluded` in
+# state/tasks/humanoidbench.yml), and GPT-6 Luna's batch hb-luna-1006 on them is its run: robot_coding_bench's task set of that day (protocol v1.0.1;
 # limited = the standard twin on eai-standard/2.1 in its standard configuration: one episode, no reset), image 0.1.6
 # as published, 60 minutes a mode, effort medium, one attempt per task and mode, started by run_agent_batch.sh.
 # GPT-6.1 Sol's run and the earlier ones stay beside it as history; before 2026-10-04 GPT-6.1 Sol was the default.
@@ -57,8 +57,9 @@ runs:
     # Protocol v1.0 (robot_coding_bench main 571079ea, 2026-10-01): the standard twins with 50 resets (23 tasks; sit_simple
     # has a reference solution and was not swept) and push privileged, on Harbor's codex agent. Each replaces the
     # task's earlier trial, which stays as its history. The v1.0 sweep without resets (0/23) is not on this site.
-    # hb-luna-1004 (2026-10-04): the 9 tasks of the benchmark, both modes, limited without resets (header above).
-    rerun_batches: [hb-luna-v1-1001, hb-luna-1004]
+    # hb-luna-1004 (2026-10-04): the 9 tasks the benchmark had that day, both modes, limited without resets.
+    # hb-luna-1006 (2026-10-06): the 9 tasks of the benchmark since then, the same configuration (header above).
+    rerun_batches: [hb-luna-v1-1001, hb-luna-1004, hb-luna-1006]
     notes:  # on one trial each, graded as it is: nothing arranged
     - {task: manip_push, mode: limited, trial: humanoidbench-manip-push-i00-lim__R6DtjyA, note: "`spec()` placed the
         hand 0.31 m beyond the real one (a massless link's centre of mass; fixed since); the arm poses the agent chose

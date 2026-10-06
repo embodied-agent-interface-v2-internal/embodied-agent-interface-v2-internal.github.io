@@ -10,7 +10,7 @@ constraints. A simulated **TidyBot++** mobile manipulator (a holonomic base, a K
 and a Robotiq 2F-85 gripper) works in **MuJoCo**, in KinDER's MimicLabs lab (two tasks that have
 left the benchmark ran in **PyBullet**, where the robot is kinematic). Every episode passes or fails
 on KinDER's own goal check, with no partial credit. We keep 5 of its 31 task families, one variant
-each at seed 0 (the 4 hardest, scored, plus one fixture), and run each in two modes.
+each at seed 0 (the 4 with the most task objects, scored, plus one fixture), and run each in two modes.
 
 [All tasks](index.md){ .md-button .md-button--primary }
 [Runs](../../runs/kinder.md){ .md-button }
@@ -79,10 +79,11 @@ passed in both modes; the ten 2D ones passed in unlimited mode and have no limit
 camera image of a 2D scene is nearly its state; LimbRepositioning3D drives another robot interface
 and its IKFast solver does not build in our image.
 
-Since 2026-10-04 the benchmark is the hardest 4 of those 10 scored families, plus `dynamo`: sweep into
-drawer, scoop pour, sweep simple and constrained cupboard, the four whose unlimited run took GPT-6 Luna
-its whole hour (it failed three; constrained cupboard passed in the last minute), also the four GPT-6.1
-Sol took longest on. The other six stay on the site, greyed, each with the reason it left.
+Since 2026-10-06 the benchmark is chosen without any model's results: of KinDER's 3D families whose
+goal a camera can see or a sentence can name, the four with the most task objects (upstream's `oN`):
+scoop pour 30, sweep simple 10, constrained cupboard 6 and sweep into drawer 5 (every other 3D family
+has at most 4), plus `dynamo`. They are the four kept on 2026-10-04, then for how long GPT-6 Luna took.
+The other six stay on the site, greyed, each with the reason.
 
 ## What we run it on
 
@@ -95,19 +96,20 @@ Sol took longest on. The other six stay on the site, greyed, each with the reaso
 
 ### Model runs so far
 
-GPT-6 Luna (Codex, through OpenRouter, reasoning effort medium) on the 4 tasks on 2026-10-04, one
+GPT-6 Luna (Codex, through OpenRouter, reasoning effort medium) on the 4 tasks on 2026-10-06, one
 attempt per task and mode, 60 minutes each, on robot_coding_bench's protocol v1.0.1 (limited: one
 episode, no reset). Tasks passed, out of the 4:
 
 | Model | Limited | Unlimited |
 | --- | --- | --- |
-| GPT-6 Luna | 0 | 2 (sweep into drawer, sweep simple) |
+| GPT-6 Luna | 0 | 0 |
 
-In unlimited mode it opened the drawer and swept the five cubes in (goal at step 922), and carried
-the ten cubes of sweep simple to the box one by one (step 914); scoop pour (at best 14 of 30 cubes
-across) and constrained cupboard (five of six rods placed) ran out of the hour. Every limited
-episode ran its 1000 steps without reaching the goal. A separate run with 50 resets
-(robot_coding_bench PR #45; reported apart, not on this site) passed none either.
+All four unlimited runs used the whole hour; the graded trajectories got 2 of 5 cubes into the
+drawer, 3 of 10 into the box, 3 of 6 rods into their bays within the 1000 steps, and no cube out of
+the yellow bin. No limited episode reached the goal. A separate run with 50 resets
+(robot_coding_bench PR #45; reported apart, not on this site) passed none either. On 2026-10-04 the
+same model had passed sweep into drawer and sweep simple in unlimited mode: one attempt per task is
+noisy at this level.
 
 Before 2026-10-04, on all 11 tasks as they were then: one attempt per task and mode, 60 minutes each,
 reasoning effort medium, GPT-6.1 Sol (Codex, through OpenRouter), limited mode with 50 resets, limited
@@ -126,8 +128,8 @@ Discussion sums up its runs.
 
 GPT-6 Luna's earlier trials on all 11 tasks (2026-09-28 to 10-01: before protocol v1.0, and its v1.0
 sweep with 50 resets in limited mode, which passed none) stay in its run: on the 4 tasks the latest
-of them is each task's history beside the 2026-10-04 trial, and on the 6 tasks that left the
-benchmark it is the trial shown.
+of them is each task's history beside the 2026-10-06 trial, and on the 6 tasks outside the benchmark
+the latest is the trial shown.
 
 ## Upstream links
 

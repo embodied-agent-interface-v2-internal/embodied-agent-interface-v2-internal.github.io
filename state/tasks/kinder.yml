@@ -15,16 +15,16 @@
 # its note why it was kept (the six Dynamic3D tasks whose goal a camera can see or a sentence can name, or the
 # screening of every other family, which GPT-6 Luna failed in limited mode) and the KinDER paper's challenges for its
 # family (scripts/import_kinder_tasks.py adds a NEW task with `status: keep` and never changes an existing entry).
-# dynamo is a fixture, not scored: `excluded`. Since 2026-10-04 the benchmark is the 4 whose unlimited run took GPT-6
-# Luna its whole hour (sweep_into_drawer, scoop_pour, constrained_cupboard, sweep_simple); the other 6 are `excluded`
-# with the reason (docs/benchmarks/kinder.md in robot_coding_bench). Owner: williamzhangNU, who runs KinDER here. No
-# difficulty or labels yet.
+# dynamo is a fixture, not scored: `excluded`. Since 2026-10-06 the benchmark is the 4 families with the most task
+# objects (upstream's oN; chosen without any model's results): scoop_pour 30, sweep_simple 10, constrained_cupboard 6,
+# sweep_into_drawer 5; the other 6 are `excluded` with the reason (docs/benchmarks/kinder.md in robot_coding_bench).
+# Owner: williamzhangNU, who runs KinDER here. No difficulty or labels yet.
 
 tossing:
   status: keep
   owner: williamzhangNU
   note: "Dynamic3D · challenges: dynamic"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in unlimited mode in 37 min"
+  excluded: "fewer task objects (robot_coding_bench 2026-10-06): 1; the 4 kept have 5 to 30 (upstream's oN)"
   display_tags:
   - planning-reasoning
   - control-coordination
@@ -33,7 +33,7 @@ balance_beam:
   status: keep
   owner: williamzhangNU
   note: "Dynamic3D · challenges: tool, dynamic"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in unlimited mode in 5 min"
+  excluded: "fewer task objects (robot_coding_bench 2026-10-06): 3; the 4 kept have 5 to 30 (upstream's oN)"
   display_tags:
   - planning-reasoning
   - control-coordination
@@ -41,7 +41,7 @@ balance_beam:
 sweep_into_drawer:
   status: keep
   owner: williamzhangNU
-  note: "Dynamic3D · challenges: nonprehensile, tool, dynamic"
+  note: "5 task objects (oN) · challenges: nonprehensile, tool, dynamic"
   display_tags:
   - planning-reasoning
   - control-coordination
@@ -49,7 +49,7 @@ sweep_into_drawer:
 scoop_pour:
   status: keep
   owner: williamzhangNU
-  note: "Dynamic3D · challenges: nonprehensile, tool, dynamic"
+  note: "30 task objects (oN) · challenges: nonprehensile, tool, dynamic"
   display_tags:
   - planning-reasoning
   - control-coordination
@@ -58,7 +58,7 @@ shelf:
   status: keep
   owner: williamzhangNU
   note: "Dynamic3D · challenges: spatial, geometric"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in unlimited mode in 21 min"
+  excluded: "fewer task objects (robot_coding_bench 2026-10-06): 2; the 4 kept have 5 to 30 (upstream's oN)"
   display_tags:
   - planning-reasoning
   - control-coordination
@@ -66,7 +66,7 @@ shelf:
 constrained_cupboard:
   status: keep
   owner: williamzhangNU
-  note: "screening (failed in limited mode) · challenges: geometric"
+  note: "6 task objects (oN) · challenges: geometric"
   display_tags:
   - planning-reasoning
   - control-coordination
@@ -74,7 +74,7 @@ constrained_cupboard:
 sweep_simple:
   status: keep
   owner: williamzhangNU
-  note: "screening (failed in limited mode) · challenges: nonprehensile, tool"
+  note: "10 task objects (oN) · challenges: nonprehensile, tool"
   display_tags:
   - planning-reasoning
   - control-coordination
@@ -83,7 +83,7 @@ sort_blocks:
   status: keep
   owner: williamzhangNU
   note: "screening (failed in limited mode) · challenges: spatial"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in both modes"
+  excluded: "fewer task objects (robot_coding_bench 2026-10-06): 4; the 4 kept have 5 to 30 (upstream's oN)"
   display_tags:
   - perception-understanding
   - planning-reasoning
@@ -93,7 +93,7 @@ obstruction_3d:
   status: keep
   owner: williamzhangNU
   note: "screening (failed in limited mode) · Kinematic3D · challenges: geometric"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in unlimited mode in 11 min"
+  excluded: "fewer task objects (robot_coding_bench 2026-10-06): 4; the 4 kept have 5 to 30 (upstream's oN)"
   display_tags:
   - planning-reasoning
   - control-coordination
@@ -102,7 +102,7 @@ packing_3d:
   status: keep
   owner: williamzhangNU
   note: "screening (failed in limited mode) · Kinematic3D · challenges: geometric"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): GPT-6 Luna passed it in both modes"
+  excluded: "fewer task objects (robot_coding_bench 2026-10-06): 3; the 4 kept have 5 to 30 (upstream's oN)"
   display_tags:
   - planning-reasoning
   - control-coordination
