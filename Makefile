@@ -20,7 +20,7 @@ BIN    := $(VENV)/bin
 .PHONY: help venv install serve build validate strict check guard public publish-runs export-run-media \
         compress-run-media upload-run-media publish links demos edit \
         runs runs-watch sync \
-        sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-humanoidbench sync-kinder sync-dextoolbench sync-mujoco-playground \
+        sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-robopaint-strict sync-humanoidbench sync-kinder sync-dextoolbench sync-mujoco-playground \
         sync-metaworldplus sync-vlabench sync-robocasa sync-robocasa365 sync-robocasa-gr1 sync-molmospaces sync-verified sync-dry clean
 
 help: ## Show this help
@@ -152,7 +152,7 @@ upload-run-media: export-run-media compress-run-media ## Export, compress and up
 # Each benchmark syncs from its own upstream. BEHAVIOR reads a public gallery;
 # RoboWits and RoboLab read a source checkout (pass it in), because their tasks
 # are defined in code. All three are idempotent and write only `upstream:`.
-sync: sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-humanoidbench sync-kinder sync-dextoolbench sync-mujoco-playground \
+sync: sync-behavior sync-robowits sync-robolab sync-robotwin sync-robopaint sync-robopaint-strict sync-humanoidbench sync-kinder sync-dextoolbench sync-mujoco-playground \
       sync-metaworldplus sync-vlabench sync-robocasa sync-robocasa365 sync-robocasa-gr1 sync-molmospaces ## Re-sync every benchmark from its upstream
 
 sync-behavior: ## Re-sync BEHAVIOR-1K task pages from the official gallery
@@ -206,6 +206,14 @@ ROBOPAINT_DEMOS  ?=
 sync-robopaint: ## Re-sync RoboPaint from a robot_coding_bench commit (ROBOPAINT_COMMIT=..., ROBOPAINT_DEMOS="host:dir ...")
 	$(BIN)/python scripts/import_robopaint_tasks.py --source $(ROBOPAINT_SRC) --commit $(ROBOPAINT_COMMIT) \
 	    $(foreach d,$(ROBOPAINT_DEMOS),--demos $(d))
+
+# RoboPaint-strict: RoboPaint's brush targets with process rules in the verifier, a benchmark of its own (2026-10-06):
+# tasks/robopaint-strict-<family>-<target>-i00-{privileged,standard}, read from a commit of the clone the same way
+# (scripts/import_robopaint_tasks.py --benchmark robopaint-strict). No demos: its reference solution is RoboPaint's.
+ROBOPAINT_STRICT_COMMIT ?= origin/main
+
+sync-robopaint-strict: ## Re-sync RoboPaint-strict from a robot_coding_bench commit (ROBOPAINT_STRICT_COMMIT=...)
+	$(BIN)/python scripts/import_robopaint_tasks.py --benchmark robopaint-strict --source $(ROBOPAINT_SRC) --commit $(ROBOPAINT_STRICT_COMMIT)
 
 # HumanoidBench: our selection of it is defined in robot_coding_bench (scripts/humanoidbench/subset.toml, facts.json,
 # tasks/humanoidbench-<category>-<task>-i00-privileged / -standard): read from a commit of the clone with `git archive`,

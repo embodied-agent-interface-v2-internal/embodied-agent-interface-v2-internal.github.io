@@ -25,12 +25,18 @@ of a NEW task in state/tasks/robopaint.yml, from its task.toml (an entry that ex
 the owner's). Re-running is safe and expected: an unchanged source writes nothing; a new family's tasks appear when
 its commit is in the source; a task that disappears is reported, never deleted.
 
+RoboPaint-strict (`--benchmark robopaint-strict`, a benchmark of its own since 2026-10-06) is RoboPaint's brush targets
+with process rules added to the verifier (colouring in, path budgets, sweeps): `tasks/robopaint-strict-<family>-<target>-
+i00-privileged` and its `-standard` twin (protocol v1.0 names), read the same way into its own pages, cache, scenes and
+state; it has no demos (its reference solution is RoboPaint's). RoboPaint itself never reads a robopaint-strict dir.
+
 Usage:
   git -C ../robot_coding_bench fetch origin dev/qineng       # the commit has to be in the clone
   python scripts/import_robopaint_tasks.py --source ../robot_coding_bench --commit origin/dev/qineng \\
       --demos <host>:<jobs dir>/paint_jobs/<oracle validation job>
   python scripts/import_robopaint_tasks.py                  # from the cache
   python scripts/import_robopaint_tasks.py ... --dry-run
+  python scripts/import_robopaint_tasks.py --benchmark robopaint-strict --source ../robot_coding_bench --commit origin/main
 """
 
 from __future__ import annotations
@@ -51,14 +57,29 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from taskio import read_page, write_page  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-BENCHMARK = "robopaint"
 REPO_URL = "https://github.com/JamesKrW/robot_coding_bench"
-CACHE = ROOT / "data" / "benchmarks" / f"{BENCHMARK}.tasks.upstream.json"
-TASK_DIR = ROOT / "docs" / "benchmarks" / BENCHMARK / "tasks"
-SCENES = ROOT / "docs" / "assets" / BENCHMARK / "scenes"
-DEMOS = ROOT / "docs" / "assets" / BENCHMARK / "demos"
-STATE = ROOT / "state" / "tasks" / f"{BENCHMARK}.yml"
-DIR_RE = re.compile(r"robopaint-([a-z0-9]+)-(.+)-i00")
+# benchmark -> how its task dirs are named: the dirs read (one per task), the name pattern, its other mode's suffix
+LAYOUTS = {
+    "robopaint": {"glob": "robopaint-*-i00", "dir_re": r"robopaint-(?!strict-)([a-z0-9]+)-(.+)-i00", "twin": "-limited",
+                  "source": "our RoboPaint task definitions"},
+    "robopaint-strict": {"glob": "robopaint-strict-*-i00-privileged", "dir_re": r"robopaint-strict-([a-z0-9]+)-(.+)-i00-privileged",
+                         "twin": "-standard", "base_re": r"-privileged$", "source": "our RoboPaint-strict task definitions"},
+}
+
+
+def configure(benchmark: str) -> None:
+    """Point the module's paths at one benchmark's pages, cache, media and state."""
+    global BENCHMARK, LAYOUT, CACHE, TASK_DIR, SCENES, DEMOS, STATE, DIR_RE
+    BENCHMARK, LAYOUT = benchmark, LAYOUTS[benchmark]
+    CACHE = ROOT / "data" / "benchmarks" / f"{BENCHMARK}.tasks.upstream.json"
+    TASK_DIR = ROOT / "docs" / "benchmarks" / BENCHMARK / "tasks"
+    SCENES = ROOT / "docs" / "assets" / BENCHMARK / "scenes"
+    DEMOS = ROOT / "docs" / "assets" / BENCHMARK / "demos"
+    STATE = ROOT / "state" / "tasks" / f"{BENCHMARK}.yml"
+    DIR_RE = re.compile(LAYOUT["dir_re"])
+
+
+configure("robopaint")
 FAMILY_NAMES = {"line": "Line", "lettering": "Lettering", "kaishu": "Kaishu", "xingshu": "Xingshu", "acrylic": "Acrylic",
                 "oil": "Oil"}
 
@@ -72,7 +93,7 @@ _Not yet written._
 
 ## Capability notes
 
-<!-- Justify the labels in state/tasks/robopaint.yml. One bullet per label is
+<!-- Justify the labels in state/tasks/{benchmark}.yml. One bullet per label is
      plenty; reviewers read this to sanity-check the tagging. -->
 
 _Not yet written._
@@ -100,9 +121,10 @@ def export(source: Path, commit: str, into: Path) -> tuple[Path, str]:
     git = ["git", "-C", str(source)]
     sha = subprocess.run(git + ["rev-parse", "--short", f"{commit}^{{commit}}"], capture_output=True, text=True, check=True).stdout.strip()
     names = subprocess.run(git + ["ls-tree", "--name-only", sha, "tasks/"], capture_output=True, text=True, check=True).stdout.split()
-    dirs = [n for n in names if Path(n).name.startswith("robopaint-")]
+    dirs = [n for n in names if DIR_RE.fullmatch(Path(n).name) or
+            (LAYOUT["twin"] == "-standard" and DIR_RE.fullmatch(Path(n).name.replace("-standard", "-privileged")))]
     if not dirs:
-        sys.exit(f"no tasks/robopaint-* at {commit} ({sha}) in {source}")
+        sys.exit(f"no {BENCHMARK} tasks at {commit} ({sha}) in {source}")
     into.mkdir(parents=True, exist_ok=True)
     tar = into / "tasks.tar"
     with tar.open("wb") as fh:
@@ -187,8 +209,8 @@ def _scalar(v):
 
 def read_source(root: Path) -> list[dict]:
     tasks = []
-    for d in sorted((root / "tasks").glob("robopaint-*-i00")):
-        m = DIR_RE.fullmatch(d.name)
+    for d in sorted((root / "tasks").glob(LAYOUT["glob"])):
+        m = DIR_RE.fullmatch(d.name)          # robopaint's pattern never matches a robopaint-strict-* dir
         if not m or not (d / "task.toml").is_file():
             continue
         family, target = m.group(1), m.group(2)
@@ -201,6 +223,8 @@ def read_source(root: Path) -> list[dict]:
         picture = re.search(r"picture target\.png \(([^)]*)\)", desc)
         # every family states its rule in words: "success iff <conditions>; <score> is the continuous score"
         iff = re.search(r"success iff (.+?); (?:the )?(.+?) is the continuous score", desc)
+        # RoboPaint-strict adds its process rules after the picture rule, in words, with the task's numbers
+        process = re.search(r"Process rules \(RoboPaint-strict\): (.+)$", desc.strip())
         items, scope = _lift_scope(_success_items(iff.group(1))) if iff else ([], [])
         lead = _scored_as(desc) or ("scored against the picture" if scope else "")
         tasks.append({
@@ -220,8 +244,9 @@ def read_source(root: Path) -> list[dict]:
             "truth": {k: v for k, v in truth.items() if k != "svg" and (_scalar(v) or isinstance(v, (list, dict)))},
             "scorer": (d / "environment" / "scorer").is_dir(),
             "agent_budget_s": int((meta.get("agent") or {}).get("timeout_sec", 0)),
-            "limited_twin": (d.parent / f"{d.name}-limited").is_dir(),
-            "task_dir": d.name,
+            "process_rules": process.group(1).rstrip(".") if process else "",
+            "limited_twin": (d.parent / (re.sub(LAYOUT.get("base_re", "$^"), "", d.name) + LAYOUT["twin"])).is_dir(),
+            "task_dir": re.sub(LAYOUT.get("base_re", "$^"), "", d.name),
             "target_png": str(d / "environment" / "target.png"),
         })
     return tasks
@@ -260,11 +285,10 @@ def _criteria(rule: dict, truth: dict, items: list[str] = ()) -> list[str]:
 def upstream_block(task: dict, synced: str, commit: str) -> dict:
     """What robot_coding_bench states about the task (agent-side and, for reviewers, grader-side)."""
     truth = task["truth"]
-    dirs = [task["task_dir"]] + ([task["task_dir"] + "-limited"] if task["limited_twin"] else [])
     known = {"line_width_mm", "length_mm", "colors", "length_mm_by_color", "element_recall"}
     block = {
         # the public pages name no repository and no commit (owner, 2026-09-28: "robopaint上不要写那个仓库")
-        "source": "our RoboPaint task definitions",
+        "source": LAYOUT["source"],
         "synced": synced,
         "instruction": task["instruction"],
         "scene_model": f"robopaint_{task['family']}",
@@ -281,7 +305,8 @@ def upstream_block(task: dict, synced: str, commit: str) -> dict:
         # first what the rule is applied to (v2 aligns the sheet with the picture first), then the rule
         "success_criteria": ([task["scored_as"]] if task.get("scored_as") else [])
                             + _criteria(task["rule"], truth, task.get("success_items")
-                                        or _success_items(task.get("success_text", ""))),
+                                        or _success_items(task.get("success_text", "")))
+                            + ([f"process rules: {task['process_rules']}"] if task.get("process_rules") else []),
         # the reward.json final_reward: F1 for a line drawing, the IoU for calligraphy, 1 - mean ΔE / 20 for a painting
         "continuous_score": task.get("continuous", ""),
         # the grader-side facts of other families, as they come (never seen by the agent)
@@ -406,7 +431,9 @@ def main() -> int:
     ap.add_argument("--demos", action="append", default=[], help="a validation job of the oracle, host:dir or a dir (repeatable)")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--force", action="store_true", help="rewrite pages even when upstream is unchanged")
+    ap.add_argument("--benchmark", default="robopaint", choices=sorted(LAYOUTS), help="robopaint (default) or robopaint-strict")
     args = ap.parse_args()
+    configure(args.benchmark)
 
     with tempfile.TemporaryDirectory(prefix="robopaint-") as tmpd:
         tmp = Path(tmpd)
@@ -418,7 +445,7 @@ def main() -> int:
                 root, commit = source, args.commit
             tasks = read_source(root)
             if not tasks:
-                sys.exit(f"no tasks/robopaint-*-i00 under {source}")
+                sys.exit(f"no tasks/{LAYOUT['glob']} under {source}")
             if not args.dry_run:
                 SCENES.mkdir(parents=True, exist_ok=True)
                 for t in tasks:
@@ -461,7 +488,7 @@ def main() -> int:
             updated += 1
         else:
             if not args.dry_run:
-                write_page(path, scaffold(task, synced, commit), BODY_TEMPLATE)
+                write_page(path, scaffold(task, synced, commit), BODY_TEMPLATE.replace("{benchmark}", BENCHMARK))
             created += 1
     seeded = seed_state(tasks, args.dry_run)
     orphans = sorted(p.stem for p in TASK_DIR.glob("*.md") if p.stem not in seen and p.stem != "index")
