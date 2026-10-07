@@ -6,14 +6,13 @@ benchmark: robopaint
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
   source: our RoboPaint task definitions
-  synced: '2026-09-28'
+  synced: '2026-10-07'
   instruction: Copy the painting shown in the picture /app/target.png (a small acrylic painting after Utagawa Hiroshige's woodblock print Plum Park in Kameido, 1857) onto the main sheet, in at most 384 strokes.
   scene_model: robopaint_acrylic
   scene_image: acrylic_plumpark.png
   family: acrylic
   picture: a small acrylic painting after Utagawa Hiroshige's woodblock print Plum Park in Kameido, 1857
   difficulty: hard
-  tier: privileged
   success_criteria:
     - scored at a 1 mm scale against the picture after the best single shift of the sheet,
       at most 5 mm along each axis
@@ -24,6 +23,11 @@ upstream:
     - paint IoU >= 0.95
     - at most 384 strokes
     - both fresh-process replays of the trajectory meet this and end in the same state
+    - 'process rules: paint with brush strokes the way a person paints; colouring in or
+      filling areas with a thin line, zigzag, serpentine or contour-offset fills fail;
+      the brush tip''s path pressed on the main sheet with paint is at most 42300 mm in
+      total, and at most 10 % of it in strokes longer than 2.5 x the diagonal of their
+      bounding box'
   continuous_score: 1 - mean ΔE / 20
   grader_facts:
     name: plumpark

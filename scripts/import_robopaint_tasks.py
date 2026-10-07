@@ -3,10 +3,11 @@
 
 RoboPaint is ours: a Franka Panda holding a brush (ManiSkill 3.0.1) paints a picture onto paper, and Spline-FRIDA's
 learned stroke model turns the path the brush tip took into paint. Every task is a pair in robot_coding_bench,
-`tasks/robopaint-<family>-<target>-i00` and its `-limited` twin; the families (line, lettering, kaishu, xingshu,
-acrylic, oil) arrive in commits of their own. The site's task id is `<family>_<target>` (dashes become underscores), so
-`robopaint-line-butterfly-i00` is `line_butterfly`, and a run's job is `<batch>-<mode>-robopaint-<family>-<target>-i00`
-(`task_dir: "robopaint-{task_dashed}-i00"` in state/runs/robopaint.yml).
+`tasks/robopaint-<family>-<target>-i00-privileged` and its `-standard` twin (protocol v1.0 names). Since robot_coding_bench
+PR #68 (2026-10-07) RoboPaint is what was RoboPaint-strict: the brush targets with process rules in the verifier (no
+colouring in, a path budget, few sweeps); the earlier picture-only tasks (`robopaint-<family>-<target>-i00` + `-limited`)
+are gone. The site's task id is `<family>_<target>` (dashes become underscores), so `robopaint-kaishu-ai-i00-*` is
+`kaishu_ai`.
 
 What it reads, from a commit's export (`git archive <commit>`, never a checkout of anyone's working tree):
   task.toml               the description (its "success iff ..." rule and continuous score), [metadata] difficulty /
@@ -25,18 +26,12 @@ of a NEW task in state/tasks/robopaint.yml, from its task.toml (an entry that ex
 the owner's). Re-running is safe and expected: an unchanged source writes nothing; a new family's tasks appear when
 its commit is in the source; a task that disappears is reported, never deleted.
 
-RoboPaint-strict (`--benchmark robopaint-strict`, a benchmark of its own since 2026-10-06) is RoboPaint's brush targets
-with process rules added to the verifier (colouring in, path budgets, sweeps): `tasks/robopaint-strict-<family>-<target>-
-i00-privileged` and its `-standard` twin (protocol v1.0 names), read the same way into its own pages, cache, scenes and
-state; it has no demos (its reference solution is RoboPaint's). RoboPaint itself never reads a robopaint-strict dir.
-
 Usage:
-  git -C ../robot_coding_bench fetch origin dev/qineng       # the commit has to be in the clone
-  python scripts/import_robopaint_tasks.py --source ../robot_coding_bench --commit origin/dev/qineng \\
+  git -C ../robot_coding_bench fetch origin                  # the commit has to be in the clone
+  python scripts/import_robopaint_tasks.py --source ../robot_coding_bench --commit origin/main \\
       --demos <host>:<jobs dir>/paint_jobs/<oracle validation job>
   python scripts/import_robopaint_tasks.py                  # from the cache
   python scripts/import_robopaint_tasks.py ... --dry-run
-  python scripts/import_robopaint_tasks.py --benchmark robopaint-strict --source ../robot_coding_bench --commit origin/main
 """
 
 from __future__ import annotations
@@ -59,11 +54,10 @@ from taskio import read_page, write_page  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 REPO_URL = "https://github.com/JamesKrW/robot_coding_bench"
 # benchmark -> how its task dirs are named: the dirs read (one per task), the name pattern, its other mode's suffix
+# (the robopaint-strict layout of 2026-10-06 is gone: PR #68 renamed those tasks to RoboPaint's)
 LAYOUTS = {
-    "robopaint": {"glob": "robopaint-*-i00", "dir_re": r"robopaint-(?!strict-)([a-z0-9]+)-(.+)-i00", "twin": "-limited",
-                  "source": "our RoboPaint task definitions"},
-    "robopaint-strict": {"glob": "robopaint-strict-*-i00-privileged", "dir_re": r"robopaint-strict-([a-z0-9]+)-(.+)-i00-privileged",
-                         "twin": "-standard", "base_re": r"-privileged$", "source": "our RoboPaint-strict task definitions"},
+    "robopaint": {"glob": "robopaint-*-i00-privileged", "dir_re": r"robopaint-([a-z0-9]+)-(.+)-i00-privileged",
+                  "twin": "-standard", "base_re": r"-privileged$", "source": "our RoboPaint task definitions"},
 }
 
 
@@ -210,7 +204,7 @@ def _scalar(v):
 def read_source(root: Path) -> list[dict]:
     tasks = []
     for d in sorted((root / "tasks").glob(LAYOUT["glob"])):
-        m = DIR_RE.fullmatch(d.name)          # robopaint's pattern never matches a robopaint-strict-* dir
+        m = DIR_RE.fullmatch(d.name)
         if not m or not (d / "task.toml").is_file():
             continue
         family, target = m.group(1), m.group(2)
@@ -223,8 +217,9 @@ def read_source(root: Path) -> list[dict]:
         picture = re.search(r"picture target\.png \(([^)]*)\)", desc)
         # every family states its rule in words: "success iff <conditions>; <score> is the continuous score"
         iff = re.search(r"success iff (.+?); (?:the )?(.+?) is the continuous score", desc)
-        # RoboPaint-strict adds its process rules after the picture rule, in words, with the task's numbers
-        process = re.search(r"Process rules \(RoboPaint-strict\): (.+)$", desc.strip())
+        # the process rules follow the picture rule, in words, with the task's numbers ("Process rules (RoboPaint-strict):"
+        # before PR #68)
+        process = re.search(r"Process rules(?: \(RoboPaint-strict\))?: (.+)$", desc.strip())
         items, scope = _lift_scope(_success_items(iff.group(1))) if iff else ([], [])
         lead = _scored_as(desc) or ("scored against the picture" if scope else "")
         tasks.append({
@@ -431,7 +426,7 @@ def main() -> int:
     ap.add_argument("--demos", action="append", default=[], help="a validation job of the oracle, host:dir or a dir (repeatable)")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--force", action="store_true", help="rewrite pages even when upstream is unchanged")
-    ap.add_argument("--benchmark", default="robopaint", choices=sorted(LAYOUTS), help="robopaint (default) or robopaint-strict")
+    ap.add_argument("--benchmark", default="robopaint", choices=sorted(LAYOUTS), help="robopaint (the only one)")
     args = ap.parse_args()
     configure(args.benchmark)
 

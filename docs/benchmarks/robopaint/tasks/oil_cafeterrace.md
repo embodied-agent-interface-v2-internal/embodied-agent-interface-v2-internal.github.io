@@ -6,14 +6,13 @@ benchmark: robopaint
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
   source: our RoboPaint task definitions
-  synced: '2026-09-28'
+  synced: '2026-10-07'
   instruction: Paint the picture shown in /app/target.png (a square crop of Vincent van Gogh's Cafe Terrace at Night, 1888) onto the main sheet with brush and oil paints, in at most 441 strokes.
   scene_model: robopaint_oil
   scene_image: oil_cafeterrace.png
   family: oil
   picture: a square crop of Vincent van Gogh's Cafe Terrace at Night, 1888
   difficulty: extreme
-  tier: privileged
   success_criteria:
     - scored at a 1 mm scale against the picture, all after the best single shift of the
       sheet, at most 5 mm along each axis, inside the central area 8 mm in from the sheet's
@@ -25,6 +24,11 @@ upstream:
     - paint IoU >= 0.96
     - at most 441 strokes
     - both fresh-process replays of the trajectory meet this and end in the same state
+    - 'process rules: paint with brush strokes the way a person paints; colouring in or
+      filling areas with a thin line, zigzag, serpentine or contour-offset fills fail;
+      the brush tip''s path pressed on the main sheet with paint is at most 28600 mm in
+      total, and at most 10 % of it in strokes longer than 2.5 x the diagonal of their
+      bounding box'
   continuous_score: 1 - mean ΔE / 20
   grader_facts:
     name: cafeterrace

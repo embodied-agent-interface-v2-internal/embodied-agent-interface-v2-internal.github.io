@@ -2,89 +2,32 @@
 # Format and field meanings: docs/contributing/registering-runs.md (and the header of state/runs/behavior-1k.yml).
 
 default: codex-gpt6_luna-xhigh
-# task id <family>_<target> -> our task directory robopaint-<family>-<target>-i00
+# task id <family>_<target> -> our task directory robopaint-<family>-<target>-i00 (protocol v1.0: its -privileged twin is
+# the unlimited mode, its -standard twin the limited mode). Since robot_coding_bench PR #68 (2026-10-07) RoboPaint is what
+# was RoboPaint-strict; the first version's picture-only runs are retired from the site (not comparable). The runs below
+# were made under the robopaint-strict-* names: batch_eval_live/exec/site_jobs.py links them under the current names.
 task_dir: "robopaint-{task_dashed}-i00"
 
-# The grader's continuous scores beside success (user 2026-09-28: "IoU 也可以作为一个 metric，不一定非要用 success"):
-# reward.json keys, shown as columns, sorts and run summaries on the Runs pages. final_reward is each task's continuous
-# score (its upstream continuous_score), so what it measures depends on the family: F1 of the painted strokes for a
-# line drawing, IoU for calligraphy and lettering, 1 - mean ΔE / 20 for a painting. The two chamfer distances (line
-# drawings only) are in millimetres, lower is better.
+# The grader's continuous scores beside success, plus the process rules' own measures. final_reward is
+# the picture's continuous score (IoU for writing, 1 - mean ΔE / 20 for a painting), scaled down when a rule fails.
 metrics:
-- {key: final_reward, label: Final reward, format: ".3f", help: "each task's continuous score, which depends on its family: F1 for a line drawing, IoU for calligraphy and lettering, 1 - mean ΔE / 20 for a painting"}
+- {key: final_reward, label: Final reward, format: ".3f", help: "the picture's continuous score (IoU for calligraphy and lettering, 1 - mean ΔE / 20 for a painting), scaled down when a process rule fails"}
+- {key: image_final_reward, label: Picture score, format: ".3f", help: "the picture's continuous score before the process rules"}
+- {key: image_success, label: Picture rule, format: ".0f", help: "1 when the picture rule passes, whatever the process rules say"}
+- {key: strict_ok, label: Process rules, format: ".0f", help: "1 when the process rules pass"}
+- {key: path_mm, label: Path, format: ".0f", unit: mm, summary: median, help: "the brush tip's path pressed on the main sheet with paint"}
 - {key: iou, label: IoU, format: ".3f"}
-- {key: precision, label: Precision, format: ".3f"}
-- {key: recall, label: Recall, format: ".3f"}
-- {key: min_color_recall, label: Min colour recall, format: ".3f"}
-- {key: chamfer_paint_to_target_mm, label: "Chamfer paint→target", format: ".2f", unit: mm, better: lower, summary: median}
-- {key: chamfer_target_to_paint_mm, label: "Chamfer target→paint", format: ".2f", unit: mm, better: lower, summary: median}
-- {key: ssim_blur, label: SSIM (blurred), format: ".3f"}
+- {key: ssim_L, label: SSIM of L*, format: ".3f"}
 
-# final_reward per family (2026-09-28, before the sweep went public): the Runs page shows success and its plain mean
-# per task family and mode, naming each family's metric from its tasks' continuous_score; the home table shows its plain
-# mean as "mean final reward", with a note that the metric depends on the family.
+# final_reward per family: the Runs page shows success and its plain mean per task family and mode.
 per_family: {key: final_reward, label: final reward}
 
 runs:
   codex-gpt6_luna-xhigh:
-    # 2026-09-28 ~02:00: the renamed benchmark's first sweep (picture-only agent side, the scoring sidecar), the 9
-    # line drawings x both modes on our RoboPaint workstation. The batches of the
-    # benchmark's maniskill-paint days (paint-lunaxh-0927 with vector targets, paint-rgb-lunaxh-0927) are dropped from
-    # the site (user: only this run); their Harbor jobs stay on that machine as the record.
-    batch: robopaint-lunaxh-0928
-    # 2026-09-28 07:45, user: the sweep of the benchmark proper (kaishu, xingshu, lettering, acrylic and oil; no line
-    # drawing), on our workstations. No task is in both batches, so each task's jobs come from the one that has them.
-    # robopaint-lunaxh-rerun-0928 (ws3): one rerun, xingshu_yong unlimited. Its first trial ended at 18 min when the
-    # ChatGPT backend rejected a Codex request, not the agent's doing; the rerun supersedes it, as earlier reruns did.
-    # 2026-09-29, user: the limited round on the robot service's rcb-limited/2.2 protocol (ws and ws3, 82 tasks, 85
-    # trials) replaces robopaint-lunaxh-0928b's limited round, which stays as history. rerun-0929 (ws3): the 3 trials
-    # whose GPU ws lost (the follow-ups below).
-    rerun_batches: [robopaint-lunaxh-0928b, robopaint-lunaxh-rerun-0928, robopaint-lunaxh-limited-0929,
-                    robopaint-lunaxh-limited-rerun-0929, robopaint-bel-luna-xh-1005]
-    followups:  # arranged for one trial each; the note goes away once another trial replaces it
-    - {task: xingshu_yong, mode: unlimited, trial: robopaint-xingshu-yong-i00__GkDcjZc, note: "the ChatGPT backend
-        rejected a Codex request at 18 min (HTTP 400 \"prompt_cache_retention is not supported on this model\"), not the
-        agent's doing; rerun on ws3 in robopaint-lunaxh-rerun-0928"}
-    - {task: xingshu_zhi, mode: unlimited, trial: robopaint-xingshu-zhi-i00__NGSF7kr, note: "never reached the agent: the
-        agent install's apt-get update failed (exit 100) while NVIDIA's CUDA apt repo was mid-sync; rerun in
-        robopaint-lunaxh-rerun-0928"}
-    # 3 infrastructure failures of the 2.2 round, not counted: the rerun of each replaces it (2026-09-29). ws lost GPU
-    # access in its running containers (a host systemd reload, 05:32-06:03). A task keeps one earlier trial as history,
-    # so for these three the not-counted trial takes that place and robopaint-lunaxh-0928b's limited trial leaves the
-    # site; it stays in the raw records.
-    - {task: kaishu_he, mode: limited, trial: robopaint-kaishu-he-i00-limited__8m5hQTs, note: &gpu "ws lost GPU access
-        mid-trial (a host systemd reload): an infrastructure failure, not counted; rerun on ws3 in
-        robopaint-lunaxh-limited-rerun-0929. The earlier round's trial stays in the raw records"}
-    - {task: lettering_moon, mode: limited, trial: robopaint-lettering-moon-i00-lim__Y43YiNN, note: *gpu}
-    - {task: acrylic_suddenshower, mode: limited, trial: robopaint-acrylic-suddenshower-i__uE8X2QX, note: *gpu}
-    # Graded as they are, not rerun (2026-09-28): the agent's own kill command also ended the Codex process.
-    notes:  # on one trial each, graded as it is: nothing arranged
-    - {task: kaishu_fu, mode: unlimited, trial: robopaint-kaishu-fu-i00__YTwmo84, note: "the agent's own `pkill -f
-        '/app/output/gen.py'` also matched the Codex process, whose command line carries the instruction, and ended the
-        agent at 17 min"}
-    - {task: xingshu_tong, mode: limited, trial: robopaint-xingshu-tong-i00-limit__JLjVzXW, note: "the agent's own Python
-        kill loop (SIGINT to every process whose command line holds '/app/output/gen.py' and 'python') also hit the Codex
-        process, whose command line carries the instruction, and ended the agent at 45 min"}
-    # 2026-09-28 20:15, user: counted as it ran, with this note.
-    - {task: lettering_moon, mode: limited, trial: robopaint-lettering-moon-i00-lim__SKuF3U3, note: "the service's
-        time_left_s overstated the remaining time by 30 min (RCB_WALL_CLOCK_S 7200 vs the 5400 s budget); the agent hit
-        the 90-min limit; fixed in the next task version"}
-    # RoboPaint's pages name no source repository (owner, 2026-09-28: "robopaint上不要写那个仓库"), so its Run details
-    # word the harness without the repository and commit that data/agents/ names.
-    harness: >-
-      Codex CLI 0.157.0 as our Harbor agent CodexChatGPT: Codex with our model gateway pointed at ChatGPT's backend
+    # The batch evaluation of 2026-10-05/06 (robot_coding_bench main, protocol v1.0: privileged = unlimited, standard =
+    # limited): every task in both modes, on PR #51's task set.
+    batch: robopaint-bel-luna-xh-1005
     tasks:
-    - line_butterfly
-    - line_city
-    - line_cottage
-    - line_fish
-    - line_flower
-    - line_landscape
-    - line_rainbow
-    - line_rocket
-    - line_sailboat
-    # 2026-09-28 07:45: the benchmark's sweep, batch robopaint-lunaxh-0928b (below), the 82 pairs of the five
-    # families in the benchmark, both modes:
     - acrylic_applesoranges
     - acrylic_bedroom
     - acrylic_bluehorses
@@ -167,8 +110,8 @@ runs:
     - xingshu_yong
     - xingshu_yu
     - xingshu_zhi
-    others: not in this run (a task added after its sweep)
   codex-gpt6_astra-high:
+    # The batch evaluation of 2026-10-06 (owner: these tasks on GPT-6 Astra first): every task in both modes.
     batch: robopaint-bel-astra-hi-1005
     tasks:
     - acrylic_applesoranges
@@ -222,6 +165,7 @@ runs:
     - lettering_minimum
     - lettering_minium
     - lettering_moon
+    - lettering_nimium
     - lettering_nun
     - lettering_omnium
     - lettering_unpin
@@ -252,94 +196,4 @@ runs:
     - xingshu_yong
     - xingshu_yu
     - xingshu_zhi
-    others: 'not run: the batch evaluation (2026-10-03 to 10-05) gave GPT-6 Astra the tasks GPT-6 Luna failed plus a stratified sample'
-    closed: "the batch evaluation of 2026-10-03 to 10-05 is over; GPT-6 Astra ran the tasks and modes GPT-6 Luna failed, plus a stratified sample, so a mode it skipped reads not run"
-  codex-gpt6_sol-high:
-    batch: robopaint-bel-sol-hi-1005
-    tasks:
-    - acrylic_applesoranges
-    - acrylic_bluehorses
-    - acrylic_greatwave
-    - acrylic_redfuji
-    - acrylic_suddenshower
-    - acrylic_sunflowers
-    - kaishu_da
-    - kaishu_dao
-    - kaishu_feng
-    - kaishu_hua
-    - kaishu_jiang
-    - kaishu_jing
-    - kaishu_kou
-    - kaishu_le
-    - kaishu_ningjingzhiyuan
-    - kaishu_ran
-    - kaishu_shu
-    - kaishu_tian
-    - kaishu_xin
-    - kaishu_yong
-    - kaishu_yongzibafa
-    - kaishu_yue
-    - lettering_minium
-    - lettering_omnium
-    - oil_bathers
-    - oil_cafeterrace
-    - oil_irises
-    - oil_milkmaid
-    - oil_monalisa
-    - oil_pearlearring
-    - oil_saintevictoire
-    - oil_temeraire
-    - oil_wanderer
-    - xingshu_chun
-    - xingshu_feng
-    - xingshu_he
-    - xingshu_jian
-    - xingshu_maolinxiuzhu
-    - xingshu_nian
-    - xingshu_ren
-    - xingshu_shan
-    - xingshu_tianlangqiqing
-    - xingshu_tong
-    - xingshu_xian
-    - xingshu_yong
-    - xingshu_zhi
-    others: 'not run (yet): the batch evaluation gave GPT-6 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'
-  codex-gpt6_1_sol-high:
-    batch: robopaint-bel-sol61-hi-1005
-    tasks:
-    - acrylic_applesoranges
-    - acrylic_bluehorses
-    - acrylic_greatwave
-    - acrylic_redfuji
-    - acrylic_suddenshower
-    - acrylic_sunflowers
-    - kaishu_da
-    - kaishu_hua
-    - kaishu_kou
-    - kaishu_le
-    - kaishu_ningjingzhiyuan
-    - kaishu_ran
-    - kaishu_shu
-    - kaishu_xin
-    - kaishu_yongzibafa
-    - lettering_minium
-    - lettering_omnium
-    - oil_bathers
-    - oil_irises
-    - oil_milkmaid
-    - oil_monalisa
-    - oil_pearlearring
-    - oil_temeraire
-    - oil_wanderer
-    - xingshu_chun
-    - xingshu_feng
-    - xingshu_he
-    - xingshu_jian
-    - xingshu_nian
-    - xingshu_ren
-    - xingshu_shan
-    - xingshu_tong
-    - xingshu_xian
-    - xingshu_yong
-    - xingshu_zhi
-    others: 'not run (yet): the batch evaluation gave GPT-6.1 Sol a stratified sample and then the tasks GPT-6 Luna failed; it is still running'
+# GPT-6 Sol and 6.1 Sol have not run these tasks yet (2026-10-07).
