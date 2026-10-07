@@ -6,13 +6,12 @@ benchmark: robopaint
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
   source: our RoboPaint task definitions
-  synced: '2026-09-28'
+  synced: '2026-10-07'
   instruction: Copy the exemplar work 厚德載物 (4 characters in regular script, 楷书, in two columns read right to left), shown in the picture /app/target.png, onto the main sheet with brush and ink, in at most 45 strokes.
   scene_model: robopaint_kaishu
   scene_image: kaishu_houdezaiwu.png
   family: kaishu
   difficulty: extreme
-  tier: privileged
   success_criteria:
     - scored against the picture after the best single shift of the sheet, at most 5 mm
       along each axis
@@ -22,6 +21,10 @@ upstream:
     - stray ink <= 0.04 of its inked area
     - at most 45 strokes
     - both fresh-process replays of the trajectory meet this and end in the same state
+    - 'process rules: write with brush strokes the way a person writes; colouring in or
+      filling the shapes, zigzag, serpentine or contour-offset fills fail: a brush-tip
+      path on the main sheet longer than 5460 mm made of marks narrower than 1.29 mm on
+      average is colouring in'
   continuous_score: IoU
   grader_facts:
     characters: 厚德載物

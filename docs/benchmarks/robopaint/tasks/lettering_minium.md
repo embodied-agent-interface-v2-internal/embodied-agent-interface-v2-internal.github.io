@@ -6,13 +6,12 @@ benchmark: robopaint
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
   source: our RoboPaint task definitions
-  synced: '2026-09-28'
+  synced: '2026-10-07'
   instruction: Copy the lettering shown in the picture /app/target.png onto the main sheet with pen and ink, in at most 9 strokes.
   scene_model: robopaint_lettering
   scene_image: lettering_minium.png
   family: lettering
   difficulty: hard
-  tier: privileged
   success_criteria:
     - scored against the picture after the best single shift of the sheet, at most 5 mm
       along each axis
@@ -22,6 +21,10 @@ upstream:
     - stray ink <= 0.04 of its inked area
     - at most 9 strokes
     - both fresh-process replays of the trajectory meet this and end in the same state
+    - 'process rules: letter with pen strokes the way a scribe writes; colouring in or
+      filling the letters, zigzag, serpentine or contour-offset fills fail: a pen-tip
+      path on the main sheet longer than 1300 mm made of marks narrower than 0.70 mm on
+      average is colouring in'
   continuous_score: IoU
   grader_facts:
     word: minium
@@ -32,7 +35,7 @@ upstream:
     tol_mm: 1.0
     area_mm2: 951.7
   scoring: 's.score() is served by a separate scoring container: it replays the actions the agent executed since its last reset on the graders'' copy and returns the metrics, never images or target data'
-  agent_budget: 5400 s of wall clock per mode
+  agent_budget: 7200 s of wall clock per mode
 ---
 
 ## Why this task is interesting
