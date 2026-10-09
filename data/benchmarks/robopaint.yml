@@ -1,41 +1,45 @@
 id: robopaint
 name: RoboPaint
-edition: ours (2026-09-28)
+edition: ours (2026-10-07)
 status: active
-simulator: ManiSkill 3.0.1 / SAPIEN 3.0.3 + Spline-FRIDA stroke model
+simulator: ManiSkill 3.0.1 / SAPIEN 3.0.3 + brush models (calligraphy, broad nib, libmypaint 1.6.1)
 description: >-
-  Our embodied painting benchmark: a Franka Panda holding a brush paints the picture it is given
-  (an RGB image, never a vector file) onto a sheet of paper, fetching paint from a 5-colour
-  palette. ManiSkill simulates the robot; Spline-FRIDA's learned brush-stroke model (CMU's FRIDA
-  robot painter) turns the path the brush tip actually took into paint. Task families: lettering,
-  kaishu and xingshu calligraphy, acrylic and oil painting, each scored against the picture by the
-  graders. The line drawings (easy) are excluded from the final benchmark and kept for the record.
+  Our embodied painting and calligraphy benchmark: a Franka Panda holding a brush or pen writes or paints the
+  exemplar it is shown (an RGB picture) onto a sheet of paper. 82 brush targets (kaishu 35, xingshu 16,
+  lettering 10, acrylic 10, oil 11; both modes). The verifier scores the sheet against the picture and adds
+  process rules: the exemplar has to be written or painted with strokes, the way a person does, not coloured
+  in (writing fails when a long brush-tip path is made of thin marks; a painting has a path budget and its
+  strokes must be sweeps, not zigzag, serpentine or contour-offset fills). Since robot_coding_bench PR #68
+  (2026-10-07) this is RoboPaint: what was RoboPaint-strict, the earlier picture-only version and its results
+  retired. The line drawings of the first version are kept for the record and not run.
 
 links:
   maniskill: https://github.com/haosulab/ManiSkill
-  frida: https://github.com/cmubig/Frida/tree/spline-frida-z-master-resolved
-  spline_frida_paper: https://arxiv.org/abs/2412.00597
+  libmypaint: https://github.com/mypaint/libmypaint
 
 embodiment:
-  robot: Franka Panda with a brush (ManiSkill's PandaStick; rigid handle + 12 mm soft bristle tuft)
+  robot: Franka Panda with a brush or pen (ManiSkill's PandaStick; rigid handle + soft tuft or nib)
   dof: 7
-  control_modes: [pd_joint_pos, ee_pose (limited mode)]
+  control_modes: [joint_position, ee_pose]
   control_rate_hz: 20
   observations: [rgb, proprioception]
   cameras:
-    canvas_cam: 512x512, overhead
-    scene_cam: ManiSkill DrawSVG's view
+    canvas_cam: overhead, the main sheet
+    practice_cam: the practice sheet
+    scene_cam: the scene
     side_cam: grazing view of the brush height
   notes: >-
-    Fixed base at a table; paper 227 mm square; palette plate beside it with black, red, blue,
-    yellow and green wells. The brush starts dry; dipping into a well loads that paint.
-    Pressure sets the line width (about 2.2 mm at a light touch to 7.5 mm).
+    RoboPaint's scene, frozen instance, picture, tooling and reference solution, unchanged: a main sheet and a
+    practice sheet (practice strokes are free), an ink stone or paint wells, 7200 s of wall clock per mode. The
+    rules are added to the instance's success rule, and the graders' tooling (rcb_brush_strict.py) measures the
+    strokes themselves: path_mm, the brush tip's path pressed on the main sheet with paint; mark_width_mm, the
+    marks' average width; scribble_share, the share of the path in strokes much longer than their bounding box.
 
 # Our own benchmark: no published skill vocabulary, so `skills:` cannot be validated.
 skill_vocabulary: []
 
 # One "scene" per task family (scripts/import_robopaint_tasks.py sets scene_model = robopaint_<family>), so the task
-# list's Scene filter picks a family.
+# list's Scene filter picks a family. robopaint_line: the first version's line drawings, kept for the record.
 scenes:
   - robopaint_line
   - robopaint_lettering
@@ -44,14 +48,11 @@ scenes:
   - robopaint_acrylic
   - robopaint_oil
 
-# What we run it on, and what that costs: measured on an RTX 4090 workstation.
 integration:
-  image: our RoboPaint image (2.5 GB; ManiSkill + FRIDA @ 1652973, torch on the CPU)
+  image: our RoboPaint image (eai-robopaint 0.2.0; ManiSkill 3.0.1, SAPIEN 3.0.3, a patched libmypaint 1.6.1)
   containers: >-
-    main (the agent: the tooling, the scene, the picture) + scorer (the scoring service with the graders' copy of the
-    instance; the agent reaches it only through s.score()) + the verifier's own sandbox
-  physics_backend: PhysX on the CPU; the paint model on the CPU; Vulkan (GPU) only for cameras
+    main (the agent: RoboPaint's tooling, the scene, the picture) + scorer (the scoring service with the graders'
+    copy of the instance and the process rules; the agent reaches it only through s.score()) + the verifier's own sandbox
   determinism: bit-exact across fresh processes (live run == two fresh-process replays)
   licence: >-
-    FRIDA (code and brush weights) is GPL-3.0, shipped unmodified inside the locally built image;
-    the targets are ours (CC0).
+    libmypaint is ISC (patched), mypaint-brushes CC0-1.0; the targets are ours (CC0) or public-domain works.

@@ -6,13 +6,12 @@ benchmark: robopaint
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
   source: our RoboPaint task definitions
-  synced: '2026-09-28'
+  synced: '2026-10-07'
   instruction: Copy the exemplar character 山 in running script (行书), shown in the picture /app/target.png, onto the main sheet with brush and ink, in at most 4 strokes.
   scene_model: robopaint_xingshu
   scene_image: xingshu_shan.png
   family: xingshu
   difficulty: hard
-  tier: privileged
   success_criteria:
     - scored against the picture after the best single shift of the sheet, at most 5 mm
       along each axis
@@ -22,6 +21,10 @@ upstream:
     - stray ink <= 0.04 of its inked area
     - at most 4 strokes (continuous brush contacts)
     - both fresh-process replays of the trajectory meet this and end in the same state
+    - 'process rules: write with brush strokes the way a person writes; colouring in or
+      filling the shapes, zigzag, serpentine or contour-offset fills fail: a brush-tip
+      path on the main sheet longer than 1200 mm made of marks narrower than 3.06 mm on
+      average is colouring in'
   continuous_score: IoU
   grader_facts:
     character: 山

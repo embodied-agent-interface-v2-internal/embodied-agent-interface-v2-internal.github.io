@@ -195,12 +195,12 @@ sync-mujoco-playground: ## Re-sync MuJoCo Playground's manipulation envs (PLAYGR
 	$(BIN)/python scripts/import_mujoco_playground_tasks.py $(if $(wildcard $(PLAYGROUND_SRC)),--source $(PLAYGROUND_SRC),) \
 	    $(if $(wildcard $(MJ_HARNESS)),--harness $(MJ_HARNESS),) $(if $(wildcard $(MJ_ORACLE_JOBS)),--oracle-jobs $(MJ_ORACLE_JOBS),)
 
-# RoboPaint is ours, defined in robot_coding_bench (tasks/robopaint-<family>-<target>-i00): read from a commit of the
-# clone with `git archive` (fetch it first: git -C ../robot_coding_bench fetch origin dev/qineng), never a checkout.
+# RoboPaint is ours, defined in robot_coding_bench (tasks/robopaint-<family>-<target>-i00-{privileged,standard}, since PR
+# #68 what was robopaint-strict): read from a commit of the clone with `git archive` (fetch it first), never a checkout.
 # ROBOPAINT_DEMOS: the oracle's validation jobs whose replays are the demos (host:dir, read only; the last one wins).
 # Empty by default (no demos fetched); set it per machine in Makefile.local, which is gitignored.
 ROBOPAINT_SRC    ?= ../robot_coding_bench
-ROBOPAINT_COMMIT ?= origin/dev/qineng
+ROBOPAINT_COMMIT ?= origin/main
 ROBOPAINT_DEMOS  ?=
 
 sync-robopaint: ## Re-sync RoboPaint from a robot_coding_bench commit (ROBOPAINT_COMMIT=..., ROBOPAINT_DEMOS="host:dir ...")
