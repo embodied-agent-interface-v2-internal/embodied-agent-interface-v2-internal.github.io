@@ -39,14 +39,14 @@ depending on the family).
 
 ## The tasks
 
-Eight families, one episode each. For every family a fixed rule walks upstream's package and takes
-three candidates from three different houses, among episodes whose house has no public MolmoBot
-trajectory, that build with every object they list and are not done at the start, and that pass
-measurable difficulty filters: at least three objects within 30 cm of the target (the pick
-families), upstream's Hard configurations (open, close), a navigation target at least 5 m away and
-out of view. Of the three, we keep the hardest and most representative in GPT-6 Luna's runs of all
-24 candidates in both modes. Each is a pair in robot_coding_bench:
-`tasks/molmospaces-<family>-i00-privileged` and `-standard` @ e46be110c (robot_coding_bench #47),
+Eight families, one episode each, chosen without any model's results: for every family, the first
+episode in upstream's package order whose house has no public MolmoBot trajectory, that builds with
+every object it lists and is not done at the start, whose text names its objects unambiguously (no
+other object of a named object's WordNet synset within 1 m of it), that loads no non-commercially
+licensed asset, and that passes measurable difficulty filters: at least five other objects within
+30 cm of the target (the pick families), upstream's Hard configurations (open, close), a navigation
+target at least 8 m away and out of view. Each is a pair in robot_coding_bench:
+`tasks/molmospaces-<family>-i00-privileged` and `-standard` @ 6aa89c6d2 (robot_coding_bench #47),
 written by `scripts/molmospaces/mk_tasks.py`; the selection and its notes are in
 robot_coding_bench's `docs/benchmarks/molmospaces.md`. The task pages are synced by
 `scripts/import_molmospaces_tasks.py` (`make sync-molmospaces`).

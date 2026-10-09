@@ -5,8 +5,8 @@ benchmark: kinder
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ ae0d92a50
-  synced: '2026-10-04'
+  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 670383c4e
+  synced: '2026-10-06'
   instruction: Move all 30 small dark-red cubes from the yellow bin into the green bin; a scoop is in the scene. The task succeeds the moment every cube's centre is inside the green bin, at least 1 cm from each of its inner walls and at least 0.5 cm below its rim.
   env_id: kinder/ScoopPour3D-o30-v0
   robot: 'TidyBot++: holonomic base, Kinova Gen3 7-DoF arm, Robotiq 2F-85 gripper'
@@ -49,4 +49,4 @@ _No demo._
 
 ## Discussion
 
-GPT-6.1 Sol passed both modes by pouring rather than scooping: limited mode tipped the yellow bin over the green one, unlimited mode moved the green bin to the floor and tipped the yellow bin into it. GPT-6 Luna (2026-10-04) failed both: in unlimited mode its scoop moved 14 of the 30 cubes in a trial run but the saved trajectory lost the load on the lift, and in limited mode it never picked up the scoop and moved single cubes with the gripper. (@williamzhangNU)
+GPT-6.1 Sol passed both modes by pouring rather than scooping (limited mode tipped the yellow bin over the green one, unlimited mode tipped it into the green bin moved to the floor). GPT-6 Luna (2026-10-06) failed both: its unlimited trajectory moved no cube out of the yellow bin, and its single limited episode finished one pour with no cube in the green bin. (@williamzhangNU)

@@ -5,8 +5,8 @@ benchmark: kinder
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ ae0d92a50
-  synced: '2026-10-04'
+  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 670383c4e
+  synced: '2026-10-06'
   instruction: 'Put the six brown rods lying on the floor (30 cm long) into the six 40 cm-tall compartments of the row of eleven narrow cupboards standing side by side, one rod each, as the state names pair them: rod cuboid_i into cupboard cupboard_i for i = 0 to 5, whose tall compartment is the upper one in cupboard_0 to cupboard_2 and the lower one in cupboard_3 to cupboard_5. The task succeeds the moment every rod''s centre is inside its compartment: above that compartment''s shelf, below the shelf over it, and within the cupboard''s 10 cm width and 30 cm depth.'
   limited_instruction: 'Put the six brown rods lying on the floor (30 cm long) into the row of eleven narrow cupboards standing side by side ahead of the robot, one rod each, each into a cupboard''s 40 cm-tall compartment: taking the rods in order of their distance from where the centre of the robot''s base starts, nearest first, they go into the 11th, 5th, 2nd, 8th, 4th and 1st cupboard of the row, counted from the robot''s left as it faces the row at the start. The task succeeds the moment every rod''s centre is inside its compartment: above that compartment''s shelf, below the shelf over it, and within the cupboard''s 10 cm width and 30 cm depth.'
   env_id: kinder/ConstrainedCupboard3D-o6-v0
@@ -50,4 +50,4 @@ _No demo._
 
 ## Discussion
 
-GPT-6.1 Sol passed both modes, limited mode at step 988 of its 17th episode after finding, in its ninth, that a tilted grasp and a base push get the rods into the bays. GPT-6 Luna (2026-10-04) had five of the six rods in place in unlimited mode when the hour ran out, and its single limited episode ran its 1000 steps without success. (@williamzhangNU)
+GPT-6.1 Sol passed both modes, limited mode in its 17th episode after finding that a tilted grasp and a base push get the rods into the bays. GPT-6 Luna (2026-10-06) placed 3 of the 6 rods within the 1000 steps in unlimited mode, and its limited grasps closed on nothing. (@williamzhangNU)

@@ -8,14 +8,20 @@ task_dir: "humanoidbench-{task_dashed}-i00"
 # No partial credit beside success: HumanoidBench's reward.json has none (its final_reward is the last step's reward,
 # not progress; the episode return, on each task's own scale, stays in verifier/diagnostics.json).
 progress: none
-# The limited mode's resets used, of the 50 our runs allowed until 2026-10-04 (none since: protocol v1.0's standard
-# configuration; reward.json `resets`; the unlimited mode has no count).
+# The limited mode's resets used, of the 50 our runs allowed until 2026-10-04 and again since 2026-10-07 (HumanoidBench's
+# standard configuration; none in between; reward.json `resets`; the unlimited mode has no count).
 metrics:
 - {key: resets, label: Resets used, format: ".0f", better: lower}
 
-# Since 2026-10-04 the benchmark is its 9 hardest tasks (the other 14 are `excluded` in state/tasks/humanoidbench.yml),
-# and GPT-6 Luna's batch hb-luna-1004 on them is its run: robot_coding_bench's task set of that day (protocol v1.0.1;
-# limited = the standard twin on eai-standard/2.1 in its standard configuration: one episode, no reset), image 0.1.6
+# Since 2026-10-08 the benchmark's tasks run on image 0.2.0: MuJoCo 3.3.7 instead of 3.1.6, box feet on balance_hard,
+# and room's reset and powerlift's dumbbell fixed (robot_coding_bench docs/benchmarks/humanoidbench.md, Physics). GPT-6
+# Luna's batch hb-luna-mj337-1008 on them is its run (hurdle's from hb-luna-mj337-hurdle-1008, after its text fix):
+# the 9 scored tasks, limited = the standard twin on eai-standard/2.1
+# in HumanoidBench's standard configuration (50 resets, since 2026-10-07), 60 minutes a mode, effort medium, one attempt
+# per task and mode, started by run_agent_batch.sh. Every earlier batch is image 0.1.6 or older, other physics: history.
+# From 2026-10-06 the benchmark is one task per capability class (the other 14 are `excluded` in
+# state/tasks/humanoidbench.yml), and GPT-6 Luna's batch hb-luna-1006 on them was its run: robot_coding_bench's task set of that day (protocol v1.0.1;
+# limited = the standard twin on eai-standard/2.1 in its standard configuration then: one episode, no reset), image 0.1.6
 # as published, 60 minutes a mode, effort medium, one attempt per task and mode, started by run_agent_batch.sh.
 # GPT-6.1 Sol's run and the earlier ones stay beside it as history; before 2026-10-04 GPT-6.1 Sol was the default.
 # Every other batch is on the tasks before protocol v1.0 (limited mode 1.1), except Luna's hb-luna-v1-1001. The rest
@@ -57,8 +63,13 @@ runs:
     # Protocol v1.0 (robot_coding_bench main 571079ea, 2026-10-01): the standard twins with 50 resets (23 tasks; sit_simple
     # has a reference solution and was not swept) and push privileged, on Harbor's codex agent. Each replaces the
     # task's earlier trial, which stays as its history. The v1.0 sweep without resets (0/23) is not on this site.
-    # hb-luna-1004 (2026-10-04): the 9 tasks of the benchmark, both modes, limited without resets (header above).
-    rerun_batches: [hb-luna-v1-1001, hb-luna-1004]
+    # hb-luna-1004 (2026-10-04): the 9 tasks the benchmark had that day, both modes, limited without resets.
+    # hb-luna-1006 (2026-10-06): the 9 tasks of the benchmark since then, the same configuration (header above).
+    # hb-luna-mj337-1008 (2026-10-08): the same 9 tasks on image 0.2.0, limited with 50 resets (header above); its
+    # trials replace the earlier ones, which stay as their history.
+    # hb-luna-mj337-hurdle-1008 (2026-10-08): hurdle again, after its task text was corrected (the hurdles have no
+    # collision geometry; it had said they were solid); hb-luna-mj337-1008's hurdle trials stay as its history.
+    rerun_batches: [hb-luna-v1-1001, hb-luna-1004, hb-luna-1006, hb-luna-mj337-1008, hb-luna-mj337-hurdle-1008]
     notes:  # on one trial each, graded as it is: nothing arranged
     - {task: manip_push, mode: limited, trial: humanoidbench-manip-push-i00-lim__R6DtjyA, note: "`spec()` placed the
         hand 0.31 m beyond the real one (a massless link's centre of mass; fixed since); the arm poses the agent chose

@@ -5,14 +5,14 @@ benchmark: molmospaces
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/allenai/molmospaces @ molmo-spaces 0.2.9 (benchmark molmospaces-bench-v2/20260415), as defined in our task definitions @ 030f55607
-  synced: '2026-10-04'
-  instruction: Navigate to any bed (2 available).
+  source: https://github.com/allenai/molmospaces @ molmo-spaces 0.2.9 (benchmark molmospaces-bench-v2/20260415), as defined in our task definitions @ 6aa89c6d2
+  synced: '2026-10-06'
+  instruction: Navigate to any tablelamp (2 available).
   family: navigate-to
   robot: 'Rainbow RB-Y1: holonomic base, 6-joint torso, two 7-joint arms with parallel grippers'
-  scene_model: holodeck-objaverse val 1430
+  scene_model: holodeck-objaverse val 1769
   category: RB-Y1
-  instance: molmospaces-bench-v2/20260415, package holodeck-objaverse/NavToObjDataGenConfig/NavToObjHolodeckBench_20260115_json_benchmark, episode 94
+  instance: molmospaces-bench-v2/20260415, package holodeck-objaverse/NavToObjDataGenConfig/NavToObjHolodeckBench_20260115_json_benchmark, episode 237
   success_criteria:
     - for the one of the 2 target objects nearest to the robot base (horizontal distance),
       the horizontal distance from the base to its position (the origin of its body, not
@@ -27,9 +27,9 @@ upstream:
       to the same state; the check holds on it live and in the replay'
   deliverable: '/app/output/trajectory.npz with actions: float64 (T, 25), one row per control step, the targets of upstream''s joint-position controllers'
   reference_solution: 'None is shipped. Upstream''s scripted experts (molmo_spaces/policy/solvers) are reference solutions and are not in the image; neither are grasp files nor the public MolmoBot trajectories (agent egress: the model APIs only).'
-  limited_mode: 'Standard-mode twin of molmospaces-navigate-to-i00-privileged (the same frozen MolmoSpaces episode): Navigate to any bed (2 available). The agent gets only the eai-standard/2.2 client (docs/STANDARD_MODE_2_2.md); the simulator runs in the sim sidecar (environment/docker-compose.yaml), which owns the episode, serves cameras, proprioception and upstream''s kinematic model, and records every executed row. The collect hook (environment/sim/finalize.sh) ends the episode, lets the service exit, replays the trajectory in two fresh processes and writes final.json; the verifier grades those artifacts in a separate sandbox (tests/Dockerfile).'
-  oracle: 'none — no reference solution (MolmoSpaces'' planners and grasp files are not shipped); positive example graded 1 by the separate verifier: molmospaces-navigate-to-i01-priv__Nxshh8t (run codex-gpt6_luna-medium, batch molmospaces-luna-1003; https://embodied-agent-interface-v2-internal.github.io/runs/molmospaces/codex-gpt6_luna-medium-openrouter/navigate_to/unlimited/); human review in PR #47'
-  base_image: ghcr.io/mll-lab-nu/eai-molmospaces:0.2.0
+  limited_mode: 'Standard-mode twin of molmospaces-navigate-to-i00-privileged (the same frozen MolmoSpaces episode): Navigate to any tablelamp (2 available). The agent gets only the eai-standard/2.2 client (docs/STANDARD_MODE_2_2.md); the simulator runs in the sim sidecar (environment/docker-compose.yaml), which owns the episode, serves cameras, proprioception and upstream''s kinematic model, and records every executed row. The collect hook (environment/sim/finalize.sh) ends the episode, lets the service exit, replays the trajectory in two fresh processes and writes final.json; the verifier grades those artifacts in a separate sandbox (tests/Dockerfile).'
+  oracle: 'none — no reference solution (MolmoSpaces'' planners and grasp files are not shipped); positive example graded 1 by the separate verifier: molmospaces-navigate-to-i00-priv__mENe7qn (run codex-gpt6_luna-medium, batch molmospaces-luna-1006b; https://embodied-agent-interface-v2-internal.github.io/runs/molmospaces/codex-gpt6_luna-medium-openrouter/navigate_to/unlimited/); human review in PR #47'
+  base_image: ghcr.io/mll-lab-nu/eai-molmospaces:0.2.3
   agent_budget: 3600 s of wall clock per mode
   task_dirs: molmospaces-navigate-to-i00-privileged, molmospaces-navigate-to-i00-standard
   scene_image: navigate_to.jpg
@@ -58,4 +58,4 @@ _No demo._
 <!-- Sign your points with your GitHub handle. Long threads belong in the
      linked GitHub Discussion; keep the conclusions here. -->
 
-Exercises real multi-room navigation. The success distance is measured to the bed's position, not its edge, which the instruction now states. (@williamzhangNU)
+GPT-6 Luna (2026-10-06) passed unlimited mode through a doorway using the state's positions; in limited mode it took a small object in the starting room for the lamp and ended after 34 steps. (@williamzhangNU)

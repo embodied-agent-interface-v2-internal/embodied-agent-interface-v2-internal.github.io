@@ -8,8 +8,9 @@ task_dir: "kinder-{task_dashed}-i00"
 # No partial credit beside success: KinDER's goal check passes or fails, and its reward.json has no progress key.
 progress: none
 
-# Since 2026-10-04 the benchmark is its 4 hardest families (the other 6 are `excluded` in state/tasks/kinder.yml), and
-# GPT-6 Luna's batch kinder-luna-1004 on them is its run: robot_coding_bench's task set of that day (protocol v1.0.1;
+# Since 2026-10-04 the benchmark is these 4 families (since 2026-10-06 for the reason that they have the most task
+# objects; the other 6 are `excluded` in state/tasks/kinder.yml), and GPT-6 Luna's batch kinder-luna-1006 on them is its
+# run: robot_coding_bench's task set of that day (protocol v1.0.1;
 # limited = the standard twin on eai-standard/2.1 in its standard configuration: one episode, no reset, the robot's own
 # base and wrist cameras with wrist depth), image 0.1.6 as published, 60 minutes a mode, effort medium, one attempt per
 # task and mode, started by run_agent_batch.sh. GPT-6.1 Sol's run stays beside it as history (the default before
@@ -41,9 +42,9 @@ runs:
     # Protocol v1.0 (robot_coding_bench main d1b93b49, 2026-10-01): the standard twins with 50 resets (10 families; dynamo
     # has a reference solution and was not swept) and dynamo privileged, on Harbor's codex agent (Codex CLI 0.159.2).
     # Each replaces the task's earlier trial, which stays as its history. The v1.0 sweep without resets (0/10) is not
-    # on this site. kinder-luna-1004 (2026-10-04): the 4 families of the benchmark, both modes, limited without resets
-    # (header above).
-    rerun_batches: [kinder-luna-v1-1001, kinder-luna-1004]
+    # on this site. kinder-luna-1004 (2026-10-04) and kinder-luna-1006 (2026-10-06): the 4 families of the benchmark,
+    # both modes, limited without resets (header above).
+    rerun_batches: [kinder-luna-v1-1001, kinder-luna-1004, kinder-luna-1006]
     harness: >-
       Before v1.0: Codex CLI 0.158.0 (the first six unlimited runs), 0.159.0 (the other five) and 0.159.2 (limited) as
       harbor_agents.codex_openrouter:CodexOpenRouter, Codex over OpenRouter with web search off, without the model

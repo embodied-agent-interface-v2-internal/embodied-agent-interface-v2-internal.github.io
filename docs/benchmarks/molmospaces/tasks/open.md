@@ -5,16 +5,16 @@ benchmark: molmospaces
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/allenai/molmospaces @ molmo-spaces 0.2.9 (benchmark molmospaces-bench-v2/20260415), as defined in our task definitions @ 030f55607
-  synced: '2026-10-04'
-  instruction: Open the drawer.
+  source: https://github.com/allenai/molmospaces @ molmo-spaces 0.2.9 (benchmark molmospaces-bench-v2/20260415), as defined in our task definitions @ 6aa89c6d2
+  synced: '2026-10-06'
+  instruction: Open the cabinet.
   family: open
   robot: Franka FR3 with a Robotiq 2F-85 gripper on a fixed base (the DROID setup)
-  scene_model: ithor val 414
+  scene_model: ithor val 14
   category: Franka
-  instance: molmospaces-bench-v2/20260415, package ithor/FrankaOpenHardBench/FrankaOpenHardBench_20260206_json_benchmark, episode 1427
+  instance: molmospaces-bench-v2/20260415, package ithor/FrankaOpenHardBench/FrankaOpenHardBench_20260206_json_benchmark, episode 49
   success_criteria:
-    - some joint of any drawer in the room is open at least 15% of its range (all start
+    - some joint of any cabinet in the room is open at least 15% of its range (all start
       closed)
     - 'judged at the end of the episode: the trajectory''s last row (privileged), `done`
       (standard) or 455 control steps (the benchmark''s 30 s horizon), whichever comes
@@ -25,9 +25,9 @@ upstream:
       to the same state; the check holds on it live and in the replay'
   deliverable: '/app/output/trajectory.npz with actions: float64 (T, 8), one row per control step, the targets of upstream''s joint-position controllers'
   reference_solution: 'None is shipped. Upstream''s scripted experts (molmo_spaces/policy/solvers) are reference solutions and are not in the image; neither are grasp files nor the public MolmoBot trajectories (agent egress: the model APIs only).'
-  limited_mode: 'Standard-mode twin of molmospaces-open-i00-privileged (the same frozen MolmoSpaces episode): Open the drawer. The agent gets only the eai-standard/2.2 client (docs/STANDARD_MODE_2_2.md); the simulator runs in the sim sidecar (environment/docker-compose.yaml), which owns the episode, serves cameras, proprioception and upstream''s kinematic model, and records every executed row. The collect hook (environment/sim/finalize.sh) ends the episode, lets the service exit, replays the trajectory in two fresh processes and writes final.json; the verifier grades those artifacts in a separate sandbox (tests/Dockerfile).'
-  oracle: 'none — no reference solution (MolmoSpaces'' planners and grasp files are not shipped); positive example graded 1 by the separate verifier: molmospaces-open-i00-privileged__zxfmJNN (run codex-gpt6_luna-medium, batch molmospaces-luna-1003; https://embodied-agent-interface-v2-internal.github.io/runs/molmospaces/codex-gpt6_luna-medium-openrouter/open/unlimited/); human review in PR #47'
-  base_image: ghcr.io/mll-lab-nu/eai-molmospaces:0.2.0
+  limited_mode: 'Standard-mode twin of molmospaces-open-i00-privileged (the same frozen MolmoSpaces episode): Open the cabinet. The agent gets only the eai-standard/2.2 client (docs/STANDARD_MODE_2_2.md); the simulator runs in the sim sidecar (environment/docker-compose.yaml), which owns the episode, serves cameras, proprioception and upstream''s kinematic model, and records every executed row. The collect hook (environment/sim/finalize.sh) ends the episode, lets the service exit, replays the trajectory in two fresh processes and writes final.json; the verifier grades those artifacts in a separate sandbox (tests/Dockerfile).'
+  oracle: 'none — no reference solution (MolmoSpaces'' planners and grasp files are not shipped); positive example graded 1 by the separate verifier: molmospaces-open-i01-privileged__hkZsZtE (run codex-gpt6_luna-medium, batch molmospaces-luna-v3 of 2026-10-03: an earlier round on the same episode, kept with the run''s records, not on the results site); human review in PR #47'
+  base_image: ghcr.io/mll-lab-nu/eai-molmospaces:0.2.3
   agent_budget: 3600 s of wall clock per mode
   task_dirs: molmospaces-open-i00-privileged, molmospaces-open-i00-standard
   scene_image: open.jpg
@@ -56,4 +56,4 @@ _No demo._
 <!-- Sign your points with your GitHub handle. Long threads belong in the
      linked GitHub Discussion; keep the conclusions here. -->
 
-Both modes first pulled along the wrong axis; in limited mode the agent never recovered. Finding the joint's direction is this family's core difficulty. (@williamzhangNU)
+GPT-6 Luna (2026-10-06) failed both: in unlimited mode it pressed on the door panel for 40 minutes and saved no trajectory, and its three limited grasps missed the handle (its 2026-10-03 round passed both). (@williamzhangNU)

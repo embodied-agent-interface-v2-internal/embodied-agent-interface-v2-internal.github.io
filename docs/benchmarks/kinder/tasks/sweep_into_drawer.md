@@ -5,8 +5,8 @@ benchmark: kinder
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ ae0d92a50
-  synced: '2026-10-04'
+  source: https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden @ 5b2dbac, as defined in our task definitions @ 670383c4e
+  synced: '2026-10-06'
   instruction: Get the five small dark-red cubes on top of the kitchen island into the middle drawer of the island's upper row of drawers, which starts closed; a wiper lies next to the cubes. The task succeeds the moment all five cubes' centres are inside that drawer, each at least 2.5 cm from the drawer's two side walls.
   env_id: kinder/SweepIntoDrawer3D-o5-v0
   robot: 'TidyBot++: holonomic base, Kinova Gen3 7-DoF arm, Robotiq 2F-85 gripper'
@@ -49,4 +49,4 @@ _No demo._
 
 ## Discussion
 
-GPT-6.1 Sol passed both modes (limited, with 50 resets: the drawer pulled open by its handle and the cubes moved in one by one; unlimited: swept in with the wiper). GPT-6 Luna (2026-10-04) passed unlimited mode with a 14 cm drawer pull and low sweeps (goal at step 922), but not the single limited episode. (@williamzhangNU)
+GPT-6.1 Sol passed both modes, and GPT-6 Luna (2026-10-04) unlimited mode with a 14 cm drawer pull and low sweeps. Luna's 2026-10-06 runs failed both: 2 of the 5 cubes in the drawer in unlimited mode, and the limited episode never opened the drawer. (@williamzhangNU)

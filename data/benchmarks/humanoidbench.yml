@@ -1,6 +1,6 @@
 id: humanoidbench
 name: HumanoidBench
-edition: cb11890 (upstream), our selection of 9 tasks and a fixture (2026-10-04; 24 until then)
+edition: cb11890 (upstream), our selection of 9 tasks and a fixture (2026-10-06; 24 until 2026-10-04)
 status: active
 simulator: MuJoCo 3 (HumanoidBench's gymnasium environments)
 description: >-
@@ -8,9 +8,9 @@ description: >-
   locomotion (walking, stairs, hurdles, balancing, a maze, sitting) and whole-body manipulation
   (doors, cabinets, a bookshelf, pushing and lifting, a cube in each hand). Each episode is scored
   by HumanoidBench's own dense reward, summed over the episode, against its own success bar. We keep
-  the 9 hardest of its 32 registered tasks plus one fixture, and run each in two modes: unlimited
+  one task per capability class (9) of its 32 registered tasks plus one fixture, and run each in two modes: unlimited
   (full simulator state, unlimited resets, one replayable trajectory handed in) and limited (a robot
-  behind a service: cameras, joint readings and an IMU, one episode without resets).
+  behind a service: cameras, joint readings and an IMU, 50 resets).
 
 links:
   paper: https://arxiv.org/abs/2403.10506
@@ -43,7 +43,7 @@ scenes:
 
 # What we run it on: measured on an RTX 4090 workstation.
 integration:
-  image: our HumanoidBench image 0.1.6 (MuJoCo + humanoid-bench @ cb11890; every get_reward() removed)
+  image: our HumanoidBench image 0.2.0 (MuJoCo 3.3.7, not upstream's 3.1.6, + humanoid-bench @ cb11890 with three physics fixes; every get_reward() removed)
   containers: >-
     unlimited: main (the agent with the simulator) + the verifier's own sandbox, which restores the reward to grade.
     limited: main (the agent: an HTTP client only) + sim (the simulator, its reward and the recording; the agent

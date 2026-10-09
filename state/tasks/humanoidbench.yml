@@ -13,16 +13,16 @@
 # Task id = <category>_<task> (our task directory humanoidbench-<category>-<task>-i00). The 24 tasks are the ones
 # robot_coding_bench's scripts/humanoidbench/subset.toml kept of HumanoidBench's 32: every one `keep`, its note the
 # capability class it was kept for (scripts/import_humanoidbench_tasks.py adds a NEW task this way and never changes
-# an existing entry). sit_simple is a fixture, not scored: `excluded`. Since 2026-10-04 the benchmark is the 9
-# hardest: never passed by any model in either mode, never within 5% of the bar, and with a bar that measures the
-# task; the other 14 are `excluded` with the reason (docs/benchmarks/humanoidbench.md in robot_coding_bench). Owner:
+# an existing entry). sit_simple is a fixture, not scored: `excluded`. Since 2026-10-06 the benchmark is one task per
+# capability class, chosen without any model's results: a bar that measures the task and can be reached, then within
+# a class upstream's hard version, more objects moved, the dexterous hands, the higher speed; the other 14 are
+# `excluded` with the reason (docs/benchmarks/humanoidbench.md in robot_coding_bench). Owner:
 # williamzhangNU, who runs HumanoidBench here. No difficulty or labels yet.
 
 loco_walk:
   status: keep
   owner: williamzhangNU
   note: "C1 · flat-ground periodic gait"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in unlimited mode"
   display_tags:
   - control-coordination
   - locomotion-stability
@@ -30,6 +30,7 @@ loco_stair:
   status: keep
   owner: williamzhangNU
   note: "C2 · constrained gait"
+  excluded: "one task per capability class (robot_coding_bench 2026-10-06): hurdle runs (5 m/s), stair walks (1 m/s)"
   display_tags:
   - control-coordination
   - locomotion-stability
@@ -44,7 +45,7 @@ loco_balance_simple:
   status: keep
   owner: williamzhangNU
   note: "C3 · quasi-static stabilisation"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in unlimited mode"
+  excluded: "one task per capability class (robot_coding_bench 2026-10-06): balance_hard is upstream's hard version"
   display_tags:
   - control-coordination
   - feedback-adaptation
@@ -61,7 +62,6 @@ manip_door:
   status: keep
   owner: williamzhangNU
   note: "C4 · navigation and passage"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in unlimited mode"
   display_tags:
   - planning-reasoning
   - control-coordination
@@ -71,7 +71,7 @@ loco_maze:
   status: keep
   owner: williamzhangNU
   note: "C4 · navigation and passage"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in unlimited mode"
+  excluded: "one task per capability class (robot_coding_bench 2026-10-06): door moves an object (the door), maze none"
   display_tags:
   - planning-reasoning
   - control-coordination
@@ -81,6 +81,7 @@ manip_highbar_simple:
   status: keep
   owner: williamzhangNU
   note: "C5 · whole-body power and momentum"
+  excluded: "one task per capability class (robot_coding_bench 2026-10-06): powerlift moves an object with the dexterous hands, highbar_simple none"
   display_tags:
   - control-coordination
   - feedback-adaptation
@@ -89,7 +90,7 @@ manip_basketball:
   status: keep
   owner: williamzhangNU
   note: "C5 · whole-body power and momentum"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in unlimited mode"
+  excluded: "one task per capability class (robot_coding_bench 2026-10-06): powerlift moves an object with the dexterous hands, basketball has no hands"
   display_tags:
   - perception-understanding
   - control-coordination
@@ -106,7 +107,7 @@ manip_push:
   status: keep
   owner: williamzhangNU
   note: "C6 · standing bimanual manipulation"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in both modes"
+  excluded: "one task per capability class (robot_coding_bench 2026-10-06): window moves an object with the dexterous hands, push has no hands"
   display_tags:
   - control-coordination
   - mobile-whole-body-manipulation
@@ -114,7 +115,6 @@ manip_window:
   status: keep
   owner: williamzhangNU
   note: "C6 · standing bimanual manipulation"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): the best run reached 95% of the bar"
   display_tags:
   - planning-reasoning
   - control-coordination
@@ -123,7 +123,7 @@ manip_spoon:
   status: keep
   owner: williamzhangNU
   note: "C6 · standing bimanual manipulation"
-  excluded: "its bar does not measure the task: holding still earns 58% of it (robot_coding_bench 2026-10-04)"
+  excluded: "its bar does not measure the task: holding still earns 58% of it (robot_coding_bench 2026-10-06)"
   display_tags:
   - planning-reasoning
   - control-coordination
@@ -132,7 +132,7 @@ manip_insert_normal:
   status: keep
   owner: williamzhangNU
   note: "C7 · in-hand precision"
-  excluded: "its bar does not measure the task: it can be reached without inserting (robot_coding_bench 2026-10-04)"
+  excluded: "its bar does not measure the task: it can be reached without inserting (robot_coding_bench 2026-10-06)"
   display_tags:
   - control-coordination
   - mobile-whole-body-manipulation
@@ -140,7 +140,6 @@ manip_cube:
   status: keep
   owner: williamzhangNU
   note: "C7 · in-hand precision"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in unlimited mode"
   display_tags:
   - control-coordination
   - mobile-whole-body-manipulation
@@ -148,7 +147,7 @@ loco_reach:
   status: keep
   owner: williamzhangNU
   note: "C8 · mobile manipulation"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in both modes"
+  excluded: "one task per capability class (robot_coding_bench 2026-10-06): room moves 6 objects, reach none"
   display_tags:
   - control-coordination
   - locomotion-stability
@@ -157,7 +156,7 @@ loco_sit_hard:
   status: keep
   owner: williamzhangNU
   note: "C8 · mobile manipulation"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in both modes"
+  excluded: "one task per capability class (robot_coding_bench 2026-10-06): room moves 6 objects, sit_hard none"
   display_tags:
   - control-coordination
   - feedback-adaptation
@@ -167,6 +166,7 @@ manip_package:
   status: keep
   owner: williamzhangNU
   note: "C8 · mobile manipulation"
+  excluded: "one task per capability class (robot_coding_bench 2026-10-06): room moves 6 objects, package 1"
   display_tags:
   - planning-reasoning
   - control-coordination
@@ -183,7 +183,7 @@ manip_cabinet:
   status: keep
   owner: williamzhangNU
   note: "C9 · long-horizon multi-subtask"
-  excluded: "its bar cannot be reached at upstream's commit (robot_coding_bench 2026-10-04)"
+  excluded: "its bar cannot be reached at upstream's commit (robot_coding_bench 2026-10-06)"
   display_tags:
   - planning-reasoning
   - control-coordination
@@ -192,6 +192,7 @@ manip_truck:
   status: keep
   owner: williamzhangNU
   note: "C9 · long-horizon multi-subtask"
+  excluded: "one task per capability class (robot_coding_bench 2026-10-06): bookshelf_simple moves as many objects (5) with the dexterous hands"
   display_tags:
   - planning-reasoning
   - control-coordination
@@ -200,7 +201,7 @@ manip_kitchen:
   status: keep
   owner: williamzhangNU
   note: "C9 · long-horizon multi-subtask"
-  excluded: "not among the hardest (robot_coding_bench 2026-10-04): passed in unlimited mode"
+  excluded: "one task per capability class (robot_coding_bench 2026-10-06): bookshelf_simple moves more objects (5 against 4)"
   display_tags:
   - planning-reasoning
   - control-coordination
