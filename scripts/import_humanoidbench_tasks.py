@@ -192,8 +192,8 @@ def upstream_block(task: dict, synced: str, commit: str) -> dict:
     criteria = [f"the summed per-step reward over one episode reaches {bar:g}, HumanoidBench's own success bar "
                 f"(a total of rewards, not a number of steps; an episode is at most {steps} control steps)" if bar else "",
                 "unlimited: both fresh-process replays of the handed-in trajectory reach it and end in the same state",
-                "limited: the run passes the moment its one episode reaches it (no reset in our runs since 2026-10-04; "
-                "the recorded episode replays to the same state)"]
+                "limited: the run passes the moment an episode reaches it (50 resets in our runs since 2026-10-07, none "
+                "from 2026-10-04; the recorded episode replays to the same state)"]
     hw = task.get("image_hw") or []
     block = {
         "source": f"{UPSTREAM}, as defined in our task definitions @ {commit}" if commit else UPSTREAM,

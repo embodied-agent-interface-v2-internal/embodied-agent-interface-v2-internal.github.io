@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ be39e53bb
-  synced: '2026-10-06'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 7e1b8687d
+  synced: '2026-10-08'
   instruction: Walk to the door, press the handle, pull the door open towards the robot, and walk through it.
   env_id: h1-door-v0
   robot: Unitree H1 (19 actuators)
@@ -21,11 +21,12 @@ upstream:
       steps)
     - 'unlimited: both fresh-process replays of the handed-in trajectory reach it and
       end in the same state'
-    - 'limited: the run passes the moment its one episode reaches it (no reset in our
-      runs since 2026-10-04; the recorded episode replays to the same state)'
+    - 'limited: the run passes the moment an episode reaches it (50 resets in our runs
+      since 2026-10-07, none from 2026-10-04; the recorded episode replays to the same
+      state)'
   scoring: 'This one is a weighted sum rather than a product, so partial credit is real: getting the door open and getting the torso past the doorway are the two large terms, with reaching for the handle, moving the handle, and posture as small ones. The bar cannot be reached without opening the door.'
   ends_early: The episode ends early if the pelvis drops too low.
-  zero_action_return: 30.86
+  zero_action_return: 30.46
   action_dim: 19
   control_rate_hz: 50
   limited_mode: head cameras (RGB 256×256), joint angles and velocities; a pelvis IMU and a camera fixed in the room when the run turns them on. Not where the robot is in the room, not the door's or the handle's angle, not the reward
@@ -52,4 +53,4 @@ _No demo._
 
 ## Discussion
 
-Hard in both modes: GPT-6 Luna (2026-10-06) opens the door about 8° in unlimited mode without walking through (153 of 600), and its limited episode fell at step 90 before the hand reached the handle. (@williamzhangNU)
+Hard in both modes: GPT-6 Luna (2026-10-08) turns the handle and opens the door 30° in unlimited mode but never walks through (188 of 600); in limited mode it turns the handle in some episodes, but the door never opens. (@williamzhangNU)

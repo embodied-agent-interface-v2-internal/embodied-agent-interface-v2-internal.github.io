@@ -32,9 +32,9 @@ what a real H1 would give, and nothing else:
 | **Not given** | the reward, the robot's position in the room, any object's pose, contact forces, the simulator itself | not there on a real robot |
 
 It acts through the robot service's client (protocol `eai-standard/2.1`): chunks of position targets in
-[−1, 1] per servo at 50 Hz, and observations on request. The run is one episode with no reset, as on a
-real robot (protocol v1.0's standard configuration; our runs before 2026-10-04 allowed 50 resets, each
-back to the same starting state). The run passes the moment the episode reaches the bar. Both modes have
+[−1, 1] per servo at 50 Hz, and observations on request. The run allows 50 resets, each back to the same
+starting state (HumanoidBench's standard configuration since 2026-10-07; one episode with no reset from
+2026-10-04, 50 resets before). The run passes the moment an episode reaches the bar. Both modes have
 60 minutes of wall clock, and simulated time stands still between requests.
 
 ## Scoring
@@ -64,25 +64,31 @@ other 14 stay on the site, greyed, each with the reason. 4 of the 9 use the bare
 
 | | |
 | --- | --- |
-| Image | our HumanoidBench image 0.1.6: MuJoCo and humanoid-bench at cb11890, every `get_reward()` removed |
-| Physics | MuJoCo on the CPU; EGL on the GPU renders the limited mode's cameras |
+| Image | our HumanoidBench image 0.2.0: humanoid-bench at cb11890 on MuJoCo 3.3.7, every `get_reward()` removed |
+| Physics | MuJoCo 3.3.7 on the CPU, not the 3.1.6 upstream pins: its convex collision reported wrong contacts. Also fixed: box feet on balance_hard, room's reset (it wrote into the right hand), powerlift's dumbbell mass (104 → 53.7 kg). Runs on image 0.1.6 or earlier are other physics (robot_coding_bench's `docs/benchmarks/humanoidbench.md`, Physics) |
+| Rendering | EGL on the GPU renders the limited mode's cameras |
 | Determinism | Bit-exact: both fresh-process replays of a trajectory end in the same state |
 
 ### Model runs so far
 
-GPT-6 Luna (Codex, through OpenRouter, reasoning effort medium) on the 9 tasks on 2026-10-06, one
-attempt per task and mode, 60 minutes each, on robot_coding_bench's protocol v1.0.1 (limited: one
-episode, no reset). Tasks passed, out of the 9:
+GPT-6 Luna (Codex, through OpenRouter, reasoning effort medium) on the 9 tasks on image 0.2.0, 2026-10-08,
+one attempt per task and mode (hurdle's after its task text was corrected), 60 minutes each, limited mode with
+50 resets. Tasks passed, out of the 9:
 
 | Model | Limited | Unlimited |
 | --- | --- | --- |
-| GPT-6 Luna | 0 | 0 |
+| GPT-6 Luna | 0 | 1 (cube) |
 
-Without resets every limited episode failed within 32 to 234 control steps (a fall, or a dropped tool
-or cube), after 1 to 5 minutes. In unlimited mode the closest are window's 503 of 650 and walk's 491
-of 700; the rest stay at or below half the bar (balance_hard 62 of 800, hurdle 72 of 700). A
-separate run with 50 resets (robot_coding_bench PR #44; reported apart, not on this site) passed none
-either. On 2026-10-04 the benchmark was the 9 tasks no model had passed (stair, hurdle, balance_hard,
+In limited mode no episode reached the bar: every run spent its 50 resets but bookshelf_simple, whose hour
+ran out after 29; balance_hard's longest episode lasted 55 control steps. In unlimited mode cube passed
+with 449 of 370; the closest of the rest is window's 583 of 650, and the others stay below half the bar
+(balance_hard 45 of 800, hurdle 79 of 700). robot_coding_bench's third mode, standard-realtime, is not on
+this site (0 of 9; its PR reports it).
+
+On image 0.1.6 (other physics), on 2026-10-06, with protocol v1.0.1's limited mode (one episode, no
+reset), it passed none in either mode (unlimited: window 503 of 650, walk 491 of 700); a separate run
+with 50 resets (robot_coding_bench PR #44; not on this site) passed none either. On 2026-10-04 the
+benchmark was the 9 tasks no model had passed (stair, hurdle, balance_hard,
 highbar_simple, powerlift, package, room, truck, bookshelf_simple), and GPT-6 Luna passed none of
 them in either mode.
 
@@ -105,7 +111,7 @@ sums up its runs.
 
 GPT-6 Luna's earlier trials on all 24 tasks (2026-09-28, and its protocol v1.0 sweep with 50 resets
 in limited mode, which passed push and sit_hard) stay in its run: on the 9 tasks the latest of them
-is each task's history beside the 2026-10-06 trial, and on the 14 tasks outside the benchmark the
+is each task's history beside the 2026-10-08 trial, and on the 14 tasks outside the benchmark the
 latest is the trial shown. The run picker also has GPT-6 Sol and Claude Opus 5.5 (five tasks each,
 2026-09-28).
 

@@ -5,8 +5,8 @@ benchmark: humanoidbench
 
 # --- upstream: mirrored from the benchmark's own published metadata by scripts/import_<benchmark>_tasks.py. Do not hand-edit. ---
 upstream:
-  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ be39e53bb
-  synced: '2026-10-06'
+  source: https://github.com/carlosferrazza/humanoid-bench @ cb11890, as defined in our task definitions @ 7e1b8687d
+  synced: '2026-10-08'
   instruction: 'Six loose objects — a chair, a trophy, a pair of headphones, two packages and a snow globe — are scattered around the room (the table and the bookshelf are fixed). Tidy up: gather them together, so they end up close to one another rather than spread out.'
   env_id: h1hand-room-v0
   robot: Unitree H1 with two Shadow hands (61 actuators)
@@ -21,8 +21,9 @@ upstream:
       steps)
     - 'unlimited: both fresh-process replays of the handed-in trajectory reach it and
       end in the same state'
-    - 'limited: the run passes the moment its one episode reaches it (no reset in our
-      runs since 2026-10-04; the recorded episode replays to the same state)'
+    - 'limited: the run passes the moment an episode reaches it (50 resets in our runs
+      since 2026-10-07, none from 2026-10-04; the recorded episode replays to the same
+      state)'
   scoring: Unusually, this task gives you no target positions at all. The dominant term measures how spread out the six objects are — the variance of their horizontal coordinates — and rewards making that small; a smaller term pays for standing steadily. Any arrangement that brings the objects close together scores, wherever in the room you do it.
   ends_early: The episode ends if the pelvis drops near the ground.
   zero_action_return: 8.84
@@ -52,4 +53,4 @@ _No demo._
 
 ## Discussion
 
-Blocked on walking: GPT-6 Luna (2026-10-06) stands the whole unlimited episode without moving an object (168 of 400), and its limited episode fell at step 127. (@williamzhangNU)
+Blocked on walking: GPT-6 Luna (2026-10-08) stands the whole unlimited episode without touching an object (197 of 400), and none of its limited episodes lasts past step 147 or gets more than 1.2 m forward; the nearest object is 1.9 m away. (@williamzhangNU)
