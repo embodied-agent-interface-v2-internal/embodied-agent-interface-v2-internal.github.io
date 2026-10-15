@@ -161,6 +161,7 @@ nav:
       - Overview: runs/overview.md
   # A benchmark's landing page IS its task list — you arrive on the videos,
   # not on a page that links to them.
+  - Analysis: analysis/index.md
   - Benchmarks:
       - benchmarks/index.md
       - BEHAVIOR-1K:

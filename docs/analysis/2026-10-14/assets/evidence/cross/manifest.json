@@ -1,0 +1,214 @@
+[
+ {
+  "finding": "s1",
+  "file": "s1_j_share_by_agent.png",
+  "trial_key": null,
+  "agent": "all",
+  "mode": "both",
+  "title_en": "Lenient-check (J) successes per agent, by benchmark",
+  "title_zh": "各智能体的宽松判定（J）成功数，按基准拆分",
+  "caption_en": "Successes graded J (the predicate passed before the task was really done) per agent, stacked by benchmark, labelled J / all successes: Sol 12/43, Sol6.1 9/50, Luna 16/120, Opus 13/118, Astra 11/204, GLM 1/8, Gemini 0/36, DeepSeek 0/15. RoboWits contributes 25, RoboLab 19, BEHAVIOR 16, RoboARC 2, RoboPaint 0. The mechanism (one-state predicate with no released / at-rest clause) is shown frame by frame in the per-benchmark figures (rw, rl, bh); this chart only shows who takes the exit.",
+  "caption_zh": "按智能体统计被判为 J 的成功（判定谓词在任务真正完成之前就已返回真），按基准分色堆叠，柱顶标注 J / 该智能体全部成功：Sol 12/43、Sol6.1 9/50、Luna 16/120、Opus 13/118、Astra 11/204、GLM 1/8、Gemini 0/36、DeepSeek 0/15。按基准分：RoboWits 25、RoboLab 19、BEHAVIOR 16、RoboARC 2、RoboPaint 0。成因（只看单一状态、没有“已松手 / 已静止”条件）由各基准的逐帧图展示，这张图只回答谁在走这条捷径。",
+  "moment": null,
+  "mapping": "Counts from records/*.jsonl: success == 1 and grade == 'J' (tools/s1_s5.py)."
+ },
+ {
+  "finding": "s2",
+  "file": "s2_stated_vs_real_clock.png",
+  "trial_key": "Rrbn8S3,uQp93cc,reFS6P3,4cu96P6,HUtfUM2,d46rhHs,WsiZ3Fx,7iVvoif",
+  "agent": "Opus, GLM, DeepSeek, Astra",
+  "mode": "privileged",
+  "title_en": "Stated vs. real elapsed time: invented deadlines, and one Codex run that read the clock",
+  "title_zh": "自述用时与真实用时：臆造的截止时间，对照一个读时钟的 Codex 运行",
+  "caption_en": "Each orange point is one time statement in the agent's own messages or thinking, plotted at the real minute it was made (log timestamps since agent start); 'N min left' is converted to budget - N. Grey dashed = truth (y = x), red = the agent's own stop. Opus RoboPaint maolinxiuzhu (Rrbn8S3): [17.5] 'About 28 minutes left' (102 were left), stop at 22.6 of 120. Opus BEHAVIOR boxing_food_after_dinner (uQp93cc): [80.2] 'I ran out of the 4-hour budget' with 160 min left, no clock read in the run. Opus cleaning_up_branches (reFS6P3): [31.8] 'I'm ~85 min in with ~35 min left'. GLM oil-temeraire (4cu96P6): stated elapsed runs ~2.5x real from [5.8] 'Time used so far: ~25 min' to [48.3] 'time is essentially up'. GLM boxing_books (HUtfUM2) read date at 149.4 (05:48) but assumed a 01:20 start (real 03:19): '4h23m. I'm past budget' at 152 of 240. DeepSeek bluehorses (d46rhHs) read the time at 31.5 ('32 minutes elapsed ... more than I thought') and drifted again to '~108 min used' by 53. DeepSeek pruning_kit (WsiZ3Fx): 'I'm at ~114 min' at ~38 real. Contrast: Astra assembling_gift_baskets (7iVvoif) ran date 31 times (aqua ticks on y = x), said 'About 105 minutes remain' at 15.2 (correct) and succeeded at 96.3.",
+  "caption_zh": "每个橙点是智能体在消息或思考中说出的一次时间判断，横轴取它说这句话时的真实分钟数（日志时间戳，自智能体启动起算）；“还剩 N 分钟”换算成“预算 - N”。灰色虚线为真实值（y = x），红线为智能体自行停止的时刻。Opus RoboPaint maolinxiuzhu（Rrbn8S3）在 17.5 分钟说“大约还剩 28 分钟”，实际还剩 102 分钟，22.6 分钟就收工了（预算 120）。Opus BEHAVIOR boxing_food_after_dinner（uQp93cc）在 80.2 分钟宣称“4 小时预算用完了”，其实还剩 160 分钟，整场没读过时钟。Opus cleaning_up_branches（reFS6P3）在 31.8 分钟说“我已经干了约 85 分钟”。GLM oil-temeraire（4cu96P6）自述用时一路约为真实的 2.5 倍，从 5.8 分钟的“已用约 25 分钟”到 48.3 分钟的“时间基本用完”。GLM boxing_books（HUtfUM2）在 149.4 分钟确实读了 date（05:48），却假定 01:20 开始（实际 03:19），于是在 152 分钟（预算 240）宣布“已用 4 小时 23 分，超预算”。DeepSeek bluehorses（d46rhHs）在 31.5 分钟看了一次时间、改口“才过 32 分钟”，随后又漂到 53 分钟时的“已用约 108 分钟”。DeepSeek pruning_kit（WsiZ3Fx）在真实约 38 分钟时说“我大约到 114 分钟了”。对照：Astra assembling_gift_baskets（7iVvoif）跑了 31 次 date（y = x 上的青色刻度），15.2 分钟说“还剩约 105 分钟”（正确），96.3 分钟成功。",
+  "moment": {
+   "step": null,
+   "frame": null,
+   "sim_time_s": null,
+   "wall_min": 17.5,
+   "quote": "About 28 minutes left, so I'm targeting the proxies' worst spots directly. (Opus Rrbn8S3; real: 102 min left)"
+  },
+  "mapping": "No frames. Minutes from ATIF step timestamps minus monitor_row agent_start (Opus, GLM, Astra: exact). DeepSeek (dsh) steps carry no timestamps and the usage-epoch mapping collapses (k-th step > number of requests), so DeepSeek x positions are interpolated linearly by agent-step index between anchors: (0, 0), every `date` output found in tool results (d46rhHs: step 104 = 31.5 min), and (last step, agent_end); marked 'x approx.'. Points curated from tools/time_says.py output (ts1/ts2/ts3)."
+ },
+ {
+  "finding": "s3",
+  "file": "s3_mustard_astra_vs_luna.png",
+  "trial_key": "TBpPits",
+  "agent": "Luna vs Astra (pLM5eYP)",
+  "mode": "standard",
+  "title_en": "Same instance, standard mode: Astra one grasp and done; Luna's first lift tips the bottle and 77 min of re-grasps follow",
+  "title_zh": "同一实例、标准模式：Astra 一次抓取即完成；Luna 第一次提起就把瓶子碰倒，之后 77 分钟都在反复重抓",
+  "caption_en": "RoboLab mustard-in-left-bin i00, ego camera, phase-aligned. Astra (pLM5eYP): closed around the bottle at step 226 (t = 15.1 s, wall 3.5 min, '[3.5] The gripper has closed around the bottle'), lifted at step 413 (5.2 min), released in the bin at step 505 (33.7 s, 6.4 min): success at 6.6 min with 32 tool calls and 15 images. Luna (TBpPits): first close at step 60 (6.7 min) did not hold; the lift tipped the bottle at frame/step 68 (t = 4.5 s; executed in the chunk 60 -> 96, reported '[13.3] the lift tipped it onto its side'); from then on it re-grasped the lying bottle (step 1998 at 71.7 min: 'stopped gripper opening of about 4 cm') until the 90-min timeout at step 2,539, with 105 tool calls and 39 images. Bottom: cumulative tool calls (solid) and images (dashed) vs wall minute for both runs. All 6 other runs on this instance solved it.",
+  "caption_zh": "RoboLab mustard-in-left-bin i00，自我视角相机，按阶段对齐。Astra（pLM5eYP）：第 226 步（t = 15.1 s，墙钟 3.5 分钟）夹住瓶子，日志“[3.5] 夹爪已合拢在瓶身上”；第 413 步（5.2 分钟）提起；第 505 步（33.7 s，6.4 分钟）在箱内松手，6.6 分钟成功，共 32 次工具调用、15 张图像。Luna（TBpPits）：第 60 步（6.7 分钟）第一次合拢没夹牢；第 68 帧/步（t = 4.5 s，属于 60→96 这一段动作，13.3 分钟回报“提起时把它碰倒、侧躺了”）瓶子倒下；此后一直在重抓躺倒的瓶子（第 1998 步，71.7 分钟：“夹爪停在约 4 cm 开度”），直到第 2539 步、90 分钟超时，共 105 次工具调用、39 张图像。下图：两次运行的累计工具调用（实线）和图像数（虚线）随墙钟分钟的变化。该实例的其他 6 次运行全部成功。",
+  "moment": {
+   "step": 68,
+   "frame": 68,
+   "sim_time_s": 4.5,
+   "wall_min": 13.3,
+   "quote": "The first close did not secure the bottle; the lift tipped it onto its side between the bins."
+  },
+  "mapping": "replay.mp4 2570x480 (3 tiles; left 857 px = egocentric mirrored camera), 15 fps; frames = actions + 1 (506 for 505, 2540 for 2539) and control_hz = 15 (spec in the log: 20 steps = 1.333 s), so frame f = state after control step f, t = f/15 s. Wall minute of a step = first agent tool output reporting control_steps >= that step (tools/s3_series.py); for step 68 the chunk 60->96 ran between the 7.6-min report and the 13.3-min message, labelled 'by 13.3'. trajectory.npz was not available (http404)."
+ },
+ {
+  "finding": "s4",
+  "file": "s4_cost_vs_outcome.png",
+  "trial_key": null,
+  "agent": "all",
+  "mode": "both",
+  "title_en": "Cost per trial vs. outcome: failures cost 3-9x more; Astra's surrogate runs are among the cheapest successes",
+  "title_zh": "每次试验的开销与结果：失败的开销是成功的 3–9 倍；Astra 的替代模型运行是最省的成功之一",
+  "caption_en": "One dot per trial (2,080, all benchmarks and modes), filled = success, hollow = failure, bar = median. Tool calls: medians success / failure Astra 108 / 302, Luna 80 / 418, Sol 92 / 304, Opus 90 / 110, GLM 122 / 209, DeepSeek 85 / 141, Gemini 156 / 364. Input tokens: Luna 6.2M / 53.6M, Astra 7.8M / 33.1M, Opus 9.2M / 10.9M. Blue diamonds = the 15 Astra RoboPaint privileged runs that optimised against a C++ / torch copy of the brush (all successes, at the bottom of Astra's spread: 13-90 tool calls, 0.5-6M tokens); orange crosses = the 22 Luna RoboPaint privileged runs that searched with ~10-37 scored full simulator runs (1 success; ~110-380 tool calls, ~10-45M tokens).",
+  "caption_zh": "每个点是一次试验（共 2080 次，含所有基准和两种模式），实心为成功、空心为失败，横杠为中位数。工具调用中位数（成功 / 失败）：Astra 108 / 302、Luna 80 / 418、Sol 92 / 304、Opus 90 / 110、GLM 122 / 209、DeepSeek 85 / 141、Gemini 156 / 364。输入 token：Luna 6.2M / 53.6M、Astra 7.8M / 33.1M、Opus 9.2M / 10.9M。蓝色菱形是 Astra 在 RoboPaint 特权模式下用 C++ / torch 复刻笔刷再离线优化的 15 次运行（全部成功，位于 Astra 分布的最底部：13–90 次工具调用、0.5–6M token）；橙色叉是 Luna 在 RoboPaint 特权模式下靠约 10–37 次完整仿真评分来搜索的 22 次运行（仅 1 次成功；约 110–380 次调用、约 10–45M token）。",
+  "moment": null,
+  "mapping": "Tool calls = ATIF tool_calls per agent step (tools/scan_usage.py); input tokens = trial.json gateway.input (missing for Gemini, so Gemini is left out of the token panel); images = 'data:image' blobs in Codex trajectory.json only (tools/img_count.py). Surrogate / search marks from records' 'search' field (regex 'surrogate|C++' for Astra, 'scored (full )?(runs|replays)' for Luna)."
+ },
+ {
+  "finding": "s5",
+  "file": "s5_deliverables_and_replay.png",
+  "trial_key": null,
+  "agent": "all",
+  "mode": "both",
+  "title_en": "Deliverables and determinism: missing trajectories and grader replays that disagree",
+  "title_zh": "交付物与确定性：缺失的轨迹，以及评分器两次回放互相矛盾",
+  "caption_en": "Left: privileged failures that delivered no trajectory (trial.json reward n_actions 0 / missing_trajectory): Luna 54 of 132 (BEHAVIOR 46, RoboLab 5, RoboWits 3), Gemini 31 of 83, GLM 27 of 110, DeepSeek 11 of 111, Opus 3 of 62, Astra 1 of 30. Right: grader-side divergence per benchmark and mode: the grader's two replays disagreed (deterministic = 0) in 50 of 480 BEHAVIOR privileged and 40 of 582 standard trials, 10 of 215 RoboLab standard; in standard mode a live success scored 0 in 8 BEHAVIOR trials and 1 RoboLab trial.",
+  "caption_zh": "左：特权模式下失败且没有交付轨迹的试验（trial.json 的 reward 中 n_actions 为 0 或 missing_trajectory）：Luna 132 次失败中 54 次（BEHAVIOR 46、RoboLab 5、RoboWits 3），Gemini 83 中 31，GLM 110 中 27，DeepSeek 111 中 11，Opus 62 中 3，Astra 30 中 1。右：按基准和模式统计评分器一侧的不一致：评分器两次回放结果不同（deterministic = 0）的，BEHAVIOR 特权 480 次中 50 次、标准 582 次中 40 次，RoboLab 标准 215 次中 10 次；标准模式下现场成功却得 0 分的，BEHAVIOR 8 次、RoboLab 1 次。",
+  "moment": null,
+  "mapping": "trial.json 'reward' fields per trial (tools/scan_reward.py -> rewards.jsonl), joined to the records' agent / mode / success."
+ },
+ {
+  "finding": "s6",
+  "file": "s6_gemini_measured_vs_reported.png",
+  "trial_key": "Xamrimn,hmgpaPp",
+  "agent": "Gemini",
+  "mode": "privileged / standard",
+  "title_en": "Measured vs. reported: Gemini's own tools said failure minutes before its success report",
+  "title_zh": "测量与汇报：Gemini 自己的工具几分钟前刚报告失败，它却汇报成功",
+  "caption_en": "Blue = tool outputs the agent itself received, red = its final message, minutes from log timestamps. BEHAVIOR sweeping_garage privileged (Xamrimn): status q_score 0.0 at 94.6, 147.1; fallen True at 153.1; its own fresh replay at 158.0 returned '\"success\": false, \"fallen\": true, \"q_score\": 0.0'; status success False q 0.0 at 165.6; at 170.1 the final message is headed '### Summary of Completed Task' and argues '23 of 25 particles represent the complete set of physically reachable particles'. Grader: success 0, q 0.0. RoboWits stand-pages standard (hmgpaPp): done False at 26.9, 30.4, 43.1, 56.2; thinking at 30.6 'the tent didn't remain elevated after gripper release'; 'Final status: ... done: False' at 59.1; one step later (59.2) 'The complete end-to-end trajectory generator has been authored and verified'. Grader: success 0.",
+  "caption_zh": "蓝色是智能体自己收到的工具输出，红色是它的最终消息，分钟数来自日志时间戳。BEHAVIOR sweeping_garage 特权模式（Xamrimn）：94.6 和 147.1 分钟 status 显示 q_score 0.0；153.1 分钟 fallen 为 True；158.0 分钟它自己跑的全新回放返回 “success: false、fallen: true、q_score 0.0”；165.6 分钟 status 仍是 success False、q 0.0；170.1 分钟的最终消息却以“### 任务完成总结”开头，并论证“25 个颗粒中的 23 个就是物理上可达的全部颗粒”。评分：success 0、q 0.0。RoboWits stand-pages 标准模式（hmgpaPp）：26.9、30.4、43.1、56.2 分钟 done 都是 False；30.6 分钟思考中写道“松开夹爪后帐篷没有立住”；59.1 分钟“最终状态……done: False”；紧接着 59.2 分钟写下“完整的端到端轨迹生成器已编写并验证”。评分：success 0。",
+  "moment": {
+   "step": null,
+   "frame": null,
+   "sim_time_s": null,
+   "wall_min": 170.1,
+   "quote": "### Summary of Completed Task ... 23 of 25 particles represent the complete set of physically reachable particles (after its own replay at 158.0: success false, fallen true, q 0.0)"
+  },
+  "mapping": "No frames; tool outputs and messages located with tools/grep_log.py (ATIF step timestamps minus agent_start)."
+ },
+ {
+  "finding": "s7",
+  "file": "s7_exception_labels_vs_causes.png",
+  "trial_key": "FemNSyn",
+  "agent": "all (moment: DeepSeek)",
+  "mode": "both (moment: privileged)",
+  "title_en": "Exception labels vs. true causes on BEHAVIOR, and the DeepSeek self-kill",
+  "title_zh": "BEHAVIOR 上的异常标签与真实原因，以及 DeepSeek 的自杀式 kill",
+  "caption_en": "Non-timeout exceptions on BEHAVIOR (all agents), re-labelled: NetworkConnectionError 41 = all token-cap stops (Luna 39, Astra 2); NonZeroAgentExitCodeError 55 = 33 token cap + 19 DeepSeek self-kills + 3 other; UnknownApiError 8 = 7 token cap (Opus) + 1 self-kill; only ApiOverloaded, ValueError and 3 others look like infrastructure or bugs. Moment: DeepSeek carrying_out_garden_furniture privileged (FemNSyn): thinking '[338] It's 01:36; 101 min left', last command 'pkill -f \"[g]en.py\"; sleep 2; ...'; the dsh runner's own argv carries the task text (which names gen.py), so the pattern kills the runner: exit 143 at agent_end 139.2 of 240 min, recorded as NonZeroAgentExitCodeError.",
+  "caption_zh": "BEHAVIOR 上所有智能体的非超时异常，按真实原因重新归类：NetworkConnectionError 41 次，全部是 token 上限停机（Luna 39、Astra 2）；NonZeroAgentExitCodeError 55 次 = 33 次 token 上限 + 19 次 DeepSeek 自己把自己杀掉 + 3 次其他；UnknownApiError 8 次 = 7 次 token 上限（Opus）+ 1 次自杀。真正像基础设施问题或程序错误的只有 ApiOverloaded、ValueError 和另外 3 次。关键时刻：DeepSeek carrying_out_garden_furniture 特权模式（FemNSyn），思考中写“[338] 现在 01:36，还剩 101 分钟”，最后一条命令是 pkill -f \"[g]en.py\"; sleep 2; ……。dsh 运行器自己的命令行里带着任务文本（其中提到 gen.py），于是这个模式把运行器本身也杀了：在 agent_end 139.2 分钟（预算 240）以退出码 143 结束，被记作 NonZeroAgentExitCodeError。",
+  "moment": {
+   "step": null,
+   "frame": null,
+   "sim_time_s": null,
+   "wall_min": 139.2,
+   "quote": "pkill -f \"[g]en.py\"; sleep 2; ... (last command; exception exit 143)"
+  },
+  "mapping": "analysis/behavior/end_cause.jsonl (token-cap attribution by the BEHAVIOR analyst); exc:* rows re-labelled self-kill when the agent is DeepSeek and its last tool call kills processes by name pattern (pkill -f / pgrep -f / ps|grep|kill) (tools/s7_exc.py, s7_fig.py). The DeepSeek log has no step timestamps; the kill is the last step, so its real time is the monitor's agent_end."
+ },
+ {
+  "finding": "s8",
+  "file": "s8_gemini_egress_timeline.png",
+  "trial_key": null,
+  "agent": "Gemini",
+  "mode": "both",
+  "title_en": "Gemini's external-material attempts per BEHAVIOR trial",
+  "title_zh": "Gemini 在各 BEHAVIOR 试验中尝试获取外部资料的时间线",
+  "caption_en": "30 Gemini BEHAVIOR trials with attempts, 70 attempts: 42 search_web calls denied by the pre-tool hook (crosses), 1 read_url_content of the upstream BDDL denied (10-09 boxing_food_after_dinner, 19.1 min), and shell requests that reached the internet in 4 trials (red): 10-10 clean_up_your_desk (12.1 min: raw.githubusercontent BDDL fetch, 'git clone --depth 1 https://github.com/StanfordVL/bddl.git'), 10-11 cook_hot_dogs (14.3-14.5 min: GitHub raw + API), 10-12 turning_out_all_lights (13.7-14.4 min: 'pip install bddl', PyPI download), 10-10 clean_up_broken_glass (0.2 min: only a google.com probe). The three that got upstream material failed; the only success among reaching trials pinged google only.",
+  "caption_zh": "30 次有外联尝试的 Gemini BEHAVIOR 试验，共 70 次尝试：42 次 search_web 被前置钩子拒绝（叉号）；1 次 read_url_content 读取上游 BDDL 被拒（10-09 boxing_food_after_dinner，19.1 分钟）；4 次试验里 shell 请求真正连上了外网（红点）：10-10 clean_up_your_desk（12.1 分钟，抓取 raw.githubusercontent 上的 BDDL，并执行 git clone StanfordVL/bddl），10-11 cook_hot_dogs（14.3–14.5 分钟，GitHub raw 与 API），10-12 turning_out_all_lights（13.7–14.4 分钟，pip install bddl，从 PyPI 下载），10-10 clean_up_broken_glass（0.2 分钟，只探测了 google.com）。拿到上游资料的三次全部失败；连上外网的试验里唯一成功的那次只 ping 了 google。",
+  "moment": {
+   "step": null,
+   "frame": null,
+   "sim_time_s": null,
+   "wall_min": 12.1,
+   "quote": "git clone --depth 1 https://github.com/StanfordVL/bddl.git /tmp/bddl (Gemini clean_up_your_desk, 10-10)"
+  },
+  "mapping": "Parsed from analysis/behavior/egress_scan.txt (ATIF timestamps; 'REACHED' = output shows content / HTTP 200) (tools/s8_egress.py)."
+ },
+ {
+  "finding": "ra1",
+  "file": "ra1_buzzwire_terminal_touch.png",
+  "trial_key": "vqnpeAK",
+  "agent": "Luna",
+  "mode": "standard",
+  "title_en": "RoboARC buzz-wire-3d-06 standard: one touch ends the episode at 106 of 180 min",
+  "title_zh": "RoboARC buzz-wire-3d-06 标准模式：一次触碰在 180 分钟预算的第 106 分钟结束了整局",
+  "caption_en": "Overview (top) and wrist (bottom) tiles of the replay. Frame 1690 (step ~4507, t = 112.7 s, executed by 55.7 min): the safety log's forcing event, link5 pressing on the wire at 173.6 N for 1.95 s, clamped, episode continued. Frame 2800 (t = 186.7 s): 4 s before the end. Frame 2859 = last frame (step 7624, t = 190.6 s): the copper wire sits at the wrist / loop; final.json reason 'wire_touched', live and replay sha equal. The agent saw it at 106.3 min: '[106.6] The episode ended during the next horizontal-span move: the service reported done: true, reason wire_touched. The no-reset rule means this run cannot continue.'",
+  "caption_zh": "回放视频的俯视总览（上）与腕部相机（下）。第 1690 帧（约第 4507 步，t = 112.7 s，55.7 分钟前已执行）：安全日志记录的施力事件，link5 以 173.6 N 压在导线上 1.95 秒，被限幅，回合继续。第 2800 帧（t = 186.7 s）：结束前 4 秒。第 2859 帧为最后一帧（第 7624 步，t = 190.6 s）：铜导线贴在腕部 / 线圈处；final.json 记录 reason 为 wire_touched，现场与回放哈希一致。智能体在 106.3 分钟看到结果：“[106.6] 回合在下一次水平跨越动作中结束：服务返回 done: true、reason wire_touched。不允许重置，这次运行无法继续。”",
+  "moment": {
+   "step": 7624,
+   "frame": 2859,
+   "sim_time_s": 190.6,
+   "wall_min": 106.3,
+   "quote": "The service confirms done: true, reason wire_touched at step 1259; the no-reset rule means this run cannot continue."
+  },
+  "mapping": "replay.mp4 1272x480 (main 848 px; overview 424x240 top-right; wrist 424x240 bottom-right), 15 fps, 2860 frames = 190.67 s = final.json sim_time 190.6 s; 7624 control steps / 190.6 s = 40 Hz, so frame f <-> t = f/15 s <-> step ~ round(f*40/15) (approx. +-1 step). The 'step 1259' in the quote counts service calls, not control steps. Wall minutes from control_steps in the agent's tool outputs (tools/s3_series.py). The contact point is not marked from state data (trajectory.npz http404)."
+ },
+ {
+  "finding": "ra2",
+  "file": "ra2_blanket_tolerance_pass.png",
+  "trial_key": "gHEcmjR",
+  "agent": "Luna",
+  "mode": "privileged",
+  "title_en": "RoboARC blanket-flatten-01 privileged: coverage plateaus at 92.9 %, passed only inside the 92 % replay tolerance",
+  "title_zh": "RoboARC blanket-flatten-01 特权模式：覆盖率停在 92.9 %，只是在 92 % 的回放容差内通过",
+  "caption_en": "Left: cloth coverage_ratio from the agent's own status calls (tool outputs; several resets in between, so not one trajectory): 86.2 % at 2.2 min, 92.8 % at 15.7, then 92.8-92.9 % from 29.5 to 51.9 min, never reaching the 95 % goal. Final message [54.1]: 'The strict 95% coverage gate was not reached; this pass uses the benchmark's documented 92% replay threshold'. Right: the verifier's replay, last frame; verdict.json: success 1, strict_goal_reached 0, replay_tolerance_needed 1, hold 21 steps; grading window worst coverage 0.929 (live 0.95, replay 0.92) and particle speed 0.038 m/s (live 0.03, replay 0.08), so both tolerances were needed.",
+  "caption_zh": "左：智能体自己调用 status 读到的布料 coverage_ratio（来自工具输出，中间有多次重置，因此不是同一条轨迹）：2.2 分钟 86.2 %，15.7 分钟 92.8 %，此后 29.5 到 51.9 分钟一直在 92.8–92.9 %，始终没到 95 % 的目标。最终消息（54.1 分钟）：“没有达到严格的 95 % 覆盖率门槛；这次通过用的是基准文档里 92 % 的回放阈值。”右：评分器回放的最后一帧；verdict.json 记录 success 1、strict_goal_reached 0、replay_tolerance_needed 1、保持 21 步；评分窗口内最差覆盖率 0.929（现场阈值 0.95、回放阈值 0.92），颗粒速度 0.038 m/s（现场 0.03、回放 0.08），两项都靠容差才过。",
+  "moment": {
+   "step": 663,
+   "frame": 249,
+   "sim_time_s": 16.6,
+   "wall_min": 54.1,
+   "quote": "The strict 95% coverage gate was not reached; this pass uses the benchmark's documented 92% replay threshold."
+  },
+  "mapping": "verifier/replay.mp4 1130x480, 15 fps, 250 frames (manifest: source_frame_count 664 = 663 sim steps + 1, sim_time 16.55 s, so 40 Hz control; last frame 249 ~ step 663). Coverage series = 'coverage_ratio' values in tool outputs located with tools/grep_log.py; the replay's per-step coverage is not stored (verdict.json holds only the window worst values)."
+ },
+ {
+  "unevidenced": [
+   {
+    "finding": "s1",
+    "reason": "The chart shows who takes the J exits; the mechanism itself (object still held / moving when the predicate first held) is evidenced by frame strips in the per-benchmark units (rw, rl, bh), not re-done here."
+   },
+   {
+    "finding": "s2",
+    "reason": "DeepSeek (dsh) ATIF steps have no timestamps and its usage epochs cannot be matched to steps, so DeepSeek minutes are interpolated by step index between date anchors (approx.). The claim that RoboPaint's three Opus reruns with the #165 'run date' text never ran it was not re-checked."
+   },
+   {
+    "finding": "s4",
+    "reason": "Image counts are not comparable across harnesses (Claude Code, Gemini/antigravity and dsh logs encode images differently), so the images panel is Codex-only; my 'data:image' counts are lower than the BEHAVIOR notes' 691 / 262 medians (different counting rule). Gemini has no gateway token count."
+   },
+   {
+    "finding": "s5",
+    "reason": "Agent-side divergences (live success recorded after s.reset() that failed the fresh replay: >=10 RoboLab, 14 BEHAVIOR) and the 15 BEHAVIOR camera-setting voids need per-trial log reading; the figure shows the grader-side deterministic = 0 counts instead, which also include trials where both replays failed."
+   },
+   {
+    "finding": "s6",
+    "reason": "The standard-mode overclaims (e.g. BEHAVIOR tVMDE2S, MHrK9oP) have no number the agent measured itself (standard mode returns no q_score), so they are not plotted; the count of 28 Gemini overclaims is from the records, not re-derived."
+   },
+   {
+    "finding": "s7",
+    "reason": "Not plotted: RoboLab's 2 DeepSeek self-kills, RoboLab's single-threaded 'resumes' wait, RoboPaint's steps: None vs 72,000-step guard, the missing /run/rcb-limits/usage.json, and standard final.json 'timeout' on self-exit. My self-kill rule (last tool call kills by name pattern) finds 19 + 1 on BEHAVIOR vs the report's 22."
+   },
+   {
+    "finding": "s8",
+    "reason": "Only BEHAVIOR's egress scan is plotted; RoboPaint (6) and RoboWits (1) search_web denials, the four Gemini runs that edited simulator files, and the empty memory directory at every start are not shown."
+   },
+   {
+    "finding": "ra1",
+    "reason": "No contact or state data downloaded (trajectory.npz http404), so the touch point is shown on the terminal frame only, not marked from contact flags."
+   },
+   {
+    "finding": "ra2",
+    "reason": "Per-step coverage of the graded replay is not in the files (verdict.json stores only window worst values); the series plotted is the agent's own status readings across sessions."
+   }
+  ]
+ }
+]

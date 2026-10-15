@@ -1,0 +1,242 @@
+[
+ {
+  "finding": "rl1",
+  "file": "rl1_food_packing2_cans_success_mid_carry.png",
+  "trial_key": "EFyqrBw",
+  "agent": "Opus",
+  "mode": "standard",
+  "also": [
+   {
+    "trial_key": "Jc3Nu9b",
+    "agent": "Sol",
+    "mode": "privileged"
+   }
+  ],
+  "title_en": "food-packing2-cans: success fires while the tuna can is still clamped (Opus standard, Sol privileged)",
+  "title_zh": "food-packing2-cans：金枪鱼罐头还夹在爪里，成功就判定了（Opus 标准模式、Sol 特权模式）",
+  "caption_en": "Same instance, two agents, last frame of each replay (= the step at which the success termination ended the episode), with the front view 4 s earlier. Opus standard: success at control step 1648 (frame 1648, t = 109.9 s); its last call at 18.9 min was a jpath toward the drop point (0.62, 0.40) that errored because the episode was over; status at 19.5 min: control_steps 1648, done, success. The wrist camera shows the can between the closed pads, high over the bin. [20.0] \"the tuna can is still in the gripper, held high over the bin … Success fired mid-carry … I never released the can.\" Sol privileged: success at step 493 (t = 32.9 s), can held at the bin rim; [39.3] \"The episode ended as the tuna crossed into the bin, before the later release commands could run.\" Cause: RoboLab's gripper contact body is one link (Robotiq left_inner_finger; gripper_detached = < 0.1 N on it).",
+  "caption_zh": "同一实例、两个智能体，各取回放的最后一帧（即成功终止 episode 的那一步），并配上 4 秒前的前视图。Opus（标准模式）在第 1648 个控制步（第 1648 帧，t = 109.9 s）判成功：它 18.9 分钟发出的最后一个调用是把罐头往投放点 (0.62, 0.40) 运的 jpath，因 episode 已结束而报错；19.5 分钟查询状态：control_steps 1648、done、success。腕部相机里罐头仍夹在闭合的指垫之间，悬在箱子上方。它自己写道：“金枪鱼罐头还在爪里，高高举在箱子上方……成功是在搬运途中触发的……我从没松开它。”Sol（特权模式）在第 493 步（t = 32.9 s）判成功，罐头仍被夹在箱沿处；[39.3]“罐头刚越过箱沿 episode 就结束了，后面的松爪指令根本没机会执行。”原因：RoboLab 的夹爪接触体只有一根连杆（Robotiq left_inner_finger），gripper_detached 的判据是该连杆受力 < 0.1 N。",
+  "moment": {
+   "step": 1648,
+   "frame": 1648,
+   "sim_time_s": 109.9,
+   "wall_min": 18.9,
+   "quote": "the tuna can is still in the gripper, held high over the bin … Success fired mid-carry … I never released the can.",
+   "second": {
+    "trial_key": "Jc3Nu9b",
+    "step": 493,
+    "frame": 493,
+    "sim_time_s": 32.9,
+    "wall_min": 39.3,
+    "quote": "The episode ended as the tuna crossed into the bin, before the later release commands could run."
+   }
+  },
+  "mapping": "Replay video from the grader's replay CLI: 15 fps, 2570x480 = front | over-shoulder | wrist camera tiles (856 px each); one frame at reset plus one after every control step (every = 1 since n_actions < 9000), checked: frame count = n_actions + 1 (ffprobe). So frame F = state after control step F, sim time = F/15 s (15 Hz control). Opus's wall minute: the call that ended the episode started at 18.9 min (digest of claude-code.txt); Sol's 493 is the saved trajectory length it reported at 39.3 min.",
+  "note": "Correction for the report text: Astra privileged (Zh575Hx) graded trajectory is its 10.9-min BASELINE, in which 'The tuna can slipped during transfer and landed inside the bin'; the [16.0] wedged-rim release script was a refinement it later discarded ([17.4] 'keeping the successful baseline'). Its soup can was released with open_gripper(25) before success. Gemini standard (CDNd3mQ): in the last frames (3208-3219) the tuna can still sits between the fingers inside the bin; whether the gripper had opened cannot be read from the video, and its task log was not captured — treat its 'released' as unverified."
+ },
+ {
+  "finding": "rl1",
+  "file": "rl1_luna_butter_success_grip_closed.png",
+  "trial_key": "YpUoYPg",
+  "agent": "Luna",
+  "mode": "standard",
+  "title_en": "butter-above-raisin: success at row 13 of 19 of a closed-grip lowering (Luna standard)",
+  "title_zh": "butter-above-raisin：夹爪闭合下放到第 13/19 行时就判成功（Luna 标准模式）",
+  "caption_en": "Frames 200 (carry), 230 (lowering, grip closed), 256 (success) front view, and 256 wrist view with the fingers still closed around the butter on top of the raisin box. [17.8] `python gen.py place`: status before the call control_steps 221; output 'lower_to_raisins rows 19 ... executed 13 done True reason success'; final status control_steps 256 (t = 17.1 s). Luna's gen.py checks status()['done'] between phases and returns, so the release phase never runs when the lenient predicate fires during the lowering.",
+  "caption_zh": "第 200 帧（搬运）、第 230 帧（夹爪闭合状态下下放）、第 256 帧（成功）的前视图，以及第 256 帧的腕部视图：手指仍闭合夹着黄油，黄油已压在葡萄干盒上。[17.8] 执行 `python gen.py place`：调用前 control_steps 为 221，输出“lower_to_raisins rows 19 ... executed 13 done True reason success”；最终状态 control_steps 256（t = 17.1 s）。Luna 的 gen.py 在每个阶段之间检查 status()['done'] 并直接返回，所以只要宽松判据在下放途中成立，松爪阶段就根本不会执行。",
+  "moment": {
+   "step": 256,
+   "frame": 256,
+   "sim_time_s": 17.1,
+   "wall_min": 17.8,
+   "quote": "lower_to_raisins rows 19 distance_m 0.1058 executed 13 done True reason success"
+  },
+  "mapping": "Replay video from the grader's replay CLI: 15 fps, 2570x480 = front | over-shoulder | wrist camera tiles (856 px each); one frame at reset plus one after every control step (every = 1 since n_actions < 9000), checked: frame count = n_actions + 1 (ffprobe). So frame F = state after control step F, sim time = F/15 s (15 Hz control). Steps from the status prints in Luna's log: 221 before the place call, 256 after (= video length - 1)."
+ },
+ {
+  "finding": "rl2",
+  "file": "rl2_banana_in_bowl_four_agents.png",
+  "trial_key": "6WcxGAB",
+  "agent": "Luna",
+  "mode": "standard",
+  "also": [
+   {
+    "trial_key": "25YQQ4q",
+    "agent": "Sol"
+   },
+   {
+    "trial_key": "HQ5p4CF",
+    "agent": "Opus"
+   },
+   {
+    "trial_key": "iv7d4Pm",
+    "agent": "GLM"
+   }
+  ],
+  "title_en": "banana-in-bowl (standard, same instance): grasp, loss and end for Sol, Opus, Luna and GLM",
+  "title_zh": "banana-in-bowl（标准模式、同一实例）：Sol、Opus、Luna、GLM 的抓取、丢失与结局",
+  "caption_en": "Front camera, one row per agent. Sol: grasp at step 105, lowered into the bowl at 180, success at 331. Opus: banana tossed during the lift (frame 83), out of view at 97 (t = 6.5 s, 'flung back near the robot's base', ~5 min), success only at step 2762 (42 min). Luna: the slip at 32.9 min ('rolled toward the table's right edge') left the banana on the edge; it falls off at frame 812-818 (t ≈ 54.5 s; log: step 793 at 53.0 min, 815 at 55.1 min); [69.8] 'move the bowl toward the edge above it so the bowl can meet the banana'; at the 90-min stop (step 1949) the bowl is at the edge, the banana on the floor. GLM: banana lost between steps 199 and 221 (log: step 193 at 9.1 min, 278 at 10.2 min), the table visibly pushed askew in the same frames; [41.5] 'Now the launch plan: push the bowl'; at step 7313 neither object is on the table.",
+  "caption_zh": "前视相机，每个智能体一行。Sol：第 105 步抓起，第 180 步放进碗里，第 331 步成功。Opus：抬起时香蕉被甩出（第 83 帧），第 97 帧（t = 6.5 s，约第 5 分钟）已出画，“被甩回机器人底座附近”，直到第 2762 步（42 分钟）才成功。Luna：32.9 分钟时打滑（“滚向桌子右边缘”），香蕉停在桌边；在第 812–818 帧（t ≈ 54.5 s；日志：53.0 分钟第 793 步、55.1 分钟第 815 步）掉下桌；[69.8]“把碗挪到它上方的桌边，让碗去够香蕉”；90 分钟截止时（第 1949 步）碗在桌边、香蕉在地上。GLM：香蕉在第 199–221 步之间丢失（日志：9.1 分钟第 193 步、10.2 分钟第 278 步），同一帧里桌子明显被推歪；[41.5]“现在的发射方案：推碗”；到第 7313 步两样东西都不在桌上了。",
+  "moment": {
+   "step": 818,
+   "frame": 818,
+   "sim_time_s": 54.5,
+   "wall_min": 54.0,
+   "wall_min_note": "interpolated between step 793 (53.0 min) and 815 (55.1 min)",
+   "quote": "move the bowl toward the edge above it so the bowl can meet the banana"
+  },
+  "mapping": "Replay video from the grader's replay CLI: 15 fps, 2570x480 = front | over-shoulder | wrist camera tiles (856 px each); one frame at reset plus one after every control step (every = 1 since n_actions < 9000), checked: frame count = n_actions + 1 (ffprobe). So frame F = state after control step F, sim time = F/15 s (15 Hz control). Wall minutes for Luna and GLM from the control_steps printed in their logs (interpolated, approx.); Opus and Sol printed no step counts, so their minutes come from their messages.",
+  "note": "Correction for the report text: Luna's banana did not leave the table at ~33 min; at 32.9 min it slipped and rolled to the table's edge ([34.5] 'partly over the table edge'), and it fell off at step ~812 (~54 min)."
+ },
+ {
+  "finding": "rl2",
+  "file": "rl2_sol61_three_total_tilted_bin.png",
+  "trial_key": "XfwwAwu",
+  "agent": "Sol6.1",
+  "mode": "standard",
+  "title_en": "bananas-in-bin-three-total: success scored by lifting and tilting the bin over the fruit (Sol6.1)",
+  "title_zh": "bananas-in-bin-three-total：把箱子抬起、倾斜罩向香蕉而得分（Sol6.1）",
+  "caption_en": "Frames 2400 (bin on its side, held by the arm), 2495 (bin lifted), 2571 (success, t = 171.4 s): the bin hangs tilted against the arm, the bananas beneath it are not in the bin in any physical sense. [1.9] \"I'll grip its empty rim and move and tilt it toward the nearest banana, using the stated definition of 'inside'\"; [51.9] \"The bin is resting against the arm now\"; [54.9] success confirmed (graded J).",
+  "caption_zh": "第 2400 帧（箱子侧倒、被机械臂顶着）、第 2495 帧（箱子被抬起）、第 2571 帧（成功，t = 171.4 s）：箱子斜挂在机械臂上，下方的香蕉在物理意义上根本不在箱里。[1.9]“我会抓住空箱的边沿，按题目对‘在里面’的定义，把箱子移过去、倾斜着对准最近的香蕉”；[51.9]“箱子现在靠在机械臂上”；[54.9] 服务确认成功（评为 J）。",
+  "moment": {
+   "step": 2571,
+   "frame": 2571,
+   "sim_time_s": 171.4,
+   "wall_min": 54.9,
+   "quote": "I'll grip its empty rim and move and tilt it toward the nearest banana, using the stated definition of \"inside\""
+  },
+  "mapping": "Replay video from the grader's replay CLI: 15 fps, 2570x480 = front | over-shoulder | wrist camera tiles (856 px each); one frame at reset plus one after every control step (every = 1 since n_actions < 9000), checked: frame count = n_actions + 1 (ffprobe). So frame F = state after control step F, sim time = F/15 s (15 Hz control). The success step = the last frame (the replay stops at success); its wall minute = the agent's success message (the log prints no step counts)."
+ },
+ {
+  "finding": "rl3",
+  "file": "rl3_raisin_box_luna_probe_loop.png",
+  "trial_key": "9E96ryN",
+  "agent": "Luna",
+  "mode": "standard",
+  "also": [
+   {
+    "trial_key": "SLgjMjW",
+    "agent": "Sol6.1"
+   },
+   {
+    "trial_key": "Doh7bHm",
+    "agent": "Opus"
+   }
+  ],
+  "title_en": "larger-object-raisin-box: Luna's 90-min probe loop vs. Sol6.1 (3.2 min) and Opus (8.9 min)",
+  "title_zh": "larger-object-raisin-box：Luna 90 分钟的反复试探 vs. Sol6.1（3.2 分钟）和 Opus（8.9 分钟）",
+  "caption_en": "Cumulative control steps vs. wall minute. Luna's curve uses the ~100 control_steps values printed in its log (3749 steps, 229 calls in all); Sol6.1 (155 steps) and Opus (329 steps) printed none, so only their start and success points are drawn. Dotted lines = Luna's close/grasp attempts from its messages (12.3, 18.9, 28.3, 35.6 and the 36.6 slip, then 30° side, roll, tilted grips); red line = 75.1 min, 'switching to a controlled push toward the bin opening'. [36.6] 'the pads overlapped only the top 8-9 mm of its side'. Bottom: wrist camera at the steps printed after four of Luna's attempts (241, 544, 851, 2224) and at Sol6.1's single lift (step 110).",
+  "caption_zh": "累计控制步数随墙钟分钟的变化。Luna 的曲线来自它日志里打印的约 100 个 control_steps 值（共 3749 步、229 次调用）；Sol6.1（155 步）和 Opus（329 步）日志里没有打印步数，只画了起点和成功点。虚线是 Luna 消息里的每次闭合/抓取尝试（12.3、18.9、28.3、35.6 分钟，以及 36.6 分钟的打滑，之后是 30° 侧抓、换腕部 roll、斜抓）；红线是 75.1 分钟，“改为可控地把盒子推向箱口”。[36.6]“指垫只搭在盒子侧面最上面 8–9 毫米”。下方：Luna 四次尝试后打印的步数处（241、544、851、2224）的腕部画面，以及 Sol6.1 唯一一次抬起（第 110 步）。",
+  "moment": {
+   "step": 857,
+   "frame": 857,
+   "sim_time_s": 57.1,
+   "wall_min": 36.6,
+   "quote": "The carton still slipped free during the lift. At the prior contact height, the pads overlapped only the top 8–9 mm of its side"
+  },
+  "mapping": "Replay video from the grader's replay CLI: 15 fps, 2570x480 = front | over-shoulder | wrist camera tiles (856 px each); one frame at reset plus one after every control step (every = 1 since n_actions < 9000), checked: frame count = n_actions + 1 (ffprobe). So frame F = state after control step F, sim time = F/15 s (15 Hz control). Luna minute <-> step pairs from 'control_steps' in its tool results (value printed after each call, so frames are the end of the call; approx. for in-call events)."
+ },
+ {
+  "finding": "rl4",
+  "file": "rl4_luna_one_more_replay_failed_after_resets.png",
+  "trial_key": "Bsv3g5F",
+  "agent": "Luna",
+  "mode": "privileged",
+  "title_en": "bananas-in-bin-one-more (privileged): a live success after three resets fails the fresh replay; re-recorded from one reset it passes",
+  "title_zh": "bananas-in-bin-one-more（特权模式）：三次 reset 之后的现场成功在全新进程回放中失败；改为单次 reset 重录后通过",
+  "caption_en": "Timeline from Luna's log: [35.9] live success saved (165 actions, meta grasp_offset 0.055 m, banana_01); [36.1] fresh-process replay 1; [38.1] \"The saved trajectory failed its first fresh-process replay. The live success had come after three exploratory resets\"; [39.0] the same grasp re-run from a single reset; [40.6] success, 217 actions, sha 897c04f3; [43.6] both fresh replays agree. Graded 1 because Luna replayed in fresh processes before handing in. The failing 165-action file was overwritten, so only the graded trajectory's verifier replay exists (frames 120, 190, 217).",
+  "caption_zh": "Luna 日志时间线：[35.9] 保存现场成功轨迹（165 个动作，banana_01，grasp_offset 0.055 m）；[36.1] 全新进程回放 1；[38.1]“保存的轨迹在第一次全新进程回放中失败了。现场的成功出现在三次探索性 reset 之后”；[39.0] 只做一次初始 reset 重跑同一抓取；[40.6] 成功，217 个动作，sha 897c04f3；[43.6] 两次全新回放结果一致。之所以最后得 1 分，是因为 Luna 交卷前用全新进程做了回放。失败的 165 动作文件已被覆盖，只剩最终轨迹的验证回放（第 120、190、217 帧）。",
+  "moment": {
+   "step": 165,
+   "frame": null,
+   "sim_time_s": 11.0,
+   "wall_min": 38.1,
+   "quote": "The saved trajectory failed its first fresh-process replay. The live success had come after three exploratory resets"
+  },
+  "mapping": "Timeline minutes from the Codex trajectory digest; frames from verifier/replay.mp4 (218 frames = 217 actions + 1, 15 fps), frame F = state after step F. The failed 165-action replay has no video (the file was replaced before grading)."
+ },
+ {
+  "finding": "rl4",
+  "file": "rl4_glm_three_total_replays_disagree.png",
+  "trial_key": "LMkwhJ7",
+  "agent": "GLM",
+  "mode": "standard",
+  "title_en": "bananas-in-bin-three-total (GLM, standard): one trajectory, two fresh replays, two outcomes",
+  "title_zh": "bananas-in-bin-three-total（GLM 标准模式）：同一条轨迹，两次全新回放，两个结果",
+  "caption_en": "final.json: live_sha 2434fe5b (success at step 654, 680 s), replay_sha (replay 1) a45b3bbc, replay_sha2 2434fe5b, deterministic false, live_matches_replay false -> graded 0 although the live run succeeded. The frames are replay 1 (the filmed one): it runs all 654 actions without the success termination; at step 654 the bin holds two bananas and a banana is still at the fingers. Live run: [13.7] \"Success! ... the banana was grasped ... carried over the bin, released\"; [14.0] \"3 bananas in the grey bin\".",
+  "caption_zh": "final.json：live_sha 2434fe5b（第 654 步、680 s 成功），replay 1 的 sha 为 a45b3bbc，replay 2 为 2434fe5b，deterministic = false、live_matches_replay = false，所以尽管现场成功了，最终得 0 分。画面来自 replay 1（只有它录了视频）：654 个动作全部跑完也没有触发成功终止；第 654 步时箱里只有两根香蕉，另一根还在手指旁。现场运行：[13.7]“成功！……香蕉被抓起……运到箱子上方、松开”；[14.0]“灰色箱子里有 3 根香蕉”。",
+  "moment": {
+   "step": 654,
+   "frame": 654,
+   "sim_time_s": 43.6,
+   "wall_min": 13.7,
+   "quote": "Success! The episode ended with done: True, reason: 'success' at 680 s"
+  },
+  "mapping": "Replay video from the grader's replay CLI: 15 fps, 2570x480 = front | over-shoulder | wrist camera tiles (856 px each); one frame at reset plus one after every control step (every = 1 since n_actions < 9000), checked: frame count = n_actions + 1 (ffprobe). So frame F = state after control step F, sim time = F/15 s (15 Hz control). The replay CLI films only replay 1 (finalize.sh), so the live / replay-2 end state has no video; replay 1 stopping at the last action (655 frames) shows it never reached success."
+ },
+ {
+  "finding": "rl5",
+  "file": "rl5_one_more_physics_blowups.png",
+  "trial_key": "HG8vVbk",
+  "agent": "Opus",
+  "mode": "standard",
+  "also": [
+   {
+    "trial_key": "gF2dfGZ",
+    "agent": "GLM"
+   }
+  ],
+  "title_en": "bananas-in-bin-one-more (standard): the physics blows up within one control step for Opus and GLM",
+  "title_zh": "bananas-in-bin-one-more（标准模式）：Opus 和 GLM 的物理仿真都在一个控制步内炸开",
+  "caption_en": "Opus: step 1117 normal, step 1118 (t = 74.5 s) the arm jumps, 1119-1126 the bin is launched off the table, 1134 the table is gone. Proprio rows printed in Opus's log: step 61 max |q| = 2.07 rad, step 1142 (11.3 min) 2.9e5 rad, step 1157 (11.5 min) 1.6e10 rad; [11.9] 'the physics exploded. The arm's joint positions are now around 10⁹–10¹⁰ rad'. GLM: [10.5] 'Closing immediately'; step 225 normal, step 226 (t = 15.1 s) the bin is launched, 229 the table tips, 240 the table is gone; [11.0] 'The explosion knocked the entire table over'. Both replays are bit-identical to the live runs (live_sha = replay_sha = replay_sha2), so this is the simulator, reproduced, not a rendering glitch.",
+  "caption_zh": "Opus：第 1117 步一切正常，第 1118 步（t = 74.5 s）机械臂突然跳变，第 1119–1126 步箱子被抛离桌面，第 1134 步桌子已不在画面中。Opus 日志里打印的本体感知：第 61 步最大 |q| = 2.07 rad，第 1142 步（11.3 分钟）2.9e5 rad，第 1157 步（11.5 分钟）1.6e10 rad；[11.9]“物理炸了，机械臂关节角现在在 10⁹–10¹⁰ rad 量级”。GLM：[10.5]“马上闭合”；第 225 步正常，第 226 步（t = 15.1 s）箱子被抛起，第 229 步桌子翻倒，第 240 步桌子消失；[11.0]“爆炸把整张桌子掀翻了”。两条回放都与现场运行逐位一致（live_sha = replay_sha = replay_sha2），所以这是仿真器本身、可复现的问题，不是渲染故障。",
+  "moment": {
+   "step": 1118,
+   "frame": 1118,
+   "sim_time_s": 74.5,
+   "wall_min": 11.3,
+   "quote": "the physics exploded. The arm's joint positions are now around 10⁹–10¹⁰ rad and still growing",
+   "second": {
+    "trial_key": "gF2dfGZ",
+    "step": 226,
+    "frame": 226,
+    "sim_time_s": 15.1,
+    "wall_min": 10.5,
+    "quote": "The explosion knocked the entire table over"
+   }
+  },
+  "mapping": "Replay video from the grader's replay CLI: 15 fps, 2570x480 = front | over-shoulder | wrist camera tiles (856 px each); one frame at reset plus one after every control step (every = 1 since n_actions < 9000), checked: frame count = n_actions + 1 (ffprobe). So frame F = state after control step F, sim time = F/15 s (15 Hz control). Opus's minutes from the status + proprio rows in its log (tools/proprio.py); GLM's step 226 lies in the close call sent at 10.5 min (status: step 151 earlier, 247 at 10.8 min)."
+ },
+ {
+  "unevidenced": [
+   {
+    "finding": "all",
+    "reason": "No per-step time series (object height, gripper width, contact flags, predicate value): the fetch service returned http404 for every trajectory.npz, verifier/trajectory.npz, journal.f64 and episode.jsonl requested (24 lines, robolab_2.done); and even when present, RoboLab files hold only the (T, 8) actions (+ per-call proprio in episode.jsonl), never object poses or contact forces. Object state could only be recovered by re-simulating, which the brief forbids. All marks are therefore on video frames plus the step/proprio numbers the agents printed in their own logs."
+   },
+   {
+    "finding": "rl1",
+    "reason": "The contact-force value of left_inner_finger at the success step is not recorded anywhere; the 'one finger' mechanism is from the source (droid.py:184, predicate_logic.py:830), the frames only show the can still between the pads."
+   },
+   {
+    "finding": "rl1",
+    "reason": "Gemini CDNd3mQ ('placed both cans') could not be confirmed as a real release: last frames 3208-3219 show the tuna between the fingers; gripper opening is not readable from the video and its task log was not captured."
+   },
+   {
+    "finding": "rl2",
+    "reason": "The '54 of 105 failures' count and the 7 'unbounded axis' trials are not re-evidenced per trial here (only Sol6.1 XfwwAwu); Sol mustard-in-right [14.9] etc. remain log quotes."
+   },
+   {
+    "finding": "rl4",
+    "reason": "For the privileged live-success-then-failed-replay cases there is no video of the failing replay (agents overwrite trajectory.npz; only the graded file is replayed by the verifier). The 10-trial count is from the logs only."
+   },
+   {
+    "finding": "rl4",
+    "reason": "GLM LMkwhJ7: no video of the live run or replay 2 (finalize.sh films only replay 1), so live vs. replay-1 cannot be shown side by side; the live end state is the agent's description."
+   },
+   {
+    "finding": "rl5",
+    "reason": "Sol6.1's blow-up on the same instance and the NaN trials (DeepSeek reorient-red-mug, GLM bbq-sauce) were not fetched (kept to the two clearest cases)."
+   }
+  ]
+ }
+]
