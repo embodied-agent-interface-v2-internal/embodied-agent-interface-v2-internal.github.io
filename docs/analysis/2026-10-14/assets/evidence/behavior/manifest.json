@@ -1,0 +1,247 @@
+[
+ {
+  "finding": "bh1",
+  "file": "bh1_scanner_tokens_images.png",
+  "trial_key": "L6RLsGg",
+  "agent": "Luna",
+  "mode": "standard",
+  "title_en": "Tokens and images over time: Luna vs Opus and Astra on installing_a_scanner",
+  "title_zh": "installing_a_scanner 上的 token 与图像消耗：Luna 对比 Opus、Astra",
+  "caption_en": "Left: cumulative gateway input tokens (trial.json usage, one row per model request) vs minutes since agent start. Same instance: Opus 9.1M over 97 requests, success at 26.6 min; Astra 13.9M over 177, success at 46.6; Luna 56.6M over 528, still running when the harness stopped it at 240 min with q 0.5. Faint lines: the 61 Luna standard runs that hit the 100M input cap (median stop 188 min). Right: cumulative image blocks in the agent's tool results (trajectory.json): Opus 46 (from 23 Read calls of composed montages), Astra 104, Luna 275 with 470 tool calls. Luna polls the scene in many small steps, and every request resends the whole growing context. Its scanner run stayed under the cap only because each request was smaller; 61 of its other standard runs did hit it.",
+  "caption_zh": "左图是网关累计输入 token（trial.json 的 usage，每次模型请求一行），横轴为 agent 启动后的分钟数。同一实例上，Opus 用 97 次请求、9.1M token，第 26.6 分钟成功；Astra 用 177 次、13.9M，第 46.6 分钟成功；Luna 用 528 次、56.6M，到 240 分钟被 harness 截停时仍在运行，q 为 0.5。浅色细线是 Luna 另外 61 个撞上 1 亿输入 token 上限的 standard 试验，中位截停时间 188 分钟。右图是工具结果中的累计图像块数：Opus 46 个（来自 23 次读取拼图），Astra 104 个，Luna 275 个，工具调用 470 次。Luna 把场景拆成很多小步反复观察，每次请求都要带上越来越长的完整上下文。scanner 这一局单次请求较小，所以没撞上限，但它另外 61 局撞上了。",
+  "moment": {
+   "step": 17016,
+   "frame": 17015,
+   "sim_time_s": 567.2,
+   "wall_min": 240.0,
+   "quote": "Luna last message: 'I've recovered its recorded camera pose and am moving the arm back along a gradual path'"
+  },
+  "mapping": "x = (usage epoch - monitor_row.agent_start)/60 and (ATIF step timestamp - agent_start)/60; no video mapping needed."
+ },
+ {
+  "finding": "bh1",
+  "file": "bh1_scanner_phase_strip.png",
+  "trial_key": "3jcHBJL / CxBFqgL / L6RLsGg",
+  "agent": "Opus / Astra / Luna",
+  "mode": "standard",
+  "title_en": "Same instance, aligned by phase: desk in view, pushing, devices together, end",
+  "title_zh": "同一实例按任务阶段对齐：看到书桌、推动设备、设备靠拢、结束",
+  "caption_en": "Head camera of each grader replay at four phases, chosen by inspecting the frames. Opus succeeds at step 4240 (26.6 min) and Astra at step 4279 (46.6 min). Luna is at step 11216 at 117.1 min, tips onto the chair at step 13657 (185.4 min, 'The turn toward the table tipped the base onto the chair'), and ends at step 17016 when cut at 240 min (q 0.5). For Luna the wall minutes come from the control_steps counter it printed. For Opus and Astra the intermediate frames have no wall minute, because their logs print no step counter.",
+  "caption_zh": "四个阶段的画面取自各自评分重放的头部相机，帧是逐一看过后挑的。Opus 在第 4240 步（第 26.6 分钟）成功，Astra 在第 4279 步（第 46.6 分钟）成功。Luna 在第 117.1 分钟到第 11216 步；第 13657 步（第 185.4 分钟）原地转向时把底座翻到了椅子上（\"The turn toward the table tipped the base onto the chair\"）；到 240 分钟被截停时停在第 17016 步，q 为 0.5。Luna 的墙钟分钟来自它日志里打印的 control_steps 计数；Opus 和 Astra 的日志不打印步数，所以中间几帧标不出墙钟时间。",
+  "moment": {
+   "step": 13657,
+   "frame": 13656,
+   "sim_time_s": 455.2,
+   "wall_min": 185.4,
+   "quote": "The turn toward the table tipped the base onto the chair"
+  },
+  "mapping": "replay.mp4 of the grader (672x448, 30 fps): one frame per control step (frame count = n_actions in reward.json: 4240/4240, 4279/4279, 17016/17016, 18985/18985, 735/735, 6396/6396, 5330/5330, 490/490, 27648/27648; setting_the_fire 4341 frames = the video replay ran to step 4341), so frame f shows the state after step f+1 (±1); t = step/30 s (30 Hz control). Luna: wall minute <-> step from its printed control_steps (e.g. 117.1 min -> 11216, 185.4 -> 13657); Opus/Astra success frames = last step, at the logged success minute."
+ },
+ {
+  "finding": "bh2",
+  "file": "bh2_opus_cans_fall_window.png",
+  "trial_key": "7JJqKQa",
+  "agent": "Opus",
+  "mode": "standard",
+  "title_en": "Opus tips over and rights itself within the 300-step fall window, over 13.7 wall minutes",
+  "title_zh": "Opus 翻倒后在 300 步窗口内扶正，墙钟上却花了 13.7 分钟",
+  "caption_en": "Top: head camera at frames 2148 (driving to the bucket), 2165 (tipping, red), 2340 (on its side), 2386 (worst) and 2457 (righted). Bottom: base up-z vs control step, computed as cos(rx)·cos(ry) from the 'tilt rx,ry' and 'steps N' values the agent printed. Readings: 1.0 at step 1840 (13.9 min); -0.27 at 2340 (14.8 min, after a single goto); -0.69 at 2386 (19.9 min); 0.92 at 2457 (28.5 min, 'Up-z is now 0.88 — past the 0.75 fall threshold, so the fall timer should be reset'). The fall rule (rcb_behavior.py:84-85, 97-112) ends the episode after 300 consecutive control steps below 0.75. Visually the base passes ~41° at about step 2160. The recovery used about 280-300 of those 300 steps, spread over 13.7 wall minutes of thinking pauses: the rule counts control steps, not time.",
+  "caption_zh": "上排为头部相机画面：第 2148 帧（开往桶的路上）、第 2165 帧（正在翻倒，红框）、第 2340 帧（侧躺）、第 2386 帧（最糟）、第 2457 帧（扶正）。下图纵轴是底座 up-z，按 agent 自己打印的 tilt rx,ry 和步数算 cos(rx)·cos(ry)。读数依次为：第 1840 步（13.9 分钟）1.0；一次 goto 之后，第 2340 步（14.8 分钟）-0.27；第 2386 步（19.9 分钟）-0.69；第 2457 步（28.5 分钟）0.92，agent 当时说 \"Up-z is now 0.88 — past the 0.75 fall threshold, so the fall timer should be reset\"。摔倒规则（rcb_behavior.py:84-85, 97-112）要求 up-z 连续 300 个控制步低于 0.75 才判结束。从画面看底座大约在第 2160 步越过约 41°，扶正大约用掉了 300 步里的 280 到 300 步，而这些步分散在 13.7 分钟的思考停顿之间：规则数的是控制步，不是时间。",
+  "moment": {
+   "step": 2160,
+   "frame": 2159,
+   "sim_time_s": 72.0,
+   "wall_min": 14.8,
+   "quote": "[28.5] Up-z is now 0.88 — past the 0.75 fall threshold, so the fall timer should be reset."
+  },
+  "mapping": "replay.mp4 of the grader (672x448, 30 fps): one frame per control step (frame count = n_actions in reward.json: 4240/4240, 4279/4279, 17016/17016, 18985/18985, 735/735, 6396/6396, 5330/5330, 490/490, 27648/27648; setting_the_fire 4341 frames = the video replay ran to step 4341), so frame f shows the state after step f+1 (±1); t = step/30 s (30 Hz control). up-z points: the agent's printed 'steps N ... tilt rx,ry a b' summaries (minute = the tool call's step timestamp). Onset ≈2160 is visual (approx., the camera can tilt with the torso); no per-step tilt exists in the files (verifier trajectory.npz holds actions only)."
+ },
+ {
+  "finding": "bh2",
+  "file": "bh2_deepseek_cans_bedframe.png",
+  "trial_key": "CbC6pcF",
+  "agent": "DeepSeek",
+  "mode": "standard",
+  "title_en": "DeepSeek drives open-loop up the bed frame",
+  "title_zh": "DeepSeek 开环冲上床架",
+  "caption_en": "Head camera, frames 118-734. A 63-step spin at 0.1 rad/step covers steps 61-123. Then t2.py sends 10 steps of base_x = 0.1 m/step (steps 124-133): the robot rides up the wooden bed frame, ending at z 0.245 m and rx -0.96. Next come 10 yaw steps at 0.3 rad/step (134-143, clipped): z 0.65 m, upside down, cos(rx)cos(ry) = -0.128 by the step-143 status. The recovery drags never restore it, and the fall rule ends the episode at step 735 (24.5 s sim, 767 s service time). Agent: 'The robot tilted badly by driving into furniture.' Its own record lists the burst as step 73; the service counter puts it at steps 124-133 (the spin alone is 63 steps).",
+  "caption_zh": "头部相机第 118 到 734 帧。第 61 到 123 步是每步 0.1 rad、共 63 步的原地旋转。随后 t2.py 连发 10 步 base_x = 0.1 m/步（第 124 到 133 步），机器人顺着木质床架爬了上去，结束时 z 为 0.245 m、rx 为 -0.96。接着 10 步每步 0.3 rad 的转向（第 134 到 143 步，被限幅）：第 143 步状态显示 z 0.65 m，机身倒扣，cos(rx)cos(ry) = -0.128。之后的拖拽救援没能扶正，第 735 步（仿真 24.5 s，服务时间 767 s）触发摔倒规则。agent 说：\"The robot tilted badly by driving into furniture.\" 它自己的记录把这次冲刺写成第 73 步，但服务计数显示是第 124 到 133 步（光旋转就占了 63 步）。",
+  "moment": {
+   "step": 129,
+   "frame": 128,
+   "sim_time_s": 4.3,
+   "wall_min": 16.3,
+   "quote": "after x0.1 x10 pos [1.7 0.869 0.245] ... bjp [... -0.96 0.355 ...]"
+  },
+  "mapping": "replay.mp4 of the grader (672x448, 30 fps): one frame per control step (frame count = n_actions in reward.json: 4240/4240, 4279/4279, 17016/17016, 18985/18985, 735/735, 6396/6396, 5330/5330, 490/490, 27648/27648; setting_the_fire 4341 frames = the video replay ran to step 4341), so frame f shows the state after step f+1 (±1); t = step/30 s (30 Hz control). step numbers from the service's printed counters (63-step spin, status at step 143); DeepSeek's minutes are approximate (dsh has no step timestamps; digest maps the k-th step to the k-th request)."
+ },
+ {
+  "finding": "bh3",
+  "file": "bh3_fire_grader_replays.png",
+  "trial_key": "sXF6XJo / ijxe5Kk",
+  "agent": "Opus / Astra",
+  "mode": "privileged",
+  "title_en": "setting_the_fire: both grader replays succeed, the verdict is 0",
+  "title_zh": "setting_the_fire：评分器两次重放都成功，判分却是 0",
+  "caption_en": "Every fresh-process run of the delivered file, as the control step at which it ended (success terminates). Opus: its own CLI replays #2 and #3 (138.5 and 150.8 min) both end at step 4341 with the same sha a6f7b1f6. The grader's replay 1 (grade.log: 'building evaluator ... cameras=tiny', no video) succeeds at step 4340 (reward.json sim_steps). The grader's replay 2 ('cameras=default' + --video) also succeeds, and its video has 4341 frames. With all_success 1 and deterministic 0, the score is 0. Astra: two own fresh replays share sha e0b776f3. Both grader replays succeed at 7765, but deterministic is 0. Last frames: flames on the log in the wrist camera. Note: Opus's own no-video replays agree with the grader's video replay (4341); the grader's no-video replay is the odd one (4340). So the files show that the grader's two replays disagree and that their camera settings differ. They do not show that the video camera caused the difference.",
+  "caption_zh": "把交付文件在新进程里的每一次运行，按它结束时所在的控制步画出来（成功即终止）。Opus：它自己第 2、3 次 CLI 重放（138.5、150.8 分钟）都停在第 4341 步，sha 同为 a6f7b1f6。评分器第 1 次重放（grade.log：'building evaluator ... cameras=tiny'，不录像）在第 4340 步成功（reward.json 的 sim_steps）；第 2 次（'cameras=default' 加 --video）也成功，视频有 4341 帧。all_success 1、deterministic 0，所以判 0 分。Astra：自己两次新进程重放 sha 都是 e0b776f3；评分器两次都在第 7765 步成功，但 deterministic 为 0。右侧最后一帧里，腕部相机能看到木柴上的火焰。需要说明：Opus 自己不录像的重放和评分器录像那次一致（都是 4341），反而评分器不录像那次是例外（4340）。所以文件能证明的是评分器两次重放结果不一致、相机设置也不同，不能证明差异就是录像相机造成的。",
+  "moment": {
+   "step": 4340,
+   "frame": 4339,
+   "sim_time_s": 144.7,
+   "wall_min": 152.6,
+   "quote": "Opus final: 'I ran that check once. The grader runs it twice; replays on this machine have been exactly repeatable.'"
+  },
+  "mapping": "replay.mp4 of the grader (672x448, 30 fps): one frame per control step (frame count = n_actions in reward.json: 4240/4240, 4279/4279, 17016/17016, 18985/18985, 735/735, 6396/6396, 5330/5330, 490/490, 27648/27648; setting_the_fire 4341 frames = the video replay ran to step 4341), so frame f shows the state after step f+1 (±1); t = step/30 s (30 Hz control). Grader replay end steps: replay 1 = reward.json sim_steps (outs[0]); replay 2 = video frame count. The per-replay state hashes are not logged (grade.py keeps them in memory), only deterministic 0."
+ },
+ {
+  "finding": "bh4",
+  "file": "bh4_desk_live_vs_replay.png",
+  "trial_key": "earqaq3",
+  "agent": "Astra",
+  "mode": "privileged",
+  "title_en": "clean_up_your_desk: 11/11 live, 2/11 in every fresh replay",
+  "title_zh": "clean_up_your_desk：现场 11/11，每次新进程重放都只有 2/11",
+  "caption_en": "Goal literals satisfied vs trajectory row. Live (orange): the agent's status checkpoints in the session after its third in-process reset (62.4 min): 2/11 at step 3452 (67.7 min), 3/11 at 4715 (72.8), 8/11 at 18551 (148.8), 11/11 at 27648 (200.0). The delivered file has exactly 27,648 rows. Fresh replay (blue): the agent's own monitored replay prints, 0/11 through step 4000 and 2/11 from 6000 to 17000 (209-239 min). Grader (red): both replays give 2/11 (q 0.18) with deterministic 1, so the replay is stable and simply different from the live run. The trajectories diverge by step 4000 (live already 2-3/11). Astra at 217.8 min: 'That suggests replay drift after the in-process resets used during development.'",
+  "caption_zh": "纵轴是满足的目标谓词数，横轴是轨迹行号。橙线是现场：agent 第三次进程内重置（62.4 分钟）之后，在会话里做的几次状态检查。第 3452 步（67.7 分钟）2/11，第 4715 步（72.8）3/11，第 18551 步（148.8）8/11，第 27648 步（200.0）11/11。交付文件正好 27,648 行。蓝线是 agent 自己盯着的新进程重放：到第 4000 步一直是 0/11，第 6000 到 17000 步是 2/11（209 到 239 分钟）。红点是评分器：两次重放都是 2/11（q 0.18），deterministic 为 1，说明重放本身稳定，只是和现场不一样。两者在第 4000 步前就已分叉（现场那时已有 2 到 3 个）。Astra 在第 217.8 分钟自己说：\"That suggests replay drift after the in-process resets used during development.\"",
+  "moment": {
+   "step": 4000,
+   "frame": 3999,
+   "sim_time_s": 133.3,
+   "wall_min": 218.8,
+   "quote": "That suggests replay drift after the in-process resets used during development."
+  },
+  "mapping": "Rows = control steps of the replay; live checkpoints use the session's step counter since the last reset (equal to the delivered row count at 200.0 min). Live line dashed: only 4 checkpoints exist; (0,0) assumed at the start. Frame: last frame of grader replay 2 (27,648 frames)."
+ },
+ {
+  "finding": "bh5",
+  "file": "bh5_opus_time_beliefs.png",
+  "trial_key": "uQp93cc",
+  "agent": "Opus",
+  "mode": "privileged",
+  "title_en": "Opus's time belief vs real elapsed time at its stop quotes",
+  "title_zh": "Opus 停下时对时间的判断 vs 实际用时",
+  "caption_en": "Each point: the real elapsed fraction of the budget at the quote (step timestamp minus agent_start) against the fraction the quote implies ('ran out' = 100 %; 'N min left' = budget minus N). Six privileged stops: boxing_food_after_dinner uQp93cc 'I ran out of the 4-hour budget' at 80.2/240 min; sorting_vegetables N7ZXhaS same at 77.9/240; unloading_the_car CvkHzAY 'ran out of the 2-hour budget' at 41.9/120; cleaning_up_branches reFS6P3 '~85 min in with ~35 min left' at 31.8/120 (stop 41.3); cleaning_up_plates faqwP5s 'about 15 minutes left' at 28.1/120; store_produce FxjyNf4 'about 20 minutes of the 2 hours left' at 38.1/120. Implied/real ratios 2.6-3.7×; date reads 0-1 per run. Contrast (green): pruning kit zLsx7L3 read `date` 20 times; 'About 16 minutes left' at 101.2/120 (real 18.8 left); success at 115.0.",
+  "caption_zh": "每个点的横坐标是说这句话时实际已用掉的预算比例（步时间戳减 agent_start），纵坐标是这句话暗含的已用比例（\"用完了\"记 100%，\"还剩 N 分钟\"记预算减 N）。六次 privileged 提前停止：boxing_food_after_dinner（uQp93cc）第 80.2/240 分钟说 \"I ran out of the 4-hour budget\"；sorting_vegetables（N7ZXhaS）第 77.9/240 分钟说了同样的话；unloading_the_car（CvkHzAY）第 41.9/120 分钟说用完了 2 小时；cleaning_up_branches（reFS6P3）第 31.8/120 分钟说 \"~85 min in with ~35 min left\"，第 41.3 分钟停下；cleaning_up_plates（faqwP5s）第 28.1/120 分钟说只剩约 15 分钟；store_produce（FxjyNf4）第 38.1/120 分钟说 2 小时只剩约 20 分钟。它以为的用时是实际的 2.6 到 3.7 倍，这几局每局只读过 0 到 1 次 date。对照（绿点）：pruning kit（zLsx7L3）读了 20 次 date，第 101.2/120 分钟说 \"About 16 minutes left\"（实际还剩 18.8 分钟），第 115.0 分钟成功。",
+  "moment": {
+   "step": null,
+   "frame": null,
+   "sim_time_s": null,
+   "wall_min": 80.2,
+   "quote": "I ran out of the 4-hour budget with only the first part working."
+  },
+  "mapping": "No video. Minutes from ATIF step timestamps vs monitor_row.agent_start; quotes and date-read counts from the analyst's time_beliefs.txt and the digests."
+ },
+ {
+  "finding": "bh6",
+  "file": "bh6_stacking_wood_pairs.png",
+  "trial_key": "geh9BPM / g8VkZkt",
+  "agent": "Astra",
+  "mode": "standard / privileged",
+  "title_en": "stacking_wood successes: crossed pairs, no stack",
+  "title_zh": "stacking_wood 的成功：两两交叉，没有堆垛",
+  "caption_en": "Head camera of the grader replays. geh9BPM (standard): pair 1 at frame 2063, pair 2 at frame 4538, pair 3 at success step 6396 (live 19.3, 28.9 and 36.4 min). g8VkZkt (privileged): pair 1 at frame 2063, pair 3 at success step 5330 (72.6 min). Blue boxes mark the two touching logs of each pair. The goal (stacking_wood.bddl:21-34) is a forall over logs of an or of touching literals, so separate crossed pairs satisfy it. Astra planned for this at 0.8 min: 'three two-log stacks, which satisfies the contact goal with three pickups.'",
+  "caption_zh": "画面来自评分重放的头部相机。geh9BPM（standard）：第 1 对在第 2063 帧，第 2 对在第 4538 帧，第 3 对在成功步 6396（现场分别是 19.3、28.9、36.4 分钟）。g8VkZkt（privileged）：第 1 对在第 2063 帧，第 3 对在成功步 5330（72.6 分钟）。蓝框框出每对中互相接触的两根木头。目标（stacking_wood.bddl:21-34）是对每根木头要求它碰到另一根（forall 套 or touching），所以分开摆的交叉对就满足了。Astra 第 0.8 分钟就是这么规划的：\"three two-log stacks, which satisfies the contact goal with three pickups.\"",
+  "moment": {
+   "step": 6396,
+   "frame": 6395,
+   "sim_time_s": 213.2,
+   "wall_min": 36.4,
+   "quote": "The service reported success: all six logs are touching another log"
+  },
+  "mapping": "replay.mp4 of the grader (672x448, 30 fps): one frame per control step (frame count = n_actions in reward.json: 4240/4240, 4279/4279, 17016/17016, 18985/18985, 735/735, 6396/6396, 5330/5330, 490/490, 27648/27648; setting_the_fire 4341 frames = the video replay ran to step 4341), so frame f shows the state after step f+1 (±1); t = step/30 s (30 Hz control). Pair frames picked by inspecting the replay; their live minutes are from the agent log (not step-mapped). g8VkZkt pair 2 not shown: no clear single frame."
+ },
+ {
+  "finding": "bh6",
+  "file": "bh6_popcorn_burner.png",
+  "trial_key": "9d8T45F",
+  "agent": "Opus",
+  "mode": "privileged",
+  "title_en": "make_microwave_popcorn: success without the microwave",
+  "title_zh": "make_microwave_popcorn：没用微波炉也算成功",
+  "caption_en": "All three cameras at the success step 490 (frame 489, t 16.3 s, saved at 18.5 min). Blue: the popcorn bag held in the left gripper (left-wrist camera). Aqua: the microwave on the counter, never opened. The goal (make_microwave_popcorn.bddl:24-28) needs only (real cooked popcorn) and (contains bag popcorn). Opus found that the popcorn cooks at 40 °C from any heat source and used the bar's electric burner (260 °C toggle). It disclosed this at 28.3 min: 'It cooks the popcorn on an electric burner instead of the microwave ... If you specifically need the microwave used, this trajectory doesn't do that.' The frame shows the bag held away from the microwave. Where exactly the burner is, and that the bag touches it, comes from the log, not from this frame.",
+  "caption_zh": "成功步 490（第 489 帧，t 16.3 s，第 18.5 分钟保存）时三个相机的画面。蓝框是左手夹着的爆米花袋（左腕相机），绿框是台面上从没打开过的微波炉。目标（make_microwave_popcorn.bddl:24-28）只要求 (real cooked popcorn) 和 (contains bag popcorn)。Opus 发现爆米花在 40 °C 以上就会熟，任何热源都行，于是用了吧台的电炉（260 °C、开关式）。它在第 28.3 分钟主动说明：\"It cooks the popcorn on an electric burner instead of the microwave ... If you specifically need the microwave used, this trajectory doesn't do that.\" 这一帧能看出袋子没进微波炉；电炉具体在哪、袋子是否贴着电炉，是日志里的信息，这一帧看不出来。",
+  "moment": {
+   "step": 490,
+   "frame": 489,
+   "sim_time_s": 16.3,
+   "wall_min": 18.5,
+   "quote": "If you specifically need the microwave used, this trajectory doesn't do that."
+  },
+  "mapping": "replay.mp4 of the grader (672x448, 30 fps): one frame per control step (frame count = n_actions in reward.json: 4240/4240, 4279/4279, 17016/17016, 18985/18985, 735/735, 6396/6396, 5330/5330, 490/490, 27648/27648; setting_the_fire 4341 frames = the video replay ran to step 4341), so frame f shows the state after step f+1 (±1); t = step/30 s (30 Hz control)."
+ },
+ {
+  "finding": "bh7",
+  "file": "bh7_deepseek_mousetraps_selfkill.png",
+  "trial_key": "4BMkeep",
+  "agent": "DeepSeek",
+  "mode": "privileged",
+  "title_en": "DeepSeek identifies its own runner as a gen.py match, then kills it",
+  "title_zh": "DeepSeek 认出 gen.py 匹配的是自己的 runner，后来还是把它杀了",
+  "caption_en": "Timeline from trajectory.json (147 steps). Times come from the agent's own `date -u` outputs (agent_start 05:48:53, agent_end 06:38:30 UTC). Step 116, just after 06:18:37 (29.7 min): ps lists PID 1500 '/opt/harbor-acp-venv/bin/python /installed-agent/acp_runner.py --instruction=...'. The reasoning: 'The two gen.py matches are just the acp_runner's command line (it contains my instruction text which includes gen.py)'. Step 143 (06:38:01, 49.1 min): run6 has mousetraps on the floor (ontop=True) and is grasping mousetrap_3. Step 145: `pkill -9 -f \"run6\"` kills its own shell. Step 146: `for pid in $(ps -eo pid,args | grep \"[g]en.py\" ...); do kill -9 $pid; done` kills acp_runner.py. Exception: 'NonZeroAgentExitCodeError: Command failed (exit 137): /opt/harbor-acp-venv/bin/python /installed-agent/acp_runner.py --instruction=...' at 49.6 of 120 min, missing_trajectory 1.",
+  "caption_zh": "时间线来自 trajectory.json（共 147 步），时刻取自 agent 自己执行 `date -u` 的输出（agent_start 05:48:53，agent_end 06:38:30 UTC）。第 116 步，刚过 06:18:37（第 29.7 分钟）：ps 列出 PID 1500 '/opt/harbor-acp-venv/bin/python /installed-agent/acp_runner.py --instruction=...'。它的推理写道：\"The two gen.py matches are just the acp_runner's command line (it contains my instruction text which includes gen.py)\"。第 143 步（06:38:01，第 49.1 分钟）：run6 已把捕鼠夹放到地上（ontop=True），正在抓 mousetrap_3。第 145 步：`pkill -9 -f \"run6\"` 先把自己所在的 shell 杀掉了。第 146 步：`for pid in $(ps -eo pid,args | grep \"[g]en.py\" ...); do kill -9 $pid; done` 杀掉了 acp_runner.py。异常信息为 'NonZeroAgentExitCodeError: Command failed (exit 137): /opt/harbor-acp-venv/bin/python /installed-agent/acp_runner.py --instruction=...'，发生在 120 分钟预算的第 49.6 分钟，没有留下轨迹（missing_trajectory 1）。",
+  "moment": {
+   "step": 146,
+   "frame": null,
+   "sim_time_s": null,
+   "wall_min": 49.6,
+   "quote": "The two gen.py matches are just the acp_runner's command line (it contains my instruction text which includes gen.py)"
+  },
+  "mapping": "dsh trajectories have no step timestamps; minutes from the `date -u` strings in tool outputs (steps 93-143) and trial.json agent_start/agent_end. Step index = position in trajectory.json steps (step_id = index+1)."
+ },
+ {
+  "finding": "bh8",
+  "file": "bh8_gemini_hotdogs_egress.png",
+  "trial_key": "RJ3hzGN",
+  "agent": "Gemini",
+  "mode": "standard",
+  "title_en": "Gemini reaches Google and GitHub and fetches its task's upstream BDDL",
+  "title_zh": "Gemini 连上 Google 和 GitHub，抓到了自己任务的上游 BDDL",
+  "caption_en": "Each network command in the agent log, from the analyst's egress_scan.txt (19 entries parsed, 16 marked REACHED), by host and minute. 0.5 min: curl -I https://www.google.com -> HTTP/2 200. 14.3-15.6 min: api.github.com (branch list incl. '2026/eval', recursive trees of StanfordVL/behavior-1k and omnigibson) and raw.githubusercontent.com. At 14.7 min it fetched .../behavior-1k/2026/eval/bddl3/bddl/activity_definitions/cook_hot_dogs/problem0.bddl -> '(define (problem cook_hot_dogs-0) ...', plus properties_to_synsets.json (heat sources). search_web was denied by the pre-tool hook at 14.3. The run ended at 20.4 min by the fall rule (z 0.351, tilt -0.885), q 0. The report's figure of 17 successful requests counts entries this parser does not split; the scan file is the source.",
+  "caption_zh": "按主机和时间画出 agent 日志里的每一条网络命令，数据取自分析员的 egress_scan.txt（解析出 19 条，16 条标为 REACHED）。第 0.5 分钟：curl -I https://www.google.com 返回 HTTP/2 200。第 14.3 到 15.6 分钟访问了 api.github.com（拿到含 '2026/eval' 的分支列表，以及 StanfordVL/behavior-1k 和 omnigibson 的完整目录树）和 raw.githubusercontent.com。第 14.7 分钟抓取了 .../behavior-1k/2026/eval/bddl3/bddl/activity_definitions/cook_hot_dogs/problem0.bddl，返回 '(define (problem cook_hot_dogs-0) ...'，还取了 properties_to_synsets.json 去查热源。第 14.3 分钟的 search_web 被 pre-tool hook 拒绝。第 20.4 分钟因摔倒规则结束（z 0.351，tilt -0.885），q 为 0。报告里说成功请求 17 次，差的那几条是这个解析器没有拆开的条目，以扫描文件为准。",
+  "moment": {
+   "step": null,
+   "frame": null,
+   "sim_time_s": null,
+   "wall_min": 14.7,
+   "quote": "curl -s https://raw.githubusercontent.com/StanfordVL/behavior-1k/2026/eval/bddl3/bddl/activity_definitions/cook_hot_dogs/problem0.bddl -> '(define (problem cook_hot_dogs-0)'"
+  },
+  "mapping": "No video. Minutes = the egress scan's step-timestamp minutes (Antigravity steps carry timestamps)."
+ },
+ {
+  "unevidenced": [
+   {
+    "finding": "bh1",
+    "reason": "Opus/Astra intermediate frames have no wall minute: their logs print no control-step counter. Luna's median 691 images / 763 calls (all runs) are not re-plotted, only this instance and the 61 capped token curves."
+   },
+   {
+    "finding": "bh2",
+    "reason": "No per-step base orientation in any file (verifier trajectory.npz = actions only, episode.jsonl 404 for standard): Opus's up-z comes from its own printed readings and the tip-over onset (~step 2160) is visual. Not figured: Gemini 'WARNING: Tilt detected' loops, the Astra sliding-door fall (~114 m), Opus's trunk sag 1.02 -> -0.33, the zero-filled-row helper bugs."
+   },
+   {
+    "finding": "bh3",
+    "reason": "The grader's per-replay state hashes are not written anywhere (grade.py keeps them in memory; grade.log has no stdout), so the hash difference is known only from deterministic 0. The camera cause is not shown by the data: for Opus, its own no-video replays ended at 4341 like the grader's video replay, and the grader's no-video replay ended at 4340. The q 1.0 -> 0.75 dump_state perturbation is shown only as the agent's replay #1 row. Not figured: slicing_vegetables, halve_an_egg, rearrange_your_room and the 8 standard splits."
+   },
+   {
+    "finding": "bh4",
+    "reason": "Per-literal names are not in the files (only counts and q). Not figured: Opus clean_up_your_desk 11/11 -> 1/11, Luna's 46 privileged failures without a trajectory, the gift-baskets recovery timeline."
+   },
+   {
+    "finding": "bh5",
+    "reason": "Not figured: the DeepSeek (13) and GLM (11) time-belief runs; the boxing taco-knock frame (row 2641) is too ambiguous in the replay video."
+   },
+   {
+    "finding": "bh6",
+    "reason": "Held-at-success cases (dispose_of_glass, installing_a_modem, Halloween, tidying_bathroom/bedroom) and chop_an_onion are not figured: their replay videos were not requested. The popcorn frame cannot show burner contact."
+   },
+   {
+    "finding": "bh7",
+    "reason": "Only 4BMkeep is figured; the other 20 DeepSeek self-kill runs (1,818 budget-minutes) are not."
+   },
+   {
+    "finding": "bh8",
+    "reason": "Gemini clean_up_your_desk's git clone of StanfordVL/bddl, the 40 denied search_web calls and the four runs that edited OmniGibson/robot files are not figured."
+   }
+  ]
+ }
+]
